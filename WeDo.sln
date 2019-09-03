@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDoScan", "WeDoScan.csproj", "{60E657F3-1E5F-42C3-8C93-B53543C5E74E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDoScan", "WeDoScan\WeDoScan.csproj", "{60E657F3-1E5F-42C3-8C93-B53543C5E74E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E0280C54-7331-4578-BB0A-549B9EB6F768}
+		SolutionGuid = {FAE648B0-0DDF-4BF4-93E1-85BB0D289606}
 	EndGlobalSection
 EndGlobal
