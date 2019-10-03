@@ -42,6 +42,8 @@
             this.laSoftwareVersion = new System.Windows.Forms.Label();
             this.laManufacturerName = new System.Windows.Forms.Label();
             this.Timer = new System.Windows.Forms.Timer(this.components);
+            this.pbBatt = new System.Windows.Forms.ProgressBar();
+            this.laBatt = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btConnect
@@ -162,11 +164,30 @@
             this.Timer.Interval = 60000;
             this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
+            // pbBatt
+            // 
+            this.pbBatt.Location = new System.Drawing.Point(405, 12);
+            this.pbBatt.Name = "pbBatt";
+            this.pbBatt.Size = new System.Drawing.Size(100, 23);
+            this.pbBatt.TabIndex = 12;
+            // 
+            // laBatt
+            // 
+            this.laBatt.AutoSize = true;
+            this.laBatt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laBatt.Location = new System.Drawing.Point(348, 17);
+            this.laBatt.Name = "laBatt";
+            this.laBatt.Size = new System.Drawing.Size(51, 13);
+            this.laBatt.TabIndex = 13;
+            this.laBatt.Text = "Batt (%)";
+            // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.laBatt);
+            this.Controls.Add(this.pbBatt);
             this.Controls.Add(this.laManufacturerName);
             this.Controls.Add(this.laSoftwareVersion);
             this.Controls.Add(this.laHardwareVersion);
@@ -204,6 +225,8 @@
         private System.Windows.Forms.Label laSoftwareVersion;
         private System.Windows.Forms.Label laManufacturerName;
         private System.Windows.Forms.Timer Timer;
+        private System.Windows.Forms.ProgressBar pbBatt;
+        private System.Windows.Forms.Label laBatt;
     }
 }
 

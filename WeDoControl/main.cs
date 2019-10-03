@@ -27,6 +27,8 @@ namespace WeDoControl
             btDisconnect.Enabled = false;
             btConnect.Enabled = true;
 
+            pbBatt.Value = 0;
+
             FRadio = null;
 
             FManager.Close();
@@ -58,6 +60,16 @@ namespace WeDoControl
             DisplayDeviceInforValue(laSoftwareVersion, Value, Res);
             Res = FClient.ReadManufacturerName(out Value);
             DisplayDeviceInforValue(laManufacturerName, Value, Res);
+        }
+        #endregion
+
+        #region Battery Level
+        private void ReadBattLevel()
+        {
+            Byte Level;
+            Int32 Res = FClient.ReadBatteryLevel(out Level);
+            if (Res == wclErrors.WCL_E_SUCCESS)
+                pbBatt.Value = Level;
         }
         #endregion
 
@@ -93,12 +105,18 @@ namespace WeDoControl
                 btDisconnect.Enabled = true;
 
                 ReadDeviceInformation();
+                ReadBattLevel();
             }
         }
 
         private void ClientDisconnected(object Sender, int Reason)
         {
             Cleanup();
+        }
+
+        private void ClientBatteryLevelChanged(object Sender, byte Level)
+        {
+            pbBatt.Value = Level;
         }
         #endregion
 
@@ -120,6 +138,7 @@ namespace WeDoControl
             FClient = new WeDoController();
             FClient.OnConnected += ClientConnected;
             FClient.OnDisconnected += ClientDisconnected;
+            FClient.OnBatteryLevelChanged += ClientBatteryLevelChanged;
 
             FManager = new wclBluetoothManager();
 

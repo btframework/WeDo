@@ -173,6 +173,11 @@ namespace WeDo
         #endregion
     };
 
+    /// <summary> The <c>OnBatteryLevelChanged</c> event handler prototype. </summary>
+    /// /// <param name="Sender"> The object that fired the event. </param>
+    /// <param name="Level"> The current battery level in percents in range 0-100. </param>
+    public delegate void BatteryLevelChangedEvent(Object Sender, Byte Level);
+
     /// <summary> The main class that implements all the WeDo controlling features. </summary>
     /// <remarks> An application must always dispoe the class when it is not needed. </remarks>
     public class WeDoController : IDisposable
@@ -361,6 +366,8 @@ namespace WeDo
             SoftwareVersionChar = null;
             ManufacturerNameChar = null;
 
+            if (BatteryLevelChar != null)
+                UnsubscribeFromNotifications(BatteryLevelChar.Value);
             BatteryLevelChar = null;
 
             SensorValueChar = null;
@@ -379,7 +386,34 @@ namespace WeDo
             BatteryTypeChar = null;
             DeviceDisconnectChar = null;
         }
+        #endregion
 
+        #region Changes notification subscribing
+        private Int32 SubscribeForNotifications(wclGattCharacteristic Characteristic)
+        {
+            // Windows does not support dual indicatable and notifiable chars so select one.
+            if (Characteristic.IsIndicatable && Characteristic.IsNotifiable)
+                Characteristic.IsIndicatable = false;
+            Int32 Res = FClient.Subscribe(Characteristic);
+            if (Res == wclErrors.WCL_E_SUCCESS)
+            {
+                Res = FClient.WriteClientConfiguration(Characteristic, true, wclGattOperationFlag.goNone);
+                if (Res != wclErrors.WCL_E_SUCCESS)
+                    FClient.Unsubscribe(Characteristic);
+            }
+            return Res;
+        }
+
+        private void UnsubscribeFromNotifications(wclGattCharacteristic Characteristic)
+        {
+            if (Characteristic.IsIndicatable && Characteristic.IsNotifiable)
+                Characteristic.IsIndicatable = false;
+            FClient.Unsubscribe(Characteristic);
+            FClient.WriteClientConfiguration(Characteristic, false, wclGattOperationFlag.goNone);
+        }
+        #endregion
+
+        #region Characteristics reading
         private Int32 ReadStringValue(wclGattCharacteristic? Characterisitc, out String Value)
         {
             Value = "";
@@ -400,6 +434,31 @@ namespace WeDo
             {
                 if (CharValue != null && CharValue.Length > 0)
                     Value = Encoding.UTF8.GetString(CharValue);
+            }
+
+            return Res;
+        }
+
+        private Int32 ReadByteValue(wclGattCharacteristic? Characterisitc, out Byte Value)
+        {
+            Value = 0;
+
+            if (FDisposed)
+                throw new ObjectDisposedException("WeDoController");
+
+            if (!FConnected)
+                return wclConnectionErrors.WCL_E_CONNECTION_NOT_ACTIVE;
+
+            if (Characterisitc == null)
+                return wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND;
+
+            Byte[] CharValue;
+            Int32 Res = FClient.ReadCharacteristicValue(Characterisitc.Value, wclGattOperationFlag.goNone,
+                out CharValue);
+            if (Res == wclErrors.WCL_E_SUCCESS)
+            {
+                if (CharValue != null && CharValue.Length > 0)
+                    Value = CharValue[0];
             }
 
             return Res;
@@ -441,7 +500,9 @@ namespace WeDo
                 {
                     // Battery level service and characteristic is important!
                     Res = FindCharactersitc(WEDO_CHARACTERISTIC_BATTERY_LEVEL, ref Characteristics, out BatteryLevelChar);
-
+                    if (Res == wclErrors.WCL_E_SUCCESS)
+                        // We have to subscribe to the notifications.
+                        Res = SubscribeForNotifications(BatteryLevelChar.Value);
                     Characteristics = null;
                 }
             }
@@ -515,7 +576,12 @@ namespace WeDo
         #region GATT client events.
         private void ClientCharacteristicChanged(object Sender, ushort Handle, byte[] Value)
         {
-            throw new NotImplementedException();
+            // Check batt level changes.
+            if (BatteryLevelChar != null)
+            {
+                if (Handle == BatteryLevelChar.Value.Handle)
+                    DoBatteryLevelChanged(Value[0]);
+            }
         }
 
         private void ClientConnect(object Sender, int Error)
@@ -623,6 +689,14 @@ namespace WeDo
             if (OnDisconnected != null)
                 OnDisconnected(this, Reason);
         }
+
+        /// <summary> Fires the <c>OnBatteryLevelChanged</c> event. </summary>
+        /// <param name="Level"> The current battery level in percents in range 0-100. </param>
+        protected virtual void DoBatteryLevelChanged(Byte Level)
+        {
+            if (OnBatteryLevelChanged != null)
+                OnBatteryLevelChanged(this, Level);
+        }
         #endregion
 
         #region Constructor and destructor(s)
@@ -641,6 +715,7 @@ namespace WeDo
 
             OnConnected = null;
             OnDisconnected = null;
+            OnBatteryLevelChanged = null;
         }
 
         /// <summary> Finalizer. </summary>
@@ -754,6 +829,20 @@ namespace WeDo
         }
         #endregion
 
+        #region Battery Level
+        /// <summary> Reads the device's battery level. </summary>
+        /// <param name="Level"> the current battery level in percents. </param>
+        /// <returns> If the method completed with success the returning value is
+        ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+        ///   one of the Bluetooth Framework error code. </returns>
+        /// <exception cref="ObjectDisposedException"> The exception raises if an application calls the method
+        ///   after object has been dispoised. </exception>
+        public Int32 ReadBatteryLevel (out Byte Level)
+        {
+            return ReadByteValue(BatteryLevelChar, out Level);
+        }
+        #endregion
+
         #region Properties
         /// <summary> Gets connected status. </summary>
         /// <value> <c>true</c> if connected to WeDo device. </value>
@@ -795,6 +884,9 @@ namespace WeDo
         /// <summary> The event fires when WeDo has been disconnected. </summary>
         /// <seealso cref="wclClientConnectionDisconnectEvent" />
         public event wclClientConnectionDisconnectEvent OnDisconnected;
+        /// <summary> The event fires when the battery level has been changed. </summary>
+        /// <seealso cref="BatteryLevelChangedEvent" />
+        public event BatteryLevelChangedEvent OnBatteryLevelChanged;
         #endregion
     };
 }
