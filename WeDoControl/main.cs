@@ -27,6 +27,10 @@ namespace WeDoControl
             btDisconnect.Enabled = false;
             btConnect.Enabled = true;
 
+            btSetDeviceName.Enabled = false;
+            btGetDeviceName.Enabled = false;
+            edDeviceName.Text = "";
+
             pbBatt.Value = 0;
 
             FRadio = null;
@@ -73,6 +77,24 @@ namespace WeDoControl
         }
         #endregion
 
+        #region HUB
+        private Int32 ReadDeviceName()
+        {
+            String Name;
+            Int32 Res = FClient.ReadDeviceName(out Name);
+            if (Res == wclErrors.WCL_E_SUCCESS)
+                edDeviceName.Text = Name;
+            else
+            {
+                if (Res == wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND)
+                    edDeviceName.Text = "<unsupported>";
+                else
+                    edDeviceName.Text = "<error>";
+            }
+            return Res;
+        }
+        #endregion
+
         #region Device wahtcher events
         private void WatcherDeviceFound(object Sender, long Address)
         {
@@ -103,9 +125,12 @@ namespace WeDoControl
             else
             {
                 btDisconnect.Enabled = true;
+                btGetDeviceName.Enabled = true;
+                btSetDeviceName.Enabled = true;
 
                 ReadDeviceInformation();
                 ReadBattLevel();
+                ReadDeviceName();
             }
         }
 
@@ -211,6 +236,20 @@ namespace WeDoControl
         public fmMain()
         {
             InitializeComponent();
+        }
+
+        private void BtGetDeviceName_Click(object sender, EventArgs e)
+        {
+            Int32 Res = ReadDeviceName();
+            if (Res != wclErrors.WCL_E_SUCCESS)
+                MessageBox.Show("Read device name failed with error: 0x" + Res.ToString("X8"));
+        }
+
+        private void BtSetDeviceName_Click(object sender, EventArgs e)
+        {
+            Int32 Res = FClient.WriteDeviceName(edDeviceName.Text);
+            if (Res != wclErrors.WCL_E_SUCCESS)
+                MessageBox.Show("Write device name failed with error: 0x" + Res.ToString("X8"));
         }
     }
 }

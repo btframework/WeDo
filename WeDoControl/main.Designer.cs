@@ -44,6 +44,10 @@
             this.Timer = new System.Windows.Forms.Timer(this.components);
             this.pbBatt = new System.Windows.Forms.ProgressBar();
             this.laBatt = new System.Windows.Forms.Label();
+            this.laDeviceName = new System.Windows.Forms.Label();
+            this.edDeviceName = new System.Windows.Forms.TextBox();
+            this.btSetDeviceName = new System.Windows.Forms.Button();
+            this.btGetDeviceName = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btConnect
@@ -181,11 +185,53 @@
             this.laBatt.TabIndex = 13;
             this.laBatt.Text = "Batt (%)";
             // 
+            // laDeviceName
+            // 
+            this.laDeviceName.AutoSize = true;
+            this.laDeviceName.Location = new System.Drawing.Point(291, 74);
+            this.laDeviceName.Name = "laDeviceName";
+            this.laDeviceName.Size = new System.Drawing.Size(73, 13);
+            this.laDeviceName.TabIndex = 14;
+            this.laDeviceName.Text = "Device name:";
+            // 
+            // edDeviceName
+            // 
+            this.edDeviceName.Location = new System.Drawing.Point(370, 71);
+            this.edDeviceName.Name = "edDeviceName";
+            this.edDeviceName.Size = new System.Drawing.Size(152, 20);
+            this.edDeviceName.TabIndex = 15;
+            // 
+            // btSetDeviceName
+            // 
+            this.btSetDeviceName.Enabled = false;
+            this.btSetDeviceName.Location = new System.Drawing.Point(528, 69);
+            this.btSetDeviceName.Name = "btSetDeviceName";
+            this.btSetDeviceName.Size = new System.Drawing.Size(75, 23);
+            this.btSetDeviceName.TabIndex = 16;
+            this.btSetDeviceName.Text = "Set";
+            this.btSetDeviceName.UseVisualStyleBackColor = true;
+            this.btSetDeviceName.Click += new System.EventHandler(this.BtSetDeviceName_Click);
+            // 
+            // btGetDeviceName
+            // 
+            this.btGetDeviceName.Enabled = false;
+            this.btGetDeviceName.Location = new System.Drawing.Point(609, 69);
+            this.btGetDeviceName.Name = "btGetDeviceName";
+            this.btGetDeviceName.Size = new System.Drawing.Size(75, 23);
+            this.btGetDeviceName.TabIndex = 17;
+            this.btGetDeviceName.Text = "Get";
+            this.btGetDeviceName.UseVisualStyleBackColor = true;
+            this.btGetDeviceName.Click += new System.EventHandler(this.BtGetDeviceName_Click);
+            // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btGetDeviceName);
+            this.Controls.Add(this.btSetDeviceName);
+            this.Controls.Add(this.edDeviceName);
+            this.Controls.Add(this.laDeviceName);
             this.Controls.Add(this.laBatt);
             this.Controls.Add(this.pbBatt);
             this.Controls.Add(this.laManufacturerName);
@@ -227,6 +273,10 @@
         private System.Windows.Forms.Timer Timer;
         private System.Windows.Forms.ProgressBar pbBatt;
         private System.Windows.Forms.Label laBatt;
+        private System.Windows.Forms.Label laDeviceName;
+        private System.Windows.Forms.TextBox edDeviceName;
+        private System.Windows.Forms.Button btSetDeviceName;
+        private System.Windows.Forms.Button btGetDeviceName;
     }
 }
 

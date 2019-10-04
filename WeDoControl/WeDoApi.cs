@@ -217,15 +217,19 @@ namespace WeDo
         #region Characteristics
         /// <summary> Sensor Value characteristic. </summary>
         /// <remarks> Readable and Notifiable characterisitc. </remarks>
+        /* TODO */
         private static Guid WEDO_CHARACTERISTIC_SENSOR_VALUE = new Guid("00001560-1212-efde-1523-785feabcd123");
         /// <summary> Sensor Value Format characteristic . </summary>
         /// <remarks> Notifiable characteristic. </remarks>
+        /* TODO */
         private static Guid WEDO_CHARACTERISTIC_SENSOR_VALUE_FORMAT = new Guid("00001561-1212-efde-1523-785feabcd123");
         /// <summary> Input command characteristic. </summary>
         /// <remarks> Writable and Writable Without Response characteristic. </remarks>
+        /* TODO */
         private static Guid WEDO_CHARACTERISTIC_INPUT_COMMAND = new Guid("00001563-1212-efde-1523-785feabcd123");
         /// <summary> Output command characteristic. </summary>
         /// <remarks> Writable and Writable Without Response characteristic. </remarks>
+        /* TODO */
         private static Guid WEDO_CHARACTERISTIC_OUTPUT_COMMAND = new Guid("00001565-1212-efde-1523-785feabcd123");
         #endregion
         #endregion
@@ -236,33 +240,43 @@ namespace WeDo
         #region Characteristics
         /// <summary> Device name characteristic. </summary>
         /// <remarks> Readable and Writable characteristic. </remarks>
+        /* TODO */
         private static Guid WEDO_CHARACTERISTIC_DEVICE_NAME = new Guid("00001524-1212-efde-1523-785feabcd123");
         /// <summary> Buttons state characteristic. </summary>
         /// <remarks> Readable and Notifiable characteristic. </remarks>
+        /* TODO */
         private static Guid WEDO_CHARACTERISTIC_BUTTON_STATE = new Guid("00001526-1212-efde-1523-785feabcd123");
         /// <summary> IO attached charactrisitc.</summary>
         /// <remarks> Notifiable characteristic. </remarks>
+        /* TODO */
         private static Guid WEDO_CHARACTERISTIC_IO_ATTACHED = new Guid("00001527-1212-efde-1523-785feabcd123");
         /// <summary> Low Voltrage Alert characteristic. </summary>
         /// <remarks> Readable and Notifiable characteristic. </remarks>
+        /* TODO */
         private static Guid WEDO_CHARACTERISTIC_LOW_VOLTAGE_ALERT = new Guid("00001528-1212-efde-1523-785feabcd123");
         /// <summary> High Current Aleart characteristic. </summary>
         /// <remarks> Readable and Notifiable characteristic. </remarks>
+        /* TODO */
         private static Guid WEDO_CHARACTERISTIC_HIGH_CURRENT_ALERT = new Guid("00001529-1212-efde-1523-785feabcd123");
         /// <summary> Low Signal Aleart characteristic. </summary>
         /// <remarks> Readable and Notifiable characteristic. </remarks>
+        /* TODO */
         private static Guid WEDO_CHARACTERISTIC_LOW_SIGNAL_ALERT = new Guid("0000152a-1212-efde-1523-785feabcd123");
         /// <summary> Turn Off command characteristic. </summary>
         /// <remarks> Writable characteristic. </remarks>
+        /* TODO */
         private static Guid WEDO_CHARACTERISTIC_TURN_OFF = new Guid("0000152b-1212-efde-1523-785feabcd123");
         /// <summary> VCC Port Control characteristic. </summary>
         /// <remarks> Readable and Writable characteristic. </remarks>
+        /* TODO */
         private static Guid WEDO_CHARACTERISTIC_VCC_PORT_CONTROL = new Guid("0000152c-1212-efde-1523-785feabcd123");
         /// <summary> Battery Type characteristic. </summary>
         /// <remarks> Readable characteristic. </remarks>
+        /* TODO */
         private static Guid WEDO_CHARACTERISTIC_BATTERY_TYPE = new Guid("0000152d-1212-efde-1523-785feabcd123");
         /// <summaery> Device Disconnect Cpmmand characteristic. </summaery>
         /// <remarks> Writable characteristic. </remarks>
+        /* TODO */
         private static Guid WEDO_CHARACTERISTIC_DEVICE_DISCONNECT = new Guid("0000152e-1212-efde-1523-785feabcd123");
         #endregion
         #endregion
@@ -462,6 +476,23 @@ namespace WeDo
             }
 
             return Res;
+        }
+        #endregion
+
+        #region Characteristics writing
+        private Int32 WriteStringValue(wclGattCharacteristic? Characterisitc, String Value)
+        {
+            if (FDisposed)
+                throw new ObjectDisposedException("WeDoController");
+
+            if (!FConnected)
+                return wclConnectionErrors.WCL_E_CONNECTION_NOT_ACTIVE;
+
+            if (Characterisitc == null)
+                return wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND;
+
+            Byte[] CharValue = Encoding.UTF8.GetBytes(Value);
+            return FClient.WriteCharacteristicValue(Characterisitc.Value, CharValue);
         }
         #endregion
 
@@ -775,7 +806,7 @@ namespace WeDo
         }
         #endregion
 
-        #region Device Information properties
+        #region Device Information
         /// <summary> Reads the firmware version. </summary>
         /// <param name="Version"> If the method completed with success the parameter contains the
         ///   current device's firmware version. </param>
@@ -841,6 +872,38 @@ namespace WeDo
         {
             return ReadByteValue(BatteryLevelChar, out Level);
         }
+        #endregion
+
+        #region WeDo HUB
+        #region Device name
+        /// <summary> Reads the current device name. </summary>
+        /// <param name="Name"> If the method completed with success the parameter contains the
+        ///   current device name. </param>
+        /// <returns> If the method completed with success the returning value is
+        ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+        ///   one of the Bluetooth Framework error code. </returns>
+        /// <exception cref="ObjectDisposedException"> The exception raises if an application calls the method
+        ///   after object has been dispoised. </exception>
+        public Int32 ReadDeviceName(out String Name)
+        {
+            return ReadStringValue(DeviceNameChar, out Name);
+        }
+
+        /// <summary> Writes new device name. </summary>
+        /// <param name="Name"> The new device name. </param>
+        /// <returns> If the method completed with success the returning value is
+        ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+        ///   one of the Bluetooth Framework error code. </returns>
+        /// <exception cref="ObjectDisposedException"> The exception raises if an application calls the method
+        ///   after object has been dispoised. </exception>
+        public Int32 WriteDeviceName(String Name)
+        {
+            if (Name == "")
+                return wclErrors.WCL_E_INVALID_ARGUMENT;
+
+            return WriteStringValue(DeviceNameChar, Name);
+        }
+        #endregion
         #endregion
 
         #region Properties
