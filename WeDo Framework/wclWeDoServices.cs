@@ -128,8 +128,6 @@ namespace wclWeDo
         /// <seealso cref="wclGattCharacteristic"/>
         protected Int32 SubscribeForNotifications(wclGattCharacteristic? Characteristic)
         {
-            if (!FConnected)
-                return wclConnectionErrors.WCL_E_CONNECTION_NOT_ACTIVE;
             if (Characteristic == null)
                 return wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND;
 
@@ -151,7 +149,7 @@ namespace wclWeDo
         /// <seealso cref="wclGattCharacteristic"/>
         protected void UnsubscribeFromNotifications(wclGattCharacteristic? Characteristic)
         {
-            if (FConnected && Characteristic != null)
+            if (FClient.State == wclClientState.csConnected && Characteristic != null)
             {
                 wclGattCharacteristic chr = Characteristic.Value;
                 if (chr.IsIndicatable && chr.IsNotifiable)
