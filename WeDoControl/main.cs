@@ -44,6 +44,17 @@ namespace WeDoControl
                 UpdateBatteryLevel(Level);
         }
 
+        private void UpdateConnectedState()
+        {
+            String Name;
+            Int32 Res = FClient.Hub.ReadDeviceName(out Name);
+            if (Res == wclErrors.WCL_E_SUCCESS)
+                Name = "Connected to " + Name;
+            else
+                Name = "Connected";
+            laState.Text = Name;
+        }
+
         private void WatcherDeviceFound(object Sender, long Address)
         {
             // Once device found we have to stop watcher and try to connect to the just found device.
@@ -73,7 +84,7 @@ namespace WeDoControl
                 btDisconnect.Enabled = true;
                 btDevInfo.Enabled = true;
 
-                laState.Text = "Connected";
+                UpdateConnectedState();
                 ReadBattLevel();
             }
         }
@@ -179,6 +190,8 @@ namespace WeDoControl
             fmDevInfo DevInfo = new fmDevInfo(FClient);
             DevInfo.ShowDialog(this);
             DevInfo.Dispose();
+
+            UpdateConnectedState();
         }
 
         public fmMain()
