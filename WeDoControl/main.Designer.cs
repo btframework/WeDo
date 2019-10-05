@@ -32,22 +32,11 @@
             this.btConnect = new System.Windows.Forms.Button();
             this.btDisconnect = new System.Windows.Forms.Button();
             this.laState = new System.Windows.Forms.Label();
-            this.laDeviceInformationTitle = new System.Windows.Forms.Label();
-            this.laFirmwareVersionTitle = new System.Windows.Forms.Label();
-            this.laHardwareVersionTitle = new System.Windows.Forms.Label();
-            this.laSoftwareVersionTitle = new System.Windows.Forms.Label();
-            this.laManufacturerNameTitle = new System.Windows.Forms.Label();
-            this.laFirmwareVersion = new System.Windows.Forms.Label();
-            this.laHardwareVersion = new System.Windows.Forms.Label();
-            this.laSoftwareVersion = new System.Windows.Forms.Label();
-            this.laManufacturerName = new System.Windows.Forms.Label();
             this.Timer = new System.Windows.Forms.Timer(this.components);
             this.pbBatt = new System.Windows.Forms.ProgressBar();
             this.laBatt = new System.Windows.Forms.Label();
-            this.laDeviceName = new System.Windows.Forms.Label();
-            this.edDeviceName = new System.Windows.Forms.TextBox();
-            this.btSetDeviceName = new System.Windows.Forms.Button();
-            this.btGetDeviceName = new System.Windows.Forms.Button();
+            this.laBattPercent = new System.Windows.Forms.Label();
+            this.btDevInfo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btConnect
@@ -81,88 +70,6 @@
             this.laState.TabIndex = 2;
             this.laState.Text = "Disconnected";
             // 
-            // laDeviceInformationTitle
-            // 
-            this.laDeviceInformationTitle.AutoSize = true;
-            this.laDeviceInformationTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.laDeviceInformationTitle.Location = new System.Drawing.Point(30, 49);
-            this.laDeviceInformationTitle.Name = "laDeviceInformationTitle";
-            this.laDeviceInformationTitle.Size = new System.Drawing.Size(113, 13);
-            this.laDeviceInformationTitle.TabIndex = 3;
-            this.laDeviceInformationTitle.Text = "Device information";
-            // 
-            // laFirmwareVersionTitle
-            // 
-            this.laFirmwareVersionTitle.AutoSize = true;
-            this.laFirmwareVersionTitle.Location = new System.Drawing.Point(52, 74);
-            this.laFirmwareVersionTitle.Name = "laFirmwareVersionTitle";
-            this.laFirmwareVersionTitle.Size = new System.Drawing.Size(89, 13);
-            this.laFirmwareVersionTitle.TabIndex = 4;
-            this.laFirmwareVersionTitle.Text = "Firmware version:";
-            // 
-            // laHardwareVersionTitle
-            // 
-            this.laHardwareVersionTitle.AutoSize = true;
-            this.laHardwareVersionTitle.Location = new System.Drawing.Point(52, 98);
-            this.laHardwareVersionTitle.Name = "laHardwareVersionTitle";
-            this.laHardwareVersionTitle.Size = new System.Drawing.Size(93, 13);
-            this.laHardwareVersionTitle.TabIndex = 5;
-            this.laHardwareVersionTitle.Text = "Hardware version:";
-            // 
-            // laSoftwareVersionTitle
-            // 
-            this.laSoftwareVersionTitle.AutoSize = true;
-            this.laSoftwareVersionTitle.Location = new System.Drawing.Point(52, 122);
-            this.laSoftwareVersionTitle.Name = "laSoftwareVersionTitle";
-            this.laSoftwareVersionTitle.Size = new System.Drawing.Size(89, 13);
-            this.laSoftwareVersionTitle.TabIndex = 6;
-            this.laSoftwareVersionTitle.Text = "Software version:";
-            // 
-            // laManufacturerNameTitle
-            // 
-            this.laManufacturerNameTitle.AutoSize = true;
-            this.laManufacturerNameTitle.Location = new System.Drawing.Point(52, 146);
-            this.laManufacturerNameTitle.Name = "laManufacturerNameTitle";
-            this.laManufacturerNameTitle.Size = new System.Drawing.Size(102, 13);
-            this.laManufacturerNameTitle.TabIndex = 7;
-            this.laManufacturerNameTitle.Text = "Manufacturer name:";
-            // 
-            // laFirmwareVersion
-            // 
-            this.laFirmwareVersion.AutoSize = true;
-            this.laFirmwareVersion.Location = new System.Drawing.Point(162, 74);
-            this.laFirmwareVersion.Name = "laFirmwareVersion";
-            this.laFirmwareVersion.Size = new System.Drawing.Size(47, 13);
-            this.laFirmwareVersion.TabIndex = 8;
-            this.laFirmwareVersion.Text = "<empty>";
-            // 
-            // laHardwareVersion
-            // 
-            this.laHardwareVersion.AutoSize = true;
-            this.laHardwareVersion.Location = new System.Drawing.Point(162, 98);
-            this.laHardwareVersion.Name = "laHardwareVersion";
-            this.laHardwareVersion.Size = new System.Drawing.Size(47, 13);
-            this.laHardwareVersion.TabIndex = 9;
-            this.laHardwareVersion.Text = "<empty>";
-            // 
-            // laSoftwareVersion
-            // 
-            this.laSoftwareVersion.AutoSize = true;
-            this.laSoftwareVersion.Location = new System.Drawing.Point(162, 122);
-            this.laSoftwareVersion.Name = "laSoftwareVersion";
-            this.laSoftwareVersion.Size = new System.Drawing.Size(47, 13);
-            this.laSoftwareVersion.TabIndex = 10;
-            this.laSoftwareVersion.Text = "<empty>";
-            // 
-            // laManufacturerName
-            // 
-            this.laManufacturerName.AutoSize = true;
-            this.laManufacturerName.Location = new System.Drawing.Point(162, 146);
-            this.laManufacturerName.Name = "laManufacturerName";
-            this.laManufacturerName.Size = new System.Drawing.Size(47, 13);
-            this.laManufacturerName.TabIndex = 11;
-            this.laManufacturerName.Text = "<empty>";
-            // 
             // Timer
             // 
             this.Timer.Interval = 60000;
@@ -170,7 +77,7 @@
             // 
             // pbBatt
             // 
-            this.pbBatt.Location = new System.Drawing.Point(405, 12);
+            this.pbBatt.Location = new System.Drawing.Point(646, 12);
             this.pbBatt.Name = "pbBatt";
             this.pbBatt.Size = new System.Drawing.Size(100, 23);
             this.pbBatt.TabIndex = 12;
@@ -179,73 +86,45 @@
             // 
             this.laBatt.AutoSize = true;
             this.laBatt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.laBatt.Location = new System.Drawing.Point(348, 17);
+            this.laBatt.Location = new System.Drawing.Point(610, 17);
             this.laBatt.Name = "laBatt";
-            this.laBatt.Size = new System.Drawing.Size(51, 13);
+            this.laBatt.Size = new System.Drawing.Size(30, 13);
             this.laBatt.TabIndex = 13;
-            this.laBatt.Text = "Batt (%)";
+            this.laBatt.Text = "Batt";
             // 
-            // laDeviceName
+            // laBattPercent
             // 
-            this.laDeviceName.AutoSize = true;
-            this.laDeviceName.Location = new System.Drawing.Point(291, 74);
-            this.laDeviceName.Name = "laDeviceName";
-            this.laDeviceName.Size = new System.Drawing.Size(73, 13);
-            this.laDeviceName.TabIndex = 14;
-            this.laDeviceName.Text = "Device name:";
+            this.laBattPercent.AutoSize = true;
+            this.laBattPercent.Location = new System.Drawing.Point(752, 17);
+            this.laBattPercent.Name = "laBattPercent";
+            this.laBattPercent.Size = new System.Drawing.Size(21, 13);
+            this.laBattPercent.TabIndex = 18;
+            this.laBattPercent.Text = "0%";
             // 
-            // edDeviceName
+            // btDevInfo
             // 
-            this.edDeviceName.Location = new System.Drawing.Point(370, 71);
-            this.edDeviceName.Name = "edDeviceName";
-            this.edDeviceName.Size = new System.Drawing.Size(152, 20);
-            this.edDeviceName.TabIndex = 15;
-            // 
-            // btSetDeviceName
-            // 
-            this.btSetDeviceName.Enabled = false;
-            this.btSetDeviceName.Location = new System.Drawing.Point(528, 69);
-            this.btSetDeviceName.Name = "btSetDeviceName";
-            this.btSetDeviceName.Size = new System.Drawing.Size(75, 23);
-            this.btSetDeviceName.TabIndex = 16;
-            this.btSetDeviceName.Text = "Set";
-            this.btSetDeviceName.UseVisualStyleBackColor = true;
-            this.btSetDeviceName.Click += new System.EventHandler(this.BtSetDeviceName_Click);
-            // 
-            // btGetDeviceName
-            // 
-            this.btGetDeviceName.Enabled = false;
-            this.btGetDeviceName.Location = new System.Drawing.Point(609, 69);
-            this.btGetDeviceName.Name = "btGetDeviceName";
-            this.btGetDeviceName.Size = new System.Drawing.Size(75, 23);
-            this.btGetDeviceName.TabIndex = 17;
-            this.btGetDeviceName.Text = "Get";
-            this.btGetDeviceName.UseVisualStyleBackColor = true;
-            this.btGetDeviceName.Click += new System.EventHandler(this.BtGetDeviceName_Click);
+            this.btDevInfo.Enabled = false;
+            this.btDevInfo.Location = new System.Drawing.Point(12, 59);
+            this.btDevInfo.Name = "btDevInfo";
+            this.btDevInfo.Size = new System.Drawing.Size(120, 23);
+            this.btDevInfo.TabIndex = 19;
+            this.btDevInfo.Text = "Device Information";
+            this.btDevInfo.UseVisualStyleBackColor = true;
+            this.btDevInfo.Click += new System.EventHandler(this.BtDevInfo_Click);
             // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btGetDeviceName);
-            this.Controls.Add(this.btSetDeviceName);
-            this.Controls.Add(this.edDeviceName);
-            this.Controls.Add(this.laDeviceName);
+            this.Controls.Add(this.btDevInfo);
+            this.Controls.Add(this.laBattPercent);
             this.Controls.Add(this.laBatt);
             this.Controls.Add(this.pbBatt);
-            this.Controls.Add(this.laManufacturerName);
-            this.Controls.Add(this.laSoftwareVersion);
-            this.Controls.Add(this.laHardwareVersion);
-            this.Controls.Add(this.laFirmwareVersion);
-            this.Controls.Add(this.laManufacturerNameTitle);
-            this.Controls.Add(this.laSoftwareVersionTitle);
-            this.Controls.Add(this.laHardwareVersionTitle);
-            this.Controls.Add(this.laFirmwareVersionTitle);
-            this.Controls.Add(this.laDeviceInformationTitle);
             this.Controls.Add(this.laState);
             this.Controls.Add(this.btDisconnect);
             this.Controls.Add(this.btConnect);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "fmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LEGO WeDo Control";
@@ -261,22 +140,11 @@
         private System.Windows.Forms.Button btConnect;
         private System.Windows.Forms.Button btDisconnect;
         private System.Windows.Forms.Label laState;
-        private System.Windows.Forms.Label laDeviceInformationTitle;
-        private System.Windows.Forms.Label laFirmwareVersionTitle;
-        private System.Windows.Forms.Label laHardwareVersionTitle;
-        private System.Windows.Forms.Label laSoftwareVersionTitle;
-        private System.Windows.Forms.Label laManufacturerNameTitle;
-        private System.Windows.Forms.Label laFirmwareVersion;
-        private System.Windows.Forms.Label laHardwareVersion;
-        private System.Windows.Forms.Label laSoftwareVersion;
-        private System.Windows.Forms.Label laManufacturerName;
         private System.Windows.Forms.Timer Timer;
         private System.Windows.Forms.ProgressBar pbBatt;
         private System.Windows.Forms.Label laBatt;
-        private System.Windows.Forms.Label laDeviceName;
-        private System.Windows.Forms.TextBox edDeviceName;
-        private System.Windows.Forms.Button btSetDeviceName;
-        private System.Windows.Forms.Button btGetDeviceName;
+        private System.Windows.Forms.Label laBattPercent;
+        private System.Windows.Forms.Button btDevInfo;
     }
 }
 

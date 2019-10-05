@@ -3,99 +3,47 @@ using System.Windows.Forms;
 
 using wclCommon;
 using wclBluetooth;
-using WeDo;
+using wclWeDo;
 
 namespace WeDoControl
 {
     public partial class fmMain : Form
     {
-        private WeDoWatcher FWatcher;
-        private WeDoController FClient;
+        private wclWeDoWatcher FWatcher;
+        private wclWeDoClient FClient;
         private wclBluetoothRadio FRadio;
         private wclBluetoothManager FManager;
 
-        #region Helper functions
         private void Cleanup()
         {
             laState.Text = "Disconnected";
 
-            laFirmwareVersion.Text = "<empty>";
-            laHardwareVersion.Text = "<empty>";
-            laSoftwareVersion.Text = "<empty>";
-            laManufacturerName.Text = "<empty>";
-
             btDisconnect.Enabled = false;
             btConnect.Enabled = true;
-
-            btSetDeviceName.Enabled = false;
-            btGetDeviceName.Enabled = false;
-            edDeviceName.Text = "";
+            btDevInfo.Enabled = false;
 
             pbBatt.Value = 0;
+            laBattPercent.Text = "0%";
 
             FRadio = null;
 
             FManager.Close();
         }
-        #endregion
 
-        #region Device information reading
-        private void DisplayDeviceInforValue(Label label, String Value, Int32 Res)
+        private void UpdateBatteryLevel(Byte Level)
         {
-            if (Res == wclErrors.WCL_E_SUCCESS)
-                label.Text = Value;
-            else
-            {
-                if (Res == wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND)
-                    label.Text = "<unspecified>";
-                else
-                    label.Text = "Read error: 0x" + Res.ToString("X8");
-            }
+            pbBatt.Value = Level;
+            laBattPercent.Text = Level.ToString() + "%";
         }
 
-        private void ReadDeviceInformation()
-        {
-            String Value;
-            Int32 Res = FClient.ReadFirmwareVersion(out Value);
-            DisplayDeviceInforValue(laFirmwareVersion, Value, Res);
-            Res = FClient.ReadHardwareVersion(out Value);
-            DisplayDeviceInforValue(laHardwareVersion, Value, Res);
-            Res = FClient.ReadSoftwareVersion(out Value);
-            DisplayDeviceInforValue(laSoftwareVersion, Value, Res);
-            Res = FClient.ReadManufacturerName(out Value);
-            DisplayDeviceInforValue(laManufacturerName, Value, Res);
-        }
-        #endregion
-
-        #region Battery Level
         private void ReadBattLevel()
         {
             Byte Level;
-            Int32 Res = FClient.ReadBatteryLevel(out Level);
+            Int32 Res = FClient.BatteryLevel.ReadBatteryLevel(out Level);
             if (Res == wclErrors.WCL_E_SUCCESS)
-                pbBatt.Value = Level;
+                UpdateBatteryLevel(Level);
         }
-        #endregion
 
-        #region HUB
-        private Int32 ReadDeviceName()
-        {
-            String Name;
-            Int32 Res = FClient.ReadDeviceName(out Name);
-            if (Res == wclErrors.WCL_E_SUCCESS)
-                edDeviceName.Text = Name;
-            else
-            {
-                if (Res == wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND)
-                    edDeviceName.Text = "<unsupported>";
-                else
-                    edDeviceName.Text = "<error>";
-            }
-            return Res;
-        }
-        #endregion
-
-        #region Device wahtcher events
         private void WatcherDeviceFound(object Sender, long Address)
         {
             // Once device found we have to stop watcher and try to connect to the just found device.
@@ -112,9 +60,7 @@ namespace WeDoControl
             else
                 laState.Text = "Connecting...";
         }
-        #endregion
 
-        #region WeDo Controller (Client) events
         private void ClientConnected(object Sender, int Error)
         {
             if (Error != wclErrors.WCL_E_SUCCESS)
@@ -125,12 +71,10 @@ namespace WeDoControl
             else
             {
                 btDisconnect.Enabled = true;
-                btGetDeviceName.Enabled = true;
-                btSetDeviceName.Enabled = true;
+                btDevInfo.Enabled = true;
 
-                ReadDeviceInformation();
+                laState.Text = "Connected";
                 ReadBattLevel();
-                ReadDeviceName();
             }
         }
 
@@ -139,11 +83,10 @@ namespace WeDoControl
             Cleanup();
         }
 
-        private void ClientBatteryLevelChanged(object Sender, byte Level)
+        private void BatteryLevelChanged(object Sender, byte Level)
         {
-            pbBatt.Value = Level;
+            UpdateBatteryLevel(Level);
         }
-        #endregion
 
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -157,13 +100,13 @@ namespace WeDoControl
 
         private void FmMain_Load(object sender, EventArgs e)
         {
-            FWatcher = new WeDoWatcher();
+            FWatcher = new wclWeDoWatcher();
             FWatcher.OnDeviceFound += WatcherDeviceFound;
 
-            FClient = new WeDoController();
+            FClient = new wclWeDoClient();
             FClient.OnConnected += ClientConnected;
             FClient.OnDisconnected += ClientDisconnected;
-            FClient.OnBatteryLevelChanged += ClientBatteryLevelChanged;
+            FClient.BatteryLevel.OnBatteryLevelChanged += BatteryLevelChanged;
 
             FManager = new wclBluetoothManager();
 
@@ -173,11 +116,9 @@ namespace WeDoControl
         private void FmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             FWatcher.Stop();
-            FWatcher.Dispose(); // We must dispose the object!
             FWatcher = null;
 
             FClient.Disconnect();
-            FClient.Dispose(); // We must dispose the obejct!
             FClient = null;
 
             FManager.Close();
@@ -233,23 +174,16 @@ namespace WeDoControl
             FClient.Disconnect();
         }
 
+        private void BtDevInfo_Click(object sender, EventArgs e)
+        {
+            fmDevInfo DevInfo = new fmDevInfo(FClient);
+            DevInfo.ShowDialog(this);
+            DevInfo.Dispose();
+        }
+
         public fmMain()
         {
             InitializeComponent();
-        }
-
-        private void BtGetDeviceName_Click(object sender, EventArgs e)
-        {
-            Int32 Res = ReadDeviceName();
-            if (Res != wclErrors.WCL_E_SUCCESS)
-                MessageBox.Show("Read device name failed with error: 0x" + Res.ToString("X8"));
-        }
-
-        private void BtSetDeviceName_Click(object sender, EventArgs e)
-        {
-            Int32 Res = FClient.WriteDeviceName(edDeviceName.Text);
-            if (Res != wclErrors.WCL_E_SUCCESS)
-                MessageBox.Show("Write device name failed with error: 0x" + Res.ToString("X8"));
         }
     }
 }
