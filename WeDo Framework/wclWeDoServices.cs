@@ -211,23 +211,6 @@ namespace wclWeDo
             return Res;
         }
 
-        /// <summary> Writes string value to the given characteristic. </summary>
-        /// <param name="Characteristic"> The GATT characteristic. </param>
-        /// <param name="Value"> The value to be written to the characteristic. </param>
-        /// <returns> If the method completed with success the returning value is
-        ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-        ///   one of the Bluetooth Framework error code. </returns>
-        protected Int32 WriteStringValue(wclGattCharacteristic? Characteristic, String Value)
-        {
-            if (!FConnected)
-                return wclConnectionErrors.WCL_E_CONNECTION_NOT_ACTIVE;
-            if (Characteristic == null)
-                return wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND;
-
-            Byte[] CharValue = Encoding.UTF8.GetBytes(Value);
-            return FClient.WriteCharacteristicValue(Characteristic.Value, CharValue);
-        }
-
         /// <summary> Initializes the WeDo service. </summary>
         /// <returns> If the method completed with success the returning value is
         ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
@@ -239,6 +222,11 @@ namespace wclWeDo
         /// <summary> Uninitializes the WeDo service. </summary>
         /// <remarks> A derived clases must override this method to cleanup allocated resources. </remarks>
         protected abstract void Uninitialize();
+
+        /// <summary> Gets the GATT client object. </summary>
+        /// <value> The GATT client object. </value>
+        /// <seealso cref="wclGattClient"/>
+        protected internal wclGattClient Client { get { return FClient; } }
 
         /// <summary> This method called internally by the <see cref="wclWeDoControl"/>
         ///   to notify about characteristic changes. A derived class may override this method
@@ -779,10 +767,28 @@ namespace wclWeDo
         ///   one of the Bluetooth Framework error code. </returns>
         public Int32 WriteDeviceName(String Name)
         {
-            if (Name == "")
+            if (Name == null || Name == "")
                 return wclErrors.WCL_E_INVALID_ARGUMENT;
 
-            return WriteStringValue(FDeviceNameChar, Name);
+            if (!Connected)
+                return wclConnectionErrors.WCL_E_CONNECTION_NOT_ACTIVE;
+
+            if (Name.Length > 20)
+                Name = Name.Substring(0, 20);
+            Byte[] Bytes = Encoding.UTF8.GetBytes(Name);
+            Byte[] CharVal;
+            if (Bytes.Length < 20)
+            {
+                CharVal = new Byte[20];
+                for (Int32 i = 0; i < Bytes.Length; i++)
+                    CharVal[i] = Bytes[i];
+                for (Int32 i = Bytes.Length; i < 20; i++)
+                    CharVal[i] = 0;
+            }
+            else
+                CharVal = Bytes;
+
+            return Client.WriteCharacteristicValue(FDeviceNameChar.Value, CharVal);
         }
     };
 }
