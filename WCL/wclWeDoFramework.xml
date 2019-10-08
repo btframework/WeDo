@@ -1,0 +1,443 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>wclWeDoFramework</name>
+    </assembly>
+    <members>
+        <member name="T:wclWeDoFramework.wclBatteryLevelChangedEvent">
+            <summary> The <c>OnBatteryLevelChanged</c> event handler prototype. </summary>
+            <param name="Sender"> The object that fired the event. </param>
+            <param name="Level"> The current battery level in percents in range 0-100. </param>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoBatteryLevelService">
+            <summary> The class represents the WeDo Battery Level service. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoService"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.DoBatteryLevelChanged(System.Byte)">
+            <summary> Fires the <c>OnBatteryLevelChanged</c> event. </summary>
+            <param name="Level"> The current battery level in percents in range 0-100. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.Initialize">
+            <summary> Initializes the WeDo service. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.Uninitialize">
+            <summary> Uninitializes the WeDo service. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.CharacteristicChanged(System.UInt16,System.Byte[])">
+            <summary> This method called internally by the <see cref="T:wclWeDoFramework.wclWeDoHub"/>
+              to notify about characteristic changes. A derived class may override this method
+              to check for required characteristic changes. </summary>
+            <param name="Handle"> The characteristic handle. </param>
+            <param name="Value"> The new characteristic value. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.#ctor(wclBluetooth.wclGattClient)">
+            <summary> Creates new Battery Level service client. </summary>
+            <param name="Client"> The <see cref="T:wclBluetooth.wclGattClient"/> object that handles the connection
+              to a WeDo device. </param>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.ReadBatteryLevel(System.Byte@)">
+            <summary> Reads the device's battery level. </summary>
+            <param name="Level"> the current battery level in percents. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoBatteryLevelService.OnBatteryLevelChanged">
+            <summary> The event fires when the battery level has been changed. </summary>
+            <seealso cref="T:wclWeDoFramework.wclBatteryLevelChangedEvent" />
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoDeviceInformationService">
+            <summary> The class represents the WeDo Device Information service. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoService"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.Initialize">
+            <summary> Initializes the WeDo service. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.Uninitialize">
+            <summary> Uninitializes the WeDo service. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.#ctor(wclBluetooth.wclGattClient)">
+            <summary> Creates new Device Information service client. </summary>
+            <param name="Client"> The <see cref="T:wclBluetooth.wclGattClient"/> object that handles the connection
+              to a WeDo device. </param>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.ReadFirmwareVersion(System.String@)">
+            <summary> Reads the firmware version. </summary>
+            <param name="Version"> If the method completed with success the parameter contains the
+              current device's firmware version. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.ReadHardwareVersion(System.String@)">
+            <summary> Reads the hardware version. </summary>
+            <param name="Version"> If the method completed with success the parameter contains the
+              current device's hardware version. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.ReadSoftwareVersion(System.String@)">
+            <summary> Reads the software version. </summary>
+            <param name="Version"> If the method completed with success the parameter contains the
+              current device's software version. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.ReadManufacturerName(System.String@)">
+            <summary> Reads the device's manufacturer name. </summary>
+            <param name="Name"> If the method completed with success the parameter contains the
+              current device's manufacturer name. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoHub">
+            <summary> The class represents a WeDo Hub hardware. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.DoConnected(System.Int32)">
+            <summary> Fires the <c>OnConnected</c> event. </summary>
+            <param name="Error"> If the connection has been established the parameter is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If connection has not been established the
+              parameter value is one of the Bluetooth error codes. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.DoDisconnected(System.Int32)">
+            <summary> Fires the <c>OnDisconnected</c> event. </summary>
+            <param name="Reason"> The disconnection reason code. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.#ctor">
+            <summary> Creates new WeDo Client. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.Connect(wclBluetooth.wclBluetoothRadio,System.Int64)">
+            <summary> Connects to a selected WeDo Hub. </summary>
+            <param name="Radio"> The <see cref="T:wclBluetooth.wclBluetoothRadio" /> object that should be used
+              for executing Bluetooth LE connection. </param>
+            <param name="Address"> The WeDo Hub MAC address. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+            <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.Disconnect">
+            <summary> Disconnects from WeDo Hub. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoHub.DeviceInformation">
+            <summary> Gets the Hub device information service object. </summary>
+            <value> The Hub device information service object. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoDeviceInformationService"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoHub.BatteryLevel">
+            <summary> Gets the battery level service object. </summary>
+            <value> The battery level service object. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoBatteryLevelService"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoHub.Io">
+            <summary> Gets the IO service object. </summary>
+            <value> The IO service object. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIoService"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoHub.Hub">
+            <summary> Gets the Hub service object. </summary>
+            <value> The Hub service object. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHubService"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoHub.Connected">
+            <summary> Gets connected status. </summary>
+            <value> <c>true</c> if connected to WeDo Hub. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoHub.ClientState">
+            <summary> Gets internal GATT client state. </summary>
+            <value> The internal GATT client state. </value>
+            <seealso cref="T:wclCommunication.wclClientState" />
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoHub.OnConnected">
+            <summary> The event fires when connection to a WeDo Hub
+              has been established. </summary>
+            <seealso cref="T:wclCommunication.wclClientConnectionConnectEvent" />
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoHub.OnDisconnected">
+            <summary> The event fires when WeDo Hub has been disconnected. </summary>
+            <seealso cref="T:wclCommunication.wclClientConnectionDisconnectEvent" />
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoHubService">
+            <summary> The class represents the WeDo Hub service. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoService"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.Initialize">
+            <summary> Initializes the WeDo service. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.Uninitialize">
+            <summary> Uninitializes the WeDo service. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.CharacteristicChanged(System.UInt16,System.Byte[])">
+            <summary> This method called internally by the <see cref="T:wclWeDoFramework.wclWeDoHub"/>
+              to notify about characteristic changes. A derived class may override this method
+              to check for required characteristic changes. </summary>
+            <param name="Handle"> The characteristic handle. </param>
+            <param name="Value"> The new characteristic value. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.#ctor(wclBluetooth.wclGattClient)">
+            <summary> Creates new IO service client. </summary>
+            <param name="Client"> The <see cref="T:wclBluetooth.wclGattClient"/> object that handles the connection
+              to a WeDo device. </param>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.ReadDeviceName(System.String@)">
+            <summary> Reads the current device name. </summary>
+            <param name="Name"> If the method completed with success the parameter contains the
+              current device name. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.WriteDeviceName(System.String)">
+            <summary> Writes new device name. </summary>
+            <param name="Name"> The new device name. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoIoService">
+            <summary> The class represents the WeDo IO service. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoService"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIoService.Initialize">
+            <summary> Initializes the WeDo service. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIoService.Uninitialize">
+            <summary> Uninitializes the WeDo service. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIoService.CharacteristicChanged(System.UInt16,System.Byte[])">
+            <summary> This method called internally by the <see cref="T:wclWeDoFramework.wclWeDoHub"/>
+              to notify about characteristic changes. A derived class may override this method
+              to check for required characteristic changes. </summary>
+            <param name="Handle"> The characteristic handle. </param>
+            <param name="Value"> The new characteristic value. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIoService.#ctor(wclBluetooth.wclGattClient)">
+            <summary> Creates new IO service client. </summary>
+            <param name="Client"> The <see cref="T:wclBluetooth.wclGattClient"/> object that handles the connection
+              to a WeDo device. </param>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoService">
+            <summary> The base class for all WeDo services. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoService.ToGuid(wclBluetooth.wclGattUuid)">
+            <summary> Converts <see cref="T:wclBluetooth.wclGattUuid"/> type to standard system <see cref="T:System.Guid"/>. </summary>
+            <param name="Uuid"> The <see cref="T:wclBluetooth.wclGattUuid"/> that should be converted. </param>
+            <returns> The <see cref="T:System.Guid"/> composed from the <c>Uuid</c>. </returns>
+            <seealso cref="T:System.Guid"/>
+            <seealso cref="T:wclBluetooth.wclGattUuid"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoService.CompareGuid(wclBluetooth.wclGattUuid,System.Guid)">
+            <summary> Compares the attribute's <see cref="T:wclBluetooth.wclGattUuid"/> with given standard
+              system <see cref="T:System.Guid"/>. </summary>
+            <param name="GattUuid"> The attribute's <see cref="T:wclBluetooth.wclGattUuid"/>. </param>
+            <param name="Uuid">The system <see cref="T:System.Guid"/>. </param>
+            <returns> Returns <c>true</c> if the attribute's UUID is equals to the GUID.
+              Returns <c>false</c> otherwise. </returns>
+            <seealso cref="T:System.Guid"/>
+            <seealso cref="T:wclBluetooth.wclGattUuid"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoService.FindService(System.Guid,System.Nullable{wclBluetooth.wclGattService}@)">
+            <summary> Finds the service with given UUID. </summary>
+            <param name="Uuid"> The service's UUID. </param>
+            <param name="Service"> If the method completed with success the parameter
+              contains found service. Otherwise the parameter is <c>null</c>. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+            <seealso cref="T:System.Guid"/>
+            <seealso cref="T:wclBluetooth.wclGattService"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoService.FindCharactersitc(System.Guid,System.Nullable{wclBluetooth.wclGattService},System.Nullable{wclBluetooth.wclGattCharacteristic}@)">
+            <summary> Finds the characteristic with given UUID. </summary>
+            <param name="Uuid"> The characteristic's UUID. </param>
+            <param name="Service"> The GATT service that should contain the required
+              characteristic. </param>
+            <param name="Characteristic"> If the method completed with success the
+              parameter contains the found characteristic. Otherwise the parameter is <c>null</c>. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+            <seealso cref="T:System.Guid"/>
+            <seealso cref="T:wclBluetooth.wclGattService"/>
+            <seealso cref="T:wclBluetooth.wclGattCharacteristic"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoService.SubscribeForNotifications(System.Nullable{wclBluetooth.wclGattCharacteristic})">
+            <summary> Subscribes to the changes notifications of the given characteristic. </summary>
+            <param name="Characteristic"> The characteristic. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+            <seealso cref="T:wclBluetooth.wclGattCharacteristic"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoService.UnsubscribeFromNotifications(System.Nullable{wclBluetooth.wclGattCharacteristic})">
+            <summary> Unsubscribes from the changes notifications of the given characteristic. </summary>
+            <seealso cref="T:wclBluetooth.wclGattCharacteristic"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoService.ReadStringValue(System.Nullable{wclBluetooth.wclGattCharacteristic},System.String@)">
+            <summary> Reads string value from the given characteristic. </summary>
+            <param name="Characteristic"> The GATT characteristic. </param>
+            <param name="Value"> If the method completed with success contains the read value. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoService.ReadByteValue(System.Nullable{wclBluetooth.wclGattCharacteristic},System.Byte@)">
+            <summary> Reads byte value from the given characteristic. </summary>
+            <param name="Characteristic"> The GATT characteristic. </param>
+            <param name="Value"> If the method completed with success contains the read value. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoService.Initialize">
+            <summary> Initializes the WeDo service. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+            <remarks> A derived clases must override this method to initialize all required
+              parameters to work with WeDo service. </remarks>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoService.Uninitialize">
+            <summary> Uninitializes the WeDo service. </summary>
+            <remarks> A derived clases must override this method to cleanup allocated resources. </remarks>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoService.Client">
+            <summary> Gets the GATT client object. </summary>
+            <value> The GATT client object. </value>
+            <seealso cref="T:wclBluetooth.wclGattClient"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoService.CharacteristicChanged(System.UInt16,System.Byte[])">
+            <summary> This method called internally by the <see cref="T:wclWeDoFramework.wclWeDoHub"/>
+              to notify about characteristic changes. A derived class may override this method
+              to check for required characteristic changes. </summary>
+            <param name="Handle"> The characteristic handle. </param>
+            <param name="Value"> The new characteristic value. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoService.#ctor(wclBluetooth.wclGattClient)">
+            <summary> Creates new WeDo Service Client object. </summary>
+            <param name="Client"> The <see cref="T:wclBluetooth.wclGattClient"/> object that handles the connection
+              to a WeDo device. </param>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoHubFoundEvent">
+            <summary> The <c>OnHubFound</c> event handler prototype. </summary>
+            <param name="Sender"> The object that fired the event. </param>
+            <param name="Address"> The WeDo Hub MAC address. </param>
+            <param name="Name"> The WeDo Hub name. </param>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoHubLostEvent">
+            <summary> The <c>OnHubLost</c> event handler prototype. </summary>
+            <param name="Sender"> The object that fired the event. </param>
+            <param name="Address"> The WeDo Hub MAC address. </param>
+            <param name="Name"> The WeDo Hub name. </param>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoHubNameChangedEvent">
+            <summary> The <c>OnHunNameChanged</c> event handler prototype. </summary>
+            <param name="Sender"> The object that fired the event. </param>
+            <param name="Address"> The WeDo device's MAC address. </param>
+            <param name="OldName"> The old name of WeDo Hub. </param>
+            <param name="NewName"> The new name of WeDo Hub. </param>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoWatcher">
+            <summary> The class used to search WeDo devices. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoWatcher.DoHubFound(System.Int64,System.String)">
+            <summary> Fires the <c>OnHubFound</c> event. </summary>
+            <param name="Address"> The Hub's MAC. </param>
+            <param name="Name"> The WeDo Hub name. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoWatcher.DoHubLost(System.Int64,System.String)">
+            <summary> Fires the <c>OnHubLost</c> event. </summary>
+            <param name="Address"> The Hub's MAC. </param>
+            <param name="Name"> The WeDo Hub name. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoWatcher.DoHubNameChanged(System.Int64,System.String,System.String)">
+            <summary> Fires the <c>OnNameChanged</c> event. </summary>
+            <param name="Address"> The WeDo device's MAC address. </param>
+            <param name="OldName"> The old name of WeDo Hub. </param>
+            <param name="NewName"> The new name of WeDo Hub. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoWatcher.DoStarted">
+            <summary> Fires the <c>OnStarte</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoWatcher.DoStopped">
+            <summary> Fires the <c>OnStopped</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoWatcher.#ctor">
+            <summary> Creates new WeDo Watcher object. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoWatcher.Start(wclBluetooth.wclBluetoothRadio)">
+            <summary> Starts watching (discovering) for WeDo devices. </summary>
+            <param name="Radio"> The <see cref="T:wclBluetooth.wclBluetoothRadio" /> object that should be used
+              for executing Bluetooth LE discovering. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+            <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoWatcher.Stop">
+            <summary> Stops discovering WeDo devices. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoWatcher.Active">
+            <summary> Gets the WeDo Hub Watcher state. </summary>
+            <value> Returns <c>true</c> if Watcher is running (searching for WeDo Hubs).
+              Returns <c>false</c> otherwise. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoWatcher.Radio">
+            <summary> Gets the <see cref="T:wclBluetooth.wclBluetoothRadio"/> object that is used for searching WeDo hubs. </summary>
+            <value> If Watcher is searching returns the <see cref="T:wclBluetooth.wclBluetoothRadio"/> object used for
+              searching. If the Watcher is not active returns <c>nil</c>. </value>
+            <seealso cref="T:wclBluetooth.wclBluetoothRadio"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoWatcher.OnHubFound">
+            <summary> The event fires when new WeDo Hub has been found. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHubFoundEvent" />
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoWatcher.OnHubLost">
+            <summary> The event fires when new WeDo Hub has been lost. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHubLostEvent" />
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoWatcher.OnHubNameChanged">
+            <summary> The event fires when name of a WeDo Hub has been changed. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHubNameChangedEvent"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoWatcher.OnStarted">
+            <summary> The event fires when discovering has been started. </summary>
+            <seealso cref="T:System.EventHandler" />
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoWatcher.OnStopped">
+            <summary> The event fires when discovering has been stopped. </summary>
+            <seealso cref="T:System.EventHandler" />
+        </member>
+    </members>
+</doc>

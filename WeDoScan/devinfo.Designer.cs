@@ -1,4 +1,4 @@
-﻿namespace WeDoControl
+﻿namespace WeDoScan
 {
     partial class fmDevInfo
     {
@@ -41,6 +41,9 @@
             this.edDeviceName = new System.Windows.Forms.TextBox();
             this.laDeviceName = new System.Windows.Forms.Label();
             this.btClose = new System.Windows.Forms.Button();
+            this.laBattLevelTitle = new System.Windows.Forms.Label();
+            this.pbBattLevel = new System.Windows.Forms.ProgressBar();
+            this.laBattLevel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // laManufacturerName
@@ -127,7 +130,7 @@
             // 
             // btSetDeviceName
             // 
-            this.btSetDeviceName.Location = new System.Drawing.Point(114, 187);
+            this.btSetDeviceName.Location = new System.Drawing.Point(114, 229);
             this.btSetDeviceName.Name = "btSetDeviceName";
             this.btSetDeviceName.Size = new System.Drawing.Size(75, 23);
             this.btSetDeviceName.TabIndex = 23;
@@ -137,7 +140,7 @@
             // 
             // edDeviceName
             // 
-            this.edDeviceName.Location = new System.Drawing.Point(37, 161);
+            this.edDeviceName.Location = new System.Drawing.Point(37, 203);
             this.edDeviceName.Name = "edDeviceName";
             this.edDeviceName.Size = new System.Drawing.Size(152, 20);
             this.edDeviceName.TabIndex = 22;
@@ -146,7 +149,7 @@
             // 
             this.laDeviceName.AutoSize = true;
             this.laDeviceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.laDeviceName.Location = new System.Drawing.Point(12, 139);
+            this.laDeviceName.Location = new System.Drawing.Point(12, 181);
             this.laDeviceName.Name = "laDeviceName";
             this.laDeviceName.Size = new System.Drawing.Size(85, 13);
             this.laDeviceName.TabIndex = 21;
@@ -154,7 +157,8 @@
             // 
             // btClose
             // 
-            this.btClose.Location = new System.Drawing.Point(234, 233);
+            this.btClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btClose.Location = new System.Drawing.Point(234, 275);
             this.btClose.Name = "btClose";
             this.btClose.Size = new System.Drawing.Size(75, 23);
             this.btClose.TabIndex = 24;
@@ -162,13 +166,42 @@
             this.btClose.UseVisualStyleBackColor = true;
             this.btClose.Click += new System.EventHandler(this.BtClose_Click);
             // 
+            // laBattLevelTitle
+            // 
+            this.laBattLevelTitle.AutoSize = true;
+            this.laBattLevelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laBattLevelTitle.Location = new System.Drawing.Point(12, 148);
+            this.laBattLevelTitle.Name = "laBattLevelTitle";
+            this.laBattLevelTitle.Size = new System.Drawing.Size(82, 13);
+            this.laBattLevelTitle.TabIndex = 25;
+            this.laBattLevelTitle.Text = "Battery level:";
+            // 
+            // pbBattLevel
+            // 
+            this.pbBattLevel.Location = new System.Drawing.Point(100, 138);
+            this.pbBattLevel.Name = "pbBattLevel";
+            this.pbBattLevel.Size = new System.Drawing.Size(75, 23);
+            this.pbBattLevel.TabIndex = 26;
+            // 
+            // laBattLevel
+            // 
+            this.laBattLevel.AutoSize = true;
+            this.laBattLevel.Location = new System.Drawing.Point(192, 148);
+            this.laBattLevel.Name = "laBattLevel";
+            this.laBattLevel.Size = new System.Drawing.Size(24, 13);
+            this.laBattLevel.TabIndex = 27;
+            this.laBattLevel.Text = "0 %";
+            // 
             // fmDevInfo
             // 
             this.AcceptButton = this.btClose;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btClose;
-            this.ClientSize = new System.Drawing.Size(321, 268);
+            this.ClientSize = new System.Drawing.Size(321, 306);
+            this.Controls.Add(this.laBattLevel);
+            this.Controls.Add(this.pbBattLevel);
+            this.Controls.Add(this.laBattLevelTitle);
             this.Controls.Add(this.btClose);
             this.Controls.Add(this.btSetDeviceName);
             this.Controls.Add(this.edDeviceName);
@@ -208,5 +241,8 @@
         private System.Windows.Forms.TextBox edDeviceName;
         private System.Windows.Forms.Label laDeviceName;
         private System.Windows.Forms.Button btClose;
+        private System.Windows.Forms.Label laBattLevelTitle;
+        private System.Windows.Forms.ProgressBar pbBattLevel;
+        private System.Windows.Forms.Label laBattLevel;
     }
 }

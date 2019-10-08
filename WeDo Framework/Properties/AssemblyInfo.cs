@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WeDoControl")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("WeDo Framework")]
+[assembly: AssemblyDescription("LEGO WeDo Framework")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WeDoControl")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("Soft Service Company")]
+[assembly: AssemblyProduct("Wireless Communication Library")]
+[assembly: AssemblyCopyright("Copyright ©  Mike Petrichenko, 2019")]
+[assembly: AssemblyTrademark("Wireless Communication Library")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("19424ab7-2634-4729-9351-0fddccce1208")]
+[assembly: Guid("ab0071d1-7d94-4339-af46-2a4630c90310")]
 
 // Version information for an assembly consists of the following four values:
 //

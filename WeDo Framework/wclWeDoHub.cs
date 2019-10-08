@@ -4,20 +4,22 @@ using wclCommon;
 using wclCommunication;
 using wclBluetooth;
 
-namespace wclWeDo
+namespace wclWeDoFramework
 {
-    /// <summary> The main class that implements all the WeDo controlling features. </summary>
-    public class wclWeDoClient
+    /// <summary> The class represents a WeDo Hub hardware. </summary>
+    public class wclWeDoHub
     {
         private wclGattClient FClient;
         private Boolean FConnected;
 
+        // Hub GATT services.
         private wclWeDoDeviceInformationService FDeviceInformation;
         private wclWeDoBatteryLevelService FBatteryLevel;
         private wclWeDoIoService FIo;
         private wclWeDoHubService FHub;
 
-        private void DisconnectClients()
+        // Disconnect from all WeDo services.
+        private void DisconnectServices()
         {
             if (FDeviceInformation.Connected)
                 FDeviceInformation.Disconnect();
@@ -29,6 +31,7 @@ namespace wclWeDo
                 FHub.Disconnect();
         }
 
+        // GATT client connect event handler.
         private void ClientConnect(object Sender, int Error)
         {
             // If connection was not established simple fire the event with error code.
@@ -58,9 +61,11 @@ namespace wclWeDo
             }
         }
 
+        // GATT client disconnect event handler.
         private void ClientDisconnect(object Sender, int Reason)
         {
-            DisconnectClients();
+            // We have to release all services.
+            DisconnectServices();
 
             // We have to fire the event only if connection was really established and
             // all the services and characteristics were read.
@@ -72,8 +77,10 @@ namespace wclWeDo
             }
         }
 
+        // GATT client characteristi changed event handler.
         private void ClientCharacteristicChanged(Object sender, UInt16 Handle, Byte[] Value)
         {
+            // Notify all services about characteristic changes. So each one can select owm updated data.
             if (FDeviceInformation.Connected)
                 FDeviceInformation.CharacteristicChanged(Handle, Value);
             if (FBatteryLevel.Connected)
@@ -86,7 +93,7 @@ namespace wclWeDo
 
         /// <summary> Fires the <c>OnConnected</c> event. </summary>
         /// <param name="Error"> If the connection has been established the parameter is
-        ///   <seecref="wclErrors.WCL_E_SUCCESS" />. If connection has not been established the
+        ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If connection has not been established the
         ///   parameter value is one of the Bluetooth error codes. </param>
         protected virtual void DoConnected(Int32 Error)
         {
@@ -103,7 +110,7 @@ namespace wclWeDo
         }
 
         /// <summary> Creates new WeDo Client. </summary>
-        public wclWeDoClient()
+        public wclWeDoHub()
         {
             FConnected = false;
 
@@ -121,10 +128,10 @@ namespace wclWeDo
             OnDisconnected = null;
         }
 
-        /// <summary> Connects to a selected WeDo device. </summary>
+        /// <summary> Connects to a selected WeDo Hub. </summary>
         /// <param name="Radio"> The <see cref="wclBluetoothRadio" /> object that should be used
         ///   for executing Bluetooth LE connection. </param>
-        /// <param name="Address"> The WeDo device's address. </param>
+        /// <param name="Address"> The WeDo Hub MAC address. </param>
         /// <returns> If the method completed with success the returning value is
         ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
         ///   one of the Bluetooth Framework error code. </returns>
@@ -143,7 +150,7 @@ namespace wclWeDo
             return FClient.Connect(Radio);
         }
 
-        /// <summary> Disconnects from WeDo device. </summary>
+        /// <summary> Disconnects from WeDo Hub. </summary>
         /// <returns> If the method completed with success the returning value is
         ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
         ///   one of the Bluetooth Framework error code. </returns>
@@ -152,36 +159,36 @@ namespace wclWeDo
             return FClient.Disconnect();
         }
 
-        /// <summary> Gets the device information service client object. </summary>
-        /// <value> The device information client object. </value>
+        /// <summary> Gets the Hub device information service object. </summary>
+        /// <value> The Hub device information service object. </value>
         /// <seealso cref="wclWeDoDeviceInformationService"/>
         public wclWeDoDeviceInformationService DeviceInformation { get { return FDeviceInformation; } }
-        /// <summary> Gets the battery level service client object. </summary>
-        /// <value> The battery level service client. </Value>
+        /// <summary> Gets the battery level service object. </summary>
+        /// <value> The battery level service object. </value>
         /// <seealso cref="wclWeDoBatteryLevelService"/>
         public wclWeDoBatteryLevelService BatteryLevel { get { return FBatteryLevel; } }
-        /// <summary> Gets the IO service client object. </summary>
-        /// <value> The IO service client object. </value>
+        /// <summary> Gets the IO service object. </summary>
+        /// <value> The IO service object. </value>
         /// <seealso cref="wclWeDoIoService"/>
         public wclWeDoIoService Io { get { return FIo; } }
-        /// <summary> Gets the Hub service client object. </summary>
-        /// <value> The Hub service client object. </value>
+        /// <summary> Gets the Hub service object. </summary>
+        /// <value> The Hub service object. </value>
         /// <seealso cref="wclWeDoHubService"/>
         public wclWeDoHubService Hub { get { return FHub; } }
 
         /// <summary> Gets connected status. </summary>
-        /// <value> <c>true</c> if connected to WeDo device. </value>
+        /// <value> <c>true</c> if connected to WeDo Hub. </value>
         public Boolean Connected { get { return FConnected; } }
         /// <summary> Gets internal GATT client state. </summary>
         /// <value> The internal GATT client state. </value>
         /// <seealso cref="wclClientState" />
         public wclClientState ClientState { get { return FClient.State; } }
 
-        /// <summary> The event fires when connection to a WeDo device
+        /// <summary> The event fires when connection to a WeDo Hub
         ///   has been established. </summary>
         /// <seealso cref="wclClientConnectionConnectEvent" />
         public event wclClientConnectionConnectEvent OnConnected;
-        /// <summary> The event fires when WeDo has been disconnected. </summary>
+        /// <summary> The event fires when WeDo Hub has been disconnected. </summary>
         /// <seealso cref="wclClientConnectionDisconnectEvent" />
         public event wclClientConnectionDisconnectEvent OnDisconnected;
     };
