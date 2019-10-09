@@ -119,10 +119,10 @@ namespace wclWeDoFramework
             FClient.OnConnect += ClientConnect;
             FClient.OnDisconnect += ClientDisconnect;
 
-            FDeviceInformation = new wclWeDoDeviceInformationService(FClient);
-            FBatteryLevel = new wclWeDoBatteryLevelService(FClient);
-            FIo = new wclWeDoIoService(FClient);
-            FHub = new wclWeDoHubService(FClient);
+            FDeviceInformation = new wclWeDoDeviceInformationService(FClient, this);
+            FBatteryLevel = new wclWeDoBatteryLevelService(FClient, this);
+            FIo = new wclWeDoIoService(FClient, this);
+            FHub = new wclWeDoHubService(FClient, this);
 
             OnConnected = null;
             OnDisconnected = null;
@@ -176,6 +176,9 @@ namespace wclWeDoFramework
         /// <seealso cref="wclWeDoHubService"/>
         public wclWeDoHubService Hub { get { return FHub; } }
 
+        /// <summary> Gets the connected WeDo Hub Address. </summary>
+        /// <value> The Hub MAC address. </value>
+        public Int64 Address {  get { return FClient.Address; } }
         /// <summary> Gets connected status. </summary>
         /// <value> <c>true</c> if connected to WeDo Hub. </value>
         public Boolean Connected { get { return FConnected; } }

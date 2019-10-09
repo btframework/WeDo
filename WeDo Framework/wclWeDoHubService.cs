@@ -7,6 +7,16 @@ using wclBluetooth;
 
 namespace wclWeDoFramework
 {
+    /// <summary> The <c>OnButtonStateChanged</c> event handler prototype. </summary>
+    /// <param name="Sender"> The object that fires the event. </param>
+    /// <param name="Pressed"> The button's state. <c>True</c> if button has been pressed.
+    ///   <c>False</c> if button has been released. </param>
+    public delegate void wclWeDoHubButtonStateChangedEvent(Object Sender, Boolean Pressed);
+    /// <summary> The <c>OnLowVoltageAlert</c> event handler prototype. </summary>
+    /// <param name="Sender"> The object that fires the event. </param>
+    /// <param name="Alert"> <c>True</c> if device runs on low battery. <c>False</c> otherwise. </param>
+    public delegate void wclWeDoHubLowVolatgeAlertEvent(Object Sender, Boolean Alert);
+
     /// <summary> The class represents the WeDo Hub service. </summary>
     /// <seealso cref="wclWeDoService"/>
     public class wclWeDoHubService : wclWeDoService
@@ -155,17 +165,46 @@ namespace wclWeDoFramework
         /// <param name="Value"> The new characteristic value. </param>
         internal override void CharacteristicChanged(UInt16 Handle, Byte[] Value)
         {
+            // Process data only if it presents.
+            if (Value != null && Value.Length > 0)
+            {
+                // Button pressed?
+                if (FButtonStateChar != null && Handle == FButtonStateChar.Value.Handle)
+                    DoButtonStateChanged(Value[0] == 1);
+                // Low voltage?
+                if (FLowVoltageAlertChar != null && Handle == FLowVoltageAlertChar.Value.Handle)
+                    DoLowVoltageAlert(Value[0] == 1);
+            }
+        }
 
+        /// <summary> Fires the <c>OnButtonStateChanged</c> event. </summary>
+        /// <param name="Pressed"> <c>True</c> if the button has been pressed. <c>False</c> if the
+        ///   button has been released. </param>
+        protected virtual void DoButtonStateChanged(Boolean Pressed)
+        {
+            if (OnButtonStateChanged != null)
+                OnButtonStateChanged(this, Pressed);
+        }
+
+        /// <summary> Fires the <c>OnLowVoltageAlert</c> event. </summary>
+        /// <param name="Alert"> <c>True</c> if device runs on low battery. <c>False</c> otherwise. </param>
+        protected virtual void DoLowVoltageAlert(Boolean Alert)
+        {
+            if (OnLowVoltageAlert != null)
+                OnLowVoltageAlert(this, Alert);
         }
 
         /// <summary> Creates new IO service client. </summary>
         /// <param name="Client"> The <see cref="wclGattClient"/> object that handles the connection
         ///   to a WeDo device. </param>
-        /// <exception cref="wclEInvalidArgument"> The exception raises if the <c>Client</c>
+        /// <param name="Hub"> The <see cref="wclWeDoHub"/> object that owns the service. </param>
+        /// <exception cref="wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
         ///   parameter is <c>null</c>. </exception>
-        public wclWeDoHubService(wclGattClient Client)
-            : base(Client)
+        public wclWeDoHubService(wclGattClient Client, wclWeDoHub Hub)
+            : base(Client, Hub)
         {
+            OnButtonStateChanged = null;
+
             Uninitialize();
         }
 
@@ -210,5 +249,12 @@ namespace wclWeDoFramework
 
             return Client.WriteCharacteristicValue(FDeviceNameChar.Value, CharVal);
         }
+
+        /// <summary> The event fires when button state has been changed. </summary>
+        /// <seealso cref="wclWeDoHubButtonStateChangedEvent"/>
+        public event wclWeDoHubButtonStateChangedEvent OnButtonStateChanged;
+        /// <summary> The event fires when device runs on low battery. </summary>
+        /// <seealso cref="wclWeDoHubLowVolatgeAlertEvent"/>
+        public event wclWeDoHubLowVolatgeAlertEvent OnLowVoltageAlert;
     };
 }

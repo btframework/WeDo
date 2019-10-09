@@ -12,6 +12,7 @@ namespace wclWeDoFramework
     {
         private wclGattClient FClient;
         private Boolean FConnected;
+        private wclWeDoHub FHub;
 
         /// <summary> Converts <see cref="wclGattUuid"/> type to standard system <see cref="Guid"/>. </summary>
         /// <param name="Uuid"> The <see cref="wclGattUuid"/> that should be converted. </param>
@@ -265,15 +266,22 @@ namespace wclWeDoFramework
         /// <summary> Creates new WeDo Service Client object. </summary>
         /// <param name="Client"> The <see cref="wclGattClient"/> object that handles the connection
         ///   to a WeDo device. </param>
-        /// <exception cref="wclEInvalidArgument"> The exception raises if the <c>Client</c>
+        /// <param name="Hub"> The <see cref="wclWeDoHub"/> object that owns the service. </param>
+        /// <exception cref="wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
         ///   parameter is <c>null</c>. </exception>
-        public wclWeDoService(wclGattClient Client)
+        public wclWeDoService(wclGattClient Client, wclWeDoHub Hub)
         {
-            if (Client == null)
+            if (Client == null || Hub == null)
                 throw new wclEInvalidArgument("Client parameter can not be null.");
 
             FClient = Client;
             FConnected = false;
+            FHub = Hub;
         }
+
+        /// <summary> Gets the <see cref="wclWeDoHub"/> object that owns the service. </summary>
+        /// <value> The <see cref="wclWeDoHub"/> object. </value>
+        /// <seealso cref="wclWeDoHub"/>
+        public wclWeDoHub Hub { get { return FHub; } }
     };
 }

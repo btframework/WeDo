@@ -33,11 +33,12 @@
             <param name="Handle"> The characteristic handle. </param>
             <param name="Value"> The new characteristic value. </param>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.#ctor(wclBluetooth.wclGattClient)">
+        <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.#ctor(wclBluetooth.wclGattClient,wclWeDoFramework.wclWeDoHub)">
             <summary> Creates new Battery Level service client. </summary>
             <param name="Client"> The <see cref="T:wclBluetooth.wclGattClient"/> object that handles the connection
               to a WeDo device. </param>
-            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c>
+            <param name="Hub"> The <see cref="T:wclWeDoFramework.wclWeDoHub"/> object that owns the service. </param>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
               parameter is <c>null</c>. </exception>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.ReadBatteryLevel(System.Byte@)">
@@ -64,11 +65,12 @@
         <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.Uninitialize">
             <summary> Uninitializes the WeDo service. </summary>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.#ctor(wclBluetooth.wclGattClient)">
+        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.#ctor(wclBluetooth.wclGattClient,wclWeDoFramework.wclWeDoHub)">
             <summary> Creates new Device Information service client. </summary>
             <param name="Client"> The <see cref="T:wclBluetooth.wclGattClient"/> object that handles the connection
               to a WeDo device. </param>
-            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c>
+            <param name="Hub"> The <see cref="T:wclWeDoFramework.wclWeDoHub"/> object that owns the service. </param>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
               parameter is <c>null</c>. </exception>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.ReadFirmwareVersion(System.String@)">
@@ -155,6 +157,10 @@
             <value> The Hub service object. </value>
             <seealso cref="T:wclWeDoFramework.wclWeDoHubService"/>
         </member>
+        <member name="P:wclWeDoFramework.wclWeDoHub.Address">
+            <summary> Gets the connected WeDo Hub Address. </summary>
+            <value> The Hub MAC address. </value>
+        </member>
         <member name="P:wclWeDoFramework.wclWeDoHub.Connected">
             <summary> Gets connected status. </summary>
             <value> <c>true</c> if connected to WeDo Hub. </value>
@@ -172,6 +178,17 @@
         <member name="E:wclWeDoFramework.wclWeDoHub.OnDisconnected">
             <summary> The event fires when WeDo Hub has been disconnected. </summary>
             <seealso cref="T:wclCommunication.wclClientConnectionDisconnectEvent" />
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoHubButtonStateChangedEvent">
+            <summary> The <c>OnButtonStateChanged</c> event handler prototype. </summary>
+            <param name="Sender"> The object that fires the event. </param>
+            <param name="Pressed"> The button's state. <c>True</c> if button has been pressed.
+              <c>False</c> if button has been released. </param>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoHubLowVolatgeAlertEvent">
+            <summary> The <c>OnLowVoltageAlert</c> event handler prototype. </summary>
+            <param name="Sender"> The object that fires the event. </param>
+            <param name="Alert"> <c>True</c> if device runs on low battery. <c>False</c> otherwise. </param>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoHubService">
             <summary> The class represents the WeDo Hub service. </summary>
@@ -193,11 +210,21 @@
             <param name="Handle"> The characteristic handle. </param>
             <param name="Value"> The new characteristic value. </param>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoHubService.#ctor(wclBluetooth.wclGattClient)">
+        <member name="M:wclWeDoFramework.wclWeDoHubService.DoButtonStateChanged(System.Boolean)">
+            <summary> Fires the <c>OnButtonStateChanged</c> event. </summary>
+            <param name="Pressed"> <c>True</c> if the button has been pressed. <c>False</c> if the
+              button has been released. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.DoLowVoltageAlert(System.Boolean)">
+            <summary> Fires the <c>OnLowVoltageAlert</c> event. </summary>
+            <param name="Alert"> <c>True</c> if device runs on low battery. <c>False</c> otherwise. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.#ctor(wclBluetooth.wclGattClient,wclWeDoFramework.wclWeDoHub)">
             <summary> Creates new IO service client. </summary>
             <param name="Client"> The <see cref="T:wclBluetooth.wclGattClient"/> object that handles the connection
               to a WeDo device. </param>
-            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c>
+            <param name="Hub"> The <see cref="T:wclWeDoFramework.wclWeDoHub"/> object that owns the service. </param>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
               parameter is <c>null</c>. </exception>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoHubService.ReadDeviceName(System.String@)">
@@ -214,6 +241,14 @@
             <returns> If the method completed with success the returning value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
               one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoHubService.OnButtonStateChanged">
+            <summary> The event fires when button state has been changed. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHubButtonStateChangedEvent"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoHubService.OnLowVoltageAlert">
+            <summary> The event fires when device runs on low battery. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHubLowVolatgeAlertEvent"/>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoIoService">
             <summary> The class represents the WeDo IO service. </summary>
@@ -235,12 +270,21 @@
             <param name="Handle"> The characteristic handle. </param>
             <param name="Value"> The new characteristic value. </param>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoIoService.#ctor(wclBluetooth.wclGattClient)">
+        <member name="M:wclWeDoFramework.wclWeDoIoService.#ctor(wclBluetooth.wclGattClient,wclWeDoFramework.wclWeDoHub)">
             <summary> Creates new IO service client. </summary>
             <param name="Client"> The <see cref="T:wclBluetooth.wclGattClient"/> object that handles the connection
               to a WeDo device. </param>
-            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c>
+            <param name="Hub"> The <see cref="T:wclWeDoFramework.wclWeDoHub"/> object that owns the service. </param>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
               parameter is <c>null</c>. </exception>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIoService.PlayTone(System.UInt16,System.UInt16)">
+            <summary> Plays a tone with a given frequency for the given duration in ms. </summary>
+            <param name="Frequency"> The frequency to play (max allowed frequency is 1500). </param>
+            <param name="Duration"> The duration to play (max supported is 65535 milli seconds). </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoService">
             <summary> The base class for all WeDo services. </summary>
@@ -339,12 +383,18 @@
             <param name="Handle"> The characteristic handle. </param>
             <param name="Value"> The new characteristic value. </param>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoService.#ctor(wclBluetooth.wclGattClient)">
+        <member name="M:wclWeDoFramework.wclWeDoService.#ctor(wclBluetooth.wclGattClient,wclWeDoFramework.wclWeDoHub)">
             <summary> Creates new WeDo Service Client object. </summary>
             <param name="Client"> The <see cref="T:wclBluetooth.wclGattClient"/> object that handles the connection
               to a WeDo device. </param>
-            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c>
+            <param name="Hub"> The <see cref="T:wclWeDoFramework.wclWeDoHub"/> object that owns the service. </param>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
               parameter is <c>null</c>. </exception>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoService.Hub">
+            <summary> Gets the <see cref="T:wclWeDoFramework.wclWeDoHub"/> object that owns the service. </summary>
+            <value> The <see cref="T:wclWeDoFramework.wclWeDoHub"/> object. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoHubFoundEvent">
             <summary> The <c>OnHubFound</c> event handler prototype. </summary>

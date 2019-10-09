@@ -77,10 +77,11 @@ namespace wclWeDoFramework
         /// <summary> Creates new Battery Level service client. </summary>
         /// <param name="Client"> The <see cref="wclGattClient"/> object that handles the connection
         ///   to a WeDo device. </param>
-        /// <exception cref="wclEInvalidArgument"> The exception raises if the <c>Client</c>
+        /// <param name="Hub"> The <see cref="wclWeDoHub"/> object that owns the service. </param>
+        /// <exception cref="wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
         ///   parameter is <c>null</c>. </exception>
-        public wclWeDoBatteryLevelService(wclGattClient Client)
-            : base(Client)
+        public wclWeDoBatteryLevelService(wclGattClient Client, wclWeDoHub Hub)
+            : base(Client, Hub)
         {
             Uninitialize();
 

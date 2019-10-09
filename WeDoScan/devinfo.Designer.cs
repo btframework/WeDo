@@ -44,6 +44,7 @@
             this.laBattLevelTitle = new System.Windows.Forms.Label();
             this.pbBattLevel = new System.Windows.Forms.ProgressBar();
             this.laBattLevel = new System.Windows.Forms.Label();
+            this.laLowVoltage = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // laManufacturerName
@@ -130,7 +131,7 @@
             // 
             // btSetDeviceName
             // 
-            this.btSetDeviceName.Location = new System.Drawing.Point(114, 229);
+            this.btSetDeviceName.Location = new System.Drawing.Point(197, 230);
             this.btSetDeviceName.Name = "btSetDeviceName";
             this.btSetDeviceName.Size = new System.Drawing.Size(75, 23);
             this.btSetDeviceName.TabIndex = 23;
@@ -140,16 +141,16 @@
             // 
             // edDeviceName
             // 
-            this.edDeviceName.Location = new System.Drawing.Point(37, 203);
+            this.edDeviceName.Location = new System.Drawing.Point(37, 232);
             this.edDeviceName.Name = "edDeviceName";
-            this.edDeviceName.Size = new System.Drawing.Size(152, 20);
+            this.edDeviceName.Size = new System.Drawing.Size(154, 20);
             this.edDeviceName.TabIndex = 22;
             // 
             // laDeviceName
             // 
             this.laDeviceName.AutoSize = true;
             this.laDeviceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.laDeviceName.Location = new System.Drawing.Point(12, 181);
+            this.laDeviceName.Location = new System.Drawing.Point(12, 216);
             this.laDeviceName.Name = "laDeviceName";
             this.laDeviceName.Size = new System.Drawing.Size(85, 13);
             this.laDeviceName.TabIndex = 21;
@@ -158,7 +159,7 @@
             // btClose
             // 
             this.btClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btClose.Location = new System.Drawing.Point(234, 275);
+            this.btClose.Location = new System.Drawing.Point(234, 271);
             this.btClose.Name = "btClose";
             this.btClose.Size = new System.Drawing.Size(75, 23);
             this.btClose.TabIndex = 24;
@@ -178,19 +179,31 @@
             // 
             // pbBattLevel
             // 
-            this.pbBattLevel.Location = new System.Drawing.Point(100, 138);
+            this.pbBattLevel.Location = new System.Drawing.Point(37, 173);
             this.pbBattLevel.Name = "pbBattLevel";
-            this.pbBattLevel.Size = new System.Drawing.Size(75, 23);
+            this.pbBattLevel.Size = new System.Drawing.Size(154, 23);
             this.pbBattLevel.TabIndex = 26;
             // 
             // laBattLevel
             // 
             this.laBattLevel.AutoSize = true;
-            this.laBattLevel.Location = new System.Drawing.Point(192, 148);
+            this.laBattLevel.Location = new System.Drawing.Point(144, 148);
             this.laBattLevel.Name = "laBattLevel";
             this.laBattLevel.Size = new System.Drawing.Size(24, 13);
             this.laBattLevel.TabIndex = 27;
             this.laBattLevel.Text = "0 %";
+            // 
+            // laLowVoltage
+            // 
+            this.laLowVoltage.AutoSize = true;
+            this.laLowVoltage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laLowVoltage.ForeColor = System.Drawing.Color.Red;
+            this.laLowVoltage.Location = new System.Drawing.Point(12, 271);
+            this.laLowVoltage.Name = "laLowVoltage";
+            this.laLowVoltage.Size = new System.Drawing.Size(80, 13);
+            this.laLowVoltage.TabIndex = 28;
+            this.laLowVoltage.Text = "Low voltage!";
+            this.laLowVoltage.Visible = false;
             // 
             // fmDevInfo
             // 
@@ -199,6 +212,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btClose;
             this.ClientSize = new System.Drawing.Size(321, 306);
+            this.Controls.Add(this.laLowVoltage);
             this.Controls.Add(this.laBattLevel);
             this.Controls.Add(this.pbBattLevel);
             this.Controls.Add(this.laBattLevelTitle);
@@ -244,5 +258,6 @@
         private System.Windows.Forms.Label laBattLevelTitle;
         private System.Windows.Forms.ProgressBar pbBattLevel;
         private System.Windows.Forms.Label laBattLevel;
+        private System.Windows.Forms.Label laLowVoltage;
     }
 }

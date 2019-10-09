@@ -96,6 +96,7 @@ namespace WeDoScan
             FHub = new wclWeDoHub();
             // Setup its event handlers. We are interested in batt level only for now.
             FHub.BatteryLevel.OnBatteryLevelChanged += BatteryLevel_OnBatteryLevelChanged;
+            FHub.Hub.OnLowVoltageAlert += Hub_OnLowVoltageAlert;
             FHub.OnConnected += FHub_OnConnected;
             FHub.OnDisconnected += FHub_OnDisconnected;
             // Try to connect. We will use the same Bluetooth Radio object that is used by
@@ -107,6 +108,12 @@ namespace WeDoScan
                 MessageBox.Show("Connect to Hub failed: 0x" + Res.ToString("X8"));
                 Close();
             }
+        }
+
+        private void Hub_OnLowVoltageAlert(object Sender, bool Alert)
+        {
+            // Show Low Voltage Warning when alert received.
+            laLowVoltage.Visible = Alert;
         }
 
         private void FHub_OnDisconnected(object Sender, int Reason)

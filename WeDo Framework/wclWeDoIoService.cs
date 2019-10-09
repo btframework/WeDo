@@ -22,10 +22,23 @@ namespace wclWeDoFramework
         // Output command characteristic. [Mandatory] [Writable, Writable Without Response]
         private static Guid WEDO_CHARACTERISTIC_OUTPUT_COMMAND = new Guid("00001565-1212-efde-1523-785feabcd123");
 
+        // Piezo constants.
+        private const UInt16 PIEZO_MAX_FREQUENCY = 1500;
+        private const UInt16 PIEZO_MAX_DURATION = 65535;
+
         private wclGattCharacteristic? FSensorValueChar;
         private wclGattCharacteristic? FSensorValueFormatChar;
         private wclGattCharacteristic? FInputCommandChar;
         private wclGattCharacteristic? FOutputCommandChar;
+
+        private Int32 WriteOutputCommand(Byte[] Command)
+        {
+            // Writes command to the IO service.
+            if (FOutputCommandChar == null)
+                return wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND;
+
+            return Client.WriteCharacteristicValue(FOutputCommandChar.Value, Command);
+        }
 
         /// <summary> Initializes the WeDo service. </summary>
         /// <returns> If the method completed with success the returning value is
@@ -91,12 +104,27 @@ namespace wclWeDoFramework
         /// <summary> Creates new IO service client. </summary>
         /// <param name="Client"> The <see cref="wclGattClient"/> object that handles the connection
         ///   to a WeDo device. </param>
-        /// <exception cref="wclEInvalidArgument"> The exception raises if the <c>Client</c>
+        /// <param name="Hub"> The <see cref="wclWeDoHub"/> object that owns the service. </param>
+        /// <exception cref="wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
         ///   parameter is <c>null</c>. </exception>
-        public wclWeDoIoService(wclGattClient Client)
-            : base(Client)
+        public wclWeDoIoService(wclGattClient Client, wclWeDoHub Hub)
+            : base(Client, Hub)
         {
             Uninitialize();
+        }
+
+        /// <summary> Plays a tone with a given frequency for the given duration in ms. </summary>
+		/// <param name="Frequency"> The frequency to play (max allowed frequency is 1500). </param>
+		/// <param name="Duration"> The duration to play (max supported is 65535 milli seconds). </param>
+        /// <returns> If the method completed with success the returning value is
+        ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+        ///   one of the Bluetooth Framework error code. </returns>
+        public Int32 PlayTone(UInt16 Frequency, UInt16 Duration)
+        {
+            if (Frequency > PIEZO_MAX_FREQUENCY || Duration > PIEZO_MAX_DURATION)
+                return wclErrors.WCL_E_INVALID_ARGUMENT;
+
+            return wclBluetoothErrors.WCL_E_BLUETOOTH_LE_FEATURE_NOT_SUPPORTED;
         }
     };
 }
