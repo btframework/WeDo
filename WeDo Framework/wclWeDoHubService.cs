@@ -56,6 +56,40 @@ namespace wclWeDoFramework
         private wclGattCharacteristic? FBatteryTypeChar;
         private wclGattCharacteristic? FDeviceDisconnectChar;
 
+        internal Int32 ReadDeviceName(out String Name)
+        {
+            return ReadStringValue(FDeviceNameChar, out Name);
+        }
+
+        internal Int32 WriteDeviceName(String Name)
+        {
+            if (Name == null || Name == "")
+                return wclErrors.WCL_E_INVALID_ARGUMENT;
+
+            if (!Connected)
+                return wclConnectionErrors.WCL_E_CONNECTION_NOT_ACTIVE;
+
+            if (Name.Length > 20)
+                Name = Name.Substring(0, 20);
+            Byte[] Bytes = Encoding.UTF8.GetBytes(Name);
+            Byte[] CharVal;
+            if (Bytes.Length < 20)
+            {
+                CharVal = new Byte[20];
+                for (Int32 i = 0; i < Bytes.Length; i++)
+                    CharVal[i] = Bytes[i];
+                for (Int32 i = Bytes.Length; i < 20; i++)
+                    CharVal[i] = 0;
+            }
+            else
+                CharVal = Bytes;
+
+            return Client.WriteCharacteristicValue(FDeviceNameChar.Value, CharVal);
+        }
+
+        internal event wclWeDoHubButtonStateChangedEvent OnButtonStateChanged;
+        internal event wclWeDoHubLowVolatgeAlertEvent OnLowVoltageAlert;
+
         /// <summary> Initializes the WeDo service. </summary>
         /// <returns> If the method completed with success the returning value is
         ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
@@ -207,54 +241,5 @@ namespace wclWeDoFramework
 
             Uninitialize();
         }
-
-        /// <summary> Reads the current device name. </summary>
-        /// <param name="Name"> If the method completed with success the parameter contains the
-        ///   current device name. </param>
-        /// <returns> If the method completed with success the returning value is
-        ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-        ///   one of the Bluetooth Framework error code. </returns>
-        public Int32 ReadDeviceName(out String Name)
-        {
-            return ReadStringValue(FDeviceNameChar, out Name);
-        }
-
-        /// <summary> Writes new device name. </summary>
-        /// <param name="Name"> The new device name. </param>
-        /// <returns> If the method completed with success the returning value is
-        ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-        ///   one of the Bluetooth Framework error code. </returns>
-        public Int32 WriteDeviceName(String Name)
-        {
-            if (Name == null || Name == "")
-                return wclErrors.WCL_E_INVALID_ARGUMENT;
-
-            if (!Connected)
-                return wclConnectionErrors.WCL_E_CONNECTION_NOT_ACTIVE;
-
-            if (Name.Length > 20)
-                Name = Name.Substring(0, 20);
-            Byte[] Bytes = Encoding.UTF8.GetBytes(Name);
-            Byte[] CharVal;
-            if (Bytes.Length < 20)
-            {
-                CharVal = new Byte[20];
-                for (Int32 i = 0; i < Bytes.Length; i++)
-                    CharVal[i] = Bytes[i];
-                for (Int32 i = Bytes.Length; i < 20; i++)
-                    CharVal[i] = 0;
-            }
-            else
-                CharVal = Bytes;
-
-            return Client.WriteCharacteristicValue(FDeviceNameChar.Value, CharVal);
-        }
-
-        /// <summary> The event fires when button state has been changed. </summary>
-        /// <seealso cref="wclWeDoHubButtonStateChangedEvent"/>
-        public event wclWeDoHubButtonStateChangedEvent OnButtonStateChanged;
-        /// <summary> The event fires when device runs on low battery. </summary>
-        /// <seealso cref="wclWeDoHubLowVolatgeAlertEvent"/>
-        public event wclWeDoHubLowVolatgeAlertEvent OnLowVoltageAlert;
     };
 }

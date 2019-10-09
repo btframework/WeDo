@@ -49,7 +49,7 @@ namespace WeDoScan
         {
             // Read Hub name.
             String Name;
-            Int32 Res = FHub.Hub.ReadDeviceName(out Name);
+            Int32 Res = FHub.ReadDeviceName(out Name);
             if (Res == wclErrors.WCL_E_SUCCESS)
                 edDeviceName.Text = Name;
             else
@@ -85,7 +85,7 @@ namespace WeDoScan
         private void BtSetDeviceName_Click(object sender, EventArgs e)
         {
             // Try to change Hub name.
-            Int32 Res = FHub.Hub.WriteDeviceName(edDeviceName.Text);
+            Int32 Res = FHub.WriteDeviceName(edDeviceName.Text);
             if (Res != wclErrors.WCL_E_SUCCESS)
                 MessageBox.Show("Write hub name failed with error: 0x" + Res.ToString("X8"));
         }
@@ -96,7 +96,7 @@ namespace WeDoScan
             FHub = new wclWeDoHub();
             // Setup its event handlers. We are interested in batt level only for now.
             FHub.BatteryLevel.OnBatteryLevelChanged += BatteryLevel_OnBatteryLevelChanged;
-            FHub.Hub.OnLowVoltageAlert += Hub_OnLowVoltageAlert;
+            FHub.OnLowVoltageAlert += Hub_OnLowVoltageAlert;
             FHub.OnConnected += FHub_OnConnected;
             FHub.OnDisconnected += FHub_OnDisconnected;
             // Try to connect. We will use the same Bluetooth Radio object that is used by

@@ -118,6 +118,15 @@
             <summary> Fires the <c>OnDisconnected</c> event. </summary>
             <param name="Reason"> The disconnection reason code. </param>
         </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.DoButtonStateChanged(System.Boolean)">
+            <summary> Fires the <c>OnButtonStateChanged</c> event. </summary>
+            <param name="Pressed"> <c>True</c> if the button has been pressed. <c>False</c> if the
+              button has been released. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.DoLowVoltageAlert(System.Boolean)">
+            <summary> Fires the <c>OnLowVoltageAlert</c> event. </summary>
+            <param name="Alert"> <c>True</c> if device runs on low battery. <c>False</c> otherwise. </param>
+        </member>
         <member name="M:wclWeDoFramework.wclWeDoHub.#ctor">
             <summary> Creates new WeDo Client. </summary>
         </member>
@@ -137,6 +146,21 @@
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
               one of the Bluetooth Framework error code. </returns>
         </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.ReadDeviceName(System.String@)">
+            <summary> Reads the current device name. </summary>
+            <param name="Name"> If the method completed with success the parameter contains the
+              current device name. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.WriteDeviceName(System.String)">
+            <summary> Writes new device name. </summary>
+            <param name="Name"> The new device name. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
         <member name="P:wclWeDoFramework.wclWeDoHub.DeviceInformation">
             <summary> Gets the Hub device information service object. </summary>
             <value> The Hub device information service object. </value>
@@ -151,11 +175,6 @@
             <summary> Gets the IO service object. </summary>
             <value> The IO service object. </value>
             <seealso cref="T:wclWeDoFramework.wclWeDoIoService"/>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoHub.Hub">
-            <summary> Gets the Hub service object. </summary>
-            <value> The Hub service object. </value>
-            <seealso cref="T:wclWeDoFramework.wclWeDoHubService"/>
         </member>
         <member name="P:wclWeDoFramework.wclWeDoHub.Address">
             <summary> Gets the connected WeDo Hub Address. </summary>
@@ -178,6 +197,14 @@
         <member name="E:wclWeDoFramework.wclWeDoHub.OnDisconnected">
             <summary> The event fires when WeDo Hub has been disconnected. </summary>
             <seealso cref="T:wclCommunication.wclClientConnectionDisconnectEvent" />
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoHub.OnButtonStateChanged">
+            <summary> The event fires when button state has been changed. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHubButtonStateChangedEvent"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoHub.OnLowVoltageAlert">
+            <summary> The event fires when device runs on low battery. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHubLowVolatgeAlertEvent"/>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoHubButtonStateChangedEvent">
             <summary> The <c>OnButtonStateChanged</c> event handler prototype. </summary>
@@ -226,29 +253,6 @@
             <param name="Hub"> The <see cref="T:wclWeDoFramework.wclWeDoHub"/> object that owns the service. </param>
             <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
               parameter is <c>null</c>. </exception>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHubService.ReadDeviceName(System.String@)">
-            <summary> Reads the current device name. </summary>
-            <param name="Name"> If the method completed with success the parameter contains the
-              current device name. </param>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHubService.WriteDeviceName(System.String)">
-            <summary> Writes new device name. </summary>
-            <param name="Name"> The new device name. </param>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="E:wclWeDoFramework.wclWeDoHubService.OnButtonStateChanged">
-            <summary> The event fires when button state has been changed. </summary>
-            <seealso cref="T:wclWeDoFramework.wclWeDoHubButtonStateChangedEvent"/>
-        </member>
-        <member name="E:wclWeDoFramework.wclWeDoHubService.OnLowVoltageAlert">
-            <summary> The event fires when device runs on low battery. </summary>
-            <seealso cref="T:wclWeDoFramework.wclWeDoHubLowVolatgeAlertEvent"/>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoIoService">
             <summary> The class represents the WeDo IO service. </summary>

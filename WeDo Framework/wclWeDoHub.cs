@@ -91,6 +91,16 @@ namespace wclWeDoFramework
                 FHub.CharacteristicChanged(Handle, Value);
         }
 
+        private void HubButtonStateChanged(Object Sender, Boolean Pressed)
+        {
+            DoButtonStateChanged(Pressed);
+        }
+
+        private void HubLowVoltageAlert(Object Sender, Boolean Alert)
+        {
+            DoLowVoltageAlert(Alert);
+        }
+
         /// <summary> Fires the <c>OnConnected</c> event. </summary>
         /// <param name="Error"> If the connection has been established the parameter is
         ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If connection has not been established the
@@ -109,6 +119,23 @@ namespace wclWeDoFramework
                 OnDisconnected(this, Reason);
         }
 
+        /// <summary> Fires the <c>OnButtonStateChanged</c> event. </summary>
+        /// <param name="Pressed"> <c>True</c> if the button has been pressed. <c>False</c> if the
+        ///   button has been released. </param>
+        protected virtual void DoButtonStateChanged(Boolean Pressed)
+        {
+            if (OnButtonStateChanged != null)
+                OnButtonStateChanged(this, Pressed);
+        }
+
+        /// <summary> Fires the <c>OnLowVoltageAlert</c> event. </summary>
+        /// <param name="Alert"> <c>True</c> if device runs on low battery. <c>False</c> otherwise. </param>
+        protected virtual void DoLowVoltageAlert(Boolean Alert)
+        {
+            if (OnLowVoltageAlert != null)
+                OnLowVoltageAlert(this, Alert);
+        }
+
         /// <summary> Creates new WeDo Client. </summary>
         public wclWeDoHub()
         {
@@ -122,7 +149,12 @@ namespace wclWeDoFramework
             FDeviceInformation = new wclWeDoDeviceInformationService(FClient, this);
             FBatteryLevel = new wclWeDoBatteryLevelService(FClient, this);
             FIo = new wclWeDoIoService(FClient, this);
+
+            // This service precessed by special way because we need to delegate all methods and events
+            // to the Hub object.
             FHub = new wclWeDoHubService(FClient, this);
+            FHub.OnButtonStateChanged += HubButtonStateChanged;
+            FHub.OnLowVoltageAlert += HubLowVoltageAlert;
 
             OnConnected = null;
             OnDisconnected = null;
@@ -159,6 +191,27 @@ namespace wclWeDoFramework
             return FClient.Disconnect();
         }
 
+        /// <summary> Reads the current device name. </summary>
+        /// <param name="Name"> If the method completed with success the parameter contains the
+        ///   current device name. </param>
+        /// <returns> If the method completed with success the returning value is
+        ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+        ///   one of the Bluetooth Framework error code. </returns>
+        public Int32 ReadDeviceName(out String Name)
+        {
+            return FHub.ReadDeviceName(out Name);
+        }
+
+        /// <summary> Writes new device name. </summary>
+        /// <param name="Name"> The new device name. </param>
+        /// <returns> If the method completed with success the returning value is
+        ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+        ///   one of the Bluetooth Framework error code. </returns>
+        public Int32 WriteDeviceName(String Name)
+        {
+            return FHub.WriteDeviceName(Name);
+        }
+
         /// <summary> Gets the Hub device information service object. </summary>
         /// <value> The Hub device information service object. </value>
         /// <seealso cref="wclWeDoDeviceInformationService"/>
@@ -171,11 +224,7 @@ namespace wclWeDoFramework
         /// <value> The IO service object. </value>
         /// <seealso cref="wclWeDoIoService"/>
         public wclWeDoIoService Io { get { return FIo; } }
-        /// <summary> Gets the Hub service object. </summary>
-        /// <value> The Hub service object. </value>
-        /// <seealso cref="wclWeDoHubService"/>
-        public wclWeDoHubService Hub { get { return FHub; } }
-
+        
         /// <summary> Gets the connected WeDo Hub Address. </summary>
         /// <value> The Hub MAC address. </value>
         public Int64 Address {  get { return FClient.Address; } }
@@ -194,5 +243,11 @@ namespace wclWeDoFramework
         /// <summary> The event fires when WeDo Hub has been disconnected. </summary>
         /// <seealso cref="wclClientConnectionDisconnectEvent" />
         public event wclClientConnectionDisconnectEvent OnDisconnected;
+        /// <summary> The event fires when button state has been changed. </summary>
+        /// <seealso cref="wclWeDoHubButtonStateChangedEvent"/>
+        public event wclWeDoHubButtonStateChangedEvent OnButtonStateChanged;
+        /// <summary> The event fires when device runs on low battery. </summary>
+        /// <seealso cref="wclWeDoHubLowVolatgeAlertEvent"/>
+        public event wclWeDoHubLowVolatgeAlertEvent OnLowVoltageAlert;
     };
 }
