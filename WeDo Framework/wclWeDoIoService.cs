@@ -22,14 +22,39 @@ namespace wclWeDoFramework
         // Output command characteristic. [Mandatory] [Writable, Writable Without Response]
         private static Guid WEDO_CHARACTERISTIC_OUTPUT_COMMAND = new Guid("00001565-1212-efde-1523-785feabcd123");
 
-        // Piezo constants.
-        private const UInt16 PIEZO_MAX_FREQUENCY = 1500;
-        private const UInt16 PIEZO_MAX_DURATION = 65535;
+        private const Byte CMD_HDR_SIZE = 3;
+        private const Byte CMD_ID_MOTOR_POWER_CONTROL = 1;
+        private const Byte CMD_ID_PIEZO_PLAY_TONE = 2;
+        private const Byte CMD_ID_PIEZO_STOP = 3;
+        private const Byte CMD_ID_RGB_CONTROL = 4;
+        private const Byte CMD_ID_DIRECT_WRITE = 5;
 
         private wclGattCharacteristic? FSensorValueChar;
         private wclGattCharacteristic? FSensorValueFormatChar;
         private wclGattCharacteristic? FInputCommandChar;
         private wclGattCharacteristic? FOutputCommandChar;
+
+        private Byte[] ComposeWriteCommand(Byte CommandId, Byte PortId, Byte[] Data)
+        {
+            if (Data != null && Data.Length > 255)
+                return null;
+
+            Int32 CmdLen = CMD_HDR_SIZE;
+            if (Data != null && Data.Length > 0)
+                CmdLen = CmdLen + Data.Length;
+            Byte[] Cmd = new byte[CmdLen];
+            Cmd[0] = PortId;
+            Cmd[1] = CommandId;
+            if (Data == null || Data.Length == 0)
+                Cmd[2] = 0;
+            else
+            {
+                Cmd[2] = (Byte)Data.Length;
+                for (Int32 i = 0; i < Data.Length; i++)
+                    Cmd[3 + i] = Data[i];
+            }
+            return Cmd;
+        }
 
         private Int32 WriteOutputCommand(Byte[] Command)
         {
@@ -38,6 +63,25 @@ namespace wclWeDoFramework
                 return wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND;
 
             return Client.WriteCharacteristicValue(FOutputCommandChar.Value, Command);
+        }
+
+        internal Int32 PiezoPlayTone(UInt16 Frequency, UInt16 Duration, Byte PortId)
+        {
+            Byte[] FreqencyBytes = BitConverter.GetBytes(Frequency);
+            Byte[] DurationBytes = BitConverter.GetBytes(Duration);
+            Byte[] Data = new Byte[4];
+            Data[0] = FreqencyBytes[0];
+            Data[1] = FreqencyBytes[1];
+            Data[2] = DurationBytes[0];
+            Data[3] = DurationBytes[1];
+            Byte[] Cmd = ComposeWriteCommand(CMD_ID_PIEZO_PLAY_TONE, PortId, Data);
+            return WriteOutputCommand(Cmd);
+        }
+
+        internal Int32 PiezoStopPlaying(Byte PortId)
+        {
+            Byte[] Cmd = ComposeWriteCommand(CMD_ID_PIEZO_STOP, PortId, null);
+            return WriteOutputCommand(Cmd);
         }
 
         /// <summary> Initializes the WeDo service. </summary>
@@ -111,20 +155,6 @@ namespace wclWeDoFramework
             : base(Client, Hub)
         {
             Uninitialize();
-        }
-
-        /// <summary> Plays a tone with a given frequency for the given duration in ms. </summary>
-		/// <param name="Frequency"> The frequency to play (max allowed frequency is 1500). </param>
-		/// <param name="Duration"> The duration to play (max supported is 65535 milli seconds). </param>
-        /// <returns> If the method completed with success the returning value is
-        ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-        ///   one of the Bluetooth Framework error code. </returns>
-        public Int32 PlayTone(UInt16 Frequency, UInt16 Duration)
-        {
-            if (Frequency > PIEZO_MAX_FREQUENCY || Duration > PIEZO_MAX_DURATION)
-                return wclErrors.WCL_E_INVALID_ARGUMENT;
-
-            return wclBluetoothErrors.WCL_E_BLUETOOTH_LE_FEATURE_NOT_SUPPORTED;
         }
     };
 }

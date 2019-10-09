@@ -16,6 +16,11 @@ namespace wclWeDoFramework
     /// <param name="Sender"> The object that fires the event. </param>
     /// <param name="Alert"> <c>True</c> if device runs on low battery. <c>False</c> otherwise. </param>
     public delegate void wclWeDoHubLowVolatgeAlertEvent(Object Sender, Boolean Alert);
+    /// <summary> The <c>OnDeviceAttached</c> and <c>OnDeviceDetached</c> events handler prototype. </summary>
+    /// <param name="Sender"> The object that fires the event. </param>
+    /// <param name="Device"> The Input/Output device object. </param>
+    /// <seealso cref="wclWeDoIo"/>
+    public delegate void wclWeDoDeviceStateChangedEvent(Object Sender, wclWeDoIo Device);
 
     /// <summary> The class represents the WeDo Hub service. </summary>
     /// <seealso cref="wclWeDoService"/>
@@ -56,6 +61,8 @@ namespace wclWeDoFramework
         private wclGattCharacteristic? FBatteryTypeChar;
         private wclGattCharacteristic? FDeviceDisconnectChar;
 
+        internal delegate void wclWeDoHubDeviceDetachedEvent(Object Sender, Byte ConnectionId);
+
         internal Int32 ReadDeviceName(out String Name)
         {
             return ReadStringValue(FDeviceNameChar, out Name);
@@ -89,6 +96,8 @@ namespace wclWeDoFramework
 
         internal event wclWeDoHubButtonStateChangedEvent OnButtonStateChanged;
         internal event wclWeDoHubLowVolatgeAlertEvent OnLowVoltageAlert;
+        internal event wclWeDoDeviceStateChangedEvent OnDeviceAttached;
+        internal event wclWeDoHubDeviceDetachedEvent OnDeviceDetached;
 
         /// <summary> Initializes the WeDo service. </summary>
         /// <returns> If the method completed with success the returning value is
@@ -208,6 +217,25 @@ namespace wclWeDoFramework
                 // Low voltage?
                 if (FLowVoltageAlertChar != null && Handle == FLowVoltageAlertChar.Value.Handle)
                     DoLowVoltageAlert(Value[0] == 1);
+                // IO attached/detached
+                if (FIoAttachedChar != null && Handle == FIoAttachedChar.Value.Handle)
+                {
+                    if (Value.Length >= 2)
+                    {
+                        if (Value[1] == 1)
+                        {
+                            // Attached
+                            wclWeDoIo Io = wclWeDoIo.Attach(Hub, Value);
+                            if (Io != null)
+                                DoDeviceAttached(Io);
+                        }
+                        else
+                        {
+                            // Detached.
+                            DoDeviceDetached(Value[0]);
+                        }
+                    }
+                }
             }
         }
 
@@ -228,6 +256,23 @@ namespace wclWeDoFramework
                 OnLowVoltageAlert(this, Alert);
         }
 
+        /// <summary> Fires the <c>OnDeviceAttached</c> event. </summary>
+        /// <param name="Device"> The IO device object. </param>
+        /// <seealso cref="wclWeDoIo"/>
+        protected virtual void DoDeviceAttached(wclWeDoIo Device)
+        {
+            if (OnDeviceAttached != null)
+                OnDeviceAttached(this, Device);
+        }
+
+        /// <summary> Fires the <c>OnDeviceDetached</c> event. </summary>
+        /// <param name="ConnectionId"> The device connection ID. </param>
+        protected virtual void DoDeviceDetached(Byte ConnectionId)
+        {
+            if (OnDeviceDetached != null)
+                OnDeviceDetached(this, ConnectionId);
+        }
+
         /// <summary> Creates new IO service client. </summary>
         /// <param name="Client"> The <see cref="wclGattClient"/> object that handles the connection
         ///   to a WeDo device. </param>
@@ -238,6 +283,9 @@ namespace wclWeDoFramework
             : base(Client, Hub)
         {
             OnButtonStateChanged = null;
+            OnLowVoltageAlert = null;
+            OnDeviceAttached = null;
+            OnDeviceDetached = null;
 
             Uninitialize();
         }

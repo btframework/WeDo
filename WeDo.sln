@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDoHubButton", "WeDoHubBut
 		{AB0071D1-7D94-4339-AF46-2A4630C90310} = {AB0071D1-7D94-4339-AF46-2A4630C90310}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDoPiezo", "WeDoPiezo\WeDoPiezo.csproj", "{D663830A-8C4D-4839-BD63-52E7B4F17CDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{FF3CAB99-9245-4774-9B17-0967371AD98E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF3CAB99-9245-4774-9B17-0967371AD98E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF3CAB99-9245-4774-9B17-0967371AD98E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D663830A-8C4D-4839-BD63-52E7B4F17CDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D663830A-8C4D-4839-BD63-52E7B4F17CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D663830A-8C4D-4839-BD63-52E7B4F17CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D663830A-8C4D-4839-BD63-52E7B4F17CDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

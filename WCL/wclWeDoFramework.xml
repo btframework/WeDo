@@ -127,6 +127,16 @@
             <summary> Fires the <c>OnLowVoltageAlert</c> event. </summary>
             <param name="Alert"> <c>True</c> if device runs on low battery. <c>False</c> otherwise. </param>
         </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.DoDeviceAttached(wclWeDoFramework.wclWeDoIo)">
+            <summary> Fires the <c>OnDeviceAttached</c> event. </summary>
+            /// <param name="Device"> The Input/Output device object. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.DoDeviceDetached(wclWeDoFramework.wclWeDoIo)">
+            <summary> Fires the <c>OnDeviceDetached</c> event. </summary>
+            /// <param name="Device"> The Input/Output device object. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
+        </member>
         <member name="M:wclWeDoFramework.wclWeDoHub.#ctor">
             <summary> Creates new WeDo Client. </summary>
         </member>
@@ -171,11 +181,6 @@
             <value> The battery level service object. </value>
             <seealso cref="T:wclWeDoFramework.wclWeDoBatteryLevelService"/>
         </member>
-        <member name="P:wclWeDoFramework.wclWeDoHub.Io">
-            <summary> Gets the IO service object. </summary>
-            <value> The IO service object. </value>
-            <seealso cref="T:wclWeDoFramework.wclWeDoIoService"/>
-        </member>
         <member name="P:wclWeDoFramework.wclWeDoHub.Address">
             <summary> Gets the connected WeDo Hub Address. </summary>
             <value> The Hub MAC address. </value>
@@ -188,6 +193,11 @@
             <summary> Gets internal GATT client state. </summary>
             <value> The internal GATT client state. </value>
             <seealso cref="T:wclCommunication.wclClientState" />
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoHub.IoDevices">
+            <summary> Gets the list of the attached IO devices. </summary>
+            <value> The list of the attached IO devices. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
         </member>
         <member name="E:wclWeDoFramework.wclWeDoHub.OnConnected">
             <summary> The event fires when connection to a WeDo Hub
@@ -206,6 +216,14 @@
             <summary> The event fires when device runs on low battery. </summary>
             <seealso cref="T:wclWeDoFramework.wclWeDoHubLowVolatgeAlertEvent"/>
         </member>
+        <member name="E:wclWeDoFramework.wclWeDoHub.OnDeviceAttached">
+            <summary> The event fires when new IO device has been attached. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoDeviceStateChangedEvent"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoHub.OnDeviceDetached">
+            <summary> The event fires when an existing IO device has been detached. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoDeviceStateChangedEvent"/>
+        </member>
         <member name="T:wclWeDoFramework.wclWeDoHubButtonStateChangedEvent">
             <summary> The <c>OnButtonStateChanged</c> event handler prototype. </summary>
             <param name="Sender"> The object that fires the event. </param>
@@ -216,6 +234,12 @@
             <summary> The <c>OnLowVoltageAlert</c> event handler prototype. </summary>
             <param name="Sender"> The object that fires the event. </param>
             <param name="Alert"> <c>True</c> if device runs on low battery. <c>False</c> otherwise. </param>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoDeviceStateChangedEvent">
+            <summary> The <c>OnDeviceAttached</c> and <c>OnDeviceDetached</c> events handler prototype. </summary>
+            <param name="Sender"> The object that fires the event. </param>
+            <param name="Device"> The Input/Output device object. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoHubService">
             <summary> The class represents the WeDo Hub service. </summary>
@@ -246,6 +270,15 @@
             <summary> Fires the <c>OnLowVoltageAlert</c> event. </summary>
             <param name="Alert"> <c>True</c> if device runs on low battery. <c>False</c> otherwise. </param>
         </member>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.DoDeviceAttached(wclWeDoFramework.wclWeDoIo)">
+            <summary> Fires the <c>OnDeviceAttached</c> event. </summary>
+            <param name="Device"> The IO device object. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.DoDeviceDetached(System.Byte)">
+            <summary> Fires the <c>OnDeviceDetached</c> event. </summary>
+            <param name="ConnectionId"> The device connection ID. </param>
+        </member>
         <member name="M:wclWeDoFramework.wclWeDoHubService.#ctor(wclBluetooth.wclGattClient,wclWeDoFramework.wclWeDoHub)">
             <summary> Creates new IO service client. </summary>
             <param name="Client"> The <see cref="T:wclBluetooth.wclGattClient"/> object that handles the connection
@@ -253,6 +286,87 @@
             <param name="Hub"> The <see cref="T:wclWeDoFramework.wclWeDoHub"/> object that owns the service. </param>
             <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
               parameter is <c>null</c>. </exception>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoIoType">
+            <summary> The enumeration describes the WeDo Input/Output device types. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoType.ioInternal">
+            <summary> The device is internal. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoType.ioExternal">
+            <summary> The device is external. </summary>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoIoDevice">
+            <summary> Represents the type of an attached IO (motor, sensor, etc). </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDevice.iodMotor">
+            <summary> A Motor. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDevice.iodVoltageSensor">
+            <summary> A Voltage Sensor. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDevice.iodCurrentSensor">
+            <summary> A Current Sensor. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDevice.iodPiezo">
+            <summary> A Piezo Tone player. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDevice.iodRgb">
+            <summary> An RGB light. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDevice.iodTiltSensor">
+            <summary> A Tilt Sensor. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDevice.iodMotionSensor">
+            <summary> A Motion Sensor (aka. Detect Sensor). </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDevice.iodUnknown">
+            <summary> A type is unknown. </summary>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoIo">
+            <summary> The class represets an attached Input/Outpout device. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIo.#ctor(wclWeDoFramework.wclWeDoHub)">
+            <summary> Creates new IO device object. </summary>
+            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
+              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.Attached">
+            <summary> Gets the IO device state. </summary>
+            <value> <c>True</c> if the device is attached. <c>False</c> if the device is detached. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.ConnectionId">
+            <summary> Gets the IO connection ID. </summary>
+            <value> The IO connection ID. </value>
+            <remarks> It is guarateed that the connection ID is unique. </remarks>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.Device">
+            <sumnmary> Gets the device represented by this object. </sumnmary>
+            <value> The IO device type. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIoDevice"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.FirmwareVersion">
+            <summary> Gets the IO device firmware version. </summary>
+            <value> The IO device firmware version. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.HardwareVersion">
+            <summary> Gets the IO device hardware version. </summary>
+            <value> The IO device hardware version. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.Hub">
+            <summary> Gets the WeDo Hub object that owns the IO device. </summary>
+            <value> The WeDo Hub object. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.PortId">
+            <summary> The index of the port on the Hub the IO is attached to.  </summary>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.Type">
+            <summary> Gets the IO type represented by this object. </summary>
+            <value> The type of the device. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIoType"/>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoIoService">
             <summary> The class represents the WeDo IO service. </summary>
@@ -282,13 +396,72 @@
             <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
               parameter is <c>null</c>. </exception>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoIoService.PlayTone(System.UInt16,System.UInt16)">
+        <member name="T:wclWeDoFramework.wclWeDoPiezoNote">
+            <summary> Tones that can be played using the <see cref="T:wclWeDoFramework.wclWeDoPieazo"/> </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoPiezoNote.pnC">
+            <summary> C </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoPiezoNote.pnCis">
+            <summary> C# </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoPiezoNote.pnD">
+            <summary> D </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoPiezoNote.pnDis">
+            <summary> D# </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoPiezoNote.pnE">
+            <summary> E </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoPiezoNote.pnF">
+            <summary> F </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoPiezoNote.pnFis">
+            <summary> F# </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoPiezoNote.pnG">
+            <summary> G </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoPiezoNote.pnGis">
+            <summary> G# </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoPiezoNote.pnA">
+            <summary> A </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoPiezoNote.pnAis">
+            <summary> A# </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoPiezoNote.pnB">
+            <summary> B </summary>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoPieazo">
+            <summary> The class represents a Piezo tone player device. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoPieazo.#ctor(wclWeDoFramework.wclWeDoHub)">
+            <summary> Creates new Piezo device object. </summary>
+            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
+              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoPieazo.PlayTone(System.UInt16,System.UInt16)">
             <summary> Plays a tone with a given frequency for the given duration in ms. </summary>
             <param name="Frequency"> The frequency to play (max allowed frequency is 1500). </param>
             <param name="Duration"> The duration to play (max supported is 65535 milli seconds). </param>
             <returns> If the method completed with success the returning value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
               one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoPieazo.PlayNote(wclWeDoFramework.wclWeDoPiezoNote,System.Byte,System.UInt16)">
+            <summary> Plays a note. The highest supported node is F# in 6th octave. </summary>
+            <param name="Note"> The note to play. </param>
+            <param name="Octave"> The octave in which to play the node. </param>
+            <param name="Duration"> The duration to play (max supported is 65535 milli seconds). </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoPiezoNote"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoPieazo.StopPlaying">
+            <summary> Stop playing any currently playing tone. </summary>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoService">
             <summary> The base class for all WeDo services. </summary>

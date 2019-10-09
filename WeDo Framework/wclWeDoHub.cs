@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using wclCommon;
 using wclCommunication;
@@ -11,12 +12,24 @@ namespace wclWeDoFramework
     {
         private wclGattClient FClient;
         private Boolean FConnected;
+        private List<wclWeDoIo> FDevices;
 
         // Hub GATT services.
         private wclWeDoDeviceInformationService FDeviceInformation;
         private wclWeDoBatteryLevelService FBatteryLevel;
         private wclWeDoIoService FIo;
         private wclWeDoHubService FHub;
+
+        // Detaches all devices when Hub disconnected.
+        private void DetachDevices()
+        {
+            foreach (wclWeDoIo Device in FDevices)
+            {
+                Device.Detach();
+                DoDeviceDetached(Device);
+            }
+            FDevices.Clear();
+        }
 
         // Disconnect from all WeDo services.
         private void DisconnectServices()
@@ -64,6 +77,9 @@ namespace wclWeDoFramework
         // GATT client disconnect event handler.
         private void ClientDisconnect(object Sender, int Reason)
         {
+            // Detach all attached devices.
+            DetachDevices();
+
             // We have to release all services.
             DisconnectServices();
 
@@ -101,6 +117,42 @@ namespace wclWeDoFramework
             DoLowVoltageAlert(Alert);
         }
 
+        private void HubDeviceAttached(Object Semder, wclWeDoIo Device)
+        {
+            // Make sure device is not attached yet.
+            foreach (wclWeDoIo Io in FDevices)
+            {
+                if (Io.ConnectionId == Device.ConnectionId)
+                    break;
+            }
+
+            FDevices.Add(Device);
+            DoDeviceAttached(Device);
+        }
+
+        private void HubDeviceDetached(Object Sender, Byte ConnectionId)
+        {
+            wclWeDoIo Io = null;
+            // Make sure device was attached.
+            for (Int32 i = 0; i < FDevices.Count; i++)
+            {
+                if (FDevices[i].ConnectionId == ConnectionId)
+                {
+                    Io = FDevices[i];
+                    break;
+                }
+            }
+
+            if (Io != null)
+            {
+                Io.Detach();
+                DoDeviceDetached(Io);
+                FDevices.Remove(Io);
+            }
+        }
+
+        internal wclWeDoIoService Io { get { return FIo; } }
+
         /// <summary> Fires the <c>OnConnected</c> event. </summary>
         /// <param name="Error"> If the connection has been established the parameter is
         ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If connection has not been established the
@@ -136,6 +188,24 @@ namespace wclWeDoFramework
                 OnLowVoltageAlert(this, Alert);
         }
 
+        /// <summary> Fires the <c>OnDeviceAttached</c> event. </summary>
+        /// /// <param name="Device"> The Input/Output device object. </param>
+        /// <seealso cref="wclWeDoIo"/>
+        protected virtual void DoDeviceAttached(wclWeDoIo Device)
+        {
+            if (OnDeviceAttached != null)
+                OnDeviceAttached(this, Device);
+        }
+
+        /// <summary> Fires the <c>OnDeviceDetached</c> event. </summary>
+        /// /// <param name="Device"> The Input/Output device object. </param>
+        /// <seealso cref="wclWeDoIo"/>
+        protected virtual void DoDeviceDetached(wclWeDoIo Device)
+        {
+            if (OnDeviceDetached != null)
+                OnDeviceDetached(this, Device);
+        }
+
         /// <summary> Creates new WeDo Client. </summary>
         public wclWeDoHub()
         {
@@ -155,9 +225,18 @@ namespace wclWeDoFramework
             FHub = new wclWeDoHubService(FClient, this);
             FHub.OnButtonStateChanged += HubButtonStateChanged;
             FHub.OnLowVoltageAlert += HubLowVoltageAlert;
+            FHub.OnDeviceAttached += HubDeviceAttached;
+            FHub.OnDeviceDetached += HubDeviceDetached;
+
+            // Create attached devices list.
+            FDevices = new List<wclWeDoIo>();
 
             OnConnected = null;
             OnDisconnected = null;
+            OnButtonStateChanged = null;
+            OnLowVoltageAlert = null;
+            OnDeviceAttached = null;
+            OnDeviceDetached = null;
         }
 
         /// <summary> Connects to a selected WeDo Hub. </summary>
@@ -220,10 +299,6 @@ namespace wclWeDoFramework
         /// <value> The battery level service object. </value>
         /// <seealso cref="wclWeDoBatteryLevelService"/>
         public wclWeDoBatteryLevelService BatteryLevel { get { return FBatteryLevel; } }
-        /// <summary> Gets the IO service object. </summary>
-        /// <value> The IO service object. </value>
-        /// <seealso cref="wclWeDoIoService"/>
-        public wclWeDoIoService Io { get { return FIo; } }
         
         /// <summary> Gets the connected WeDo Hub Address. </summary>
         /// <value> The Hub MAC address. </value>
@@ -235,6 +310,10 @@ namespace wclWeDoFramework
         /// <value> The internal GATT client state. </value>
         /// <seealso cref="wclClientState" />
         public wclClientState ClientState { get { return FClient.State; } }
+        /// <summary> Gets the list of the attached IO devices. </summary>
+        /// <value> The list of the attached IO devices. </value>
+        /// <seealso cref="wclWeDoIo"/>
+        public List<wclWeDoIo> IoDevices {  get { return FDevices; } }
 
         /// <summary> The event fires when connection to a WeDo Hub
         ///   has been established. </summary>
@@ -249,5 +328,11 @@ namespace wclWeDoFramework
         /// <summary> The event fires when device runs on low battery. </summary>
         /// <seealso cref="wclWeDoHubLowVolatgeAlertEvent"/>
         public event wclWeDoHubLowVolatgeAlertEvent OnLowVoltageAlert;
+        /// <summary> The event fires when new IO device has been attached. </summary>
+        /// <seealso cref="wclWeDoDeviceStateChangedEvent"/>
+        public event wclWeDoDeviceStateChangedEvent OnDeviceAttached;
+        /// <summary> The event fires when an existing IO device has been detached. </summary>
+        /// <seealso cref="wclWeDoDeviceStateChangedEvent"/>
+        public event wclWeDoDeviceStateChangedEvent OnDeviceDetached;
     };
 }
