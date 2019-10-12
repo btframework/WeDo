@@ -57,6 +57,7 @@
     <Compile Include="wclWeDoInputFormat.cs" />
     <Compile Include="wclWeDoIo.cs" />
     <Compile Include="wclWeDoIoService.cs" />
+    <Compile Include="wclWeDoMotor.cs" />
     <Compile Include="wclWeDoPiezo.cs" />
     <Compile Include="wclWeDoRgbLight.cs" />
     <Compile Include="wclWeDoSensorDataUnit.cs" />

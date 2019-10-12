@@ -75,9 +75,15 @@
         </member>
         <member name="M:wclWeDoFramework.wclWeDoDataFormat.op_Equality(wclWeDoFramework.wclWeDoDataFormat,wclWeDoFramework.wclWeDoDataFormat)">
             <summary> Override the <c>==</c> operator. </summary>
+            <param name="a"> First argument. </param>
+            <param name="b"> Second argument. </param>
+            <returns> <c>True</c> if a == b. <c>False</c> otherwise. </returns>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoDataFormat.op_Inequality(wclWeDoFramework.wclWeDoDataFormat,wclWeDoFramework.wclWeDoDataFormat)">
-            <summary> Override the <c>==</c> operator. </summary>
+            <summary> Override the <c>!=</c> operator. </summary>
+            <param name="a"> First argument. </param>
+            <param name="b"> Second argument. </param>
+            <returns> <c>True</c> if a != b. <c>False</c> otherwise. </returns>
         </member>
         <member name="P:wclWeDoFramework.wclWeDoDataFormat.DataSetCount">
             <summary> Gets the data set count. </summary>
@@ -359,9 +365,15 @@
         </member>
         <member name="M:wclWeDoFramework.wclWeDoInputFormat.op_Equality(wclWeDoFramework.wclWeDoInputFormat,wclWeDoFramework.wclWeDoInputFormat)">
             <summary> Override the <c>==</c> operator. </summary>
+            <param name="a"> First argument. </param>
+            <param name="b"> Second argument. </param>
+            <returns> <c>True</c> if a == b. <c>False</c> otherwise. </returns>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoInputFormat.op_Inequality(wclWeDoFramework.wclWeDoInputFormat,wclWeDoFramework.wclWeDoInputFormat)">
-            <summary> Override the <c>==</c> operator. </summary>
+            <summary> Override the <c>!=</c> operator. </summary>
+            <param name="a"> First argument. </param>
+            <param name="b"> Second argument. </param>
+            <returns> <c>True</c> if a != b. <c>False</c> otherwise. </returns>
         </member>
         <member name="P:wclWeDoFramework.wclWeDoInputFormat.ConnectionId">
             <summary> The Connect ID of the corresponding device. </summary>
@@ -426,6 +438,46 @@
         </member>
         <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodUnknown">
             <summary> A type is unknown. </summary>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoVersion">
+            <summary> The structure describes the device version number. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoVersion.BugFixVersion">
+            <summary> The bug fix version number. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoVersion.BuildNumber">
+            <summary> The build number. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoVersion.MajorVersion">
+            <summary> The build number. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoVersion.MinorVersion">
+            <summary> The major version number. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoVersion.ToString">
+            <summary> A formatted string representation of the version. </summary>
+            <returns> A formatted string representation of the version </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoVersion.Equals(System.Object)">
+            <summary> Compares versions. </summary>
+            <param name="obj"> The object to compare to. </param>
+            <returns> <c>True</c> if objects are equal. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoVersion.GetHashCode">
+            <summary> Gets the object hash. </summary>
+            <returns> The objects hash. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoVersion.op_Equality(wclWeDoFramework.wclWeDoVersion,wclWeDoFramework.wclWeDoVersion)">
+            <summary> Override the <c>==</c> operator. </summary>
+            <param name="a"> First argument. </param>
+            <param name="b"> Second argument. </param>
+            <returns> <c>True</c> if a == b. <c>False</c> otherwise. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoVersion.op_Inequality(wclWeDoFramework.wclWeDoVersion,wclWeDoFramework.wclWeDoVersion)">
+            <summary> Override the <c>!==</c> operator. </summary>
+            <param name="a"> First argument. </param>
+            <param name="b"> Second argument. </param>
+            <returns> <c>True</c> if a != b. <c>False</c> otherwise. </returns>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoIo">
             <summary> The class represets an attached Input/Outpout device. </summary>
@@ -523,6 +575,7 @@
             <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
               the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
             <param name="ConnectionId"> The device's Connection ID. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
             <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
               parameter is <c>null</c>. </exception>
         </member>
@@ -543,10 +596,12 @@
         <member name="P:wclWeDoFramework.wclWeDoIo.FirmwareVersion">
             <summary> Gets the IO device firmware version. </summary>
             <value> The IO device firmware version. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoVersion"/>
         </member>
         <member name="P:wclWeDoFramework.wclWeDoIo.HardwareVersion">
             <summary> Gets the IO device hardware version. </summary>
             <value> The IO device hardware version. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoVersion"/>
         </member>
         <member name="P:wclWeDoFramework.wclWeDoIo.Internal">
             <summary> Gets the IO type represented by this object. </summary>
@@ -587,6 +642,83 @@
             <param name="Hub"> The <see cref="T:wclWeDoFramework.wclWeDoHub"/> object that owns the service. </param>
             <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
               parameter is <c>null</c>. </exception>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoMotorDirection">
+            <summary> The motor's direction. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoMotorDirection.mdDrifting">
+            <summary> Drifting (Floating). </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoMotorDirection.mdLeft">
+            <summary> Running left. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoMotorDirection.mdRight">
+            <summary> Running right. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoMotorDirection.mdBraking">
+            <summary> Brake. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoMotorDirection.mdUnknown">
+            <summary> Unknwon. </summary>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoMotor">
+            <summary> The class represents a WeDo motor. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotor.InputFormatChanged(wclWeDoFramework.wclWeDoInputFormat)">
+            <summary> The method called when Input Format has been changed. </summary>
+            <param name="OldFormat"> The old Input Format. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotor.ValueChanged">
+            <summary> The method called when data value has been changed. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
+            <summary> Creates new motor class object. </summary>
+            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
+              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
+            <param name="ConnectionId"> The device's Connection ID. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotor.Brake">
+            <summary> Sends a command to stop (brake) the motor. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotor.Drift">
+            <summary> Sends a command to stop (drift/float) the motor. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotor.Run(wclWeDoFramework.wclWeDoMotorDirection,System.Byte)">
+            <summary> Sends a command to run the motor at a given <c>Power</c> in a given <c>Direction</c>.
+              The minimum speed is 0 and the maximum speed is 100. </summary>
+            <param name="Direction"> The direction to run the motor. </param>
+            <param name="Power"> The power to run the motor with. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoMotorDirection"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoMotor.Direction">
+            <summary> Gets the current running direction of the motor. </summary>
+            <value> Teh motor direction. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoMotorDirection"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoMotor.IsBraking">
+            <summary> Gets the motor's braking state. </summary>
+            <value> <c>True</c> if the motor is in brake state. <c>False</c> otheerwise. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoMotor.IsDrifting">
+            <summary> Gets the motor's drifting state. </summary>
+            <value> <c>True</c> if the motor is currently drifting or floating.
+              When floating the motor axis can be turned without resistance. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoMotor.Power">
+            <summary> Gets the power the motor is currently running with (0 if braking or drifting). </summary>
+            <value> Teh current motor power. </value>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoPiezoNote">
             <summary> Tones that can be played using the <see cref="T:wclWeDoFramework.wclWeDoPieazo"/> </summary>
@@ -643,6 +775,7 @@
             <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
               the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
             <param name="ConnectionId"> The device's Connection ID. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
             <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
               parameter is <c>null</c>. </exception>
         </member>
@@ -744,6 +877,7 @@
             <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
               the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
             <param name="ConnectionId"> The device's Connection ID. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
             <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
               parameter is <c>null</c>. </exception>
         </member>

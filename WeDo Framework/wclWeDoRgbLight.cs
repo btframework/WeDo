@@ -126,6 +126,7 @@ namespace wclWeDoFramework
         /// <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
         ///   the <seealso cref="wclEInvalidArgument"/> exception raises. </param>
         /// <param name="ConnectionId"> The device's Connection ID. </param>
+        /// <seealso cref="wclWeDoHub"/>
         /// <exception cref="wclEInvalidArgument"> The exception raises when the <c>Hub</c>
         ///   parameter is <c>null</c>. </exception>
         public wclWeDoRgbLight(wclWeDoHub Hub, Byte ConnectionId)

@@ -27,6 +27,77 @@ namespace wclWeDoFramework
         iodUnknown
     };
 
+    /// <summary> The structure describes the device version number. </summary>
+    public struct wclWeDoVersion
+    {
+        internal static wclWeDoVersion FromByteArray(Byte[] Data)
+        {
+            wclWeDoVersion Version = new wclWeDoVersion();
+            Version.MajorVersion = Data[0];
+            Version.MinorVersion = Data[1];
+            Version.BugFixVersion = Data[2];
+            Version.BuildNumber = Data[3];
+            return Version;
+        }
+
+        /// <summary> The bug fix version number. </summary>
+		public Byte BugFixVersion;
+        /// <summary> The build number. </summary>
+		public Byte BuildNumber;
+        /// <summary> The build number. </summary>
+		public Byte MajorVersion;
+        /// <summary> The major version number. </summary>
+		public int MinorVersion;
+
+        /// <summary> A formatted string representation of the version. </summary>
+		/// <returns> A formatted string representation of the version </returns>
+		public override String ToString()
+        {
+            return String.Format("{0}.{1}.{2}.{3}", MajorVersion, MinorVersion, BugFixVersion, BuildNumber);
+        }
+
+        /// <summary> Compares versions. </summary>
+		/// <param name="obj"> The object to compare to. </param>
+		/// <returns> <c>True</c> if objects are equal. </returns>
+		public override Boolean Equals(Object obj)
+        {
+            if (object.ReferenceEquals(obj, null))
+                return false;
+            if (GetType() != obj.GetType())
+                return false;
+
+            wclWeDoVersion Version = (wclWeDoVersion)obj;
+            return (BugFixVersion == Version.BugFixVersion &&
+                BuildNumber == Version.BuildNumber && MajorVersion == Version.MajorVersion &&
+                MinorVersion == Version.MinorVersion);
+        }
+
+        /// <summary> Gets the object hash. </summary>
+        /// <returns> The objects hash. </returns>
+        public override Int32 GetHashCode()
+        {
+            return ((MajorVersion << 24) | (MinorVersion << 16) | (BugFixVersion << 8) | BuildNumber).GetHashCode();
+        }
+
+        /// <summary> Override the <c>==</c> operator. </summary>
+        /// <param name="a"> First argument. </param>
+        /// <param name="b"> Second argument. </param>
+        /// <returns> <c>True</c> if a == b. <c>False</c> otherwise. </returns>
+        public static Boolean operator ==(wclWeDoVersion a, wclWeDoVersion b)
+        {
+            return a.Equals(b);
+        }
+
+        /// <summary> Override the <c>!==</c> operator. </summary>
+        /// <param name="a"> First argument. </param>
+        /// <param name="b"> Second argument. </param>
+        /// <returns> <c>True</c> if a != b. <c>False</c> otherwise. </returns>
+        public static Boolean operator !=(wclWeDoVersion a, wclWeDoVersion b)
+        {
+            return !a.Equals(b);
+        }
+    };
+
     /// <summary> The class represets an attached Input/Outpout device. </summary>
     public abstract class wclWeDoIo
     {
@@ -35,8 +106,8 @@ namespace wclWeDoFramework
         private List<wclWeDoDataFormat> FDataFormats;
         private wclWeDoInputFormat FDefaultInputFormat;
         private wclWeDoIoDeviceType FDeviceType;
-        private String FFirmwareVersion;
-        private String FHardwareVersion;
+        private wclWeDoVersion FFirmwareVersion;
+        private wclWeDoVersion FHardwareVersion;
         private wclWeDoHub FHub;
         private wclWeDoInputFormat FInputFormat;
         private Boolean FInternal;
@@ -156,8 +227,10 @@ namespace wclWeDoFramework
             Byte ConnectionId = RawInfo[0];
             switch (RawInfo[3])
             {
-                /*case 1:
-                    connectInfo.TypeEnum = IoType.IoTypeMotor;*/
+                case 1:
+                    Io = new wclWeDoMotor(Hub, ConnectionId);
+                    Io.FDeviceType = wclWeDoIoDeviceType.iodMotor;
+                    break;
                 /*case 20:
                     connectInfo.TypeEnum = IoType.IoTypeVoltage;*/
                 /*case 21:
@@ -180,10 +253,12 @@ namespace wclWeDoFramework
 
             if (Io != null)
             {
-                Io.FFirmwareVersion = RawInfo[8].ToString() + "." + RawInfo[9].ToString() + "." +
-                    RawInfo[10].ToString() + "." + RawInfo[11].ToString();
-                Io.FHardwareVersion = RawInfo[4].ToString() + "." + RawInfo[5].ToString() + "." + 
-                    RawInfo[6].ToString() + "." + RawInfo[7].ToString();
+
+                Byte[] Tmp = new Byte[4];
+                Array.Copy(RawInfo, 8, Tmp, 0, 4);
+                Io.FFirmwareVersion = wclWeDoVersion.FromByteArray(Tmp);
+                Array.Copy(RawInfo, 4, Tmp, 0, 4);
+                Io.FHardwareVersion = wclWeDoVersion.FromByteArray(Tmp);
                 Io.FPortId = RawInfo[2];
                 Io.FInternal = (Io.PortId > 50);
             }
@@ -333,6 +408,7 @@ namespace wclWeDoFramework
         /// <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
         ///   the <seealso cref="wclEInvalidArgument"/> exception raises. </param>
         /// <param name="ConnectionId"> The device's Connection ID. </param>
+        /// <seealso cref="wclWeDoHub"/>
         /// <exception cref="wclEInvalidArgument"> The exception raises when the <c>Hub</c>
         ///   parameter is <c>null</c>. </exception>
         public wclWeDoIo(wclWeDoHub Hub, Byte ConnectionId)
@@ -345,8 +421,8 @@ namespace wclWeDoFramework
             FDataFormats = new List<wclWeDoDataFormat>();
             FDefaultInputFormat = null;
             FDeviceType = wclWeDoIoDeviceType.iodUnknown;
-            FFirmwareVersion = "";
-            FHardwareVersion = "";
+            FFirmwareVersion = new wclWeDoVersion();
+            FHardwareVersion = new wclWeDoVersion();
             FHub = Hub;
             FInputFormat = null;
             FInternal = true;
@@ -369,10 +445,12 @@ namespace wclWeDoFramework
         public wclWeDoIoDeviceType DeviceType { get { return FDeviceType; } }
         /// <summary> Gets the IO device firmware version. </summary>
         /// <value> The IO device firmware version. </value>
-		public String FirmwareVersion { get { return FFirmwareVersion; } }
+        /// <seealso cref="wclWeDoVersion"/>
+		public wclWeDoVersion FirmwareVersion { get { return FFirmwareVersion; } }
         /// <summary> Gets the IO device hardware version. </summary>
         /// <value> The IO device hardware version. </value>
-        public String HardwareVersion { get { return FHardwareVersion; } }
+        /// <seealso cref="wclWeDoVersion"/>
+        public wclWeDoVersion HardwareVersion { get { return FHardwareVersion; } }
         /// <summary> Gets the IO type represented by this object. </summary>
         /// <value> <c>True</c> if the IO device is internal. <c>False</c> if the IO device is external. </value>
         public Boolean Internal { get { return FInternal; } }

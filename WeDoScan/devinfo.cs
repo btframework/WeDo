@@ -115,8 +115,8 @@ namespace WeDoScan
         {
             ListViewItem Item = lvAttachedDevices.Items.Add(Device.ConnectionId.ToString());
             Item.SubItems.Add(Device.DeviceType.ToString());
-            Item.SubItems.Add(Device.FirmwareVersion);
-            Item.SubItems.Add(Device.HardwareVersion);
+            Item.SubItems.Add(Device.FirmwareVersion.ToString());
+            Item.SubItems.Add(Device.HardwareVersion.ToString());
             Item.SubItems.Add(Device.Internal.ToString());
             Item.SubItems.Add(Device.PortId.ToString());
         }

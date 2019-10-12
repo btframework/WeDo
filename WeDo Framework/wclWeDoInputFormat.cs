@@ -199,6 +199,9 @@ namespace wclWeDoFramework
         }
 
         /// <summary> Override the <c>==</c> operator. </summary>
+        /// <param name="a"> First argument. </param>
+        /// <param name="b"> Second argument. </param>
+        /// <returns> <c>True</c> if a == b. <c>False</c> otherwise. </returns>
         public static Boolean operator ==(wclWeDoInputFormat a, wclWeDoInputFormat b)
         {
             if (Object.ReferenceEquals(a, null))
@@ -206,7 +209,10 @@ namespace wclWeDoFramework
             return a.Equals(b);
         }
 
-        /// <summary> Override the <c>==</c> operator. </summary>
+        /// <summary> Override the <c>!=</c> operator. </summary>
+        /// <param name="a"> First argument. </param>
+        /// <param name="b"> Second argument. </param>
+        /// <returns> <c>True</c> if a != b. <c>False</c> otherwise. </returns>
         public static Boolean operator !=(wclWeDoInputFormat a, wclWeDoInputFormat b)
         {
             return !(a == b);
