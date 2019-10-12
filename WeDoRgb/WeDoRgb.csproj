@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FF3CAB99-9245-4774-9B17-0967371AD98E}</ProjectGuid>
+    <ProjectGuid>{39FBCF15-7777-4700-A8FC-F6CA76BE62FA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WeDoHubButton</RootNamespace>
-    <AssemblyName>WeDoHubButton</AssemblyName>
+    <RootNamespace>WeDoRgb</RootNamespace>
+    <AssemblyName>WeDoRgb</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />

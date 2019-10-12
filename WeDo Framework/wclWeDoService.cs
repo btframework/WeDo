@@ -67,6 +67,8 @@ namespace wclWeDoFramework
             Int32 Res = FClient.ReadServices(wclGattOperationFlag.goNone, out Services);
             if (Res != wclErrors.WCL_E_SUCCESS)
                 return Res;
+            if (Services == null)
+                return wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND;
 
             foreach (wclGattService svc in Services)
             {
@@ -108,6 +110,8 @@ namespace wclWeDoFramework
                 out Characteristics);
             if (Res != wclErrors.WCL_E_SUCCESS)
                 return Res;
+            if (Characteristics == null)
+                return wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND;
 
             foreach (wclGattCharacteristic chr in Characteristics)
             {

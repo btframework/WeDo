@@ -52,6 +52,50 @@
             <summary> The event fires when the battery level has been changed. </summary>
             <seealso cref="T:wclWeDoFramework.wclBatteryLevelChangedEvent" />
         </member>
+        <member name="T:wclWeDoFramework.wclWeDoDataFormat">
+            <summary> This class contains info detailing how the data received for a given service (typically
+              a sensor of some kind) should be interpreted. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDataFormat.#ctor(System.Byte,System.Byte,System.Byte,wclWeDoFramework.wclWeDoSensorDataUnit)">
+            <summary> Creates a new instance of the Data Format class. </summary>
+            <param name="DataSetCount"> The number of data sets. </param>
+            <param name="DataSetSize"> The number of bytes in a data set. </param>
+            <param name="Mode"> The sensor mode. </param>
+            <param name="Unit"> The sensor data unit. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoSensorDataUnit"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDataFormat.Equals(System.Object)">
+            <summary> Compares two Data Formats </summary>
+            <param name="obj"> The object to be compared to the current one. </param>
+            <returns> <c>True</c> if this data format is equal to <c>Format</c>. <c>False</c> otherwise. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDataFormat.GetHashCode">
+            <summary> Gets the object hash. </summary>
+            <returns> The objects hash. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDataFormat.op_Equality(wclWeDoFramework.wclWeDoDataFormat,wclWeDoFramework.wclWeDoDataFormat)">
+            <summary> Override the <c>==</c> operator. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDataFormat.op_Inequality(wclWeDoFramework.wclWeDoDataFormat,wclWeDoFramework.wclWeDoDataFormat)">
+            <summary> Override the <c>==</c> operator. </summary>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoDataFormat.DataSetCount">
+            <summary> Gets the data set count. </summary>
+            <value> The data set count. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoDataFormat.DataSetSize">
+            <summary> Gets the data set size. </summary>
+            <value> The data set size. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoDataFormat.Mode">
+            <summary> Gets the sensor mode. </summary>
+            <value> The sensor mode. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoDataFormat.Unit">
+            <summary> Gets the sensor data unit. </summary>
+            <value> The sensor data unit. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoSensorDataUnit"/>
+        </member>
         <member name="T:wclWeDoFramework.wclWeDoDeviceInformationService">
             <summary> The class represents the WeDo Device Information service. </summary>
             <seealso cref="T:wclWeDoFramework.wclWeDoService"/>
@@ -287,49 +331,197 @@
             <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
               parameter is <c>null</c>. </exception>
         </member>
-        <member name="T:wclWeDoFramework.wclWeDoIoType">
-            <summary> The enumeration describes the WeDo Input/Output device types. </summary>
+        <member name="T:wclWeDoFramework.wclWeDoInputFormat">
+            <summary> This class describes a configuration of an Input (sensor). At any time a sensor can be in just one mode,
+              and the details of this mode is captured by this structure. </summary>
         </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoType.ioInternal">
-            <summary> The device is internal. </summary>
+        <member name="M:wclWeDoFramework.wclWeDoInputFormat.#ctor(System.Byte,wclWeDoFramework.wclWeDoIoDeviceType,System.Byte,System.UInt32,wclWeDoFramework.wclWeDoSensorDataUnit,System.Boolean,System.Byte,System.Byte)">
+            <summary> Create a new instance of <c>wclWeDoInputFormat</c> class. </summary>
+            <param name="ConnectionId"> The connection ID of the service.</param>
+            <param name="DeviceType"> The type of the device. </param>
+            <param name="Mode"> The mode of the device. </param>
+            <param name="Interval"> The notifications interval. </param>
+            <param name="Unit"> The unit the sensor should return values in. </param>
+            <param name="NotificationsEnabled"> <c>True</c> if the device should send updates when the value changes. </param>
+            <param name="Revision"> The Input Format revision. </param>
+            <param name="NumberOfBytes"> The number of bytes in device's data packet. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIoDeviceType"/>
+            <seealso cref="T:wclWeDoFramework.wclWeDoSensorDataUnit"/>
         </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoType.ioExternal">
-            <summary> The device is external. </summary>
+        <member name="M:wclWeDoFramework.wclWeDoInputFormat.Equals(System.Object)">
+            <summary> Compares two Input Formats. </summary>
+            <param name="obj"> The object to be compare with current one. </param>
+            <returns> <c>True</c> if the Input Formats are equals. <c>False</c> otherwise. </returns>
         </member>
-        <member name="T:wclWeDoFramework.wclWeDoIoDevice">
-            <summary> Represents the type of an attached IO (motor, sensor, etc). </summary>
+        <member name="M:wclWeDoFramework.wclWeDoInputFormat.GetHashCode">
+            <summary> Gets the object hash. </summary>
+            <returns> The objects hash. </returns>
         </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDevice.iodMotor">
+        <member name="M:wclWeDoFramework.wclWeDoInputFormat.op_Equality(wclWeDoFramework.wclWeDoInputFormat,wclWeDoFramework.wclWeDoInputFormat)">
+            <summary> Override the <c>==</c> operator. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoInputFormat.op_Inequality(wclWeDoFramework.wclWeDoInputFormat,wclWeDoFramework.wclWeDoInputFormat)">
+            <summary> Override the <c>==</c> operator. </summary>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoInputFormat.ConnectionId">
+            <summary> The Connect ID of the corresponding device. </summary>
+            <value> The connect ID. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoInputFormat.DeviceType">
+            <summary> Gets the device type of the Input Format. </summary>
+            <value> The device type of the corresponding service. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIoDeviceType"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoInputFormat.Interval">
+            <summary> Gets The notifications interval. </summary>
+            <value> The notifications interval. </value>
+            <remarks> When notifications are enabled the device sends notifications if the value has change.
+              The interval indicates how fast/often updates will be send </remarks>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoInputFormat.Mode">
+            <summary> Gets the Input mode. </summary>
+            <value> The mode of the Input. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoInputFormat.NotificationsEnabled">
+            <summary> Gets the notifications state. </summary>
+            <value> <c>True</c> if new values are send whenever the value of the Input changes beyond
+              delta interval. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoInputFormat.NumberOfBytes">
+            <summary> Gets the number of bytes to be expected in the Input data payload (set by the Device). </summary>
+            <value> The number of bytes. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoInputFormat.Revision">
+            <summary> Gets the Input Format revision. </summary>
+            <value> The revision of the Input Format. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoInputFormat.Unit">
+            <summary> Gets the value unit. </summary>
+            <value> The unit of the values. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoSensorDataUnit"/>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoIoDeviceType">
+            <summary> Represents a type of an attached IO (motor, sensor, etc). </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodMotor">
             <summary> A Motor. </summary>
         </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDevice.iodVoltageSensor">
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodVoltageSensor">
             <summary> A Voltage Sensor. </summary>
         </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDevice.iodCurrentSensor">
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodCurrentSensor">
             <summary> A Current Sensor. </summary>
         </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDevice.iodPiezo">
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodPiezo">
             <summary> A Piezo Tone player. </summary>
         </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDevice.iodRgb">
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodRgb">
             <summary> An RGB light. </summary>
         </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDevice.iodTiltSensor">
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodTiltSensor">
             <summary> A Tilt Sensor. </summary>
         </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDevice.iodMotionSensor">
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodMotionSensor">
             <summary> A Motion Sensor (aka. Detect Sensor). </summary>
         </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDevice.iodUnknown">
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodUnknown">
             <summary> A type is unknown. </summary>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoIo">
             <summary> The class represets an attached Input/Outpout device. </summary>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoIo.#ctor(wclWeDoFramework.wclWeDoHub)">
+        <member name="M:wclWeDoFramework.wclWeDoIo.WriteData(System.Byte[])">
+            <summary> Sends data to the IO service. </summary>
+            <param name="Data"> The data to write. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIo.SendReadValueRequest">
+            <summary> If the notifications is disabled for the service in the Input Format you will have to use
+              this method to request an updated value for the service. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIo.Reset">
+            <summary> Sends a reset command to the Device. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIo.AddValidDataFormat(wclWeDoFramework.wclWeDoDataFormat)">
+            <summary> Adds a new valid data format. </summary>
+            <param name="Format"> The data format to add. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoDataFormat"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIo.RemoveValidDataFormat(wclWeDoFramework.wclWeDoDataFormat)">
+            <summary> Removes a valid data format. </summary>
+            <param name="Format"> The data format to remove. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoDataFormat"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIo.SendInputFormat(wclWeDoFramework.wclWeDoInputFormat)">
+            <summary> Send an updated input format for this service to the device. </summary>
+            <param name="Format"> New input format. </param>
+            <seelso cref="T:wclWeDoFramework.wclWeDoInputFormat"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIo.SetInputFormatMode(System.Byte)">
+            <summary> Changes mode of the Input Format. </summary>
+            <param name="Mode"> The Input Format mode. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIo.InputFormatChanged">
+            <summary> The method called when Input Format has been changed. </summary>
+            <remarks> A derived class must override this method to get notifications about
+              format changes. </remarks>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIo.ValueChanged">
+            <summary> The method called when data value has been changed. </summary>
+            <remarks> A derived class must override this method to get notifications about
+              value changes. </remarks>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.AsFloat">
+            <summary> Gets current sensor's value as <c>Float</c> number. </summary>
+            <value> The float sensors value. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.AsInteger">
+            <summary> Gets the current sensor's value as <c>Integer</c> number. </summary>
+            <value> The integer sensor's value. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.DataFormats">
+            <summary> Gets the list of supported Data Formats. </summary>
+            <value> The list of supported Data Formats. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoDataFormat"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.DefaultInputFormat">
+            <summary> Gets and sets the default input format. </summary>
+            <value> The default input format. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoInputFormat"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.InputFormat">
+            <summary> Gets the sensor Input Format. </summary>
+            <value> The Input Format. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoInputFormat"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.InputFormatMode">
+            <summary> Gets the Input Format mode. </summary>
+            <value> The Input Format Mode. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.NumbersFromValueData">
+            <summary> Gets alist with one byte[] per number received. </summary>
+            <value> The list of bytes array. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.Value">
+            <summary> Gets the current sensors value. </summary>
+            <value> The sensors value as raw bytes array. </value>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIo.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
             <summary> Creates new IO device object. </summary>
             <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
               the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
+            <param name="ConnectionId"> The device's Connection ID. </param>
             <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
               parameter is <c>null</c>. </exception>
         </member>
@@ -342,10 +534,10 @@
             <value> The IO connection ID. </value>
             <remarks> It is guarateed that the connection ID is unique. </remarks>
         </member>
-        <member name="P:wclWeDoFramework.wclWeDoIo.Device">
+        <member name="P:wclWeDoFramework.wclWeDoIo.DeviceType">
             <sumnmary> Gets the device represented by this object. </sumnmary>
             <value> The IO device type. </value>
-            <seealso cref="T:wclWeDoFramework.wclWeDoIoDevice"/>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIoDeviceType"/>
         </member>
         <member name="P:wclWeDoFramework.wclWeDoIo.FirmwareVersion">
             <summary> Gets the IO device firmware version. </summary>
@@ -355,6 +547,10 @@
             <summary> Gets the IO device hardware version. </summary>
             <value> The IO device hardware version. </value>
         </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.Internal">
+            <summary> Gets the IO type represented by this object. </summary>
+            <value> <c>True</c> if the IO device is internal. <c>False</c> if the IO device is external. </value>
+        </member>
         <member name="P:wclWeDoFramework.wclWeDoIo.Hub">
             <summary> Gets the WeDo Hub object that owns the IO device. </summary>
             <value> The WeDo Hub object. </value>
@@ -362,11 +558,6 @@
         </member>
         <member name="P:wclWeDoFramework.wclWeDoIo.PortId">
             <summary> The index of the port on the Hub the IO is attached to.  </summary>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoIo.Type">
-            <summary> Gets the IO type represented by this object. </summary>
-            <value> The type of the device. </value>
-            <seealso cref="T:wclWeDoFramework.wclWeDoIoType"/>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoIoService">
             <summary> The class represents the WeDo IO service. </summary>
@@ -437,11 +628,19 @@
         </member>
         <member name="T:wclWeDoFramework.wclWeDoPieazo">
             <summary> The class represents a Piezo tone player device. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoPieazo.#ctor(wclWeDoFramework.wclWeDoHub)">
+        <member name="M:wclWeDoFramework.wclWeDoPieazo.InputFormatChanged">
+            <summary> The method called when Input Format has been changed. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoPieazo.ValueChanged">
+            <summary> The method called when data value has been changed. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoPieazo.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
             <summary> Creates new Piezo device object. </summary>
             <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
               the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
+            <param name="ConnectionId"> The device's Connection ID. </param>
             <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
               parameter is <c>null</c>. </exception>
         </member>
@@ -458,10 +657,118 @@
             <param name="Note"> The note to play. </param>
             <param name="Octave"> The octave in which to play the node. </param>
             <param name="Duration"> The duration to play (max supported is 65535 milli seconds). </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
             <seealso cref="T:wclWeDoFramework.wclWeDoPiezoNote"/>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoPieazo.StopPlaying">
             <summary> Stop playing any currently playing tone. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoRgbLightMode">
+            <summary> Mode of the RGB light device. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoRgbLightMode.lmDiscrete">
+            <summary> Discrete mode allows selecting a color index from a set of predefined colors. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoRgbLightMode.lmAbsolute">
+            <summary> Absolute mode allows selecting any color by specifying its RGB component values. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoRgbLightMode.lmUnknown">
+            <summary> Unknown (unsupported) mode. </summary>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoRgbLight">
+            <summary> The class represents a HUB RGB light. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRgbLight.InputFormatChanged">
+            <summary> The method called when Input Format has been changed. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRgbLight.ValueChanged">
+            <summary> The method called when data value has been changed. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRgbLight.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
+            <summary> Creates new RGB light device object. </summary>
+            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
+              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
+            <param name="ConnectionId"> The device's Connection ID. </param>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRgbLight.SwitchOff">
+            <summary> Switch off the RGB light on the device. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRgbLight.SwitchToDefaultColor">
+            <summary> Switches to the default Color (i.e. the same color as the device has right after a successful connection has
+              been established). </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRgbLight.SetColor(System.Windows.Media.Color)">
+            <summary> Sets the RGB color. </summary>
+            <param name="Rgb"> The RGB color. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+            <seealso cref="T:System.Windows.Media.Color"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRgbLight.SetColorIndex(System.Byte)">
+            <summary> Sets the index of the currently selected color (discrete mode). </summary>
+            <param name="Index"> The color index. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRgbLight.SetMode(wclWeDoFramework.wclWeDoRgbLightMode)">
+            <summary> Sets the mode of the RGB light. </summary>
+            <param name="Mode"> The RGB lite mode. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoRgbLightMode"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoRgbLight.Color">
+            <summary> Gets the color of the RGB light on the device (absolute mode). </summary>
+            <value> The RGB color. </value>
+            <seealso cref="T:System.Windows.Media.Color"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoRgbLight.ColorIndex">
+            <summary> Gets the index of the currently selected color (discrete mode). </summary>
+            <value> The color index. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoRgbLight.DefaultColor">
+            <summary> Gets the default color of the RGB light (absolute mode). </summary>
+            <value> The default color. </value>
+            <seealso cref="T:System.Windows.Media.Color"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoRgbLight.DefaultColorIndex">
+            <summary> Gets the default color index of the RGB, when in the discrete mode. </summary>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoRgbLight.Mode">
+            <summary> Gets the mode of the RGB light. </summary>
+            <value> The RGB light device mode. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoRgbLightMode"/>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoSensorDataUnit">
+            <summary> The sensor's data unit. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoSensorDataUnit.suRaw">
+            <summary> Raw. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoSensorDataUnit.suPercentage">
+            <summary> Percentage. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoSensorDataUnit.suSi">
+            <summary> SI. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoSensorDataUnit.suUnknown">
+            <summary> Unknown. </summary>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoService">
             <summary> The base class for all WeDo services. </summary>

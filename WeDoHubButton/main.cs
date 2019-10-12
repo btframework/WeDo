@@ -74,8 +74,8 @@ namespace WeDoHubButton
             wclWeDoHub Hub = new wclWeDoHub();
             Hub.OnConnected += Hub_OnConnected;
             Hub.OnDisconnected += Hub_OnDisconnected;
-            Hub.Hub.OnButtonStateChanged += Hub_OnButtonStateChanged;
-            Hub.Hub.OnLowVoltageAlert += Hub_OnLowVoltageAlert;
+            Hub.OnButtonStateChanged += Hub_OnButtonStateChanged;
+            Hub.OnLowVoltageAlert += Hub_OnLowVoltageAlert;
             Hub.BatteryLevel.OnBatteryLevelChanged += BatteryLevel_OnBatteryLevelChanged;
 
             Int32 Res = Hub.Connect(FWatcher.Radio, Address);
@@ -107,7 +107,7 @@ namespace WeDoHubButton
 
         private void Hub_OnButtonStateChanged(object Sender, bool Pressed)
         {
-            Int64 Address = ((wclWeDoHubService)Sender).Hub.Address;
+            Int64 Address = ((wclWeDoHub)Sender).Address;
             foreach (ListViewItem Item in lvHubs.Items)
             {
                 if (Item.Text == Address.ToString("X12"))

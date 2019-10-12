@@ -35,18 +35,32 @@ namespace wclWeDoFramework
     };
 
     /// <summary> The class represents a Piezo tone player device. </summary>
+    /// <seealso cref="wclWeDoIo"/>
     public class wclWeDoPieazo : wclWeDoIo
     {
         private const UInt16 PIEZO_MAX_FREQUENCY = 1500;
         private const UInt16 PIEZO_MAX_DURATION = 65535;
 
+        /// <summary> The method called when Input Format has been changed. </summary>
+        protected override void InputFormatChanged()
+        {
+            // Do nothign here.
+        }
+
+        /// <summary> The method called when data value has been changed. </summary>
+        protected override void ValueChanged()
+        {
+            // Do nothign here.
+        }
+
         /// <summary> Creates new Piezo device object. </summary>
         /// <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
         ///   the <seealso cref="wclEInvalidArgument"/> exception raises. </param>
+        /// <param name="ConnectionId"> The device's Connection ID. </param>
         /// <exception cref="wclEInvalidArgument"> The exception raises when the <c>Hub</c>
         ///   parameter is <c>null</c>. </exception>
-        public wclWeDoPieazo(wclWeDoHub Hub)
-            : base(Hub)
+        public wclWeDoPieazo(wclWeDoHub Hub, Byte ConnectionId)
+            : base(Hub, ConnectionId)
         {
         }
 
@@ -70,6 +84,9 @@ namespace wclWeDoFramework
         /// <param name="Note"> The note to play. </param>
         /// <param name="Octave"> The octave in which to play the node. </param>
         /// <param name="Duration"> The duration to play (max supported is 65535 milli seconds). </param>
+        /// <returns> If the method completed with success the returning value is
+        ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+        ///   one of the Bluetooth Framework error code. </returns>
         /// <seealso cref="wclWeDoPiezoNote"/>
         public Int32 PlayNote(wclWeDoPiezoNote Note, Byte Octave, UInt16 Duration)
         {
@@ -97,6 +114,9 @@ namespace wclWeDoFramework
         }
 
         /// <summary> Stop playing any currently playing tone. </summary>
+        /// <returns> If the method completed with success the returning value is
+        ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+        ///   one of the Bluetooth Framework error code. </returns>
         public Int32 StopPlaying()
         {
             if (!Attached)

@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 using wclCommon;
 using wclBluetooth;
 using wclWeDoFramework;
 
-namespace WeDoPiezo
+namespace WeDoRgb
 {
     public partial class fmMain : Form
     {
         private wclBluetoothManager FManager;
         private wclWeDoWatcher FWatcher;
         private wclWeDoHub FHub;
-        private wclWeDoPieazo FPiezo;
+        private wclWeDoRgbLight FRgb;
 
         public fmMain()
         {
@@ -21,8 +22,7 @@ namespace WeDoPiezo
 
         private void FmMain_Load(object sender, EventArgs e)
         {
-            cbNote.SelectedIndex = 0;
-            cbOctave.SelectedIndex = 0;
+            cbColorMode.SelectedIndex = -1;
 
             FManager = new wclBluetoothManager();
 
@@ -35,20 +35,69 @@ namespace WeDoPiezo
             FHub.OnDeviceAttached += FHub_OnDeviceAttached;
             FHub.OnDeviceDetached += FHub_OnDeviceDetached;
 
-            FPiezo = null;
+            FRgb = null;
         }
 
-        private void EnablePlay(Boolean Attached)
+        private void UpdateValues()
+        {
+            Color c = FRgb.Color;
+            edR.Text = c.R.ToString();
+            edG.Text = c.G.ToString();
+            edB.Text = c.B.ToString();
+
+            edColorIndex.Text = FRgb.ColorIndex.ToString();
+
+            wclWeDoRgbLightMode Mode = FRgb.Mode;
+            switch (Mode)
+            {
+                case wclWeDoRgbLightMode.lmDiscrete:
+                    cbColorMode.SelectedIndex = 0;
+                    break;
+                case wclWeDoRgbLightMode.lmAbsolute:
+                    cbColorMode.SelectedIndex = 1;
+                    break;
+                default:
+                    cbColorMode.SelectedIndex = -1;
+                    break;
+            }
+        }
+
+        private void EnableSetColors(Boolean Attached)
         {
             if (Attached)
                 laIoState.Text = "Attached";
             else
+            {
                 laIoState.Text = "Dectahed";
-            btPlay.Enabled = Attached;
-            btStop.Enabled = Attached;
-            cbNote.Enabled = Attached;
-            cbOctave.Enabled = Attached;
-            edDuration.Enabled = Attached;
+
+                edR.Text = "";
+                edG.Text = "";
+                edB.Text = "";
+                edColorIndex.Text = "";
+
+                cbColorMode.SelectedIndex = -1;
+            }
+
+            cbColorMode.Enabled = Attached;
+            laColorMode.Enabled = Attached;
+
+            laR.Enabled = Attached;
+            laG.Enabled = Attached;
+            laB.Enabled = Attached;
+            edR.Enabled = Attached;
+            edG.Enabled = Attached;
+            edB.Enabled = Attached;
+            btSetRgb.Enabled = Attached;
+
+            laColorIndex.Enabled = Attached;
+            edColorIndex.Enabled = Attached;
+            btSetIndex.Enabled = Attached;
+
+            btSetDefault.Enabled = Attached;
+            btTurnOff.Enabled = Attached;
+
+            if (Attached)
+                UpdateValues();
         }
 
         private void EnableConnect(Boolean Connected)
@@ -69,19 +118,19 @@ namespace WeDoPiezo
 
         private void FHub_OnDeviceDetached(object Sender, wclWeDoIo Device)
         {
-            if (Device.DeviceType == wclWeDoIoDeviceType.iodPiezo)
+            if (Device.DeviceType == wclWeDoIoDeviceType.iodRgb)
             {
-                FPiezo = null;
-                EnablePlay(false);
+                FRgb = null;
+                EnableSetColors(false);
             }
         }
 
         private void FHub_OnDeviceAttached(object Sender, wclWeDoIo Device)
         {
-            if (Device.DeviceType == wclWeDoIoDeviceType.iodPiezo)
+            if (Device.DeviceType == wclWeDoIoDeviceType.iodRgb)
             {
-                FPiezo = (wclWeDoPieazo)Device;
-                EnablePlay(true);
+                FRgb = (wclWeDoRgbLight)Device;
+                EnableSetColors(true);
             }
         }
 
@@ -203,43 +252,85 @@ namespace WeDoPiezo
             }
         }
 
-        private void BtStop_Click(object sender, EventArgs e)
+        private void BtSetRgb_Click(object sender, EventArgs e)
         {
-            if (FPiezo == null)
+            if (FRgb == null)
                 MessageBox.Show("Device is not attached");
             else
             {
-                Int32 Res = FPiezo.StopPlaying();
+                Color c = Color.FromRgb(Convert.ToByte(edR.Text), Convert.ToByte(edG.Text),
+                    Convert.ToByte(edB.Text));
+                Int32 Res = FRgb.SetColor(c);
                 if (Res != wclErrors.WCL_E_SUCCESS)
-                    MessageBox.Show("Stop failed: 0x" + Res.ToString("X8"));
+                    MessageBox.Show("Unable to set color: 0x" + Res.ToString("X8"));
             }
         }
 
-        private void BtPlay_Click(object sender, EventArgs e)
+        private void CbColorMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (FPiezo == null)
+            Boolean RgbEnabled = (cbColorMode.SelectedIndex == 1);
+            Boolean IndexEnabled = (cbColorMode.SelectedIndex == 0);
+
+            Int32 Res = wclErrors.WCL_E_SUCCESS;
+            if (RgbEnabled)
+                Res = FRgb.SetMode(wclWeDoRgbLightMode.lmAbsolute);
+            else
+            {
+                if (IndexEnabled)
+                    Res = FRgb.SetMode(wclWeDoRgbLightMode.lmDiscrete);
+            }
+
+            if (Res != wclErrors.WCL_E_SUCCESS)
+                MessageBox.Show("Unable to change color mode: 0x" + Res.ToString("X8"));
+            else
+            {
+                laR.Enabled = RgbEnabled;
+                laG.Enabled = RgbEnabled;
+                laB.Enabled = RgbEnabled;
+                edR.Enabled = RgbEnabled;
+                edG.Enabled = RgbEnabled;
+                edB.Enabled = RgbEnabled;
+                btSetRgb.Enabled = RgbEnabled;
+
+                laColorIndex.Enabled = IndexEnabled;
+                edColorIndex.Enabled = IndexEnabled;
+                btSetIndex.Enabled = IndexEnabled;
+            }
+        }
+
+        private void BtSetDefault_Click(object sender, EventArgs e)
+        {
+            if (FRgb == null)
                 MessageBox.Show("Device is not attached");
             else
             {
-                wclWeDoPiezoNote[] Notes = new wclWeDoPiezoNote[]
-                {
-                    wclWeDoPiezoNote.pnA,
-                    wclWeDoPiezoNote.pnAis,
-                    wclWeDoPiezoNote.pnB,
-                    wclWeDoPiezoNote.pnC,
-                    wclWeDoPiezoNote.pnCis,
-                    wclWeDoPiezoNote.pnD,
-                    wclWeDoPiezoNote.pnDis,
-                    wclWeDoPiezoNote.pnE,
-                    wclWeDoPiezoNote.pnF,
-                    wclWeDoPiezoNote.pnFis,
-                    wclWeDoPiezoNote.pnG,
-                    wclWeDoPiezoNote.pnGis
-                };
-                wclWeDoPiezoNote Note = Notes[cbNote.SelectedIndex];
-                Int32 Res = FPiezo.PlayNote(Note, (Byte)(cbOctave.SelectedIndex + 1), Convert.ToUInt16(edDuration.Text));
+                Int32 Res = FRgb.SwitchToDefaultColor();
                 if (Res != wclErrors.WCL_E_SUCCESS)
-                    MessageBox.Show("Play failed: 0x" + Res.ToString("X8"));
+                    MessageBox.Show("Unable to set default color: 0x" + Res.ToString("X8"));
+            }
+        }
+
+        private void BtTurnOff_Click(object sender, EventArgs e)
+        {
+            if (FRgb == null)
+                MessageBox.Show("Device is not attached");
+            else
+            {
+                Int32 Res = FRgb.SwitchOff();
+                if (Res != wclErrors.WCL_E_SUCCESS)
+                    MessageBox.Show("Unable to switch LED off: 0x" + Res.ToString("X8"));
+            }
+        }
+
+        private void BtSetIndex_Click(object sender, EventArgs e)
+        {
+            if (FRgb == null)
+                MessageBox.Show("Device is not attached");
+            else
+            {
+                Int32 Res = FRgb.SetColorIndex(Convert.ToByte(edColorIndex.Text));
+                if (Res != wclErrors.WCL_E_SUCCESS)
+                    MessageBox.Show("Unable to set color index: 0x" + Res.ToString("X8"));
             }
         }
     }
