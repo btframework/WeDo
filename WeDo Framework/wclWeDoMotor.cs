@@ -104,6 +104,9 @@ namespace wclWeDoFramework
         ///   one of the Bluetooth Framework error code. </returns>
         public Int32 Brake()
         {
+            if (!Attached)
+                return wclBluetoothErrors.WCL_E_BLUETOOTH_DEVICE_NOT_INSTALLED;
+
             Int32 Res = SendPower(MOTOR_POWER_BRAKE);
             if (Res == wclErrors.WCL_E_SUCCESS)
                 FDirection = wclWeDoMotorDirection.mdBraking;
@@ -116,6 +119,9 @@ namespace wclWeDoFramework
         ///   one of the Bluetooth Framework error code. </returns>
         public Int32 Drift()
         {
+            if (!Attached)
+                return wclBluetoothErrors.WCL_E_BLUETOOTH_DEVICE_NOT_INSTALLED;
+
             Int32 Res = SendPower(MOTOR_POWER_DRIFT);
             if (Res == wclErrors.WCL_E_SUCCESS)
                 FDirection = wclWeDoMotorDirection.mdDrifting;
@@ -132,6 +138,12 @@ namespace wclWeDoFramework
         /// <seealso cref="wclWeDoMotorDirection"/>
         public Int32 Run(wclWeDoMotorDirection Direction, Byte Power)
         {
+            if (Direction == wclWeDoMotorDirection.mdUnknown || Power > 100)
+                return wclErrors.WCL_E_SUCCESS;
+
+            if (!Attached)
+                return wclBluetoothErrors.WCL_E_BLUETOOTH_DEVICE_NOT_INSTALLED;
+
             if (Direction == wclWeDoMotorDirection.mdDrifting || Power == 0)
                 return Drift();
             if (Direction == wclWeDoMotorDirection.mdBraking)

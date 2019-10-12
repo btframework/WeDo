@@ -156,6 +156,9 @@ namespace wclWeDoFramework
         ///   one of the Bluetooth Framework error code. </returns>
 		public Int32 SwitchOff()
         {
+            if (!Attached)
+                return wclBluetoothErrors.WCL_E_BLUETOOTH_DEVICE_NOT_INSTALLED;
+
             if (Mode == wclWeDoRgbLightMode.lmAbsolute)
                 return SetColor(Colors.Black);
             if (Mode == wclWeDoRgbLightMode.lmDiscrete)
@@ -170,6 +173,9 @@ namespace wclWeDoFramework
         ///   one of the Bluetooth Framework error code. </returns>
         public Int32 SwitchToDefaultColor()
         {
+            if (!Attached)
+                return wclBluetoothErrors.WCL_E_BLUETOOTH_DEVICE_NOT_INSTALLED;
+
             if (Mode == wclWeDoRgbLightMode.lmAbsolute)
                 return SetColor(DefaultColor);
             if (Mode == wclWeDoRgbLightMode.lmDiscrete)

@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDoRgb", "WeDoRgb\WeDoRgb.
 		{AB0071D1-7D94-4339-AF46-2A4630C90310} = {AB0071D1-7D94-4339-AF46-2A4630C90310}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDoMotor", "WeDoMotor\WeDoMotor.csproj", "{D61A9DF2-FF23-45C6-BAB7-64376B9C6794}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{39FBCF15-7777-4700-A8FC-F6CA76BE62FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39FBCF15-7777-4700-A8FC-F6CA76BE62FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39FBCF15-7777-4700-A8FC-F6CA76BE62FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D61A9DF2-FF23-45C6-BAB7-64376B9C6794}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D61A9DF2-FF23-45C6-BAB7-64376B9C6794}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D61A9DF2-FF23-45C6-BAB7-64376B9C6794}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D61A9DF2-FF23-45C6-BAB7-64376B9C6794}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
