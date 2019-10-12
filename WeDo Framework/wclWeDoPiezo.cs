@@ -42,7 +42,8 @@ namespace wclWeDoFramework
         private const UInt16 PIEZO_MAX_DURATION = 65535;
 
         /// <summary> The method called when Input Format has been changed. </summary>
-        protected override void InputFormatChanged()
+        /// <param name="OldFormat"> The old Input Format. </param>
+        protected override void InputFormatChanged(wclWeDoInputFormat OldFormat)
         {
             // Do nothign here.
         }

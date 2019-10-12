@@ -45,6 +45,13 @@
             this.pbBattLevel = new System.Windows.Forms.ProgressBar();
             this.laBattLevel = new System.Windows.Forms.Label();
             this.laLowVoltage = new System.Windows.Forms.Label();
+            this.lvAttachedDevices = new System.Windows.Forms.ListView();
+            this.chConnectionId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chDeviceType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chFirmwareVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chHardwareVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chIsInternal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chPortId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // laManufacturerName
@@ -131,7 +138,7 @@
             // 
             // btSetDeviceName
             // 
-            this.btSetDeviceName.Location = new System.Drawing.Point(197, 230);
+            this.btSetDeviceName.Location = new System.Drawing.Point(394, 173);
             this.btSetDeviceName.Name = "btSetDeviceName";
             this.btSetDeviceName.Size = new System.Drawing.Size(75, 23);
             this.btSetDeviceName.TabIndex = 23;
@@ -141,7 +148,7 @@
             // 
             // edDeviceName
             // 
-            this.edDeviceName.Location = new System.Drawing.Point(37, 232);
+            this.edDeviceName.Location = new System.Drawing.Point(234, 176);
             this.edDeviceName.Name = "edDeviceName";
             this.edDeviceName.Size = new System.Drawing.Size(154, 20);
             this.edDeviceName.TabIndex = 22;
@@ -150,7 +157,7 @@
             // 
             this.laDeviceName.AutoSize = true;
             this.laDeviceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.laDeviceName.Location = new System.Drawing.Point(12, 216);
+            this.laDeviceName.Location = new System.Drawing.Point(212, 148);
             this.laDeviceName.Name = "laDeviceName";
             this.laDeviceName.Size = new System.Drawing.Size(85, 13);
             this.laDeviceName.TabIndex = 21;
@@ -159,7 +166,7 @@
             // btClose
             // 
             this.btClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btClose.Location = new System.Drawing.Point(234, 271);
+            this.btClose.Location = new System.Drawing.Point(760, 199);
             this.btClose.Name = "btClose";
             this.btClose.Size = new System.Drawing.Size(75, 23);
             this.btClose.TabIndex = 24;
@@ -198,12 +205,60 @@
             this.laLowVoltage.AutoSize = true;
             this.laLowVoltage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.laLowVoltage.ForeColor = System.Drawing.Color.Red;
-            this.laLowVoltage.Location = new System.Drawing.Point(12, 271);
+            this.laLowVoltage.Location = new System.Drawing.Point(34, 199);
             this.laLowVoltage.Name = "laLowVoltage";
             this.laLowVoltage.Size = new System.Drawing.Size(80, 13);
             this.laLowVoltage.TabIndex = 28;
             this.laLowVoltage.Text = "Low voltage!";
             this.laLowVoltage.Visible = false;
+            // 
+            // lvAttachedDevices
+            // 
+            this.lvAttachedDevices.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chConnectionId,
+            this.chDeviceType,
+            this.chFirmwareVersion,
+            this.chHardwareVersion,
+            this.chIsInternal,
+            this.chPortId});
+            this.lvAttachedDevices.FullRowSelect = true;
+            this.lvAttachedDevices.GridLines = true;
+            this.lvAttachedDevices.HideSelection = false;
+            this.lvAttachedDevices.Location = new System.Drawing.Point(275, 34);
+            this.lvAttachedDevices.Name = "lvAttachedDevices";
+            this.lvAttachedDevices.Size = new System.Drawing.Size(560, 97);
+            this.lvAttachedDevices.TabIndex = 29;
+            this.lvAttachedDevices.UseCompatibleStateImageBehavior = false;
+            this.lvAttachedDevices.View = System.Windows.Forms.View.Details;
+            // 
+            // chConnectionId
+            // 
+            this.chConnectionId.Text = "Connection ID";
+            this.chConnectionId.Width = 100;
+            // 
+            // chDeviceType
+            // 
+            this.chDeviceType.Text = "Device type";
+            this.chDeviceType.Width = 100;
+            // 
+            // chFirmwareVersion
+            // 
+            this.chFirmwareVersion.Text = "Firmware version";
+            this.chFirmwareVersion.Width = 100;
+            // 
+            // chHardwareVersion
+            // 
+            this.chHardwareVersion.Text = "Hardware version";
+            this.chHardwareVersion.Width = 100;
+            // 
+            // chIsInternal
+            // 
+            this.chIsInternal.Text = "Is Internal";
+            this.chIsInternal.Width = 80;
+            // 
+            // chPortId
+            // 
+            this.chPortId.Text = "Port ID";
             // 
             // fmDevInfo
             // 
@@ -211,7 +266,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btClose;
-            this.ClientSize = new System.Drawing.Size(321, 306);
+            this.ClientSize = new System.Drawing.Size(847, 229);
+            this.Controls.Add(this.lvAttachedDevices);
             this.Controls.Add(this.laLowVoltage);
             this.Controls.Add(this.laBattLevel);
             this.Controls.Add(this.pbBattLevel);
@@ -259,5 +315,12 @@
         private System.Windows.Forms.ProgressBar pbBattLevel;
         private System.Windows.Forms.Label laBattLevel;
         private System.Windows.Forms.Label laLowVoltage;
+        private System.Windows.Forms.ListView lvAttachedDevices;
+        private System.Windows.Forms.ColumnHeader chConnectionId;
+        private System.Windows.Forms.ColumnHeader chDeviceType;
+        private System.Windows.Forms.ColumnHeader chFirmwareVersion;
+        private System.Windows.Forms.ColumnHeader chHardwareVersion;
+        private System.Windows.Forms.ColumnHeader chIsInternal;
+        private System.Windows.Forms.ColumnHeader chPortId;
     }
 }

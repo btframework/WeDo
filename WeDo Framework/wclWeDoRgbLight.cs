@@ -54,67 +54,72 @@ namespace wclWeDoFramework
         private Color FColor;
         private wclWeDoColor FColorIndex;
 
-        /// <summary> The method called when Input Format has been changed. </summary>
-        protected override void InputFormatChanged()
+        private Boolean GetColorFromByteArray(Byte[] Data, out Color Color)
         {
-            // Do nothign here.
+            Color = Colors.Black;
+            if (Data == null || Data.Length != 3)
+                return false;
+
+            Color = Color.FromRgb(Data[0], Data[1], Data[2]);
+            return true;
+        }
+
+        /// <summary> The method called when Input Format has been changed. </summary>
+        /// <param name="OldFormat"> The old Input Format. </param>
+        protected override void InputFormatChanged(wclWeDoInputFormat OldFormat)
+        {
+            if (OldFormat != null)
+            {
+
+                if (InputFormat == null)
+                    DoModeChanged();
+                else
+                {
+                    if (InputFormat.Mode != OldFormat.Mode)
+                        DoModeChanged();
+                }
+            }
         }
 
         /// <summary> The method called when data value has been changed. </summary>
         protected override void ValueChanged()
         {
-            /*
-            if (RGBMode == RgbLightMode.Absolute) {
-                Color oldColor = color;
-                // check if data is a valid color
-                if (!GetColorFromByteArray(data, out color)) {
-                    error = new SdkError(SdkError.LeDomain.DEVICE_ERROR_DOMAIN, SdkError.LeErrorCode.INTERNAL_ERROR, string.Format("Cannot create color from data {0})", data));
-                    return false;
-                }
-
-                if (!base.HandleUpdatedValueData(data, out error))
-                    return false;
-                lock (serviceDelegates) {
-                    foreach (var serviceDelegate in serviceDelegates) {
-                        var rgbDelegate = serviceDelegate as IRgbLightDelegate;
-                        if (rgbDelegate != null)
-                            rgbDelegate.DidUpdateColor(this, oldColor, color);
+            if (Mode == wclWeDoRgbLightMode.lmAbsolute)
+            {
+                Color NewColor;
+                if (!GetColorFromByteArray(Value, out NewColor))
+                    return;
+                if (NewColor.Equals(FColor))
+                    return;
+                FColor = NewColor;
+                DoColorChanged();
+            }
+            else
+            {
+                if (Mode == wclWeDoRgbLightMode.lmDiscrete)
+                {
+                    wclWeDoColor NewColorIndex = (wclWeDoColor)AsInteger;
+                    if (NewColorIndex != FColorIndex)
+                    {
+                        FColorIndex = NewColorIndex;
+                        DoColorChanged();
                     }
                 }
             }
-            else if (RGBMode == RgbLightMode.Discrete) {
-                int oldColorIndex = colorIndex;
-                colorIndex = IntegerFromData(data);
+        }
 
-                if (!base.HandleUpdatedValueData(data, out error))
-                    return false;
-                lock (serviceDelegates) {
-                    foreach (var serviceDelegate in serviceDelegates) {
-                        var rgbDelegate = serviceDelegate as IRgbLightDelegate;
-                        if (rgbDelegate != null)
-                            rgbDelegate.DidUpdateColorIndex(this, oldColorIndex, colorIndex);
-                    }
-                }
-            }
-            else {
-                error = new SdkError(SdkError.LeDomain.DEVICE_ERROR_DOMAIN, SdkError.LeErrorCode.INTERNAL_ERROR, String.Format("Cannot handle response for RGB in unknown mode {0}", InputFormatMode));
-                SdkLogger.E(Tag, error.GetErrorMessage());
-                return false;
-            }
+        /// <summary> Fires the <c>OnColorChanged</c> event. </summary>
+        protected virtual void DoColorChanged()
+        {
+            if (OnColorChanged != null)
+                OnColorChanged(this, EventArgs.Empty);
+        }
 
-            error = null;
-			return true;
-		}*/
-
-            /*bool GetColorFromByteArray(byte[] data, out Color newColor) {
-			newColor = Colors.Black;
-			if (data.Length != 3) {
-				SdkLogger.E(Tag, string.Format("Cannot create color from data {0}", BitConverter.ToString(data)));
-				return false;
-			}
-			newColor = Windows.UI.Color.FromArgb(255, data[0], data[1], data[2]);
-			return true;
-		}*/
+        /// <summary> Fires the <c>OnModeChanged</c> event. </summary>
+        protected virtual void DoModeChanged()
+        {
+            if (OnModeChanged != null)
+                OnModeChanged(this, EventArgs.Empty);
         }
 
         /// <summary> Creates new RGB light device object. </summary>
@@ -139,6 +144,9 @@ namespace wclWeDoFramework
 
             FColor = DefaultColor;
             FColorIndex = DefaultColorIndex;
+
+            OnColorChanged = null;
+            OnModeChanged = null;
         }
 
         /// <summary> Switch off the RGB light on the device. </summary>
@@ -164,7 +172,7 @@ namespace wclWeDoFramework
             if (Mode == wclWeDoRgbLightMode.lmAbsolute)
                 return SetColor(DefaultColor);
             if (Mode == wclWeDoRgbLightMode.lmDiscrete)
-                SetColorIndex(DefaultColorIndex);
+                return SetColorIndex(DefaultColorIndex);
             return wclErrors.WCL_E_INVALID_ARGUMENT;
         }
 
@@ -237,5 +245,12 @@ namespace wclWeDoFramework
         /// <value> The RGB light device mode. </value>
         /// <seealso cref="wclWeDoRgbLightMode"/>
         public wclWeDoRgbLightMode Mode { get { return (wclWeDoRgbLightMode)InputFormatMode; } }
+        /// <summary> The event fires when color has been changed. </summary>
+        /// <seealso cref="EventHandler"/>
+        public event EventHandler OnColorChanged;
+
+        /// <summary> The event fired when the RGB LED mode has been changed. </summary>
+        /// <seealso cref="EventHandler"/>
+        public event EventHandler OnModeChanged;
     };
 }

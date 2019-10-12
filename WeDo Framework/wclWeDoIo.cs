@@ -180,10 +180,12 @@ namespace wclWeDoFramework
 
             if (Io != null)
             {
-                Io.FFirmwareVersion = RawInfo[8].ToString() + RawInfo[9].ToString() + RawInfo[10].ToString() + RawInfo[11].ToString();
-                Io.FHardwareVersion = RawInfo[4].ToString() + RawInfo[5].ToString() + RawInfo[6].ToString() + RawInfo[7].ToString();
-                Io.FInternal = (Io.PortId > 50);
+                Io.FFirmwareVersion = RawInfo[8].ToString() + "." + RawInfo[9].ToString() + "." +
+                    RawInfo[10].ToString() + "." + RawInfo[11].ToString();
+                Io.FHardwareVersion = RawInfo[4].ToString() + "." + RawInfo[5].ToString() + "." + 
+                    RawInfo[6].ToString() + "." + RawInfo[7].ToString();
                 Io.FPortId = RawInfo[2];
+                Io.FInternal = (Io.PortId > 50);
             }
 
             return Io;
@@ -201,11 +203,10 @@ namespace wclWeDoFramework
         {
             if (FInputFormat == null || (Format != FInputFormat && FConnectionId == Format.ConnectionId))
             {
+                wclWeDoInputFormat OldFormat = FInputFormat;
                 FInputFormat = Format;
-                // Input format has been changed. We need to update values.
+                InputFormatChanged(OldFormat);
                 SendReadValueRequest();
-                // Also fire the format changed event.
-                InputFormatChanged();
             }
         }
 
@@ -216,7 +217,10 @@ namespace wclWeDoFramework
                 return;
 
             if (VerifyValue(Value))
+            {
                 FValue = Value;
+                ValueChanged();
+            }
         }
 
         /// <summary> Sends data to the IO service. </summary>
@@ -287,9 +291,10 @@ namespace wclWeDoFramework
         }
 
         /// <summary> The method called when Input Format has been changed. </summary>
+        /// <param name="OldFormat"> The old Input Format. </param>
         /// <remarks> A derived class must override this method to get notifications about
         ///   format changes. </remarks>
-        protected abstract void InputFormatChanged();
+        protected abstract void InputFormatChanged(wclWeDoInputFormat OldFormat);
 
         /// <summary> The method called when data value has been changed. </summary>
         /// <remarks> A derived class must override this method to get notifications about

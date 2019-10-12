@@ -38,28 +38,41 @@ namespace WeDoRgb
             FRgb = null;
         }
 
-        private void UpdateValues()
+        private void UpdateMode()
+        {
+            if (FRgb != null)
+                switch (FRgb.Mode)
+                {
+                    case wclWeDoRgbLightMode.lmDiscrete:
+                        cbColorMode.SelectedIndex = 0;
+                        break;
+                    case wclWeDoRgbLightMode.lmAbsolute:
+                        cbColorMode.SelectedIndex = 1;
+                        break;
+                    default:
+                        cbColorMode.SelectedIndex = -1;
+                        break;
+                }
+        }
+
+        private void UpdateRgb()
         {
             Color c = FRgb.Color;
             edR.Text = c.R.ToString();
             edG.Text = c.G.ToString();
             edB.Text = c.B.ToString();
+        }
 
+        private void UpdateIndex()
+        {
             cbColorIndex.SelectedIndex = (Int32)FRgb.ColorIndex;
+        }
 
-            wclWeDoRgbLightMode Mode = FRgb.Mode;
-            switch (Mode)
-            {
-                case wclWeDoRgbLightMode.lmDiscrete:
-                    cbColorMode.SelectedIndex = 0;
-                    break;
-                case wclWeDoRgbLightMode.lmAbsolute:
-                    cbColorMode.SelectedIndex = 1;
-                    break;
-                default:
-                    cbColorMode.SelectedIndex = -1;
-                    break;
-            }
+        private void UpdateValues()
+        {
+            UpdateRgb();
+            UpdateIndex();
+            UpdateMode();
         }
 
         private void EnableSetColors(Boolean Attached)
@@ -130,8 +143,22 @@ namespace WeDoRgb
             if (Device.DeviceType == wclWeDoIoDeviceType.iodRgb)
             {
                 FRgb = (wclWeDoRgbLight)Device;
+                FRgb.OnColorChanged += FRgb_OnColorChanged;
+                FRgb.OnModeChanged += FRgb_OnModeChanged;
+
                 EnableSetColors(true);
             }
+        }
+
+        private void FRgb_OnColorChanged(object sender, EventArgs e)
+        {
+            UpdateRgb();
+            UpdateIndex();
+        }
+
+        private void FRgb_OnModeChanged(object sender, EventArgs e)
+        {
+            UpdateMode();
         }
 
         private void FHub_OnDisconnected(object Sender, int Reason)
@@ -295,6 +322,14 @@ namespace WeDoRgb
                 laColorIndex.Enabled = IndexEnabled;
                 cbColorIndex.Enabled = IndexEnabled;
                 btSetIndex.Enabled = IndexEnabled;
+
+                if (RgbEnabled)
+                    UpdateRgb();
+                else
+                {
+                    if (IndexEnabled)
+                        UpdateIndex();
+                }
             }
         }
 

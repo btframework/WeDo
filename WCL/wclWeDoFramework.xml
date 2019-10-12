@@ -472,8 +472,9 @@
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
               one of the Bluetooth Framework error code. </returns>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoIo.InputFormatChanged">
+        <member name="M:wclWeDoFramework.wclWeDoIo.InputFormatChanged(wclWeDoFramework.wclWeDoInputFormat)">
             <summary> The method called when Input Format has been changed. </summary>
+            <param name="OldFormat"> The old Input Format. </param>
             <remarks> A derived class must override this method to get notifications about
               format changes. </remarks>
         </member>
@@ -630,8 +631,9 @@
             <summary> The class represents a Piezo tone player device. </summary>
             <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoPieazo.InputFormatChanged">
+        <member name="M:wclWeDoFramework.wclWeDoPieazo.InputFormatChanged(wclWeDoFramework.wclWeDoInputFormat)">
             <summary> The method called when Input Format has been changed. </summary>
+            <param name="OldFormat"> The old Input Format. </param>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoPieazo.ValueChanged">
             <summary> The method called when data value has been changed. </summary>
@@ -724,11 +726,18 @@
         <member name="T:wclWeDoFramework.wclWeDoRgbLight">
             <summary> The class represents a HUB RGB light. </summary>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoRgbLight.InputFormatChanged">
+        <member name="M:wclWeDoFramework.wclWeDoRgbLight.InputFormatChanged(wclWeDoFramework.wclWeDoInputFormat)">
             <summary> The method called when Input Format has been changed. </summary>
+            <param name="OldFormat"> The old Input Format. </param>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoRgbLight.ValueChanged">
             <summary> The method called when data value has been changed. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRgbLight.DoColorChanged">
+            <summary> Fires the <c>OnColorChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRgbLight.DoModeChanged">
+            <summary> Fires the <c>OnModeChanged</c> event. </summary>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoRgbLight.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
             <summary> Creates new RGB light device object. </summary>
@@ -798,6 +807,14 @@
             <summary> Gets the mode of the RGB light. </summary>
             <value> The RGB light device mode. </value>
             <seealso cref="T:wclWeDoFramework.wclWeDoRgbLightMode"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoRgbLight.OnColorChanged">
+            <summary> The event fires when color has been changed. </summary>
+            <seealso cref="T:System.EventHandler"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoRgbLight.OnModeChanged">
+            <summary> The event fired when the RGB LED mode has been changed. </summary>
+            <seealso cref="T:System.EventHandler"/>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoSensorDataUnit">
             <summary> The sensor's data unit. </summary>
