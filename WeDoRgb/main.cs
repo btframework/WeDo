@@ -45,7 +45,7 @@ namespace WeDoRgb
             edG.Text = c.G.ToString();
             edB.Text = c.B.ToString();
 
-            edColorIndex.Text = FRgb.ColorIndex.ToString();
+            cbColorIndex.SelectedIndex = (Int32)FRgb.ColorIndex;
 
             wclWeDoRgbLightMode Mode = FRgb.Mode;
             switch (Mode)
@@ -73,8 +73,8 @@ namespace WeDoRgb
                 edR.Text = "";
                 edG.Text = "";
                 edB.Text = "";
-                edColorIndex.Text = "";
 
+                cbColorIndex.SelectedIndex = -1;
                 cbColorMode.SelectedIndex = -1;
             }
 
@@ -90,7 +90,7 @@ namespace WeDoRgb
             btSetRgb.Enabled = Attached;
 
             laColorIndex.Enabled = Attached;
-            edColorIndex.Enabled = Attached;
+            cbColorIndex.Enabled = Attached;
             btSetIndex.Enabled = Attached;
 
             btSetDefault.Enabled = Attached;
@@ -293,7 +293,7 @@ namespace WeDoRgb
                 btSetRgb.Enabled = RgbEnabled;
 
                 laColorIndex.Enabled = IndexEnabled;
-                edColorIndex.Enabled = IndexEnabled;
+                cbColorIndex.Enabled = IndexEnabled;
                 btSetIndex.Enabled = IndexEnabled;
             }
         }
@@ -328,7 +328,7 @@ namespace WeDoRgb
                 MessageBox.Show("Device is not attached");
             else
             {
-                Int32 Res = FRgb.SetColorIndex(Convert.ToByte(edColorIndex.Text));
+                Int32 Res = FRgb.SetColorIndex((wclWeDoColor)cbColorIndex.SelectedIndex);
                 if (Res != wclErrors.WCL_E_SUCCESS)
                     MessageBox.Show("Unable to set color index: 0x" + Res.ToString("X8"));
             }

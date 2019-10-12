@@ -680,6 +680,47 @@
         <member name="F:wclWeDoFramework.wclWeDoRgbLightMode.lmUnknown">
             <summary> Unknown (unsupported) mode. </summary>
         </member>
+        <member name="T:wclWeDoFramework.wclWeDoColor">
+            <summary> A Lego WeDo color indexes. </summary>
+            <remarks> This enumration is used in <c>Absolute</c> color mode. </remarks>
+            <seealso cref="T:wclWeDoFramework.wclWeDoRgbLightMode"/>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoColor.clBlack">
+            <summary> Black (none) color. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoColor.clPink">
+            <summary> Pink color. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoColor.clPurple">
+            <summary> Purple color. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoColor.clBlue">
+            <summary> Blue color. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoColor.clSkyBlue">
+            <summary> Sky blue color. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoColor.clTeal">
+            <summary> Teal color. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoColor.clGreen">
+            <summary> Green color. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoColor.clYellow">
+            <summary> Yellow color. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoColor.clOrange">
+            <summary> Orange color. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoColor.clRed">
+            <summary> Red color. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoColor.clWhite">
+            <summary> White color. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoColor.clUnknown">
+            <summary> Unknwon color index. </summary>
+        </member>
         <member name="T:wclWeDoFramework.wclWeDoRgbLight">
             <summary> The class represents a HUB RGB light. </summary>
         </member>
@@ -718,7 +759,7 @@
               one of the Bluetooth Framework error code. </returns>
             <seealso cref="T:System.Windows.Media.Color"/>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoRgbLight.SetColorIndex(System.Byte)">
+        <member name="M:wclWeDoFramework.wclWeDoRgbLight.SetColorIndex(wclWeDoFramework.wclWeDoColor)">
             <summary> Sets the index of the currently selected color (discrete mode). </summary>
             <param name="Index"> The color index. </param>
             <returns> If the method completed with success the returning value is
@@ -741,6 +782,7 @@
         <member name="P:wclWeDoFramework.wclWeDoRgbLight.ColorIndex">
             <summary> Gets the index of the currently selected color (discrete mode). </summary>
             <value> The color index. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoColor"/>
         </member>
         <member name="P:wclWeDoFramework.wclWeDoRgbLight.DefaultColor">
             <summary> Gets the default color of the RGB light (absolute mode). </summary>
@@ -749,6 +791,8 @@
         </member>
         <member name="P:wclWeDoFramework.wclWeDoRgbLight.DefaultColorIndex">
             <summary> Gets the default color index of the RGB, when in the discrete mode. </summary>
+            <value> The default color index. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoColor"/>
         </member>
         <member name="P:wclWeDoFramework.wclWeDoRgbLight.Mode">
             <summary> Gets the mode of the RGB light. </summary>

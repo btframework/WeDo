@@ -262,6 +262,9 @@ namespace wclWeDoFramework
 
         internal Int32 WriteColorIndex(Byte Index, Byte ConnectionId)
         {
+            if (Index > 10)
+                return wclErrors.WCL_E_INVALID_ARGUMENT;
+
             Byte[] Data = new Byte[1];
             Data[0] = Index;
             Byte[] Cmd = ComposeOutputCommand(OUT_CMD_ID_RGB_CONTROL, ConnectionId, Data);

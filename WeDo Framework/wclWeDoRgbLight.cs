@@ -7,7 +7,7 @@ using wclBluetooth;
 namespace wclWeDoFramework
 {
     /// <summary> Mode of the RGB light device. </summary>
-    public enum wclWeDoRgbLightMode : Byte
+    public enum wclWeDoRgbLightMode
     {
         /// <summary> Discrete mode allows selecting a color index from a set of predefined colors. </summary>
         lmDiscrete = 0,
@@ -17,11 +17,42 @@ namespace wclWeDoFramework
         lmUnknown = 255
     };
 
+    /// <summary> A Lego WeDo color indexes. </summary>
+    /// <remarks> This enumration is used in <c>Absolute</c> color mode. </remarks>
+    /// <seealso cref="wclWeDoRgbLightMode"/>
+    public enum wclWeDoColor
+    {
+        /// <summary> Black (none) color. </summary>
+        clBlack = 0,
+        /// <summary> Pink color. </summary>
+        clPink = 1,
+        /// <summary> Purple color. </summary>
+        clPurple = 2,
+        /// <summary> Blue color. </summary>
+        clBlue = 3,
+        /// <summary> Sky blue color. </summary>
+        clSkyBlue = 4,
+        /// <summary> Teal color. </summary>
+        clTeal = 5,
+        /// <summary> Green color. </summary>
+        clGreen = 6,
+        /// <summary> Yellow color. </summary>
+        clYellow = 7,
+        /// <summary> Orange color. </summary>
+        clOrange = 8,
+        /// <summary> Red color. </summary>
+        clRed = 9,
+        /// <summary> White color. </summary>
+        clWhite = 10,
+        /// <summary> Unknwon color index. </summary>
+        clUnknown = 255
+    };
+
     /// <summary> The class represents a HUB RGB light. </summary>
     public class wclWeDoRgbLight : wclWeDoIo
     {
         private Color FColor;
-        private Byte FColorIndex;
+        private wclWeDoColor FColorIndex;
 
         /// <summary> The method called when Input Format has been changed. </summary>
         protected override void InputFormatChanged()
@@ -119,7 +150,7 @@ namespace wclWeDoFramework
             if (Mode == wclWeDoRgbLightMode.lmAbsolute)
                 return SetColor(Colors.Black);
             if (Mode == wclWeDoRgbLightMode.lmDiscrete)
-                return SetColorIndex(0);
+                return SetColorIndex(wclWeDoColor.clBlack);
             return wclErrors.WCL_E_INVALID_ARGUMENT;
         }
 
@@ -160,7 +191,7 @@ namespace wclWeDoFramework
         /// <returns> If the method completed with success the returning value is
         ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
         ///   one of the Bluetooth Framework error code. </returns>
-        public Int32 SetColorIndex(Byte Index)
+        public Int32 SetColorIndex(wclWeDoColor Index)
         {
             if (!Attached)
                 return wclBluetoothErrors.WCL_E_BLUETOOTH_DEVICE_NOT_INSTALLED;
@@ -169,7 +200,7 @@ namespace wclWeDoFramework
                 return wclErrors.WCL_E_INVALID_ARGUMENT;
 
             FColorIndex = Index;
-            return Hub.Io.WriteColorIndex(Index, ConnectionId);
+            return Hub.Io.WriteColorIndex((Byte)Index, ConnectionId);
         }
 
         /// <summary> Sets the mode of the RGB light. </summary>
@@ -192,13 +223,16 @@ namespace wclWeDoFramework
         public Color Color { get { return FColor; } }
         /// <summary> Gets the index of the currently selected color (discrete mode). </summary>
         /// <value> The color index. </value>
-        public Byte ColorIndex { get { return FColorIndex; } }
+        /// <seealso cref="wclWeDoColor"/>
+        public wclWeDoColor ColorIndex { get { return FColorIndex; } }
         /// <summary> Gets the default color of the RGB light (absolute mode). </summary>
         /// <value> The default color. </value>
         /// <seealso cref="System.Windows.Media.Color"/>
         public Color DefaultColor { get { return Color.FromArgb(0xFF, 0x00, 0x00, 0xFF); } }
         /// <summary> Gets the default color index of the RGB, when in the discrete mode. </summary>
-        public Byte DefaultColorIndex { get { return 3; } }
+        /// <value> The default color index. </value>
+        /// <seealso cref="wclWeDoColor"/>
+        public wclWeDoColor DefaultColorIndex { get { return wclWeDoColor.clBlue; } }
         /// <summary> Gets the mode of the RGB light. </summary>
         /// <value> The RGB light device mode. </value>
         /// <seealso cref="wclWeDoRgbLightMode"/>

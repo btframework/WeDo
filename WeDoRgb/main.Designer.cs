@@ -42,10 +42,10 @@
             this.edB = new System.Windows.Forms.TextBox();
             this.btSetRgb = new System.Windows.Forms.Button();
             this.laColorIndex = new System.Windows.Forms.Label();
-            this.edColorIndex = new System.Windows.Forms.TextBox();
             this.btSetIndex = new System.Windows.Forms.Button();
             this.btSetDefault = new System.Windows.Forms.Button();
             this.btTurnOff = new System.Windows.Forms.Button();
+            this.cbColorIndex = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // laIoState
@@ -188,18 +188,10 @@
             this.laColorIndex.TabIndex = 33;
             this.laColorIndex.Text = "Color index";
             // 
-            // edColorIndex
-            // 
-            this.edColorIndex.Enabled = false;
-            this.edColorIndex.Location = new System.Drawing.Point(86, 189);
-            this.edColorIndex.Name = "edColorIndex";
-            this.edColorIndex.Size = new System.Drawing.Size(82, 20);
-            this.edColorIndex.TabIndex = 34;
-            // 
             // btSetIndex
             // 
             this.btSetIndex.Enabled = false;
-            this.btSetIndex.Location = new System.Drawing.Point(174, 187);
+            this.btSetIndex.Location = new System.Drawing.Point(196, 187);
             this.btSetIndex.Name = "btSetIndex";
             this.btSetIndex.Size = new System.Drawing.Size(75, 23);
             this.btSetIndex.TabIndex = 35;
@@ -229,15 +221,36 @@
             this.btTurnOff.UseVisualStyleBackColor = true;
             this.btTurnOff.Click += new System.EventHandler(this.BtTurnOff_Click);
             // 
+            // cbColorIndex
+            // 
+            this.cbColorIndex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbColorIndex.FormattingEnabled = true;
+            this.cbColorIndex.Items.AddRange(new object[] {
+            "Black",
+            "Pink",
+            "Purple",
+            "Blue",
+            "Sky blue",
+            "Teal",
+            "Green",
+            "Yellow",
+            "Orange",
+            "Red",
+            "White"});
+            this.cbColorIndex.Location = new System.Drawing.Point(86, 189);
+            this.cbColorIndex.Name = "cbColorIndex";
+            this.cbColorIndex.Size = new System.Drawing.Size(104, 21);
+            this.cbColorIndex.TabIndex = 38;
+            // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(404, 450);
+            this.Controls.Add(this.cbColorIndex);
             this.Controls.Add(this.btTurnOff);
             this.Controls.Add(this.btSetDefault);
             this.Controls.Add(this.btSetIndex);
-            this.Controls.Add(this.edColorIndex);
             this.Controls.Add(this.laColorIndex);
             this.Controls.Add(this.btSetRgb);
             this.Controls.Add(this.edB);
@@ -279,10 +292,10 @@
         private System.Windows.Forms.TextBox edB;
         private System.Windows.Forms.Button btSetRgb;
         private System.Windows.Forms.Label laColorIndex;
-        private System.Windows.Forms.TextBox edColorIndex;
         private System.Windows.Forms.Button btSetIndex;
         private System.Windows.Forms.Button btSetDefault;
         private System.Windows.Forms.Button btTurnOff;
+        private System.Windows.Forms.ComboBox cbColorIndex;
     }
 }
 
