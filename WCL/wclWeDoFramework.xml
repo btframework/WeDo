@@ -686,6 +686,10 @@
         <member name="T:wclWeDoFramework.wclWeDoMotionSensor">
             <summary> The class represents a WeDo Motion Sensor. </summary>
         </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.InputFormatChanged(wclWeDoFramework.wclWeDoInputFormat)">
+            <summary> The method called when Input Format has been changed. </summary>
+            <param name="OldFormat"> The old Input Format. </param>
+        </member>
         <member name="M:wclWeDoFramework.wclWeDoMotionSensor.ValueChanged">
             <summary> Fires the <c>OnVoltageChanged</c> event. </summary>
         </member>
@@ -694,6 +698,9 @@
         </member>
         <member name="M:wclWeDoFramework.wclWeDoMotionSensor.DoDistanceChanged">
             <summary> Fires the <c>OnDistanceChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.DoModeChanged">
+            <summary> Fires the <c>OnModeChanged</c> event. </summary>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoMotionSensor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
             <summary> Creates new motion sensor device object. </summary>
@@ -732,6 +739,9 @@
         <member name="E:wclWeDoFramework.wclWeDoMotionSensor.OnDistanceChanged">
             <summary> The event fires when distance has been changed. </summary>
             <seealso cref="T:System.EventHandler"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoMotionSensor.OnModeChanged">
+            <summary> The event fires when the mode has been changed. </summary>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoMotorDirection">
             <summary> The motor's direction. </summary>

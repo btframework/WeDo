@@ -40,6 +40,23 @@ namespace wclWeDoFramework
             return FDistance;
         }
 
+        /// <summary> The method called when Input Format has been changed. </summary>
+        /// <param name="OldFormat"> The old Input Format. </param>
+        protected override void InputFormatChanged(wclWeDoInputFormat OldFormat)
+        {
+            if (OldFormat != null)
+            {
+
+                if (InputFormat == null)
+                    DoModeChanged();
+                else
+                {
+                    if (InputFormat.Mode != OldFormat.Mode)
+                        DoModeChanged();
+                }
+            }
+        }
+
         /// <summary> Fires the <c>OnVoltageChanged</c> event. </summary>
         protected override void ValueChanged()
         {
@@ -78,6 +95,13 @@ namespace wclWeDoFramework
                 OnDistanceChanged(this, EventArgs.Empty);
         }
 
+        /// <summary> Fires the <c>OnModeChanged</c> event. </summary>
+        protected virtual void DoModeChanged()
+        {
+            if (OnModeChanged != null)
+                OnModeChanged(this, EventArgs.Empty);
+        }
+
         /// <summary> Creates new motion sensor device object. </summary>
         /// <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
         ///   the <seealso cref="wclEInvalidArgument"/> exception raises. </param>
@@ -104,6 +128,7 @@ namespace wclWeDoFramework
 
             OnCountChanged = null;
             OnDistanceChanged = null;
+            OnModeChanged = null;
         }
 
         /// <summary> Sets the motion sensor mode. </summary>
@@ -137,5 +162,7 @@ namespace wclWeDoFramework
         /// <summary> The event fires when distance has been changed. </summary>
         /// <seealso cref="EventHandler"/>
         public event EventHandler OnDistanceChanged;
+        /// <summary> The event fires when the mode has been changed. </summary>
+        public event EventHandler OnModeChanged;
     };
 }
