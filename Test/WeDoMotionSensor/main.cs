@@ -5,16 +5,14 @@ using wclCommon;
 using wclBluetooth;
 using wclWeDoFramework;
 
-namespace WeDoMotor
+namespace WeDoMotionSensor
 {
     public partial class fmMain : Form
     {
         private wclBluetoothManager FManager;
         private wclWeDoWatcher FWatcher;
         private wclWeDoHub FHub;
-        private wclWeDoMotor FMotor;
-        private wclWeDoCurrentSensor FCurrent;
-        private wclWeDoVoltageSensor FVoltage;
+        private wclWeDoMotionSensor FMotion;
 
         public fmMain()
         {
@@ -23,7 +21,7 @@ namespace WeDoMotor
 
         private void FmMain_Load(object sender, EventArgs e)
         {
-            cbDirection.SelectedIndex = 0;
+            cbMode.SelectedIndex = 0;
 
             FManager = new wclBluetoothManager();
 
@@ -36,12 +34,10 @@ namespace WeDoMotor
             FHub.OnDeviceAttached += FHub_OnDeviceAttached;
             FHub.OnDeviceDetached += FHub_OnDeviceDetached;
 
-            FMotor = null;
-            FCurrent = null;
-            FVoltage = null;
+            FMotion = null;
         }
 
-        private void EnablePlay(Boolean Attached)
+        private void EnableControl(Boolean Attached)
         {
             if (Attached)
                 laIoState.Text = "Attached";
@@ -49,26 +45,17 @@ namespace WeDoMotor
             {
                 laIoState.Text = "Dectahed";
 
-                laCurrent.Text = "0";
-                laVoltage.Text = "0";
+                laCount.Text = "0";
+                laDistance.Text = "0";
             }
 
-            laDirection.Enabled = Attached;
-            cbDirection.Enabled = Attached;
-            laPower.Enabled = Attached;
-            edPower.Enabled = Attached;
-
-            btStart.Enabled = Attached;
-            btBrake.Enabled = Attached;
-            btDrift.Enabled = Attached;
-
-            laCurrentTitle.Enabled = Attached;
-            laCurrent.Enabled = Attached;
-            laMA.Enabled = Attached;
-
-            laVoltageTitle.Enabled = Attached;
-            laVoltage.Enabled = Attached;
-            laMV.Enabled = Attached;
+            laMode.Enabled = Attached;
+            cbMode.Enabled = Attached;
+            btChange.Enabled = Attached;
+            laCountTitle.Enabled = Attached;
+            laCount.Enabled = Attached;
+            laDistanceTitle.Enabled = Attached;
+            laDistance.Enabled = Attached;
         }
 
         private void EnableConnect(Boolean Connected)
@@ -89,58 +76,52 @@ namespace WeDoMotor
 
         private void FHub_OnDeviceDetached(object Sender, wclWeDoIo Device)
         {
-            if (Device.DeviceType == wclWeDoIoDeviceType.iodMotor && Device.ConnectionId == FMotor.ConnectionId)
+            if (Device.DeviceType == wclWeDoIoDeviceType.iodMotionSensor && Device.ConnectionId == FMotion.ConnectionId)
             {
-                FMotor = null;
-                EnablePlay(false);
+                FMotion = null;
+                EnableControl(false);
             }
-            if (Device.DeviceType == wclWeDoIoDeviceType.iodCurrentSensor)
-                FCurrent = null;
-            if (Device.DeviceType == wclWeDoIoDeviceType.iodVoltageSensor)
-                FVoltage = null;
         }
 
         private void FHub_OnDeviceAttached(object Sender, wclWeDoIo Device)
         {
-            // This demo supports only single motor.
-            if (FMotor == null)
+            if (FMotion == null)
             {
-                if (Device.DeviceType == wclWeDoIoDeviceType.iodMotor)
+                if (Device.DeviceType == wclWeDoIoDeviceType.iodMotionSensor)
                 {
-                    FMotor = (wclWeDoMotor)Device;
-                    EnablePlay(true);
-                }
-            }
-
-            if (FCurrent == null)
-            {
-                if (Device.DeviceType == wclWeDoIoDeviceType.iodCurrentSensor)
-                {
-                    FCurrent = (wclWeDoCurrentSensor)Device;
-                    FCurrent.OnCurrentChanged += FCurrent_OnCurrentChanged;
-                }
-            }
-
-            if (FVoltage == null)
-            {
-                if (Device.DeviceType == wclWeDoIoDeviceType.iodVoltageSensor)
-                {
-                    FVoltage = (wclWeDoVoltageSensor)Device;
-                    FVoltage.OnVoltageChanged += FVoltage_OnVoltageChanged;
+                    FMotion = (wclWeDoMotionSensor)Device;
+                    FMotion.OnCountChanged += FMotion_OnCountChanged;
+                    FMotion.OnDistanceChanged += FMotion_OnDistanceChanged;
+                    FMotion.OnModeChanged += FMotion_OnModeChanged;
+                    EnableControl(true);
                 }
             }
         }
 
-        private void FVoltage_OnVoltageChanged(object sender, EventArgs e)
+        private void FMotion_OnModeChanged(object sender, EventArgs e)
         {
-            if (FVoltage != null)
-                laVoltage.Text = FVoltage.Voltage.ToString();
+            switch (FMotion.Mode)
+            {
+                case wclWeDoMotionSensorMode.mmDetect:
+                    cbMode.SelectedIndex = 0;
+                    break;
+                case wclWeDoMotionSensorMode.mmCount:
+                    cbMode.SelectedIndex = 1;
+                    break;
+                default:
+                    cbMode.SelectedIndex = -1;
+                    break;
+            }
         }
 
-        private void FCurrent_OnCurrentChanged(object sender, EventArgs e)
+        private void FMotion_OnDistanceChanged(object sender, EventArgs e)
         {
-            if (FCurrent != null)
-                laCurrent.Text = FCurrent.Current.ToString();
+            laDistance.Text = FMotion.Distance.ToString();
+        }
+
+        private void FMotion_OnCountChanged(object sender, EventArgs e)
+        {
+            laCount.Text = FMotion.Count.ToString();
         }
 
         private void FHub_OnDisconnected(object Sender, int Reason)
@@ -261,52 +242,33 @@ namespace WeDoMotor
             }
         }
 
-        private void BtStart_Click(object sender, EventArgs e)
+        private void BtChange_Click(object sender, EventArgs e)
         {
-            if (FMotor == null)
+            if (FMotion == null)
                 MessageBox.Show("Device is not attached");
             else
             {
-                wclWeDoMotorDirection Dir;
-                switch (cbDirection.SelectedIndex)
+                wclWeDoMotionSensorMode Mode;
+                switch (cbMode.SelectedIndex)
                 {
                     case 0:
-                        Dir = wclWeDoMotorDirection.mdRight;
+                        Mode = wclWeDoMotionSensorMode.mmDetect;
                         break;
                     case 1:
-                        Dir = wclWeDoMotorDirection.mdLeft;
+                        Mode = wclWeDoMotionSensorMode.mmCount;
                         break;
                     default:
-                        Dir = wclWeDoMotorDirection.mdUnknown;
+                        Mode = wclWeDoMotionSensorMode.mmUnknown;
                         break;
                 }
-                Int32 Res = FMotor.Run(Dir, Convert.ToByte(edPower.Text));
-                if (Res != wclErrors.WCL_E_SUCCESS)
-                    MessageBox.Show("Start motor failed: 0x" + Res.ToString("X8"));
-            }
-        }
-
-        private void BtBrake_Click(object sender, EventArgs e)
-        {
-            if (FMotor == null)
-                MessageBox.Show("Device is not attached");
-            else
-            {
-                Int32 Res = FMotor.Brake();
-                if (Res != wclErrors.WCL_E_SUCCESS)
-                    MessageBox.Show("Brake failed; 0x" + Res.ToString("X8"));
-            }
-        }
-
-        private void BtDrift_Click(object sender, EventArgs e)
-        {
-            if (FMotor == null)
-                MessageBox.Show("Device is not attached");
-            else
-            {
-                Int32 Res = FMotor.Drift();
-                if (Res != wclErrors.WCL_E_SUCCESS)
-                    MessageBox.Show("Drift failed; 0x" + Res.ToString("X8"));
+                if (Mode == wclWeDoMotionSensorMode.mmUnknown)
+                    MessageBox.Show("Invalid mode.");
+                else
+                {
+                    Int32 Res = FMotion.SetMode(Mode);
+                    if (Res != wclErrors.WCL_E_SUCCESS)
+                        MessageBox.Show("Mode change failed: 0x" + Res.ToString("X8"));
+                }
             }
         }
     }
