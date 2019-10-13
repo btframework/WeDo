@@ -98,7 +98,7 @@ namespace wclWeDoFramework
         internal event wclWeDoHubLowVolatgeAlertEvent OnLowVoltageAlert;
         internal event wclWeDoDeviceStateChangedEvent OnDeviceAttached;
         internal event wclWeDoHubDeviceDetachedEvent OnDeviceDetached;
-
+        
         /// <summary> Initializes the WeDo service. </summary>
         /// <returns> If the method completed with success the returning value is
         ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is

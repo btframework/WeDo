@@ -1,7 +1,6 @@
 ﻿using System;
 
 using wclCommon;
-using wclCommunication;
 using wclBluetooth;
 
 namespace wclWeDoFramework

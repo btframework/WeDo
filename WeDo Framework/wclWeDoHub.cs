@@ -240,7 +240,7 @@ namespace wclWeDoFramework
             FHub.OnLowVoltageAlert += HubLowVoltageAlert;
             FHub.OnDeviceAttached += HubDeviceAttached;
             FHub.OnDeviceDetached += HubDeviceDetached;
-
+            
             // Create attached devices list.
             FDevices = new List<wclWeDoIo>();
 

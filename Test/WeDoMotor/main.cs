@@ -35,7 +35,7 @@ namespace WeDoMotor
             FHub.OnDisconnected += FHub_OnDisconnected;
             FHub.OnDeviceAttached += FHub_OnDeviceAttached;
             FHub.OnDeviceDetached += FHub_OnDeviceDetached;
-
+            
             FMotor = null;
             FCurrent = null;
             FVoltage = null;
