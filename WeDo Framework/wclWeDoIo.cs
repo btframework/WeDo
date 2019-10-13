@@ -239,8 +239,10 @@ namespace wclWeDoFramework
                     Io = new wclWeDoMotor(Hub, ConnectionId);
                     Io.FDeviceType = wclWeDoIoDeviceType.iodMotor;
                     break;
-                /*case WEDO_DEVICE_VOLTAGE_SENSOR:
-                    connectInfo.TypeEnum = IoType.IoTypeVoltage;*/
+                case WEDO_DEVICE_VOLTAGE_SENSOR:
+                    Io = new wclWeDoVoltageSensor(Hub, ConnectionId);
+                    Io.FDeviceType = wclWeDoIoDeviceType.iodVoltageSensor;
+                    break;
                 case WEDO_DEVICE_CURRENT_SENSOR:
                     Io = new wclWeDoCurrentSensor(Hub, ConnectionId);
                     Io.FDeviceType = wclWeDoIoDeviceType.iodCurrentSensor;
@@ -380,12 +382,18 @@ namespace wclWeDoFramework
         /// <param name="OldFormat"> The old Input Format. </param>
         /// <remarks> A derived class must override this method to get notifications about
         ///   format changes. </remarks>
-        protected abstract void InputFormatChanged(wclWeDoInputFormat OldFormat);
+        protected virtual void InputFormatChanged(wclWeDoInputFormat OldFormat)
+        {
+            // Do nothing
+        }
 
         /// <summary> The method called when data value has been changed. </summary>
         /// <remarks> A derived class must override this method to get notifications about
         ///   value changes. </remarks>
-        protected abstract void ValueChanged();
+        protected virtual void ValueChanged()
+        {
+            // Do nothing.
+        }
 
         /// <summary> Gets current sensor's value as <c>Float</c> number. </summary>
         /// <value> The float sensors value. </value>

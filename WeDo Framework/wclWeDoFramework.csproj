@@ -63,6 +63,7 @@
     <Compile Include="wclWeDoRgbLight.cs" />
     <Compile Include="wclWeDoSensorDataUnit.cs" />
     <Compile Include="wclWeDoService.cs" />
+    <Compile Include="wclWeDoVoltageSensor.cs" />
     <Compile Include="wclWeDoWatcher.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

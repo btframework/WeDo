@@ -14,6 +14,7 @@ namespace WeDoMotor
         private wclWeDoHub FHub;
         private wclWeDoMotor FMotor;
         private wclWeDoCurrentSensor FCurrent;
+        private wclWeDoVoltageSensor FVoltage;
 
         public fmMain()
         {
@@ -37,6 +38,7 @@ namespace WeDoMotor
 
             FMotor = null;
             FCurrent = null;
+            FVoltage = null;
         }
 
         private void EnablePlay(Boolean Attached)
@@ -44,7 +46,13 @@ namespace WeDoMotor
             if (Attached)
                 laIoState.Text = "Attached";
             else
+            {
                 laIoState.Text = "Dectahed";
+
+                laCurrent.Text = "0";
+                laVoltage.Text = "0";
+            }
+
             laDirection.Enabled = Attached;
             cbDirection.Enabled = Attached;
             laPower.Enabled = Attached;
@@ -57,6 +65,10 @@ namespace WeDoMotor
             laCurrentTitle.Enabled = Attached;
             laCurrent.Enabled = Attached;
             laMA.Enabled = Attached;
+
+            laVoltageTitle.Enabled = Attached;
+            laVoltage.Enabled = Attached;
+            laMV.Enabled = Attached;
         }
 
         private void EnableConnect(Boolean Connected)
@@ -84,6 +96,8 @@ namespace WeDoMotor
             }
             if (Device.DeviceType == wclWeDoIoDeviceType.iodCurrentSensor)
                 FCurrent = null;
+            if (Device.DeviceType == wclWeDoIoDeviceType.iodVoltageSensor)
+                FVoltage = null;
         }
 
         private void FHub_OnDeviceAttached(object Sender, wclWeDoIo Device)
@@ -106,6 +120,21 @@ namespace WeDoMotor
                     FCurrent.OnCurrentChanged += FCurrent_OnCurrentChanged;
                 }
             }
+
+            if (FVoltage == null)
+            {
+                if (Device.DeviceType == wclWeDoIoDeviceType.iodVoltageSensor)
+                {
+                    FVoltage = (wclWeDoVoltageSensor)Device;
+                    FVoltage.OnVoltageChanged += FVoltage_OnVoltageChanged;
+                }
+            }
+        }
+
+        private void FVoltage_OnVoltageChanged(object sender, EventArgs e)
+        {
+            if (FVoltage != null)
+                laVoltage.Text = FVoltage.Voltage.ToString();
         }
 
         private void FCurrent_OnCurrentChanged(object sender, EventArgs e)

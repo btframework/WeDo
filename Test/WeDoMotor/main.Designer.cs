@@ -42,6 +42,9 @@
             this.laCurrentTitle = new System.Windows.Forms.Label();
             this.laCurrent = new System.Windows.Forms.Label();
             this.laMA = new System.Windows.Forms.Label();
+            this.laVoltageTitle = new System.Windows.Forms.Label();
+            this.laVoltage = new System.Windows.Forms.Label();
+            this.laMV = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // laIoState
@@ -184,17 +187,50 @@
             // 
             this.laMA.AutoSize = true;
             this.laMA.Enabled = false;
-            this.laMA.Location = new System.Drawing.Point(110, 82);
+            this.laMA.Location = new System.Drawing.Point(123, 82);
             this.laMA.Name = "laMA";
             this.laMA.Size = new System.Drawing.Size(22, 13);
             this.laMA.TabIndex = 25;
             this.laMA.Text = "mA";
+            // 
+            // laVoltageTitle
+            // 
+            this.laVoltageTitle.AutoSize = true;
+            this.laVoltageTitle.Enabled = false;
+            this.laVoltageTitle.Location = new System.Drawing.Point(208, 82);
+            this.laVoltageTitle.Name = "laVoltageTitle";
+            this.laVoltageTitle.Size = new System.Drawing.Size(46, 13);
+            this.laVoltageTitle.TabIndex = 26;
+            this.laVoltageTitle.Text = "Voltage:";
+            // 
+            // laVoltage
+            // 
+            this.laVoltage.AutoSize = true;
+            this.laVoltage.Enabled = false;
+            this.laVoltage.Location = new System.Drawing.Point(260, 82);
+            this.laVoltage.Name = "laVoltage";
+            this.laVoltage.Size = new System.Drawing.Size(13, 13);
+            this.laVoltage.TabIndex = 27;
+            this.laVoltage.Text = "0";
+            // 
+            // laMV
+            // 
+            this.laMV.AutoSize = true;
+            this.laMV.Enabled = false;
+            this.laMV.Location = new System.Drawing.Point(319, 82);
+            this.laMV.Name = "laMV";
+            this.laMV.Size = new System.Drawing.Size(22, 13);
+            this.laMV.TabIndex = 28;
+            this.laMV.Text = "mV";
             // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(446, 185);
+            this.Controls.Add(this.laMV);
+            this.Controls.Add(this.laVoltage);
+            this.Controls.Add(this.laVoltageTitle);
             this.Controls.Add(this.laMA);
             this.Controls.Add(this.laCurrent);
             this.Controls.Add(this.laCurrentTitle);
@@ -236,6 +272,9 @@
         private System.Windows.Forms.Label laCurrentTitle;
         private System.Windows.Forms.Label laCurrent;
         private System.Windows.Forms.Label laMA;
+        private System.Windows.Forms.Label laVoltageTitle;
+        private System.Windows.Forms.Label laVoltage;
+        private System.Windows.Forms.Label laMV;
     }
 }
 

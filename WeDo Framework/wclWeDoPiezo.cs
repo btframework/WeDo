@@ -41,19 +41,6 @@ namespace wclWeDoFramework
         private const UInt16 PIEZO_MAX_FREQUENCY = 1500;
         private const UInt16 PIEZO_MAX_DURATION = 65535;
 
-        /// <summary> The method called when Input Format has been changed. </summary>
-        /// <param name="OldFormat"> The old Input Format. </param>
-        protected override void InputFormatChanged(wclWeDoInputFormat OldFormat)
-        {
-            // Do nothign here.
-        }
-
-        /// <summary> The method called when data value has been changed. </summary>
-        protected override void ValueChanged()
-        {
-            // Do nothign here.
-        }
-
         /// <summary> Creates new Piezo device object. </summary>
         /// <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
         ///   the <seealso cref="wclEInvalidArgument"/> exception raises. </param>

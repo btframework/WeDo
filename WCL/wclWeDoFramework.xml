@@ -55,10 +55,6 @@
         <member name="T:wclWeDoFramework.wclWeDoCurrentSensor">
             <summary> The class represents a WeDo Hub current sensor. </summary>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoCurrentSensor.InputFormatChanged(wclWeDoFramework.wclWeDoInputFormat)">
-            <summary> The method called when Input Format has been changed. </summary>
-            <param name="OldFormat"> The old Input Format. </param>
-        </member>
         <member name="M:wclWeDoFramework.wclWeDoCurrentSensor.ValueChanged">
             <summary> The method called when data value has been changed. </summary>
         </member>
@@ -694,13 +690,6 @@
         <member name="T:wclWeDoFramework.wclWeDoMotor">
             <summary> The class represents a WeDo motor. </summary>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoMotor.InputFormatChanged(wclWeDoFramework.wclWeDoInputFormat)">
-            <summary> The method called when Input Format has been changed. </summary>
-            <param name="OldFormat"> The old Input Format. </param>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoMotor.ValueChanged">
-            <summary> The method called when data value has been changed. </summary>
-        </member>
         <member name="M:wclWeDoFramework.wclWeDoMotor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
             <summary> Creates new motor class object. </summary>
             <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
@@ -792,13 +781,6 @@
         <member name="T:wclWeDoFramework.wclWeDoPieazo">
             <summary> The class represents a Piezo tone player device. </summary>
             <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoPieazo.InputFormatChanged(wclWeDoFramework.wclWeDoInputFormat)">
-            <summary> The method called when Input Format has been changed. </summary>
-            <param name="OldFormat"> The old Input Format. </param>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoPieazo.ValueChanged">
-            <summary> The method called when data value has been changed. </summary>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoPieazo.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
             <summary> Creates new Piezo device object. </summary>
@@ -1104,6 +1086,32 @@
             <summary> Gets the <see cref="T:wclWeDoFramework.wclWeDoHub"/> object that owns the service. </summary>
             <value> The <see cref="T:wclWeDoFramework.wclWeDoHub"/> object. </value>
             <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoVoltageSensor">
+            <summary> The class represents a WeDo Hub Voltage sensor. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoVoltageSensor.ValueChanged">
+            <summary> The method called when data value has been changed. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoVoltageSensor.DoVoltageChanged">
+            <summary> Fires the <c>OnVoltageChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoVoltageSensor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
+            <summary> Creates new voltage sensor device object. </summary>
+            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
+              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
+            <param name="ConnectionId"> The device's Connection ID. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoVoltageSensor.Voltage">
+            <summary> Gets the current battery voltage in milli volts. </summary>
+            <value> The battery voltage in milli volts. </value>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoVoltageSensor.OnVoltageChanged">
+            <summary> The event fires when voltage has been changed. </summary>
+            <seealso cref="T:System.EventHandler"/>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoHubFoundEvent">
             <summary> The <c>OnHubFound</c> event handler prototype. </summary>

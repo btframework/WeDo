@@ -71,19 +71,6 @@ namespace wclWeDoFramework
             return Res;
         }
 
-        /// <summary> The method called when Input Format has been changed. </summary>
-        /// <param name="OldFormat"> The old Input Format. </param>
-        protected override void InputFormatChanged(wclWeDoInputFormat OldFormat)
-        {
-            // Do nothign here.
-        }
-
-        /// <summary> The method called when data value has been changed. </summary>
-        protected override void ValueChanged()
-        {
-            // Do nothing.
-        }
-
         /// <summary> Creates new motor class object. </summary>
         /// <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
         ///   the <seealso cref="wclEInvalidArgument"/> exception raises. </param>
