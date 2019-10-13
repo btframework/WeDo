@@ -100,6 +100,7 @@ namespace WeDoScan
             FHub.OnConnected += FHub_OnConnected;
             FHub.OnDisconnected += FHub_OnDisconnected;
             FHub.OnDeviceAttached += FHub_OnDeviceAttached;
+            FHub.OnDeviceDetached += FHub_OnDeviceDetached;
             // Try to connect. We will use the same Bluetooth Radio object that is used by
             // the WeDo Watcher.
             Int32 Res = FHub.Connect(FRadio, FAddress);
@@ -108,6 +109,18 @@ namespace WeDoScan
                 // If something went wrong show message and close the form.
                 MessageBox.Show("Connect to Hub failed: 0x" + Res.ToString("X8"));
                 Close();
+            }
+        }
+
+        private void FHub_OnDeviceDetached(object Sender, wclWeDoIo Device)
+        {
+            foreach (ListViewItem Item in lvAttachedDevices.Items)
+            {
+                if (Item.Text == Device.ConnectionId.ToString())
+                {
+                    lvAttachedDevices.Items.Remove(Item);
+                    break;
+                }
             }
         }
 
