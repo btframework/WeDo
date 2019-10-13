@@ -1161,6 +1161,182 @@
             <value> The <see cref="T:wclWeDoFramework.wclWeDoHub"/> object. </value>
             <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
         </member>
+        <member name="T:wclWeDoFramework.wclWeDoTiltSensorMode">
+            <summary> The enumeration describes the Tilt sensor modes. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorMode.tmAngle">
+            <summary> Angle. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorMode.tmTilt">
+            <summary> Tilt. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorMode.tmCrash">
+            <summary> Crash. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorMode.tmUnknown">
+            <summary> tmUnkown. </summary>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoTiltSensorDirection">
+            <summary> The enumeration describes th Tilt sensor directions. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorDirection.tdNeutral">
+            <summary> Neutral. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorDirection.tdBackward">
+            <summary> Backward. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorDirection.tdRight">
+            <summary> Right. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorDirection.tdLeft">
+            <summary> Left. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorDirection.tdForward">
+            <summary> Forward. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorDirection.tdUnknown">
+            <summary> Unknown. </summary>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoTiltSensorAngle">
+            <summary> The record represents the tilt sensor angle values. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorAngle.X">
+            <summary>  The X value of tilt angle. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorAngle.Y">
+            <summary> The Y value of tilt angle. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensorAngle.Equals(System.Object)">
+            <summary> Compares angles. </summary>
+            <param name="obj"> The object to compare to. </param>
+            <returns> <c>True</c> if objects are equal. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensorAngle.GetHashCode">
+            <summary> Gets the object hash. </summary>
+            <returns> The objects hash. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensorAngle.op_Equality(wclWeDoFramework.wclWeDoTiltSensorAngle,wclWeDoFramework.wclWeDoTiltSensorAngle)">
+            <summary> Override the <c>==</c> operator. </summary>
+            <param name="a"> First argument. </param>
+            <param name="b"> Second argument. </param>
+            <returns> <c>True</c> if a == b. <c>False</c> otherwise. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensorAngle.op_Inequality(wclWeDoFramework.wclWeDoTiltSensorAngle,wclWeDoFramework.wclWeDoTiltSensorAngle)">
+            <summary> Override the <c>!==</c> operator. </summary>
+            <param name="a"> First argument. </param>
+            <param name="b"> Second argument. </param>
+            <returns> <c>True</c> if a != b. <c>False</c> otherwise. </returns>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoTiltSensorCrash">
+            <summary> The structure represents the Tilt sensor crash values. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorCrash.X">
+            <summary> The X value of crash. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorCrash.Y">
+            <summary> The Y value of crash. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorCrash.Z">
+            <summary> The Z value of crash. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensorCrash.Equals(System.Object)">
+            <summary> Compares crashes. </summary>
+            <param name="obj"> The object to compare to. </param>
+            <returns> <c>True</c> if objects are equal. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensorCrash.GetHashCode">
+            <summary> Gets the object hash. </summary>
+            <returns> The objects hash. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensorCrash.op_Equality(wclWeDoFramework.wclWeDoTiltSensorCrash,wclWeDoFramework.wclWeDoTiltSensorCrash)">
+            <summary> Override the <c>==</c> operator. </summary>
+            <param name="a"> First argument. </param>
+            <param name="b"> Second argument. </param>
+            <returns> <c>True</c> if a == b. <c>False</c> otherwise. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensorCrash.op_Inequality(wclWeDoFramework.wclWeDoTiltSensorCrash,wclWeDoFramework.wclWeDoTiltSensorCrash)">
+            <summary> Override the <c>!==</c> operator. </summary>
+            <param name="a"> First argument. </param>
+            <param name="b"> Second argument. </param>
+            <returns> <c>True</c> if a != b. <c>False</c> otherwise. </returns>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoTiltSensor">
+            <summary> The class represents a WeDo Titl Sensor device. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.InputFormatChanged(wclWeDoFramework.wclWeDoInputFormat)">
+            <summary> The method called when Input Format has been changed. </summary>
+            <param name="OldFormat"> The old Input Format. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.ValueChanged">
+            <summary> Fires the <c>OnVoltageChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.DoAngleChanged">
+            <summary> Fires the <c>OnAngleChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.DoCrashChanged">
+            <summary> Fires the <c>OnCrashChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.DoDirectionChanged">
+            <summary> Fires the <c>OnDirectionChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.DoModeChanged">
+            <summary> Fires the <c>OnModeChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
+            <summary> Creates new tilt sensor device object. </summary>
+            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
+              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
+            <param name="ConnectionId"> The device's Connection ID. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.SetMode(wclWeDoFramework.wclWeDoTiltSensorMode)">
+            <summary> Sets the tilt sensor mode. </summary>
+            <param name="Mode"> The tils sensor mode. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoTiltSensorMode"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoTiltSensor.Angle">
+            <summary> Gets the most recent angle reading from the sensor. The angle represents the
+              angle the sensor is tilted in the x and y. </summary>
+            <value> The Tilt sensor angle. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoTiltSensorAngle"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoTiltSensor.Crash">
+            <summary> Gets the most recent crash reading from the sensor.
+              The value represents the number of times the sensor has been ‘bumped’ in the x, y, and z.</summary>
+            <value> The Tilt sensor crash. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoTiltSensorCrash"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoTiltSensor.Direction">
+            <summary> Gets the most recent direction reading from the sensor. </summary>
+            <value> The Tilt sensor direction. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoTiltSensorDirection"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoTiltSensor.Mode">
+            <summary> Gets the current mode of the tilt sensor. </summary>
+            <value> The Tilt sensor mode. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoTiltSensorMode"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoTiltSensor.OnAngleChanged">
+            <summary> The event fires when angle has been changed. </summary>
+            <seealso cref="T:System.EventHandler"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoTiltSensor.OnCrashChanged">
+            <summary> The event fires when crash changed. </summary>
+            <seealso cref="T:System.EventHandler"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoTiltSensor.OnDirectionChanged">
+            <summary> The event fires when direction has been changed. </summary>
+            <seealso cref="T:System.EventHandler"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoTiltSensor.OnModeChanged">
+            <summary> The event fires when Mode has been changed. </summary>
+            /// <seealso cref="T:System.EventHandler"/>
+        </member>
         <member name="T:wclWeDoFramework.wclWeDoVoltageSensor">
             <summary> The class represents a WeDo Hub Voltage sensor. </summary>
         </member>

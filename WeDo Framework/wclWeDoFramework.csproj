@@ -64,6 +64,7 @@
     <Compile Include="wclWeDoRgbLight.cs" />
     <Compile Include="wclWeDoSensorDataUnit.cs" />
     <Compile Include="wclWeDoService.cs" />
+    <Compile Include="wclWeDoTiltSensor.cs" />
     <Compile Include="wclWeDoVoltageSensor.cs" />
     <Compile Include="wclWeDoWatcher.cs" />
   </ItemGroup>
