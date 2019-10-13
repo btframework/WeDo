@@ -80,6 +80,10 @@ namespace WeDoMotor
 
         private void FHub_OnDeviceAttached(object Sender, wclWeDoIo Device)
         {
+            // This demo supports only single motor.
+            if (FMotor != null)
+                return;
+
             if (Device.DeviceType == wclWeDoIoDeviceType.iodMotor)
             {
                 FMotor = (wclWeDoMotor)Device;

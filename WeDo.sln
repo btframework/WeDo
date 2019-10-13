@@ -26,6 +26,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDoRgb", "WeDoRgb\WeDoRgb.
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDoMotor", "WeDoMotor\WeDoMotor.csproj", "{D61A9DF2-FF23-45C6-BAB7-64376B9C6794}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AB0071D1-7D94-4339-AF46-2A4630C90310} = {AB0071D1-7D94-4339-AF46-2A4630C90310}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
