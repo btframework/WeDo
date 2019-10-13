@@ -542,6 +542,9 @@
         <member name="M:wclWeDoFramework.wclWeDoIo.SendInputFormat(wclWeDoFramework.wclWeDoInputFormat)">
             <summary> Send an updated input format for this service to the device. </summary>
             <param name="Format"> New input format. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
             <seelso cref="T:wclWeDoFramework.wclWeDoInputFormat"/>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoIo.SetInputFormatMode(System.Byte)">
@@ -616,7 +619,7 @@
             <remarks> It is guarateed that the connection ID is unique. </remarks>
         </member>
         <member name="P:wclWeDoFramework.wclWeDoIo.DeviceType">
-            <sumnmary> Gets the device represented by this object. </sumnmary>
+            <summary> Gets the device represented by this object. </summary>
             <value> The IO device type. </value>
             <seealso cref="T:wclWeDoFramework.wclWeDoIoDeviceType"/>
         </member>
@@ -641,6 +644,7 @@
         </member>
         <member name="P:wclWeDoFramework.wclWeDoIo.PortId">
             <summary> The index of the port on the Hub the IO is attached to.  </summary>
+            <value> The port ID. </value>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoIoService">
             <summary> The class represents the WeDo IO service. </summary>
@@ -1129,6 +1133,7 @@
         </member>
         <member name="M:wclWeDoFramework.wclWeDoService.UnsubscribeFromNotifications(System.Nullable{wclBluetooth.wclGattCharacteristic})">
             <summary> Unsubscribes from the changes notifications of the given characteristic. </summary>
+            <param name="Characteristic"> The characteristic to unsubsribe. </param>
             <seealso cref="T:wclBluetooth.wclGattCharacteristic"/>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoService.ReadStringValue(System.Nullable{wclBluetooth.wclGattCharacteristic},System.String@)">

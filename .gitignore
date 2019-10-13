@@ -1,5 +1,7 @@
 /.vs/WeDo/v16/Server
-/Docs
+/Help/bin
+/Help/obj
+/Help/build
 /Test/WeDoScan/bin
 /Test/WeDoScan/obj
 /Test/WeDoHubButton/bin

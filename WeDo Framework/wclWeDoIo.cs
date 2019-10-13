@@ -362,6 +362,9 @@ namespace wclWeDoFramework
 
         /// <summary> Send an updated input format for this service to the device. </summary>
 		/// <param name="Format"> New input format. </param>
+        /// <returns> If the method completed with success the returning value is
+        ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+        ///   one of the Bluetooth Framework error code. </returns>
         /// <seelso cref="wclWeDoInputFormat"/>
 		protected Int32 SendInputFormat(wclWeDoInputFormat Format)
         {
@@ -419,7 +422,7 @@ namespace wclWeDoFramework
         protected wclWeDoInputFormat InputFormat { get { return FInputFormat; } }
         /// <summary> Gets the Input Format mode. </summary>
         /// <value> The Input Format Mode. </value>
-        public Byte InputFormatMode { get { return GetInputFormatMode(); } }
+        protected Byte InputFormatMode { get { return GetInputFormatMode(); } }
         /// <summary> Gets alist with one byte[] per number received. </summary>
         /// <value> The list of bytes array. </value>
 		protected List<Byte[]> NumbersFromValueData { get { return FNumbersFromValueData; } }
@@ -462,7 +465,7 @@ namespace wclWeDoFramework
         /// <value> The IO connection ID. </value>
         /// <remarks> It is guarateed that the connection ID is unique. </remarks>
         public Byte ConnectionId { get { return FConnectionId; } }
-        /// <sumnmary> Gets the device represented by this object. </sumnmary>
+        /// <summary> Gets the device represented by this object. </summary>
         /// <value> The IO device type. </value>
         /// <seealso cref="wclWeDoIoDeviceType"/>
         public wclWeDoIoDeviceType DeviceType { get { return FDeviceType; } }
@@ -482,6 +485,7 @@ namespace wclWeDoFramework
         /// <seealso cref="wclWeDoHub"/>
         public wclWeDoHub Hub { get { return FHub; } }
         /// <summary> The index of the port on the Hub the IO is attached to.  </summary>
+        /// <value> The port ID. </value>
 		public Byte PortId { get { return FPortId; } }
     };
 }

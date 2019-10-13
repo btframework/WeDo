@@ -152,6 +152,7 @@ namespace wclWeDoFramework
         }
 
         /// <summary> Unsubscribes from the changes notifications of the given characteristic. </summary>
+        /// <param name="Characteristic"> The characteristic to unsubsribe. </param>
         /// <seealso cref="wclGattCharacteristic"/>
         protected void UnsubscribeFromNotifications(wclGattCharacteristic? Characteristic)
         {
