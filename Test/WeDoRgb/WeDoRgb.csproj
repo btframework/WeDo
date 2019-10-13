@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D61A9DF2-FF23-45C6-BAB7-64376B9C6794}</ProjectGuid>
+    <ProjectGuid>{39FBCF15-7777-4700-A8FC-F6CA76BE62FA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WeDoMotor</RootNamespace>
-    <AssemblyName>WeDoMotor</AssemblyName>
+    <RootNamespace>WeDoRgb</RootNamespace>
+    <AssemblyName>WeDoRgb</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -32,22 +32,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="wclBluetoothFramework">
-      <HintPath>..\WCL\wclBluetoothFramework.dll</HintPath>
+      <HintPath>..\..\WCL\wclBluetoothFramework.dll</HintPath>
     </Reference>
     <Reference Include="wclCommon">
-      <HintPath>..\WCL\wclCommon.dll</HintPath>
+      <HintPath>..\..\WCL\wclCommon.dll</HintPath>
     </Reference>
     <Reference Include="wclCommunication">
-      <HintPath>..\WCL\wclCommunication.dll</HintPath>
+      <HintPath>..\..\WCL\wclCommunication.dll</HintPath>
     </Reference>
     <Reference Include="wclWeDoFramework">
-      <HintPath>..\WCL\wclWeDoFramework.dll</HintPath>
+      <HintPath>..\..\WCL\wclWeDoFramework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

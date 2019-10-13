@@ -3,29 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDoScan", "WeDoScan\WeDoScan.csproj", "{60E657F3-1E5F-42C3-8C93-B53543C5E74E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDoScan", "Test\WeDoScan\WeDoScan.csproj", "{60E657F3-1E5F-42C3-8C93-B53543C5E74E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{AB0071D1-7D94-4339-AF46-2A4630C90310} = {AB0071D1-7D94-4339-AF46-2A4630C90310}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wclWeDoFramework", "WeDo Framework\wclWeDoFramework.csproj", "{AB0071D1-7D94-4339-AF46-2A4630C90310}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDoHubButton", "WeDoHubButton\WeDoHubButton.csproj", "{FF3CAB99-9245-4774-9B17-0967371AD98E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDoHubButton", "Test\WeDoHubButton\WeDoHubButton.csproj", "{FF3CAB99-9245-4774-9B17-0967371AD98E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{AB0071D1-7D94-4339-AF46-2A4630C90310} = {AB0071D1-7D94-4339-AF46-2A4630C90310}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDoPiezo", "WeDoPiezo\WeDoPiezo.csproj", "{D663830A-8C4D-4839-BD63-52E7B4F17CDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDoPiezo", "Test\WeDoPiezo\WeDoPiezo.csproj", "{D663830A-8C4D-4839-BD63-52E7B4F17CDA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{AB0071D1-7D94-4339-AF46-2A4630C90310} = {AB0071D1-7D94-4339-AF46-2A4630C90310}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDoRgb", "WeDoRgb\WeDoRgb.csproj", "{39FBCF15-7777-4700-A8FC-F6CA76BE62FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDoRgb", "Test\WeDoRgb\WeDoRgb.csproj", "{39FBCF15-7777-4700-A8FC-F6CA76BE62FA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{AB0071D1-7D94-4339-AF46-2A4630C90310} = {AB0071D1-7D94-4339-AF46-2A4630C90310}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDoMotor", "WeDoMotor\WeDoMotor.csproj", "{D61A9DF2-FF23-45C6-BAB7-64376B9C6794}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDoMotor", "Test\WeDoMotor\WeDoMotor.csproj", "{D61A9DF2-FF23-45C6-BAB7-64376B9C6794}"
 	ProjectSection(ProjectDependencies) = postProject
 		{AB0071D1-7D94-4339-AF46-2A4630C90310} = {AB0071D1-7D94-4339-AF46-2A4630C90310}
 	EndProjectSection

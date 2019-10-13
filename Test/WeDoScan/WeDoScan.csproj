@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{39FBCF15-7777-4700-A8FC-F6CA76BE62FA}</ProjectGuid>
+    <ProjectGuid>{60E657F3-1E5F-42C3-8C93-B53543C5E74E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WeDoRgb</RootNamespace>
-    <AssemblyName>WeDoRgb</AssemblyName>
+    <RootNamespace>WeDoScan</RootNamespace>
+    <AssemblyName>WeDoScan</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -32,26 +32,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="wclBluetoothFramework">
-      <HintPath>..\WCL\wclBluetoothFramework.dll</HintPath>
+      <HintPath>..\..\WCL\wclBluetoothFramework.dll</HintPath>
     </Reference>
     <Reference Include="wclCommon">
-      <HintPath>..\WCL\wclCommon.dll</HintPath>
+      <HintPath>..\..\WCL\wclCommon.dll</HintPath>
     </Reference>
     <Reference Include="wclCommunication">
-      <HintPath>..\WCL\wclCommunication.dll</HintPath>
+      <HintPath>..\..\WCL\wclCommunication.dll</HintPath>
     </Reference>
     <Reference Include="wclWeDoFramework">
-      <HintPath>..\WCL\wclWeDoFramework.dll</HintPath>
+      <HintPath>..\..\WCL\wclWeDoFramework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="devinfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="devinfo.designer.cs">
+      <DependentUpon>devinfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +65,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="devinfo.resx">
+      <DependentUpon>devinfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="main.resx">
       <DependentUpon>main.cs</DependentUpon>
     </EmbeddedResource>
