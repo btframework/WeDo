@@ -69,10 +69,10 @@ namespace wclWeDoFramework
         /// <param name="OldFormat"> The old Input Format. </param>
         protected override void InputFormatChanged(wclWeDoInputFormat OldFormat)
         {
-            if (OldFormat != null)
+            if (InputFormat != null)
             {
 
-                if (InputFormat == null)
+                if (OldFormat == null)
                     DoModeChanged();
                 else
                 {

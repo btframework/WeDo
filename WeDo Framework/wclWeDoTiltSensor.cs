@@ -220,10 +220,10 @@ namespace wclWeDoFramework
         /// <param name="OldFormat"> The old Input Format. </param>
         protected override void InputFormatChanged(wclWeDoInputFormat OldFormat)
         {
-            if (OldFormat != null)
+            if (InputFormat != null)
             {
 
-                if (InputFormat == null)
+                if (OldFormat == null)
                     DoModeChanged();
                 else
                 {
@@ -301,7 +301,7 @@ namespace wclWeDoFramework
             AddValidDataFormat(new wclWeDoDataFormat(3, 4, (Byte)wclWeDoTiltSensorMode.tmCrash, wclWeDoSensorDataUnit.suSi));
 
             DefaultInputFormat = new wclWeDoInputFormat(ConnectionId, wclWeDoIoDeviceType.iodTiltSensor,
-                (Byte)wclWeDoTiltSensorMode.tmTilt, 1, wclWeDoSensorDataUnit.suSi, true, 0, 4);
+                (Byte)wclWeDoTiltSensorMode.tmTilt, 1, wclWeDoSensorDataUnit.suRaw, true, 0, 1);
 
             OnAngleChanged = null;
             OnCrashChanged = null;
