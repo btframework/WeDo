@@ -37,12 +37,13 @@ namespace wclWeDoFramework
         private static Guid WEDO_CHARACTERISTIC_IO_ATTACHED = new Guid("00001527-1212-efde-1523-785feabcd123");
         // Low Voltrage Alert characteristic. [Mandatory] [Readable, Notifiable]
         private static Guid WEDO_CHARACTERISTIC_LOW_VOLTAGE_ALERT = new Guid("00001528-1212-efde-1523-785feabcd123");
+        // Turn Off command characteristic. [Mandatory] [Writable]
+        private static Guid WEDO_CHARACTERISTIC_TURN_OFF = new Guid("0000152b-1212-efde-1523-785feabcd123");
+
         // High Current Aleart characteristic. [Optional] [Readable, Notifiable]
         private static Guid WEDO_CHARACTERISTIC_HIGH_CURRENT_ALERT = new Guid("00001529-1212-efde-1523-785feabcd123");
         // Low Signal Aleart characteristic. [Optional] [Readable, Notifiable]
         private static Guid WEDO_CHARACTERISTIC_LOW_SIGNAL_ALERT = new Guid("0000152a-1212-efde-1523-785feabcd123");
-        // Turn Off command characteristic. [Mandatory] [Writable]
-        private static Guid WEDO_CHARACTERISTIC_TURN_OFF = new Guid("0000152b-1212-efde-1523-785feabcd123");
         // VCC Port Control characteristic. [Optional] [Readable, Writable]
         private static Guid WEDO_CHARACTERISTIC_VCC_PORT_CONTROL = new Guid("0000152c-1212-efde-1523-785feabcd123");
         // Battery Type characteristic. [Optional] [Readable]
@@ -54,9 +55,10 @@ namespace wclWeDoFramework
         private wclGattCharacteristic? FButtonStateChar;
         private wclGattCharacteristic? FIoAttachedChar;
         private wclGattCharacteristic? FLowVoltageAlertChar;
+        private wclGattCharacteristic? FTurnOffChar;
+
         private wclGattCharacteristic? FHighCurrentAleartChar;
         private wclGattCharacteristic? FLowSignalChar;
-        private wclGattCharacteristic? FTurnOffChar;
         private wclGattCharacteristic? FVccPortChar;
         private wclGattCharacteristic? FBatteryTypeChar;
         private wclGattCharacteristic? FDeviceDisconnectChar;
@@ -187,6 +189,15 @@ namespace wclWeDoFramework
                     UnsubscribeFromNotifications(FHighCurrentAleartChar);
                 if (FLowSignalChar != null)
                     UnsubscribeFromNotifications(FLowSignalChar);
+
+                // Try to send disconnect command (only if client connected).
+                if (Client.State == wclClientState.csConnected)
+                {
+                    System.Threading.Thread.Sleep(100);
+                    Byte[] Value = new Byte[1];
+                    Value[0] = 0x01;
+                    Client.WriteCharacteristicValue(FTurnOffChar.Value, Value);
+                }
             }
 
             FDeviceNameChar = null;

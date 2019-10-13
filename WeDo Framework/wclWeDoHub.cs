@@ -13,6 +13,7 @@ namespace wclWeDoFramework
         private wclGattClient FClient;
         private Boolean FConnected;
         private List<wclWeDoIo> FDevices;
+        private Boolean FHubConnected;
 
         // Hub GATT services.
         private wclWeDoDeviceInformationService FDeviceInformation;
@@ -44,6 +45,20 @@ namespace wclWeDoFramework
                 FHub.Disconnect();
         }
 
+        private void DisconnectHub()
+        {
+            if (FHubConnected)
+            {
+                // Detach all attached devices.
+                DetachDevices();
+
+                // We have to release all services.
+                DisconnectServices();
+
+                FHubConnected = false;
+            }
+        }
+
         // GATT client connect event handler.
         private void ClientConnect(object Sender, int Error)
         {
@@ -52,6 +67,8 @@ namespace wclWeDoFramework
                 DoConnected(Error);
             else
             {
+                FHubConnected = true;
+
                 // Read services. We do it only once to save connection time.
                 wclGattService[] Services;
                 Int32 Res = FClient.ReadServices(wclGattOperationFlag.goNone, out Services);
@@ -90,11 +107,7 @@ namespace wclWeDoFramework
         // GATT client disconnect event handler.
         private void ClientDisconnect(object Sender, int Reason)
         {
-            // Detach all attached devices.
-            DetachDevices();
-
-            // We have to release all services.
-            DisconnectServices();
+            DisconnectHub();
 
             // We have to fire the event only if connection was really established and
             // all the services and characteristics were read.
@@ -223,6 +236,7 @@ namespace wclWeDoFramework
         public wclWeDoHub()
         {
             FConnected = false;
+            FHubConnected = false;
 
             FClient = new wclGattClient();
             FClient.OnCharacteristicChanged += ClientCharacteristicChanged;
@@ -280,6 +294,8 @@ namespace wclWeDoFramework
         ///   one of the Bluetooth Framework error code. </returns>
         public Int32 Disconnect()
         {
+            DisconnectHub();
+
             return FClient.Disconnect();
         }
 
