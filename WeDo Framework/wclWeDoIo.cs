@@ -101,6 +101,14 @@ namespace wclWeDoFramework
     /// <summary> The class represets an attached Input/Outpout device. </summary>
     public abstract class wclWeDoIo
     {
+        private const Byte WEDO_DEVICE_MOTOR = 1;
+        private const Byte WEDO_DEVICE_VOLTAGE_SENSOR = 20;
+        private const Byte WEDO_DEVICE_CURRENT_SENSOR = 21;
+        private const Byte WEDO_DEVICE_PIEZO = 22;
+        private const Byte WEDO_DEVICE_RGB = 23;
+        private const Byte WEDO_DEVICE_TILT_SENSOR = 34;
+        private const Byte WEDO_DEVICE_MOTION_SENSOR = 35;
+
         private Boolean FAttached;
         private Byte FConnectionId;
         private List<wclWeDoDataFormat> FDataFormats;
@@ -223,32 +231,35 @@ namespace wclWeDoFramework
                 // Detached???
                 return null;
 
-            wclWeDoIo Io = null;
+            wclWeDoIo Io;
             Byte ConnectionId = RawInfo[0];
             switch (RawInfo[3])
             {
-                case 1:
+                case WEDO_DEVICE_MOTOR:
                     Io = new wclWeDoMotor(Hub, ConnectionId);
                     Io.FDeviceType = wclWeDoIoDeviceType.iodMotor;
                     break;
-                /*case 20:
+                /*case WEDO_DEVICE_VOLTAGE_SENSOR:
                     connectInfo.TypeEnum = IoType.IoTypeVoltage;*/
-                /*case 21:
-                connectInfo.TypeEnum = IoType.IoTypeCurrent;*/
-                case 22:
+                case WEDO_DEVICE_CURRENT_SENSOR:
+                    Io = new wclWeDoCurrentSensor(Hub, ConnectionId);
+                    Io.FDeviceType = wclWeDoIoDeviceType.iodCurrentSensor;
+                    break;
+                case WEDO_DEVICE_PIEZO:
                     Io = new wclWeDoPieazo(Hub, ConnectionId);
                     Io.FDeviceType = wclWeDoIoDeviceType.iodPiezo;
                     break;
-                case 23:
+                case WEDO_DEVICE_RGB:
                     Io = new wclWeDoRgbLight(Hub, ConnectionId);
                     Io.FDeviceType = wclWeDoIoDeviceType.iodRgb;
                     break;
-                    /*case 34:
-                    connectInfo.TypeEnum = IoType.IoTypeTiltSensor;*/
-                    /*case 35:
-                    connectInfo.TypeEnum = IoType.IoTypeMotionSensor;*/
-                    /*default:
-                    connectInfo.TypeEnum = IoType.IoTypeGeneric;*/
+                /*case WEDO_DEVICE_TILT_SENSOR:
+                connectInfo.TypeEnum = IoType.IoTypeTiltSensor;*/
+                /*case WEDO_DEVICE_MOTION_SENSOR:
+                connectInfo.TypeEnum = IoType.IoTypeMotionSensor;*/
+                default:
+                    Io = null;
+                    break;
             }
 
             if (Io != null)

@@ -13,6 +13,7 @@ namespace WeDoMotor
         private wclWeDoWatcher FWatcher;
         private wclWeDoHub FHub;
         private wclWeDoMotor FMotor;
+        private wclWeDoCurrentSensor FCurrent;
 
         public fmMain()
         {
@@ -35,6 +36,7 @@ namespace WeDoMotor
             FHub.OnDeviceDetached += FHub_OnDeviceDetached;
 
             FMotor = null;
+            FCurrent = null;
         }
 
         private void EnablePlay(Boolean Attached)
@@ -51,6 +53,10 @@ namespace WeDoMotor
             btStart.Enabled = Attached;
             btBrake.Enabled = Attached;
             btDrift.Enabled = Attached;
+
+            laCurrentTitle.Enabled = Attached;
+            laCurrent.Enabled = Attached;
+            laMA.Enabled = Attached;
         }
 
         private void EnableConnect(Boolean Connected)
@@ -76,19 +82,36 @@ namespace WeDoMotor
                 FMotor = null;
                 EnablePlay(false);
             }
+            if (Device.DeviceType == wclWeDoIoDeviceType.iodCurrentSensor)
+                FCurrent = null;
         }
 
         private void FHub_OnDeviceAttached(object Sender, wclWeDoIo Device)
         {
             // This demo supports only single motor.
-            if (FMotor != null)
-                return;
-
-            if (Device.DeviceType == wclWeDoIoDeviceType.iodMotor)
+            if (FMotor == null)
             {
-                FMotor = (wclWeDoMotor)Device;
-                EnablePlay(true);
+                if (Device.DeviceType == wclWeDoIoDeviceType.iodMotor)
+                {
+                    FMotor = (wclWeDoMotor)Device;
+                    EnablePlay(true);
+                }
             }
+
+            if (FCurrent == null)
+            {
+                if (Device.DeviceType == wclWeDoIoDeviceType.iodCurrentSensor)
+                {
+                    FCurrent = (wclWeDoCurrentSensor)Device;
+                    FCurrent.OnCurrentChanged += FCurrent_OnCurrentChanged;
+                }
+            }
+        }
+
+        private void FCurrent_OnCurrentChanged(object sender, EventArgs e)
+        {
+            if (FCurrent != null)
+                laCurrent.Text = FCurrent.Current.ToString();
         }
 
         private void FHub_OnDisconnected(object Sender, int Reason)

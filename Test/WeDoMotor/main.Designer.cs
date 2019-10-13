@@ -39,6 +39,9 @@
             this.btStart = new System.Windows.Forms.Button();
             this.btBrake = new System.Windows.Forms.Button();
             this.btDrift = new System.Windows.Forms.Button();
+            this.laCurrentTitle = new System.Windows.Forms.Label();
+            this.laCurrent = new System.Windows.Forms.Label();
+            this.laMA = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // laIoState
@@ -157,11 +160,44 @@
             this.btDrift.UseVisualStyleBackColor = true;
             this.btDrift.Click += new System.EventHandler(this.BtDrift_Click);
             // 
+            // laCurrentTitle
+            // 
+            this.laCurrentTitle.AutoSize = true;
+            this.laCurrentTitle.Enabled = false;
+            this.laCurrentTitle.Location = new System.Drawing.Point(12, 82);
+            this.laCurrentTitle.Name = "laCurrentTitle";
+            this.laCurrentTitle.Size = new System.Drawing.Size(47, 13);
+            this.laCurrentTitle.TabIndex = 23;
+            this.laCurrentTitle.Text = "Current: ";
+            // 
+            // laCurrent
+            // 
+            this.laCurrent.AutoSize = true;
+            this.laCurrent.Enabled = false;
+            this.laCurrent.Location = new System.Drawing.Point(67, 82);
+            this.laCurrent.Name = "laCurrent";
+            this.laCurrent.Size = new System.Drawing.Size(13, 13);
+            this.laCurrent.TabIndex = 24;
+            this.laCurrent.Text = "0";
+            // 
+            // laMA
+            // 
+            this.laMA.AutoSize = true;
+            this.laMA.Enabled = false;
+            this.laMA.Location = new System.Drawing.Point(110, 82);
+            this.laMA.Name = "laMA";
+            this.laMA.Size = new System.Drawing.Size(22, 13);
+            this.laMA.TabIndex = 25;
+            this.laMA.Text = "mA";
+            // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(446, 185);
+            this.Controls.Add(this.laMA);
+            this.Controls.Add(this.laCurrent);
+            this.Controls.Add(this.laCurrentTitle);
             this.Controls.Add(this.btDrift);
             this.Controls.Add(this.btBrake);
             this.Controls.Add(this.btStart);
@@ -197,6 +233,9 @@
         private System.Windows.Forms.Button btStart;
         private System.Windows.Forms.Button btBrake;
         private System.Windows.Forms.Button btDrift;
+        private System.Windows.Forms.Label laCurrentTitle;
+        private System.Windows.Forms.Label laCurrent;
+        private System.Windows.Forms.Label laMA;
     }
 }
 
