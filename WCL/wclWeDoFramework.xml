@@ -669,6 +669,70 @@
             <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
               parameter is <c>null</c>. </exception>
         </member>
+        <member name="T:wclWeDoFramework.wclWeDoMotionSensorMode">
+            <summary> Supported modes for the motion sensor. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoMotionSensorMode.mmDetect">
+            <summary> Detect mode - produces value that reflect the relative distance from the sensor
+              to objects in front of it. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoMotionSensorMode.mmCount">
+            <summary> Count mode - produces values that reflect how many times the sensor has been
+              activated. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoMotionSensorMode.mmUnknown">
+            <summary> Unknown (unsupported) mode. </summary>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoMotionSensor">
+            <summary> The class represents a WeDo Motion Sensor. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.ValueChanged">
+            <summary> Fires the <c>OnVoltageChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.DoCountChanged">
+            <summary> Fires the <c>OnCountChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.DoDistanceChanged">
+            <summary> Fires the <c>OnDistanceChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
+            <summary> Creates new motion sensor device object. </summary>
+            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
+              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
+            <param name="ConnectionId"> The device's Connection ID. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.SetMode(wclWeDoFramework.wclWeDoMotionSensorMode)">
+            <summary> Sets the motion sensor mode. </summary>
+            <param name="Mode"> The motion sensor mode. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoMotionSensorMode"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoMotionSensor.Count">
+            <summary> Gets the most recent count reading from the sensor. </summary>
+            <value> The detections count. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoMotionSensor.Distance">
+            <summary> Gets the most recent distance reading from the sensor. </summary>
+            <value> The distance. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoMotionSensor.Mode">
+            <summary> Gets the current mode of the motion sensor. </summary>
+            <value> The sensor mode. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoMotionSensorMode"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoMotionSensor.OnCountChanged">
+            <summary> The event fires when the counter has been changed. </summary>
+            <seealso cref="T:System.EventHandler"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoMotionSensor.OnDistanceChanged">
+            <summary> The event fires when distance has been changed. </summary>
+            <seealso cref="T:System.EventHandler"/>
+        </member>
         <member name="T:wclWeDoFramework.wclWeDoMotorDirection">
             <summary> The motor's direction. </summary>
         </member>

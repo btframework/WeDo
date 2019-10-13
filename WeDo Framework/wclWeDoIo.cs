@@ -257,8 +257,10 @@ namespace wclWeDoFramework
                     break;
                 /*case WEDO_DEVICE_TILT_SENSOR:
                 connectInfo.TypeEnum = IoType.IoTypeTiltSensor;*/
-                /*case WEDO_DEVICE_MOTION_SENSOR:
-                connectInfo.TypeEnum = IoType.IoTypeMotionSensor;*/
+                case WEDO_DEVICE_MOTION_SENSOR:
+                    Io = new wclWeDoMotionSensor(Hub, ConnectionId);
+                    Io.FDeviceType = wclWeDoIoDeviceType.iodMotionSensor;
+                    break;
                 default:
                     Io = null;
                     break;
