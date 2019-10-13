@@ -10,9 +10,26 @@ namespace wclWeDoFramework
     /// <summary> The base class for all WeDo services. </summary>
     public abstract class wclWeDoService
     {
+        private wclGattCharacteristic[] FCharacteristics;
         private wclGattClient FClient;
         private Boolean FConnected;
         private wclWeDoHub FHub;
+        private wclGattService[] FServices;
+
+        private Int32 ReadCharacteristics(wclGattService Service)
+        {
+            // Did we already read the characteristics for given service?
+            if (FCharacteristics != null)
+                return wclErrors.WCL_E_SUCCESS;
+
+            Int32 Res = FClient.ReadCharacteristics(Service, wclGattOperationFlag.goNone, out FCharacteristics);
+            if (Res != wclErrors.WCL_E_SUCCESS)
+                return Res;
+            if (FCharacteristics == null)
+                return wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND;
+
+            return wclErrors.WCL_E_SUCCESS;
+        }
 
         /// <summary> Converts <see cref="wclGattUuid"/> type to standard system <see cref="Guid"/>. </summary>
         /// <param name="Uuid"> The <see cref="wclGattUuid"/> that should be converted. </param>
@@ -58,19 +75,10 @@ namespace wclWeDoFramework
         {
             Service = null;
 
-            // First we have to read services from the connected device.
-            // It is a bit stupid imp,ementation but this makes code clear.
-            // Any way, once we use goNone flag the connection to the device wilkl be executed only once
-            // and each next call to this method will use cached services list. So it should not be too
-            // slow.
-            wclGattService[] Services;
-            Int32 Res = FClient.ReadServices(wclGattOperationFlag.goNone, out Services);
-            if (Res != wclErrors.WCL_E_SUCCESS)
-                return Res;
-            if (Services == null)
+            if (FServices == null)
                 return wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND;
 
-            foreach (wclGattService svc in Services)
+            foreach (wclGattService svc in FServices)
             {
                 if (CompareGuid(svc.Uuid, Uuid))
                 {
@@ -102,18 +110,11 @@ namespace wclWeDoFramework
             if (Service == null)
                 return wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND;
 
-            // Read characteristics from device. Once we use goNone flag the characteristics
-            // will be cached at first read so it should not be too slow in case we will call
-            // this method few times for the same service.
-            wclGattCharacteristic[] Characteristics;
-            Int32 Res = FClient.ReadCharacteristics(Service.Value, wclGattOperationFlag.goNone,
-                out Characteristics);
+            Int32 Res = ReadCharacteristics(Service.Value);
             if (Res != wclErrors.WCL_E_SUCCESS)
                 return Res;
-            if (Characteristics == null)
-                return wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND;
 
-            foreach (wclGattCharacteristic chr in Characteristics)
+            foreach (wclGattCharacteristic chr in FCharacteristics)
             {
                 if (CompareGuid(chr.Uuid, Uuid))
                 {
@@ -243,11 +244,14 @@ namespace wclWeDoFramework
             // Do nothing in default implementation.
         }
 
-        internal Int32 Connect()
+        internal Int32 Connect(wclGattService[] Services)
         {
             if (FConnected)
                 return wclConnectionErrors.WCL_E_CONNECTION_ACTIVE;
+            if (Services == null)
+                return wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND;
 
+            FServices = Services;
             Int32 Res = Initialize();
             if (Res == wclErrors.WCL_E_SUCCESS)
                 FConnected = true;
@@ -261,7 +265,10 @@ namespace wclWeDoFramework
 
             Uninitialize();
 
+            FCharacteristics = null;
             FConnected = false;
+            FServices = null;
+
             return wclErrors.WCL_E_SUCCESS;
         }
 
@@ -278,9 +285,11 @@ namespace wclWeDoFramework
             if (Client == null || Hub == null)
                 throw new wclEInvalidArgument("Client parameter can not be null.");
 
+            FCharacteristics = null;
             FClient = Client;
             FConnected = false;
             FHub = Hub;
+            FServices = null;
         }
 
         /// <summary> Gets the <see cref="wclWeDoHub"/> object that owns the service. </summary>

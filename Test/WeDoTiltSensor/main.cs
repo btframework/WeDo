@@ -83,7 +83,7 @@ namespace WeDoTiltSensor
 
         private void FHub_OnDeviceDetached(object Sender, wclWeDoIo Device)
         {
-            if (Device.DeviceType == wclWeDoIoDeviceType.iodTiltSensor && Device.ConnectionId == FTilt.ConnectionId)
+            if (Device.DeviceType == wclWeDoIoDeviceType.iodTiltSensor && FTilt != null && Device.ConnectionId == FTilt.ConnectionId)
             {
                 FTilt = null;
                 EnableControl(false);

@@ -77,7 +77,7 @@ namespace WeDoMotionSensor
 
         private void FHub_OnDeviceDetached(object Sender, wclWeDoIo Device)
         {
-            if (Device.DeviceType == wclWeDoIoDeviceType.iodMotionSensor && Device.ConnectionId == FMotion.ConnectionId)
+            if (Device.DeviceType == wclWeDoIoDeviceType.iodMotionSensor && FMotion != null && Device.ConnectionId == FMotion.ConnectionId)
             {
                 FMotion = null;
                 EnableControl(false);

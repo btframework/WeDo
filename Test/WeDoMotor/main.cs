@@ -89,7 +89,7 @@ namespace WeDoMotor
 
         private void FHub_OnDeviceDetached(object Sender, wclWeDoIo Device)
         {
-            if (Device.DeviceType == wclWeDoIoDeviceType.iodMotor && Device.ConnectionId == FMotor.ConnectionId)
+            if (Device.DeviceType == wclWeDoIoDeviceType.iodMotor && FMotor != null && Device.ConnectionId == FMotor.ConnectionId)
             {
                 FMotor = null;
                 EnablePlay(false);

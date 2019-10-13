@@ -52,14 +52,27 @@ namespace wclWeDoFramework
                 DoConnected(Error);
             else
             {
-                // try to connect to WeDo services.
-                Int32 Res = FDeviceInformation.Connect();
+                // Read services. We do it only once to save connection time.
+                wclGattService[] Services;
+                Int32 Res = FClient.ReadServices(wclGattOperationFlag.goNone, out Services);
                 if (Res == wclErrors.WCL_E_SUCCESS)
-                    Res = FBatteryLevel.Connect();
-                if (Res == wclErrors.WCL_E_SUCCESS)
-                    Res = FIo.Connect();
-                if (Res == wclErrors.WCL_E_SUCCESS)
-                    Res = FHub.Connect();
+                {
+                    if (Services == null)
+                        Res = wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND;
+                    else
+                    {
+                        // Try to connect to WeDo services.
+                        Res = FDeviceInformation.Connect(Services);
+                        if (Res == wclErrors.WCL_E_SUCCESS)
+                            Res = FBatteryLevel.Connect(Services);
+                        if (Res == wclErrors.WCL_E_SUCCESS)
+                            Res = FIo.Connect(Services);
+                        if (Res == wclErrors.WCL_E_SUCCESS)
+                            Res = FHub.Connect(Services);
+
+                        Services = null;
+                    }
+                }
 
                 // If all the operations were success (services found, characteristics are found too)
                 // we have to set connection flag.
