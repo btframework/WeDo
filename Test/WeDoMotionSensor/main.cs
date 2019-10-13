@@ -56,6 +56,7 @@ namespace WeDoMotionSensor
             laCount.Enabled = Attached;
             laDistanceTitle.Enabled = Attached;
             laDistance.Enabled = Attached;
+            btReset.Enabled = Attached;
         }
 
         private void EnableConnect(Boolean Connected)
@@ -269,6 +270,18 @@ namespace WeDoMotionSensor
                     if (Res != wclErrors.WCL_E_SUCCESS)
                         MessageBox.Show("Mode change failed: 0x" + Res.ToString("X8"));
                 }
+            }
+        }
+
+        private void BtReset_Click(object sender, EventArgs e)
+        {
+            if (FMotion == null)
+                MessageBox.Show("Device is not attached");
+            else
+            {
+                Int32 Res = FMotion.Reset();
+                if (Res != wclErrors.WCL_E_SUCCESS)
+                    MessageBox.Show("Reset failed; 0x" + Res.ToString("X8"));
             }
         }
     }

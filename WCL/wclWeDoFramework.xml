@@ -54,6 +54,7 @@
         </member>
         <member name="T:wclWeDoFramework.wclWeDoCurrentSensor">
             <summary> The class represents a WeDo Hub current sensor. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoCurrentSensor.ValueChanged">
             <summary> The method called when data value has been changed. </summary>
@@ -522,7 +523,7 @@
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
               one of the Bluetooth Framework error code. </returns>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoIo.Reset">
+        <member name="M:wclWeDoFramework.wclWeDoIo.ResetSensor">
             <summary> Sends a reset command to the Device. </summary>
             <returns> If the method completed with success the returning value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
@@ -685,6 +686,7 @@
         </member>
         <member name="T:wclWeDoFramework.wclWeDoMotionSensor">
             <summary> The class represents a WeDo Motion Sensor. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoResetableSensor"/>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoMotionSensor.InputFormatChanged(wclWeDoFramework.wclWeDoInputFormat)">
             <summary> The method called when Input Format has been changed. </summary>
@@ -763,6 +765,7 @@
         </member>
         <member name="T:wclWeDoFramework.wclWeDoMotor">
             <summary> The class represents a WeDo motor. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoMotor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
             <summary> Creates new motor class object. </summary>
@@ -889,6 +892,25 @@
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
               one of the Bluetooth Framework error code. </returns>
         </member>
+        <member name="T:wclWeDoFramework.wclWeDoResetableSensor">
+            <summary> The base class for WeDo sensors that can be reset. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoResetableSensor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
+            <summary> Creates new device object. </summary>
+            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
+              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
+            <param name="ConnectionId"> The device's Connection ID. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoResetableSensor.Reset">
+            <summary> Resets the sensor. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
         <member name="T:wclWeDoFramework.wclWeDoRgbLightMode">
             <summary> Mode of the RGB light device. </summary>
         </member>
@@ -944,6 +966,7 @@
         </member>
         <member name="T:wclWeDoFramework.wclWeDoRgbLight">
             <summary> The class represents a HUB RGB light. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoRgbLight.InputFormatChanged(wclWeDoFramework.wclWeDoInputFormat)">
             <summary> The method called when Input Format has been changed. </summary>
@@ -1262,6 +1285,7 @@
         </member>
         <member name="T:wclWeDoFramework.wclWeDoTiltSensor">
             <summary> The class represents a WeDo Titl Sensor device. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoResetableSensor"/>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoTiltSensor.InputFormatChanged(wclWeDoFramework.wclWeDoInputFormat)">
             <summary> The method called when Input Format has been changed. </summary>
@@ -1339,6 +1363,7 @@
         </member>
         <member name="T:wclWeDoFramework.wclWeDoVoltageSensor">
             <summary> The class represents a WeDo Hub Voltage sensor. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoVoltageSensor.ValueChanged">
             <summary> The method called when data value has been changed. </summary>

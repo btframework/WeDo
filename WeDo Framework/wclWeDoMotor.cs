@@ -21,6 +21,7 @@ namespace wclWeDoFramework
     };
 
     /// <summary> The class represents a WeDo motor. </summary>
+    /// <seealso cref="wclWeDoIo"/>
     public class wclWeDoMotor : wclWeDoIo
     {
         private const SByte MOTOR_POWER_DRIFT = 0;

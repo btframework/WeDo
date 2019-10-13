@@ -49,6 +49,7 @@ namespace wclWeDoFramework
     };
 
     /// <summary> The class represents a HUB RGB light. </summary>
+    /// <seealso cref="wclWeDoIo"/>
     public class wclWeDoRgbLight : wclWeDoIo
     {
         private Color FColor;

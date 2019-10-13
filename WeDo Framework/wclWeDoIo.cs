@@ -255,8 +255,10 @@ namespace wclWeDoFramework
                     Io = new wclWeDoRgbLight(Hub, ConnectionId);
                     Io.FDeviceType = wclWeDoIoDeviceType.iodRgb;
                     break;
-                /*case WEDO_DEVICE_TILT_SENSOR:
-                connectInfo.TypeEnum = IoType.IoTypeTiltSensor;*/
+                case WEDO_DEVICE_TILT_SENSOR:
+                    Io = new wclWeDoTiltSensor(Hub, ConnectionId);
+                    Io.FDeviceType = wclWeDoIoDeviceType.iodTiltSensor;
+                    break;
                 case WEDO_DEVICE_MOTION_SENSOR:
                     Io = new wclWeDoMotionSensor(Hub, ConnectionId);
                     Io.FDeviceType = wclWeDoIoDeviceType.iodMotionSensor;
@@ -337,7 +339,7 @@ namespace wclWeDoFramework
         /// <returns> If the method completed with success the returning value is
         ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
         ///   one of the Bluetooth Framework error code. </returns>
-		protected Int32 Reset()
+		protected Int32 ResetSensor()
         {
             return FHub.Io.ResetIo(FConnectionId);
         }

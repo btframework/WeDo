@@ -135,7 +135,8 @@ namespace wclWeDoFramework
     };
 
     /// <summary> The class represents a WeDo Titl Sensor device. </summary>
-    public class wclWeDoTiltSensor : wclWeDoIo
+    /// <seealso cref="wclWeDoResetableSensor"/>
+    public class wclWeDoTiltSensor : wclWeDoResetableSensor
     {
         private Int32 ConvertToSigned(Byte b)
         {

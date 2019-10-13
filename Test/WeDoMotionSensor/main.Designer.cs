@@ -39,6 +39,7 @@
             this.laCount = new System.Windows.Forms.Label();
             this.laDistanceTitle = new System.Windows.Forms.Label();
             this.laDistance = new System.Windows.Forms.Label();
+            this.btReset = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // laIoState
@@ -156,11 +157,23 @@
             this.laDistance.TabIndex = 22;
             this.laDistance.Text = "0";
             // 
+            // btReset
+            // 
+            this.btReset.Enabled = false;
+            this.btReset.Location = new System.Drawing.Point(194, 120);
+            this.btReset.Name = "btReset";
+            this.btReset.Size = new System.Drawing.Size(75, 23);
+            this.btReset.TabIndex = 23;
+            this.btReset.Text = "Reset";
+            this.btReset.UseVisualStyleBackColor = true;
+            this.btReset.Click += new System.EventHandler(this.BtReset_Click);
+            // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(286, 205);
+            this.Controls.Add(this.btReset);
             this.Controls.Add(this.laDistance);
             this.Controls.Add(this.laDistanceTitle);
             this.Controls.Add(this.laCount);
@@ -196,6 +209,7 @@
         private System.Windows.Forms.Label laCount;
         private System.Windows.Forms.Label laDistanceTitle;
         private System.Windows.Forms.Label laDistance;
+        private System.Windows.Forms.Button btReset;
     }
 }
 

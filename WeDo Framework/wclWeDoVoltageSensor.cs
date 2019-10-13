@@ -5,6 +5,7 @@ using wclCommon;
 namespace wclWeDoFramework
 {
     /// <summary> The class represents a WeDo Hub Voltage sensor. </summary>
+    /// <seealso cref="wclWeDoIo"/>
     public class wclWeDoVoltageSensor : wclWeDoIo
     {
         private float GetVoltage()

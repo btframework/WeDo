@@ -61,6 +61,7 @@
     <Compile Include="wclWeDoMotionSensor.cs" />
     <Compile Include="wclWeDoMotor.cs" />
     <Compile Include="wclWeDoPiezo.cs" />
+    <Compile Include="wclWeDoResetableSensor.cs" />
     <Compile Include="wclWeDoRgbLight.cs" />
     <Compile Include="wclWeDoSensorDataUnit.cs" />
     <Compile Include="wclWeDoService.cs" />

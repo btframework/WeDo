@@ -5,6 +5,7 @@ using wclCommon;
 namespace wclWeDoFramework
 {
     /// <summary> The class represents a WeDo Hub current sensor. </summary>
+    /// <seealso cref="wclWeDoIo"/>
     public class wclWeDoCurrentSensor : wclWeDoIo
     {
         private float GetCurrent()

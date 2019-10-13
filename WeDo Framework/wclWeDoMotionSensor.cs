@@ -19,7 +19,8 @@ namespace wclWeDoFramework
     };
 
     /// <summary> The class represents a WeDo Motion Sensor. </summary>
-    public class wclWeDoMotionSensor : wclWeDoIo
+    /// <seealso cref="wclWeDoResetableSensor"/>
+    public class wclWeDoMotionSensor : wclWeDoResetableSensor
     {
         private UInt32 FCount;
         private float FDistance;
