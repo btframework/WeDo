@@ -23,6 +23,19 @@ using System;
 
 namespace wclWeDoFramework
 {
+    /// <summary> The sensor's data unit. </summary>
+	public enum wclWeDoSensorDataUnit
+    {
+        /// <summary> Raw. </summary>
+        suRaw,
+        /// <summary> Percentage. </summary>
+        suPercentage,
+        /// <summary> SI. </summary>
+        suSi,
+        /// <summary> Unknown. </summary>
+        suUnknown
+    };
+
     /// <summary> This class contains info detailing how the data received for a given service (typically
     ///   a sensor of some kind) should be interpreted. </summary>
     public sealed class wclWeDoDataFormat
@@ -49,7 +62,7 @@ namespace wclWeDoFramework
 
         /// <summary> Compares two Data Formats </summary>
 		/// <param name="obj"> The object to be compared to the current one. </param>
-		/// <returns> <c>True</c> if this data format is equal to <c>Format</c>. <c>False</c> otherwise. </returns>
+		/// <returns> <c>True</c> if this data format is equal to <c>obj</c>. <c>False</c> otherwise. </returns>
         public override Boolean Equals(Object obj)
         {
             if (object.ReferenceEquals(obj, null))

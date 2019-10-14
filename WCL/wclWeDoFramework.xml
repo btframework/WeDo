@@ -79,6 +79,21 @@
             <summary> The event fires when current has been changed. </summary>
             <seealso cref="T:System.EventHandler"/>
         </member>
+        <member name="T:wclWeDoFramework.wclWeDoSensorDataUnit">
+            <summary> The sensor's data unit. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoSensorDataUnit.suRaw">
+            <summary> Raw. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoSensorDataUnit.suPercentage">
+            <summary> Percentage. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoSensorDataUnit.suSi">
+            <summary> SI. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoSensorDataUnit.suUnknown">
+            <summary> Unknown. </summary>
+        </member>
         <member name="T:wclWeDoFramework.wclWeDoDataFormat">
             <summary> This class contains info detailing how the data received for a given service (typically
               a sensor of some kind) should be interpreted. </summary>
@@ -94,7 +109,7 @@
         <member name="M:wclWeDoFramework.wclWeDoDataFormat.Equals(System.Object)">
             <summary> Compares two Data Formats </summary>
             <param name="obj"> The object to be compared to the current one. </param>
-            <returns> <c>True</c> if this data format is equal to <c>Format</c>. <c>False</c> otherwise. </returns>
+            <returns> <c>True</c> if this data format is equal to <c>obj</c>. <c>False</c> otherwise. </returns>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoDataFormat.GetHashCode">
             <summary> Gets the object hash. </summary>
@@ -395,9 +410,37 @@
             <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
               parameter is <c>null</c>. </exception>
         </member>
+        <member name="T:wclWeDoFramework.wclWeDoIoDeviceType">
+            <summary> Represents a type of an attached IO (motor, sensor, etc). </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodMotor">
+            <summary> A Motor. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodVoltageSensor">
+            <summary> A Voltage Sensor. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodCurrentSensor">
+            <summary> A Current Sensor. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodPiezo">
+            <summary> A Piezo Tone player. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodRgb">
+            <summary> An RGB light. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodTiltSensor">
+            <summary> A Tilt Sensor. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodMotionSensor">
+            <summary> A Motion Sensor (aka. Detect Sensor). </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodUnknown">
+            <summary> A type is unknown. </summary>
+        </member>
         <member name="T:wclWeDoFramework.wclWeDoInputFormat">
-            <summary> This class describes a configuration of an Input (sensor). At any time a sensor can be in just one mode,
-              and the details of this mode is captured by this structure. </summary>
+            <summary> This class describes a configuration of an Input (sensor). At any
+              time a sensor can be in just one mode, and the details of this mode is
+              captured by this structure. </summary>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoInputFormat.#ctor(System.Byte,wclWeDoFramework.wclWeDoIoDeviceType,System.Byte,System.UInt32,wclWeDoFramework.wclWeDoSensorDataUnit,System.Boolean,System.Byte,System.Byte)">
             <summary> Create a new instance of <c>wclWeDoInputFormat</c> class. </summary>
@@ -469,33 +512,6 @@
             <summary> Gets the value unit. </summary>
             <value> The unit of the values. </value>
             <seealso cref="T:wclWeDoFramework.wclWeDoSensorDataUnit"/>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoIoDeviceType">
-            <summary> Represents a type of an attached IO (motor, sensor, etc). </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodMotor">
-            <summary> A Motor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodVoltageSensor">
-            <summary> A Voltage Sensor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodCurrentSensor">
-            <summary> A Current Sensor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodPiezo">
-            <summary> A Piezo Tone player. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodRgb">
-            <summary> An RGB light. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodTiltSensor">
-            <summary> A Tilt Sensor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodMotionSensor">
-            <summary> A Motion Sensor (aka. Detect Sensor). </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodUnknown">
-            <summary> A type is unknown. </summary>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoVersion">
             <summary> The structure describes the device version number. </summary>
@@ -1093,21 +1109,6 @@
         <member name="E:wclWeDoFramework.wclWeDoRgbLight.OnModeChanged">
             <summary> The event fired when the RGB LED mode has been changed. </summary>
             <seealso cref="T:System.EventHandler"/>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoSensorDataUnit">
-            <summary> The sensor's data unit. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoSensorDataUnit.suRaw">
-            <summary> Raw. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoSensorDataUnit.suPercentage">
-            <summary> Percentage. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoSensorDataUnit.suSi">
-            <summary> SI. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoSensorDataUnit.suUnknown">
-            <summary> Unknown. </summary>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoService">
             <summary> The base class for all WeDo services. </summary>
