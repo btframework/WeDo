@@ -49,12 +49,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="wclWeDoDataFormats.cs" />
-    <Compile Include="wclWeDoDevices.cs" />
+    <Compile Include="wclWeDoBatteryLevelService.cs" />
+    <Compile Include="wclWeDoCurrentSensor.cs" />
+    <Compile Include="wclWeDoDataFormat.cs" />
+    <Compile Include="wclWeDoDeviceInformationService.cs" />
     <Compile Include="wclWeDoHub.cs" />
-    <Compile Include="wclWeDoSensors.cs" />
-    <Compile Include="wclWeDoServices.cs" />
-    <Compile Include="wclWeDoTypes.cs" />
+    <Compile Include="wclWeDoHubService.cs" />
+    <Compile Include="wclWeDoInputFormat.cs" />
+    <Compile Include="wclWeDoIo.cs" />
+    <Compile Include="wclWeDoIoDeviceType.cs" />
+    <Compile Include="wclWeDoIoService.cs" />
+    <Compile Include="wclWeDoMotionSensor.cs" />
+    <Compile Include="wclWeDoMotor.cs" />
+    <Compile Include="wclWeDoPieazo.cs" />
+    <Compile Include="wclWeDoResetableSensor.cs" />
+    <Compile Include="wclWeDoRgbLight.cs" />
+    <Compile Include="wclWeDoSensorDataUnit.cs" />
+    <Compile Include="wclWeDoService.cs" />
+    <Compile Include="wclWeDoTiltSensor.cs" />
+    <Compile Include="wclWeDoVersion.cs" />
+    <Compile Include="wclWeDoVoltageSensor.cs" />
     <Compile Include="wclWeDoWatcher.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

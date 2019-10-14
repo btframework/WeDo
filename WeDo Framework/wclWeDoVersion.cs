@@ -23,40 +23,6 @@ using System;
 
 namespace wclWeDoFramework
 {
-    /// <summary> The sensor's data unit. </summary>
-	public enum wclWeDoSensorDataUnit
-    {
-        /// <summary> Raw. </summary>
-        suRaw,
-        /// <summary> Percentage. </summary>
-        suPercentage,
-        /// <summary> SI. </summary>
-        suSi,
-        /// <summary> Unknown. </summary>
-        suUnknown
-    };
-
-    /// <summary> Represents a type of an attached IO (motor, sensor, etc). </summary>
-	public enum wclWeDoIoDeviceType
-    {
-        /// <summary> A Motor. </summary>
-        iodMotor,
-        /// <summary> A Voltage Sensor. </summary>
-        iodVoltageSensor,
-        /// <summary> A Current Sensor. </summary>
-        iodCurrentSensor,
-        /// <summary> A Piezo Tone player. </summary>
-        iodPiezo,
-        /// <summary> An RGB light. </summary>
-        iodRgb,
-        /// <summary> A Tilt Sensor. </summary>
-        iodTiltSensor,
-        /// <summary> A Motion Sensor (aka. Detect Sensor). </summary>
-        iodMotionSensor,
-        /// <summary> A type is unknown. </summary>
-        iodUnknown
-    };
-
     /// <summary> The structure describes the device version number. </summary>
     public struct wclWeDoVersion
     {

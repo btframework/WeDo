@@ -28,16 +28,12 @@ using wclBluetooth;
 
 namespace wclWeDoFramework
 {
-    /// <summary> The <c>OnHubFound</c> event handler prototype. </summary>
+    /// <summary> The <c>OnHubFound</c> and <c>OnHubLost</c> events handler
+    ///   prototype. </summary>
     /// <param name="Sender"> The object that fired the event. </param>
     /// <param name="Address"> The WeDo Hub MAC address. </param>
     /// <param name="Name"> The WeDo Hub name. </param>
-    public delegate void wclWeDoHubFoundEvent(Object Sender, Int64 Address, String Name);
-    /// <summary> The <c>OnHubLost</c> event handler prototype. </summary>
-    /// <param name="Sender"> The object that fired the event. </param>
-    /// <param name="Address"> The WeDo Hub MAC address. </param>
-    /// <param name="Name"> The WeDo Hub name. </param>
-    public delegate void wclWeDoHubLostEvent(Object Sender, Int64 Address, String Name);
+    public delegate void wclWeDoHubAppearanceEvent(Object Sender, Int64 Address, String Name);
     /// <summary> The <c>OnHunNameChanged</c> event handler prototype. </summary>
     /// <param name="Sender"> The object that fired the event. </param>
     /// <param name="Address"> The WeDo device's MAC address. </param>
@@ -292,7 +288,7 @@ namespace wclWeDoFramework
         /// <value> Returns <c>true</c> if Watcher is running (searching for WeDo Hubs).
         ///   Returns <c>false</c> otherwise. </value>
         public Boolean Active { get { return FWatcher.Monitoring; } }
-        
+
         /// <summary> Gets the <see cref="wclBluetoothRadio"/> object that is used for searching WeDo hubs. </summary>
         /// <value> If Watcher is searching returns the <see cref="wclBluetoothRadio"/> object used for
         ///   searching. If the Watcher is not active returns <c>nil</c>. </value>
@@ -309,11 +305,11 @@ namespace wclWeDoFramework
         }
 
         /// <summary> The event fires when new WeDo Hub has been found. </summary>
-        /// <seealso cref="wclWeDoHubFoundEvent" />
-        public event wclWeDoHubFoundEvent OnHubFound;
+        /// <seealso cref="wclWeDoHubAppearanceEvent" />
+        public event wclWeDoHubAppearanceEvent OnHubFound;
         /// <summary> The event fires when new WeDo Hub has been lost. </summary>
-        /// <seealso cref="wclWeDoHubLostEvent" />
-        public event wclWeDoHubLostEvent OnHubLost;
+        /// <seealso cref="wclWeDoHubAppearanceEvent" />
+        public event wclWeDoHubAppearanceEvent OnHubLost;
         /// <summary> The event fires when name of a WeDo Hub has been changed. </summary>
         /// <seealso cref="wclWeDoHubNameChangedEvent"/>
         public event wclWeDoHubNameChangedEvent OnHubNameChanged;
