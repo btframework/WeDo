@@ -1,6 +1,6 @@
 # Lego WeDo 2.0 Education Framework
 
-This Framework expands [Bluetooth Framework](https://www.btframework.com/bluetoothframework.htm) with Lego WeDo 2.0 Education support.
+This Framework expands [Bluetooth Framework](https://www.btframework.com/bluetoothframework.htm) with [Lego WeDo 2.0 Education](https://education.lego.com/en-us) support.
 
 ## License Terms
 
