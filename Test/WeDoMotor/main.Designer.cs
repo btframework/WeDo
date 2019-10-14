@@ -45,6 +45,8 @@
             this.laVoltageTitle = new System.Windows.Forms.Label();
             this.laVoltage = new System.Windows.Forms.Label();
             this.laMV = new System.Windows.Forms.Label();
+            this.laHighCurrent = new System.Windows.Forms.Label();
+            this.laLowVoltage = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // laIoState
@@ -223,11 +225,37 @@
             this.laMV.TabIndex = 28;
             this.laMV.Text = "mV";
             // 
+            // laHighCurrent
+            // 
+            this.laHighCurrent.AutoSize = true;
+            this.laHighCurrent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laHighCurrent.ForeColor = System.Drawing.Color.Red;
+            this.laHighCurrent.Location = new System.Drawing.Point(260, 151);
+            this.laHighCurrent.Name = "laHighCurrent";
+            this.laHighCurrent.Size = new System.Drawing.Size(81, 13);
+            this.laHighCurrent.TabIndex = 29;
+            this.laHighCurrent.Text = "High current!";
+            this.laHighCurrent.Visible = false;
+            // 
+            // laLowVoltage
+            // 
+            this.laLowVoltage.AutoSize = true;
+            this.laLowVoltage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laLowVoltage.ForeColor = System.Drawing.Color.Red;
+            this.laLowVoltage.Location = new System.Drawing.Point(357, 151);
+            this.laLowVoltage.Name = "laLowVoltage";
+            this.laLowVoltage.Size = new System.Drawing.Size(81, 13);
+            this.laLowVoltage.TabIndex = 30;
+            this.laLowVoltage.Text = "Low Voltage!";
+            this.laLowVoltage.Visible = false;
+            // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(446, 185);
+            this.Controls.Add(this.laLowVoltage);
+            this.Controls.Add(this.laHighCurrent);
             this.Controls.Add(this.laMV);
             this.Controls.Add(this.laVoltage);
             this.Controls.Add(this.laVoltageTitle);
@@ -275,6 +303,8 @@
         private System.Windows.Forms.Label laVoltageTitle;
         private System.Windows.Forms.Label laVoltage;
         private System.Windows.Forms.Label laMV;
+        private System.Windows.Forms.Label laHighCurrent;
+        private System.Windows.Forms.Label laLowVoltage;
     }
 }
 

@@ -143,6 +143,11 @@ namespace wclWeDoFramework
             DoLowVoltageAlert(Alert);
         }
 
+        private void HubHighCurrentAlert(object Sender, bool Alert)
+        {
+            DoHighCurrentAlert(Alert);
+        }
+
         private void HubDeviceAttached(Object Semder, wclWeDoIo Device)
         {
             // Make sure device is not attached yet.
@@ -214,6 +219,14 @@ namespace wclWeDoFramework
                 OnLowVoltageAlert(this, Alert);
         }
 
+        /// <summary> Fires the <c>OnHighCurrentAlert</c> event. </summary>
+        /// <param name="Alert"> <c>True</c> if device runs on high current. <c>False</c> otherwise. </param>
+        protected virtual void DoHighCurrentAlert(Boolean Alert)
+        {
+            if (OnHighCurrentAlert != null)
+                OnHighCurrentAlert(this, Alert);
+        }
+
         /// <summary> Fires the <c>OnDeviceAttached</c> event. </summary>
         /// /// <param name="Device"> The Input/Output device object. </param>
         /// <seealso cref="wclWeDoIo"/>
@@ -251,10 +264,11 @@ namespace wclWeDoFramework
             // to the Hub object.
             FHub = new wclWeDoHubService(FClient, this);
             FHub.OnButtonStateChanged += HubButtonStateChanged;
-            FHub.OnLowVoltageAlert += HubLowVoltageAlert;
             FHub.OnDeviceAttached += HubDeviceAttached;
             FHub.OnDeviceDetached += HubDeviceDetached;
-            
+            FHub.OnLowVoltageAlert += HubLowVoltageAlert;
+            FHub.OnHighCurrentAlert += HubHighCurrentAlert;
+
             // Create attached devices list.
             FDevices = new List<wclWeDoIo>();
 
@@ -264,6 +278,7 @@ namespace wclWeDoFramework
             OnLowVoltageAlert = null;
             OnDeviceAttached = null;
             OnDeviceDetached = null;
+            OnHighCurrentAlert = null;
         }
 
         /// <summary> Connects to a selected WeDo Hub. </summary>
@@ -354,14 +369,17 @@ namespace wclWeDoFramework
         /// <summary> The event fires when button state has been changed. </summary>
         /// <seealso cref="wclWeDoHubButtonStateChangedEvent"/>
         public event wclWeDoHubButtonStateChangedEvent OnButtonStateChanged;
-        /// <summary> The event fires when device runs on low battery. </summary>
-        /// <seealso cref="wclWeDoHubLowVolatgeAlertEvent"/>
-        public event wclWeDoHubLowVolatgeAlertEvent OnLowVoltageAlert;
         /// <summary> The event fires when new IO device has been attached. </summary>
         /// <seealso cref="wclWeDoDeviceStateChangedEvent"/>
         public event wclWeDoDeviceStateChangedEvent OnDeviceAttached;
         /// <summary> The event fires when an existing IO device has been detached. </summary>
         /// <seealso cref="wclWeDoDeviceStateChangedEvent"/>
         public event wclWeDoDeviceStateChangedEvent OnDeviceDetached;
+        /// <summary> The event fires when device runs on low battery. </summary>
+        /// <seealso cref="wclWeDoHubAlertEvent"/>
+        public event wclWeDoHubAlertEvent OnLowVoltageAlert;
+        /// <summary> The event fires when device runs on high current. </summary>
+        /// <seealso cref="wclWeDoHubAlertEvent"/>
+        public event wclWeDoHubAlertEvent OnHighCurrentAlert;
     };
 }

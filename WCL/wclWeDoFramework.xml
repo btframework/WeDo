@@ -204,6 +204,10 @@
             <summary> Fires the <c>OnLowVoltageAlert</c> event. </summary>
             <param name="Alert"> <c>True</c> if device runs on low battery. <c>False</c> otherwise. </param>
         </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.DoHighCurrentAlert(System.Boolean)">
+            <summary> Fires the <c>OnHighCurrentAlert</c> event. </summary>
+            <param name="Alert"> <c>True</c> if device runs on high current. <c>False</c> otherwise. </param>
+        </member>
         <member name="M:wclWeDoFramework.wclWeDoHub.DoDeviceAttached(wclWeDoFramework.wclWeDoIo)">
             <summary> Fires the <c>OnDeviceAttached</c> event. </summary>
             /// <param name="Device"> The Input/Output device object. </param>
@@ -289,10 +293,6 @@
             <summary> The event fires when button state has been changed. </summary>
             <seealso cref="T:wclWeDoFramework.wclWeDoHubButtonStateChangedEvent"/>
         </member>
-        <member name="E:wclWeDoFramework.wclWeDoHub.OnLowVoltageAlert">
-            <summary> The event fires when device runs on low battery. </summary>
-            <seealso cref="T:wclWeDoFramework.wclWeDoHubLowVolatgeAlertEvent"/>
-        </member>
         <member name="E:wclWeDoFramework.wclWeDoHub.OnDeviceAttached">
             <summary> The event fires when new IO device has been attached. </summary>
             <seealso cref="T:wclWeDoFramework.wclWeDoDeviceStateChangedEvent"/>
@@ -301,16 +301,24 @@
             <summary> The event fires when an existing IO device has been detached. </summary>
             <seealso cref="T:wclWeDoFramework.wclWeDoDeviceStateChangedEvent"/>
         </member>
+        <member name="E:wclWeDoFramework.wclWeDoHub.OnLowVoltageAlert">
+            <summary> The event fires when device runs on low battery. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHubAlertEvent"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoHub.OnHighCurrentAlert">
+            <summary> The event fires when device runs on high current. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHubAlertEvent"/>
+        </member>
         <member name="T:wclWeDoFramework.wclWeDoHubButtonStateChangedEvent">
             <summary> The <c>OnButtonStateChanged</c> event handler prototype. </summary>
             <param name="Sender"> The object that fires the event. </param>
             <param name="Pressed"> The button's state. <c>True</c> if button has been pressed.
               <c>False</c> if button has been released. </param>
         </member>
-        <member name="T:wclWeDoFramework.wclWeDoHubLowVolatgeAlertEvent">
-            <summary> The <c>OnLowVoltageAlert</c> event handler prototype. </summary>
+        <member name="T:wclWeDoFramework.wclWeDoHubAlertEvent">
+            <summary> The event handler prototype for alert events. </summary>
             <param name="Sender"> The object that fires the event. </param>
-            <param name="Alert"> <c>True</c> if device runs on low battery. <c>False</c> otherwise. </param>
+            <param name="Alert"> <c>True</c> if the alert is active. <c>False</c> otherwise. </param>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoDeviceStateChangedEvent">
             <summary> The <c>OnDeviceAttached</c> and <c>OnDeviceDetached</c> events handler prototype. </summary>
@@ -355,6 +363,10 @@
         <member name="M:wclWeDoFramework.wclWeDoHubService.DoDeviceDetached(System.Byte)">
             <summary> Fires the <c>OnDeviceDetached</c> event. </summary>
             <param name="ConnectionId"> The device connection ID. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.DoHightCurrentAlert(System.Boolean)">
+            <summary> Fires then <c>OnHighCurrentAlert</c> event.</summary>
+            <param name="Alert"> <c>True</c> if device runs on high current. <c>False</c> otherwise. </param>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoHubService.#ctor(wclBluetooth.wclGattClient,wclWeDoFramework.wclWeDoHub)">
             <summary> Creates new IO service client. </summary>

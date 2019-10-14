@@ -127,7 +127,7 @@ namespace wclWeDoFramework
         public Int32 Run(wclWeDoMotorDirection Direction, Byte Power)
         {
             if (Direction == wclWeDoMotorDirection.mdUnknown || Power > 100)
-                return wclErrors.WCL_E_SUCCESS;
+                return wclErrors.WCL_E_INVALID_ARGUMENT;
 
             if (!Attached)
                 return wclBluetoothErrors.WCL_E_BLUETOOTH_DEVICE_NOT_INSTALLED;

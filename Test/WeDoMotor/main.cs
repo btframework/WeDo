@@ -35,10 +35,22 @@ namespace WeDoMotor
             FHub.OnDisconnected += FHub_OnDisconnected;
             FHub.OnDeviceAttached += FHub_OnDeviceAttached;
             FHub.OnDeviceDetached += FHub_OnDeviceDetached;
-            
+            FHub.OnHighCurrentAlert += FHub_OnHighCurrentAlert;
+            FHub.OnLowVoltageAlert += FHub_OnLowVoltageAlert;
+
             FMotor = null;
             FCurrent = null;
             FVoltage = null;
+        }
+
+        private void FHub_OnLowVoltageAlert(object Sender, bool Alert)
+        {
+            laLowVoltage.Visible = Alert;
+        }
+
+        private void FHub_OnHighCurrentAlert(object Sender, bool Alert)
+        {
+            laHighCurrent.Visible = Alert;
         }
 
         private void EnablePlay(Boolean Attached)
@@ -51,6 +63,9 @@ namespace WeDoMotor
 
                 laCurrent.Text = "0";
                 laVoltage.Text = "0";
+
+                laHighCurrent.Visible = false;
+                laLowVoltage.Visible = false;
             }
 
             laDirection.Enabled = Attached;

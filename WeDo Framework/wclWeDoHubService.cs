@@ -12,10 +12,10 @@ namespace wclWeDoFramework
     /// <param name="Pressed"> The button's state. <c>True</c> if button has been pressed.
     ///   <c>False</c> if button has been released. </param>
     public delegate void wclWeDoHubButtonStateChangedEvent(Object Sender, Boolean Pressed);
-    /// <summary> The <c>OnLowVoltageAlert</c> event handler prototype. </summary>
+    /// <summary> The event handler prototype for alert events. </summary>
     /// <param name="Sender"> The object that fires the event. </param>
-    /// <param name="Alert"> <c>True</c> if device runs on low battery. <c>False</c> otherwise. </param>
-    public delegate void wclWeDoHubLowVolatgeAlertEvent(Object Sender, Boolean Alert);
+    /// <param name="Alert"> <c>True</c> if the alert is active. <c>False</c> otherwise. </param>
+    public delegate void wclWeDoHubAlertEvent(Object Sender, Boolean Alert);
     /// <summary> The <c>OnDeviceAttached</c> and <c>OnDeviceDetached</c> events handler prototype. </summary>
     /// <param name="Sender"> The object that fires the event. </param>
     /// <param name="Device"> The Input/Output device object. </param>
@@ -97,10 +97,11 @@ namespace wclWeDoFramework
         }
 
         internal event wclWeDoHubButtonStateChangedEvent OnButtonStateChanged;
-        internal event wclWeDoHubLowVolatgeAlertEvent OnLowVoltageAlert;
         internal event wclWeDoDeviceStateChangedEvent OnDeviceAttached;
         internal event wclWeDoHubDeviceDetachedEvent OnDeviceDetached;
-        
+        internal event wclWeDoHubAlertEvent OnHighCurrentAlert;
+        internal event wclWeDoHubAlertEvent OnLowVoltageAlert;
+
         /// <summary> Initializes the WeDo service. </summary>
         /// <returns> If the method completed with success the returning value is
         ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
@@ -228,6 +229,9 @@ namespace wclWeDoFramework
                 // Low voltage?
                 if (FLowVoltageAlertChar != null && Handle == FLowVoltageAlertChar.Value.Handle)
                     DoLowVoltageAlert(Value[0] == 1);
+                // High current!
+                if (FHighCurrentAleartChar != null && Handle == FHighCurrentAleartChar.Value.Handle)
+                    DoHightCurrentAlert(Value[0] == 1);
                 // IO attached/detached
                 if (FIoAttachedChar != null && Handle == FIoAttachedChar.Value.Handle)
                 {
@@ -284,6 +288,14 @@ namespace wclWeDoFramework
                 OnDeviceDetached(this, ConnectionId);
         }
 
+        /// <summary> Fires then <c>OnHighCurrentAlert</c> event.</summary>
+        /// <param name="Alert"> <c>True</c> if device runs on high current. <c>False</c> otherwise. </param>
+        protected virtual void DoHightCurrentAlert(Boolean Alert)
+        {
+            if (OnHighCurrentAlert != null)
+                OnHighCurrentAlert(this, Alert);
+        }
+
         /// <summary> Creates new IO service client. </summary>
         /// <param name="Client"> The <see cref="wclGattClient"/> object that handles the connection
         ///   to a WeDo device. </param>
@@ -297,6 +309,7 @@ namespace wclWeDoFramework
             OnLowVoltageAlert = null;
             OnDeviceAttached = null;
             OnDeviceDetached = null;
+            OnHighCurrentAlert = null;
 
             Uninitialize();
         }
