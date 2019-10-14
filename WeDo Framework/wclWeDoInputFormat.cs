@@ -1,9 +1,31 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+//   Wireless Communication Library 7                                         //
+//                                                                            //
+//   Copyright (C) 2006-2019 Mike Petrichenko                                 //
+//                           Soft Service Company                             //
+//                           All Rights Reserved                              //
+//                                                                            //
+//   http://www.btframework.com                                               //
+//                                                                            //
+//   support@btframework.com                                                  //
+//   shop@btframework.com                                                     //
+//                                                                            //
+// -------------------------------------------------------------------------- //
+//                                                                            //
+//   WCL Bluetooth Framework: Lego WeDo 2.0 Education Extension.              //
+//                                                                            //
+//     https://github.com/btframework/WeDo                                    //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+
+using System;
 
 namespace wclWeDoFramework
 {
-    /// <summary> This class describes a configuration of an Input (sensor). At any time a sensor can be in just one mode,
-    ///   and the details of this mode is captured by this structure. </summary>
+    /// <summary> This class describes a configuration of an Input (sensor). At any
+    ///   time a sensor can be in just one mode, and the details of this mode is
+    ///   captured by this structure. </summary>
     public sealed class wclWeDoInputFormat
     {
         private const Byte INPUT_FORMAT_PACKET_SIZE = 11;

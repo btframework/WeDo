@@ -1,4 +1,25 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+//   Wireless Communication Library 7                                         //
+//                                                                            //
+//   Copyright (C) 2006-2019 Mike Petrichenko                                 //
+//                           Soft Service Company                             //
+//                           All Rights Reserved                              //
+//                                                                            //
+//   http://www.btframework.com                                               //
+//                                                                            //
+//   support@btframework.com                                                  //
+//   shop@btframework.com                                                     //
+//                                                                            //
+// -------------------------------------------------------------------------- //
+//                                                                            //
+//   WCL Bluetooth Framework: Lego WeDo 2.0 Education Extension.              //
+//                                                                            //
+//     https://github.com/btframework/WeDo                                    //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+
+using System;
 using System.Collections.Generic;
 
 using wclCommon;
