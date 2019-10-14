@@ -101,6 +101,7 @@ namespace wclWeDoFramework
         internal event wclWeDoHubDeviceDetachedEvent OnDeviceDetached;
         internal event wclWeDoHubAlertEvent OnHighCurrentAlert;
         internal event wclWeDoHubAlertEvent OnLowVoltageAlert;
+        internal event wclWeDoHubAlertEvent OnLowSignalAlert;
 
         /// <summary> Initializes the WeDo service. </summary>
         /// <returns> If the method completed with success the returning value is
@@ -232,6 +233,9 @@ namespace wclWeDoFramework
                 // High current!
                 if (FHighCurrentAleartChar != null && Handle == FHighCurrentAleartChar.Value.Handle)
                     DoHightCurrentAlert(Value[0] == 1);
+                // Low signal
+                if (FLowSignalChar != null && Handle == FLowSignalChar.Value.Handle)
+                    DoLowSignalAlert(Value[0] == 1);
                 // IO attached/detached
                 if (FIoAttachedChar != null && Handle == FIoAttachedChar.Value.Handle)
                 {
@@ -296,6 +300,14 @@ namespace wclWeDoFramework
                 OnHighCurrentAlert(this, Alert);
         }
 
+        /// <summary> Fires then <c>OnLowSignalAlert</c> event.</summary>
+        /// <param name="Alert"> <c>True</c> if the signal from radio has low RSSI. <c>False</c> otherwise. </param>
+        protected virtual void DoLowSignalAlert(Boolean Alert)
+        {
+            if (OnLowSignalAlert != null)
+                OnLowSignalAlert(this, Alert);
+        }
+
         /// <summary> Creates new IO service client. </summary>
         /// <param name="Client"> The <see cref="wclGattClient"/> object that handles the connection
         ///   to a WeDo device. </param>
@@ -310,6 +322,7 @@ namespace wclWeDoFramework
             OnDeviceAttached = null;
             OnDeviceDetached = null;
             OnHighCurrentAlert = null;
+            OnLowSignalAlert = null;
 
             Uninitialize();
         }

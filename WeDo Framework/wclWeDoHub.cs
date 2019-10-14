@@ -143,9 +143,14 @@ namespace wclWeDoFramework
             DoLowVoltageAlert(Alert);
         }
 
-        private void HubHighCurrentAlert(object Sender, bool Alert)
+        private void HubHighCurrentAlert(object Sender, Boolean Alert)
         {
             DoHighCurrentAlert(Alert);
+        }
+
+        private void HubLowSignalAlert(object Sender, Boolean Alert)
+        {
+            DoLowSignalAlert(Alert);
         }
 
         private void HubDeviceAttached(Object Semder, wclWeDoIo Device)
@@ -227,6 +232,14 @@ namespace wclWeDoFramework
                 OnHighCurrentAlert(this, Alert);
         }
 
+        /// <summary> Fires the <c>OnLowSignalAlert</c> event. </summary>
+        /// <param name="Alert"> <c>True</c> if the RSSI value is low. <c>False</c> otherwise. </param>
+        protected virtual void DoLowSignalAlert(Boolean Alert)
+        {
+            if (OnLowSignalAlert != null)
+                OnLowSignalAlert(this, Alert);
+        }
+
         /// <summary> Fires the <c>OnDeviceAttached</c> event. </summary>
         /// /// <param name="Device"> The Input/Output device object. </param>
         /// <seealso cref="wclWeDoIo"/>
@@ -268,6 +281,7 @@ namespace wclWeDoFramework
             FHub.OnDeviceDetached += HubDeviceDetached;
             FHub.OnLowVoltageAlert += HubLowVoltageAlert;
             FHub.OnHighCurrentAlert += HubHighCurrentAlert;
+            FHub.OnLowSignalAlert += HubLowSignalAlert;
 
             // Create attached devices list.
             FDevices = new List<wclWeDoIo>();
@@ -279,6 +293,7 @@ namespace wclWeDoFramework
             OnDeviceAttached = null;
             OnDeviceDetached = null;
             OnHighCurrentAlert = null;
+            OnLowSignalAlert = null;
         }
 
         /// <summary> Connects to a selected WeDo Hub. </summary>
@@ -381,5 +396,8 @@ namespace wclWeDoFramework
         /// <summary> The event fires when device runs on high current. </summary>
         /// <seealso cref="wclWeDoHubAlertEvent"/>
         public event wclWeDoHubAlertEvent OnHighCurrentAlert;
+        /// <summary> The event fires when low RSSI value received from the device. </summary>
+        /// <seealso cref="wclWeDoHubAlertEvent"/>
+        public event wclWeDoHubAlertEvent OnLowSignalAlert;
     };
 }

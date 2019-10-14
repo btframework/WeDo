@@ -52,6 +52,7 @@
             this.chHardwareVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chIsInternal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chPortId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.laLowSignal = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // laManufacturerName
@@ -260,6 +261,18 @@
             // 
             this.chPortId.Text = "Port ID";
             // 
+            // laLowSignal
+            // 
+            this.laLowSignal.AutoSize = true;
+            this.laLowSignal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laLowSignal.ForeColor = System.Drawing.Color.Red;
+            this.laLowSignal.Location = new System.Drawing.Point(231, 199);
+            this.laLowSignal.Name = "laLowSignal";
+            this.laLowSignal.Size = new System.Drawing.Size(73, 13);
+            this.laLowSignal.TabIndex = 30;
+            this.laLowSignal.Text = "Low Signal!";
+            this.laLowSignal.Visible = false;
+            // 
             // fmDevInfo
             // 
             this.AcceptButton = this.btClose;
@@ -267,6 +280,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btClose;
             this.ClientSize = new System.Drawing.Size(847, 229);
+            this.Controls.Add(this.laLowSignal);
             this.Controls.Add(this.lvAttachedDevices);
             this.Controls.Add(this.laLowVoltage);
             this.Controls.Add(this.laBattLevel);
@@ -322,5 +336,6 @@
         private System.Windows.Forms.ColumnHeader chHardwareVersion;
         private System.Windows.Forms.ColumnHeader chIsInternal;
         private System.Windows.Forms.ColumnHeader chPortId;
+        private System.Windows.Forms.Label laLowSignal;
     }
 }

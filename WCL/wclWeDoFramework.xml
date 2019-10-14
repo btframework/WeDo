@@ -208,6 +208,10 @@
             <summary> Fires the <c>OnHighCurrentAlert</c> event. </summary>
             <param name="Alert"> <c>True</c> if device runs on high current. <c>False</c> otherwise. </param>
         </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.DoLowSignalAlert(System.Boolean)">
+            <summary> Fires the <c>OnLowSignalAlert</c> event. </summary>
+            <param name="Alert"> <c>True</c> if the RSSI value is low. <c>False</c> otherwise. </param>
+        </member>
         <member name="M:wclWeDoFramework.wclWeDoHub.DoDeviceAttached(wclWeDoFramework.wclWeDoIo)">
             <summary> Fires the <c>OnDeviceAttached</c> event. </summary>
             /// <param name="Device"> The Input/Output device object. </param>
@@ -309,6 +313,10 @@
             <summary> The event fires when device runs on high current. </summary>
             <seealso cref="T:wclWeDoFramework.wclWeDoHubAlertEvent"/>
         </member>
+        <member name="E:wclWeDoFramework.wclWeDoHub.OnLowSignalAlert">
+            <summary> The event fires when low RSSI value received from the device. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHubAlertEvent"/>
+        </member>
         <member name="T:wclWeDoFramework.wclWeDoHubButtonStateChangedEvent">
             <summary> The <c>OnButtonStateChanged</c> event handler prototype. </summary>
             <param name="Sender"> The object that fires the event. </param>
@@ -367,6 +375,10 @@
         <member name="M:wclWeDoFramework.wclWeDoHubService.DoHightCurrentAlert(System.Boolean)">
             <summary> Fires then <c>OnHighCurrentAlert</c> event.</summary>
             <param name="Alert"> <c>True</c> if device runs on high current. <c>False</c> otherwise. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.DoLowSignalAlert(System.Boolean)">
+            <summary> Fires then <c>OnLowSignalAlert</c> event.</summary>
+            <param name="Alert"> <c>True</c> if the signal from radio has low RSSI. <c>False</c> otherwise. </param>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoHubService.#ctor(wclBluetooth.wclGattClient,wclWeDoFramework.wclWeDoHub)">
             <summary> Creates new IO service client. </summary>
