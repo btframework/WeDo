@@ -197,18 +197,58 @@ namespace wclWeDoFramework
         }
 
         /// <summary> Compares two Input Formats. </summary>
-        /// <param name="Format"> The object to be compare with current one. </param>
-        /// <returns> <c>True</c> if the Input Formats are equals. <c>False</c> otherwise. </returns>
-        /// <seealso cref="wclWeDoInputFormat"/>
-        public Boolean IsEqual(wclWeDoInputFormat Format)
+        /// <param name="obj"> The other object to be compared with current. </param>
+        /// <returns> <c>True</c> if this input format is equal to <c>obj</c>.
+        ///   <c>False</c> otherwise. </returns>
+        public override Boolean Equals(Object obj)
         {
-            if (Format == null)
+            if (ReferenceEquals(obj, null))
+                return false;
+            if (ReferenceEquals(this, obj))
+                return true;
+            if (this.GetType() != obj.GetType())
                 return false;
 
+            wclWeDoInputFormat Format = (wclWeDoInputFormat)obj;
             return (FConnectionId == Format.ConnectionId && FInterval == Format.Interval &&
                 FMode == Format.Mode && FNotificationsEnabled == Format.NotificationsEnabled &&
                 FNumberOfBytes == Format.NumberOfBytes && FRevision == Format.Revision &&
                 FDeviceType == Format.DeviceType && FUnit == Format.Unit);
+        }
+
+        /// <summary> Gets the hash code for the current format. </summary>
+        /// <returns> The hash code. </returns>
+        public override Int32 GetHashCode()
+        {
+            Int32 Hash = FConnectionId.GetHashCode();
+            Hash = (Hash * 397) ^ FDeviceType.GetHashCode();
+            Hash = (Hash * 397) ^ FInterval.GetHashCode();
+            Hash = (Hash * 397) ^ FMode.GetHashCode();
+            Hash = (Hash * 397) ^ FNotificationsEnabled.GetHashCode();
+            Hash = (Hash * 397) ^ FNumberOfBytes.GetHashCode();
+            Hash = (Hash * 397) ^ FRevision.GetHashCode();
+            Hash = (Hash * 397) ^ FUnit.GetHashCode();
+            return Hash;
+        }
+
+        /// <summary> Override th <c>==</c> operator. </summary>
+        /// <param name="a"> The first argument for comparison. </param>
+        /// <param name="b"> The second argument for comparison. </param>
+        /// <returns> <c>True</c> if <c>a==b</c>. <c>False</c> otherwise. </returns>
+        /// <seealso cref="wclWeDoInputFormat"/>
+        public static Boolean operator ==(wclWeDoInputFormat a, wclWeDoInputFormat b)
+        {
+            return Equals(a, b);
+        }
+
+        /// <summary> Override th <c>!=</c> operator. </summary>
+        /// <param name="a"> The first argument for comparison. </param>
+        /// <param name="b"> The second argument for comparison. </param>
+        /// <returns> <c>True</c> if <c>a!=b</c>. <c>False</c> otherwise. </returns>
+        /// <seealso cref="wclWeDoInputFormat"/>
+        public static Boolean operator !=(wclWeDoInputFormat a, wclWeDoInputFormat b)
+        {
+            return (!(a == b));
         }
 
         /// <summary> The Connect ID of the corresponding device. </summary>

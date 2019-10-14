@@ -91,11 +91,28 @@
             <param name="Unit"> The sensor data unit. </param>
             <seealso cref="T:wclWeDoFramework.wclWeDoSensorDataUnit"/>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoDataFormat.IsEqual(wclWeDoFramework.wclWeDoDataFormat)">
+        <member name="M:wclWeDoFramework.wclWeDoDataFormat.Equals(System.Object)">
             <summary> Compares two Data Formats </summary>
-            <param name="Format"> The format to be compared to the current one. </param>
-            <returns> <c>True</c> if this data format is equal to <c>Format</c>.
+            <param name="obj"> The other object to be compared with current. </param>
+            <returns> <c>True</c> if this data format is equal to <c>obj</c>.
               <c>False</c> otherwise. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDataFormat.GetHashCode">
+            <summary> Gets the hash code for the current format. </summary>
+            <returns> The hash code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDataFormat.op_Equality(wclWeDoFramework.wclWeDoDataFormat,wclWeDoFramework.wclWeDoDataFormat)">
+            <summary> Override th <c>==</c> operator. </summary>
+            <param name="a"> The first argument for comparison. </param>
+            <param name="b"> The second argument for comparison. </param>
+            <returns> <c>True</c> if <c>a==b</c>. <c>False</c> otherwise. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoDataFormat"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDataFormat.op_Inequality(wclWeDoFramework.wclWeDoDataFormat,wclWeDoFramework.wclWeDoDataFormat)">
+            <summary> Override th <c>!=</c> operator. </summary>
+            <param name="a"> The first argument for comparison. </param>
+            <param name="b"> The second argument for comparison. </param>
+            <returns> <c>True</c> if <c>a!=b</c>. <c>False</c> otherwise. </returns>
             <seealso cref="T:wclWeDoFramework.wclWeDoDataFormat"/>
         </member>
         <member name="P:wclWeDoFramework.wclWeDoDataFormat.DataSetCount">
@@ -399,10 +416,28 @@
             <seealso cref="T:wclWeDoFramework.wclWeDoIoDeviceType"/>
             <seealso cref="T:wclWeDoFramework.wclWeDoSensorDataUnit"/>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoInputFormat.IsEqual(wclWeDoFramework.wclWeDoInputFormat)">
+        <member name="M:wclWeDoFramework.wclWeDoInputFormat.Equals(System.Object)">
             <summary> Compares two Input Formats. </summary>
-            <param name="Format"> The object to be compare with current one. </param>
-            <returns> <c>True</c> if the Input Formats are equals. <c>False</c> otherwise. </returns>
+            <param name="obj"> The other object to be compared with current. </param>
+            <returns> <c>True</c> if this input format is equal to <c>obj</c>.
+              <c>False</c> otherwise. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoInputFormat.GetHashCode">
+            <summary> Gets the hash code for the current format. </summary>
+            <returns> The hash code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoInputFormat.op_Equality(wclWeDoFramework.wclWeDoInputFormat,wclWeDoFramework.wclWeDoInputFormat)">
+            <summary> Override th <c>==</c> operator. </summary>
+            <param name="a"> The first argument for comparison. </param>
+            <param name="b"> The second argument for comparison. </param>
+            <returns> <c>True</c> if <c>a==b</c>. <c>False</c> otherwise. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoInputFormat"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoInputFormat.op_Inequality(wclWeDoFramework.wclWeDoInputFormat,wclWeDoFramework.wclWeDoInputFormat)">
+            <summary> Override th <c>!=</c> operator. </summary>
+            <param name="a"> The first argument for comparison. </param>
+            <param name="b"> The second argument for comparison. </param>
+            <returns> <c>True</c> if <c>a!=b</c>. <c>False</c> otherwise. </returns>
             <seealso cref="T:wclWeDoFramework.wclWeDoInputFormat"/>
         </member>
         <member name="P:wclWeDoFramework.wclWeDoInputFormat.ConnectionId">
@@ -1301,6 +1336,30 @@
         </member>
         <member name="F:wclWeDoFramework.wclWeDoVersion.MinorVersion">
             <summary> The major version number. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoVersion.Equals(System.Object)">
+            <summary> Compares two versions. </summary>
+            <param name="obj"> The other object to be compared with current. </param>
+            <returns> <c>True</c> if this version is equal to <c>obj</c>.
+              <c>False</c> otherwise. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoVersion.GetHashCode">
+            <summary> Gets the hash code for the current version. </summary>
+            <returns> The hash code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoVersion.op_Equality(wclWeDoFramework.wclWeDoVersion,wclWeDoFramework.wclWeDoVersion)">
+            <summary> Override th <c>==</c> operator. </summary>
+            <param name="a"> The first argument for comparison. </param>
+            <param name="b"> The second argument for comparison. </param>
+            <returns> <c>True</c> if <c>a==b</c>. <c>False</c> otherwise. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoVersion"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoVersion.op_Inequality(wclWeDoFramework.wclWeDoVersion,wclWeDoFramework.wclWeDoVersion)">
+            <summary> Override th <c>!=</c> operator. </summary>
+            <param name="a"> The first argument for comparison. </param>
+            <param name="b"> The second argument for comparison. </param>
+            <returns> <c>True</c> if <c>a!=b</c>. <c>False</c> otherwise. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoVersion"/>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoVersion.ToString">
             <summary> A formatted string representation of the version. </summary>

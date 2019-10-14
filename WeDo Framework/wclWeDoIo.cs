@@ -222,7 +222,7 @@ namespace wclWeDoFramework
         // The method called by IO Service when Input Format has been updated.
         internal void UpdateInputFormat(wclWeDoInputFormat Format)
         {
-            if (FInputFormat == null || (!Format.IsEqual(FInputFormat) && FConnectionId == Format.ConnectionId))
+            if (FInputFormat == null || (Format != FInputFormat && FConnectionId == Format.ConnectionId))
             {
                 wclWeDoInputFormat OldFormat = FInputFormat;
                 FInputFormat = Format;

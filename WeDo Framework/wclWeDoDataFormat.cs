@@ -48,17 +48,52 @@ namespace wclWeDoFramework
         }
 
         /// <summary> Compares two Data Formats </summary>
-		/// <param name="Format"> The format to be compared to the current one. </param>
-		/// <returns> <c>True</c> if this data format is equal to <c>Format</c>.
+		/// <param name="obj"> The other object to be compared with current. </param>
+		/// <returns> <c>True</c> if this data format is equal to <c>obj</c>.
         ///   <c>False</c> otherwise. </returns>
-        /// <seealso cref="wclWeDoDataFormat"/>
-        public Boolean IsEqual(wclWeDoDataFormat Format)
+        public override Boolean Equals(Object obj)
         {
-            if (Format == null)
+            if (ReferenceEquals(obj, null))
+                return false;
+            if (ReferenceEquals(this, obj))
+                return true;
+            if (this.GetType() != obj.GetType())
                 return false;
 
+            wclWeDoDataFormat Format = (wclWeDoDataFormat)obj;
             return (FDataSetCount == Format.DataSetCount && FDataSetSize == Format.DataSetSize &&
                 FMode == Format.Mode && FUnit == Format.Unit);
+        }
+
+        /// <summary> Gets the hash code for the current format. </summary>
+        /// <returns> The hash code. </returns>
+        public override Int32 GetHashCode()
+        {
+            Int32 Hash = FDataSetCount.GetHashCode();
+            Hash = (Hash * 397) ^ FDataSetSize.GetHashCode();
+            Hash = (Hash * 397) ^ FMode.GetHashCode();
+            Hash = (Hash * 397) ^ FUnit.GetHashCode();
+            return Hash;
+        }
+
+        /// <summary> Override th <c>==</c> operator. </summary>
+        /// <param name="a"> The first argument for comparison. </param>
+        /// <param name="b"> The second argument for comparison. </param>
+        /// <returns> <c>True</c> if <c>a==b</c>. <c>False</c> otherwise. </returns>
+        /// <seealso cref="wclWeDoDataFormat"/>
+        public static Boolean operator ==(wclWeDoDataFormat a, wclWeDoDataFormat b)
+        {
+            return Equals(a, b);
+        }
+
+        /// <summary> Override th <c>!=</c> operator. </summary>
+        /// <param name="a"> The first argument for comparison. </param>
+        /// <param name="b"> The second argument for comparison. </param>
+        /// <returns> <c>True</c> if <c>a!=b</c>. <c>False</c> otherwise. </returns>
+        /// <seealso cref="wclWeDoDataFormat"/>
+        public static Boolean operator !=(wclWeDoDataFormat a, wclWeDoDataFormat b)
+        {
+            return (!(a == b));
         }
 
         /// <summary> Gets the data set count. </summary>
