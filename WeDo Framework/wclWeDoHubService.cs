@@ -96,6 +96,16 @@ namespace wclWeDoFramework
             return Client.WriteCharacteristicValue(FDeviceNameChar.Value, CharVal);
         }
 
+        internal Int32 TurnOff()
+        {
+            if (!Connected)
+                return wclConnectionErrors.WCL_E_CONNECTION_NOT_ACTIVE;
+
+            Byte[] Value = new Byte[1];
+            Value[0] = 0x01;
+            return Client.WriteCharacteristicValue(FTurnOffChar.Value, Value);
+        }
+
         internal event wclWeDoHubButtonStateChangedEvent OnButtonStateChanged;
         internal event wclWeDoDeviceStateChangedEvent OnDeviceAttached;
         internal event wclWeDoHubDeviceDetachedEvent OnDeviceDetached;
@@ -191,15 +201,6 @@ namespace wclWeDoFramework
                     UnsubscribeFromNotifications(FHighCurrentAleartChar);
                 if (FLowSignalChar != null)
                     UnsubscribeFromNotifications(FLowSignalChar);
-
-                // Try to send disconnect command (only if client connected).
-                if (Client.State == wclClientState.csConnected)
-                {
-                    System.Threading.Thread.Sleep(100);
-                    Byte[] Value = new Byte[1];
-                    Value[0] = 0x01;
-                    Client.WriteCharacteristicValue(FTurnOffChar.Value, Value);
-                }
             }
 
             FDeviceNameChar = null;

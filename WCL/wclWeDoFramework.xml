@@ -241,6 +241,13 @@
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
               one of the Bluetooth Framework error code. </returns>
         </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.TurnOff">
+            <summary> Turns the Hub off. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+            <remarks> The method sends the Turn Off command to the connected Hub. </remarks>
+        </member>
         <member name="M:wclWeDoFramework.wclWeDoHub.ReadDeviceName(System.String@)">
             <summary> Reads the current device name. </summary>
             <param name="Name"> If the method completed with success the parameter contains the

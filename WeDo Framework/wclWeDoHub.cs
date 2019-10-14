@@ -329,6 +329,16 @@ namespace wclWeDoFramework
             return FClient.Disconnect();
         }
 
+        /// <summary> Turns the Hub off. </summary>
+        /// <returns> If the method completed with success the returning value is
+        ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+        ///   one of the Bluetooth Framework error code. </returns>
+        /// <remarks> The method sends the Turn Off command to the connected Hub. </remarks>
+        public Int32 TurnOff()
+        {
+            return FHub.TurnOff();
+        }
+
         /// <summary> Reads the current device name. </summary>
         /// <param name="Name"> If the method completed with success the parameter contains the
         ///   current device name. </param>

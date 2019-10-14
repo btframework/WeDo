@@ -183,5 +183,12 @@ namespace WeDoScan
 
             InitializeComponent();
         }
+
+        private void BtTurnOff_Click(object sender, EventArgs e)
+        {
+            Int32 Res = FHub.TurnOff();
+            if (Res != wclErrors.WCL_E_SUCCESS)
+                MessageBox.Show("Turn Off failed: 0x" + Res.ToString("X8"));
+        }
     }
 }

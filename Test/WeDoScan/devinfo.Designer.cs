@@ -53,6 +53,7 @@
             this.chIsInternal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chPortId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.laLowSignal = new System.Windows.Forms.Label();
+            this.btTurnOff = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // laManufacturerName
@@ -273,6 +274,16 @@
             this.laLowSignal.Text = "Low Signal!";
             this.laLowSignal.Visible = false;
             // 
+            // btTurnOff
+            // 
+            this.btTurnOff.Location = new System.Drawing.Point(760, 173);
+            this.btTurnOff.Name = "btTurnOff";
+            this.btTurnOff.Size = new System.Drawing.Size(75, 23);
+            this.btTurnOff.TabIndex = 31;
+            this.btTurnOff.Text = "Turn Off";
+            this.btTurnOff.UseVisualStyleBackColor = true;
+            this.btTurnOff.Click += new System.EventHandler(this.BtTurnOff_Click);
+            // 
             // fmDevInfo
             // 
             this.AcceptButton = this.btClose;
@@ -280,6 +291,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btClose;
             this.ClientSize = new System.Drawing.Size(847, 229);
+            this.Controls.Add(this.btTurnOff);
             this.Controls.Add(this.laLowSignal);
             this.Controls.Add(this.lvAttachedDevices);
             this.Controls.Add(this.laLowVoltage);
@@ -337,5 +349,6 @@
         private System.Windows.Forms.ColumnHeader chIsInternal;
         private System.Windows.Forms.ColumnHeader chPortId;
         private System.Windows.Forms.Label laLowSignal;
+        private System.Windows.Forms.Button btTurnOff;
     }
 }
