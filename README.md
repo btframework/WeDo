@@ -1,6 +1,6 @@
 # Lego WeDo 2.0 Education Framework
 
-This Framework expands [Bluetooth Framework](https://www.btframework.com/bluetoothframework.htm) with Lego WeDo 2.0 Education support.
+This Framework expands [Bluetooth Framework](https://www.btframework.com/bluetoothframework.htm) with [Lego WeDo 2.0 Education](https://education.lego.com/en-us) support.
 
 ## License Terms
 
@@ -12,11 +12,20 @@ You **can not modify** the We Do Framework source code. You **can not distribute
 
 For any other usage of the We Do Framework refer to the [Wireless Communication Library EULA](https://www.btframework.com/eula.htm).
 
-## System Requirements
+##  System Requirements
+
+### Common Requirements
 
 - [Bluetooth Framework](https://www.btframework.com/bluetoothframework.htm) 7.7.0.0 or later (demo version is included)
 - Windows 7 and above (see remarks below)
 - Bluetooth 4.0 (or high) hardware
+
+### .NET Edition Requirements
+
+- .NET Framework 4.0 or high
+- Visual Studio 2019 or high
+
+## Windows versions
 
 ### Windows 7, 8
 
