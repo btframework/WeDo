@@ -12,16 +12,20 @@ You **can not modify** the We Do Framework source code. You **can not distribute
 
 For any other usage of the We Do Framework refer to the [Wireless Communication Library EULA](https://www.btframework.com/eula.htm).
 
-## Common System Requirements
+##  System Requirements
+
+### Common
 
 - [Bluetooth Framework](https://www.btframework.com/bluetoothframework.htm) 7.7.0.0 or later (demo version is included)
 - Windows 7 and above (see remarks below)
 - Bluetooth 4.0 (or high) hardware
 
-## .NET Edition System Requirements
+### .NET Edition System Requirements
 
 - .NET Framework 4.0 or high
 - Visual Studio 2019 or high
+
+## Windows versions
 
 ### Windows 7, 8
 
