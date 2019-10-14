@@ -23,25 +23,57 @@ using System;
 
 namespace wclWeDoFramework
 {
-    /// <summary> Represents a type of an attached IO (motor, sensor, etc). </summary>
-	public enum wclWeDoIoDeviceType
+    /// <summary> This class contains info detailing how the data received for a given service (typically
+    ///   a sensor of some kind) should be interpreted. </summary>
+    public sealed class wclWeDoDataFormat
     {
-        /// <summary> A Motor. </summary>
-        iodMotor,
-        /// <summary> A Voltage Sensor. </summary>
-        iodVoltageSensor,
-        /// <summary> A Current Sensor. </summary>
-        iodCurrentSensor,
-        /// <summary> A Piezo Tone player. </summary>
-        iodPiezo,
-        /// <summary> An RGB light. </summary>
-        iodRgb,
-        /// <summary> A Tilt Sensor. </summary>
-        iodTiltSensor,
-        /// <summary> A Motion Sensor (aka. Detect Sensor). </summary>
-        iodMotionSensor,
-        /// <summary> A type is unknown. </summary>
-        iodUnknown
+        private Byte FDataSetCount;
+        private Byte FDataSetSize;
+        private Byte FMode;
+        private wclWeDoSensorDataUnit FUnit;
+
+        /// <summary> Creates a new instance of the Data Format class. </summary>
+        /// <param name="DataSetCount"> The number of data sets. </param>
+        /// <param name="DataSetSize"> The number of bytes in a data set. </param>
+        /// <param name="Mode"> The sensor mode. </param>
+        /// <param name="Unit"> The sensor data unit. </param>
+        /// <seealso cref="wclWeDoSensorDataUnit"/>
+        public wclWeDoDataFormat(Byte DataSetCount, Byte DataSetSize, Byte Mode,
+            wclWeDoSensorDataUnit Unit)
+        {
+            FDataSetCount = DataSetCount;
+            FDataSetSize = DataSetSize;
+            FMode = Mode;
+            FUnit = Unit;
+        }
+
+        /// <summary> Compares two Data Formats </summary>
+		/// <param name="Format"> The format to be compared to the current one. </param>
+		/// <returns> <c>True</c> if this data format is equal to <c>Format</c>.
+        ///   <c>False</c> otherwise. </returns>
+        /// <seealso cref="wclWeDoDataFormat"/>
+        public Boolean IsEqual(wclWeDoDataFormat Format)
+        {
+            if (Format == null)
+                return false;
+
+            return (FDataSetCount == Format.DataSetCount && FDataSetSize == Format.DataSetSize &&
+                FMode == Format.Mode && FUnit == Format.Unit);
+        }
+
+        /// <summary> Gets the data set count. </summary>
+        /// <value> The data set count. </value>
+		public Byte DataSetCount { get { return FDataSetCount; } }
+        /// <summary> Gets the data set size. </summary>
+        /// <value> The data set size. </value>
+		public Byte DataSetSize { get { return FDataSetSize; } }
+        /// <summary> Gets the sensor mode. </summary>
+        /// <value> The sensor mode. </value>
+        public Byte Mode { get { return FMode; } }
+        /// <summary> Gets the sensor data unit. </summary>
+        /// <value> The sensor data unit. </value>
+        /// <seealso cref="wclWeDoSensorDataUnit"/>
+		public wclWeDoSensorDataUnit Unit { get { return FUnit; } }
     };
 
     /// <summary> This class describes a configuration of an Input (sensor). At any
@@ -218,52 +250,23 @@ namespace wclWeDoFramework
         }
 
         /// <summary> Compares two Input Formats. </summary>
-        /// <param name="obj"> The object to be compare with current one. </param>
+        /// <param name="Format"> The object to be compare with current one. </param>
         /// <returns> <c>True</c> if the Input Formats are equals. <c>False</c> otherwise. </returns>
-        public override Boolean Equals(Object obj)
+        /// <seealso cref="wclWeDoInputFormat"/>
+        public Boolean IsEqual(wclWeDoInputFormat Format)
         {
-            if (object.ReferenceEquals(obj, null))
-                return false;
-            if (GetType() != obj.GetType())
+            if (Format == null)
                 return false;
 
-            wclWeDoInputFormat Format = (wclWeDoInputFormat)obj;
             return (FConnectionId == Format.ConnectionId && FInterval == Format.Interval &&
                 FMode == Format.Mode && FNotificationsEnabled == Format.NotificationsEnabled &&
                 FNumberOfBytes == Format.NumberOfBytes && FRevision == Format.Revision &&
                 FDeviceType == Format.DeviceType && FUnit == Format.Unit);
         }
 
-        /// <summary> Gets the object hash. </summary>
-        /// <returns> The objects hash. </returns>
-        public override Int32 GetHashCode()
-        {
-            return FConnectionId.GetHashCode();
-        }
-
-        /// <summary> Override the <c>==</c> operator. </summary>
-        /// <param name="a"> First argument. </param>
-        /// <param name="b"> Second argument. </param>
-        /// <returns> <c>True</c> if a == b. <c>False</c> otherwise. </returns>
-        public static Boolean operator ==(wclWeDoInputFormat a, wclWeDoInputFormat b)
-        {
-            if (Object.ReferenceEquals(a, null))
-                return Object.ReferenceEquals(b, null);
-            return a.Equals(b);
-        }
-
-        /// <summary> Override the <c>!=</c> operator. </summary>
-        /// <param name="a"> First argument. </param>
-        /// <param name="b"> Second argument. </param>
-        /// <returns> <c>True</c> if a != b. <c>False</c> otherwise. </returns>
-        public static Boolean operator !=(wclWeDoInputFormat a, wclWeDoInputFormat b)
-        {
-            return !(a == b);
-        }
-
         /// <summary> The Connect ID of the corresponding device. </summary>
         /// <value> The connect ID. </value>
-        public Byte ConnectionId {  get { return FConnectionId; } }
+        public Byte ConnectionId { get { return FConnectionId; } }
         /// <summary> Gets the device type of the Input Format. </summary>
         /// <value> The device type of the corresponding service. </value>
         /// <seealso cref="wclWeDoIoDeviceType"/>
@@ -290,63 +293,5 @@ namespace wclWeDoFramework
         /// <value> The unit of the values. </value>
         /// <seealso cref="wclWeDoSensorDataUnit"/>
         public wclWeDoSensorDataUnit Unit { get { return FUnit; } }
-
-        /*
-        /// <summary>
-        /// Creates a copy of this input format with a new delta interval
-        /// </summary>
-        /// <param name="interval">The new delta interval</param>
-        /// <returns>new Input format with new delta interval</returns>
-        public InputFormat InputFormatBySettingDeltaInterval(uint interval)
-        {
-            return new InputFormat()
-            {
-                ConnectId = ConnectId,
-                DeltaInterval = interval,
-                Mode = Mode,
-                NotificationsEnabled = NotificationsEnabled,
-                TypeId = TypeId,
-                Unit = Unit,
-            };
-        }
-
-        /// <summary>
-        /// Creates a copy of this input format with a new <paramref name="mode"/> and <paramref name="unit"/>
-        /// </summary>
-        /// <param name="mode">The new mode</param>
-        /// <param name="unit">The new unit</param>
-        /// <returns>new Input format with new mode and unit</returns>
-        public InputFormat InputFormatBySettingMode(int mode, InputFormatUnit unit)
-        {
-            return new InputFormat()
-            {
-                ConnectId = ConnectId,
-                DeltaInterval = DeltaInterval,
-                Mode = mode,
-                NotificationsEnabled = NotificationsEnabled,
-                TypeId = TypeId,
-                Unit = unit,
-            };
-        }
-
-        /// <summary>
-        /// Creates a copy of this input format with a new value for notifications enabled
-        /// </summary>
-        /// <param name="notificationsEnabled">YES if the sensor should send updates when the value changes</param>
-        /// <returns>new Input format with new notifications enabled</returns>
-        public InputFormat InputFormatBySettingNotificationsEnabled(bool notificationsEnabled)
-        {
-            return new InputFormat()
-            {
-                ConnectId = ConnectId,
-                DeltaInterval = DeltaInterval,
-                Mode = Mode,
-                NotificationsEnabled = notificationsEnabled,
-                TypeId = TypeId,
-                Unit = Unit,
-            };
-        }
-
-        */
     };
 }

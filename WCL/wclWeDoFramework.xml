@@ -4,96 +4,6 @@
         <name>wclWeDoFramework</name>
     </assembly>
     <members>
-        <member name="T:wclWeDoFramework.wclBatteryLevelChangedEvent">
-            <summary> The <c>OnBatteryLevelChanged</c> event handler prototype. </summary>
-            <param name="Sender"> The object that fired the event. </param>
-            <param name="Level"> The current battery level in percents in range 0-100. </param>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoBatteryLevelService">
-            <summary> The class represents the WeDo Battery Level service. </summary>
-            <seealso cref="T:wclWeDoFramework.wclWeDoService"/>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.DoBatteryLevelChanged(System.Byte)">
-            <summary> Fires the <c>OnBatteryLevelChanged</c> event. </summary>
-            <param name="Level"> The current battery level in percents in range 0-100. </param>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.Initialize">
-            <summary> Initializes the WeDo service. </summary>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.Uninitialize">
-            <summary> Uninitializes the WeDo service. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.CharacteristicChanged(System.UInt16,System.Byte[])">
-            <summary> This method called internally by the <see cref="T:wclWeDoFramework.wclWeDoHub"/>
-              to notify about characteristic changes. A derived class may override this method
-              to check for required characteristic changes. </summary>
-            <param name="Handle"> The characteristic handle. </param>
-            <param name="Value"> The new characteristic value. </param>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.#ctor(wclBluetooth.wclGattClient,wclWeDoFramework.wclWeDoHub)">
-            <summary> Creates new Battery Level service client. </summary>
-            <param name="Client"> The <see cref="T:wclBluetooth.wclGattClient"/> object that handles the connection
-              to a WeDo device. </param>
-            <param name="Hub"> The <see cref="T:wclWeDoFramework.wclWeDoHub"/> object that owns the service. </param>
-            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
-              parameter is <c>null</c>. </exception>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.ReadBatteryLevel(System.Byte@)">
-            <summary> Reads the device's battery level. </summary>
-            <param name="Level"> the current battery level in percents. </param>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="E:wclWeDoFramework.wclWeDoBatteryLevelService.OnBatteryLevelChanged">
-            <summary> The event fires when the battery level has been changed. </summary>
-            <seealso cref="T:wclWeDoFramework.wclBatteryLevelChangedEvent" />
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoCurrentSensor">
-            <summary> The class represents a WeDo Hub current sensor. </summary>
-            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoCurrentSensor.ValueChanged">
-            <summary> The method called when data value has been changed. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoCurrentSensor.DoCurrentChanged">
-            <summary> Fires the <c>OnCurrentChanged</c> event. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoCurrentSensor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
-            <summary> Creates new current sensor device object. </summary>
-            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
-              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
-            <param name="ConnectionId"> The device's Connection ID. </param>
-            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
-            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
-              parameter is <c>null</c>. </exception>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoCurrentSensor.Current">
-            <summary> Gets the battery current in mA. </summary>
-            <value> The current in milli ampers. </value>
-        </member>
-        <member name="E:wclWeDoFramework.wclWeDoCurrentSensor.OnCurrentChanged">
-            <summary> The event fires when current has been changed. </summary>
-            <seealso cref="T:System.EventHandler"/>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoSensorDataUnit">
-            <summary> The sensor's data unit. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoSensorDataUnit.suRaw">
-            <summary> Raw. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoSensorDataUnit.suPercentage">
-            <summary> Percentage. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoSensorDataUnit.suSi">
-            <summary> SI. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoSensorDataUnit.suUnknown">
-            <summary> Unknown. </summary>
-        </member>
         <member name="T:wclWeDoFramework.wclWeDoDataFormat">
             <summary> This class contains info detailing how the data received for a given service (typically
               a sensor of some kind) should be interpreted. </summary>
@@ -106,26 +16,12 @@
             <param name="Unit"> The sensor data unit. </param>
             <seealso cref="T:wclWeDoFramework.wclWeDoSensorDataUnit"/>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoDataFormat.Equals(System.Object)">
+        <member name="M:wclWeDoFramework.wclWeDoDataFormat.IsEqual(wclWeDoFramework.wclWeDoDataFormat)">
             <summary> Compares two Data Formats </summary>
-            <param name="obj"> The object to be compared to the current one. </param>
-            <returns> <c>True</c> if this data format is equal to <c>obj</c>. <c>False</c> otherwise. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoDataFormat.GetHashCode">
-            <summary> Gets the object hash. </summary>
-            <returns> The objects hash. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoDataFormat.op_Equality(wclWeDoFramework.wclWeDoDataFormat,wclWeDoFramework.wclWeDoDataFormat)">
-            <summary> Override the <c>==</c> operator. </summary>
-            <param name="a"> First argument. </param>
-            <param name="b"> Second argument. </param>
-            <returns> <c>True</c> if a == b. <c>False</c> otherwise. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoDataFormat.op_Inequality(wclWeDoFramework.wclWeDoDataFormat,wclWeDoFramework.wclWeDoDataFormat)">
-            <summary> Override the <c>!=</c> operator. </summary>
-            <param name="a"> First argument. </param>
-            <param name="b"> Second argument. </param>
-            <returns> <c>True</c> if a != b. <c>False</c> otherwise. </returns>
+            <param name="Format"> The format to be compared to the current one. </param>
+            <returns> <c>True</c> if this data format is equal to <c>Format</c>.
+              <c>False</c> otherwise. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoDataFormat"/>
         </member>
         <member name="P:wclWeDoFramework.wclWeDoDataFormat.DataSetCount">
             <summary> Gets the data set count. </summary>
@@ -143,299 +39,6 @@
             <summary> Gets the sensor data unit. </summary>
             <value> The sensor data unit. </value>
             <seealso cref="T:wclWeDoFramework.wclWeDoSensorDataUnit"/>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoDeviceInformationService">
-            <summary> The class represents the WeDo Device Information service. </summary>
-            <seealso cref="T:wclWeDoFramework.wclWeDoService"/>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.Initialize">
-            <summary> Initializes the WeDo service. </summary>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.Uninitialize">
-            <summary> Uninitializes the WeDo service. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.#ctor(wclBluetooth.wclGattClient,wclWeDoFramework.wclWeDoHub)">
-            <summary> Creates new Device Information service client. </summary>
-            <param name="Client"> The <see cref="T:wclBluetooth.wclGattClient"/> object that handles the connection
-              to a WeDo device. </param>
-            <param name="Hub"> The <see cref="T:wclWeDoFramework.wclWeDoHub"/> object that owns the service. </param>
-            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
-              parameter is <c>null</c>. </exception>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.ReadFirmwareVersion(System.String@)">
-            <summary> Reads the firmware version. </summary>
-            <param name="Version"> If the method completed with success the parameter contains the
-              current device's firmware version. </param>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.ReadHardwareVersion(System.String@)">
-            <summary> Reads the hardware version. </summary>
-            <param name="Version"> If the method completed with success the parameter contains the
-              current device's hardware version. </param>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.ReadSoftwareVersion(System.String@)">
-            <summary> Reads the software version. </summary>
-            <param name="Version"> If the method completed with success the parameter contains the
-              current device's software version. </param>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.ReadManufacturerName(System.String@)">
-            <summary> Reads the device's manufacturer name. </summary>
-            <param name="Name"> If the method completed with success the parameter contains the
-              current device's manufacturer name. </param>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoHub">
-            <summary> The class represents a WeDo Hub hardware. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHub.DoConnected(System.Int32)">
-            <summary> Fires the <c>OnConnected</c> event. </summary>
-            <param name="Error"> If the connection has been established the parameter is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If connection has not been established the
-              parameter value is one of the Bluetooth error codes. </param>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHub.DoDisconnected(System.Int32)">
-            <summary> Fires the <c>OnDisconnected</c> event. </summary>
-            <param name="Reason"> The disconnection reason code. </param>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHub.DoButtonStateChanged(System.Boolean)">
-            <summary> Fires the <c>OnButtonStateChanged</c> event. </summary>
-            <param name="Pressed"> <c>True</c> if the button has been pressed. <c>False</c> if the
-              button has been released. </param>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHub.DoLowVoltageAlert(System.Boolean)">
-            <summary> Fires the <c>OnLowVoltageAlert</c> event. </summary>
-            <param name="Alert"> <c>True</c> if device runs on low battery. <c>False</c> otherwise. </param>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHub.DoHighCurrentAlert(System.Boolean)">
-            <summary> Fires the <c>OnHighCurrentAlert</c> event. </summary>
-            <param name="Alert"> <c>True</c> if device runs on high current. <c>False</c> otherwise. </param>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHub.DoLowSignalAlert(System.Boolean)">
-            <summary> Fires the <c>OnLowSignalAlert</c> event. </summary>
-            <param name="Alert"> <c>True</c> if the RSSI value is low. <c>False</c> otherwise. </param>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHub.DoDeviceAttached(wclWeDoFramework.wclWeDoIo)">
-            <summary> Fires the <c>OnDeviceAttached</c> event. </summary>
-            /// <param name="Device"> The Input/Output device object. </param>
-            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHub.DoDeviceDetached(wclWeDoFramework.wclWeDoIo)">
-            <summary> Fires the <c>OnDeviceDetached</c> event. </summary>
-            /// <param name="Device"> The Input/Output device object. </param>
-            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHub.#ctor">
-            <summary> Creates new WeDo Client. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHub.Connect(wclBluetooth.wclBluetoothRadio,System.Int64)">
-            <summary> Connects to a selected WeDo Hub. </summary>
-            <param name="Radio"> The <see cref="T:wclBluetooth.wclBluetoothRadio" /> object that should be used
-              for executing Bluetooth LE connection. </param>
-            <param name="Address"> The WeDo Hub MAC address. </param>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-            <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHub.Disconnect">
-            <summary> Disconnects from WeDo Hub. </summary>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHub.TurnOff">
-            <summary> Turns the Hub off. </summary>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-            <remarks> The method sends the Turn Off command to the connected Hub. </remarks>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHub.ReadDeviceName(System.String@)">
-            <summary> Reads the current device name. </summary>
-            <param name="Name"> If the method completed with success the parameter contains the
-              current device name. </param>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHub.WriteDeviceName(System.String)">
-            <summary> Writes new device name. </summary>
-            <param name="Name"> The new device name. </param>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoHub.DeviceInformation">
-            <summary> Gets the Hub device information service object. </summary>
-            <value> The Hub device information service object. </value>
-            <seealso cref="T:wclWeDoFramework.wclWeDoDeviceInformationService"/>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoHub.BatteryLevel">
-            <summary> Gets the battery level service object. </summary>
-            <value> The battery level service object. </value>
-            <seealso cref="T:wclWeDoFramework.wclWeDoBatteryLevelService"/>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoHub.Address">
-            <summary> Gets the connected WeDo Hub Address. </summary>
-            <value> The Hub MAC address. </value>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoHub.Connected">
-            <summary> Gets connected status. </summary>
-            <value> <c>true</c> if connected to WeDo Hub. </value>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoHub.ClientState">
-            <summary> Gets internal GATT client state. </summary>
-            <value> The internal GATT client state. </value>
-            <seealso cref="T:wclCommunication.wclClientState" />
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoHub.IoDevices">
-            <summary> Gets the list of the attached IO devices. </summary>
-            <value> The list of the attached IO devices. </value>
-            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
-        </member>
-        <member name="E:wclWeDoFramework.wclWeDoHub.OnConnected">
-            <summary> The event fires when connection to a WeDo Hub
-              has been established. </summary>
-            <seealso cref="T:wclCommunication.wclClientConnectionConnectEvent" />
-        </member>
-        <member name="E:wclWeDoFramework.wclWeDoHub.OnDisconnected">
-            <summary> The event fires when WeDo Hub has been disconnected. </summary>
-            <seealso cref="T:wclCommunication.wclClientConnectionDisconnectEvent" />
-        </member>
-        <member name="E:wclWeDoFramework.wclWeDoHub.OnButtonStateChanged">
-            <summary> The event fires when button state has been changed. </summary>
-            <seealso cref="T:wclWeDoFramework.wclWeDoHubButtonStateChangedEvent"/>
-        </member>
-        <member name="E:wclWeDoFramework.wclWeDoHub.OnDeviceAttached">
-            <summary> The event fires when new IO device has been attached. </summary>
-            <seealso cref="T:wclWeDoFramework.wclWeDoDeviceStateChangedEvent"/>
-        </member>
-        <member name="E:wclWeDoFramework.wclWeDoHub.OnDeviceDetached">
-            <summary> The event fires when an existing IO device has been detached. </summary>
-            <seealso cref="T:wclWeDoFramework.wclWeDoDeviceStateChangedEvent"/>
-        </member>
-        <member name="E:wclWeDoFramework.wclWeDoHub.OnLowVoltageAlert">
-            <summary> The event fires when device runs on low battery. </summary>
-            <seealso cref="T:wclWeDoFramework.wclWeDoHubAlertEvent"/>
-        </member>
-        <member name="E:wclWeDoFramework.wclWeDoHub.OnHighCurrentAlert">
-            <summary> The event fires when device runs on high current. </summary>
-            <seealso cref="T:wclWeDoFramework.wclWeDoHubAlertEvent"/>
-        </member>
-        <member name="E:wclWeDoFramework.wclWeDoHub.OnLowSignalAlert">
-            <summary> The event fires when low RSSI value received from the device. </summary>
-            <seealso cref="T:wclWeDoFramework.wclWeDoHubAlertEvent"/>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoHubButtonStateChangedEvent">
-            <summary> The <c>OnButtonStateChanged</c> event handler prototype. </summary>
-            <param name="Sender"> The object that fires the event. </param>
-            <param name="Pressed"> The button's state. <c>True</c> if button has been pressed.
-              <c>False</c> if button has been released. </param>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoHubAlertEvent">
-            <summary> The event handler prototype for alert events. </summary>
-            <param name="Sender"> The object that fires the event. </param>
-            <param name="Alert"> <c>True</c> if the alert is active. <c>False</c> otherwise. </param>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoDeviceStateChangedEvent">
-            <summary> The <c>OnDeviceAttached</c> and <c>OnDeviceDetached</c> events handler prototype. </summary>
-            <param name="Sender"> The object that fires the event. </param>
-            <param name="Device"> The Input/Output device object. </param>
-            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoHubService">
-            <summary> The class represents the WeDo Hub service. </summary>
-            <seealso cref="T:wclWeDoFramework.wclWeDoService"/>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHubService.Initialize">
-            <summary> Initializes the WeDo service. </summary>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHubService.Uninitialize">
-            <summary> Uninitializes the WeDo service. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHubService.CharacteristicChanged(System.UInt16,System.Byte[])">
-            <summary> This method called internally by the <see cref="T:wclWeDoFramework.wclWeDoHub"/>
-              to notify about characteristic changes. A derived class may override this method
-              to check for required characteristic changes. </summary>
-            <param name="Handle"> The characteristic handle. </param>
-            <param name="Value"> The new characteristic value. </param>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHubService.DoButtonStateChanged(System.Boolean)">
-            <summary> Fires the <c>OnButtonStateChanged</c> event. </summary>
-            <param name="Pressed"> <c>True</c> if the button has been pressed. <c>False</c> if the
-              button has been released. </param>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHubService.DoLowVoltageAlert(System.Boolean)">
-            <summary> Fires the <c>OnLowVoltageAlert</c> event. </summary>
-            <param name="Alert"> <c>True</c> if device runs on low battery. <c>False</c> otherwise. </param>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHubService.DoDeviceAttached(wclWeDoFramework.wclWeDoIo)">
-            <summary> Fires the <c>OnDeviceAttached</c> event. </summary>
-            <param name="Device"> The IO device object. </param>
-            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHubService.DoDeviceDetached(System.Byte)">
-            <summary> Fires the <c>OnDeviceDetached</c> event. </summary>
-            <param name="ConnectionId"> The device connection ID. </param>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHubService.DoHightCurrentAlert(System.Boolean)">
-            <summary> Fires then <c>OnHighCurrentAlert</c> event.</summary>
-            <param name="Alert"> <c>True</c> if device runs on high current. <c>False</c> otherwise. </param>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHubService.DoLowSignalAlert(System.Boolean)">
-            <summary> Fires then <c>OnLowSignalAlert</c> event.</summary>
-            <param name="Alert"> <c>True</c> if the signal from radio has low RSSI. <c>False</c> otherwise. </param>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoHubService.#ctor(wclBluetooth.wclGattClient,wclWeDoFramework.wclWeDoHub)">
-            <summary> Creates new IO service client. </summary>
-            <param name="Client"> The <see cref="T:wclBluetooth.wclGattClient"/> object that handles the connection
-              to a WeDo device. </param>
-            <param name="Hub"> The <see cref="T:wclWeDoFramework.wclWeDoHub"/> object that owns the service. </param>
-            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
-              parameter is <c>null</c>. </exception>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoIoDeviceType">
-            <summary> Represents a type of an attached IO (motor, sensor, etc). </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodMotor">
-            <summary> A Motor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodVoltageSensor">
-            <summary> A Voltage Sensor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodCurrentSensor">
-            <summary> A Current Sensor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodPiezo">
-            <summary> A Piezo Tone player. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodRgb">
-            <summary> An RGB light. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodTiltSensor">
-            <summary> A Tilt Sensor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodMotionSensor">
-            <summary> A Motion Sensor (aka. Detect Sensor). </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodUnknown">
-            <summary> A type is unknown. </summary>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoInputFormat">
             <summary> This class describes a configuration of an Input (sensor). At any
@@ -455,26 +58,11 @@
             <seealso cref="T:wclWeDoFramework.wclWeDoIoDeviceType"/>
             <seealso cref="T:wclWeDoFramework.wclWeDoSensorDataUnit"/>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoInputFormat.Equals(System.Object)">
+        <member name="M:wclWeDoFramework.wclWeDoInputFormat.IsEqual(wclWeDoFramework.wclWeDoInputFormat)">
             <summary> Compares two Input Formats. </summary>
-            <param name="obj"> The object to be compare with current one. </param>
+            <param name="Format"> The object to be compare with current one. </param>
             <returns> <c>True</c> if the Input Formats are equals. <c>False</c> otherwise. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoInputFormat.GetHashCode">
-            <summary> Gets the object hash. </summary>
-            <returns> The objects hash. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoInputFormat.op_Equality(wclWeDoFramework.wclWeDoInputFormat,wclWeDoFramework.wclWeDoInputFormat)">
-            <summary> Override the <c>==</c> operator. </summary>
-            <param name="a"> First argument. </param>
-            <param name="b"> Second argument. </param>
-            <returns> <c>True</c> if a == b. <c>False</c> otherwise. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoInputFormat.op_Inequality(wclWeDoFramework.wclWeDoInputFormat,wclWeDoFramework.wclWeDoInputFormat)">
-            <summary> Override the <c>!=</c> operator. </summary>
-            <param name="a"> First argument. </param>
-            <param name="b"> Second argument. </param>
-            <returns> <c>True</c> if a != b. <c>False</c> otherwise. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoInputFormat"/>
         </member>
         <member name="P:wclWeDoFramework.wclWeDoInputFormat.ConnectionId">
             <summary> The Connect ID of the corresponding device. </summary>
@@ -512,360 +100,6 @@
             <summary> Gets the value unit. </summary>
             <value> The unit of the values. </value>
             <seealso cref="T:wclWeDoFramework.wclWeDoSensorDataUnit"/>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoVersion">
-            <summary> The structure describes the device version number. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoVersion.BugFixVersion">
-            <summary> The bug fix version number. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoVersion.BuildNumber">
-            <summary> The build number. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoVersion.MajorVersion">
-            <summary> The build number. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoVersion.MinorVersion">
-            <summary> The major version number. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoVersion.ToString">
-            <summary> A formatted string representation of the version. </summary>
-            <returns> A formatted string representation of the version </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoVersion.Equals(System.Object)">
-            <summary> Compares versions. </summary>
-            <param name="obj"> The object to compare to. </param>
-            <returns> <c>True</c> if objects are equal. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoVersion.GetHashCode">
-            <summary> Gets the object hash. </summary>
-            <returns> The objects hash. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoVersion.op_Equality(wclWeDoFramework.wclWeDoVersion,wclWeDoFramework.wclWeDoVersion)">
-            <summary> Override the <c>==</c> operator. </summary>
-            <param name="a"> First argument. </param>
-            <param name="b"> Second argument. </param>
-            <returns> <c>True</c> if a == b. <c>False</c> otherwise. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoVersion.op_Inequality(wclWeDoFramework.wclWeDoVersion,wclWeDoFramework.wclWeDoVersion)">
-            <summary> Override the <c>!==</c> operator. </summary>
-            <param name="a"> First argument. </param>
-            <param name="b"> Second argument. </param>
-            <returns> <c>True</c> if a != b. <c>False</c> otherwise. </returns>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoIo">
-            <summary> The class represets an attached Input/Outpout device. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoIo.WriteData(System.Byte[])">
-            <summary> Sends data to the IO service. </summary>
-            <param name="Data"> The data to write. </param>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoIo.SendReadValueRequest">
-            <summary> If the notifications is disabled for the service in the Input Format you will have to use
-              this method to request an updated value for the service. </summary>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoIo.ResetSensor">
-            <summary> Sends a reset command to the Device. </summary>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoIo.AddValidDataFormat(wclWeDoFramework.wclWeDoDataFormat)">
-            <summary> Adds a new valid data format. </summary>
-            <param name="Format"> The data format to add. </param>
-            <seealso cref="T:wclWeDoFramework.wclWeDoDataFormat"/>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoIo.RemoveValidDataFormat(wclWeDoFramework.wclWeDoDataFormat)">
-            <summary> Removes a valid data format. </summary>
-            <param name="Format"> The data format to remove. </param>
-            <seealso cref="T:wclWeDoFramework.wclWeDoDataFormat"/>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoIo.SendInputFormat(wclWeDoFramework.wclWeDoInputFormat)">
-            <summary> Send an updated input format for this service to the device. </summary>
-            <param name="Format"> New input format. </param>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-            <seelso cref="T:wclWeDoFramework.wclWeDoInputFormat"/>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoIo.SetInputFormatMode(System.Byte)">
-            <summary> Changes mode of the Input Format. </summary>
-            <param name="Mode"> The Input Format mode. </param>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoIo.InputFormatChanged(wclWeDoFramework.wclWeDoInputFormat)">
-            <summary> The method called when Input Format has been changed. </summary>
-            <param name="OldFormat"> The old Input Format. </param>
-            <remarks> A derived class must override this method to get notifications about
-              format changes. </remarks>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoIo.ValueChanged">
-            <summary> The method called when data value has been changed. </summary>
-            <remarks> A derived class must override this method to get notifications about
-              value changes. </remarks>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoIo.AsFloat">
-            <summary> Gets current sensor's value as <c>Float</c> number. </summary>
-            <value> The float sensors value. </value>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoIo.AsInteger">
-            <summary> Gets the current sensor's value as <c>Integer</c> number. </summary>
-            <value> The integer sensor's value. </value>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoIo.DataFormats">
-            <summary> Gets the list of supported Data Formats. </summary>
-            <value> The list of supported Data Formats. </value>
-            <seealso cref="T:wclWeDoFramework.wclWeDoDataFormat"/>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoIo.DefaultInputFormat">
-            <summary> Gets and sets the default input format. </summary>
-            <value> The default input format. </value>
-            <seealso cref="T:wclWeDoFramework.wclWeDoInputFormat"/>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoIo.InputFormat">
-            <summary> Gets the sensor Input Format. </summary>
-            <value> The Input Format. </value>
-            <seealso cref="T:wclWeDoFramework.wclWeDoInputFormat"/>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoIo.InputFormatMode">
-            <summary> Gets the Input Format mode. </summary>
-            <value> The Input Format Mode. </value>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoIo.NumbersFromValueData">
-            <summary> Gets alist with one byte[] per number received. </summary>
-            <value> The list of bytes array. </value>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoIo.Value">
-            <summary> Gets the current sensors value. </summary>
-            <value> The sensors value as raw bytes array. </value>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoIo.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
-            <summary> Creates new IO device object. </summary>
-            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
-              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
-            <param name="ConnectionId"> The device's Connection ID. </param>
-            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
-            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
-              parameter is <c>null</c>. </exception>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoIo.Attached">
-            <summary> Gets the IO device state. </summary>
-            <value> <c>True</c> if the device is attached. <c>False</c> if the device is detached. </value>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoIo.ConnectionId">
-            <summary> Gets the IO connection ID. </summary>
-            <value> The IO connection ID. </value>
-            <remarks> It is guarateed that the connection ID is unique. </remarks>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoIo.DeviceType">
-            <summary> Gets the device represented by this object. </summary>
-            <value> The IO device type. </value>
-            <seealso cref="T:wclWeDoFramework.wclWeDoIoDeviceType"/>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoIo.FirmwareVersion">
-            <summary> Gets the IO device firmware version. </summary>
-            <value> The IO device firmware version. </value>
-            <seealso cref="T:wclWeDoFramework.wclWeDoVersion"/>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoIo.HardwareVersion">
-            <summary> Gets the IO device hardware version. </summary>
-            <value> The IO device hardware version. </value>
-            <seealso cref="T:wclWeDoFramework.wclWeDoVersion"/>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoIo.Internal">
-            <summary> Gets the IO type represented by this object. </summary>
-            <value> <c>True</c> if the IO device is internal. <c>False</c> if the IO device is external. </value>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoIo.Hub">
-            <summary> Gets the WeDo Hub object that owns the IO device. </summary>
-            <value> The WeDo Hub object. </value>
-            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoIo.PortId">
-            <summary> The index of the port on the Hub the IO is attached to.  </summary>
-            <value> The port ID. </value>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoIoService">
-            <summary> The class represents the WeDo IO service. </summary>
-            <seealso cref="T:wclWeDoFramework.wclWeDoService"/>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoIoService.Initialize">
-            <summary> Initializes the WeDo service. </summary>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoIoService.Uninitialize">
-            <summary> Uninitializes the WeDo service. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoIoService.CharacteristicChanged(System.UInt16,System.Byte[])">
-            <summary> This method called internally by the <see cref="T:wclWeDoFramework.wclWeDoHub"/>
-              to notify about characteristic changes. A derived class may override this method
-              to check for required characteristic changes. </summary>
-            <param name="Handle"> The characteristic handle. </param>
-            <param name="Value"> The new characteristic value. </param>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoIoService.#ctor(wclBluetooth.wclGattClient,wclWeDoFramework.wclWeDoHub)">
-            <summary> Creates new IO service client. </summary>
-            <param name="Client"> The <see cref="T:wclBluetooth.wclGattClient"/> object that handles the connection
-              to a WeDo device. </param>
-            <param name="Hub"> The <see cref="T:wclWeDoFramework.wclWeDoHub"/> object that owns the service. </param>
-            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
-              parameter is <c>null</c>. </exception>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoMotionSensorMode">
-            <summary> Supported modes for the motion sensor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoMotionSensorMode.mmDetect">
-            <summary> Detect mode - produces value that reflect the relative distance from the sensor
-              to objects in front of it. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoMotionSensorMode.mmCount">
-            <summary> Count mode - produces values that reflect how many times the sensor has been
-              activated. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoMotionSensorMode.mmUnknown">
-            <summary> Unknown (unsupported) mode. </summary>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoMotionSensor">
-            <summary> The class represents a WeDo Motion Sensor. </summary>
-            <seealso cref="T:wclWeDoFramework.wclWeDoResetableSensor"/>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.InputFormatChanged(wclWeDoFramework.wclWeDoInputFormat)">
-            <summary> The method called when Input Format has been changed. </summary>
-            <param name="OldFormat"> The old Input Format. </param>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.ValueChanged">
-            <summary> Fires the <c>OnVoltageChanged</c> event. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.DoCountChanged">
-            <summary> Fires the <c>OnCountChanged</c> event. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.DoDistanceChanged">
-            <summary> Fires the <c>OnDistanceChanged</c> event. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.DoModeChanged">
-            <summary> Fires the <c>OnModeChanged</c> event. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
-            <summary> Creates new motion sensor device object. </summary>
-            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
-              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
-            <param name="ConnectionId"> The device's Connection ID. </param>
-            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
-            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
-              parameter is <c>null</c>. </exception>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.SetMode(wclWeDoFramework.wclWeDoMotionSensorMode)">
-            <summary> Sets the motion sensor mode. </summary>
-            <param name="Mode"> The motion sensor mode. </param>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-            <seealso cref="T:wclWeDoFramework.wclWeDoMotionSensorMode"/>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoMotionSensor.Count">
-            <summary> Gets the most recent count reading from the sensor. </summary>
-            <value> The detections count. </value>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoMotionSensor.Distance">
-            <summary> Gets the most recent distance reading from the sensor. </summary>
-            <value> The distance. </value>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoMotionSensor.Mode">
-            <summary> Gets the current mode of the motion sensor. </summary>
-            <value> The sensor mode. </value>
-            <seealso cref="T:wclWeDoFramework.wclWeDoMotionSensorMode"/>
-        </member>
-        <member name="E:wclWeDoFramework.wclWeDoMotionSensor.OnCountChanged">
-            <summary> The event fires when the counter has been changed. </summary>
-            <seealso cref="T:System.EventHandler"/>
-        </member>
-        <member name="E:wclWeDoFramework.wclWeDoMotionSensor.OnDistanceChanged">
-            <summary> The event fires when distance has been changed. </summary>
-            <seealso cref="T:System.EventHandler"/>
-        </member>
-        <member name="E:wclWeDoFramework.wclWeDoMotionSensor.OnModeChanged">
-            <summary> The event fires when the mode has been changed. </summary>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoMotorDirection">
-            <summary> The motor's direction. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoMotorDirection.mdDrifting">
-            <summary> Drifting (Floating). </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoMotorDirection.mdLeft">
-            <summary> Running left. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoMotorDirection.mdRight">
-            <summary> Running right. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoMotorDirection.mdBraking">
-            <summary> Brake. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoMotorDirection.mdUnknown">
-            <summary> Unknwon. </summary>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoMotor">
-            <summary> The class represents a WeDo motor. </summary>
-            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoMotor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
-            <summary> Creates new motor class object. </summary>
-            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
-              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
-            <param name="ConnectionId"> The device's Connection ID. </param>
-            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
-            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
-              parameter is <c>null</c>. </exception>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoMotor.Brake">
-            <summary> Sends a command to stop (brake) the motor. </summary>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoMotor.Drift">
-            <summary> Sends a command to stop (drift/float) the motor. </summary>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoMotor.Run(wclWeDoFramework.wclWeDoMotorDirection,System.Byte)">
-            <summary> Sends a command to run the motor at a given <c>Power</c> in a given <c>Direction</c>.
-              The minimum speed is 0 and the maximum speed is 100. </summary>
-            <param name="Direction"> The direction to run the motor. </param>
-            <param name="Power"> The power to run the motor with. </param>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-            <seealso cref="T:wclWeDoFramework.wclWeDoMotorDirection"/>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoMotor.Direction">
-            <summary> Gets the current running direction of the motor. </summary>
-            <value> Teh motor direction. </value>
-            <seealso cref="T:wclWeDoFramework.wclWeDoMotorDirection"/>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoMotor.IsBraking">
-            <summary> Gets the motor's braking state. </summary>
-            <value> <c>True</c> if the motor is in brake state. <c>False</c> otheerwise. </value>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoMotor.IsDrifting">
-            <summary> Gets the motor's drifting state. </summary>
-            <value> <c>True</c> if the motor is currently drifting or floating.
-              When floating the motor axis can be turned without resistance. </value>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoMotor.Power">
-            <summary> Gets the power the motor is currently running with (0 if braking or drifting). </summary>
-            <value> Teh current motor power. </value>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoPiezoNote">
             <summary> Tones that can be played using the <see cref="T:wclWeDoFramework.wclWeDoPieazo"/> </summary>
@@ -939,25 +173,6 @@
         </member>
         <member name="M:wclWeDoFramework.wclWeDoPieazo.StopPlaying">
             <summary> Stop playing any currently playing tone. </summary>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoResetableSensor">
-            <summary> The base class for WeDo sensors that can be reset. </summary>
-            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoResetableSensor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
-            <summary> Creates new device object. </summary>
-            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
-              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
-            <param name="ConnectionId"> The device's Connection ID. </param>
-            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
-            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
-              parameter is <c>null</c>. </exception>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoResetableSensor.Reset">
-            <summary> Resets the sensor. </summary>
             <returns> If the method completed with success the returning value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
               one of the Bluetooth Framework error code. </returns>
@@ -1110,6 +325,642 @@
             <summary> The event fired when the RGB LED mode has been changed. </summary>
             <seealso cref="T:System.EventHandler"/>
         </member>
+        <member name="T:wclWeDoFramework.wclWeDoMotorDirection">
+            <summary> The motor's direction. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoMotorDirection.mdDrifting">
+            <summary> Drifting (Floating). </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoMotorDirection.mdLeft">
+            <summary> Running left. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoMotorDirection.mdRight">
+            <summary> Running right. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoMotorDirection.mdBraking">
+            <summary> Brake. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoMotorDirection.mdUnknown">
+            <summary> Unknwon. </summary>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoMotor">
+            <summary> The class represents a WeDo motor. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
+            <summary> Creates new motor class object. </summary>
+            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
+              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
+            <param name="ConnectionId"> The device's Connection ID. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotor.Brake">
+            <summary> Sends a command to stop (brake) the motor. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotor.Drift">
+            <summary> Sends a command to stop (drift/float) the motor. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotor.Run(wclWeDoFramework.wclWeDoMotorDirection,System.Byte)">
+            <summary> Sends a command to run the motor at a given <c>Power</c> in a given <c>Direction</c>.
+              The minimum speed is 0 and the maximum speed is 100. </summary>
+            <param name="Direction"> The direction to run the motor. </param>
+            <param name="Power"> The power to run the motor with. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoMotorDirection"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoMotor.Direction">
+            <summary> Gets the current running direction of the motor. </summary>
+            <value> Teh motor direction. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoMotorDirection"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoMotor.IsBraking">
+            <summary> Gets the motor's braking state. </summary>
+            <value> <c>True</c> if the motor is in brake state. <c>False</c> otheerwise. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoMotor.IsDrifting">
+            <summary> Gets the motor's drifting state. </summary>
+            <value> <c>True</c> if the motor is currently drifting or floating.
+              When floating the motor axis can be turned without resistance. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoMotor.Power">
+            <summary> Gets the power the motor is currently running with (0 if braking or drifting). </summary>
+            <value> Teh current motor power. </value>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoHub">
+            <summary> The class represents a WeDo Hub hardware. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.DoConnected(System.Int32)">
+            <summary> Fires the <c>OnConnected</c> event. </summary>
+            <param name="Error"> If the connection has been established the parameter is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If connection has not been established the
+              parameter value is one of the Bluetooth error codes. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.DoDisconnected(System.Int32)">
+            <summary> Fires the <c>OnDisconnected</c> event. </summary>
+            <param name="Reason"> The disconnection reason code. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.DoButtonStateChanged(System.Boolean)">
+            <summary> Fires the <c>OnButtonStateChanged</c> event. </summary>
+            <param name="Pressed"> <c>True</c> if the button has been pressed. <c>False</c> if the
+              button has been released. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.DoLowVoltageAlert(System.Boolean)">
+            <summary> Fires the <c>OnLowVoltageAlert</c> event. </summary>
+            <param name="Alert"> <c>True</c> if device runs on low battery. <c>False</c> otherwise. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.DoHighCurrentAlert(System.Boolean)">
+            <summary> Fires the <c>OnHighCurrentAlert</c> event. </summary>
+            <param name="Alert"> <c>True</c> if device runs on high current. <c>False</c> otherwise. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.DoLowSignalAlert(System.Boolean)">
+            <summary> Fires the <c>OnLowSignalAlert</c> event. </summary>
+            <param name="Alert"> <c>True</c> if the RSSI value is low. <c>False</c> otherwise. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.DoDeviceAttached(wclWeDoFramework.wclWeDoIo)">
+            <summary> Fires the <c>OnDeviceAttached</c> event. </summary>
+            /// <param name="Device"> The Input/Output device object. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.DoDeviceDetached(wclWeDoFramework.wclWeDoIo)">
+            <summary> Fires the <c>OnDeviceDetached</c> event. </summary>
+            /// <param name="Device"> The Input/Output device object. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.#ctor">
+            <summary> Creates new WeDo Client. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.Connect(wclBluetooth.wclBluetoothRadio,System.Int64)">
+            <summary> Connects to a selected WeDo Hub. </summary>
+            <param name="Radio"> The <see cref="T:wclBluetooth.wclBluetoothRadio" /> object that should be used
+              for executing Bluetooth LE connection. </param>
+            <param name="Address"> The WeDo Hub MAC address. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+            <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.Disconnect">
+            <summary> Disconnects from WeDo Hub. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.TurnOff">
+            <summary> Turns the Hub off. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+            <remarks> The method sends the Turn Off command to the connected Hub. </remarks>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.ReadDeviceName(System.String@)">
+            <summary> Reads the current device name. </summary>
+            <param name="Name"> If the method completed with success the parameter contains the
+              current device name. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.WriteDeviceName(System.String)">
+            <summary> Writes new device name. </summary>
+            <param name="Name"> The new device name. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoHub.DeviceInformation">
+            <summary> Gets the Hub device information service object. </summary>
+            <value> The Hub device information service object. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoDeviceInformationService"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoHub.BatteryLevel">
+            <summary> Gets the battery level service object. </summary>
+            <value> The battery level service object. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoBatteryLevelService"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoHub.Address">
+            <summary> Gets the connected WeDo Hub Address. </summary>
+            <value> The Hub MAC address. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoHub.Connected">
+            <summary> Gets connected status. </summary>
+            <value> <c>true</c> if connected to WeDo Hub. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoHub.ClientState">
+            <summary> Gets internal GATT client state. </summary>
+            <value> The internal GATT client state. </value>
+            <seealso cref="T:wclCommunication.wclClientState" />
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoHub.IoDevices">
+            <summary> Gets the list of the attached IO devices. </summary>
+            <value> The list of the attached IO devices. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoHub.OnConnected">
+            <summary> The event fires when connection to a WeDo Hub
+              has been established. </summary>
+            <seealso cref="T:wclCommunication.wclClientConnectionConnectEvent" />
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoHub.OnDisconnected">
+            <summary> The event fires when WeDo Hub has been disconnected. </summary>
+            <seealso cref="T:wclCommunication.wclClientConnectionDisconnectEvent" />
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoHub.OnButtonStateChanged">
+            <summary> The event fires when button state has been changed. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHubButtonStateChangedEvent"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoHub.OnDeviceAttached">
+            <summary> The event fires when new IO device has been attached. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoDeviceStateChangedEvent"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoHub.OnDeviceDetached">
+            <summary> The event fires when an existing IO device has been detached. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoDeviceStateChangedEvent"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoHub.OnLowVoltageAlert">
+            <summary> The event fires when device runs on low battery. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHubAlertEvent"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoHub.OnHighCurrentAlert">
+            <summary> The event fires when device runs on high current. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHubAlertEvent"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoHub.OnLowSignalAlert">
+            <summary> The event fires when low RSSI value received from the device. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHubAlertEvent"/>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoIo">
+            <summary> The class represets an attached Input/Outpout device. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIo.WriteData(System.Byte[])">
+            <summary> Sends data to the IO service. </summary>
+            <param name="Data"> The data to write. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIo.SendReadValueRequest">
+            <summary> If the notifications is disabled for the service in the Input Format you will have to use
+              this method to request an updated value for the service. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIo.ResetSensor">
+            <summary> Sends a reset command to the Device. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIo.AddValidDataFormat(wclWeDoFramework.wclWeDoDataFormat)">
+            <summary> Adds a new valid data format. </summary>
+            <param name="Format"> The data format to add. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoDataFormat"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIo.RemoveValidDataFormat(wclWeDoFramework.wclWeDoDataFormat)">
+            <summary> Removes a valid data format. </summary>
+            <param name="Format"> The data format to remove. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoDataFormat"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIo.SendInputFormat(wclWeDoFramework.wclWeDoInputFormat)">
+            <summary> Send an updated input format for this service to the device. </summary>
+            <param name="Format"> New input format. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+            <seelso cref="T:wclWeDoFramework.wclWeDoInputFormat"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIo.SetInputFormatMode(System.Byte)">
+            <summary> Changes mode of the Input Format. </summary>
+            <param name="Mode"> The Input Format mode. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIo.InputFormatChanged(wclWeDoFramework.wclWeDoInputFormat)">
+            <summary> The method called when Input Format has been changed. </summary>
+            <param name="OldFormat"> The old Input Format. </param>
+            <remarks> A derived class must override this method to get notifications about
+              format changes. </remarks>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIo.ValueChanged">
+            <summary> The method called when data value has been changed. </summary>
+            <remarks> A derived class must override this method to get notifications about
+              value changes. </remarks>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.AsFloat">
+            <summary> Gets current sensor's value as <c>Float</c> number. </summary>
+            <value> The float sensors value. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.AsInteger">
+            <summary> Gets the current sensor's value as <c>Integer</c> number. </summary>
+            <value> The integer sensor's value. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.DataFormats">
+            <summary> Gets the list of supported Data Formats. </summary>
+            <value> The list of supported Data Formats. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoDataFormat"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.DefaultInputFormat">
+            <summary> Gets and sets the default input format. </summary>
+            <value> The default input format. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoInputFormat"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.InputFormat">
+            <summary> Gets the sensor Input Format. </summary>
+            <value> The Input Format. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoInputFormat"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.InputFormatMode">
+            <summary> Gets the Input Format mode. </summary>
+            <value> The Input Format Mode. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.NumbersFromValueData">
+            <summary> Gets alist with one byte[] per number received. </summary>
+            <value> The list of bytes array. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.Value">
+            <summary> Gets the current sensors value. </summary>
+            <value> The sensors value as raw bytes array. </value>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIo.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
+            <summary> Creates new IO device object. </summary>
+            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
+              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
+            <param name="ConnectionId"> The device's Connection ID. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.Attached">
+            <summary> Gets the IO device state. </summary>
+            <value> <c>True</c> if the device is attached. <c>False</c> if the device is detached. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.ConnectionId">
+            <summary> Gets the IO connection ID. </summary>
+            <value> The IO connection ID. </value>
+            <remarks> It is guarateed that the connection ID is unique. </remarks>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.DeviceType">
+            <summary> Gets the device represented by this object. </summary>
+            <value> The IO device type. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIoDeviceType"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.FirmwareVersion">
+            <summary> Gets the IO device firmware version. </summary>
+            <value> The IO device firmware version. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoVersion"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.HardwareVersion">
+            <summary> Gets the IO device hardware version. </summary>
+            <value> The IO device hardware version. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoVersion"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.Internal">
+            <summary> Gets the IO type represented by this object. </summary>
+            <value> <c>True</c> if the IO device is internal. <c>False</c> if the IO device is external. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.Hub">
+            <summary> Gets the WeDo Hub object that owns the IO device. </summary>
+            <value> The WeDo Hub object. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoIo.PortId">
+            <summary> The index of the port on the Hub the IO is attached to.  </summary>
+            <value> The port ID. </value>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoCurrentSensor">
+            <summary> The class represents a WeDo Hub current sensor. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoCurrentSensor.ValueChanged">
+            <summary> The method called when data value has been changed. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoCurrentSensor.DoCurrentChanged">
+            <summary> Fires the <c>OnCurrentChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoCurrentSensor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
+            <summary> Creates new current sensor device object. </summary>
+            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
+              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
+            <param name="ConnectionId"> The device's Connection ID. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoCurrentSensor.Current">
+            <summary> Gets the battery current in mA. </summary>
+            <value> The current in milli ampers. </value>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoCurrentSensor.OnCurrentChanged">
+            <summary> The event fires when current has been changed. </summary>
+            <seealso cref="T:System.EventHandler"/>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoVoltageSensor">
+            <summary> The class represents a WeDo Hub Voltage sensor. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoVoltageSensor.ValueChanged">
+            <summary> The method called when data value has been changed. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoVoltageSensor.DoVoltageChanged">
+            <summary> Fires the <c>OnVoltageChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoVoltageSensor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
+            <summary> Creates new voltage sensor device object. </summary>
+            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
+              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
+            <param name="ConnectionId"> The device's Connection ID. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoVoltageSensor.Voltage">
+            <summary> Gets the current battery voltage in milli volts. </summary>
+            <value> The battery voltage in milli volts. </value>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoVoltageSensor.OnVoltageChanged">
+            <summary> The event fires when voltage has been changed. </summary>
+            <seealso cref="T:System.EventHandler"/>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoResetableSensor">
+            <summary> The base class for WeDo sensors that can be reset. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoResetableSensor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
+            <summary> Creates new device object. </summary>
+            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
+              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
+            <param name="ConnectionId"> The device's Connection ID. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoResetableSensor.Reset">
+            <summary> Resets the sensor. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoMotionSensorMode">
+            <summary> Supported modes for the motion sensor. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoMotionSensorMode.mmDetect">
+            <summary> Detect mode - produces value that reflect the relative distance from the sensor
+              to objects in front of it. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoMotionSensorMode.mmCount">
+            <summary> Count mode - produces values that reflect how many times the sensor has been
+              activated. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoMotionSensorMode.mmUnknown">
+            <summary> Unknown (unsupported) mode. </summary>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoMotionSensor">
+            <summary> The class represents a WeDo Motion Sensor. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoResetableSensor"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.InputFormatChanged(wclWeDoFramework.wclWeDoInputFormat)">
+            <summary> The method called when Input Format has been changed. </summary>
+            <param name="OldFormat"> The old Input Format. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.ValueChanged">
+            <summary> Fires the <c>OnVoltageChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.DoCountChanged">
+            <summary> Fires the <c>OnCountChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.DoDistanceChanged">
+            <summary> Fires the <c>OnDistanceChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.DoModeChanged">
+            <summary> Fires the <c>OnModeChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
+            <summary> Creates new motion sensor device object. </summary>
+            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
+              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
+            <param name="ConnectionId"> The device's Connection ID. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoMotionSensor.SetMode(wclWeDoFramework.wclWeDoMotionSensorMode)">
+            <summary> Sets the motion sensor mode. </summary>
+            <param name="Mode"> The motion sensor mode. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoMotionSensorMode"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoMotionSensor.Count">
+            <summary> Gets the most recent count reading from the sensor. </summary>
+            <value> The detections count. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoMotionSensor.Distance">
+            <summary> Gets the most recent distance reading from the sensor. </summary>
+            <value> The distance. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoMotionSensor.Mode">
+            <summary> Gets the current mode of the motion sensor. </summary>
+            <value> The sensor mode. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoMotionSensorMode"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoMotionSensor.OnCountChanged">
+            <summary> The event fires when the counter has been changed. </summary>
+            <seealso cref="T:System.EventHandler"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoMotionSensor.OnDistanceChanged">
+            <summary> The event fires when distance has been changed. </summary>
+            <seealso cref="T:System.EventHandler"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoMotionSensor.OnModeChanged">
+            <summary> The event fires when the mode has been changed. </summary>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoTiltSensorMode">
+            <summary> The enumeration describes the Tilt sensor modes. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorMode.tmAngle">
+            <summary> Angle. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorMode.tmTilt">
+            <summary> Tilt. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorMode.tmCrash">
+            <summary> Crash. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorMode.tmUnknown">
+            <summary> tmUnkown. </summary>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoTiltSensorDirection">
+            <summary> The enumeration describes th Tilt sensor directions. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorDirection.tdNeutral">
+            <summary> Neutral. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorDirection.tdBackward">
+            <summary> Backward. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorDirection.tdRight">
+            <summary> Right. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorDirection.tdLeft">
+            <summary> Left. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorDirection.tdForward">
+            <summary> Forward. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorDirection.tdUnknown">
+            <summary> Unknown. </summary>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoTiltSensorAngle">
+            <summary> The record represents the tilt sensor angle values. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorAngle.X">
+            <summary>  The X value of tilt angle. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorAngle.Y">
+            <summary> The Y value of tilt angle. </summary>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoTiltSensorCrash">
+            <summary> The structure represents the Tilt sensor crash values. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorCrash.X">
+            <summary> The X value of crash. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorCrash.Y">
+            <summary> The Y value of crash. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoTiltSensorCrash.Z">
+            <summary> The Z value of crash. </summary>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoTiltSensor">
+            <summary> The class represents a WeDo Titl Sensor device. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoResetableSensor"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.InputFormatChanged(wclWeDoFramework.wclWeDoInputFormat)">
+            <summary> The method called when Input Format has been changed. </summary>
+            <param name="OldFormat"> The old Input Format. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.ValueChanged">
+            <summary> Fires the <c>OnVoltageChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.DoAngleChanged">
+            <summary> Fires the <c>OnAngleChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.DoCrashChanged">
+            <summary> Fires the <c>OnCrashChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.DoDirectionChanged">
+            <summary> Fires the <c>OnDirectionChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.DoModeChanged">
+            <summary> Fires the <c>OnModeChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
+            <summary> Creates new tilt sensor device object. </summary>
+            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
+              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
+            <param name="ConnectionId"> The device's Connection ID. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.SetMode(wclWeDoFramework.wclWeDoTiltSensorMode)">
+            <summary> Sets the tilt sensor mode. </summary>
+            <param name="Mode"> The tils sensor mode. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoTiltSensorMode"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoTiltSensor.Angle">
+            <summary> Gets the most recent angle reading from the sensor. The angle represents the
+              angle the sensor is tilted in the x and y. </summary>
+            <value> The Tilt sensor angle. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoTiltSensorAngle"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoTiltSensor.Crash">
+            <summary> Gets the most recent crash reading from the sensor.
+              The value represents the number of times the sensor has been ‘bumped’ in the x, y, and z.</summary>
+            <value> The Tilt sensor crash. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoTiltSensorCrash"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoTiltSensor.Direction">
+            <summary> Gets the most recent direction reading from the sensor. </summary>
+            <value> The Tilt sensor direction. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoTiltSensorDirection"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoTiltSensor.Mode">
+            <summary> Gets the current mode of the tilt sensor. </summary>
+            <value> The Tilt sensor mode. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoTiltSensorMode"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoTiltSensor.OnAngleChanged">
+            <summary> The event fires when angle has been changed. </summary>
+            <seealso cref="T:System.EventHandler"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoTiltSensor.OnCrashChanged">
+            <summary> The event fires when crash changed. </summary>
+            <seealso cref="T:System.EventHandler"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoTiltSensor.OnDirectionChanged">
+            <summary> The event fires when direction has been changed. </summary>
+            <seealso cref="T:System.EventHandler"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoTiltSensor.OnModeChanged">
+            <summary> The event fires when Mode has been changed. </summary>
+            /// <seealso cref="T:System.EventHandler"/>
+        </member>
         <member name="T:wclWeDoFramework.wclWeDoService">
             <summary> The base class for all WeDo services. </summary>
         </member>
@@ -1221,209 +1072,266 @@
             <value> The <see cref="T:wclWeDoFramework.wclWeDoHub"/> object. </value>
             <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
         </member>
-        <member name="T:wclWeDoFramework.wclWeDoTiltSensorMode">
-            <summary> The enumeration describes the Tilt sensor modes. </summary>
+        <member name="T:wclWeDoFramework.wclWeDoHubButtonStateChangedEvent">
+            <summary> The <c>OnButtonStateChanged</c> event handler prototype. </summary>
+            <param name="Sender"> The object that fires the event. </param>
+            <param name="Pressed"> The button's state. <c>True</c> if button has been pressed.
+              <c>False</c> if button has been released. </param>
         </member>
-        <member name="F:wclWeDoFramework.wclWeDoTiltSensorMode.tmAngle">
-            <summary> Angle. </summary>
+        <member name="T:wclWeDoFramework.wclWeDoHubAlertEvent">
+            <summary> The event handler prototype for alert events. </summary>
+            <param name="Sender"> The object that fires the event. </param>
+            <param name="Alert"> <c>True</c> if the alert is active. <c>False</c> otherwise. </param>
         </member>
-        <member name="F:wclWeDoFramework.wclWeDoTiltSensorMode.tmTilt">
-            <summary> Tilt. </summary>
+        <member name="T:wclWeDoFramework.wclWeDoDeviceStateChangedEvent">
+            <summary> The <c>OnDeviceAttached</c> and <c>OnDeviceDetached</c> events handler prototype. </summary>
+            <param name="Sender"> The object that fires the event. </param>
+            <param name="Device"> The Input/Output device object. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
         </member>
-        <member name="F:wclWeDoFramework.wclWeDoTiltSensorMode.tmCrash">
-            <summary> Crash. </summary>
+        <member name="T:wclWeDoFramework.wclWeDoHubService">
+            <summary> The class represents the WeDo Hub service. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoService"/>
         </member>
-        <member name="F:wclWeDoFramework.wclWeDoTiltSensorMode.tmUnknown">
-            <summary> tmUnkown. </summary>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoTiltSensorDirection">
-            <summary> The enumeration describes th Tilt sensor directions. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoTiltSensorDirection.tdNeutral">
-            <summary> Neutral. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoTiltSensorDirection.tdBackward">
-            <summary> Backward. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoTiltSensorDirection.tdRight">
-            <summary> Right. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoTiltSensorDirection.tdLeft">
-            <summary> Left. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoTiltSensorDirection.tdForward">
-            <summary> Forward. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoTiltSensorDirection.tdUnknown">
-            <summary> Unknown. </summary>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoTiltSensorAngle">
-            <summary> The record represents the tilt sensor angle values. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoTiltSensorAngle.X">
-            <summary>  The X value of tilt angle. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoTiltSensorAngle.Y">
-            <summary> The Y value of tilt angle. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoTiltSensorAngle.Equals(System.Object)">
-            <summary> Compares angles. </summary>
-            <param name="obj"> The object to compare to. </param>
-            <returns> <c>True</c> if objects are equal. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoTiltSensorAngle.GetHashCode">
-            <summary> Gets the object hash. </summary>
-            <returns> The objects hash. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoTiltSensorAngle.op_Equality(wclWeDoFramework.wclWeDoTiltSensorAngle,wclWeDoFramework.wclWeDoTiltSensorAngle)">
-            <summary> Override the <c>==</c> operator. </summary>
-            <param name="a"> First argument. </param>
-            <param name="b"> Second argument. </param>
-            <returns> <c>True</c> if a == b. <c>False</c> otherwise. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoTiltSensorAngle.op_Inequality(wclWeDoFramework.wclWeDoTiltSensorAngle,wclWeDoFramework.wclWeDoTiltSensorAngle)">
-            <summary> Override the <c>!==</c> operator. </summary>
-            <param name="a"> First argument. </param>
-            <param name="b"> Second argument. </param>
-            <returns> <c>True</c> if a != b. <c>False</c> otherwise. </returns>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoTiltSensorCrash">
-            <summary> The structure represents the Tilt sensor crash values. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoTiltSensorCrash.X">
-            <summary> The X value of crash. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoTiltSensorCrash.Y">
-            <summary> The Y value of crash. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoTiltSensorCrash.Z">
-            <summary> The Z value of crash. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoTiltSensorCrash.Equals(System.Object)">
-            <summary> Compares crashes. </summary>
-            <param name="obj"> The object to compare to. </param>
-            <returns> <c>True</c> if objects are equal. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoTiltSensorCrash.GetHashCode">
-            <summary> Gets the object hash. </summary>
-            <returns> The objects hash. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoTiltSensorCrash.op_Equality(wclWeDoFramework.wclWeDoTiltSensorCrash,wclWeDoFramework.wclWeDoTiltSensorCrash)">
-            <summary> Override the <c>==</c> operator. </summary>
-            <param name="a"> First argument. </param>
-            <param name="b"> Second argument. </param>
-            <returns> <c>True</c> if a == b. <c>False</c> otherwise. </returns>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoTiltSensorCrash.op_Inequality(wclWeDoFramework.wclWeDoTiltSensorCrash,wclWeDoFramework.wclWeDoTiltSensorCrash)">
-            <summary> Override the <c>!==</c> operator. </summary>
-            <param name="a"> First argument. </param>
-            <param name="b"> Second argument. </param>
-            <returns> <c>True</c> if a != b. <c>False</c> otherwise. </returns>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoTiltSensor">
-            <summary> The class represents a WeDo Titl Sensor device. </summary>
-            <seealso cref="T:wclWeDoFramework.wclWeDoResetableSensor"/>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.InputFormatChanged(wclWeDoFramework.wclWeDoInputFormat)">
-            <summary> The method called when Input Format has been changed. </summary>
-            <param name="OldFormat"> The old Input Format. </param>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.ValueChanged">
-            <summary> Fires the <c>OnVoltageChanged</c> event. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.DoAngleChanged">
-            <summary> Fires the <c>OnAngleChanged</c> event. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.DoCrashChanged">
-            <summary> Fires the <c>OnCrashChanged</c> event. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.DoDirectionChanged">
-            <summary> Fires the <c>OnDirectionChanged</c> event. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.DoModeChanged">
-            <summary> Fires the <c>OnModeChanged</c> event. </summary>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
-            <summary> Creates new tilt sensor device object. </summary>
-            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
-              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
-            <param name="ConnectionId"> The device's Connection ID. </param>
-            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
-            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
-              parameter is <c>null</c>. </exception>
-        </member>
-        <member name="M:wclWeDoFramework.wclWeDoTiltSensor.SetMode(wclWeDoFramework.wclWeDoTiltSensorMode)">
-            <summary> Sets the tilt sensor mode. </summary>
-            <param name="Mode"> The tils sensor mode. </param>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.Initialize">
+            <summary> Initializes the WeDo service. </summary>
             <returns> If the method completed with success the returning value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
               one of the Bluetooth Framework error code. </returns>
-            <seealso cref="T:wclWeDoFramework.wclWeDoTiltSensorMode"/>
         </member>
-        <member name="P:wclWeDoFramework.wclWeDoTiltSensor.Angle">
-            <summary> Gets the most recent angle reading from the sensor. The angle represents the
-              angle the sensor is tilted in the x and y. </summary>
-            <value> The Tilt sensor angle. </value>
-            <seealso cref="T:wclWeDoFramework.wclWeDoTiltSensorAngle"/>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.Uninitialize">
+            <summary> Uninitializes the WeDo service. </summary>
         </member>
-        <member name="P:wclWeDoFramework.wclWeDoTiltSensor.Crash">
-            <summary> Gets the most recent crash reading from the sensor.
-              The value represents the number of times the sensor has been ‘bumped’ in the x, y, and z.</summary>
-            <value> The Tilt sensor crash. </value>
-            <seealso cref="T:wclWeDoFramework.wclWeDoTiltSensorCrash"/>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.CharacteristicChanged(System.UInt16,System.Byte[])">
+            <summary> This method called internally by the <see cref="T:wclWeDoFramework.wclWeDoHub"/>
+              to notify about characteristic changes. A derived class may override this method
+              to check for required characteristic changes. </summary>
+            <param name="Handle"> The characteristic handle. </param>
+            <param name="Value"> The new characteristic value. </param>
         </member>
-        <member name="P:wclWeDoFramework.wclWeDoTiltSensor.Direction">
-            <summary> Gets the most recent direction reading from the sensor. </summary>
-            <value> The Tilt sensor direction. </value>
-            <seealso cref="T:wclWeDoFramework.wclWeDoTiltSensorDirection"/>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.DoButtonStateChanged(System.Boolean)">
+            <summary> Fires the <c>OnButtonStateChanged</c> event. </summary>
+            <param name="Pressed"> <c>True</c> if the button has been pressed. <c>False</c> if the
+              button has been released. </param>
         </member>
-        <member name="P:wclWeDoFramework.wclWeDoTiltSensor.Mode">
-            <summary> Gets the current mode of the tilt sensor. </summary>
-            <value> The Tilt sensor mode. </value>
-            <seealso cref="T:wclWeDoFramework.wclWeDoTiltSensorMode"/>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.DoLowVoltageAlert(System.Boolean)">
+            <summary> Fires the <c>OnLowVoltageAlert</c> event. </summary>
+            <param name="Alert"> <c>True</c> if device runs on low battery. <c>False</c> otherwise. </param>
         </member>
-        <member name="E:wclWeDoFramework.wclWeDoTiltSensor.OnAngleChanged">
-            <summary> The event fires when angle has been changed. </summary>
-            <seealso cref="T:System.EventHandler"/>
-        </member>
-        <member name="E:wclWeDoFramework.wclWeDoTiltSensor.OnCrashChanged">
-            <summary> The event fires when crash changed. </summary>
-            <seealso cref="T:System.EventHandler"/>
-        </member>
-        <member name="E:wclWeDoFramework.wclWeDoTiltSensor.OnDirectionChanged">
-            <summary> The event fires when direction has been changed. </summary>
-            <seealso cref="T:System.EventHandler"/>
-        </member>
-        <member name="E:wclWeDoFramework.wclWeDoTiltSensor.OnModeChanged">
-            <summary> The event fires when Mode has been changed. </summary>
-            /// <seealso cref="T:System.EventHandler"/>
-        </member>
-        <member name="T:wclWeDoFramework.wclWeDoVoltageSensor">
-            <summary> The class represents a WeDo Hub Voltage sensor. </summary>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.DoDeviceAttached(wclWeDoFramework.wclWeDoIo)">
+            <summary> Fires the <c>OnDeviceAttached</c> event. </summary>
+            <param name="Device"> The IO device object. </param>
             <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoVoltageSensor.ValueChanged">
-            <summary> The method called when data value has been changed. </summary>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.DoDeviceDetached(System.Byte)">
+            <summary> Fires the <c>OnDeviceDetached</c> event. </summary>
+            <param name="ConnectionId"> The device connection ID. </param>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoVoltageSensor.DoVoltageChanged">
-            <summary> Fires the <c>OnVoltageChanged</c> event. </summary>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.DoHightCurrentAlert(System.Boolean)">
+            <summary> Fires then <c>OnHighCurrentAlert</c> event.</summary>
+            <param name="Alert"> <c>True</c> if device runs on high current. <c>False</c> otherwise. </param>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoVoltageSensor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
-            <summary> Creates new voltage sensor device object. </summary>
-            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
-              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
-            <param name="ConnectionId"> The device's Connection ID. </param>
-            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
-            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.DoLowSignalAlert(System.Boolean)">
+            <summary> Fires then <c>OnLowSignalAlert</c> event.</summary>
+            <param name="Alert"> <c>True</c> if the signal from radio has low RSSI. <c>False</c> otherwise. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoHubService.#ctor(wclBluetooth.wclGattClient,wclWeDoFramework.wclWeDoHub)">
+            <summary> Creates new IO service client. </summary>
+            <param name="Client"> The <see cref="T:wclBluetooth.wclGattClient"/> object that handles the connection
+              to a WeDo device. </param>
+            <param name="Hub"> The <see cref="T:wclWeDoFramework.wclWeDoHub"/> object that owns the service. </param>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
               parameter is <c>null</c>. </exception>
         </member>
-        <member name="P:wclWeDoFramework.wclWeDoVoltageSensor.Voltage">
-            <summary> Gets the current battery voltage in milli volts. </summary>
-            <value> The battery voltage in milli volts. </value>
+        <member name="T:wclWeDoFramework.wclWeDoDeviceInformationService">
+            <summary> The class represents the WeDo Device Information service. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoService"/>
         </member>
-        <member name="E:wclWeDoFramework.wclWeDoVoltageSensor.OnVoltageChanged">
-            <summary> The event fires when voltage has been changed. </summary>
-            <seealso cref="T:System.EventHandler"/>
+        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.Initialize">
+            <summary> Initializes the WeDo service. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.Uninitialize">
+            <summary> Uninitializes the WeDo service. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.#ctor(wclBluetooth.wclGattClient,wclWeDoFramework.wclWeDoHub)">
+            <summary> Creates new Device Information service client. </summary>
+            <param name="Client"> The <see cref="T:wclBluetooth.wclGattClient"/> object that handles the connection
+              to a WeDo device. </param>
+            <param name="Hub"> The <see cref="T:wclWeDoFramework.wclWeDoHub"/> object that owns the service. </param>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.ReadFirmwareVersion(System.String@)">
+            <summary> Reads the firmware version. </summary>
+            <param name="Version"> If the method completed with success the parameter contains the
+              current device's firmware version. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.ReadHardwareVersion(System.String@)">
+            <summary> Reads the hardware version. </summary>
+            <param name="Version"> If the method completed with success the parameter contains the
+              current device's hardware version. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.ReadSoftwareVersion(System.String@)">
+            <summary> Reads the software version. </summary>
+            <param name="Version"> If the method completed with success the parameter contains the
+              current device's software version. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoDeviceInformationService.ReadManufacturerName(System.String@)">
+            <summary> Reads the device's manufacturer name. </summary>
+            <param name="Name"> If the method completed with success the parameter contains the
+              current device's manufacturer name. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="T:wclWeDoFramework.wclBatteryLevelChangedEvent">
+            <summary> The <c>OnBatteryLevelChanged</c> event handler prototype. </summary>
+            <param name="Sender"> The object that fired the event. </param>
+            <param name="Level"> The current battery level in percents in range 0-100. </param>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoBatteryLevelService">
+            <summary> The class represents the WeDo Battery Level service. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoService"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.DoBatteryLevelChanged(System.Byte)">
+            <summary> Fires the <c>OnBatteryLevelChanged</c> event. </summary>
+            <param name="Level"> The current battery level in percents in range 0-100. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.Initialize">
+            <summary> Initializes the WeDo service. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.Uninitialize">
+            <summary> Uninitializes the WeDo service. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.CharacteristicChanged(System.UInt16,System.Byte[])">
+            <summary> This method called internally by the <see cref="T:wclWeDoFramework.wclWeDoHub"/>
+              to notify about characteristic changes. A derived class may override this method
+              to check for required characteristic changes. </summary>
+            <param name="Handle"> The characteristic handle. </param>
+            <param name="Value"> The new characteristic value. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.#ctor(wclBluetooth.wclGattClient,wclWeDoFramework.wclWeDoHub)">
+            <summary> Creates new Battery Level service client. </summary>
+            <param name="Client"> The <see cref="T:wclBluetooth.wclGattClient"/> object that handles the connection
+              to a WeDo device. </param>
+            <param name="Hub"> The <see cref="T:wclWeDoFramework.wclWeDoHub"/> object that owns the service. </param>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoBatteryLevelService.ReadBatteryLevel(System.Byte@)">
+            <summary> Reads the device's battery level. </summary>
+            <param name="Level"> the current battery level in percents. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoBatteryLevelService.OnBatteryLevelChanged">
+            <summary> The event fires when the battery level has been changed. </summary>
+            <seealso cref="T:wclWeDoFramework.wclBatteryLevelChangedEvent" />
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoIoService">
+            <summary> The class represents the WeDo IO service. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoService"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIoService.Initialize">
+            <summary> Initializes the WeDo service. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIoService.Uninitialize">
+            <summary> Uninitializes the WeDo service. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIoService.CharacteristicChanged(System.UInt16,System.Byte[])">
+            <summary> This method called internally by the <see cref="T:wclWeDoFramework.wclWeDoHub"/>
+              to notify about characteristic changes. A derived class may override this method
+              to check for required characteristic changes. </summary>
+            <param name="Handle"> The characteristic handle. </param>
+            <param name="Value"> The new characteristic value. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoIoService.#ctor(wclBluetooth.wclGattClient,wclWeDoFramework.wclWeDoHub)">
+            <summary> Creates new IO service client. </summary>
+            <param name="Client"> The <see cref="T:wclBluetooth.wclGattClient"/> object that handles the connection
+              to a WeDo device. </param>
+            <param name="Hub"> The <see cref="T:wclWeDoFramework.wclWeDoHub"/> object that owns the service. </param>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises if the <c>Client</c> or <c>Hub</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoSensorDataUnit">
+            <summary> The sensor's data unit. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoSensorDataUnit.suRaw">
+            <summary> Raw. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoSensorDataUnit.suPercentage">
+            <summary> Percentage. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoSensorDataUnit.suSi">
+            <summary> SI. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoSensorDataUnit.suUnknown">
+            <summary> Unknown. </summary>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoIoDeviceType">
+            <summary> Represents a type of an attached IO (motor, sensor, etc). </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodMotor">
+            <summary> A Motor. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodVoltageSensor">
+            <summary> A Voltage Sensor. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodCurrentSensor">
+            <summary> A Current Sensor. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodPiezo">
+            <summary> A Piezo Tone player. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodRgb">
+            <summary> An RGB light. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodTiltSensor">
+            <summary> A Tilt Sensor. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodMotionSensor">
+            <summary> A Motion Sensor (aka. Detect Sensor). </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodUnknown">
+            <summary> A type is unknown. </summary>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoVersion">
+            <summary> The structure describes the device version number. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoVersion.BugFixVersion">
+            <summary> The bug fix version number. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoVersion.BuildNumber">
+            <summary> The build number. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoVersion.MajorVersion">
+            <summary> The build number. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoVersion.MinorVersion">
+            <summary> The major version number. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoVersion.ToString">
+            <summary> A formatted string representation of the version. </summary>
+            <returns> A formatted string representation of the version </returns>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoHubFoundEvent">
             <summary> The <c>OnHubFound</c> event handler prototype. </summary>
