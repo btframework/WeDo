@@ -43,7 +43,7 @@ namespace wclWeDoFramework
         /// <summary> The build number. </summary>
 		public Byte MajorVersion;
         /// <summary> The major version number. </summary>
-		public int MinorVersion;
+		public Byte MinorVersion;
 
         /// <summary> Compares two versions. </summary>
         /// <param name="obj"> The other object to be compared with current. </param>
