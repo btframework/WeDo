@@ -76,13 +76,13 @@ namespace WeDoScan
                 UpdateBattLevel(Level);
         }
 
-        private void BtClose_Click(object sender, EventArgs e)
+        private void BtClose_Click(Object Sender, EventArgs e)
         {
             // Disconnect from Hub.
             FHub.Disconnect();
         }
 
-        private void BtSetDeviceName_Click(object sender, EventArgs e)
+        private void BtSetDeviceName_Click(Object Sender, EventArgs e)
         {
             // Try to change Hub name.
             Int32 Res = FHub.WriteDeviceName(edDeviceName.Text);
@@ -90,7 +90,7 @@ namespace WeDoScan
                 MessageBox.Show("Write hub name failed with error: 0x" + Res.ToString("X8"));
         }
 
-        private void FmDevInfo_Load(object sender, EventArgs e)
+        private void FmDevInfo_Load(Object Sender, EventArgs e)
         {
             // Create WeDo Hub instance.
             FHub = new wclWeDoHub();
@@ -113,12 +113,12 @@ namespace WeDoScan
             }
         }
 
-        private void FHub_OnLowSignalAlert(object Sender, bool Alert)
+        private void FHub_OnLowSignalAlert(Object Sender, Boolean Alert)
         {
             laLowSignal.Visible = Alert;
         }
 
-        private void FHub_OnDeviceDetached(object Sender, wclWeDoIo Device)
+        private void FHub_OnDeviceDetached(Object Sender, wclWeDoIo Device)
         {
             foreach (ListViewItem Item in lvAttachedDevices.Items)
             {
@@ -130,7 +130,7 @@ namespace WeDoScan
             }
         }
 
-        private void FHub_OnDeviceAttached(object Sender, wclWeDoIo Device)
+        private void FHub_OnDeviceAttached(Object Sender, wclWeDoIo Device)
         {
             ListViewItem Item = lvAttachedDevices.Items.Add(Device.ConnectionId.ToString());
             Item.SubItems.Add(Device.DeviceType.ToString());
@@ -140,19 +140,19 @@ namespace WeDoScan
             Item.SubItems.Add(Device.PortId.ToString());
         }
 
-        private void Hub_OnLowVoltageAlert(object Sender, bool Alert)
+        private void Hub_OnLowVoltageAlert(Object Sender, Boolean Alert)
         {
             // Show Low Voltage Warning when alert received.
             laLowVoltage.Visible = Alert;
         }
 
-        private void FHub_OnDisconnected(object Sender, int Reason)
+        private void FHub_OnDisconnected(Object Sender, Int32 Reason)
         {
             // When disconnected from Hub close the form.
             Close();
         }
 
-        private void FHub_OnConnected(object Sender, int Error)
+        private void FHub_OnConnected(Object Sender, Int32 Error)
         {
             if (Error == wclErrors.WCL_E_SUCCESS)
             {
@@ -169,7 +169,7 @@ namespace WeDoScan
             }
         }
 
-        private void BatteryLevel_OnBatteryLevelChanged(object Sender, byte Level)
+        private void BatteryLevel_OnBatteryLevelChanged(Object Sender, Byte Level)
         {
             // Update battery level.
             UpdateBattLevel(Level);
@@ -184,7 +184,7 @@ namespace WeDoScan
             InitializeComponent();
         }
 
-        private void BtTurnOff_Click(object sender, EventArgs e)
+        private void BtTurnOff_Click(Object Sender, EventArgs e)
         {
             Int32 Res = FHub.TurnOff();
             if (Res != wclErrors.WCL_E_SUCCESS)

@@ -21,7 +21,7 @@ namespace WeDoMotor
             InitializeComponent();
         }
 
-        private void FmMain_Load(object sender, EventArgs e)
+        private void FmMain_Load(Object sender, EventArgs e)
         {
             cbDirection.SelectedIndex = 0;
 
@@ -43,12 +43,12 @@ namespace WeDoMotor
             FVoltage = null;
         }
 
-        private void FHub_OnLowVoltageAlert(object Sender, bool Alert)
+        private void FHub_OnLowVoltageAlert(Object Sender, Boolean Alert)
         {
             laLowVoltage.Visible = Alert;
         }
 
-        private void FHub_OnHighCurrentAlert(object Sender, bool Alert)
+        private void FHub_OnHighCurrentAlert(Object Sender, Boolean Alert)
         {
             laHighCurrent.Visible = Alert;
         }
@@ -102,7 +102,7 @@ namespace WeDoMotor
             }
         }
 
-        private void FHub_OnDeviceDetached(object Sender, wclWeDoIo Device)
+        private void FHub_OnDeviceDetached(Object Sender, wclWeDoIo Device)
         {
             if (Device.DeviceType == wclWeDoIoDeviceType.iodMotor && FMotor != null && Device.ConnectionId == FMotor.ConnectionId)
             {
@@ -115,7 +115,7 @@ namespace WeDoMotor
                 FVoltage = null;
         }
 
-        private void FHub_OnDeviceAttached(object Sender, wclWeDoIo Device)
+        private void FHub_OnDeviceAttached(Object Sender, wclWeDoIo Device)
         {
             // This demo supports only single motor.
             if (FMotor == null)
@@ -146,25 +146,25 @@ namespace WeDoMotor
             }
         }
 
-        private void FVoltage_OnVoltageChanged(object sender, EventArgs e)
+        private void FVoltage_OnVoltageChanged(Object Sender, EventArgs e)
         {
             if (FVoltage != null)
                 laVoltage.Text = FVoltage.Voltage.ToString();
         }
 
-        private void FCurrent_OnCurrentChanged(object sender, EventArgs e)
+        private void FCurrent_OnCurrentChanged(Object Sender, EventArgs e)
         {
             if (FCurrent != null)
                 laCurrent.Text = FCurrent.Current.ToString();
         }
 
-        private void FHub_OnDisconnected(object Sender, int Reason)
+        private void FHub_OnDisconnected(Object Sender, Int32 Reason)
         {
             EnableConnect(false);
             FManager.Close();
         }
 
-        private void FHub_OnConnected(object Sender, int Error)
+        private void FHub_OnConnected(Object Sender, Int32 Error)
         {
             if (Error != wclErrors.WCL_E_SUCCESS)
             {
@@ -176,7 +176,7 @@ namespace WeDoMotor
                 EnableConnect(true);
         }
 
-        private void FWatcher_OnHubFound(object Sender, long Address, string Name)
+        private void FWatcher_OnHubFound(Object Sender, Int64 Address, String Name)
         {
             wclBluetoothRadio Radio = FWatcher.Radio;
             FWatcher.Stop();
@@ -200,17 +200,17 @@ namespace WeDoMotor
             btDisconnect.Enabled = false;
         }
 
-        private void BtDisconnect_Click(object sender, EventArgs e)
+        private void BtDisconnect_Click(Object Sender, EventArgs e)
         {
             Disconnect();
         }
 
-        private void FmMain_FormClosed(object sender, FormClosedEventArgs e)
+        private void FmMain_FormClosed(Object Sender, FormClosedEventArgs e)
         {
             Disconnect();
         }
 
-        private void BtConnect_Click(object sender, EventArgs e)
+        private void BtConnect_Click(Object Sender, EventArgs e)
         {
             // The very first thing we have to do is to open Bluetooth Manager.
             // That initializes the underlying drivers and allows us to work with Bluetooth.
@@ -276,7 +276,7 @@ namespace WeDoMotor
             }
         }
 
-        private void BtStart_Click(object sender, EventArgs e)
+        private void BtStart_Click(Object Sender, EventArgs e)
         {
             if (FMotor == null)
                 MessageBox.Show("Device is not attached");
@@ -301,7 +301,7 @@ namespace WeDoMotor
             }
         }
 
-        private void BtBrake_Click(object sender, EventArgs e)
+        private void BtBrake_Click(Object Sender, EventArgs e)
         {
             if (FMotor == null)
                 MessageBox.Show("Device is not attached");
@@ -313,7 +313,7 @@ namespace WeDoMotor
             }
         }
 
-        private void BtDrift_Click(object sender, EventArgs e)
+        private void BtDrift_Click(Object Sender, EventArgs e)
         {
             if (FMotor == null)
                 MessageBox.Show("Device is not attached");

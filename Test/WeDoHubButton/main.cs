@@ -37,7 +37,7 @@ namespace WeDoHubButton
             lvHubs.Items.Clear();
         }
 
-        private void FmMain_Load(object sender, EventArgs e)
+        private void FmMain_Load(Object Sender, EventArgs e)
         {
             FManager = new wclBluetoothManager();
 
@@ -50,17 +50,18 @@ namespace WeDoHubButton
             FHubs = new List<wclWeDoHub>();
         }
 
-        private void FWatcher_OnStopped(object sender, EventArgs e)
+        private void FWatcher_OnStopped(Object Sender, EventArgs e)
         {
             UpdateButtons(false);
         }
 
-        private void FWatcher_OnStarted(object sender, EventArgs e)
+        private void FWatcher_OnStarted(Object Sender, EventArgs e)
         {
             UpdateButtons(true);
         }
 
-        private void FWatcher_OnHubNameChanged(object Sender, long Address, string OldName, string NewName)
+        private void FWatcher_OnHubNameChanged(Object Sender, Int64 Address, String OldName,
+            String NewName)
         {
             foreach (ListViewItem Item in lvHubs.Items)
             {
@@ -69,7 +70,7 @@ namespace WeDoHubButton
             }
         }
 
-        private void FWatcher_OnHubFound(object Sender, long Address, string Name)
+        private void FWatcher_OnHubFound(Object Sender, Int64 Address, String Name)
         {
             wclWeDoHub Hub = new wclWeDoHub();
             Hub.OnConnected += Hub_OnConnected;
@@ -90,7 +91,7 @@ namespace WeDoHubButton
             }
         }
 
-        private void Hub_OnLowVoltageAlert(object Sender, bool Alert)
+        private void Hub_OnLowVoltageAlert(Object Sender, Boolean Alert)
         {
             Int64 Address = ((wclWeDoHubService)Sender).Hub.Address;
             foreach (ListViewItem Item in lvHubs.Items)
@@ -105,7 +106,7 @@ namespace WeDoHubButton
             }
         }
 
-        private void Hub_OnButtonStateChanged(object Sender, bool Pressed)
+        private void Hub_OnButtonStateChanged(Object Sender, Boolean Pressed)
         {
             Int64 Address = ((wclWeDoHub)Sender).Address;
             foreach (ListViewItem Item in lvHubs.Items)
@@ -120,7 +121,7 @@ namespace WeDoHubButton
             }
         }
 
-        private void BatteryLevel_OnBatteryLevelChanged(object Sender, byte Level)
+        private void BatteryLevel_OnBatteryLevelChanged(Object Sender, Byte Level)
         {
             Int64 Address = ((wclWeDoBatteryLevelService)Sender).Hub.Address;
             foreach (ListViewItem Item in lvHubs.Items)
@@ -130,7 +131,7 @@ namespace WeDoHubButton
             }
         }
 
-        private void Hub_OnDisconnected(object Sender, int Reason)
+        private void Hub_OnDisconnected(Object Sender, Int32 Reason)
         {
             wclWeDoHub Hub = (wclWeDoHub)Sender;
             foreach (ListViewItem Item in lvHubs.Items)
@@ -144,7 +145,7 @@ namespace WeDoHubButton
             }
         }
 
-        private void Hub_OnConnected(object Sender, int Error)
+        private void Hub_OnConnected(Object Sender, Int32 Error)
         {
             wclWeDoHub Hub = (wclWeDoHub)Sender;
             foreach (ListViewItem Item in lvHubs.Items)
@@ -169,7 +170,7 @@ namespace WeDoHubButton
             }
         }
 
-        private void BtStart_Click(object sender, EventArgs e)
+        private void BtStart_Click(Object Sender, EventArgs e)
         {
             // The very first thing we have to do is to open Bluetooth Manager.
             // That initializes the underlying drivers and allows us to work with Bluetooth.
@@ -237,7 +238,7 @@ namespace WeDoHubButton
             FManager.Close();
         }
 
-        private void BtStop_Click(object sender, EventArgs e)
+        private void BtStop_Click(Object Sender, EventArgs e)
         {
             // We need to execute stop operatrion in few places: when Stop button clicked
             // and when application closed. So use separate function to preven us from code duplication
@@ -245,7 +246,7 @@ namespace WeDoHubButton
             Stop();
         }
 
-        private void FmMain_FormClosed(object sender, FormClosedEventArgs e)
+        private void FmMain_FormClosed(Object Sender, FormClosedEventArgs e)
         {
             // Stop discovering.
             Stop();

@@ -20,7 +20,7 @@ namespace WeDoScan
             InitializeComponent();
         }
 
-        private void FmMain_Load(object sender, EventArgs e)
+        private void FmMain_Load(Object sender, EventArgs e)
         {
             // Create Bluetooth Manager. We do not need any events from it so simple
             // create the object.
@@ -41,7 +41,8 @@ namespace WeDoScan
             FWatcher.OnHubNameChanged += FWatcher_OnHubNameChanged;
         }
 
-        private void FWatcher_OnHubNameChanged(object Sender, long Address, string OldName, string NewName)
+        private void FWatcher_OnHubNameChanged(Object Sender, Int64 Address, String OldName,
+            String NewName)
         {
             // Update Hub name in the list.
             foreach (ListViewItem Item in lvHubs.Items)
@@ -54,7 +55,7 @@ namespace WeDoScan
             }
         }
 
-        private void FWatcher_OnHubLost(object Sender, long Address, string Name)
+        private void FWatcher_OnHubLost(Object Sender, Int64 Address, String Name)
         {
             // Remove Hub from the list.
             foreach (ListViewItem Item in lvHubs.Items)
@@ -67,7 +68,7 @@ namespace WeDoScan
             }
         }
 
-        private void FWatcher_OnHubFound(object Sender, long Address, string Name)
+        private void FWatcher_OnHubFound(Object Sender, Int64 Address, String Name)
         {
             // One new Hub found simple add it to the list.
             // In Bluetooth world the device's address is always shown as hexadecimal.
@@ -96,14 +97,14 @@ namespace WeDoScan
             lvHubs.Items.Clear();
         }
 
-        private void FWatcher_OnStopped(object sender, EventArgs e)
+        private void FWatcher_OnStopped(Object Sender, EventArgs e)
         {
             // Here is nothing important to do. Just disable/enable buttons to update UI.
             // Call separate function. This prevents us from writting the same code few times.
             EnableButtons(false);
         }
 
-        private void FWatcher_OnStarted(object sender, EventArgs e)
+        private void FWatcher_OnStarted(Object Sender, EventArgs e)
         {
             // Here is nothing important to do. Just disable/enable buttons to update UI.
             // Call separate function. This prevents us from writting the same code few times.
@@ -118,7 +119,7 @@ namespace WeDoScan
             FManager.Close();
         }
 
-        private void BtStop_Click(object sender, EventArgs e)
+        private void BtStop_Click(Object Sender, EventArgs e)
         {
             // We need to execute stop operatrion in few places: when Stop button clicked
             // and when application closed. So use separate function to preven us from code duplication
@@ -126,13 +127,13 @@ namespace WeDoScan
             Stop();
         }
 
-        private void FmMain_FormClosed(object sender, FormClosedEventArgs e)
+        private void FmMain_FormClosed(Object Sender, FormClosedEventArgs e)
         {
             // Stop discovering.
             Stop();
         }
 
-        private void BtStart_Click(object sender, EventArgs e)
+        private void BtStart_Click(Object Sender, EventArgs e)
         {
             // The very first thing we have to do is to open Bluetooth Manager.
             // That initializes the underlying drivers and allows us to work with Bluetooth.
@@ -192,14 +193,14 @@ namespace WeDoScan
             }
         }
 
-        private void LvHubs_SelectedIndexChanged(object sender, EventArgs e)
+        private void LvHubs_SelectedIndexChanged(Object Sender, EventArgs e)
         {
             // We should enable Get Information button only when device is selected
             // in the list.
             btInfo.Enabled = (lvHubs.SelectedItems.Count != 0);
         }
 
-        private void BtInfo_Click(object sender, EventArgs e)
+        private void BtInfo_Click(Object Sender, EventArgs e)
         {
             // We use separate form to show selected Hub information.
             fmDevInfo DevInfo = new fmDevInfo(FWatcher.Radio, 

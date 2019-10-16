@@ -19,7 +19,7 @@ namespace WeDoPiezo
             InitializeComponent();
         }
 
-        private void FmMain_Load(object sender, EventArgs e)
+        private void FmMain_Load(Object Sender, EventArgs e)
         {
             cbNote.SelectedIndex = 0;
             cbOctave.SelectedIndex = 0;
@@ -67,7 +67,7 @@ namespace WeDoPiezo
             }
         }
 
-        private void FHub_OnDeviceDetached(object Sender, wclWeDoIo Device)
+        private void FHub_OnDeviceDetached(Object Sender, wclWeDoIo Device)
         {
             if (Device.DeviceType == wclWeDoIoDeviceType.iodPiezo)
             {
@@ -76,7 +76,7 @@ namespace WeDoPiezo
             }
         }
 
-        private void FHub_OnDeviceAttached(object Sender, wclWeDoIo Device)
+        private void FHub_OnDeviceAttached(Object Sender, wclWeDoIo Device)
         {
             if (Device.DeviceType == wclWeDoIoDeviceType.iodPiezo)
             {
@@ -85,13 +85,13 @@ namespace WeDoPiezo
             }
         }
 
-        private void FHub_OnDisconnected(object Sender, int Reason)
+        private void FHub_OnDisconnected(Object Sender, Int32 Reason)
         {
             EnableConnect(false);
             FManager.Close();
         }
 
-        private void FHub_OnConnected(object Sender, int Error)
+        private void FHub_OnConnected(Object Sender, Int32 Error)
         {
             if (Error != wclErrors.WCL_E_SUCCESS)
             {
@@ -103,7 +103,7 @@ namespace WeDoPiezo
                 EnableConnect(true);
         }
 
-        private void FWatcher_OnHubFound(object Sender, long Address, string Name)
+        private void FWatcher_OnHubFound(Object Sender, Int64 Address, String Name)
         {
             wclBluetoothRadio Radio = FWatcher.Radio;
             FWatcher.Stop();
@@ -127,17 +127,17 @@ namespace WeDoPiezo
             btDisconnect.Enabled = false;
         }
 
-        private void BtDisconnect_Click(object sender, EventArgs e)
+        private void BtDisconnect_Click(Object Sender, EventArgs e)
         {
             Disconnect();
         }
 
-        private void FmMain_FormClosed(object sender, FormClosedEventArgs e)
+        private void FmMain_FormClosed(Object Sender, FormClosedEventArgs e)
         {
             Disconnect();
         }
 
-        private void BtConnect_Click(object sender, EventArgs e)
+        private void BtConnect_Click(Object Sender, EventArgs e)
         {
             // The very first thing we have to do is to open Bluetooth Manager.
             // That initializes the underlying drivers and allows us to work with Bluetooth.
@@ -203,7 +203,7 @@ namespace WeDoPiezo
             }
         }
 
-        private void BtStop_Click(object sender, EventArgs e)
+        private void BtStop_Click(Object Sender, EventArgs e)
         {
             if (FPiezo == null)
                 MessageBox.Show("Device is not attached");
@@ -215,7 +215,7 @@ namespace WeDoPiezo
             }
         }
 
-        private void BtPlay_Click(object sender, EventArgs e)
+        private void BtPlay_Click(Object Sender, EventArgs e)
         {
             if (FPiezo == null)
                 MessageBox.Show("Device is not attached");

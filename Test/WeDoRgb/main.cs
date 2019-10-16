@@ -20,7 +20,7 @@ namespace WeDoRgb
             InitializeComponent();
         }
 
-        private void FmMain_Load(object sender, EventArgs e)
+        private void FmMain_Load(Object Sender, EventArgs e)
         {
             cbColorMode.SelectedIndex = -1;
 
@@ -129,7 +129,7 @@ namespace WeDoRgb
             }
         }
 
-        private void FHub_OnDeviceDetached(object Sender, wclWeDoIo Device)
+        private void FHub_OnDeviceDetached(Object Sender, wclWeDoIo Device)
         {
             if (Device.DeviceType == wclWeDoIoDeviceType.iodRgb)
             {
@@ -138,7 +138,7 @@ namespace WeDoRgb
             }
         }
 
-        private void FHub_OnDeviceAttached(object Sender, wclWeDoIo Device)
+        private void FHub_OnDeviceAttached(Object Sender, wclWeDoIo Device)
         {
             if (Device.DeviceType == wclWeDoIoDeviceType.iodRgb)
             {
@@ -150,24 +150,24 @@ namespace WeDoRgb
             }
         }
 
-        private void FRgb_OnColorChanged(object sender, EventArgs e)
+        private void FRgb_OnColorChanged(Object Sender, EventArgs e)
         {
             UpdateRgb();
             UpdateIndex();
         }
 
-        private void FRgb_OnModeChanged(object sender, EventArgs e)
+        private void FRgb_OnModeChanged(Object Sender, EventArgs e)
         {
             UpdateMode();
         }
 
-        private void FHub_OnDisconnected(object Sender, int Reason)
+        private void FHub_OnDisconnected(Object Sender, Int32 Reason)
         {
             EnableConnect(false);
             FManager.Close();
         }
 
-        private void FHub_OnConnected(object Sender, int Error)
+        private void FHub_OnConnected(Object Sender, Int32 Error)
         {
             if (Error != wclErrors.WCL_E_SUCCESS)
             {
@@ -179,7 +179,7 @@ namespace WeDoRgb
                 EnableConnect(true);
         }
 
-        private void FWatcher_OnHubFound(object Sender, long Address, string Name)
+        private void FWatcher_OnHubFound(Object Sender, Int64 Address, String Name)
         {
             wclBluetoothRadio Radio = FWatcher.Radio;
             FWatcher.Stop();
@@ -203,17 +203,17 @@ namespace WeDoRgb
             btDisconnect.Enabled = false;
         }
 
-        private void BtDisconnect_Click(object sender, EventArgs e)
+        private void BtDisconnect_Click(Object Sender, EventArgs e)
         {
             Disconnect();
         }
 
-        private void FmMain_FormClosed(object sender, FormClosedEventArgs e)
+        private void FmMain_FormClosed(Object Sender, FormClosedEventArgs e)
         {
             Disconnect();
         }
 
-        private void BtConnect_Click(object sender, EventArgs e)
+        private void BtConnect_Click(Object Sender, EventArgs e)
         {
             // The very first thing we have to do is to open Bluetooth Manager.
             // That initializes the underlying drivers and allows us to work with Bluetooth.
@@ -279,7 +279,7 @@ namespace WeDoRgb
             }
         }
 
-        private void BtSetRgb_Click(object sender, EventArgs e)
+        private void BtSetRgb_Click(Object Sender, EventArgs e)
         {
             if (FRgb == null)
                 MessageBox.Show("Device is not attached");
@@ -293,7 +293,7 @@ namespace WeDoRgb
             }
         }
 
-        private void CbColorMode_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbColorMode_SelectedIndexChanged(Object Sender, EventArgs e)
         {
             Boolean RgbEnabled = (cbColorMode.SelectedIndex == 1);
             Boolean IndexEnabled = (cbColorMode.SelectedIndex == 0);
@@ -333,7 +333,7 @@ namespace WeDoRgb
             }
         }
 
-        private void BtSetDefault_Click(object sender, EventArgs e)
+        private void BtSetDefault_Click(Object Sender, EventArgs e)
         {
             if (FRgb == null)
                 MessageBox.Show("Device is not attached");
@@ -345,7 +345,7 @@ namespace WeDoRgb
             }
         }
 
-        private void BtTurnOff_Click(object sender, EventArgs e)
+        private void BtTurnOff_Click(Object Sender, EventArgs e)
         {
             if (FRgb == null)
                 MessageBox.Show("Device is not attached");
@@ -357,7 +357,7 @@ namespace WeDoRgb
             }
         }
 
-        private void BtSetIndex_Click(object sender, EventArgs e)
+        private void BtSetIndex_Click(Object Sender, EventArgs e)
         {
             if (FRgb == null)
                 MessageBox.Show("Device is not attached");

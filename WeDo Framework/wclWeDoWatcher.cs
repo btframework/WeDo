@@ -115,7 +115,7 @@ namespace wclWeDoFramework
             }
         }
 
-        private void WatcherStarted(object sender, EventArgs e)
+        private void WatcherStarted(Object Sender, EventArgs e)
         {
             // Fire the started event.
             DoStarted();
@@ -123,7 +123,7 @@ namespace wclWeDoFramework
             FTimer.Start();
         }
 
-        private void WatcherStopped(object sender, EventArgs e)
+        private void WatcherStopped(Object Sender, EventArgs e)
         {
             // Stop timer.
             FTimer.Stop();
@@ -133,7 +133,7 @@ namespace wclWeDoFramework
             DoStopped();
         }
 
-        private void TimerElapsed(object sender, ElapsedEventArgs e)
+        private void TimerElapsed(Object Sender, ElapsedEventArgs e)
         {
             // Cause this event fires in separate thread we have to use
             // WCL messaging to notify main thread about timer event.

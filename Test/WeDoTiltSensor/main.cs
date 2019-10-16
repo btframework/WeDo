@@ -19,7 +19,7 @@ namespace WeDoTiltSensor
             InitializeComponent();
         }
 
-        private void FmMain_Load(object sender, EventArgs e)
+        private void FmMain_Load(Object Sender, EventArgs e)
         {
             cbMode.SelectedIndex = 0;
 
@@ -81,7 +81,7 @@ namespace WeDoTiltSensor
             }
         }
 
-        private void FHub_OnDeviceDetached(object Sender, wclWeDoIo Device)
+        private void FHub_OnDeviceDetached(Object Sender, wclWeDoIo Device)
         {
             if (Device.DeviceType == wclWeDoIoDeviceType.iodTiltSensor && FTilt != null && Device.ConnectionId == FTilt.ConnectionId)
             {
@@ -90,7 +90,7 @@ namespace WeDoTiltSensor
             }
         }
 
-        private void FHub_OnDeviceAttached(object Sender, wclWeDoIo Device)
+        private void FHub_OnDeviceAttached(Object Sender, wclWeDoIo Device)
         {
             if (FTilt == null)
             {
@@ -106,7 +106,7 @@ namespace WeDoTiltSensor
             }
         }
 
-        private void FTilt_OnModeChanged(object sender, EventArgs e)
+        private void FTilt_OnModeChanged(Object Sender, EventArgs e)
         {
             switch (FTilt.Mode)
             {
@@ -125,7 +125,7 @@ namespace WeDoTiltSensor
             }
         }
 
-        private void FTilt_OnDirectionChanged(object sender, EventArgs e)
+        private void FTilt_OnDirectionChanged(Object Sender, EventArgs e)
         {
             switch (FTilt.Direction)
             {
@@ -153,7 +153,7 @@ namespace WeDoTiltSensor
             laZ.Text = "0";
         }
 
-        private void FTilt_OnCrashChanged(object sender, EventArgs e)
+        private void FTilt_OnCrashChanged(Object Sender, EventArgs e)
         {
             wclWeDoTiltSensorCrash Crash = FTilt.Crash;
             laX.Text = Crash.X.ToString();
@@ -162,7 +162,7 @@ namespace WeDoTiltSensor
             laDirection.Text = "Unknown";
         }
 
-        private void FTilt_OnAngleChanged(object sender, EventArgs e)
+        private void FTilt_OnAngleChanged(Object Sender, EventArgs e)
         {
             wclWeDoTiltSensorAngle Angle = FTilt.Angle;
             laX.Text = Angle.X.ToString();
@@ -171,13 +171,13 @@ namespace WeDoTiltSensor
             laDirection.Text = "Unknown";
         }
 
-        private void FHub_OnDisconnected(object Sender, int Reason)
+        private void FHub_OnDisconnected(Object Sender, Int32 Reason)
         {
             EnableConnect(false);
             FManager.Close();
         }
 
-        private void FHub_OnConnected(object Sender, int Error)
+        private void FHub_OnConnected(Object Sender, Int32 Error)
         {
             if (Error != wclErrors.WCL_E_SUCCESS)
             {
@@ -189,7 +189,7 @@ namespace WeDoTiltSensor
                 EnableConnect(true);
         }
 
-        private void FWatcher_OnHubFound(object Sender, long Address, string Name)
+        private void FWatcher_OnHubFound(Object Sender, Int64 Address, String Name)
         {
             wclBluetoothRadio Radio = FWatcher.Radio;
             FWatcher.Stop();
@@ -213,17 +213,17 @@ namespace WeDoTiltSensor
             btDisconnect.Enabled = false;
         }
 
-        private void BtDisconnect_Click(object sender, EventArgs e)
+        private void BtDisconnect_Click(Object Sender, EventArgs e)
         {
             Disconnect();
         }
 
-        private void FmMain_FormClosed(object sender, FormClosedEventArgs e)
+        private void FmMain_FormClosed(Object Sender, FormClosedEventArgs e)
         {
             Disconnect();
         }
 
-        private void BtConnect_Click(object sender, EventArgs e)
+        private void BtConnect_Click(Object Sender, EventArgs e)
         {
             // The very first thing we have to do is to open Bluetooth Manager.
             // That initializes the underlying drivers and allows us to work with Bluetooth.
@@ -289,7 +289,7 @@ namespace WeDoTiltSensor
             }
         }
 
-        private void BtChange_Click(object sender, EventArgs e)
+        private void BtChange_Click(Object Sender, EventArgs e)
         {
             if (FTilt == null)
                 MessageBox.Show("Device is not attached");
@@ -322,7 +322,7 @@ namespace WeDoTiltSensor
             }
         }
 
-        private void BtReset_Click(object sender, EventArgs e)
+        private void BtReset_Click(Object Sender, EventArgs e)
         {
             if (FTilt == null)
                 MessageBox.Show("Device is not attached");

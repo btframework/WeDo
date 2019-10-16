@@ -81,7 +81,7 @@ namespace wclWeDoFramework
         }
 
         // GATT client connect event handler.
-        private void ClientConnect(object Sender, int Error)
+        private void ClientConnect(Object Sender, Int32 Error)
         {
             // If connection was not established simple fire the event with error code.
             if (Error != wclErrors.WCL_E_SUCCESS)
@@ -126,7 +126,7 @@ namespace wclWeDoFramework
         }
 
         // GATT client disconnect event handler.
-        private void ClientDisconnect(object Sender, int Reason)
+        private void ClientDisconnect(Object Sender, Int32 Reason)
         {
             DisconnectHub();
 
@@ -141,7 +141,7 @@ namespace wclWeDoFramework
         }
 
         // GATT client characteristi changed event handler.
-        private void ClientCharacteristicChanged(Object sender, UInt16 Handle, Byte[] Value)
+        private void ClientCharacteristicChanged(Object Sender, UInt16 Handle, Byte[] Value)
         {
             // Notify all services about characteristic changes. So each one can select owm updated data.
             if (FDeviceInformation.Connected)
@@ -164,23 +164,23 @@ namespace wclWeDoFramework
             DoLowVoltageAlert(Alert);
         }
 
-        private void HubHighCurrentAlert(object Sender, Boolean Alert)
+        private void HubHighCurrentAlert(Object Sender, Boolean Alert)
         {
             DoHighCurrentAlert(Alert);
         }
 
-        private void HubLowSignalAlert(object Sender, Boolean Alert)
+        private void HubLowSignalAlert(Object Sender, Boolean Alert)
         {
             DoLowSignalAlert(Alert);
         }
 
-        private void HubDeviceAttached(Object Semder, wclWeDoIo Device)
+        private void HubDeviceAttached(Object Sender, wclWeDoIo Device)
         {
             // Make sure device is not attached yet.
             foreach (wclWeDoIo Io in FDevices)
             {
                 if (Io.ConnectionId == Device.ConnectionId)
-                    break;
+                    return;
             }
 
             FDevices.Add(Device);
