@@ -31,16 +31,16 @@ namespace wclWeDoFramework
     public class wclWeDoDeviceInformationService : wclWeDoService
     {
         // Standard Bluetooth LE Device Information Service.
-        private static Guid WEDO_SERVICE_DEVICE_INFORMATION = new Guid("0000180a-0000-1000-8000-00805f9b34fb");
+        private static Guid WEDO_SERVICE_DEVICE_INFORMATION = new Guid("{0000180a-0000-1000-8000-00805f9b34fb}");
 
         // Firmware Revision characteristic. [Optional] [Readable]
-        private static Guid WEDO_CHARACTERISTIC_FIRMWARE_REVISION = new Guid("00002a26-0000-1000-8000-00805f9b34fb");
+        private static Guid WEDO_CHARACTERISTIC_FIRMWARE_REVISION = new Guid("{00002a26-0000-1000-8000-00805f9b34fb}");
         // Firmware Revision characteristic. [Optional] [Readable]
-        private static Guid WEDO_CHARACTERISTIC_HARDWARE_REVISION = new Guid("00002a27-0000-1000-8000-00805f9b34fb");
+        private static Guid WEDO_CHARACTERISTIC_HARDWARE_REVISION = new Guid("{00002a27-0000-1000-8000-00805f9b34fb}");
         // Software Revision characteristic. [Optional] [Readable]
-        private static Guid WEDO_CHARACTERISTIC_SOFTWARE_REVISION = new Guid("00002a28-0000-1000-8000-00805f9b34fb");
+        private static Guid WEDO_CHARACTERISTIC_SOFTWARE_REVISION = new Guid("{00002a28-0000-1000-8000-00805f9b34fb}");
         // Manufacturer Name characteristic. [Optional] [Readable]
-        private static Guid WEDO_CHARACTERISTIC_MANUFACTURER_NAME = new Guid("00002a29-0000-1000-8000-00805f9b34fb");
+        private static Guid WEDO_CHARACTERISTIC_MANUFACTURER_NAME = new Guid("{00002a29-0000-1000-8000-00805f9b34fb}");
 
         private wclGattCharacteristic? FFirmwareVersionChar;
         private wclGattCharacteristic? FHardwareVersionChar;

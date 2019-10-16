@@ -48,29 +48,29 @@ namespace wclWeDoFramework
     public class wclWeDoHubService : wclWeDoService
     {
         // WeDo HUB service.
-        private static Guid WEDO_SERVICE_HUB = new Guid("00001523-1212-efde-1523-785feabcd123");
+        private static Guid WEDO_SERVICE_HUB = new Guid("{00001523-1212-efde-1523-785feabcd123}");
 
         // Device name characteristic. [Mandatory] [Readable, Writable]
-        private static Guid WEDO_CHARACTERISTIC_DEVICE_NAME = new Guid("00001524-1212-efde-1523-785feabcd123");
+        private static Guid WEDO_CHARACTERISTIC_DEVICE_NAME = new Guid("{00001524-1212-efde-1523-785feabcd123}");
         // Buttons state characteristic. [Mandatory] [Readable, Notifiable]
-        private static Guid WEDO_CHARACTERISTIC_BUTTON_STATE = new Guid("00001526-1212-efde-1523-785feabcd123");
+        private static Guid WEDO_CHARACTERISTIC_BUTTON_STATE = new Guid("{00001526-1212-efde-1523-785feabcd123}");
         // IO attached charactrisitc. [Mandatory] [Notifiable]
-        private static Guid WEDO_CHARACTERISTIC_IO_ATTACHED = new Guid("00001527-1212-efde-1523-785feabcd123");
+        private static Guid WEDO_CHARACTERISTIC_IO_ATTACHED = new Guid("{00001527-1212-efde-1523-785feabcd123}");
         // Low Voltrage Alert characteristic. [Mandatory] [Readable, Notifiable]
-        private static Guid WEDO_CHARACTERISTIC_LOW_VOLTAGE_ALERT = new Guid("00001528-1212-efde-1523-785feabcd123");
+        private static Guid WEDO_CHARACTERISTIC_LOW_VOLTAGE_ALERT = new Guid("{00001528-1212-efde-1523-785feabcd123}");
         // Turn Off command characteristic. [Mandatory] [Writable]
-        private static Guid WEDO_CHARACTERISTIC_TURN_OFF = new Guid("0000152b-1212-efde-1523-785feabcd123");
+        private static Guid WEDO_CHARACTERISTIC_TURN_OFF = new Guid("{0000152b-1212-efde-1523-785feabcd123}");
 
         // High Current Aleart characteristic. [Optional] [Readable, Notifiable]
-        private static Guid WEDO_CHARACTERISTIC_HIGH_CURRENT_ALERT = new Guid("00001529-1212-efde-1523-785feabcd123");
+        private static Guid WEDO_CHARACTERISTIC_HIGH_CURRENT_ALERT = new Guid("{00001529-1212-efde-1523-785feabcd123}");
         // Low Signal Aleart characteristic. [Optional] [Readable, Notifiable]
-        private static Guid WEDO_CHARACTERISTIC_LOW_SIGNAL_ALERT = new Guid("0000152a-1212-efde-1523-785feabcd123");
+        private static Guid WEDO_CHARACTERISTIC_LOW_SIGNAL_ALERT = new Guid("{0000152a-1212-efde-1523-785feabcd123}");
         // VCC Port Control characteristic. [Optional] [Readable, Writable]
-        private static Guid WEDO_CHARACTERISTIC_VCC_PORT_CONTROL = new Guid("0000152c-1212-efde-1523-785feabcd123");
+        private static Guid WEDO_CHARACTERISTIC_VCC_PORT_CONTROL = new Guid("{0000152c-1212-efde-1523-785feabcd123}");
         // Battery Type characteristic. [Optional] [Readable]
-        private static Guid WEDO_CHARACTERISTIC_BATTERY_TYPE = new Guid("0000152d-1212-efde-1523-785feabcd123");
+        private static Guid WEDO_CHARACTERISTIC_BATTERY_TYPE = new Guid("{0000152d-1212-efde-1523-785feabcd123}");
         // Device Disconnect Cpmmand characteristic. [Optional] [Writable]
-        private static Guid WEDO_CHARACTERISTIC_DEVICE_DISCONNECT = new Guid("0000152e-1212-efde-1523-785feabcd123");
+        private static Guid WEDO_CHARACTERISTIC_DEVICE_DISCONNECT = new Guid("{0000152e-1212-efde-1523-785feabcd123}");
 
         private wclGattCharacteristic? FDeviceNameChar;
         private wclGattCharacteristic? FButtonStateChar;

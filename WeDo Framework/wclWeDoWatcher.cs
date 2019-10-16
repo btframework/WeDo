@@ -36,13 +36,13 @@ namespace wclWeDoFramework
     public delegate void wclWeDoHubAppearanceEvent(Object Sender, Int64 Address, String Name);
     /// <summary> The <c>OnHunNameChanged</c> event handler prototype. </summary>
     /// <param name="Sender"> The object that fired the event. </param>
-    /// <param name="Address"> The WeDo device's MAC address. </param>
+    /// <param name="Address"> The WeDo Hub MAC address. </param>
     /// <param name="OldName"> The old name of WeDo Hub. </param>
     /// <param name="NewName"> The new name of WeDo Hub. </param>
     public delegate void wclWeDoHubNameChangedEvent(Object Sender, Int64 Address,
         String OldName, String NewName);
 
-    /// <summary> The class used to search WeDo devices. </summary>
+    /// <summary> The class used to search WeDo devices (Hubs). </summary>
     public class wclWeDoWatcher
     {
         // Structure used internally to monitor WeDo Hubs.
@@ -65,7 +65,7 @@ namespace wclWeDoFramework
         };
 
         // WeDo advertises this service UUID so we look for it to identify WeDo device.
-        private static Guid WEDO_ADVERTISING_SERVICE = new Guid("00001523-1212-efde-1523-785feabcd123");
+        private static Guid WEDO_ADVERTISING_SERVICE = new Guid("{00001523-1212-efde-1523-785feabcd123}");
 
         private Dictionary<Int64, WeDoHub?> FHubs;
         private wclMessageReceiver FReceiver;
@@ -265,7 +265,7 @@ namespace wclWeDoFramework
             {
                 // Now try to start watcher.
                 Res = FWatcher.Start(Radio);
-                //if failed we must close message receiver.
+                // If failed we must close message receiver.
                 if (Res != wclErrors.WCL_E_SUCCESS)
                     FReceiver.Close();
             }

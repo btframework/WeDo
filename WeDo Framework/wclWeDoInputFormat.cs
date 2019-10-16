@@ -30,6 +30,20 @@ namespace wclWeDoFramework
     {
         private const Byte INPUT_FORMAT_PACKET_SIZE = 11;
 
+        private const Byte WEDO_DEVICE_MOTOR = 1;
+        private const Byte WEDO_DEVICE_VOLTAGE_SENSOR = 20;
+        private const Byte WEDO_DEVICE_CURRENT_SENSOR = 21;
+        private const Byte WEDO_DEVICE_PIEZO = 22;
+        private const Byte WEDO_DEVICE_RGB = 23;
+        private const Byte WEDO_DEVICE_TILT_SENSOR = 34;
+        private const Byte WEDO_DEVICE_MOTION_SENSOR = 35;
+        private const Byte WEDO_DEVICE_UNKNOWN = 255;
+
+        private const Byte WEDO_DATA_UNIT_RAW = 0;
+        private const Byte WEDO_DATA_UNIT_PERCENTAGE = 1;
+        private const Byte WEDO_DATA_UNIT_SI = 2;
+        private const Byte WEDO_DATA_UNIT_UNKNOWN = 255;
+
         private Byte FConnectionId;
         private wclWeDoIoDeviceType FDeviceType;
         private UInt32 FInterval;
@@ -54,25 +68,25 @@ namespace wclWeDoFramework
             wclWeDoIoDeviceType DeviceType;
             switch (Data[2])
             {
-                case 1:
+                case WEDO_DEVICE_MOTOR:
                     DeviceType = wclWeDoIoDeviceType.iodMotor;
                     break;
-                case 20:
+                case WEDO_DEVICE_VOLTAGE_SENSOR:
                     DeviceType = wclWeDoIoDeviceType.iodVoltageSensor;
                     break;
-                case 21:
+                case WEDO_DEVICE_CURRENT_SENSOR:
                     DeviceType = wclWeDoIoDeviceType.iodCurrentSensor;
                     break;
-                case 22:
+                case WEDO_DEVICE_PIEZO:
                     DeviceType = wclWeDoIoDeviceType.iodPiezo;
                     break;
-                case 23:
+                case WEDO_DEVICE_RGB:
                     DeviceType = wclWeDoIoDeviceType.iodRgb;
                     break;
-                case 34:
+                case WEDO_DEVICE_TILT_SENSOR:
                     DeviceType = wclWeDoIoDeviceType.iodTiltSensor;
                     break;
-                case 35:
+                case WEDO_DEVICE_MOTION_SENSOR:
                     DeviceType = wclWeDoIoDeviceType.iodMotionSensor;
                     break;
                 default:
@@ -83,13 +97,13 @@ namespace wclWeDoFramework
             wclWeDoSensorDataUnit Unit;
             switch (Data[8])
             {
-                case 0:
+                case WEDO_DATA_UNIT_RAW:
                     Unit = wclWeDoSensorDataUnit.suRaw;
                     break;
-                case 1:
+                case WEDO_DATA_UNIT_PERCENTAGE:
                     Unit = wclWeDoSensorDataUnit.suPercentage;
                     break;
-                case 2:
+                case WEDO_DATA_UNIT_SI:
                     Unit = wclWeDoSensorDataUnit.suSi;
                     break;
                 default:
@@ -109,28 +123,28 @@ namespace wclWeDoFramework
             switch (FDeviceType)
             {
                 case wclWeDoIoDeviceType.iodMotor:
-                    DeviceType = 1; ;
+                    DeviceType = WEDO_DEVICE_MOTOR;
                     break;
                 case wclWeDoIoDeviceType.iodVoltageSensor:
-                    DeviceType = 20;
+                    DeviceType = WEDO_DEVICE_VOLTAGE_SENSOR;
                     break;
                 case wclWeDoIoDeviceType.iodCurrentSensor:
-                    DeviceType = 21;
+                    DeviceType = WEDO_DEVICE_CURRENT_SENSOR;
                     break;
                 case wclWeDoIoDeviceType.iodPiezo:
-                    DeviceType = 22;
+                    DeviceType = WEDO_DEVICE_PIEZO;
                     break;
                 case wclWeDoIoDeviceType.iodRgb:
-                    DeviceType = 23;
+                    DeviceType = WEDO_DEVICE_RGB;
                     break;
                 case wclWeDoIoDeviceType.iodTiltSensor:
-                    DeviceType = 34;
+                    DeviceType = WEDO_DEVICE_TILT_SENSOR;
                     break;
                 case wclWeDoIoDeviceType.iodMotionSensor:
-                    DeviceType = 35;
+                    DeviceType = WEDO_DEVICE_MOTION_SENSOR;
                     break;
                 default:
-                    DeviceType = 255;
+                    DeviceType = WEDO_DEVICE_UNKNOWN;
                     break;
             }
 
@@ -138,16 +152,16 @@ namespace wclWeDoFramework
             switch (FUnit)
             {
                 case wclWeDoSensorDataUnit.suRaw:
-                    Unit = 0;
+                    Unit = WEDO_DATA_UNIT_RAW;
                     break;
                 case wclWeDoSensorDataUnit.suPercentage:
-                    Unit = 1;
+                    Unit = WEDO_DATA_UNIT_PERCENTAGE;
                     break;
                 case wclWeDoSensorDataUnit.suSi:
-                    Unit = 2;
+                    Unit = WEDO_DATA_UNIT_SI;
                     break;
                 default:
-                    Unit = 255;
+                    Unit = WEDO_DATA_UNIT_UNKNOWN;
                     break;
             }
 

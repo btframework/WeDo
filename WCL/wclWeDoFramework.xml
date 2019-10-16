@@ -1402,12 +1402,12 @@
         <member name="T:wclWeDoFramework.wclWeDoHubNameChangedEvent">
             <summary> The <c>OnHunNameChanged</c> event handler prototype. </summary>
             <param name="Sender"> The object that fired the event. </param>
-            <param name="Address"> The WeDo device's MAC address. </param>
+            <param name="Address"> The WeDo Hub MAC address. </param>
             <param name="OldName"> The old name of WeDo Hub. </param>
             <param name="NewName"> The new name of WeDo Hub. </param>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoWatcher">
-            <summary> The class used to search WeDo devices. </summary>
+            <summary> The class used to search WeDo devices (Hubs). </summary>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoWatcher.DoHubFound(System.Int64,System.String)">
             <summary> Fires the <c>OnHubFound</c> event. </summary>

@@ -36,13 +36,13 @@ namespace wclWeDoFramework
         private static Guid WEDO_SERVICE_IO = new Guid("{00004f0e-1212-efde-1523-785feabcd123}");
 
         // Sensor Value characteristic. [Mandatory] [Readable, Notifiable]
-        private static Guid WEDO_CHARACTERISTIC_SENSOR_VALUE = new Guid("00001560-1212-efde-1523-785feabcd123");
+        private static Guid WEDO_CHARACTERISTIC_SENSOR_VALUE = new Guid("{00001560-1212-efde-1523-785feabcd123}");
         // Sensor Value Format characteristic. [Mandatory] [Notifiable]
-        private static Guid WEDO_CHARACTERISTIC_SENSOR_VALUE_FORMAT = new Guid("00001561-1212-efde-1523-785feabcd123");
+        private static Guid WEDO_CHARACTERISTIC_SENSOR_VALUE_FORMAT = new Guid("{00001561-1212-efde-1523-785feabcd123}");
         // Input command characteristic. [Mandatory] [Writable, Writable Without Response]
-        private static Guid WEDO_CHARACTERISTIC_INPUT_COMMAND = new Guid("00001563-1212-efde-1523-785feabcd123");
+        private static Guid WEDO_CHARACTERISTIC_INPUT_COMMAND = new Guid("{00001563-1212-efde-1523-785feabcd123}");
         // Output command characteristic. [Mandatory] [Writable, Writable Without Response]
-        private static Guid WEDO_CHARACTERISTIC_OUTPUT_COMMAND = new Guid("00001565-1212-efde-1523-785feabcd123");
+        private static Guid WEDO_CHARACTERISTIC_OUTPUT_COMMAND = new Guid("{00001565-1212-efde-1523-785feabcd123}");
 
         private const Byte OUT_CMD_HDR_SIZE = 3;
         private const Byte OUT_CMD_ID_MOTOR_POWER_CONTROL = 1;

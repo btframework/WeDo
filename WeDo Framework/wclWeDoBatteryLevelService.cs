@@ -36,10 +36,10 @@ namespace wclWeDoFramework
     public class wclWeDoBatteryLevelService : wclWeDoService
     {
         // Standard Bluetooth LE Battery Level Service.
-        private static Guid WEDO_SERVICE_BATTERY_LEVEL = new Guid("0000180f-0000-1000-8000-00805f9b34fb");
+        private static Guid WEDO_SERVICE_BATTERY_LEVEL = new Guid("{0000180f-0000-1000-8000-00805f9b34fb}");
 
         // Battery level characteristic. [Mandatory] [Readable, Notifiable]
-        private static Guid WEDO_CHARACTERISTIC_BATTERY_LEVEL = new Guid("00002a19-0000-1000-8000-00805f9b34fb");
+        private static Guid WEDO_CHARACTERISTIC_BATTERY_LEVEL = new Guid("{00002a19-0000-1000-8000-00805f9b34fb}");
 
         private wclGattCharacteristic? FBatteryLevelChar;
 
