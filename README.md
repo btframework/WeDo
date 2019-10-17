@@ -24,7 +24,12 @@ For any other usage of the We Do Framework refer to the [Wireless Communication 
 
 - .NET Framework 4.0 or high
 - Visual Studio 2019 or high
-- Bluetooth Framework demo version is included
+- [Bluetooth Framework .NET Edition](https://www.btframework.com/bluetoothframework.htm) (demo version is included)
+
+### VCL Edition Requirements
+
+- RAD Studio 10.3 Rio
+- [Bluetooth Framework VCL Edition](https://www.btframework.com/bluetoothframework.htm#download)
 
 ## Windows versions
 
