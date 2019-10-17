@@ -11,7 +11,6 @@ File_8=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo 
 File_9=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoSensorDataUnit.pas',0,1,19,1,22,0,0,,
 File_10=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoIoDeviceType.pas',0,1,30,5,47,0,0,,
 File_11=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoDataFormat.pas',0,1,22,81,20,0,0,,
-File_12=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas',0,1,1,1,1,0,0,,
 
 [Modules]
 Module0=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas
@@ -80,7 +79,7 @@ CustomEditViewType=TEditView
 Module=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoWatcher.pas
 CursorX=36
 CursorY=47
-TopLine=22
+TopLine=133
 LeftCol=1
 Elisions=
 Bookmarks=
@@ -89,13 +88,13 @@ EditViewName=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework
 [View2]
 CustomEditViewType=TEditView
 Module=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas
-CursorX=1
-CursorY=1
-TopLine=1
+CursorX=41
+CursorY=184
+TopLine=162
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=Borland.FormDesignerView
+EditViewName=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas
 
 [UndockedDesigner]
 Count=0
@@ -327,8 +326,8 @@ SplitPos=111
 
 [PropInspDesignerSelection]
 ArrangeBy=Name
-SelectedItem=Name,
-ExpandedItems=Anchors=0,BorderIcons=0,Constraints=0,Font=0,GlassFrame=0,HorzScrollBar=0,LiveBindings=0,"LiveBindings Designer=0",Margins=0,Padding=0,StyleElements=0,Touch=0
+SelectedItem=Name,OnSelectItem
+ExpandedItems=Anchors=0,BorderIcons=0,Constraints=0,Font=0,GlassFrame=0,HorzScrollBar=0,LiveBindings=0,"LiveBindings Designer=0",ImageMargins=0,Margins=0,StyleElements=0,BevelEdges=0,HotTrackStyles=0,IconOptions=0,Touch=0,Padding=0
 
 [frmDesignPreview]
 PercentageSizes=1
