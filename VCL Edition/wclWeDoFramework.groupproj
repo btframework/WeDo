@@ -12,6 +12,9 @@
         <Projects Include="Test\WeDoPiezo\WeDoPiezo.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="Test\WeDoRgb\WeDoRgb.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -47,14 +50,23 @@
     <Target Name="WeDoPiezo:Make">
         <MSBuild Projects="Test\WeDoPiezo\WeDoPiezo.dproj" Targets="Make"/>
     </Target>
+    <Target Name="WeDoRgb">
+        <MSBuild Projects="Test\WeDoRgb\WeDoRgb.dproj"/>
+    </Target>
+    <Target Name="WeDoRgb:Clean">
+        <MSBuild Projects="Test\WeDoRgb\WeDoRgb.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="WeDoRgb:Make">
+        <MSBuild Projects="Test\WeDoRgb\WeDoRgb.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="wclWeDoFramework;WeDoScan;WeDoPiezo"/>
+        <CallTarget Targets="wclWeDoFramework;WeDoScan;WeDoPiezo;WeDoRgb"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="wclWeDoFramework:Clean;WeDoScan:Clean;WeDoPiezo:Clean"/>
+        <CallTarget Targets="wclWeDoFramework:Clean;WeDoScan:Clean;WeDoPiezo:Clean;WeDoRgb:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="wclWeDoFramework:Make;WeDoScan:Make;WeDoPiezo:Make"/>
+        <CallTarget Targets="wclWeDoFramework:Make;WeDoScan:Make;WeDoPiezo:Make;WeDoRgb:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

@@ -46,6 +46,7 @@
             this.btSetDefault = new System.Windows.Forms.Button();
             this.btTurnOff = new System.Windows.Forms.Button();
             this.cbColorIndex = new System.Windows.Forms.ComboBox();
+            this.btSetMode = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // laIoState
@@ -111,7 +112,6 @@
             this.cbColorMode.Name = "cbColorMode";
             this.cbColorMode.Size = new System.Drawing.Size(121, 21);
             this.cbColorMode.TabIndex = 25;
-            this.cbColorMode.SelectedIndexChanged += new System.EventHandler(this.CbColorMode_SelectedIndexChanged);
             // 
             // laR
             // 
@@ -242,11 +242,23 @@
             this.cbColorIndex.Size = new System.Drawing.Size(104, 21);
             this.cbColorIndex.TabIndex = 38;
             // 
+            // btSetMode
+            // 
+            this.btSetMode.Enabled = false;
+            this.btSetMode.Location = new System.Drawing.Point(217, 94);
+            this.btSetMode.Name = "btSetMode";
+            this.btSetMode.Size = new System.Drawing.Size(75, 23);
+            this.btSetMode.TabIndex = 39;
+            this.btSetMode.Text = "Set mode";
+            this.btSetMode.UseVisualStyleBackColor = true;
+            this.btSetMode.Click += new System.EventHandler(this.BtSetMode_Click);
+            // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(404, 263);
+            this.Controls.Add(this.btSetMode);
             this.Controls.Add(this.cbColorIndex);
             this.Controls.Add(this.btTurnOff);
             this.Controls.Add(this.btSetDefault);
@@ -296,6 +308,7 @@
         private System.Windows.Forms.Button btSetDefault;
         private System.Windows.Forms.Button btTurnOff;
         private System.Windows.Forms.ComboBox cbColorIndex;
+        private System.Windows.Forms.Button btSetMode;
     }
 }
 

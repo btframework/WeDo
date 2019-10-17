@@ -41,6 +41,7 @@ namespace WeDoRgb
         private void UpdateMode()
         {
             if (FRgb != null)
+            {
                 switch (FRgb.Mode)
                 {
                     case wclWeDoRgbLightMode.lmDiscrete:
@@ -53,6 +54,7 @@ namespace WeDoRgb
                         cbColorMode.SelectedIndex = -1;
                         break;
                 }
+            }
         }
 
         private void UpdateRgb()
@@ -108,6 +110,7 @@ namespace WeDoRgb
 
             btSetDefault.Enabled = Attached;
             btTurnOff.Enabled = Attached;
+            btSetMode.Enabled = Attached;
 
             if (Attached)
                 UpdateValues();
@@ -147,6 +150,7 @@ namespace WeDoRgb
                 FRgb.OnModeChanged += FRgb_OnModeChanged;
 
                 EnableSetColors(true);
+                EnableColorControls();
             }
         }
 
@@ -293,46 +297,6 @@ namespace WeDoRgb
             }
         }
 
-        private void CbColorMode_SelectedIndexChanged(Object Sender, EventArgs e)
-        {
-            Boolean RgbEnabled = (cbColorMode.SelectedIndex == 1);
-            Boolean IndexEnabled = (cbColorMode.SelectedIndex == 0);
-
-            Int32 Res = wclErrors.WCL_E_SUCCESS;
-            if (RgbEnabled)
-                Res = FRgb.SetMode(wclWeDoRgbLightMode.lmAbsolute);
-            else
-            {
-                if (IndexEnabled)
-                    Res = FRgb.SetMode(wclWeDoRgbLightMode.lmDiscrete);
-            }
-
-            if (Res != wclErrors.WCL_E_SUCCESS)
-                MessageBox.Show("Unable to change color mode: 0x" + Res.ToString("X8"));
-            else
-            {
-                laR.Enabled = RgbEnabled;
-                laG.Enabled = RgbEnabled;
-                laB.Enabled = RgbEnabled;
-                edR.Enabled = RgbEnabled;
-                edG.Enabled = RgbEnabled;
-                edB.Enabled = RgbEnabled;
-                btSetRgb.Enabled = RgbEnabled;
-
-                laColorIndex.Enabled = IndexEnabled;
-                cbColorIndex.Enabled = IndexEnabled;
-                btSetIndex.Enabled = IndexEnabled;
-
-                if (RgbEnabled)
-                    UpdateRgb();
-                else
-                {
-                    if (IndexEnabled)
-                        UpdateIndex();
-                }
-            }
-        }
-
         private void BtSetDefault_Click(Object Sender, EventArgs e)
         {
             if (FRgb == null)
@@ -366,6 +330,59 @@ namespace WeDoRgb
                 Int32 Res = FRgb.SetColorIndex((wclWeDoColor)cbColorIndex.SelectedIndex);
                 if (Res != wclErrors.WCL_E_SUCCESS)
                     MessageBox.Show("Unable to set color index: 0x" + Res.ToString("X8"));
+            }
+        }
+        
+        private void EnableColorControls()
+        {
+            Boolean RgbEnabled = (cbColorMode.SelectedIndex == 1);
+            Boolean IndexEnabled = (cbColorMode.SelectedIndex == 0);
+
+            laR.Enabled = RgbEnabled;
+            laG.Enabled = RgbEnabled;
+            laB.Enabled = RgbEnabled;
+            edR.Enabled = RgbEnabled;
+            edG.Enabled = RgbEnabled;
+            edB.Enabled = RgbEnabled;
+            btSetRgb.Enabled = RgbEnabled;
+
+            laColorIndex.Enabled = IndexEnabled;
+            cbColorIndex.Enabled = IndexEnabled;
+            btSetIndex.Enabled = IndexEnabled;
+        }
+
+        private void BtSetMode_Click(object sender, EventArgs e)
+        {
+            if (FRgb == null)
+                MessageBox.Show("Device is not attached");
+            else
+            {
+                Boolean RgbEnabled = (cbColorMode.SelectedIndex == 1);
+                Boolean IndexEnabled = (cbColorMode.SelectedIndex == 0);
+
+                Int32 Res = wclErrors.WCL_E_SUCCESS;
+                if (RgbEnabled)
+                    Res = FRgb.SetMode(wclWeDoRgbLightMode.lmAbsolute);
+                else
+                {
+                    if (IndexEnabled)
+                        Res = FRgb.SetMode(wclWeDoRgbLightMode.lmDiscrete);
+                }
+
+                if (Res != wclErrors.WCL_E_SUCCESS)
+                    MessageBox.Show("Unable to change color mode: 0x" + Res.ToString("X8"));
+                else
+                {
+                    EnableColorControls();
+
+                    if (RgbEnabled)
+                        UpdateRgb();
+                    else
+                    {
+                        if (IndexEnabled)
+                            UpdateIndex();
+                    }
+                }
             }
         }
     }

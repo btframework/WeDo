@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.977,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.367,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.018,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.904,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.728,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.539,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\WeDoScan.dproj=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.385,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\devinfo.dfm=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.711,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoWatcher.pas=</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.728,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.dfm=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.361,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoHub.pas=</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.039,=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoHub.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.353,=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.055,=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoWatcher.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.385,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\devinfo.pas=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.711,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoWatcher.pas=</Transaction>
     <Transaction>1899.12.30 00:00:00.000.121,=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.977,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.904,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.018,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.367,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.385,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\Unit1.pas=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\devinfo.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.728,C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.039,=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoHub.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.361,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoHub.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.353,=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.539,C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\WeDoScan.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.385,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\Unit1.dfm=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\devinfo.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.728,C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.dfm=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.dfm</Transaction>
   </Transactions>
 </BorlandProject>

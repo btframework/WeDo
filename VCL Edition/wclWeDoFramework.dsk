@@ -1,8 +1,8 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\devinfo.pas',0,1,46,42,67,0,0,,
-File_1=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoPiezo\main.pas',0,1,1,1,2,0,0,,
-File_2=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas',0,1,1,1,1,0,0,,
-File_3=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoHub.pas',0,1,1,1,24,0,0,,
+File_0=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoPiezo\main.pas',0,1,112,1,128,0,0,,
+File_1=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoHub.pas',0,1,3824,35,3854,0,0,,
+File_2=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\devinfo.pas',0,1,46,42,67,0,0,,
+File_3=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas',0,1,1,1,1,0,0,,
 File_4=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoWatcher.pas',0,1,328,1,341,0,0,,
 File_5=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\SOURCE\RTL\SYS\System.pas',0,1,39549,17,39580,0,0,,
 File_6=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\SOURCE\VCL\Vcl.Graphics.pas',0,1,28,3,37,0,0,,
@@ -16,12 +16,17 @@ File_13=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo
 File_14=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoSensorDataUnit.pas',0,1,19,1,22,0,0,,
 
 [Modules]
-Count=0
+Module0=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRgb\main.pas
+Count=1
 EditWindowCount=1
 
+[D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRgb\main.pas]
+ModuleType=TSourceModule
+
 [EditWindow0]
-ViewCount=0
-CurrentView=-1
+ViewCount=1
+CurrentEditView=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRgb\main.pas
+View0=0
 PercentageSizes=1
 Create=1
 Visible=1
@@ -40,7 +45,7 @@ BorlandEditorCodeExplorer=BorlandEditorCodeExplorer@EditWindow0
 TopPanelSize=0
 LeftPanelSize=1896
 LeftPanelClients=PropertyInspector,DockSite3
-LeftPanelData=000008000101000000002D1000000000000001680700000000000001000000005C0E000009000000446F636B53697465330100000000C11C00001100000050726F7065727479496E73706563746F72FFFFFFFF
+LeftPanelData=0000080001010100000009000000446F636B53697465332D100000000000000168070000000000000100000000C11C00001100000050726F7065727479496E73706563746F72FFFFFFFF
 RightPanelSize=2000
 RightPanelClients=DockSite2,DockSite4
 RightPanelData=000008000101000000002D1000000000000001D00700000000000001000000004412000009000000446F636B53697465320100000000C11C000009000000446F636B5369746534FFFFFFFF
@@ -50,6 +55,17 @@ BottomPanelData=0000080001020100000009000000446F636B5369746531DE4400000000000002
 BottomMiddlePanelSize=0
 BottomMiddlePanelClients=DockSite0,GraphDrawingModel
 BottomMiddelPanelData=0000080001020200000009000000446F636B536974653010000000477261706844726177696E67566965779F1D00000000000002F206000000000000FFFFFFFF
+
+[View0]
+CustomEditViewType=TEditView
+Module=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRgb\main.pas
+CursorX=45
+CursorY=343
+TopLine=336
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRgb\main.pas
 
 [UndockedDesigner]
 Count=0
@@ -208,8 +224,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-8
-Top=-116
+Left=-16
+Top=-100
 Width=1849
 Height=3139
 MaxLeft=-1
@@ -266,13 +282,13 @@ Visible=1
 Docked=1
 State=0
 Left=0
-Top=421
+Top=24
 Width=1896
-Height=3463
+Height=7139
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=1896
-ClientHeight=3463
+ClientHeight=7139
 TBDockHeight=9009
 LRDockWidth=1896
 Dockable=1
@@ -652,11 +668,11 @@ State=0
 Left=0
 Top=0
 Width=1896
-Height=3380
+Height=9009
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=1896
-ClientHeight=3380
+ClientHeight=9009
 TBDockHeight=3676
 LRDockWidth=1896
 Dockable=1
@@ -780,17 +796,17 @@ HostDockSite=DockLeftPanel
 DockSiteType=1
 PercentageSizes=1
 Create=1
-Visible=1
+Visible=0
 Docked=1
 State=0
-Left=0
-Top=24
+Left=8
+Top=8
 Width=1896
-Height=3380
+Height=9009
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=1896
-ClientHeight=3380
+ClientHeight=9009
 TBDockHeight=9009
 LRDockWidth=1896
 Dockable=1
@@ -824,5 +840,5 @@ ActiveTabID=ToolForm
 TabDockClients=ToolForm,TemplateView
 
 [ActiveProject]
-ActiveProject=3
+ActiveProject=4
 
