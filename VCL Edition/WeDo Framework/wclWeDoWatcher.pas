@@ -21,6 +21,8 @@
 
 unit wclWeDoWatcher;
 
+//{$I ..\..\..\..\..\WCL7\VCL\Source\wcl.inc}
+
 interface
 
 uses
@@ -172,7 +174,7 @@ type
 implementation
 
 uses
-  SysUtils, wclErrors;
+  SysUtils, DateUtils, wclErrors;
 
 { TwclWeDoWatcher.TWeDoLostTimerMessage }
 
@@ -275,7 +277,7 @@ begin
     try
       for Hub in FHubs do begin
         if not Hub.Value.IsNull then begin
-          if Hub.Value.Timestamp + 3000 < Now then
+          if IncSecond(Hub.Value.Timestamp, 3) < Now then
             ToRemove.Add(Hub.Key);
         end;
       end;

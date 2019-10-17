@@ -85,6 +85,7 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <DCC_Define>_WCL_DEBUG_;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
@@ -104,6 +105,8 @@
             <Form>fmDevInfo</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\..\WeDo Framework\wclWeDoHub.pas"/>
+        <DCCReference Include="..\..\WeDo Framework\wclWeDoWatcher.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

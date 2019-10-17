@@ -1,5 +1,7 @@
 unit devinfo;
 
+//{$I ..\..\..\..\..\..\WCL7\VCL\Source\wcl.inc}
+
 interface
 
 uses

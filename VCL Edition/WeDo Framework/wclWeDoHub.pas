@@ -21,6 +21,8 @@
 
 unit wclWeDoHub;
 
+//{$I ..\..\..\..\..\WCL7\VCL\Source\wcl.inc}
+
 interface
 
 uses
@@ -2220,7 +2222,7 @@ begin
       Characteristic.IsIndicatable := False;
 
     Result := FClient.Subscribe(Characteristic);
-    if Result <> WCL_E_SUCCESS then begin
+    if Result = WCL_E_SUCCESS then begin
       Result := FClient.WriteClientConfiguration(Characteristic, True, goNone);
       if Result <> WCL_E_SUCCESS then
         FClient.Unsubscribe(Characteristic);
@@ -2496,7 +2498,7 @@ begin
     // If we already have input format with an earlier revision, delete all
     // those as all known formats must have the same version.
     if FInputFormats.Values.Count > 0 then
-      AnyFormat := FInputFormats[0]
+      AnyFormat := FInputFormats.Values.ToArray[0]
     else
       AnyFormat := nil;
     // Clear if revisions are not equal.
@@ -2997,7 +2999,7 @@ end;
 function TwclWeDoHubService.WriteDeviceName(Name: string): Integer;
 var
   Bytes: RawByteString;
-  CharVal: TArray<Byte>;
+  CharVal: TwclGattCharacteristicValue;
   i: Integer;
 begin
   if Name = '' then
@@ -3011,17 +3013,10 @@ begin
       if Length(Name) > 20 then
         Name := Copy(Name, 1, 20);
       Bytes := UTF8Encode(Name);
-      if Length(Bytes) < 20 then begin
-        SetLength(CharVal, 20);
-        for i := 0 to Length(Bytes) - 1 do
-          CharVal[i] := Byte(Bytes[i]);
-        for i := Length(Bytes) to 19 do
-          CharVal[i] := 0;
-      end else
-        CharVal := TArray<Byte>(Bytes);
-
-      Result := Client.WriteCharacteristicValue(FDeviceNameChar,
-        TwclGattCharacteristicValue(CharVal));
+      SetLength(CharVal, 20);
+      for i := 1 to Length(Bytes) do
+        CharVal[i - 1] := Byte(Bytes[i]);
+      Result := Client.WriteCharacteristicValue(FDeviceNameChar, CharVal);
     end;
   end;
 end;
