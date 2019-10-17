@@ -60,7 +60,6 @@ namespace wclWeDoFramework
     public class wclWeDoPieazo : wclWeDoIo
     {
         private const UInt16 PIEZO_MAX_FREQUENCY = 1500;
-        private const UInt16 PIEZO_MAX_DURATION = 65535;
 
         /// <summary> Creates new Piezo device object. </summary>
         /// <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
@@ -82,7 +81,7 @@ namespace wclWeDoFramework
         ///   one of the Bluetooth Framework error code. </returns>
         public Int32 PlayTone(UInt16 Frequency, UInt16 Duration)
         {
-            if (Frequency > PIEZO_MAX_FREQUENCY || Duration > PIEZO_MAX_DURATION)
+            if (Frequency > PIEZO_MAX_FREQUENCY)
                 return wclErrors.WCL_E_INVALID_ARGUMENT;
             if (!Attached)
                 return wclBluetoothErrors.WCL_E_BLUETOOTH_DEVICE_NOT_INSTALLED;

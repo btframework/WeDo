@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.544,=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.169,=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.891,=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.159,C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Package1.dproj=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoFramework.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.682,=wclBluetoothFrameworkR.dcp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.980,=rtl.dcp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.611,=rtl.dcp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.217,=vcl.dcp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.049,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\Unit1.pas=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoWatcher.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.314,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\Unit1.pas=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoHub.pas</Transaction>
+  </Transactions>
+</BorlandProject>

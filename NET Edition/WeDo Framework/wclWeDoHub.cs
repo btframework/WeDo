@@ -271,7 +271,7 @@ namespace wclWeDoFramework
         }
 
         /// <summary> Fires the <c>OnDeviceDetached</c> event. </summary>
-        /// /// <param name="Device"> The Input/Output device object. </param>
+        /// <param name="Device"> The Input/Output device object. </param>
         /// <seealso cref="wclWeDoIo"/>
         protected virtual void DoDeviceDetached(wclWeDoIo Device)
         {

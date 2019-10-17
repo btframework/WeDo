@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.367,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.018,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.904,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.977,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019.10.17 17:31:34.353,=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019.10.17 17:32:11.728,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.dfm=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2019.10.17 17:32:11.728,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019.10.17 17:32:16.539,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\WeDoScan.dproj=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

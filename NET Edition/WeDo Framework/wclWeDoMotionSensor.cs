@@ -137,7 +137,6 @@ namespace wclWeDoFramework
             FCount = 0;
             FDistance = 0;
 
-            //FormatWithModeName(string modeName, uint modeValue, InputFormatUnit unit, uint sizeOfDataSet, uint dataSetCount)
             AddValidDataFormat(new wclWeDoDataFormat(1, 1, (Byte)wclWeDoMotionSensorMode.mmDetect, wclWeDoSensorDataUnit.suRaw));
             AddValidDataFormat(new wclWeDoDataFormat(1, 1, (Byte)wclWeDoMotionSensorMode.mmDetect, wclWeDoSensorDataUnit.suPercentage));
             AddValidDataFormat(new wclWeDoDataFormat(1, 4, (Byte)wclWeDoMotionSensorMode.mmDetect, wclWeDoSensorDataUnit.suSi));

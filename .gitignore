@@ -1,22 +1,28 @@
 /EMails
-/VCL Edition
-/.vs/wclWeDoFramework/v16/Server
-/Help/bin
-/Help/obj
-/Help/build
-/Test/WeDoScan/bin
-/Test/WeDoScan/obj
-/Test/WeDoHubButton/bin
-/Test/WeDoHubButton/obj
-/Test/WeDoPiezo/bin
-/Test/WeDoPiezo/obj
-/Test/WeDoRgb/bin
-/Test/WeDoRgb/obj
-/Test/WeDoMotor/bin
-/Test/WeDoMotor/obj
-/Test/WeDoMotionSensor/bin
-/Test/WeDoMotionSensor/obj
-/Test/WeDoTiltSensor/bin
-/Test/WeDoTiltSensor/obj
-/WeDo Framework/bin
-/WeDo Framework/obj
+
+/VCL Edition/WeDo Framework/__history
+/VCL Edition/WeDo Framework/__recovery
+/VCL Edition/Test/WeDoScan/__history
+/VCL Edition/Test/WeDoScan/__recovery
+/VCL Edition/Test/WeDoScan/build
+
+/NET Edition/.vs/wclWeDoFramework/v16/Server
+/NET Edition/Help/bin
+/NET Edition/Help/obj
+/NET Edition/Help/build
+/NET Edition/Test/WeDoScan/bin
+/NET Edition/Test/WeDoScan/obj
+/NET Edition/Test/WeDoHubButton/bin
+/NET Edition/Test/WeDoHubButton/obj
+/NET Edition/Test/WeDoPiezo/bin
+/NET Edition/Test/WeDoPiezo/obj
+/NET Edition/Test/WeDoRgb/bin
+/NET Edition/Test/WeDoRgb/obj
+/NET Edition/Test/WeDoMotor/bin
+/NET Edition/Test/WeDoMotor/obj
+/NET Edition/Test/WeDoMotionSensor/bin
+/NET Edition/Test/WeDoMotionSensor/obj
+/NET Edition/Test/WeDoTiltSensor/bin
+/NET Edition/Test/WeDoTiltSensor/obj
+/NET Edition/WeDo Framework/bin
+/NET Edition/WeDo Framework/obj

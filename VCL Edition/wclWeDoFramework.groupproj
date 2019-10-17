@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{37F69B36-E363-49AC-88A8-64EC827A279C}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="WeDo Framework\wclWeDoFramework.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Test\WeDoScan\WeDoScan.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="wclWeDoFramework">
+        <MSBuild Projects="WeDo Framework\wclWeDoFramework.dproj"/>
+    </Target>
+    <Target Name="wclWeDoFramework:Clean">
+        <MSBuild Projects="WeDo Framework\wclWeDoFramework.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="wclWeDoFramework:Make">
+        <MSBuild Projects="WeDo Framework\wclWeDoFramework.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="WeDoScan">
+        <MSBuild Projects="Test\WeDoScan\WeDoScan.dproj"/>
+    </Target>
+    <Target Name="WeDoScan:Clean">
+        <MSBuild Projects="Test\WeDoScan\WeDoScan.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="WeDoScan:Make">
+        <MSBuild Projects="Test\WeDoScan\WeDoScan.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="wclWeDoFramework;WeDoScan"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="wclWeDoFramework:Clean;WeDoScan:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="wclWeDoFramework:Make;WeDoScan:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
