@@ -2,6 +2,8 @@
 
 /VCL Edition/WeDo Framework/__history
 /VCL Edition/WeDo Framework/__recovery
+/VCL Edition/WeDo Framework/*.dsk
+/VCL Edition/WeDo Framework/*.~*
 /VCL Edition/Test/WeDoScan/__history
 /VCL Edition/Test/WeDoScan/__recovery
 /VCL Edition/Test/WeDoScan/build
