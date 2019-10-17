@@ -88,12 +88,13 @@ namespace WeDoHubButton
                 Item.SubItems.Add("");
                 Item.SubItems.Add("");
                 Item.SubItems.Add("");
+                FHubs.Add(Hub);
             }
         }
 
         private void Hub_OnLowVoltageAlert(Object Sender, Boolean Alert)
         {
-            Int64 Address = ((wclWeDoHubService)Sender).Hub.Address;
+            Int64 Address = ((wclWeDoHub)Sender).Address;
             foreach (ListViewItem Item in lvHubs.Items)
             {
                 if (Item.Text == Address.ToString("X12"))
