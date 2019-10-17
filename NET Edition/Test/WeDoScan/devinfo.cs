@@ -78,8 +78,7 @@ namespace WeDoScan
 
         private void BtClose_Click(Object Sender, EventArgs e)
         {
-            // Disconnect from Hub.
-            FHub.Disconnect();
+            Close();
         }
 
         private void BtSetDeviceName_Click(Object Sender, EventArgs e)
@@ -189,6 +188,12 @@ namespace WeDoScan
             Int32 Res = FHub.TurnOff();
             if (Res != wclErrors.WCL_E_SUCCESS)
                 MessageBox.Show("Turn Off failed: 0x" + Res.ToString("X8"));
+        }
+
+        private void FmDevInfo_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Disconnect from Hub.
+            FHub.Disconnect();
         }
     }
 }

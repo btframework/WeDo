@@ -316,6 +316,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "WeDo Device Information";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FmDevInfo_FormClosed);
             this.Load += new System.EventHandler(this.FmDevInfo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

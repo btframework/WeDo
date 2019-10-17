@@ -19,6 +19,7 @@ type
     procedure btStartClick(Sender: TObject);
     procedure lvHubsSelectItem(Sender: TObject; Item: TListItem;
       Selected: Boolean);
+    procedure btInfoClick(Sender: TObject);
 
   private
     // The Bluetooth Manager object (from Bluetooth Framework) allows to
@@ -48,9 +49,18 @@ var
 implementation
 
 uses
-  wclErrors;
+  wclErrors, devinfo;
 
 {$R *.dfm}
+
+procedure TfmMain.btInfoClick(Sender: TObject);
+begin
+  // We use separate form to show selected Hub information.
+  fmDevInfo := TfmDevInfo.Create(Self, FWatcher.Radio,
+    StrToInt64('$' + lvHubs.Selected.Caption));
+  fmDevInfo.ShowModal;
+  fmDevInfo.Free;
+end;
 
 procedure TfmMain.btStartClick(Sender: TObject);
 var

@@ -2,7 +2,8 @@ program WeDoScan;
 
 uses
   Vcl.Forms,
-  main in 'main.pas' {fmMain};
+  main in 'main.pas' {fmMain},
+  devinfo in 'devinfo.pas' {fmDevInfo};
 
 {$R *.res}
 

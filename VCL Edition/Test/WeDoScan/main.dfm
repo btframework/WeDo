@@ -51,7 +51,6 @@ object fmMain: TfmMain
         Width = 210
       end>
     ColumnClick = False
-    Enabled = False
     FlatScrollBars = True
     GridLines = True
     HideSelection = False
@@ -69,5 +68,6 @@ object fmMain: TfmMain
     Caption = 'Get Hub Information'
     Enabled = False
     TabOrder = 3
+    OnClick = btInfoClick
   end
 end

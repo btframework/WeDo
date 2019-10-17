@@ -1,36 +1,37 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\SOURCE\VCL\Vcl.Graphics.pas',0,1,28,3,37,0,0,,
-File_1=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\source\rtl\common\System.UITypes.pas',0,1,435,1,456,0,0,,
-File_2=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\SOURCE\VCL\Vcl.ExtCtrls.pas',0,1,236,17,236,0,0,,
-File_3=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\SOURCE\RTL\SYS\System.pas',0,1,41606,1,41608,0,0,,
-File_4=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDo.pas',0,1,1210,28,1212,0,0,,{1
-File_5=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\Unit1.pas',0,1,1,1,1,0,0,,
-File_6=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoIo.pas',0,1,1,32,27,0,0,,
-File_7=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoInputFormat.pas',0,1,225,6,226,0,0,,
-File_8=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoVersion.pas',0,1,81,3,82,0,0,,
-File_9=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoSensorDataUnit.pas',0,1,19,1,22,0,0,,
-File_10=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoIoDeviceType.pas',0,1,30,5,47,0,0,,
-File_11=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoDataFormat.pas',0,1,22,81,20,0,0,,
+File_0=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoWatcher.pas',0,1,133,36,47,0,0,,
+File_1=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\SOURCE\VCL\Vcl.Graphics.pas',0,1,28,3,37,0,0,,
+File_2=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\source\rtl\common\System.UITypes.pas',0,1,435,1,456,0,0,,
+File_3=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\SOURCE\VCL\Vcl.ExtCtrls.pas',0,1,236,17,236,0,0,,
+File_4=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\SOURCE\RTL\SYS\System.pas',0,1,41606,1,41608,0,0,,
+File_5=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDo.pas',0,1,1210,28,1212,0,0,,{1
+File_6=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\Unit1.pas',0,1,1,1,1,0,0,,
+File_7=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoIo.pas',0,1,1,32,27,0,0,,
+File_8=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoInputFormat.pas',0,1,225,6,226,0,0,,
+File_9=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoVersion.pas',0,1,81,3,82,0,0,,
+File_10=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoSensorDataUnit.pas',0,1,19,1,22,0,0,,
+File_11=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoIoDeviceType.pas',0,1,30,5,47,0,0,,
+File_12=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoDataFormat.pas',0,1,22,81,20,0,0,,
 
 [Modules]
-Module0=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas
-Module1=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoWatcher.pas
-Module2=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoHub.pas
+Module0=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoHub.pas
+Module1=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas
+Module2=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\devinfo.pas
 Count=3
 EditWindowCount=1
-
-[D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas]
-ModuleType=TSourceModule
-
-[D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoWatcher.pas]
-ModuleType=TSourceModule
 
 [D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoHub.pas]
 ModuleType=TSourceModule
 
+[D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas]
+ModuleType=TSourceModule
+
+[D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\devinfo.pas]
+ModuleType=TSourceModule
+
 [EditWindow0]
 ViewCount=3
-CurrentEditView=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas
+CurrentEditView=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoHub.pas
 View0=0
 View1=1
 View2=2
@@ -52,7 +53,7 @@ BorlandEditorCodeExplorer=BorlandEditorCodeExplorer@EditWindow0
 TopPanelSize=0
 LeftPanelSize=1896
 LeftPanelClients=PropertyInspector,DockSite3
-LeftPanelData=0000080001010100000009000000446F636B53697465332D1000000000000001680700000000000001000000005C0E000009000000446F636B53697465330100000000C11C00001100000050726F7065727479496E73706563746F72FFFFFFFF
+LeftPanelData=0000080001010100000009000000446F636B53697465332D100000000000000168070000000000000100000000C11C00001100000050726F7065727479496E73706563746F72FFFFFFFF
 RightPanelSize=2000
 RightPanelClients=DockSite2,DockSite4
 RightPanelData=000008000101000000002D1000000000000001D00700000000000001000000004412000009000000446F636B53697465320100000000C11C000009000000446F636B5369746534FFFFFFFF
@@ -65,36 +66,36 @@ BottomMiddelPanelData=0000080001020200000009000000446F636B5369746530100000004772
 
 [View0]
 CustomEditViewType=TEditView
+Module=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas
+CursorX=40
+CursorY=59
+TopLine=40
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=Borland.FormDesignerView
+
+[View1]
+CustomEditViewType=TEditView
 Module=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoHub.pas
-CursorX=44
-CursorY=3386
-TopLine=3378
+CursorX=18
+CursorY=2110
+TopLine=2089
 LeftCol=1
 Elisions=
 Bookmarks={1,1784,7}{2,3399,5}
 EditViewName=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoHub.pas
 
-[View1]
-CustomEditViewType=TEditView
-Module=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoWatcher.pas
-CursorX=36
-CursorY=47
-TopLine=133
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoWatcher.pas
-
 [View2]
 CustomEditViewType=TEditView
-Module=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas
-CursorX=41
-CursorY=184
-TopLine=162
+Module=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\devinfo.pas
+CursorX=34
+CursorY=211
+TopLine=190
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas
+EditViewName=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\devinfo.pas
 
 [UndockedDesigner]
 Count=0
@@ -253,8 +254,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-39
-Top=-177
+Left=-16
+Top=-100
 Width=1849
 Height=3139
 MaxLeft=-1
@@ -324,11 +325,6 @@ Dockable=1
 StayOnTop=0
 SplitPos=111
 
-[PropInspDesignerSelection]
-ArrangeBy=Name
-SelectedItem=Name,OnSelectItem
-ExpandedItems=Anchors=0,BorderIcons=0,Constraints=0,Font=0,GlassFrame=0,HorzScrollBar=0,LiveBindings=0,"LiveBindings Designer=0",ImageMargins=0,Margins=0,StyleElements=0,BevelEdges=0,HotTrackStyles=0,IconOptions=0,Touch=0,Padding=0
-
 [frmDesignPreview]
 PercentageSizes=1
 Create=1
@@ -338,11 +334,11 @@ State=0
 Left=0
 Top=0
 Width=2000
-Height=6796
+Height=6602
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
-ClientHeight=6796
+ClientHeight=6602
 TBDockHeight=5963
 LRDockWidth=2510
 Dockable=1
@@ -354,8 +350,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=0
-Top=0
+Left=-1528
+Top=268
 Width=276
 Height=361
 MaxLeft=-1
@@ -478,11 +474,11 @@ State=0
 Left=0
 Top=0
 Width=2339
-Height=1222
+Height=981
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2339
-ClientHeight=1222
+ClientHeight=981
 TBDockHeight=2315
 LRDockWidth=2823
 Dockable=1
@@ -543,11 +539,11 @@ State=0
 Left=0
 Top=0
 Width=2000
-Height=6796
+Height=6602
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
-ClientHeight=6796
+ClientHeight=6602
 TBDockHeight=4880
 LRDockWidth=7151
 Dockable=1
@@ -559,8 +555,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=0
-Top=0
+Left=380
+Top=857
 Width=2854
 Height=3213
 MaxLeft=-1
@@ -702,11 +698,11 @@ State=0
 Left=0
 Top=0
 Width=1896
-Height=3380
+Height=9009
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=1896
-ClientHeight=3380
+ClientHeight=9009
 TBDockHeight=3676
 LRDockWidth=1896
 Dockable=1
@@ -721,11 +717,11 @@ State=0
 Left=0
 Top=0
 Width=2000
-Height=6796
+Height=6602
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
-ClientHeight=6796
+ClientHeight=6602
 TBDockHeight=4880
 LRDockWidth=5307
 Dockable=1
@@ -785,8 +781,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=8
-Top=8
+Left=0
+Top=24
 Width=3823
 Height=1417
 MaxLeft=-1
@@ -833,14 +829,14 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=0
-Top=24
+Left=8
+Top=8
 Width=1896
-Height=3380
+Height=9009
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=1896
-ClientHeight=3380
+ClientHeight=9009
 TBDockHeight=9009
 LRDockWidth=1896
 Dockable=1
