@@ -9,22 +9,6 @@
 /VCL Edition/Test/**/build
 
 /NET Edition/.vs/wclWeDoFramework/v16/Server
-/NET Edition/Help/bin
-/NET Edition/Help/obj
+/NET Edition/**/bin
+/NET Edition/**/obj
 /NET Edition/Help/build
-/NET Edition/Test/WeDoScan/bin
-/NET Edition/Test/WeDoScan/obj
-/NET Edition/Test/WeDoHubButton/bin
-/NET Edition/Test/WeDoHubButton/obj
-/NET Edition/Test/WeDoPiezo/bin
-/NET Edition/Test/WeDoPiezo/obj
-/NET Edition/Test/WeDoRgb/bin
-/NET Edition/Test/WeDoRgb/obj
-/NET Edition/Test/WeDoMotor/bin
-/NET Edition/Test/WeDoMotor/obj
-/NET Edition/Test/WeDoMotionSensor/bin
-/NET Edition/Test/WeDoMotionSensor/obj
-/NET Edition/Test/WeDoTiltSensor/bin
-/NET Edition/Test/WeDoTiltSensor/obj
-/NET Edition/WeDo Framework/bin
-/NET Edition/WeDo Framework/obj
