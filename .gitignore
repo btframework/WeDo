@@ -7,6 +7,8 @@
 /VCL Edition/Test/WeDoScan/__history
 /VCL Edition/Test/WeDoScan/__recovery
 /VCL Edition/Test/WeDoScan/build
+/VCL Edition/Test/WeDoScan/*.dsk
+/VCL Edition/Test/WeDoScan/*.~*
 
 /NET Edition/.vs/wclWeDoFramework/v16/Server
 /NET Edition/Help/bin
