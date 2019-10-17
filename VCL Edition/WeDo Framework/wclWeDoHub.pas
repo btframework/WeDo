@@ -21,7 +21,7 @@
 
 unit wclWeDoHub;
 
-//{$I ..\..\..\..\..\WCL7\VCL\Source\wcl.inc}
+{$I ..\..\..\..\..\WCL7\VCL\Source\wcl.inc}
 
 interface
 
@@ -760,7 +760,7 @@ type
     /// <param name="Hub"> The <see cref="TwclWeDoHub"/> object that owns the
     ///   service. </param>
     /// <exception cref="wclEInvalidArgument"> The exception raises if the
-    ///   <c>Client</c> or <c>Hub</c> parameter is <c>null</c>. </exception>
+    ///   <c>Client</c> or <c>Hub</c> parameter is <c>nil</c>. </exception>
     constructor Create(const Client: TwclGattClient;
       const Hub: TwclWeDoHub); override;
   end;

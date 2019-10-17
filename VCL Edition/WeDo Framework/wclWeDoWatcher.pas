@@ -21,7 +21,7 @@
 
 unit wclWeDoWatcher;
 
-//{$I ..\..\..\..\..\WCL7\VCL\Source\wcl.inc}
+{$I ..\..\..\..\..\WCL7\VCL\Source\wcl.inc}
 
 interface
 
@@ -354,7 +354,7 @@ begin
       WeDo.Name := Name;
       WeDo.Timestamp := Now;
       WeDo.IsNull := False;
-      FHubs[Address] := WeDo;
+      FHubs.AddOrSetValue(Address, WeDo);
     end;
   end;
 end;

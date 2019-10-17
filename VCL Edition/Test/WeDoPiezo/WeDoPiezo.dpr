@@ -1,9 +1,8 @@
-program WeDoScan;
+program WeDoPiezo;
 
 uses
   Vcl.Forms,
-  main in 'main.pas' {fmMain},
-  devinfo in 'devinfo.pas' {fmDevInfo};
+  main in 'main.pas' {fmMain};
 
 {$R *.res}
 

@@ -7,7 +7,10 @@
             <Dependencies/>
         </Projects>
         <Projects Include="Test\WeDoScan\WeDoScan.dproj">
-            <Dependencies>WeDo Framework\wclWeDoFramework.dproj</Dependencies>
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Test\WeDoPiezo\WeDoPiezo.dproj">
+            <Dependencies/>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -26,23 +29,32 @@
     <Target Name="wclWeDoFramework:Make">
         <MSBuild Projects="WeDo Framework\wclWeDoFramework.dproj" Targets="Make"/>
     </Target>
-    <Target Name="WeDoScan" DependsOnTargets="wclWeDoFramework">
+    <Target Name="WeDoScan">
         <MSBuild Projects="Test\WeDoScan\WeDoScan.dproj"/>
     </Target>
-    <Target Name="WeDoScan:Clean" DependsOnTargets="wclWeDoFramework:Clean">
+    <Target Name="WeDoScan:Clean">
         <MSBuild Projects="Test\WeDoScan\WeDoScan.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="WeDoScan:Make" DependsOnTargets="wclWeDoFramework:Make">
+    <Target Name="WeDoScan:Make">
         <MSBuild Projects="Test\WeDoScan\WeDoScan.dproj" Targets="Make"/>
     </Target>
+    <Target Name="WeDoPiezo">
+        <MSBuild Projects="Test\WeDoPiezo\WeDoPiezo.dproj"/>
+    </Target>
+    <Target Name="WeDoPiezo:Clean">
+        <MSBuild Projects="Test\WeDoPiezo\WeDoPiezo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="WeDoPiezo:Make">
+        <MSBuild Projects="Test\WeDoPiezo\WeDoPiezo.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="wclWeDoFramework;WeDoScan"/>
+        <CallTarget Targets="wclWeDoFramework;WeDoScan;WeDoPiezo"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="wclWeDoFramework:Clean;WeDoScan:Clean"/>
+        <CallTarget Targets="wclWeDoFramework:Clean;WeDoScan:Clean;WeDoPiezo:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="wclWeDoFramework:Make;WeDoScan:Make"/>
+        <CallTarget Targets="wclWeDoFramework:Make;WeDoScan:Make;WeDoPiezo:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

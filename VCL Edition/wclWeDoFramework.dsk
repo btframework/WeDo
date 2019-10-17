@@ -1,19 +1,19 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas',0,1,1,47,5,0,0,,
-File_1=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\devinfo.pas',0,1,1,3,3,0,0,,
-File_2=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoWatcher.pas',0,1,1,3,24,0,0,,
-File_3=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoHub.pas',0,1,1,3,24,0,0,,{1,2501,48}{2,3394,5}
-File_4=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\SOURCE\RTL\SYS\System.pas',0,1,39549,17,39580,0,0,,
-File_5=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\SOURCE\VCL\Vcl.Graphics.pas',0,1,28,3,37,0,0,,
-File_6=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\source\rtl\common\System.UITypes.pas',0,1,435,1,456,0,0,,
-File_7=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\SOURCE\VCL\Vcl.ExtCtrls.pas',0,1,236,17,236,0,0,,
-File_8=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDo.pas',0,1,1210,28,1212,0,0,,{1
-File_9=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\Unit1.pas',0,1,1,1,1,0,0,,
-File_10=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoIo.pas',0,1,1,32,27,0,0,,
-File_11=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoInputFormat.pas',0,1,225,6,226,0,0,,
-File_12=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoVersion.pas',0,1,81,3,82,0,0,,
-File_13=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoSensorDataUnit.pas',0,1,19,1,22,0,0,,
-File_14=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoIoDeviceType.pas',0,1,30,5,47,0,0,,
+File_0=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\devinfo.pas',0,1,46,42,67,0,0,,
+File_1=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoPiezo\main.pas',0,1,1,1,2,0,0,,
+File_2=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas',0,1,1,1,1,0,0,,
+File_3=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoHub.pas',0,1,1,1,24,0,0,,
+File_4=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoWatcher.pas',0,1,328,1,341,0,0,,
+File_5=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\SOURCE\RTL\SYS\System.pas',0,1,39549,17,39580,0,0,,
+File_6=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\SOURCE\VCL\Vcl.Graphics.pas',0,1,28,3,37,0,0,,
+File_7=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\source\rtl\common\System.UITypes.pas',0,1,435,1,456,0,0,,
+File_8=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\SOURCE\VCL\Vcl.ExtCtrls.pas',0,1,236,17,236,0,0,,
+File_9=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDo.pas',0,1,1210,28,1212,0,0,,{1
+File_10=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\Unit1.pas',0,1,1,1,1,0,0,,
+File_11=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoIo.pas',0,1,1,32,27,0,0,,
+File_12=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoInputFormat.pas',0,1,225,6,226,0,0,,
+File_13=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoVersion.pas',0,1,81,3,82,0,0,,
+File_14=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoSensorDataUnit.pas',0,1,19,1,22,0,0,,
 
 [Modules]
 Count=0
@@ -824,5 +824,5 @@ ActiveTabID=ToolForm
 TabDockClients=ToolForm,TemplateView
 
 [ActiveProject]
-ActiveProject=2
+ActiveProject=3
 

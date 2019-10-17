@@ -1,7 +1,5 @@
 unit devinfo;
 
-//{$I ..\..\..\..\..\..\WCL7\VCL\Source\wcl.inc}
-
 interface
 
 uses
@@ -66,7 +64,7 @@ type
 
   public
     constructor Create(AOwner: TComponent; const Radio: TwclBluetoothRadio;
-      const Address: Int64);
+      const Address: Int64); reintroduce;
   end;
 
 var
