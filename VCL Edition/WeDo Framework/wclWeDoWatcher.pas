@@ -35,15 +35,15 @@ type
   /// <param name="Sender"> The object that fired the event. </param>
   /// <param name="Address"> The WeDo Hub MAC address. </param>
   /// <param name="Name"> The WeDo Hub name. </param>
-  TwclWeDoHubAppearanceEvent = procedure(Sender: TObject; const Address: Int64;
-    const Name: string) of object;
+  TwclWeDoHubAppearanceEvent = procedure(Sender: TObject; Address: Int64;
+    Name: string) of object;
   /// <summary> The <c>OnHunNameChanged</c> event handler prototype. </summary>
   /// <param name="Sender"> The object that fired the event. </param>
   /// <param name="Address"> The WeDo Hub MAC address. </param>
   /// <param name="OldName"> The old name of WeDo Hub. </param>
   /// <param name="NewName"> The new name of WeDo Hub. </param>
-  TwclWeDoHubNameChangedEvent = procedure(Sender: TObject; const Address: Int64;
-    const OldName: string; const NewName: string) of object;
+  TwclWeDoHubNameChangedEvent = procedure(Sender: TObject; Address: Int64;
+    OldName: string; NewName: string) of object;
 
   /// <summary> The class used to search WeDo devices (Hubs). </summary>
   /// <seealso cref="TComponent" />
@@ -104,17 +104,17 @@ type
     /// <summary> Fires the <c>OnHubFound</c> event. </summary>
     /// <param name="Address"> The Hub's MAC. </param>
     /// <param name="Name"> The WeDo Hub name. </param>
-    procedure DoHubFound(const Address: Int64; const Name: string); virtual;
+    procedure DoHubFound(Address: Int64; Name: string); virtual;
     /// <summary> Fires the <c>OnHubLost</c> event. </summary>
     /// <param name="Address"> The Hub's MAC. </param>
     /// <param name="Name"> The WeDo Hub name. </param>
-    procedure DoHubLost(const Address: Int64; const Name: string); virtual;
+    procedure DoHubLost(Address: Int64; Name: string); virtual;
     /// <summary> Fires the <c>OnNameChanged</c> event. </summary>
     /// <param name="Address"> The WeDo device's MAC address. </param>
     /// <param name="OldName"> The old name of WeDo Hub. </param>
     /// <param name="NewName"> The new name of WeDo Hub. </param>
-    procedure DoHubNameChanged(const Address: Int64; const OldName: string;
-      const NewName: string); virtual;
+    procedure DoHubNameChanged(Address: Int64; OldName: string;
+      NewName: string); virtual;
     /// <summary> Fires the <c>OnStarte</c> event. </summary>
     procedure DoStarted; virtual;
     /// <summary> Fires the <c>OnStopped</c> event. </summary>
@@ -132,7 +132,7 @@ type
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     /// <seealso cref="TwclBluetoothRadio" />
-    function Start(const Radio: TwclBluetoothRadio): Integer;
+    function Start(Radio: TwclBluetoothRadio): Integer;
     /// <summary> Stops discovering WeDo devices. </summary>
     /// <returns> If the method completed with success the returning value is
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
@@ -218,20 +218,20 @@ begin
   FOnStopped := nil;
 end;
 
-procedure TwclWeDoWatcher.DoHubFound(const Address: Int64; const Name: string);
+procedure TwclWeDoWatcher.DoHubFound(Address: Int64; Name: string);
 begin
   if Assigned(FOnHubFound) then
     FOnHubFound(Self, Address, Name);
 end;
 
-procedure TwclWeDoWatcher.DoHubLost(const Address: Int64; const Name: string);
+procedure TwclWeDoWatcher.DoHubLost(Address: Int64; Name: string);
 begin
   if Assigned(FOnHubLost) then
     FOnHubLost(Self, Address, Name);
 end;
 
-procedure TwclWeDoWatcher.DoHubNameChanged(const Address: Int64;
-  const OldName: string; const NewName: string);
+procedure TwclWeDoWatcher.DoHubNameChanged(Address: Int64;
+  OldName: string; NewName: string);
 begin
   if Assigned(FOnHubNameChanged) then
     FOnHubNameChanged(Self, Address, OldName, NewName);
@@ -295,7 +295,7 @@ begin
   end;
 end;
 
-function TwclWeDoWatcher.Start(const Radio: TwclBluetoothRadio): Integer;
+function TwclWeDoWatcher.Start(Radio: TwclBluetoothRadio): Integer;
 begin
   // First, try to open message receiver.
   Result := FReceiver.Open();

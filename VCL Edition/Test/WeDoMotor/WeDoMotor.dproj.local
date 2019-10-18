@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.977,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.345,=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.290,C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoMotor\main.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.025,C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoMotor\WeDoMotor.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.290,C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.dfm=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoMotor\main.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.904,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.018,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.367,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.977,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2019.10.18 12:00:04.345,=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2019.10.18 12:00:42.290,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoMotor\main.pas=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2019.10.18 12:00:42.290,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoMotor\main.dfm=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2019.10.18 12:00:47.025,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoMotor\WeDoMotor.dproj=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
   </Transactions>
 </BorlandProject>

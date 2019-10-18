@@ -28,12 +28,11 @@ type
     // The WeDo Watcher allows to scan for available WeDo Hubs.
     FWatcher: TwclWeDoWatcher;
 
-    procedure FWatcher_OnHubNameChanged(Sender: TObject; const Address: Int64;
-      const OldName: string; const NewName: string);
-    procedure FWatcher_OnHubLost(Sender: TObject; const Address: Int64;
-      const Name: string);
-    procedure FWatcher_OnHubFound(Sender: TObject; const Address: Int64;
-      const Name: string);
+    procedure FWatcher_OnHubNameChanged(Sender: TObject; Address: Int64;
+      OldName: string; NewName: string);
+    procedure FWatcher_OnHubLost(Sender: TObject; Address: Int64; Name: string);
+    procedure FWatcher_OnHubFound(Sender: TObject; Address: Int64;
+      Name: string);
 
     procedure FWatcher_OnStopped(SenderO: TObject);
     procedure FWatcher_OnStarted(Sender: TObject);
@@ -183,8 +182,8 @@ begin
   FManager.Free;
 end;
 
-procedure TfmMain.FWatcher_OnHubFound(Sender: TObject; const Address: Int64;
-  const Name: string);
+procedure TfmMain.FWatcher_OnHubFound(Sender: TObject; Address: Int64;
+  Name: string);
 var
   Item: TLIstItem;
 begin
@@ -196,8 +195,8 @@ begin
   Item.SubItems.Add(Name);
 end;
 
-procedure TfmMain.FWatcher_OnHubLost(Sender: TObject; const Address: Int64;
-  const Name: string);
+procedure TfmMain.FWatcher_OnHubLost(Sender: TObject; Address: Int64;
+  Name: string);
 var
   Item: TListItem;
 begin
@@ -210,8 +209,8 @@ begin
   end;
 end;
 
-procedure TfmMain.FWatcher_OnHubNameChanged(Sender: TObject;
-  const Address: Int64; const OldName: string; const NewName: string);
+procedure TfmMain.FWatcher_OnHubNameChanged(Sender: TObject; Address: Int64;
+  OldName: string; NewName: string);
 var
   Item: TListItem;
 begin

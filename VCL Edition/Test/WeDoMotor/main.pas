@@ -44,20 +44,20 @@ type
     FCurrent: TwclWeDoCurrentSensor;
     FVoltage: TwclWeDoVoltageSensor;
 
-    procedure FHub_OnLowVoltageAlert(Sender: TObject; const Alert: Boolean);
-    procedure FHub_OnHighCurrentAlert(Sender: TObject; const Alert: Boolean);
-    procedure FHub_OnDeviceDetached(Sender: TObject; const Device: TwclWeDoIo);
-    procedure FHub_OnDeviceAttached(Sender: TObject; const Device: TwclWeDoIo);
-    procedure FHub_OnDisconnected(Sender: TObject; const Reason: Integer);
-    procedure FHub_OnConnected(Sender: TObject; const Error: Integer);
+    procedure FHub_OnLowVoltageAlert(Sender: TObject; Alert: Boolean);
+    procedure FHub_OnHighCurrentAlert(Sender: TObject; Alert: Boolean);
+    procedure FHub_OnDeviceDetached(Sender: TObject; Device: TwclWeDoIo);
+    procedure FHub_OnDeviceAttached(Sender: TObject; Device: TwclWeDoIo);
+    procedure FHub_OnDisconnected(Sender: TObject; Reason: Integer);
+    procedure FHub_OnConnected(Sender: TObject; Error: Integer);
 
     procedure FVoltage_OnVoltageChanged(Sender: TObject);
     procedure FCurrent_OnCurrentChanged(Sender: TObject);
 
-    procedure FWatcher_OnHubFound(Sender: TObject; const Address: Int64;
-      const Name: string);
+    procedure FWatcher_OnHubFound(Sender: TObject; Address: Int64;
+      Name: string);
 
-    procedure EnablePlay(const Attached: Boolean);
+    procedure EnablePlay(Attached: Boolean);
     procedure EnableConnect(Connected: Boolean);
 
     procedure Disconnect;
@@ -215,7 +215,7 @@ begin
   end;
 end;
 
-procedure TfmMain.EnablePlay(const Attached: Boolean);
+procedure TfmMain.EnablePlay(Attached: Boolean);
 begin
   if Attached then
     laIoState.Caption := 'Attached'
@@ -253,7 +253,7 @@ begin
     laCurrent.Caption := FloatToStr(FCurrent.Current);
 end;
 
-procedure TfmMain.FHub_OnConnected(Sender: TObject; const Error: Integer);
+procedure TfmMain.FHub_OnConnected(Sender: TObject; Error: Integer);
 begin
   if Error <> WCL_E_SUCCESS then begin
     ShowMessage('Connect failed: 0x' + IntToHex(Error, 8));
@@ -263,8 +263,7 @@ begin
     EnableConnect(True);
 end;
 
-procedure TfmMain.FHub_OnDeviceAttached(Sender: TObject;
-  const Device: TwclWeDoIo);
+procedure TfmMain.FHub_OnDeviceAttached(Sender: TObject; Device: TwclWeDoIo);
 begin
   // This demo supports only single motor.
   if FMotor = nil then begin
@@ -289,8 +288,7 @@ begin
   end;
 end;
 
-procedure TfmMain.FHub_OnDeviceDetached(Sender: TObject;
-  const Device: TwclWeDoIo);
+procedure TfmMain.FHub_OnDeviceDetached(Sender: TObject; Device: TwclWeDoIo);
 begin
   if (Device.DeviceType = iodMotor) and (FMotor <> nil) and (Device.ConnectionId = FMotor.ConnectionId) then begin
     FMotor := nil;
@@ -302,19 +300,18 @@ begin
     FVoltage := nil;
 end;
 
-procedure TfmMain.FHub_OnDisconnected(Sender: TObject; const Reason: Integer);
+procedure TfmMain.FHub_OnDisconnected(Sender: TObject; Reason: Integer);
 begin
   EnableConnect(False);
   FManager.Close;
 end;
 
-procedure TfmMain.FHub_OnHighCurrentAlert(Sender: TObject;
-  const Alert: Boolean);
+procedure TfmMain.FHub_OnHighCurrentAlert(Sender: TObject; Alert: Boolean);
 begin
   laHighCurrent.Visible := Alert;
 end;
 
-procedure TfmMain.FHub_OnLowVoltageAlert(Sender: TObject; const Alert: Boolean);
+procedure TfmMain.FHub_OnLowVoltageAlert(Sender: TObject; Alert: Boolean);
 begin
   laLowVoltage.Visible := Alert;
 end;
@@ -356,8 +353,8 @@ begin
     laVoltage.Caption := FloatToStr(FVoltage.Voltage);
 end;
 
-procedure TfmMain.FWatcher_OnHubFound(Sender: TObject; const Address: Int64;
-  const Name: string);
+procedure TfmMain.FWatcher_OnHubFound(Sender: TObject; Address: Int64;
+  Name: string);
 var
   Radio: TwclBluetoothRadio;
   Res: Integer;

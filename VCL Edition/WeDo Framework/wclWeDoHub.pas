@@ -96,8 +96,8 @@ type
     /// <param name="Mode"> The sensor mode. </param>
     /// <param name="Unit_"> The sensor data unit. </param>
     /// <seealso cref="TwclWeDoSensorDataUnit"/>
-    constructor Create(const DataSetCount: Byte; const DataSetSize: Byte;
-      const Mode: Byte; const Unit_: TwclWeDoSensorDataUnit);
+    constructor Create(DataSetCount: Byte; DataSetSize: Byte; Mode: Byte;
+      Unit_: TwclWeDoSensorDataUnit);
 
     /// <summary> Compares two Data Formats </summary>
 		/// <param name="Obj"> The other object to be compared with
@@ -124,7 +124,7 @@ type
   /// <summary> This class describes a configuration of an Input (sensor). At
   ///   any time a sensor can be in just one mode, and the details of this mode
   ///   is captured by this structure. </summary>
-  TwclWeDoInputFormat = class sealed
+  TwclWeDoInputFormat = class sealed(TInterfacedObject)
   private const
     INPUT_FORMAT_PACKET_SIZE = 11;
 
@@ -152,11 +152,10 @@ type
     FRevision: Byte;
     FUnit: TwclWeDoSensorDataUnit;
 
-    class function FromBytesArray(
-      const Data: TArray<Byte>): TwclWeDoInputFormat;
+    class function FromBytesArray(Data: TArray<Byte>): TwclWeDoInputFormat;
 
     function ToBytesArray: TArray<Byte>;
-    function InputFormatBySettingMode(const Mode: Byte): TwclWeDoInputFormat;
+    function InputFormatBySettingMode(Mode: Byte): TwclWeDoInputFormat;
 
   public
     /// <summary> Create a new instance of <c>TwclWeDoInputFormat</c>
@@ -174,11 +173,9 @@ type
     ///   packet. </param>
     /// <seealso cref="TwclWeDoIoDeviceType"/>
     /// <seealso cref="TwclWeDoSensorDataUnit"/>
-    constructor Create(const ConnectionId: Byte;
-      const DeviceType: TwclWeDoIoDeviceType; const Mode: Byte;
-      const Interval: Cardinal; const Unit_: TwclWeDoSensorDataUnit;
-      const NotificationsEnabled: Boolean; const Revision: Byte;
-      const NumberOfBytes: Byte);
+    constructor Create(ConnectionId: Byte; DeviceType: TwclWeDoIoDeviceType;
+      Mode: Byte; Interval: Cardinal; Unit_: TwclWeDoSensorDataUnit;
+      NotificationsEnabled: Boolean; Revision: Byte; NumberOfBytes: Byte);
 
     /// <summary> Compares two Input Formats. </summary>
     /// <param name="Obj"> The other object to be compared with
@@ -232,9 +229,9 @@ type
     FHub: TwclWeDoHub;
     FServices: TwclGattServices;
 
-    function ReadCharacteristics(const Service: TwclGattService): Integer;
+    function ReadCharacteristics(Service: TwclGattService): Integer;
 
-    function Connect(const Services: TwclGattServices): Integer;
+    function Connect(Services: TwclGattServices): Integer;
     function Disconnect: Integer;
 
     /// <summary> This method called internally by the <see cref="TwclWeDoHub"/>
@@ -242,8 +239,7 @@ type
     ///   this method to check for required characteristic changes. </summary>
     /// <param name="Handle"> The characteristic handle. </param>
     /// <param name="Value"> The new characteristic value. </param>
-    procedure CharacteristicChanged(const Handle: Word;
-      const Value: TArray<Byte>); virtual;
+    procedure CharacteristicChanged(Handle: Word; Value: TArray<Byte>); virtual;
 
     property Connected: Boolean read FConnected;
 
@@ -254,7 +250,7 @@ type
     ///   converted. </param>
     /// <returns> The GUID composed from the <c>Uuid</c>. </returns>
     /// <seealso cref="TwclGattUuid"/>
-    function ToGuid(const Uuid: TwclGattUuid): TGUID;
+    function ToGuid(Uuid: TwclGattUuid): TGUID;
     /// <summary> Compares the attribute's <see cref="TwclGattUuid"/> with
     ///   given standard system GUID. </summary>
     /// <param name="GattUuid"> The attribute's
@@ -263,8 +259,7 @@ type
     /// <returns> Returns <c>true</c> if the attribute's UUID is equals to the
     ///   GUID. Returns <c>false</c> otherwise. </returns>
     /// <seealso cref="TwclGattUuid"/>
-    function CompareGuid(const GattUuid: TwclGattUuid;
-      const Uuid: TGUID): Boolean;
+    function CompareGuid(GattUuid: TwclGattUuid; Uuid: TGUID): Boolean;
 
     /// <summary> Finds the service with given UUID. </summary>
     /// <param name="Uuid"> The service's UUID. </param>
@@ -274,8 +269,7 @@ type
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     /// <seealso cref="TwclGattService"/>
-    function FindService(const Uuid: TGUID;
-      out Service: TwclGattService): Integer;
+    function FindService(Uuid: TGUID; out Service: TwclGattService): Integer;
     /// <summary> Finds the characteristic with given UUID. </summary>
     /// <param name="Uuid"> The characteristic's UUID. </param>
     /// <param name="Service"> The GATT service that should contain the required
@@ -287,8 +281,7 @@ type
     ///   is one of the Bluetooth Framework error code. </returns>
     /// <seealso cref="TwclGattService"/>
     /// <seealso cref="TwclGattCharacteristic"/>
-    function FindCharactersitc(const Uuid: TGUID;
-      const Service: TwclGattService;
+    function FindCharactersitc(Uuid: TGUID; Service: TwclGattService;
       out Characteristic: TwclGattCharacteristic): Integer;
 
     /// <summary> Subscribes to the changes notifications of the given
@@ -314,7 +307,7 @@ type
     /// <returns> If the method completed with success the returning value is
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
-    function ReadStringValue(const Characteristic: TwclGattCharacteristic;
+    function ReadStringValue(Characteristic: TwclGattCharacteristic;
       out Value: string): Integer;
     /// <summary> Reads byte value from the given characteristic. </summary>
     /// <param name="Characteristic"> The GATT characteristic. </param>
@@ -323,7 +316,7 @@ type
     /// <returns> If the method completed with success the returning value is
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
-    function ReadByteValue(const Characteristic: TwclGattCharacteristic;
+    function ReadByteValue(Characteristic: TwclGattCharacteristic;
       out Value: Byte): Integer;
 
     /// <summary> Initializes the WeDo service. </summary>
@@ -351,8 +344,7 @@ type
     ///   service. </param>
     /// <exception cref="wclEInvalidArgument"> The exception raises if the
     ///   <c>Client</c> or <c>Hub</c> parameter is <c>nil</c>. </exception>
-    constructor Create(const Client: TwclGattClient;
-      const Hub: TwclWeDoHub); virtual;
+    constructor Create(Client: TwclGattClient; Hub: TwclWeDoHub); virtual;
 
     /// <summary> Gets the <see cref="TwclWeDoHub"/> object that owns the
     ///   service. </summary>
@@ -401,8 +393,7 @@ type
     ///   service. </param>
     /// <exception cref="wclEInvalidArgument"> The exception raises if the
     ///   <c>Client</c> or <c>Hub</c> parameter is <c>nil</c>. </exception>
-    constructor Create(const Client: TwclGattClient;
-      const Hub: TwclWeDoHub); override;
+    constructor Create(Client: TwclGattClient; Hub: TwclWeDoHub); override;
 
     /// <summary> Reads the firmware version. </summary>
     /// <param name="Version"> If the method completed with success the
@@ -440,7 +431,7 @@ type
   /// <param name="Level"> The current battery level in percents in
   ///   range 0-100. </param>
   TwclBatteryLevelChangedEvent = procedure(Sender: TObject;
-    const Level: Byte) of object;
+    Level: Byte) of object;
 
   /// <summary> The class represents the WeDo Battery Level service. </summary>
   /// <seealso cref="TwclWeDoService"/>
@@ -462,14 +453,14 @@ type
     ///   this method to check for required characteristic changes. </summary>
     /// <param name="Handle"> The characteristic handle. </param>
     /// <param name="Value"> The new characteristic value. </param>
-    procedure CharacteristicChanged(const Handle: Word;
-      const Value: TArray<Byte>); override;
+    procedure CharacteristicChanged(Handle: Word;
+      Value: TArray<Byte>); override;
 
   protected
     /// <summary> Fires the <c>OnBatteryLevelChanged</c> event. </summary>
     /// <param name="Level"> The current battery level in percents in
     ///   range 0-100. </param>
-    procedure DoBatteryLevelChanged(const Level: Byte); virtual;
+    procedure DoBatteryLevelChanged(Level: Byte); virtual;
 
     /// <summary> Initializes the WeDo service. </summary>
     /// <returns> If the method completed with success the returning value is
@@ -487,8 +478,7 @@ type
     ///   service. </param>
     /// <exception cref="wclEInvalidArgument"> The exception raises if the
     ///   <c>Client</c> or <c>Hub</c> parameter is <c>nil</c>. </exception>
-    constructor Create(const Client: TwclGattClient;
-      const Hub: TwclWeDoHub); override;
+    constructor Create(Client: TwclGattClient; Hub: TwclWeDoHub); override;
 
     /// <summary> Reads the device's battery level. </summary>
     /// <param name="Level"> the current battery level in percents. </param>
@@ -549,53 +539,49 @@ type
     FInputCommandChar: TwclGattCharacteristic;
     FOutputCommandChar: TwclGattCharacteristic;
 
-    procedure ClearInputFormats;
+    function ComposeOutputCommand(CommandId: Byte; ConnectionId: Byte;
+      Data: TArray<Byte>): TArray<Byte>;
+    function ComposeInputCommand(CommandId: Byte; CommandType: Byte;
+      ConnectionId: Byte; Data: TArray<Byte>): TArray<Byte>;
 
-    function ComposeOutputCommand(const CommandId: Byte;
-      const ConnectionId: Byte; const Data: TArray<Byte>): TArray<Byte>;
-    function ComposeInputCommand(const CommandId: Byte; const CommandType: Byte;
-      const ConnectionId: Byte; const Data: TArray<Byte>): TArray<Byte>;
+    function WriteOutputCommand(Command: TArray<Byte>): Integer;
+    function WriteInputCommand(Command: TArray<Byte>): Integer;
 
-    function WriteOutputCommand(const Command: TArray<Byte>): Integer;
-    function WriteInputCommand(const Command: TArray<Byte>): Integer;
+    procedure RequestMissingInputFormat(ConnectionId: Byte);
 
-    procedure RequestMissingInputFormat(const ConnectionId: Byte);
+    procedure InputValueChanged(Value: TArray<Byte>);
+    procedure InputFormatChanged(Data: TArray<Byte>);
 
-    procedure InputValueChanged(const Value: TArray<Byte>);
-    procedure InputFormatChanged(const Data: TArray<Byte>);
+    function PiezoPlayTone(Frequency: Word; Duration: Word;
+      ConnectionId: Byte): Integer;
+    function PiezoStopPlaying(ConnectionId: Byte): Integer;
 
-    function PiezoPlayTone(const Frequency: Word; const Duration: Word;
-      const ConnectionId: Byte): Integer;
-    function PiezoStopPlaying(const ConnectionId: Byte): Integer;
+    function WriteData(Data: TArray<Byte>; ConnectionId: Byte): Integer;
 
-    function WriteData(const Data: TArray<Byte>;
-      const ConnectionId: Byte): Integer;
+    function WriteMotorPower(Power: ShortInt; Offset: Byte;
+      ConnectionId: Byte): Integer; overload;
+    function WriteMotorPower(Power: ShortInt;
+      ConnectionId: Byte): Integer; overload;
 
-    function WriteMotorPower(Power: ShortInt; const Offset: Byte;
-      const ConnectionId: Byte): Integer; overload;
-    function WriteMotorPower(const Power: ShortInt;
-      const ConnectionId: Byte): Integer; overload;
+    function WriteColor(Red: Byte; Green: Byte; Blue: Byte;
+      ConnectionId: Byte): Integer;
+    function WriteColorIndex(Index: Byte; ConnectionId: Byte): Integer;
 
-    function WriteColor(const Red: Byte; const Green: Byte; const Blue: Byte;
-      const ConnectionId: Byte): Integer;
-    function WriteColorIndex(const Index: Byte;
-      const ConnectionId: Byte): Integer;
+    function ReadValue(ConnectionId: Byte): Integer;
 
-    function ReadValue(const ConnectionId: Byte): Integer;
+    function WriteInputFormat(Format: TwclWeDoInputFormat;
+      ConnectionId: Byte): Integer;
+    function ReadInputFormat(ConnectionId: Byte): Integer;
 
-    function WriteInputFormat(const Format: TwclWeDoInputFormat;
-      const ConnectionId: Byte): Integer;
-    function ReadInputFormat(const ConnectionId: Byte): Integer;
-
-    function ResetIo(const ConnectionId: Byte): Integer;
+    function ResetIo(ConnectionId: Byte): Integer;
 
     /// <summary> This method called internally by the <see cref="TwclWeDoHub"/>
     ///   to notify about characteristic changes. A derived class may override
     ///   this method to check for required characteristic changes. </summary>
     /// <param name="Handle"> The characteristic handle. </param>
     /// <param name="Value"> The new characteristic value. </param>
-    procedure CharacteristicChanged(const Handle: Word;
-      const Value: TArray<Byte>); override;
+    procedure CharacteristicChanged(Handle: Word;
+      Value: TArray<Byte>); override;
 
   protected
     /// <summary> Initializes the WeDo service. </summary>
@@ -614,8 +600,7 @@ type
     ///   the service. </param>
     /// <exception cref="wclEInvalidArgument"> The exception raises if the
     ///   <c>Client</c> or <c>Hub</c> parameter is <c>nil</c>. </exception>
-    constructor Create(const Client: TwclGattClient;
-      const Hub: TwclWeDoHub); override;
+    constructor Create(Client: TwclGattClient; Hub: TwclWeDoHub); override;
     /// <summary. Frees the object. </summary>
     destructor Destroy; override;
   end;
@@ -626,20 +611,19 @@ type
   /// <param name="Pressed"> The button's state. <c>True</c> if button has been
   ///   pressed. <c>False</c> if button has been released. </param>
   TwclWeDoHubButtonStateChangedEvent = procedure(Sender: TObject;
-    const Pressed: Boolean) of object;
+    Pressed: Boolean) of object;
   /// <summary> The event handler prototype for alert events. </summary>
   /// <param name="Sender"> The object that fires the event. </param>
   /// <param name="Alert"> <c>True</c> if the alert is active. <c>False</c>
   ///   otherwise. </param>
-  TwclWeDoHubAlertEvent = procedure(Sender: TObject;
-    const Alert: Boolean) of object;
+  TwclWeDoHubAlertEvent = procedure(Sender: TObject; Alert: Boolean) of object;
   /// <summary> The <c>OnDeviceAttached</c> and <c>OnDeviceDetached</c> events
   ///   handler prototype. </summary>
   /// <param name="Sender"> The object that fires the event. </param>
   /// <param name="Device"> The Input/Output device object. </param>
   /// <seealso cref="TwclWeDoIo"/>
   TwclWeDoDeviceStateChangedEvent = procedure(Sender: TObject;
-    const Device: TwclWeDoIo) of object;
+    Device: TwclWeDoIo) of object;
 
   /// <summary> The class represents the WeDo Hub service. </summary>
   /// <seealso cref="TwclWeDoService"/>
@@ -672,7 +656,7 @@ type
 
   private type
     TwclWeDoHubDeviceDetachedEvent = procedure(Sender: TObject;
-      const ConnectionId: Byte) of object;
+      ConnectionId: Byte) of object;
 
   private
     FDeviceNameChar: TwclGattCharacteristic;
@@ -699,8 +683,8 @@ type
     ///   this method to check for required characteristic changes. </summary>
     /// <param name="Handle"> The characteristic handle. </param>
     /// <param name="Value"> The new characteristic value. </param>
-    procedure CharacteristicChanged(const Handle: Word;
-      const Value: TArray<Byte>); override;
+    procedure CharacteristicChanged(Handle: Word;
+      Value: TArray<Byte>); override;
 
     function ReadDeviceName(out Name: string): Integer;
     function WriteDeviceName(Name: string): Integer;
@@ -732,26 +716,26 @@ type
     /// <summary> Fires the <c>OnButtonStateChanged</c> event. </summary>
     /// <param name="Pressed"> <c>True</c> if the button has been pressed.
     ///   <c>False</c> if the button has been released. </param>
-    procedure DoButtonStateChanged(const Pressed: Boolean); virtual;
+    procedure DoButtonStateChanged(Pressed: Boolean); virtual;
     /// <summary> Fires the <c>OnLowVoltageAlert</c> event. </summary>
     /// <param name="Alert"> <c>True</c> if device runs on low battery.
     ///   <c>False</c> otherwise. </param>
-    procedure DoLowVoltageAlert(const Alert: Boolean); virtual;
+    procedure DoLowVoltageAlert(Alert: Boolean); virtual;
     /// <summary> Fires the <c>OnDeviceAttached</c> event. </summary>
     /// <param name="Device"> The IO device object. </param>
     /// <seealso cref="TwclWeDoIo"/>
-    procedure DoDeviceAttached(const Device: TwclWeDoIo); virtual;
+    procedure DoDeviceAttached(Device: TwclWeDoIo); virtual;
     /// <summary> Fires the <c>OnDeviceDetached</c> event. </summary>
     /// <param name="ConnectionId"> The device connection ID. </param>
-    procedure DoDeviceDetached(const ConnectionId: Byte); virtual;
+    procedure DoDeviceDetached(ConnectionId: Byte); virtual;
     /// <summary> Fires then <c>OnHighCurrentAlert</c> event.</summary>
     /// <param name="Alert"> <c>True</c> if device runs on high current.
     ///   <c>False</c> otherwise. </param>
-    procedure DoHightCurrentAlert(const Alert: Boolean); virtual;
+    procedure DoHightCurrentAlert(Alert: Boolean); virtual;
     /// <summary> Fires then <c>OnLowSignalAlert</c> event.</summary>
     /// <param name="Alert"> <c>True</c> if the signal from radio has low RSSI.
     ///   <c>False</c> otherwise. </param>
-    procedure DoLowSignalAlert(const Alert: Boolean); virtual;
+    procedure DoLowSignalAlert(Alert: Boolean); virtual;
 
   public
     /// <summary> Creates new IO service client. </summary>
@@ -761,9 +745,19 @@ type
     ///   service. </param>
     /// <exception cref="wclEInvalidArgument"> The exception raises if the
     ///   <c>Client</c> or <c>Hub</c> parameter is <c>nil</c>. </exception>
-    constructor Create(const Client: TwclGattClient;
-      const Hub: TwclWeDoHub); override;
+    constructor Create(Client: TwclGattClient; Hub: TwclWeDoHub); override;
   end;
+
+  /// <summary> The <c>OnConnected</c> event handler prototype. </summary>
+  /// <param name="Sender"> The object that fired the event. </param>
+  /// <param name="Error"> The connection result code. </param>
+  TwclWeDoHubConnectEvent = procedure(Sender: TObject;
+    Error: Integer) of object;
+  /// <summary> The <c>OnDisconnected</c> event handler prototype. </summary>
+  /// <param name="Sender"> The object that fired the event. </param>
+  /// <param name="Reason"> The disconnection reason code. </param>
+  TwclWeDoHubDisonnectEvent = procedure(Sender: TObject;
+    Reason: Integer) of object;
 
   /// <summary> The class represents a WeDo Hub hardware. </summary>
   /// <seealso cref="TComponent" />
@@ -780,8 +774,8 @@ type
     FIo: TwclWeDoIoService;
     FHub: TwclWeDoHubService;
 
-    FOnConnected: TwclClientConnectionConnectEvent;
-    FOnDisconnected: TwclClientConnectionDisconnectEvent;
+    FOnConnected: TwclWeDoHubConnectEvent;
+    FOnDisconnected: TwclWeDoHubDisonnectEvent;
     FOnButtonStateChanged: TwclWeDoHubButtonStateChangedEvent;
     FOnDeviceAttached: TwclWeDoDeviceStateChangedEvent;
     FOnDeviceDetached: TwclWeDoDeviceStateChangedEvent;
@@ -806,12 +800,12 @@ type
     procedure ClientCharacteristicChanged(Sender: TObject; const Handle: Word;
       const Value: TwclGattCharacteristicValue);
 
-    procedure HubButtonStateChanged(Sender: TObject; const Pressed: Boolean);
-    procedure HubLowVoltageAlert(Sender: TObject; const Alert: Boolean);
-    procedure HubHighCurrentAlert(Sender: TObject; const Alert: Boolean);
-    procedure HubLowSignalAlert(Sender: TObject; const Alert: Boolean);
-    procedure HubDeviceAttached(Sender: TObject; const Device: TwclWeDoIo);
-    procedure HubDeviceDetached(Sender: TObject; const ConnectionId: Byte);
+    procedure HubButtonStateChanged(Sender: TObject; Pressed: Boolean);
+    procedure HubLowVoltageAlert(Sender: TObject; Alert: Boolean);
+    procedure HubHighCurrentAlert(Sender: TObject; Alert: Boolean);
+    procedure HubLowSignalAlert(Sender: TObject; Alert: Boolean);
+    procedure HubDeviceAttached(Sender: TObject; Device: TwclWeDoIo);
+    procedure HubDeviceDetached(Sender: TObject; ConnectionId: Byte);
 
     property Io: TwclWeDoIoService read FIo;
 
@@ -821,34 +815,34 @@ type
     ///   parameter is <see cref="WCL_E_SUCCESS" />. If connection has not been
     ///   established the parameter value is one of the Bluetooth error
     ///   codes. </param>
-    procedure DoConnected(const Error: Integer); virtual;
+    procedure DoConnected(Error: Integer); virtual;
     /// <summary> Fires the <c>OnDisconnected</c> event. </summary>
     /// <param name="Reason"> The disconnection reason code. </param>
-    procedure DoDisconnected(const Reason: Integer); virtual;
+    procedure DoDisconnected(Reason: Integer); virtual;
     /// <summary> Fires the <c>OnButtonStateChanged</c> event. </summary>
     /// <param name="Pressed"> <c>True</c> if the button has been pressed.
     ///   <c>False</c> if the button has been released. </param>
-    procedure DoButtonStateChanged(const Pressed: Boolean); virtual;
+    procedure DoButtonStateChanged(Pressed: Boolean); virtual;
     /// <summary> Fires the <c>OnLowVoltageAlert</c> event. </summary>
     /// <param name="Alert"> <c>True</c> if device runs on low battery.
     ///   <c>False</c> otherwise. </param>
-    procedure DoLowVoltageAlert(const Alert: Boolean); virtual;
+    procedure DoLowVoltageAlert(Alert: Boolean); virtual;
     /// <summary> Fires the <c>OnHighCurrentAlert</c> event. </summary>
     /// <param name="Alert"> <c>True</c> if device runs on high current.
     ///  <c>False</c> otherwise. </param>
-    procedure DoHighCurrentAlert(const Alert: Boolean); virtual;
+    procedure DoHighCurrentAlert(Alert: Boolean); virtual;
     /// <summary> Fires the <c>OnLowSignalAlert</c> event. </summary>
     /// <param name="Alert"> <c>True</c> if the RSSI value is low. <c>False</c>
     ///   otherwise. </param>
-    procedure DoLowSignalAlert(const Alert: Boolean); virtual;
+    procedure DoLowSignalAlert(Alert: Boolean); virtual;
     /// <summary> Fires the <c>OnDeviceAttached</c> event. </summary>
     /// /// <param name="Device"> The Input/Output device object. </param>
     /// <seealso cref="TwclWeDoIo"/>
-    procedure DoDeviceAttached(const Device: TwclWeDoIo); virtual;
+    procedure DoDeviceAttached(Device: TwclWeDoIo); virtual;
     /// <summary> Fires the <c>OnDeviceDetached</c> event. </summary>
     /// <param name="Device"> The Input/Output device object. </param>
     /// <seealso cref="TwclWeDoIo"/>
-    procedure DoDeviceDetached(const Device: TwclWeDoIo); virtual;
+    procedure DoDeviceDetached(Device: TwclWeDoIo); virtual;
 
   public
     /// <summary> Creates new WeDo Client. </summary>
@@ -865,8 +859,7 @@ type
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     /// <seealso cref="TwclBluetoothRadio" />
-    function Connect(const Radio: TwclBluetoothRadio;
-      const Address: Int64): Integer;
+    function Connect(Radio: TwclBluetoothRadio; Address: Int64): Integer;
     /// <summary> Disconnects from WeDo Hub. </summary>
     /// <returns> If the method completed with success the returning value is
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
@@ -893,7 +886,7 @@ type
     /// <returns> If the method completed with success the returning value is
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
-    function WriteDeviceName(const Name: string): Integer;
+    function WriteDeviceName(Name: string): Integer;
 
     /// <summary> Gets the Hub device information service object. </summary>
     /// <value> The Hub device information service object. </value>
@@ -924,13 +917,13 @@ type
   published
     /// <summary> The event fires when connection to a WeDo Hub
     ///   has been established. </summary>
-    /// <seealso cref="TwclClientConnectionConnectEvent" />
-    property OnConnected: TwclClientConnectionConnectEvent read FOnConnected
+    /// <seealso cref="TwclWeDoHubConnectEvent" />
+    property OnConnected: TwclWeDoHubConnectEvent read FOnConnected
       write FOnConnected;
     /// <summary> The event fires when WeDo Hub has been
     ///   disconnected. </summary>
-    /// <seealso cref="TwclClientConnectionDisconnectEvent" />
-    property OnDisconnected: TwclClientConnectionDisconnectEvent
+    /// <seealso cref="TwclWeDoHubDisonnectEvent" />
+    property OnDisconnected: TwclWeDoHubDisonnectEvent
       read FOnDisconnected write FOnDisconnected;
     /// <summary> The event fires when button state has been changed. </summary>
     /// <seealso cref="TwclWeDoHubButtonStateChangedEvent"/>
@@ -990,9 +983,9 @@ type
 
     procedure SetDefaultInputFormatProp(Format: TwclWeDoInputFormat);
 
-    procedure SetValue(const Value: TArray<Byte>);
+    procedure SetValue(Value: TArray<Byte>);
 
-    function SetDefaultInputFormat(const Format: TwclWeDoInputFormat): Integer;
+    function SetDefaultInputFormat(Format: TwclWeDoInputFormat): Integer;
 
     function GetAsFloat: Single;
     function GetAsInteger: Integer;
@@ -1000,20 +993,19 @@ type
     function GetInputFormatMode: Byte;
 
     function DataFormatForInputFormat(
-      const InputFormat: TwclWeDoInputFormat): TwclWeDoDataFormat;
+      InputFormat: TwclWeDoInputFormat): TwclWeDoDataFormat;
 
-    function VerifyValue(const Value: TArray<Byte>): Boolean;
+    function VerifyValue(Value: TArray<Byte>): Boolean;
 
     // The method called by HUB when new device found (attached).
-    class function Attach(const Hub: TwclWeDoHub;
-      const RawInfo: TArray<Byte>): TwclWeDoIo;
+    class function Attach(Hub: TwclWeDoHub; RawInfo: TArray<Byte>): TwclWeDoIo;
     // The method called by HUB when device has been detached.
     procedure Detach;
 
     // The method called by IO Service when Input Format has been updated.
-    procedure UpdateInputFormat(const Format: TwclWeDoInputFormat);
+    procedure UpdateInputFormat(Format: TwclWeDoInputFormat);
     // The method called by the IO Service when new value received.
-    procedure UpdateValue(const Value: TArray<Byte>);
+    procedure UpdateValue(Value: TArray<Byte>);
 
   protected
     /// <summary> Sends data to the IO service. </summary>
@@ -1021,7 +1013,7 @@ type
     /// <returns> If the method completed with success the returning value is
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
-    function WriteData(const Data: TArray<Byte>): Integer;
+    function WriteData(Data: TArray<Byte>): Integer;
     /// <summary> If the notifications is disabled for the service in the Input
     ///   Format you will have to use this method to request an updated value
     ///   for the service. </summary>
@@ -1038,11 +1030,11 @@ type
     /// <summary> Adds a new valid data format. </summary>
     /// <param name="Format"> The data format to add. </param>
     /// <seealso cref="TwclWeDoDataFormat"/>
-    procedure AddValidDataFormat(const Format: TwclWeDoDataFormat);
+    procedure AddValidDataFormat(Format: TwclWeDoDataFormat);
     /// <summary> Removes a valid data format. </summary>
     /// <param name="Format"> The data format to remove. </param>
     /// <seealso cref="TwclWeDoDataFormat"/>
-    procedure RemoveValidDataFormat(const Format: TwclWeDoDataFormat);
+    procedure RemoveValidDataFormat(Format: TwclWeDoDataFormat);
     /// <summary> Send an updated input format for this service to the
     ///   device. </summary>
     /// <param name="Format"> New input format. </param>
@@ -1050,20 +1042,20 @@ type
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     /// <seelso cref="TwclWeDoInputFormat"/>
-    function SendInputFormat(const Format: TwclWeDoInputFormat): Integer;
+    function SendInputFormat(Format: TwclWeDoInputFormat): Integer;
     /// <summary> Changes mode of the Input Format. </summary>
     /// <param name="Mode"> The Input Format mode. </param>
     /// <returns> If the method completed with success the returning value is
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
-    function SetInputFormatMode(const Mode: Byte): Integer;
+    function SetInputFormatMode(Mode: Byte): Integer;
 
     /// <summary> The method called when Input Format has been
     ///   changed. </summary>
     /// <param name="OldFormat"> The old Input Format. </param>
     /// <remarks> A derived class must override this method to get notifications
     ///   about format changes. </remarks>
-    procedure InputFormatChanged(const OldFormat: TwclWeDoInputFormat); virtual;
+    procedure InputFormatChanged(OldFormat: TwclWeDoInputFormat); virtual;
     /// <summary> The method called when data value has been changed. </summary>
     /// <remarks> A derived class must override this method to get notifications
     ///   about value changes. </remarks>
@@ -1109,8 +1101,7 @@ type
     /// <seealso cref="TwclWeDoHub"/>
     /// <exception cref="wclEInvalidArgument"> The exception raises when the
     ///  <c>Hub</c> parameter is <c>nil</c>. </exception>
-    constructor Create(const Hub: TwclWeDoHub;
-      const ConnectionId: Byte); virtual;
+    constructor Create(Hub: TwclWeDoHub; ConnectionId: Byte); virtual;
     /// <summary> Frees the object. </summary>
     destructor Destroy; override;
 
@@ -1192,8 +1183,7 @@ type
     /// <seealso cref="TwclWeDoHub"/>
     /// <exception cref="wclEInvalidArgument"> The exception raises when the
     ///  <c>Hub</c> parameter is <c>nil</c>. </exception>
-    constructor Create(const Hub: TwclWeDoHub;
-      const ConnectionId: Byte); override;
+    constructor Create(Hub: TwclWeDoHub; ConnectionId: Byte); override;
 
     /// <summary> Plays a tone with a given frequency for the given
     ///   duration in ms. </summary>
@@ -1204,7 +1194,7 @@ type
     /// <returns> If the method completed with success the returning value is
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
-    function PlayTone(const Frequency: Word; const Duration: Word): Integer;
+    function PlayTone(Frequency: Word; Duration: Word): Integer;
     /// <summary> Plays a note. The highest supported node is F# in 6th
     ///   octave. </summary>
     /// <param name="Note"> The note to play. </param>
@@ -1215,8 +1205,8 @@ type
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     /// <seealso cref="TwclWeDoPiezoNote"/>
-    function PlayNote(const Note: TwclWeDoPiezoNote; const Octave: Byte;
-      const Duration: Word): Integer;
+    function PlayNote(Note: TwclWeDoPiezoNote; Octave: Byte;
+      Duration: Word): Integer;
     /// <summary> Stop playing any currently playing tone. </summary>
     /// <returns> If the method completed with success the returning value is
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
@@ -1276,7 +1266,7 @@ type
     FOnColorChanged: TNotifyEvent;
     FOnModeChanged: TNotifyEvent;
 
-    function GetColorFromByteArray(const Data: TArray<Byte>;
+    function GetColorFromByteArray(Data: TArray<Byte>;
       out Color: TColor): Boolean;
 
     function GetDefaultColor: TColor;
@@ -1287,8 +1277,7 @@ type
     /// <summary> The method called when Input Format has been
     ///   changed. </summary>
     /// <param name="OldFormat"> The old Input Format. </param>
-    procedure InputFormatChanged(
-      const OldFormat: TwclWeDoInputFormat); override;
+    procedure InputFormatChanged(OldFormat: TwclWeDoInputFormat); override;
     /// <summary> The method called when data value has been
     ///   changed. </summary>
     procedure ValueChanged; override;
@@ -1307,8 +1296,7 @@ type
     /// <seealso cref="TwclWeDoHub"/>
     /// <exception cref="wclEInvalidArgument"> The exception raises when the
     ///   <c>Hub</c> parameter is <c>nil</c>. </exception>
-    constructor Create(const Hub: TwclWeDoHub;
-      const ConnectionId: Byte); override;
+    constructor Create(Hub: TwclWeDoHub; ConnectionId: Byte); override;
 
     /// <summary> Switch off the RGB light on the device. </summary>
     /// <returns> If the method completed with success the returning value is
@@ -1327,21 +1315,21 @@ type
     /// <returns> If the method completed with success the returning value is
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
-    function SetColor(const Rgb: TColor): Integer;
+    function SetColor(Rgb: TColor): Integer;
     /// <summary> Sets the index of the currently selected color (discrete
     ///   mode). </summary>
     /// <param name="Index"> The color index. </param>
     /// <returns> If the method completed with success the returning value is
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
-    function SetColorIndex(const Index: TwclWeDoColor): Integer;
+    function SetColorIndex(Index: TwclWeDoColor): Integer;
     /// <summary> Sets the mode of the RGB light. </summary>
     /// <param name="Mode"> The RGB lite mode. </param>
     /// <returns> If the method completed with success the returning value is
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     /// <seealso cref="TwclWeDoRgbLightMode"/>
-    function SetMode(const Mode: TwclWeDoRgbLightMode): Integer;
+    function SetMode(Mode: TwclWeDoRgbLightMode): Integer;
 
     /// <summary> Gets the color of the RGB light on the device
     ///   (absolute mode). </summary>
@@ -1398,8 +1386,7 @@ type
     /// <seealso cref="TwclWeDoHub"/>
     /// <exception cref="wclEInvalidArgument"> The exception raises when the
     ///   <c>Hub</c> parameter is <c>nil</c>. </exception>
-    constructor Create(const Hub: TwclWeDoHub;
-      const ConnectionId: Byte); override;
+    constructor Create(Hub: TwclWeDoHub; ConnectionId: Byte); override;
 
     /// <summary> Gets the battery current in mA. </summary>
     /// <value> The current in milli ampers. </value>
@@ -1434,8 +1421,7 @@ type
     /// <seealso cref="TwclWeDoHub"/>
     /// <exception cref="wclEInvalidArgument"> The exception raises when the
     ///   <c>Hub</c> parameter is <c>nil</c>. </exception>
-    constructor Create(const Hub: TwclWeDoHub;
-      const ConnectionId: Byte); override;
+    constructor Create(Hub: TwclWeDoHub; ConnectionId: Byte); override;
 
     /// <summary> Gets the current battery voltage in milli volts. </summary>
     /// <value> The battery voltage in milli volts. </value>
@@ -1483,10 +1469,10 @@ type
     function GetIsDrifting: Boolean;
     function GetPower: Byte;
 
-    function SendPower(const Power: ShortInt): Integer;
+    function SendPower(Power: ShortInt): Integer;
 
     function ConvertUnsignedMotorPowerToSigned(
-      const Direction: TwclWeDoMotorDirection; const Power: Byte): ShortInt;
+      Direction: TwclWeDoMotorDirection; Power: Byte): ShortInt;
 
   public
     /// <summary> Creates new motor class object. </summary>
@@ -1497,8 +1483,7 @@ type
     /// <seealso cref="TwclWeDoHub"/>
     /// <exception cref="wclEInvalidArgument"> The exception raises when the
     ///   <c>Hub</c> parameter is <c>nil</c>. </exception>
-    constructor Create(const Hub: TwclWeDoHub;
-      const ConnectionId: Byte); override;
+    constructor Create(Hub: TwclWeDoHub; ConnectionId: Byte); override;
 
     /// <summary> Sends a command to stop (brake) the motor. </summary>
     /// <returns> If the method completed with success the returning value is
@@ -1519,8 +1504,7 @@ type
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     /// <seealso cref="TwclWeDoMotorDirection"/>
-    function Run(const Direction: TwclWeDoMotorDirection;
-      const Power: Byte): Integer;
+    function Run(Direction: TwclWeDoMotorDirection; Power: Byte): Integer;
 
     /// <summary> Gets the current running direction of the motor. </summary>
     /// <value> Teh motor direction. </value>
@@ -1553,8 +1537,7 @@ type
     /// <seealso cref="TwclWeDoHub"/>
     /// <exception cref="wclEInvalidArgument"> The exception raises when the
     ///   <c>Hub</c> parameter is <c>nil</c>. </exception>
-    constructor Create(const Hub: TwclWeDoHub;
-      const ConnectionId: Byte); override;
+    constructor Create(Hub: TwclWeDoHub; ConnectionId: Byte); override;
 
     /// <summary> Resets the sensor. </summary>
     /// <returns> If the method completed with success the returning value is
@@ -1594,7 +1577,7 @@ type
    /// <summary> The method called when Input Format has been
    ///   changed. </summary>
    /// <param name="OldFormat"> The old Input Format. </param>
-   procedure InputFormatChanged(const OldFormat: TwclWeDoInputFormat); override;
+   procedure InputFormatChanged(OldFormat: TwclWeDoInputFormat); override;
    /// <summary> Fires the <c>OnVoltageChanged</c> event. </summary>
    procedure ValueChanged; override;
 
@@ -1614,8 +1597,7 @@ type
     /// <seealso cref="TwclWeDoHub"/>
     /// <exception cref="wclEInvalidArgument"> The exception raises when the
     ///   <c>Hub</c> parameter is <c>nil</c>. </exception>
-    constructor Create(const Hub: TwclWeDoHub;
-      const ConnectionId: Byte); override;
+    constructor Create(Hub: TwclWeDoHub; ConnectionId: Byte); override;
 
     /// <summary> Sets the motion sensor mode. </summary>
     /// <param name="Mode"> The motion sensor mode. </param>
@@ -1623,7 +1605,7 @@ type
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     /// <seealso cref="TwclWeDoMotionSensorMode"/>
-    function SetMode(const Mode: TwclWeDoMotionSensorMode): Integer;
+    function SetMode(Mode: TwclWeDoMotionSensorMode): Integer;
 
     /// <summary> Gets the most recent count reading from the sensor. </summary>
     /// <value> The detections count. </value>
@@ -1704,8 +1686,8 @@ type
     FOnDirectionChanged: TNotifyEvent;
     FOnModeChanged: TNotifyEvent;
 
-    function ConvertToSigned(const b: Byte): Integer;
-    function ConvertToUnsigned(const b: Byte): Integer;
+    function ConvertToSigned(b: Byte): Integer;
+    function ConvertToUnsigned(b: Byte): Integer;
 
     function GetAngle: TwclWeDoTiltSensorAngle;
     function GetCrash: TwclWeDoTiltSensorCrash;
@@ -1716,8 +1698,7 @@ type
     /// <summary> The method called when Input Format has been
     ///   changed. </summary>
     /// <param name="OldFormat"> The old Input Format. </param>
-    procedure InputFormatChanged(
-      const OldFormat: TwclWeDoInputFormat); override;
+    procedure InputFormatChanged(OldFormat: TwclWeDoInputFormat); override;
     /// <summary> Fires the <c>OnVoltageChanged</c> event. </summary>
     procedure ValueChanged; override;
 
@@ -1739,8 +1720,7 @@ type
     /// <seealso cref="TwclWeDoHub"/>
     /// <exception cref="wclEInvalidArgument"> The exception raises when the
     ///   <c>Hub</c> parameter is <c>nil</c>. </exception>
-    constructor Create(const Hub: TwclWeDoHub;
-      const ConnectionId: Byte); override;
+    constructor Create(Hub: TwclWeDoHub; ConnectionId: Byte); override;
 
     /// <summary> Sets the tilt sensor mode. </summary>
     /// <param name="Mode"> The tils sensor mode. </param>
@@ -1748,7 +1728,7 @@ type
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     /// <seealso cref="TwclWeDoTiltSensorMode"/>
-    function SetMode(const Mode: TwclWeDoTiltSensorMode): Integer;
+    function SetMode(Mode: TwclWeDoTiltSensorMode): Integer;
 
     /// <summary> Gets the most recent angle reading from the sensor. The angle
     ///   represents the angle the sensor is tilted in the x and y. </summary>
@@ -1800,12 +1780,12 @@ begin
   Uuid.LongUuid := WCL_WEDO_GUID_NULL;
 end;
 
-function IsNull(const Uuid: TwclGattUuid): Boolean;
+function IsNull(Uuid: TwclGattUuid): Boolean;
 begin
   Result := (not Uuid.IsShortUuid) and (Uuid.LongUuid = WCL_WEDO_GUID_NULL);
 end;
 
-function ToList(const Arr: TArray<Byte>): TList<Byte>;
+function ToList(Arr: TArray<Byte>): TList<Byte>;
 var
   i: Integer;
 begin
@@ -1814,8 +1794,8 @@ begin
     Result.Add(Arr[i]);
 end;
 
-function ToArray(const List: TList<Byte>; const Start: Integer;
-  const Length: Integer): TArray<Byte>;
+function ToArray(List: TList<Byte>; Start: Integer;
+  Length: Integer): TArray<Byte>;
 var
   i: Integer;
 begin
@@ -1829,7 +1809,7 @@ begin
   end;
 end;
 
-function VersionFromByteArray(const Data: TArray<Byte>): TwclWeDoVersion;
+function VersionFromByteArray(Data: TArray<Byte>): TwclWeDoVersion;
 begin
   Result.MajorVersion := Data[0];
   Result.MinorVersion := Data[1];
@@ -1847,9 +1827,8 @@ end;
 
 { TwclWeDoDataFormat }
 
-constructor TwclWeDoDataFormat.Create(const DataSetCount: Byte;
-  const DataSetSize: Byte; const Mode: Byte;
-  const Unit_: TwclWeDoSensorDataUnit);
+constructor TwclWeDoDataFormat.Create(DataSetCount: Byte; DataSetSize: Byte;
+  Mode: Byte; Unit_: TwclWeDoSensorDataUnit);
 begin
   FDataSetCount := DataSetCount;
   FDataSetSize := DataSetSize;
@@ -1884,11 +1863,10 @@ end;
 
 { TwclWeDoInputFormat }
 
-constructor TwclWeDoInputFormat.Create(const ConnectionId: Byte;
-  const DeviceType: TwclWeDoIoDeviceType; const Mode: Byte;
-  const Interval: Cardinal; const Unit_: TwclWeDoSensorDataUnit;
-  const NotificationsEnabled: Boolean; const Revision: Byte;
-  const NumberOfBytes: Byte);
+constructor TwclWeDoInputFormat.Create(ConnectionId: Byte;
+  DeviceType: TwclWeDoIoDeviceType; Mode: Byte; Interval: Cardinal;
+  Unit_: TwclWeDoSensorDataUnit; NotificationsEnabled: Boolean; Revision: Byte;
+  NumberOfBytes: Byte);
 begin
   FConnectionId := ConnectionId;
   FInterval := Interval;
@@ -1929,7 +1907,7 @@ begin
 end;
 
 class function TwclWeDoInputFormat.FromBytesArray(
-  const Data: TArray<Byte>): TwclWeDoInputFormat;
+  Data: TArray<Byte>): TwclWeDoInputFormat;
 var
   Revision: Byte;
   ConnectionId: Byte;
@@ -1987,7 +1965,7 @@ begin
 end;
 
 function TwclWeDoInputFormat.InputFormatBySettingMode(
-  const Mode: Byte): TwclWeDoInputFormat;
+  Mode: Byte): TwclWeDoInputFormat;
 begin
   Result := TwclWeDoInputFormat.Create(FConnectionId, FDeviceType, Mode,
     FInterval, FUnit, FNotificationsEnabled, FRevision, FNumberOfBytes);
@@ -2034,19 +2012,19 @@ end;
 
 { TwclWeDoService }
 
-procedure TwclWeDoService.CharacteristicChanged(const Handle: Word;
-  const Value: TArray<Byte>);
+procedure TwclWeDoService.CharacteristicChanged(Handle: Word;
+  Value: TArray<Byte>);
 begin
   // Do nothing in default implementation.
 end;
 
-function TwclWeDoService.CompareGuid(const GattUuid: TwclGattUuid;
-  const Uuid: TGUID): Boolean;
+function TwclWeDoService.CompareGuid(GattUuid: TwclGattUuid;
+  Uuid: TGUID): Boolean;
 begin
   Result := ToGuid(GattUuid) = Uuid;
 end;
 
-function TwclWeDoService.Connect(const Services: TwclGattServices): Integer;
+function TwclWeDoService.Connect(Services: TwclGattServices): Integer;
 begin
   if FConnected then
     Result := WCL_E_CONNECTION_ACTIVE
@@ -2064,8 +2042,7 @@ begin
   end;
 end;
 
-constructor TwclWeDoService.Create(const Client: TwclGattClient;
-  const Hub: TwclWeDoHub);
+constructor TwclWeDoService.Create(Client: TwclGattClient; Hub: TwclWeDoHub);
 begin
   if (Client = nil) or (Hub = nil) then
     raise wclEInvalidArgument.Create('Client parameter can not be null.');
@@ -2093,8 +2070,8 @@ begin
   end;
 end;
 
-function TwclWeDoService.FindCharactersitc(const Uuid: TGUID;
-  const Service: TwclGattService;
+function TwclWeDoService.FindCharactersitc(Uuid: TGUID;
+  Service: TwclGattService;
   out Characteristic: TwclGattCharacteristic): Integer;
 var
   Chr: TwclGattCharacteristic;
@@ -2120,7 +2097,7 @@ begin
   end;
 end;
 
-function TwclWeDoService.FindService(const Uuid: TGUID;
+function TwclWeDoService.FindService(Uuid: TGUID;
   out Service: TwclGattService): Integer;
 var
   Svc: TwclGattService;
@@ -2143,8 +2120,8 @@ begin
   end;
 end;
 
-function TwclWeDoService.ReadByteValue(
-  const Characteristic: TwclGattCharacteristic; out Value: Byte): Integer;
+function TwclWeDoService.ReadByteValue(Characteristic: TwclGattCharacteristic;
+  out Value: Byte): Integer;
 var
   CharValue: TwclGattCharacteristicValue;
 begin
@@ -2168,8 +2145,7 @@ begin
   end;
 end;
 
-function TwclWeDoService.ReadCharacteristics(
-  const Service: TwclGattService): Integer;
+function TwclWeDoService.ReadCharacteristics(Service: TwclGattService): Integer;
 begin
   // Did we already read the characteristics for given service?
   if Length(FCharacteristics) <> 0 then
@@ -2184,8 +2160,8 @@ begin
   end;
 end;
 
-function TwclWeDoService.ReadStringValue(
-  const Characteristic: TwclGattCharacteristic; out Value: string): Integer;
+function TwclWeDoService.ReadStringValue(Characteristic: TwclGattCharacteristic;
+  out Value: string): Integer;
 var
   CharValue: TwclGattCharacteristicValue;
 begin
@@ -2230,7 +2206,7 @@ begin
   end;
 end;
 
-function TwclWeDoService.ToGuid(const Uuid: TwclGattUuid): TGUID;
+function TwclWeDoService.ToGuid(Uuid: TwclGattUuid): TGUID;
 begin
   if not Uuid.IsShortUuid then
     Result := Uuid.LongUuid
@@ -2255,8 +2231,8 @@ end;
 
 { TwclWeDoDeviceInformationService }
 
-constructor TwclWeDoDeviceInformationService.Create(
-  const Client: TwclGattClient; const Hub: TwclWeDoHub);
+constructor TwclWeDoDeviceInformationService.Create(Client: TwclGattClient;
+  Hub: TwclWeDoHub);
 begin
   inherited Create(Client, Hub);
 
@@ -2317,8 +2293,8 @@ end;
 
 { TwclWeDoBatteryLevelService }
 
-procedure TwclWeDoBatteryLevelService.CharacteristicChanged(const Handle: Word;
-  const Value: TArray<Byte>);
+procedure TwclWeDoBatteryLevelService.CharacteristicChanged(Handle: Word;
+  Value: TArray<Byte>);
 begin
   inherited;
 
@@ -2327,8 +2303,8 @@ begin
     DoBatteryLevelChanged(Value[0]);
 end;
 
-constructor TwclWeDoBatteryLevelService.Create(const Client: TwclGattClient;
-  const Hub: TwclWeDoHub);
+constructor TwclWeDoBatteryLevelService.Create(Client: TwclGattClient;
+  Hub: TwclWeDoHub);
 begin
   inherited Create(Client, Hub);
 
@@ -2337,7 +2313,7 @@ begin
   FOnBatteryLevelChanged := nil;
 end;
 
-procedure TwclWeDoBatteryLevelService.DoBatteryLevelChanged(const Level: Byte);
+procedure TwclWeDoBatteryLevelService.DoBatteryLevelChanged(Level: Byte);
 begin
   if Assigned(FOnBatteryLevelChanged) then
     FOnBatteryLevelChanged(Self, Level);
@@ -2375,33 +2351,19 @@ end;
 
 { TwclWeDoIoService }
 
-procedure TwclWeDoIoService.CharacteristicChanged(const Handle: Word;
-  const Value: TArray<Byte>);
+procedure TwclWeDoIoService.CharacteristicChanged(Handle: Word;
+  Value: TArray<Byte>);
 begin
   inherited;
 
-  if (not IsNull(FSensorValueChar.Uuid)) and
-     (FSensorValueChar.Handle = Handle)
-  then
+  if (not IsNull(FSensorValueChar.Uuid)) and (FSensorValueChar.Handle = Handle) then
     InputValueChanged(Value);
-  if (not IsNull(FSensorValueFormatChar.Uuid)) and
-     (FSensorValueFormatChar.Handle = Handle)
-  then
+  if (not IsNull(FSensorValueFormatChar.Uuid)) and (FSensorValueFormatChar.Handle = Handle) then
     InputFormatChanged(Value);
 end;
 
-procedure TwclWeDoIoService.ClearInputFormats;
-var
-  Format: TwclWeDoInputFormat;
-begin
-  for Format in FInputFormats.Values do
-    Format.Free;
-  FInputFormats.Clear;
-end;
-
-function TwclWeDoIoService.ComposeInputCommand(const CommandId: Byte;
-  const CommandType: Byte; const ConnectionId: Byte;
-  const Data: TArray<Byte>): TArray<Byte>;
+function TwclWeDoIoService.ComposeInputCommand(CommandId: Byte;
+  CommandType: Byte; ConnectionId: Byte; Data: TArray<Byte>): TArray<Byte>;
 var
   i: Integer;
 begin
@@ -2418,8 +2380,8 @@ begin
   end;
 end;
 
-function TwclWeDoIoService.ComposeOutputCommand(const CommandId: Byte;
-  const ConnectionId: Byte; const Data: TArray<Byte>): TArray<Byte>;
+function TwclWeDoIoService.ComposeOutputCommand(CommandId: Byte;
+  ConnectionId: Byte; Data: TArray<Byte>): TArray<Byte>;
 var
   i: Integer;
 begin
@@ -2436,8 +2398,7 @@ begin
   end;
 end;
 
-constructor TwclWeDoIoService.Create(const Client: TwclGattClient;
-  const Hub: TwclWeDoHub);
+constructor TwclWeDoIoService.Create(Client: TwclGattClient; Hub: TwclWeDoHub);
 begin
   inherited Create(Client, Hub);
 
@@ -2450,8 +2411,7 @@ end;
 
 destructor TwclWeDoIoService.Destroy;
 begin
-  ClearInputFormats;
-
+  FInputFormats.Clear;
   FInputFormats.Free;
   FMissingInputFormats.Free;
 
@@ -2487,7 +2447,7 @@ begin
   end;
 end;
 
-procedure TwclWeDoIoService.InputFormatChanged(const Data: TArray<Byte>);
+procedure TwclWeDoIoService.InputFormatChanged(Data: TArray<Byte>);
 var
   Format: TwclWeDoInputFormat;
   AnyFormat: TwclWeDoInputFormat;
@@ -2501,15 +2461,15 @@ begin
       AnyFormat := FInputFormats.Values.ToArray[0]
     else
       AnyFormat := nil;
+
     // Clear if revisions are not equal.
     if (AnyFormat <> nil) and (AnyFormat.Revision <> Format.Revision) then
-      ClearInputFormats;
+      FInputFormats.Clear;
 
     // Update input formats in local list.
-    if FInputFormats.ContainsKey(Format.ConnectionId) then begin
-      FInputFormats[Format.ConnectionId].Free;
-      FInputFormats[Format.ConnectionId] := Format;
-    end else
+    if FInputFormats.ContainsKey(Format.ConnectionId) then
+      FInputFormats[Format.ConnectionId] := Format
+    else
       FInputFormats.Add(Format.ConnectionId, Format);
 
     // Check for missing Input Formats.
@@ -2526,7 +2486,7 @@ begin
   end;
 end;
 
-procedure TwclWeDoIoService.InputValueChanged(const Value: TArray<Byte>);
+procedure TwclWeDoIoService.InputValueChanged(Value: TArray<Byte>);
 var
   Revision: Byte;
   Index: Integer;
@@ -2587,8 +2547,8 @@ begin
   end;
 end;
 
-function TwclWeDoIoService.PiezoPlayTone(const Frequency: Word;
-  const Duration: Word; const ConnectionId: Byte): Integer;
+function TwclWeDoIoService.PiezoPlayTone(Frequency: Word; Duration: Word;
+  ConnectionId: Byte): Integer;
 var
   Data: TArray<Byte>;
   Cmd: TArray<Byte>;
@@ -2600,7 +2560,7 @@ begin
   Result := WriteOutputCommand(Cmd);
 end;
 
-function TwclWeDoIoService.PiezoStopPlaying(const ConnectionId: Byte): Integer;
+function TwclWeDoIoService.PiezoStopPlaying(ConnectionId: Byte): Integer;
 var
   Cmd: TArray<Byte>;
 begin
@@ -2608,7 +2568,7 @@ begin
   Result := WriteOutputCommand(Cmd);
 end;
 
-function TwclWeDoIoService.ReadInputFormat(const ConnectionId: Byte): Integer;
+function TwclWeDoIoService.ReadInputFormat(ConnectionId: Byte): Integer;
 var
   Cmd: TArray<Byte>;
 begin
@@ -2617,7 +2577,7 @@ begin
   Result := WriteInputCommand(Cmd);
 end;
 
-function TwclWeDoIoService.ReadValue(const ConnectionId: Byte): Integer;
+function TwclWeDoIoService.ReadValue(ConnectionId: Byte): Integer;
 var
   Cmd: TArray<Byte>;
 begin
@@ -2626,7 +2586,7 @@ begin
   Result := WriteInputCommand(Cmd);
 end;
 
-procedure TwclWeDoIoService.RequestMissingInputFormat(const ConnectionId: Byte);
+procedure TwclWeDoIoService.RequestMissingInputFormat(ConnectionId: Byte);
 var
   InputFormatRequested: Boolean;
 begin
@@ -2645,7 +2605,7 @@ begin
   FMissingInputFormats[ConnectionId] := InputFormatRequested;
 end;
 
-function TwclWeDoIoService.ResetIo(const ConnectionId: Byte): Integer;
+function TwclWeDoIoService.ResetIo(ConnectionId: Byte): Integer;
 var
   Cmd: TArray<Byte>;
 begin
@@ -2671,12 +2631,12 @@ begin
   SetNull(FOutputCommandChar.Uuid);
 
   // Clear input format lists.
-  ClearInputFormats;
+  FInputFormats.Clear;
   FMissingInputFormats.Clear;
 end;
 
-function TwclWeDoIoService.WriteColor(const Red: Byte; const Green: Byte;
-  const Blue: Byte; const ConnectionId: Byte): Integer;
+function TwclWeDoIoService.WriteColor(Red: Byte; Green: Byte; Blue: Byte;
+  ConnectionId: Byte): Integer;
 var
   Data: TArray<Byte>;
   Cmd: TArray<Byte>;
@@ -2689,8 +2649,8 @@ begin
   Result := WriteOutputCommand(Cmd);
 end;
 
-function TwclWeDoIoService.WriteColorIndex(const Index: Byte;
-  const ConnectionId: Byte): Integer;
+function TwclWeDoIoService.WriteColorIndex(Index: Byte;
+  ConnectionId: Byte): Integer;
 var
   Data: TArray<Byte>;
   Cmd: TArray<Byte>;
@@ -2706,8 +2666,8 @@ begin
   end;
 end;
 
-function TwclWeDoIoService.WriteData(const Data: TArray<Byte>;
-  const ConnectionId: Byte): Integer;
+function TwclWeDoIoService.WriteData(Data: TArray<Byte>;
+  ConnectionId: Byte): Integer;
 var
   Cmd: TArray<Byte>;
 begin
@@ -2715,8 +2675,7 @@ begin
   Result := WriteOutputCommand(Cmd);
 end;
 
-function TwclWeDoIoService.WriteInputCommand(
-  const Command: TArray<Byte>): Integer;
+function TwclWeDoIoService.WriteInputCommand(Command: TArray<Byte>): Integer;
 begin
   if IsNull(FInputCommandChar.Uuid) then
     Result := WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND
@@ -2726,8 +2685,8 @@ begin
   end;
 end;
 
-function TwclWeDoIoService.WriteInputFormat(const Format: TwclWeDoInputFormat;
-  const ConnectionId: Byte): Integer;
+function TwclWeDoIoService.WriteInputFormat(Format: TwclWeDoInputFormat;
+  ConnectionId: Byte): Integer;
 var
   Cmd: TArray<Byte>;
 begin
@@ -2736,14 +2695,14 @@ begin
   Result := WriteInputCommand(Cmd);
 end;
 
-function TwclWeDoIoService.WriteMotorPower(const Power: ShortInt;
-  const ConnectionId: Byte): Integer;
+function TwclWeDoIoService.WriteMotorPower(Power: ShortInt;
+  ConnectionId: Byte): Integer;
 begin
   Result := WriteMotorPower(Power, 0, ConnectionId);
 end;
 
-function TwclWeDoIoService.WriteMotorPower(Power: ShortInt;
-  const Offset: Byte; const ConnectionId: Byte): Integer;
+function TwclWeDoIoService.WriteMotorPower(Power: ShortInt;Offset: Byte;
+  ConnectionId: Byte): Integer;
 var
   Positive: Boolean;
   ActualPower: Single;
@@ -2767,8 +2726,7 @@ begin
   Result := WriteOutputCommand(Cmd);
 end;
 
-function TwclWeDoIoService.WriteOutputCommand(
-  const Command: TArray<Byte>): Integer;
+function TwclWeDoIoService.WriteOutputCommand(Command: TArray<Byte>): Integer;
 begin
   // Writes command to the IO service.
   if IsNull(FOutputCommandChar.Uuid) then
@@ -2781,8 +2739,8 @@ end;
 
 { TwclWeDoHubService }
 
-procedure TwclWeDoHubService.CharacteristicChanged(const Handle: Word;
-  const Value: TArray<Byte>);
+procedure TwclWeDoHubService.CharacteristicChanged(Handle: Word;
+  Value: TArray<Byte>);
 var
   Io: TwclWeDoIo;
 begin
@@ -2819,8 +2777,7 @@ begin
   end;
 end;
 
-constructor TwclWeDoHubService.Create(const Client: TwclGattClient;
-  const Hub: TwclWeDoHub);
+constructor TwclWeDoHubService.Create(Client: TwclGattClient; Hub: TwclWeDoHub);
 begin
   inherited Create(Client, Hub);
 
@@ -2834,37 +2791,37 @@ begin
   Uninitialize;
 end;
 
-procedure TwclWeDoHubService.DoButtonStateChanged(const Pressed: Boolean);
+procedure TwclWeDoHubService.DoButtonStateChanged(Pressed: Boolean);
 begin
   if Assigned(FOnButtonStateChanged) then
     FOnButtonStateChanged(Self, Pressed);
 end;
 
-procedure TwclWeDoHubService.DoDeviceAttached(const Device: TwclWeDoIo);
+procedure TwclWeDoHubService.DoDeviceAttached(Device: TwclWeDoIo);
 begin
   if Assigned(FOnDeviceAttached) then
     FOnDeviceAttached(Self, Device);
 end;
 
-procedure TwclWeDoHubService.DoDeviceDetached(const ConnectionId: Byte);
+procedure TwclWeDoHubService.DoDeviceDetached(ConnectionId: Byte);
 begin
   if Assigned(FOnDeviceDetached) then
     FOnDeviceDetached(Self, ConnectionId);
 end;
 
-procedure TwclWeDoHubService.DoHightCurrentAlert(const Alert: Boolean);
+procedure TwclWeDoHubService.DoHightCurrentAlert(Alert: Boolean);
 begin
   if Assigned(FOnHighCurrentAlert) then
     FOnHighCurrentAlert(Self, Alert);
 end;
 
-procedure TwclWeDoHubService.DoLowSignalAlert(const Alert: Boolean);
+procedure TwclWeDoHubService.DoLowSignalAlert(Alert: Boolean);
 begin
   if Assigned(FOnLowSignalAlert) then
     FOnLowSignalAlert(Self, Alert);
 end;
 
-procedure TwclWeDoHubService.DoLowVoltageAlert(const Alert: Boolean);
+procedure TwclWeDoHubService.DoLowVoltageAlert(Alert: Boolean);
 begin
   if Assigned(FOnLowVoltageAlert) then
     FOnLowVoltageAlert(Self, Alert);
@@ -3096,8 +3053,8 @@ begin
   end;
 end;
 
-function TwclWeDoHub.Connect(const Radio: TwclBluetoothRadio;
-  const Address: Int64): Integer;
+function TwclWeDoHub.Connect(Radio: TwclBluetoothRadio;
+  Address: Int64): Integer;
 begin
   if (Radio = nil) or (Address = 0) then
     Result := WCL_E_INVALID_ARGUMENT
@@ -3210,49 +3167,49 @@ begin
     FHub.Disconnect;
 end;
 
-procedure TwclWeDoHub.DoButtonStateChanged(const Pressed: Boolean);
+procedure TwclWeDoHub.DoButtonStateChanged(Pressed: Boolean);
 begin
   if Assigned(FOnButtonStateChanged) then
     FOnButtonStateChanged(Self, Pressed);
 end;
 
-procedure TwclWeDoHub.DoConnected(const Error: Integer);
+procedure TwclWeDoHub.DoConnected(Error: Integer);
 begin
   if Assigned(FOnConnected) then
     FOnConnected(Self, Error);
 end;
 
-procedure TwclWeDoHub.DoDeviceAttached(const Device: TwclWeDoIo);
+procedure TwclWeDoHub.DoDeviceAttached(Device: TwclWeDoIo);
 begin
   if Assigned(FOnDeviceAttached) then
     FOnDeviceAttached(Self, Device);
 end;
 
-procedure TwclWeDoHub.DoDeviceDetached(const Device: TwclWeDoIo);
+procedure TwclWeDoHub.DoDeviceDetached(Device: TwclWeDoIo);
 begin
   if Assigned(FOnDeviceDetached) then
     FOnDeviceDetached(Self, Device);
 end;
 
-procedure TwclWeDoHub.DoDisconnected(const Reason: Integer);
+procedure TwclWeDoHub.DoDisconnected(Reason: Integer);
 begin
   if Assigned(FOnDisconnected) then
     FOnDisconnected(Self, Reason);
 end;
 
-procedure TwclWeDoHub.DoHighCurrentAlert(const Alert: Boolean);
+procedure TwclWeDoHub.DoHighCurrentAlert(Alert: Boolean);
 begin
   if Assigned(FOnHighCurrentAlert) then
     FOnHighCurrentAlert(Self, Alert);
 end;
 
-procedure TwclWeDoHub.DoLowSignalAlert(const Alert: Boolean);
+procedure TwclWeDoHub.DoLowSignalAlert(Alert: Boolean);
 begin
   if Assigned(FOnLowSignalAlert) then
     FOnLowSignalAlert(Self, Alert);
 end;
 
-procedure TwclWeDoHub.DoLowVoltageAlert(const Alert: Boolean);
+procedure TwclWeDoHub.DoLowVoltageAlert(Alert: Boolean);
 begin
   if Assigned(FOnLowVoltageAlert) then
     FOnLowVoltageAlert(Self, Alert);
@@ -3268,14 +3225,12 @@ begin
   Result := FClient.State;
 end;
 
-procedure TwclWeDoHub.HubButtonStateChanged(Sender: TObject;
-  const Pressed: Boolean);
+procedure TwclWeDoHub.HubButtonStateChanged(Sender: TObject; Pressed: Boolean);
 begin
   DoButtonStateChanged(Pressed);
 end;
 
-procedure TwclWeDoHub.HubDeviceAttached(Sender: TObject;
-  const Device: TwclWeDoIo);
+procedure TwclWeDoHub.HubDeviceAttached(Sender: TObject; Device: TwclWeDoIo);
 var
   Io: TwclWeDoIo;
 begin
@@ -3289,8 +3244,7 @@ begin
   DoDeviceAttached(Device);
 end;
 
-procedure TwclWeDoHub.HubDeviceDetached(Sender: TObject;
-  const ConnectionId: Byte);
+procedure TwclWeDoHub.HubDeviceDetached(Sender: TObject; ConnectionId: Byte);
 var
   Io: TwclWeDoIo;
   i: Integer;
@@ -3312,18 +3266,17 @@ begin
   end;
 end;
 
-procedure TwclWeDoHub.HubHighCurrentAlert(Sender: TObject;
-  const Alert: Boolean);
+procedure TwclWeDoHub.HubHighCurrentAlert(Sender: TObject; Alert: Boolean);
 begin
   DoHighCurrentAlert(Alert);
 end;
 
-procedure TwclWeDoHub.HubLowSignalAlert(Sender: TObject; const Alert: Boolean);
+procedure TwclWeDoHub.HubLowSignalAlert(Sender: TObject; Alert: Boolean);
 begin
   DoLowSignalAlert(Alert);
 end;
 
-procedure TwclWeDoHub.HubLowVoltageAlert(Sender: TObject; const Alert: Boolean);
+procedure TwclWeDoHub.HubLowVoltageAlert(Sender: TObject; Alert: Boolean);
 begin
   DoLowVoltageAlert(Alert);
 end;
@@ -3338,20 +3291,20 @@ begin
   Result := FHub.TurnOff;
 end;
 
-function TwclWeDoHub.WriteDeviceName(const Name: string): Integer;
+function TwclWeDoHub.WriteDeviceName(Name: string): Integer;
 begin
   Result := FHub.WriteDeviceName(Name);
 end;
 
 { TwclWeDoIo }
 
-procedure TwclWeDoIo.AddValidDataFormat(const Format: TwclWeDoDataFormat);
+procedure TwclWeDoIo.AddValidDataFormat(Format: TwclWeDoDataFormat);
 begin
   FValidDataFormats.Add(Format);
 end;
 
-class function TwclWeDoIo.Attach(const Hub: TwclWeDoHub;
-  const RawInfo: TArray<Byte>): TwclWeDoIo;
+class function TwclWeDoIo.Attach(Hub: TwclWeDoHub;
+  RawInfo: TArray<Byte>): TwclWeDoIo;
 var
   ConnectionId: Byte;
   Tmp: TArray<Byte>;
@@ -3425,7 +3378,7 @@ begin
   end;
 end;
 
-constructor TwclWeDoIo.Create(const Hub: TwclWeDoHub; const ConnectionId: Byte);
+constructor TwclWeDoIo.Create(Hub: TwclWeDoHub; ConnectionId: Byte);
 begin
   if Hub = nil then
     raise wclEInvalidArgument.Create('Hub parameter can not be null.');
@@ -3445,7 +3398,7 @@ begin
 end;
 
 function TwclWeDoIo.DataFormatForInputFormat(
-  const InputFormat: TwclWeDoInputFormat): TwclWeDoDataFormat;
+  InputFormat: TwclWeDoInputFormat): TwclWeDoDataFormat;
 var
   DataFormat: TwclWeDoDataFormat;
 begin
@@ -3533,12 +3486,12 @@ begin
   end;
 end;
 
-procedure TwclWeDoIo.InputFormatChanged(const OldFormat: TwclWeDoInputFormat);
+procedure TwclWeDoIo.InputFormatChanged(OldFormat: TwclWeDoInputFormat);
 begin
   // Do nothing
 end;
 
-procedure TwclWeDoIo.RemoveValidDataFormat(const Format: TwclWeDoDataFormat);
+procedure TwclWeDoIo.RemoveValidDataFormat(Format: TwclWeDoDataFormat);
 begin
   FValidDataFormats.Remove(Format);
 end;
@@ -3548,7 +3501,7 @@ begin
   Result := FHub.Io.ResetIo(FConnectionId);
 end;
 
-function TwclWeDoIo.SendInputFormat(const Format: TwclWeDoInputFormat): Integer;
+function TwclWeDoIo.SendInputFormat(Format: TwclWeDoInputFormat): Integer;
 begin
   Result := FHub.Io.WriteInputFormat(Format, FConnectionId);
 end;
@@ -3558,11 +3511,8 @@ begin
   Result := FHub.Io.ReadValue(FConnectionId);
 end;
 
-function TwclWeDoIo.SetDefaultInputFormat(const
-  Format: TwclWeDoInputFormat): Integer;
+function TwclWeDoIo.SetDefaultInputFormat(Format: TwclWeDoInputFormat): Integer;
 begin
-  if FDefaultInputFormat <> nil then
-    FDefaultInputFormat.Free;
   FDefaultInputFormat := Format;
   Result := SendInputFormat(Format);
 end;
@@ -3572,39 +3522,31 @@ begin
   SetDefaultInputFormat(Format);
 end;
 
-function TwclWeDoIo.SetInputFormatMode(const Mode: Byte): Integer;
+function TwclWeDoIo.SetInputFormatMode(Mode: Byte): Integer;
 var
   Format: TwclWeDoInputFormat;
 begin
   if FInputFormat <> nil then begin
     Format := FInputFormat.InputFormatBySettingMode(Mode);
-    try
-      Result := SendInputFormat(Format);
-    finally
-      Format.Free;
-    end;
+    Result := SendInputFormat(Format);
 
   end else begin
     if FDefaultInputFormat <> nil then begin
       Format := FDefaultInputFormat.InputFormatBySettingMode(Mode);
-      try
-        Result := SendInputFormat(Format);
-      finally
-        Format.Free;
-      end;
+      Result := SendInputFormat(Format);
 
     end else
       Result := WCL_E_INVALID_ARGUMENT;
   end;
 end;
 
-procedure TwclWeDoIo.SetValue(const Value: TArray<Byte>);
+procedure TwclWeDoIo.SetValue(Value: TArray<Byte>);
 begin
   FValue := Value;
   ValueChanged;
 end;
 
-procedure TwclWeDoIo.UpdateInputFormat(const Format: TwclWeDoInputFormat);
+procedure TwclWeDoIo.UpdateInputFormat(Format: TwclWeDoInputFormat);
 var
   OldFormat: TwclWeDoInputFormat;
 begin
@@ -3616,7 +3558,7 @@ begin
   end;
 end;
 
-procedure TwclWeDoIo.UpdateValue(const Value: TArray<Byte>);
+procedure TwclWeDoIo.UpdateValue(Value: TArray<Byte>);
 begin
   if (FValue <> nil) and (FValue = Value) then
     Exit;
@@ -3632,7 +3574,7 @@ begin
   // Do nothing.
 end;
 
-function TwclWeDoIo.VerifyValue(const Value: TArray<Byte>): Boolean;
+function TwclWeDoIo.VerifyValue(Value: TArray<Byte>): Boolean;
 var
   DataFormat: TwclWeDoDataFormat;
   ValueCorrect: Boolean;
@@ -3691,21 +3633,20 @@ begin
   end;
 end;
 
-function TwclWeDoIo.WriteData(const Data: TArray<Byte>): Integer;
+function TwclWeDoIo.WriteData(Data: TArray<Byte>): Integer;
 begin
   Result := FHub.Io.WriteData(Data, FConnectionId);
 end;
 
 { TwclWeDoPieazo }
 
-constructor TwclWeDoPieazo.Create(const Hub: TwclWeDoHub;
-  const ConnectionId: Byte);
+constructor TwclWeDoPieazo.Create(Hub: TwclWeDoHub; ConnectionId: Byte);
 begin
   inherited Create(Hub, ConnectionId);
 end;
 
-function TwclWeDoPieazo.PlayNote(const Note: TwclWeDoPiezoNote;
-  const Octave: Byte; const Duration: Word): Integer;
+function TwclWeDoPieazo.PlayNote(Note: TwclWeDoPiezoNote; Octave: Byte;
+  Duration: Word): Integer;
 var
   BaseTone: Double;
   OctavesAboveMiddle: Integer;
@@ -3740,8 +3681,7 @@ begin
   end;
 end;
 
-function TwclWeDoPieazo.PlayTone(const Frequency: Word;
-  const Duration: Word): Integer;
+function TwclWeDoPieazo.PlayTone(Frequency: Word; Duration: Word): Integer;
 begin
   if Frequency > PIEZO_MAX_FREQUENCY then
     Result := WCL_E_INVALID_ARGUMENT
@@ -3763,8 +3703,7 @@ end;
 
 { TwclWeDoRgbLight }
 
-constructor TwclWeDoRgbLight.Create(const Hub: TwclWeDoHub;
-  const ConnectionId: Byte);
+constructor TwclWeDoRgbLight.Create(Hub: TwclWeDoHub; ConnectionId: Byte);
 begin
   inherited Create(Hub, ConnectionId);
 
@@ -3798,7 +3737,7 @@ begin
     FOnModeChanged(Self);
 end;
 
-function TwclWeDoRgbLight.GetColorFromByteArray(const Data: TArray<Byte>;
+function TwclWeDoRgbLight.GetColorFromByteArray(Data: TArray<Byte>;
   out Color: TColor): Boolean;
 begin
   Color := clBlack;
@@ -3826,8 +3765,7 @@ begin
   Result := TwclWeDoRgbLightMode(InputFormatMode);
 end;
 
-procedure TwclWeDoRgbLight.InputFormatChanged(
-  const OldFormat: TwclWeDoInputFormat);
+procedure TwclWeDoRgbLight.InputFormatChanged(OldFormat: TwclWeDoInputFormat);
 begin
   inherited;
 
@@ -3841,7 +3779,7 @@ begin
   end;
 end;
 
-function TwclWeDoRgbLight.SetColor(const Rgb: TColor): Integer;
+function TwclWeDoRgbLight.SetColor(Rgb: TColor): Integer;
 begin
   if not Attached then
     Result := WCL_E_BLUETOOTH_DEVICE_NOT_INSTALLED
@@ -3856,7 +3794,7 @@ begin
   end;
 end;
 
-function TwclWeDoRgbLight.SetColorIndex(const Index: TwclWeDoColor): Integer;
+function TwclWeDoRgbLight.SetColorIndex(Index: TwclWeDoColor): Integer;
 begin
   if not Attached then
     Result := WCL_E_BLUETOOTH_DEVICE_NOT_INSTALLED
@@ -3870,7 +3808,7 @@ begin
   end;
 end;
 
-function TwclWeDoRgbLight.SetMode(const Mode: TwclWeDoRgbLightMode): Integer;
+function TwclWeDoRgbLight.SetMode(Mode: TwclWeDoRgbLightMode): Integer;
 begin
   if not Attached then
     Result := WCL_E_BLUETOOTH_DEVICE_NOT_INSTALLED
@@ -3937,8 +3875,7 @@ end;
 
 { TwclWeDoCurrentSensor }
 
-constructor TwclWeDoCurrentSensor.Create(const Hub: TwclWeDoHub;
-  const ConnectionId: Byte);
+constructor TwclWeDoCurrentSensor.Create(Hub: TwclWeDoHub; ConnectionId: Byte);
 begin
   inherited Create(Hub, ConnectionId);
 
@@ -3971,8 +3908,7 @@ end;
 
 { TwclWeDoVoltageSensor }
 
-constructor TwclWeDoVoltageSensor.Create(const Hub: TwclWeDoHub;
-  const ConnectionId: Byte);
+constructor TwclWeDoVoltageSensor.Create(Hub: TwclWeDoHub; ConnectionId: Byte);
 begin
   inherited Create(Hub, ConnectionId);
 
@@ -4018,15 +3954,14 @@ begin
 end;
 
 function TwclWeDoMotor.ConvertUnsignedMotorPowerToSigned(
-  const Direction: TwclWeDoMotorDirection; const Power: Byte): ShortInt;
+  Direction: TwclWeDoMotorDirection; Power: Byte): ShortInt;
 begin
   Result := Abs(Min(Max(Power, MOTOR_MIN_SPEED), MOTOR_MAX_SPEED));
   if Direction = mdLeft then
     Result := -Result;
 end;
 
-constructor TwclWeDoMotor.Create(const Hub: TwclWeDoHub;
-  const ConnectionId: Byte);
+constructor TwclWeDoMotor.Create(Hub: TwclWeDoHub; ConnectionId: Byte);
 begin
   inherited Create(Hub, ConnectionId);
 
@@ -4064,8 +3999,8 @@ begin
     Result := Abs(FPower);
 end;
 
-function TwclWeDoMotor.Run(const Direction: TwclWeDoMotorDirection;
-  const Power: Byte): Integer;
+function TwclWeDoMotor.Run(Direction: TwclWeDoMotorDirection;
+  Power: Byte): Integer;
 begin
   if (Direction = mdUnknown) or (Power > 100) then
     Result := WCL_E_INVALID_ARGUMENT
@@ -4089,7 +4024,7 @@ begin
   end;
 end;
 
-function TwclWeDoMotor.SendPower(const Power: ShortInt): Integer;
+function TwclWeDoMotor.SendPower(Power: ShortInt): Integer;
 var
   Offset: Byte;
 begin
@@ -4110,8 +4045,8 @@ end;
 
 { TwclWeDoResetableSensor }
 
-constructor TwclWeDoResetableSensor.Create(const Hub: TwclWeDoHub;
-  const ConnectionId: Byte);
+constructor TwclWeDoResetableSensor.Create(Hub: TwclWeDoHub;
+  ConnectionId: Byte);
 begin
   inherited Create(Hub, ConnectionId);
 end;
@@ -4126,8 +4061,7 @@ end;
 
 { TwclWeDoMotionSensor }
 
-constructor TwclWeDoMotionSensor.Create(const Hub: TwclWeDoHub;
-  const ConnectionId: Byte);
+constructor TwclWeDoMotionSensor.Create(Hub: TwclWeDoHub; ConnectionId: Byte);
 begin
   inherited Create(Hub, ConnectionId);
 
@@ -4189,7 +4123,7 @@ begin
 end;
 
 procedure TwclWeDoMotionSensor.InputFormatChanged(
-  const OldFormat: TwclWeDoInputFormat);
+  OldFormat: TwclWeDoInputFormat);
 begin
   inherited;
 
@@ -4203,8 +4137,7 @@ begin
   end;
 end;
 
-function TwclWeDoMotionSensor.SetMode(
-  const Mode: TwclWeDoMotionSensorMode): Integer;
+function TwclWeDoMotionSensor.SetMode(Mode: TwclWeDoMotionSensorMode): Integer;
 begin
   if not Attached then
     Result := WCL_E_BLUETOOTH_DEVICE_NOT_INSTALLED
@@ -4236,7 +4169,7 @@ end;
 
 { TwclWeDoTiltSensor }
 
-function TwclWeDoTiltSensor.ConvertToSigned(const b: Byte): Integer;
+function TwclWeDoTiltSensor.ConvertToSigned(b: Byte): Integer;
 var
   Signed: Integer;
 begin
@@ -4246,13 +4179,12 @@ begin
   Result := Signed;
 end;
 
-function TwclWeDoTiltSensor.ConvertToUnsigned(const b: Byte): Integer;
+function TwclWeDoTiltSensor.ConvertToUnsigned(b: Byte): Integer;
 begin
   Result := b;
 end;
 
-constructor TwclWeDoTiltSensor.Create(const Hub: TwclWeDoHub;
-  const ConnectionId: Byte);
+constructor TwclWeDoTiltSensor.Create(Hub: TwclWeDoHub; ConnectionId: Byte);
 begin
   inherited Create(Hub, ConnectionId);
 
@@ -4353,8 +4285,7 @@ begin
   Result := TwclWeDoTiltSensorMode(InputFormatMode);
 end;
 
-procedure TwclWeDoTiltSensor.InputFormatChanged(
-  const OldFormat: TwclWeDoInputFormat);
+procedure TwclWeDoTiltSensor.InputFormatChanged(OldFormat: TwclWeDoInputFormat);
 begin
   inherited;
 
@@ -4368,8 +4299,7 @@ begin
   end;
 end;
 
-function TwclWeDoTiltSensor.SetMode(
-  const Mode: TwclWeDoTiltSensorMode): Integer;
+function TwclWeDoTiltSensor.SetMode(Mode: TwclWeDoTiltSensorMode): Integer;
 begin
   if not Attached then
     Result := WCL_E_BLUETOOTH_DEVICE_NOT_INSTALLED

@@ -1,36 +1,27 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoHubButton\main.pas',0,1,289,27,310,0,0,,
-File_1=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoPiezo\main.pas',0,1,112,1,128,0,0,,
-File_2=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoHub.pas',0,1,3824,35,3854,0,0,,
-File_3=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\devinfo.pas',0,1,46,42,67,0,0,,
-File_4=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas',0,1,1,1,1,0,0,,
-File_5=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoWatcher.pas',0,1,328,1,341,0,0,,
-File_6=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\SOURCE\RTL\SYS\System.pas',0,1,39549,17,39580,0,0,,
-File_7=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\SOURCE\VCL\Vcl.Graphics.pas',0,1,28,3,37,0,0,,
-File_8=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\source\rtl\common\System.UITypes.pas',0,1,435,1,456,0,0,,
-File_9=TSourceModule,'c:\program files (x86)\embarcadero\studio\20.0\SOURCE\VCL\Vcl.ExtCtrls.pas',0,1,236,17,236,0,0,,
-File_10=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDo.pas',0,1,1210,28,1212,0,0,,{1
-File_11=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\Unit1.pas',0,1,1,1,1,0,0,,
-File_12=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoIo.pas',0,1,1,32,27,0,0,,
-File_13=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoInputFormat.pas',0,1,225,6,226,0,0,,
+File_0=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoMotor\main.pas',0,1,30,15,49,0,0,,
+File_1=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoMotionSensor\main.pas',0,1,47,15,47,0,0,,
+File_2=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\devinfo.pas',0,1,260,38,281,0,0,,
+File_3=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoPiezo\main.pas',0,1,21,1,60,0,0,,
+File_4=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoWatcher.pas',0,1,342,9,364,0,0,,
+File_5=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoScan\main.pas',0,1,11,15,32,0,0,,
+File_6=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRgb\main.pas',0,1,288,35,288,0,0,,
+File_7=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoHubButton\main.pas',0,1,12,15,29,0,0,,
+File_8=TSourceModule,'D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoHub.pas',0,1,903,49,925,0,0,,{1,760,32}{2,2467,7}
+File_9=TSourceModule,'D:\Projects\WCL7\VCL\Source\Communication\wclObex.pas',0,1,1,1,1,0,0,,
+File_10=TSourceModule,'D:\Projects\WCL7\VCL\Source\Bluetooth\wclUUIDs.pas',0,1,1,1,1,0,0,,
+File_11=TSourceModule,'D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetooth.pas',0,1,8618,3,8638,0,0,,
+File_12=TSourceModule,'D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetoothBlueSoleil.pas',0,1,1,1,1,0,0,,
+File_13=TSourceModule,'D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetoothErrors.pas',0,1,1,1,1,0,0,,
+File_14=TSourceModule,'D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetoothMessages.pas',0,1,1,1,1,0,0,,
 
 [Modules]
-Module0=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoMotor\main.pas
-Module1=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRgb\main.pas
-Count=2
+Count=0
 EditWindowCount=1
 
-[D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoMotor\main.pas]
-ModuleType=TSourceModule
-
-[D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRgb\main.pas]
-ModuleType=TSourceModule
-
 [EditWindow0]
-ViewCount=2
-CurrentEditView=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoMotor\main.pas
-View0=0
-View1=1
+ViewCount=0
+CurrentView=-1
 PercentageSizes=1
 Create=1
 Visible=1
@@ -59,28 +50,6 @@ BottomPanelData=0000080001020100000009000000446F636B5369746531DE4400000000000002
 BottomMiddlePanelSize=0
 BottomMiddlePanelClients=DockSite0,GraphDrawingModel
 BottomMiddelPanelData=0000080001020200000009000000446F636B536974653010000000477261706844726177696E67566965779F1D00000000000002F206000000000000FFFFFFFF
-
-[View0]
-CustomEditViewType=TEditView
-Module=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoMotor\main.pas
-CursorX=34
-CursorY=331
-TopLine=310
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoMotor\main.pas
-
-[View1]
-CustomEditViewType=TEditView
-Module=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRgb\main.pas
-CursorX=7
-CursorY=145
-TopLine=130
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRgb\main.pas
 
 [UndockedDesigner]
 Count=0
@@ -855,5 +824,5 @@ ActiveTabID=ToolForm
 TabDockClients=ToolForm,TemplateView
 
 [ActiveProject]
-ActiveProject=6
+ActiveProject=7
 

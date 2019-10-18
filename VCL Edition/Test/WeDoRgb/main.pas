@@ -48,20 +48,20 @@ type
     procedure UpdateIndex;
     procedure UpdateValues;
 
-    procedure EnableSetColors(const Attached: Boolean);
+    procedure EnableSetColors(Attached: Boolean);
     procedure EnableConnect(Connected: Boolean);
     procedure EnableColorControls;
 
-    procedure FHub_OnDeviceDetached(Sender: TObject; const Device: TwclWeDoIo);
-    procedure FHub_OnDeviceAttached(Sender: TObject; const Device: TwclWeDoIo);
-    procedure FHub_OnDisconnected(Sender: TObject; const Reason: Integer);
-    procedure FHub_OnConnected(Sender: TObject; const Error: Integer);
+    procedure FHub_OnDeviceDetached(Sender: TObject; Device: TwclWeDoIo);
+    procedure FHub_OnDeviceAttached(Sender: TObject; Device: TwclWeDoIo);
+    procedure FHub_OnDisconnected(Sender: TObject; Reason: Integer);
+    procedure FHub_OnConnected(Sender: TObject; Error: Integer);
 
     procedure FRgb_OnColorChanged(Sender: TObject);
     procedure FRgb_OnModeChanged(Sender: TObject);
 
-    procedure FWatcher_OnHubFound(Sender: TObject; const Address: Int64;
-      const Name: string);
+    procedure FWatcher_OnHubFound(Sender: TObject; Address: Int64;
+      Name: string);
 
     procedure Disconnect;
   end;
@@ -285,7 +285,7 @@ begin
   end;
 end;
 
-procedure TfmMain.EnableSetColors(const Attached: Boolean);
+procedure TfmMain.EnableSetColors(Attached: Boolean);
 begin
   if Attached then
     laIoState.Caption := 'Attached'
@@ -323,7 +323,7 @@ begin
     UpdateValues;
 end;
 
-procedure TfmMain.FHub_OnConnected(Sender: TObject; const Error: Integer);
+procedure TfmMain.FHub_OnConnected(Sender: TObject; Error: Integer);
 begin
   if Error <> WCL_E_SUCCESS then begin
     ShowMessage('Connect failed: 0x' + IntToHex(Error, 8));
@@ -333,8 +333,7 @@ begin
     EnableConnect(True);
 end;
 
-procedure TfmMain.FHub_OnDeviceAttached(Sender: TObject;
-  const Device: TwclWeDoIo);
+procedure TfmMain.FHub_OnDeviceAttached(Sender: TObject; Device: TwclWeDoIo);
 begin
   if Device.DeviceType = iodRgb then begin
     FRgb := TwclWeDoRgbLight(Device);
@@ -346,8 +345,7 @@ begin
   end;
 end;
 
-procedure TfmMain.FHub_OnDeviceDetached(Sender: TObject;
-  const Device: TwclWeDoIo);
+procedure TfmMain.FHub_OnDeviceDetached(Sender: TObject; Device: TwclWeDoIo);
 begin
   if Device.DeviceType = iodRgb then begin
     FRgb := nil;
@@ -355,7 +353,7 @@ begin
   end;
 end;
 
-procedure TfmMain.FHub_OnDisconnected(Sender: TObject; const Reason: Integer);
+procedure TfmMain.FHub_OnDisconnected(Sender: TObject; Reason: Integer);
 begin
   EnableConnect(False);
   FManager.Close;
@@ -390,8 +388,8 @@ begin
   UpdateMode;
 end;
 
-procedure TfmMain.FWatcher_OnHubFound(Sender: TObject; const Address: Int64;
-  const Name: string);
+procedure TfmMain.FWatcher_OnHubFound(Sender: TObject; Address: Int64;
+  Name: string);
 var
   Radio: TwclBluetoothRadio;
   Res: Integer;

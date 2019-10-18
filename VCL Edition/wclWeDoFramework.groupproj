@@ -21,6 +21,9 @@
         <Projects Include="Test\WeDoMotor\WeDoMotor.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="Test\WeDoMotionSensor\WeDoMotionSensor.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -83,14 +86,23 @@
     <Target Name="WeDoMotor:Make">
         <MSBuild Projects="Test\WeDoMotor\WeDoMotor.dproj" Targets="Make"/>
     </Target>
+    <Target Name="WeDoMotionSensor">
+        <MSBuild Projects="Test\WeDoMotionSensor\WeDoMotionSensor.dproj"/>
+    </Target>
+    <Target Name="WeDoMotionSensor:Clean">
+        <MSBuild Projects="Test\WeDoMotionSensor\WeDoMotionSensor.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="WeDoMotionSensor:Make">
+        <MSBuild Projects="Test\WeDoMotionSensor\WeDoMotionSensor.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="wclWeDoFramework;WeDoScan;WeDoPiezo;WeDoRgb;WeDoHubButton;WeDoMotor"/>
+        <CallTarget Targets="wclWeDoFramework;WeDoScan;WeDoPiezo;WeDoRgb;WeDoHubButton;WeDoMotor;WeDoMotionSensor"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="wclWeDoFramework:Clean;WeDoScan:Clean;WeDoPiezo:Clean;WeDoRgb:Clean;WeDoHubButton:Clean;WeDoMotor:Clean"/>
+        <CallTarget Targets="wclWeDoFramework:Clean;WeDoScan:Clean;WeDoPiezo:Clean;WeDoRgb:Clean;WeDoHubButton:Clean;WeDoMotor:Clean;WeDoMotionSensor:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="wclWeDoFramework:Make;WeDoScan:Make;WeDoPiezo:Make;WeDoRgb:Make;WeDoHubButton:Make;WeDoMotor:Make"/>
+        <CallTarget Targets="wclWeDoFramework:Make;WeDoScan:Make;WeDoPiezo:Make;WeDoRgb:Make;WeDoHubButton:Make;WeDoMotor:Make;WeDoMotionSensor:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

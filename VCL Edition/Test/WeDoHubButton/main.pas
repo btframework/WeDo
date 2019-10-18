@@ -27,18 +27,17 @@ type
 
     procedure FWatcher_OnStopped(Sender: TObject);
     procedure FWatcher_OnStarted(Sender: TObject);
-    procedure FWatcher_OnHubNameChanged(Sender: TObject; const Address: Int64;
-      const OldName: string; const NewName: string);
-    procedure FWatcher_OnHubFound(Sender: TObject; const Address: Int64;
-      const Name: string);
+    procedure FWatcher_OnHubNameChanged(Sender: TObject; Address: Int64;
+      OldName: string; NewName: string);
+    procedure FWatcher_OnHubFound(Sender: TObject; Address: Int64;
+      Name: string);
 
-    procedure Hub_OnLowVoltageAlert(Sender: TObject; const Alert: Boolean);
-    procedure Hub_OnButtonStateChanged(Sender: TObject; const Pressed: Boolean);
-    procedure Hub_OnDisconnected(Sender: TObject; const Reason: Integer);
-    procedure Hub_OnConnected(Sender: TObject; const Error: Integer);
+    procedure Hub_OnLowVoltageAlert(Sender: TObject; Alert: Boolean);
+    procedure Hub_OnButtonStateChanged(Sender: TObject; Pressed: Boolean);
+    procedure Hub_OnDisconnected(Sender: TObject; Reason: Integer);
+    procedure Hub_OnConnected(Sender: TObject; Error: Integer);
 
-    procedure BatteryLevel_OnBatteryLevelChanged(Sender: TObject;
-      const Level: Byte);
+    procedure BatteryLevel_OnBatteryLevelChanged(Sender: TObject; Level: Byte);
 
     procedure Stop;
   end;
@@ -56,7 +55,7 @@ uses
 { TfmMain }
 
 procedure TfmMain.BatteryLevel_OnBatteryLevelChanged(Sender: TObject;
-  const Level: Byte);
+  Level: Byte);
 var
   Address: Int64;
   Item: TListItem;
@@ -167,8 +166,8 @@ begin
   FHubs.Free;
 end;
 
-procedure TfmMain.FWatcher_OnHubFound(Sender: TObject; const Address: Int64;
-  const Name: string);
+procedure TfmMain.FWatcher_OnHubFound(Sender: TObject; Address: Int64;
+  Name: string);
 var
   Hub: TwclWeDoHub;
   Res: Integer;
@@ -195,8 +194,8 @@ begin
     Hub.Free;
 end;
 
-procedure TfmMain.FWatcher_OnHubNameChanged(Sender: TObject;
-  const Address: Int64; const OldName: string; const NewName: string);
+procedure TfmMain.FWatcher_OnHubNameChanged(Sender: TObject; Address: Int64;
+  OldName: string; NewName: string);
 var
   Item: TListItem;
 begin
@@ -216,8 +215,7 @@ begin
   UpdateButtons(False);
 end;
 
-procedure TfmMain.Hub_OnButtonStateChanged(Sender: TObject;
-  const Pressed: Boolean);
+procedure TfmMain.Hub_OnButtonStateChanged(Sender: TObject; Pressed: Boolean);
 var
   Address: Int64;
   Item: TListItem;
@@ -233,7 +231,7 @@ begin
   end;
 end;
 
-procedure TfmMain.Hub_OnConnected(Sender: TObject; const Error: Integer);
+procedure TfmMain.Hub_OnConnected(Sender: TObject; Error: Integer);
 var
   Hub: TwclWeDoHub;
   Item: TListItem;
@@ -258,7 +256,7 @@ begin
   end;
 end;
 
-procedure TfmMain.Hub_OnDisconnected(Sender: TObject; const Reason: Integer);
+procedure TfmMain.Hub_OnDisconnected(Sender: TObject; Reason: Integer);
 var
   Hub: TwclWeDoHub;
   Item: TListItem;
@@ -274,7 +272,7 @@ begin
   end;
 end;
 
-procedure TfmMain.Hub_OnLowVoltageAlert(Sender: TObject; const Alert: Boolean);
+procedure TfmMain.Hub_OnLowVoltageAlert(Sender: TObject; Alert: Boolean);
 var
   Address: Int64;
   Item: TListItem;

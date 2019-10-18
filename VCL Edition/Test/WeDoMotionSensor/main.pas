@@ -1,5 +1,7 @@
 unit main;
 
+{$I ..\..\..\..\..\..\WCL7\VCL\Source\wcl.inc}
+
 interface
 
 uses
@@ -9,32 +11,32 @@ uses
 
 type
   TfmMain = class(TForm)
-    btConnect: TButton;
-    btDisconnect: TButton;
     laStatus: TLabel;
     laIoState: TLabel;
-    laNote: TLabel;
-    cbNote: TComboBox;
-    laOctave: TLabel;
-    cbOctave: TComboBox;
-    laDuration: TLabel;
-    edDuration: TEdit;
-    btPlay: TButton;
-    btStop: TButton;
+    btConnect: TButton;
+    btDisconnect: TButton;
+    laMode: TLabel;
+    cbMode: TComboBox;
+    btChange: TButton;
+    btReset: TButton;
+    laCountTitle: TLabel;
+    laDistanceTitle: TLabel;
+    laCount: TLabel;
+    laDistance: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btDisconnectClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btConnectClick(Sender: TObject);
-    procedure btStopClick(Sender: TObject);
-    procedure btPlayClick(Sender: TObject);
+    procedure btChangeClick(Sender: TObject);
+    procedure btResetClick(Sender: TObject);
 
   private
     FManager: TwclBluetoothManager;
     FWatcher: TwclWeDoWatcher;
     FHub: TwclWeDoHub;
-    FPiezo: TwclWeDoPieazo;
+    FMotion: TwclWeDoMotionSensor;
 
-    procedure EnablePlay(Attached: Boolean);
+    procedure EnableControl(Attached: Boolean);
     procedure EnableConnect(Connected: Boolean);
 
     procedure FHub_OnDeviceDetached(Sender: TObject; Device: TwclWeDoIo);
@@ -44,6 +46,10 @@ type
 
     procedure FWatcher_OnHubFound(Sender: TObject; Address: Int64;
       Name: string);
+
+    procedure FMotion_OnModeChanged(Sender: TObject);
+    procedure FMotion_OnDistanceChanged(Sender: TObject);
+    procedure FMotion_OnCountChanged(Sender: TObject);
 
     procedure Disconnect;
   end;
@@ -57,6 +63,29 @@ uses
   wclErrors;
 
 {$R *.dfm}
+
+procedure TfmMain.btChangeClick(Sender: TObject);
+var
+  Mode: TwclWeDoMotionSensorMode;
+  Res: Integer;
+begin
+  if FMotion = nil then
+    ShowMessage('Device is not attached')
+  else begin
+    case cbMode.ItemIndex of
+      0: Mode := mmDetect;
+      1: Mode := mmCount;
+      else Mode := mmUnknown;
+    end;
+    if Mode = mmUnknown then
+      ShowMessage('Invalid mode.')
+    else begin
+      Res := FMotion.SetMode(Mode);
+      if Res <> WCL_E_SUCCESS then
+        ShowMessage('Mode change failed: 0x' + IntToHex(Res, 8));
+    end;
+  end;
+end;
 
 procedure TfmMain.btConnectClick(Sender: TObject);
 var
@@ -132,36 +161,16 @@ begin
   Disconnect;
 end;
 
-procedure TfmMain.btPlayClick(Sender: TObject);
-const
-  Notes: array of TwclWeDoPiezoNote = [ pnA, pnAis, pnB, pnC, pnCis, pnD, pnDis,
-    pnE, pnF, pnFis, pnG, pnGis ];
-
-var
-  Note: TwclWeDoPiezoNote;
-  Res: Integer;
-begin
-  if FPiezo = nil then
-    ShowMessage('"Device is not attached')
-  else begin
-    Note := Notes[cbNote.ItemIndex];
-    Res := FPiezo.PlayNote(Note, cbOctave.ItemIndex + 1,
-      StrToInt(edDuration.Text));
-    if Res <> WCL_E_SUCCESS then
-      ShowMessage('Play failed: 0x' + IntToHex(Res, 8));
-  end;
-end;
-
-procedure TfmMain.btStopClick(Sender: TObject);
+procedure TfmMain.btResetClick(Sender: TObject);
 var
   Res: Integer;
 begin
-  if FPiezo = nil then
+  if FMotion = nil then
     ShowMessage('Device is not attached')
   else begin
-    Res := FPiezo.StopPlaying;
+    Res := FMotion.Reset;
     if Res <> WCL_E_SUCCESS then
-      ShowMessage('Stop failed: 0x' + IntToHex(Res, 8));
+      ShowMessage('Mode change failed: 0x' + IntToHex(Res, 8));
   end;
 end;
 
@@ -188,17 +197,25 @@ begin
   end;
 end;
 
-procedure TfmMain.EnablePlay(Attached: Boolean);
+procedure TfmMain.EnableControl(Attached: Boolean);
 begin
   if Attached then
     laIoState.Caption := 'Attached'
-  else
+  else begin
     laIoState.Caption := 'Dectahed';
-  btPlay.Enabled := Attached;
-  btStop.Enabled := Attached;
-  cbNote.Enabled := Attached;
-  cbOctave.Enabled := Attached;
-  edDuration.Enabled := Attached;
+
+    laCount.Caption := '0';
+    laDistance.Caption := '0';
+  end;
+
+  laMode.Enabled := Attached;
+  cbMode.Enabled := Attached;
+  btChange.Enabled := Attached;
+  laCountTitle.Enabled := Attached;
+  laCount.Enabled := Attached;
+  laDistanceTitle.Enabled := Attached;
+  laDistance.Enabled := Attached;
+  btReset.Enabled := Attached;
 end;
 
 procedure TfmMain.FHub_OnConnected(Sender: TObject; Error: Integer);
@@ -213,17 +230,22 @@ end;
 
 procedure TfmMain.FHub_OnDeviceAttached(Sender: TObject; Device: TwclWeDoIo);
 begin
-  if Device.DeviceType = iodPiezo then begin
-    FPiezo := TwclWeDoPieazo(Device);
-    EnablePlay(True);
+  if FMotion = nil then begin
+    if Device.DeviceType = iodMotionSensor then begin
+      FMotion := TwclWeDoMotionSensor(Device);
+      FMotion.OnCountChanged := FMotion_OnCountChanged;
+      FMotion.OnDistanceChanged := FMotion_OnDistanceChanged;
+      FMotion.OnModeChanged := FMotion_OnModeChanged;
+      EnableControl(True);
+    end;
   end;
 end;
 
 procedure TfmMain.FHub_OnDeviceDetached(Sender: TObject; Device: TwclWeDoIo);
 begin
-  if Device.DeviceType = iodPiezo then begin
-    FPiezo := nil;
-    EnablePlay(False);
+  if (Device.DeviceType = iodMotionSensor) and (FMotion <> nil) and (Device.ConnectionId = FMotion.ConnectionId) then begin
+    FMotion := nil;
+    EnableControl(False);
   end;
 end;
 
@@ -233,10 +255,28 @@ begin
   FManager.Close;
 end;
 
+procedure TfmMain.FMotion_OnCountChanged(Sender: TObject);
+begin
+  laCount.Caption := IntToStr(FMotion.Count);
+end;
+
+procedure TfmMain.FMotion_OnDistanceChanged(Sender: TObject);
+begin
+  laDistance.Caption := FloatToStr(FMotion.Distance);
+end;
+
+procedure TfmMain.FMotion_OnModeChanged(Sender: TObject);
+begin
+  case FMotion.Mode of
+    mmDetect: cbMode.ItemIndex := 0;
+    mmCount: cbMode.ItemIndex := 1;
+    else cbMode.ItemIndex := -1;
+  end;
+end;
+
 procedure TfmMain.FormCreate(Sender: TObject);
 begin
-  cbNote.ItemIndex := 0;
-  cbOctave.ItemIndex := 0;
+  cbMode.ItemIndex := 0;
 
   FManager := TwclBluetoothManager.Create(nil);
 
@@ -249,7 +289,7 @@ begin
   FHub.OnDeviceAttached := FHub_OnDeviceAttached;
   FHub.OnDeviceDetached := FHub_OnDeviceDetached;
 
-  FPiezo := nil;
+  FMotion := nil;
 end;
 
 procedure TfmMain.FormDestroy(Sender: TObject);
