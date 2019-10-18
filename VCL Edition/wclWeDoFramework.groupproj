@@ -18,6 +18,9 @@
         <Projects Include="Test\WeDoHubButton\WeDoHubButton.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="Test\WeDoMotor\WeDoMotor.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -71,14 +74,23 @@
     <Target Name="WeDoHubButton:Make">
         <MSBuild Projects="Test\WeDoHubButton\WeDoHubButton.dproj" Targets="Make"/>
     </Target>
+    <Target Name="WeDoMotor">
+        <MSBuild Projects="Test\WeDoMotor\WeDoMotor.dproj"/>
+    </Target>
+    <Target Name="WeDoMotor:Clean">
+        <MSBuild Projects="Test\WeDoMotor\WeDoMotor.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="WeDoMotor:Make">
+        <MSBuild Projects="Test\WeDoMotor\WeDoMotor.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="wclWeDoFramework;WeDoScan;WeDoPiezo;WeDoRgb;WeDoHubButton"/>
+        <CallTarget Targets="wclWeDoFramework;WeDoScan;WeDoPiezo;WeDoRgb;WeDoHubButton;WeDoMotor"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="wclWeDoFramework:Clean;WeDoScan:Clean;WeDoPiezo:Clean;WeDoRgb:Clean;WeDoHubButton:Clean"/>
+        <CallTarget Targets="wclWeDoFramework:Clean;WeDoScan:Clean;WeDoPiezo:Clean;WeDoRgb:Clean;WeDoHubButton:Clean;WeDoMotor:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="wclWeDoFramework:Make;WeDoScan:Make;WeDoPiezo:Make;WeDoRgb:Make;WeDoHubButton:Make"/>
+        <CallTarget Targets="wclWeDoFramework:Make;WeDoScan:Make;WeDoPiezo:Make;WeDoRgb:Make;WeDoHubButton:Make;WeDoMotor:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

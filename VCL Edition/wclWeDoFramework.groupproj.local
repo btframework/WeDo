@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.817,C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\ProjectGroup1.groupproj=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\wclWeDoFramework.groupproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.817,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\wclWeDoFramework.groupproj=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\ProjectGroup1.groupproj</Transaction>
   </Transactions>
 	<Default.Personality>
-		<Projects ActiveProject="D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoHubButton\WeDoHubButton.dproj"/>
+		<Projects ActiveProject="D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoMotor\WeDoMotor.dproj"/>
 	</Default.Personality>
 </BorlandProject>
