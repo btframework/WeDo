@@ -79,15 +79,23 @@ type
     function ToString: string;
   end;
 
+  TwclWeDoDataFormat = class;
+
+  IwclWeDoDataFormat = interface
+    function Obj: TwclWeDoDataFormat;
+  end;
+
   /// <summary> This class contains info detailing how the data received for a
   ///   given service (typically a sensor of some kind) should be
   ///   interpreted. </summary>
-  TwclWeDoDataFormat = class sealed
+  TwclWeDoDataFormat = class sealed(TInterfacedObject, IwclWeDoDataFormat)
   private
     FDataSetCount: Byte;
     FDataSetSize: Byte;
     FMode: Byte;
     FUnit: TwclWeDoSensorDataUnit;
+
+    function Obj: TwclWeDoDataFormat;
 
   public
     /// <summary> Creates a new instance of the Data Format class. </summary>
@@ -98,13 +106,6 @@ type
     /// <seealso cref="TwclWeDoSensorDataUnit"/>
     constructor Create(DataSetCount: Byte; DataSetSize: Byte; Mode: Byte;
       Unit_: TwclWeDoSensorDataUnit);
-
-    /// <summary> Compares two Data Formats </summary>
-		/// <param name="Obj"> The other object to be compared with
-    ///   current. </param>
-		/// <returns> <c>True</c> if this data format is equal to <c>obj</c>.
-    ///   <c>False</c> otherwise. </returns>
-    function Equals(Obj: TObject): Boolean; override;
 
     /// <summary> Gets the data set count. </summary>
     /// <value> The data set count. </value>
@@ -121,10 +122,17 @@ type
     property Unit_: TwclWeDoSensorDataUnit read FUnit;
   end;
 
+  TwclWeDoInputFormat = class;
+
+  IwclWeDoInputFormat = interface
+    function Obj: TwclWeDoInputFormat;
+    function Equal(Obj: IwclWeDoInputFormat): Boolean;
+  end;
+
   /// <summary> This class describes a configuration of an Input (sensor). At
   ///   any time a sensor can be in just one mode, and the details of this mode
   ///   is captured by this structure. </summary>
-  TwclWeDoInputFormat = class sealed(TInterfacedObject)
+  TwclWeDoInputFormat = class sealed(TInterfacedObject, IwclWeDoInputFormat)
   private const
     INPUT_FORMAT_PACKET_SIZE = 11;
 
@@ -152,10 +160,13 @@ type
     FRevision: Byte;
     FUnit: TwclWeDoSensorDataUnit;
 
-    class function FromBytesArray(Data: TArray<Byte>): TwclWeDoInputFormat;
+    class function FromBytesArray(Data: TArray<Byte>): IwclWeDoInputFormat;
 
     function ToBytesArray: TArray<Byte>;
-    function InputFormatBySettingMode(Mode: Byte): TwclWeDoInputFormat;
+    function InputFormatBySettingMode(Mode: Byte): IwclWeDoInputFormat;
+
+    function Obj: TwclWeDoInputFormat;
+    function Equal(Format: IwclWeDoInputFormat): Boolean;
 
   public
     /// <summary> Create a new instance of <c>TwclWeDoInputFormat</c>
@@ -176,13 +187,6 @@ type
     constructor Create(ConnectionId: Byte; DeviceType: TwclWeDoIoDeviceType;
       Mode: Byte; Interval: Cardinal; Unit_: TwclWeDoSensorDataUnit;
       NotificationsEnabled: Boolean; Revision: Byte; NumberOfBytes: Byte);
-
-    /// <summary> Compares two Input Formats. </summary>
-    /// <param name="Obj"> The other object to be compared with
-    ///   current. </param>
-    /// <returns> <c>True</c> if this input format is equal to <c>Obj</c>.
-    ///   <c>False</c> otherwise. </returns>
-    function Equals(Obj: TObject): Boolean; override;
 
     /// <summary> The Connect ID of the corresponding device. </summary>
     /// <value> The connect ID. </value>
@@ -528,7 +532,7 @@ type
 
   private
     // Local list of ALL input formats of the WeDo HUB.
-    FInputFormats: TDictionary<Byte, TwclWeDoInputFormat>;
+    FInputFormats: TDictionary<Byte, IwclWeDoInputFormat>;
     // When an input format is missing (value received does not have a valid
     // input format) this dictionary sets it's value to true to signal that a
     // request for a new input format was received.
@@ -569,7 +573,7 @@ type
 
     function ReadValue(ConnectionId: Byte): Integer;
 
-    function WriteInputFormat(Format: TwclWeDoInputFormat;
+    function WriteInputFormat(Format: IwclWeDoInputFormat;
       ConnectionId: Byte): Integer;
     function ReadInputFormat(ConnectionId: Byte): Integer;
 
@@ -968,24 +972,24 @@ type
   private
     FAttached: Boolean;
     FConnectionId: Byte;
-    FDataFormats: TList<TwclWeDoDataFormat>;
-    FDefaultInputFormat: TwclWeDoInputFormat;
+    FDataFormats: TList<IwclWeDoDataFormat>;
+    FDefaultInputFormat: IwclWeDoInputFormat;
     FDeviceType: TwclWeDoIoDeviceType;
     FFirmwareVersion: TwclWeDoVersion;
     FHardwareVersion: TwclWeDoVersion;
     FHub: TwclWeDoHub;
-    FInputFormat: TwclWeDoInputFormat;
+    FInputFormat: IwclWeDoInputFormat;
     FInternal: Boolean;
     FNumbersFromValueData: TList<TArray<Byte>>;
     FPortId: Byte;
-    FValidDataFormats: TList<TwclWeDoDataFormat>;
+    FValidDataFormats: TList<IwclWeDoDataFormat>;
     FValue: TArray<Byte>;
 
-    procedure SetDefaultInputFormatProp(Format: TwclWeDoInputFormat);
+    procedure SetDefaultInputFormatProp(Format: IwclWeDoInputFormat);
 
     procedure SetValue(Value: TArray<Byte>);
 
-    function SetDefaultInputFormat(Format: TwclWeDoInputFormat): Integer;
+    function SetDefaultInputFormat(Format: IwclWeDoInputFormat): Integer;
 
     function GetAsFloat: Single;
     function GetAsInteger: Integer;
@@ -993,7 +997,7 @@ type
     function GetInputFormatMode: Byte;
 
     function DataFormatForInputFormat(
-      InputFormat: TwclWeDoInputFormat): TwclWeDoDataFormat;
+      InputFormat: IwclWeDoInputFormat): IwclWeDoDataFormat;
 
     function VerifyValue(Value: TArray<Byte>): Boolean;
 
@@ -1003,7 +1007,7 @@ type
     procedure Detach;
 
     // The method called by IO Service when Input Format has been updated.
-    procedure UpdateInputFormat(Format: TwclWeDoInputFormat);
+    procedure UpdateInputFormat(Format: IwclWeDoInputFormat);
     // The method called by the IO Service when new value received.
     procedure UpdateValue(Value: TArray<Byte>);
 
@@ -1029,20 +1033,20 @@ type
 
     /// <summary> Adds a new valid data format. </summary>
     /// <param name="Format"> The data format to add. </param>
-    /// <seealso cref="TwclWeDoDataFormat"/>
-    procedure AddValidDataFormat(Format: TwclWeDoDataFormat);
+    /// <seealso cref="IwclWeDoDataFormat"/>
+    procedure AddValidDataFormat(Format: IwclWeDoDataFormat);
     /// <summary> Removes a valid data format. </summary>
     /// <param name="Format"> The data format to remove. </param>
-    /// <seealso cref="TwclWeDoDataFormat"/>
-    procedure RemoveValidDataFormat(Format: TwclWeDoDataFormat);
+    /// <seealso cref="IwclWeDoDataFormat"/>
+    procedure RemoveValidDataFormat(Format: IwclWeDoDataFormat);
     /// <summary> Send an updated input format for this service to the
     ///   device. </summary>
     /// <param name="Format"> New input format. </param>
     /// <returns> If the method completed with success the returning value is
     ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
-    /// <seelso cref="TwclWeDoInputFormat"/>
-    function SendInputFormat(Format: TwclWeDoInputFormat): Integer;
+    /// <seelso cref="IwclWeDoInputFormat"/>
+    function SendInputFormat(Format: IwclWeDoInputFormat): Integer;
     /// <summary> Changes mode of the Input Format. </summary>
     /// <param name="Mode"> The Input Format mode. </param>
     /// <returns> If the method completed with success the returning value is
@@ -1055,7 +1059,7 @@ type
     /// <param name="OldFormat"> The old Input Format. </param>
     /// <remarks> A derived class must override this method to get notifications
     ///   about format changes. </remarks>
-    procedure InputFormatChanged(OldFormat: TwclWeDoInputFormat); virtual;
+    procedure InputFormatChanged(OldFormat: IwclWeDoInputFormat); virtual;
     /// <summary> The method called when data value has been changed. </summary>
     /// <remarks> A derived class must override this method to get notifications
     ///   about value changes. </remarks>
@@ -1070,17 +1074,17 @@ type
     property AsInteger: Integer read GetAsInteger;
     /// <summary> Gets the list of supported Data Formats. </summary>
     /// <value> The list of supported Data Formats. </value>
-    /// <seealso cref="TwclWeDoDataFormat"/>
-    property DataFormats: TList<TwclWeDoDataFormat> read FDataFormats;
+    /// <seealso cref="iwclWeDoDataFormat"/>
+    property DataFormats: TList<IwclWeDoDataFormat> read FDataFormats;
     /// <summary> Gets and sets the default input format. </summary>
     /// <value> The default input format. </value>
-    /// <seealso cref="TwclWeDoInputFormat"/>
-    property DefaultInputFormat: TwclWeDoInputFormat read FDefaultInputFormat
+    /// <seealso cref="IwclWeDoInputFormat"/>
+    property DefaultInputFormat: IwclWeDoInputFormat read FDefaultInputFormat
       write SetDefaultInputFormatProp;
     /// <summary> Gets the sensor Input Format. </summary>
     /// <value> The Input Format. </value>
-    /// <seealso cref="TwclWeDoInputFormat"/>
-    property InputFormat: TwclWeDoInputFormat read FInputFormat;
+    /// <seealso cref="IwclWeDoInputFormat"/>
+    property InputFormat: IwclWeDoInputFormat read FInputFormat;
     /// <summary> Gets the Input Format mode. </summary>
     /// <value> The Input Format Mode. </value>
     property InputFormatMode: Byte read GetInputFormatMode;
@@ -1277,7 +1281,7 @@ type
     /// <summary> The method called when Input Format has been
     ///   changed. </summary>
     /// <param name="OldFormat"> The old Input Format. </param>
-    procedure InputFormatChanged(OldFormat: TwclWeDoInputFormat); override;
+    procedure InputFormatChanged(OldFormat: IwclWeDoInputFormat); override;
     /// <summary> The method called when data value has been
     ///   changed. </summary>
     procedure ValueChanged; override;
@@ -1577,7 +1581,7 @@ type
    /// <summary> The method called when Input Format has been
    ///   changed. </summary>
    /// <param name="OldFormat"> The old Input Format. </param>
-   procedure InputFormatChanged(OldFormat: TwclWeDoInputFormat); override;
+   procedure InputFormatChanged(OldFormat: IwclWeDoInputFormat); override;
    /// <summary> Fires the <c>OnVoltageChanged</c> event. </summary>
    procedure ValueChanged; override;
 
@@ -1698,7 +1702,7 @@ type
     /// <summary> The method called when Input Format has been
     ///   changed. </summary>
     /// <param name="OldFormat"> The old Input Format. </param>
-    procedure InputFormatChanged(OldFormat: TwclWeDoInputFormat); override;
+    procedure InputFormatChanged(OldFormat: IwclWeDoInputFormat); override;
     /// <summary> Fires the <c>OnVoltageChanged</c> event. </summary>
     procedure ValueChanged; override;
 
@@ -1836,29 +1840,9 @@ begin
   FUnit := Unit_;
 end;
 
-function TwclWeDoDataFormat.Equals(Obj: TObject): Boolean;
-var
-  Format: TwclWeDoDataFormat;
+function TwclWeDoDataFormat.Obj: TwclWeDoDataFormat;
 begin
-  if Obj = nil then
-    Result := False
-
-  else begin
-    if Obj = Self then
-      Result := True
-
-    else begin
-      if not (Obj is TwclWeDoDataFormat) then
-        Result := False
-
-      else begin
-        Format := TwclWeDoDataFormat(Obj);
-        Result := (FDataSetCount = Format.DataSetCount) and
-          (FDataSetSize = Format.DataSetSize) and (FMode = Format.Mode) and
-          (FUnit = Format.Unit_);
-      end;
-    end;
-  end;
+  Result := Self;
 end;
 
 { TwclWeDoInputFormat }
@@ -1878,36 +1862,28 @@ begin
   FNumberOfBytes := NumberOfBytes;
 end;
 
-function TwclWeDoInputFormat.Equals(Obj: TObject): Boolean;
-var
-  Format: TwclWeDoInputFormat;
+function TwclWeDoInputFormat.Equal(Format: IwclWeDoInputFormat): Boolean;
 begin
-  if Obj = nil then
+  if Format = nil then
     Result := False
 
   else begin
-    if Obj = Self then
+    if Format.Obj = Self then
       Result := True
 
     else begin
-      if not (Obj is TwclWeDoInputFormat) then
-        Result := False
-
-      else begin
-        Format := TwclWeDoInputFormat(Obj);
-        Result := (FConnectionId = Format.ConnectionId) and
-          (FInterval = Format.Interval) and (FMode = Format.Mode) and
-          (FNotificationsEnabled = Format.NotificationsEnabled) and
-          (FNumberOfBytes = Format.NumberOfBytes) and
-          (FRevision = Format.Revision) and
-          (FDeviceType = Format.DeviceType) and (FUnit = Format.Unit_);
-      end;
+      Result := (FConnectionId = Format.Obj.ConnectionId) and
+        (FInterval = Format.Obj.Interval) and (FMode = Format.Obj.Mode) and
+        (FNotificationsEnabled = Format.Obj.NotificationsEnabled) and
+        (FNumberOfBytes = Format.Obj.NumberOfBytes) and
+        (FRevision = Format.Obj.Revision) and
+        (FDeviceType = Format.Obj.DeviceType) and (FUnit = Format.Obj.Unit_);
     end;
   end;
 end;
 
 class function TwclWeDoInputFormat.FromBytesArray(
-  Data: TArray<Byte>): TwclWeDoInputFormat;
+  Data: TArray<Byte>): IwclWeDoInputFormat;
 var
   Revision: Byte;
   ConnectionId: Byte;
@@ -1965,10 +1941,15 @@ begin
 end;
 
 function TwclWeDoInputFormat.InputFormatBySettingMode(
-  Mode: Byte): TwclWeDoInputFormat;
+  Mode: Byte): IwclWeDoInputFormat;
 begin
   Result := TwclWeDoInputFormat.Create(FConnectionId, FDeviceType, Mode,
     FInterval, FUnit, FNotificationsEnabled, FRevision, FNumberOfBytes);
+end;
+
+function TwclWeDoInputFormat.Obj: TwclWeDoInputFormat;
+begin
+  Result := Self;
 end;
 
 function TwclWeDoInputFormat.ToBytesArray: TArray<Byte>;
@@ -2403,7 +2384,7 @@ begin
   inherited Create(Client, Hub);
 
   // Create input formats lists first.
-  FInputFormats := TDictionary<Byte, TwclWeDoInputFormat>.Create;
+  FInputFormats := TDictionary<Byte, IwclWeDoInputFormat>.Create;
   FMissingInputFormats := TDictionary<Byte, Boolean>.Create;
 
   Uninitialize;
@@ -2449,8 +2430,8 @@ end;
 
 procedure TwclWeDoIoService.InputFormatChanged(Data: TArray<Byte>);
 var
-  Format: TwclWeDoInputFormat;
-  AnyFormat: TwclWeDoInputFormat;
+  Format: IwclWeDoInputFormat;
+  AnyFormat: IwclWeDoInputFormat;
   Io: TwclWeDoIo;
 begin
   Format := TwclWeDoInputFormat.FromBytesArray(Data);
@@ -2463,24 +2444,24 @@ begin
       AnyFormat := nil;
 
     // Clear if revisions are not equal.
-    if (AnyFormat <> nil) and (AnyFormat.Revision <> Format.Revision) then
+    if (AnyFormat <> nil) and (AnyFormat.Obj.Revision <> Format.Obj.Revision) then
       FInputFormats.Clear;
 
     // Update input formats in local list.
-    if FInputFormats.ContainsKey(Format.ConnectionId) then
-      FInputFormats[Format.ConnectionId] := Format
+    if FInputFormats.ContainsKey(Format.Obj.ConnectionId) then
+      FInputFormats[Format.Obj.ConnectionId] := Format
     else
-      FInputFormats.Add(Format.ConnectionId, Format);
+      FInputFormats.Add(Format.Obj.ConnectionId, Format);
 
     // Check for missing Input Formats.
-    if FMissingInputFormats.ContainsKey(Format.ConnectionId) then
-      FMissingInputFormats[Format.ConnectionId] := False
+    if FMissingInputFormats.ContainsKey(Format.Obj.ConnectionId) then
+      FMissingInputFormats[Format.Obj.ConnectionId] := False
     else
-      FMissingInputFormats.Add(Format.ConnectionId, False);
+      FMissingInputFormats.Add(Format.Obj.ConnectionId, False);
 
     // Update Input format for IOs.
     for Io in Hub.IoDevices do begin
-      if Io.ConnectionId = Format.ConnectionId then
+      if Io.ConnectionId = Format.Obj.ConnectionId then
         Io.UpdateInputFormat(Format);
     end;
   end;
@@ -2493,7 +2474,7 @@ var
   IdToValue: TDictionary<Byte, TArray<Byte>>;
   List: TList<Byte>;
   ConnectionId: Byte;
-  Format: TwclWeDoInputFormat;
+  Format: IwclWeDoInputFormat;
   Data: TArray<Byte>;
   Io: TwclWeDoIo;
 begin
@@ -2521,13 +2502,13 @@ begin
 
           // If the revision from the input value is different than the revision
           // from the input format - ignore.
-          if Format.Revision <> Revision then
+          if Format.Obj.Revision <> Revision then
             Exit;
 
           // Read data value.
           Inc(Index);
-          Data := ToArray(List, Index, Format.NumberOfBytes);
-          Inc(Index, Format.NumberOfBytes);
+          Data := ToArray(List, Index, Format.Obj.NumberOfBytes);
+          Inc(Index, Format.Obj.NumberOfBytes);
           IdToValue.Add(ConnectionId, Data);
         end;
 
@@ -2685,13 +2666,13 @@ begin
   end;
 end;
 
-function TwclWeDoIoService.WriteInputFormat(Format: TwclWeDoInputFormat;
+function TwclWeDoIoService.WriteInputFormat(Format: IwclWeDoInputFormat;
   ConnectionId: Byte): Integer;
 var
   Cmd: TArray<Byte>;
 begin
   Cmd := ComposeInputCommand(IN_CMD_ID_INPUT_FORMAT, IN_CMD_TYPE_WRITE,
-    ConnectionId, Format.ToBytesArray);
+    ConnectionId, Format.Obj.ToBytesArray);
   Result := WriteInputCommand(Cmd);
 end;
 
@@ -3298,7 +3279,7 @@ end;
 
 { TwclWeDoIo }
 
-procedure TwclWeDoIo.AddValidDataFormat(Format: TwclWeDoDataFormat);
+procedure TwclWeDoIo.AddValidDataFormat(Format: IwclWeDoDataFormat);
 begin
   FValidDataFormats.Add(Format);
 end;
@@ -3385,7 +3366,7 @@ begin
 
   FAttached := True; // It is always attached on creation!
   FConnectionId := ConnectionId;
-  FDataFormats := TList<TwclWeDoDataFormat>.Create;
+  FDataFormats := TList<IwclWeDoDataFormat>.Create;
   FDefaultInputFormat := nil;
   FDeviceType := iodUnknown;
   FHub := Hub;
@@ -3393,20 +3374,22 @@ begin
   FInternal := True;
   FPortId := 0;
   FNumbersFromValueData := TList<TArray<Byte>>.Create;
-  FValidDataFormats := TList<TwclWeDoDataFormat>.Create;
+  FValidDataFormats := TList<IwclWeDoDataFormat>.Create;
   FValue := nil;
 end;
 
 function TwclWeDoIo.DataFormatForInputFormat(
-  InputFormat: TwclWeDoInputFormat): TwclWeDoDataFormat;
+  InputFormat: IwclWeDoInputFormat): IwclWeDoDataFormat;
 var
-  DataFormat: TwclWeDoDataFormat;
+  DataFormat: IwclWeDoDataFormat;
 begin
   Result := nil;
 
   for DataFormat in FValidDataFormats do begin
-    if (DataFormat.Mode = InputFormat.Mode) and (DataFormat.Unit_ = InputFormat.Unit_) then begin
-      if (DataFormat.DataSetCount * DataFormat.DataSetSize) = InputFormat.NumberOfBytes then
+    if (DataFormat.Obj.Mode = InputFormat.Obj.Mode) and
+       (DataFormat.Obj.Unit_ = InputFormat.Obj.Unit_) then
+    begin
+      if (DataFormat.Obj.DataSetCount * DataFormat.Obj.DataSetSize) = InputFormat.Obj.NumberOfBytes then
         Result := DataFormat;
       Break;
     end;
@@ -3414,15 +3397,9 @@ begin
 end;
 
 destructor TwclWeDoIo.Destroy;
-var
-  Format: TwclWeDoDataFormat;
 begin
   FDataFormats.Free;
-  if FDefaultInputFormat <> nil then
-    FDefaultInputFormat.Free;
   FNumbersFromValueData.Free;
-  for Format in FValidDataFormats do
-    Format.Free;
   FValidDataFormats.Free;
 
   inherited;
@@ -3477,21 +3454,21 @@ end;
 function TwclWeDoIo.GetInputFormatMode: Byte;
 begin
   if FInputFormat <> nil then
-    Result := FInputFormat.Mode
+    Result := FInputFormat.Obj.Mode
   else begin
     if FDefaultInputFormat <> nil then
-      Result := FDefaultInputFormat.Mode
+      Result := FDefaultInputFormat.Obj.Mode
     else
       Result := 0;
   end;
 end;
 
-procedure TwclWeDoIo.InputFormatChanged(OldFormat: TwclWeDoInputFormat);
+procedure TwclWeDoIo.InputFormatChanged(OldFormat: IwclWeDoInputFormat);
 begin
   // Do nothing
 end;
 
-procedure TwclWeDoIo.RemoveValidDataFormat(Format: TwclWeDoDataFormat);
+procedure TwclWeDoIo.RemoveValidDataFormat(Format: IwclWeDoDataFormat);
 begin
   FValidDataFormats.Remove(Format);
 end;
@@ -3501,7 +3478,7 @@ begin
   Result := FHub.Io.ResetIo(FConnectionId);
 end;
 
-function TwclWeDoIo.SendInputFormat(Format: TwclWeDoInputFormat): Integer;
+function TwclWeDoIo.SendInputFormat(Format: IwclWeDoInputFormat): Integer;
 begin
   Result := FHub.Io.WriteInputFormat(Format, FConnectionId);
 end;
@@ -3511,28 +3488,28 @@ begin
   Result := FHub.Io.ReadValue(FConnectionId);
 end;
 
-function TwclWeDoIo.SetDefaultInputFormat(Format: TwclWeDoInputFormat): Integer;
+function TwclWeDoIo.SetDefaultInputFormat(Format: IwclWeDoInputFormat): Integer;
 begin
   FDefaultInputFormat := Format;
   Result := SendInputFormat(Format);
 end;
 
-procedure TwclWeDoIo.SetDefaultInputFormatProp(Format: TwclWeDoInputFormat);
+procedure TwclWeDoIo.SetDefaultInputFormatProp(Format: IwclWeDoInputFormat);
 begin
   SetDefaultInputFormat(Format);
 end;
 
 function TwclWeDoIo.SetInputFormatMode(Mode: Byte): Integer;
 var
-  Format: TwclWeDoInputFormat;
+  Format: IwclWeDoInputFormat;
 begin
   if FInputFormat <> nil then begin
-    Format := FInputFormat.InputFormatBySettingMode(Mode);
+    Format := FInputFormat.Obj.InputFormatBySettingMode(Mode);
     Result := SendInputFormat(Format);
 
   end else begin
     if FDefaultInputFormat <> nil then begin
-      Format := FDefaultInputFormat.InputFormatBySettingMode(Mode);
+      Format := FDefaultInputFormat.Obj.InputFormatBySettingMode(Mode);
       Result := SendInputFormat(Format);
 
     end else
@@ -3546,11 +3523,13 @@ begin
   ValueChanged;
 end;
 
-procedure TwclWeDoIo.UpdateInputFormat(Format: TwclWeDoInputFormat);
+procedure TwclWeDoIo.UpdateInputFormat(Format: IwclWeDoInputFormat);
 var
-  OldFormat: TwclWeDoInputFormat;
+  OldFormat: IwclWeDoInputFormat;
 begin
-  if (FInputFormat = nil) or ((not Format.Equals(FInputFormat)) and (FConnectionId = Format.ConnectionId)) then begin
+  if (FInputFormat = nil) or ((not Format.Obj.Equal(FInputFormat)) and
+    (FConnectionId = Format.Obj.ConnectionId)) then
+  begin
     OldFormat := FInputFormat;
     FInputFormat := Format;
     InputFormatChanged(OldFormat);
@@ -3576,7 +3555,7 @@ end;
 
 function TwclWeDoIo.VerifyValue(Value: TArray<Byte>): Boolean;
 var
-  DataFormat: TwclWeDoDataFormat;
+  DataFormat: IwclWeDoDataFormat;
   ValueCorrect: Boolean;
   DataList: TList<Byte>;
   i: Integer;
@@ -3600,8 +3579,8 @@ begin
         Result := False
 
       else begin
-        ValueCorrect := Length(Value) = (DataFormat.DataSetSize *
-          DataFormat.DataSetCount);
+        ValueCorrect := Length(Value) = (DataFormat.Obj.DataSetSize *
+          DataFormat.Obj.DataSetCount);
         if not ValueCorrect then begin
           FNumbersFromValueData.Clear;
           Result := False;
@@ -3609,15 +3588,16 @@ begin
         end else begin
           // If the Data Format has a value fill the NumbersFromValueData array with
           // all received numbers
-          if DataFormat.DataSetCount > 0 then begin
+          if DataFormat.Obj.DataSetCount > 0 then begin
             DataList := ToList(Value);
             if DataList <> nil then begin
               try
                 FNumbersFromValueData.Clear;
                 i := 0;
                 while i < DataList.Count do begin
-                  FNumbersFromValueData.Add(ToArray(DataList, i, DataFormat.DataSetSize));
-                  Inc(i, DataFormat.DataSetSize);
+                  FNumbersFromValueData.Add(ToArray(DataList, i,
+                    DataFormat.Obj.DataSetSize));
+                  Inc(i, DataFormat.Obj.DataSetSize);
                 end;
 
               finally
@@ -3765,7 +3745,7 @@ begin
   Result := TwclWeDoRgbLightMode(InputFormatMode);
 end;
 
-procedure TwclWeDoRgbLight.InputFormatChanged(OldFormat: TwclWeDoInputFormat);
+procedure TwclWeDoRgbLight.InputFormatChanged(OldFormat: IwclWeDoInputFormat);
 begin
   inherited;
 
@@ -3773,7 +3753,7 @@ begin
     if OldFormat = nil then
       DoModeChanged
     else begin
-      if InputFormat.Mode <> OldFormat.Mode then
+      if InputFormat.Obj.Mode <> OldFormat.Obj.Mode then
         DoModeChanged;
     end;
   end;
@@ -3893,7 +3873,7 @@ end;
 
 function TwclWeDoCurrentSensor.GetCurrent: Single;
 begin
-  if (InputFormat = nil) or (InputFormat.Mode <> 0) or (InputFormat.Unit_ <> suSi) then
+  if (InputFormat = nil) or (InputFormat.Obj.Mode <> 0) or (InputFormat.Obj.Unit_ <> suSi) then
     Result := 0
   else
     Result := AsFloat;
@@ -3926,7 +3906,7 @@ end;
 
 function TwclWeDoVoltageSensor.GetVoltage: Single;
 begin
-  if (InputFormat = nil) or (InputFormat.Mode <> 0) or (InputFormat.Unit_ <> suSi) then
+  if (InputFormat = nil) or (InputFormat.Obj.Mode <> 0) or (InputFormat.Obj.Unit_ <> suSi) then
     Result := 0
   else
     Result := AsFloat;
@@ -4123,7 +4103,7 @@ begin
 end;
 
 procedure TwclWeDoMotionSensor.InputFormatChanged(
-  OldFormat: TwclWeDoInputFormat);
+  OldFormat: IwclWeDoInputFormat);
 begin
   inherited;
 
@@ -4131,7 +4111,7 @@ begin
     if OldFormat = nil then
       DoModeChanged
     else begin
-      if InputFormat.Mode <> OldFormat.Mode then
+      if InputFormat.Obj.Mode <> OldFormat.Obj.Mode then
         DoModeChanged;
     end;
   end;
@@ -4240,7 +4220,7 @@ begin
     Result.Y := 0;
 
   end else begin
-    if (InputFormat.Unit_ = suSi) and (Length(NumbersFromValueData[0]) = 4) then begin
+    if (InputFormat.Obj.Unit_ = suSi) and (Length(NumbersFromValueData[0]) = 4) then begin
       Result.X := PSingle(NumbersFromValueData[0])^;
       Result.Y := PSingle(NumbersFromValueData[1])^;
 
@@ -4259,7 +4239,7 @@ begin
     Result.Z := 0;
 
   end else begin
-    if (InputFormat.Unit_ = suSi) and (Length(NumbersFromValueData[0]) = 4) then begin
+    if (InputFormat.Obj.Unit_ = suSi) and (Length(NumbersFromValueData[0]) = 4) then begin
       Result.X := PSingle(NumbersFromValueData[0])^;
       Result.Y := PSingle(NumbersFromValueData[1])^;
       Result.Z := PSingle(NumbersFromValueData[2])^;
@@ -4285,7 +4265,7 @@ begin
   Result := TwclWeDoTiltSensorMode(InputFormatMode);
 end;
 
-procedure TwclWeDoTiltSensor.InputFormatChanged(OldFormat: TwclWeDoInputFormat);
+procedure TwclWeDoTiltSensor.InputFormatChanged(OldFormat: IwclWeDoInputFormat);
 begin
   inherited;
 
@@ -4293,7 +4273,7 @@ begin
     if OldFormat = nil then
       DoModeChanged
     else begin
-      if InputFormat.Mode <> OldFormat.Mode then
+      if InputFormat.Obj.Mode <> OldFormat.Obj.Mode then
         DoModeChanged;
     end;
   end;

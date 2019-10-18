@@ -36,6 +36,7 @@ type
     procedure btTurnOffClick(Sender: TObject);
     procedure btSetIndexClick(Sender: TObject);
     procedure btSetModeClick(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
 
   private
     FManager: TwclBluetoothManager;
@@ -375,6 +376,15 @@ begin
   FHub.OnDeviceDetached := FHub_OnDeviceDetached;
 
   FRgb := nil;
+end;
+
+procedure TfmMain.FormDestroy(Sender: TObject);
+begin
+  Disconnect;
+
+  FManager.Free;
+  FWatcher.Free;
+  FHub.Free;
 end;
 
 procedure TfmMain.FRgb_OnColorChanged(Sender: TObject);
