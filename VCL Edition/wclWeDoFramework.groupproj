@@ -24,6 +24,9 @@
         <Projects Include="Test\WeDoMotionSensor\WeDoMotionSensor.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="Test\WeDoTiltSensor\WeDoTiltSensor.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -95,14 +98,23 @@
     <Target Name="WeDoMotionSensor:Make">
         <MSBuild Projects="Test\WeDoMotionSensor\WeDoMotionSensor.dproj" Targets="Make"/>
     </Target>
+    <Target Name="WeDoTiltSensor">
+        <MSBuild Projects="Test\WeDoTiltSensor\WeDoTiltSensor.dproj"/>
+    </Target>
+    <Target Name="WeDoTiltSensor:Clean">
+        <MSBuild Projects="Test\WeDoTiltSensor\WeDoTiltSensor.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="WeDoTiltSensor:Make">
+        <MSBuild Projects="Test\WeDoTiltSensor\WeDoTiltSensor.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="wclWeDoFramework;WeDoScan;WeDoPiezo;WeDoRgb;WeDoHubButton;WeDoMotor;WeDoMotionSensor"/>
+        <CallTarget Targets="wclWeDoFramework;WeDoScan;WeDoPiezo;WeDoRgb;WeDoHubButton;WeDoMotor;WeDoMotionSensor;WeDoTiltSensor"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="wclWeDoFramework:Clean;WeDoScan:Clean;WeDoPiezo:Clean;WeDoRgb:Clean;WeDoHubButton:Clean;WeDoMotor:Clean;WeDoMotionSensor:Clean"/>
+        <CallTarget Targets="wclWeDoFramework:Clean;WeDoScan:Clean;WeDoPiezo:Clean;WeDoRgb:Clean;WeDoHubButton:Clean;WeDoMotor:Clean;WeDoMotionSensor:Clean;WeDoTiltSensor:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="wclWeDoFramework:Make;WeDoScan:Make;WeDoPiezo:Make;WeDoRgb:Make;WeDoHubButton:Make;WeDoMotor:Make;WeDoMotionSensor:Make"/>
+        <CallTarget Targets="wclWeDoFramework:Make;WeDoScan:Make;WeDoPiezo:Make;WeDoRgb:Make;WeDoHubButton:Make;WeDoMotor:Make;WeDoMotionSensor:Make;WeDoTiltSensor:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

@@ -106,7 +106,7 @@ type
     /// <seealso cref="TwclWeDoSensorDataUnit"/>
     constructor Create(DataSetCount: Byte; DataSetSize: Byte; Mode: Byte;
       Unit_: TwclWeDoSensorDataUnit);
-
+    
     /// <summary> Gets the data set count. </summary>
     /// <value> The data set count. </value>
     property DataSetCount: Byte read FDataSetCount;
@@ -187,7 +187,7 @@ type
     constructor Create(ConnectionId: Byte; DeviceType: TwclWeDoIoDeviceType;
       Mode: Byte; Interval: Cardinal; Unit_: TwclWeDoSensorDataUnit;
       NotificationsEnabled: Boolean; Revision: Byte; NumberOfBytes: Byte);
-
+    
     /// <summary> The Connect ID of the corresponding device. </summary>
     /// <value> The connect ID. </value>
     property ConnectionId: Byte read FConnectionId;
