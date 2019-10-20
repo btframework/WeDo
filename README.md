@@ -16,7 +16,7 @@ For any other usage of the We Do Framework refer to the [Wireless Communication 
 
 ### Common Requirements
 
-- [Bluetooth Framework](https://www.btframework.com/bluetoothframework.htm) 7.7.0.0 or later
+- [Bluetooth Framework](https://www.btframework.com/bluetoothframework.htm) 7.7.6.0 or later
 - Windows 7 and above (see remarks below)
 - Bluetooth 4.0 (or high) hardware
 

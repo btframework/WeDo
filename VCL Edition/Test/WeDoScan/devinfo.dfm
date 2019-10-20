@@ -132,6 +132,7 @@ object fmDevInfo: TfmDevInfo
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+    Visible = False
   end
   object laLowSignal: TLabel
     Left = 224
@@ -145,6 +146,7 @@ object fmDevInfo: TfmDevInfo
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+    Visible = False
   end
   object lvAttachedDevices: TListView
     Left = 272

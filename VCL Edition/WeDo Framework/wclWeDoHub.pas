@@ -2893,18 +2893,11 @@ begin
 end;
 
 function TwclWeDoHubService.TurnOff: Integer;
-var
-  Value: TArray<Byte>;
 begin
   if not Connected then
     Result := WCL_E_CONNECTION_NOT_ACTIVE
-
-  else begin
-    SetLength(Value, 1);
-    Value[0] := $01;
-    Result := Client.WriteCharacteristicValue(FTurnOffChar,
-      TwclGattCharacteristicValue(Value));
-  end;
+  else
+    Result := Client.WriteCharacteristicValue(FTurnOffChar, nil);
 end;
 
 procedure TwclWeDoHubService.Uninitialize;

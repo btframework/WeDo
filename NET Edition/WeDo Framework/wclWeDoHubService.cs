@@ -122,9 +122,7 @@ namespace wclWeDoFramework
             if (!Connected)
                 return wclConnectionErrors.WCL_E_CONNECTION_NOT_ACTIVE;
 
-            Byte[] Value = new Byte[1];
-            Value[0] = 0x01;
-            return Client.WriteCharacteristicValue(FTurnOffChar.Value, Value);
+            return Client.WriteCharacteristicValue(FTurnOffChar.Value, null);
         }
 
         internal event wclWeDoHubButtonStateChangedEvent OnButtonStateChanged;
