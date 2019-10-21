@@ -7,6 +7,7 @@
 /VCL Edition/**/*.identcache
 /VCL Edition/**/*.stat
 /VCL Edition/Test/**/build
+/VCL Edition/Help/Build
 
 /NET Edition/.vs/wclWeDoFramework/v16/Server
 /NET Edition/**/bin

@@ -1,0 +1,1 @@
+"c:\Program Files (x86)\Doc-O-Matic 7 Express\domexpress.exe" -w1 -config "HTML Help" -noshow WeDoFramework.dox-express
