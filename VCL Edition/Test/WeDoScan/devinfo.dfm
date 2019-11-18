@@ -148,6 +148,26 @@ object fmDevInfo: TfmDevInfo
     ParentFont = False
     Visible = False
   end
+  object laBattTypeTitle: TLabel
+    Left = 480
+    Top = 168
+    Width = 75
+    Height = 13
+    Caption = 'Battery type:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object laBattType: TLabel
+    Left = 568
+    Top = 168
+    Width = 49
+    Height = 13
+    Caption = 'Undefined'
+  end
   object lvAttachedDevices: TListView
     Left = 272
     Top = 35

@@ -449,6 +449,24 @@
             <summary> Protection against "Man in the Middle" attack is not
               defined. </summary>
         </member>
+        <member name="T:wclBluetooth.wclBluetoothleProtectionLevel">
+            <summary> The Bluetooth LE pairing protection levels. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothleProtectionLevel.pplDefault">
+            <summary> Use default protection level. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothleProtectionLevel.pplNone">
+            <summary> Pair the device using no levels of protection. (Mode 1,
+              Level 1). </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothleProtectionLevel.pplEncryption">
+            <summary> Pair the device using encryption. (Mode 1,
+              Level 2). </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothleProtectionLevel.pplEncryptionAndAuthentication">
+            <summary> Pair the device using encryption and authentication. (Mode 1,
+              Level 3). </summary>
+        </member>
         <member name="T:wclBluetooth.wclBluetoothIoCapability">
             <summary> The enumeration defines the input/output capabilities of a
               Bluetooth Device. </summary>
@@ -618,6 +636,18 @@
             <param name="Address"> A remote device's MAC address. </param>
             <param name="Pin"> A PIN code provided by an application. </param>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothProtectionLevelRequestEvent">
+            <summary> The <c>OnProtectionLevelRequest</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Radio"> A <see cref="T:wclBluetooth.wclBluetoothRadio" /> object
+              represents a Bluetooth driver that fired the event. </param>
+            <param name="Address"> A remote device's MAC address. </param>
+            <param name="Protection"> Describes the required protection
+              level provided by an application. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
+            <seealso cref="T:wclBluetooth.wclBluetoothleProtectionLevel" />
         </member>
         <member name="T:wclBluetooth.wclBluetoothResultEvent">
             <summary> The common Bluetooth result even handler prototype. </summary>
@@ -934,6 +964,14 @@
             <summary> Fires the <c>OnPinRequest</c> event. </summary>
             <param name="Address"> A remote device's MAC address. </param>
             <param name="Pin"> A PIN code provided by an application. </param>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.DoProtectionLevelRequest(System.Int64,wclBluetooth.wclBluetoothleProtectionLevel@)">
+            <summary> Fires the <c>OnProtectionLevelRequest</c> event. </summary>
+            <param name="Address"> A remote device's MAC address. </param>
+            <param name="Protection"> Describes the required protection
+              level provided by an application. </param>
+            <remarks> This method is used only during BLE pairing. </remarks>
+            <seealso cref="T:wclBluetooth.wclBluetoothleProtectionLevel" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothRadio.DoStatusChanged">
             <summary> Fires the <c>OnStatusChanged</c> event. </summary>
@@ -1373,6 +1411,19 @@
               the WCL error codes. </returns>
             <remarks> A derived class must override this method to provide
               driver-dependent code. </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.HalProtectionLevelReply(System.Int64,wclBluetooth.wclBluetoothleProtectionLevel)">
+            <summary> Implements a hardware-dependent code to reply for a
+              pairing protection level request event. </summary>
+            <param name="Address"> The remote Bluetooth device's MAC
+              address. </param>
+            <param name="Protection"> A pairing protection level. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> A derived class must override this method to provide
+              driver-dependent code. </remarks>
+            <seealso cref="T:wclBluetooth.wclBluetoothleProtectionLevel" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothRadio.HalRemotePair(System.Int64)">
             <summary> Implements a hardware-dependent code for pairing with a remote
@@ -2100,6 +2151,17 @@
             <param name="Pin"> A PIN code provided by an application. </param>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
         </member>
+        <member name="M:wclBluetooth.wclBluetoothManager.DoProtectionLevelRequest(wclBluetooth.wclBluetoothRadio,System.Int64,wclBluetooth.wclBluetoothleProtectionLevel@)">
+            <summary> Fires the <c>OnProtectionLevelRequest</c> event. </summary>
+            <param name="Radio"> A <see cref="T:wclBluetooth.wclBluetoothRadio" /> object
+              represents a Bluetooth driver that fired the event. </param>
+            <param name="Address"> A remote device's MAC address. </param>
+            <param name="Protection"> Describes the required protection
+              level provided by an application. </param>
+            <remarks> This method is used only during BLE pairing. </remarks>
+            <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
+            <seealso cref="T:wclBluetooth.wclBluetoothleProtectionLevel" />
+        </member>
         <member name="M:wclBluetooth.wclBluetoothManager.DoStatusChanged(wclBluetooth.wclBluetoothRadio)">
             <summary> Fires the <c>OnStatusChanged</c> event. </summary>
             <param name="Radio"> A <see cref="T:wclBluetooth.wclBluetoothRadio" /> object
@@ -2213,6 +2275,11 @@
             <summary> The event fires when a remote Bluetooth device requires
               a legacy PIN pairing. </summary>
             <seealso cref="T:wclBluetooth.wclBluetoothPinRequestEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothManager.OnProtectionLevelRequest">
+            <summary> The event fires during BLE pairing to request required
+              pairing protection level. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothProtectionLevelRequestEvent" />
         </member>
         <member name="E:wclBluetooth.wclBluetoothManager.OnStatusChanged">
             <summary> The event fires when a status of a Bluetooth hardware or

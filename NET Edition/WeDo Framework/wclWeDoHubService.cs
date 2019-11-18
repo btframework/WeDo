@@ -117,6 +117,31 @@ namespace wclWeDoFramework
             return Client.WriteCharacteristicValue(FDeviceNameChar.Value, CharVal);
         }
 
+        internal Int32 ReadBatteryType(out wclWeDoBatteryType BatteryType)
+        {
+            BatteryType = wclWeDoBatteryType.btUndefined;
+
+            if (FBatteryTypeChar == null)
+                return wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND;
+
+            Byte[] Val;
+            Int32 Res = Client.ReadCharacteristicValue(FBatteryTypeChar.Value, wclGattOperationFlag.goNone, out Val);
+            if (Res == wclErrors.WCL_E_SUCCESS && Val != null && Val.Length == 1)
+            {
+                if (Val[0] == 0)
+                    BatteryType = wclWeDoBatteryType.btStandard;
+                else
+                {
+                    if (Val[0] == 1)
+                        BatteryType = wclWeDoBatteryType.btRechargeable;
+                    else
+                        BatteryType = wclWeDoBatteryType.btUnknown;
+                }
+            }
+
+            return Res;
+        }
+
         internal Int32 TurnOff()
         {
             if (!Connected)

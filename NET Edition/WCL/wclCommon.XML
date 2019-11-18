@@ -217,60 +217,24 @@
         <member name="F:wclCommon.wclWinVer.verWin10">
             <summary> Windows 10. </summary>
         </member>
-        <member name="T:wclCommon.wclHelpers">
-            <summary> This static class includes some helpers methods used in WCL. </summary>
+        <member name="T:wclCommon.wclOsVersion">
+            <summary> The class provides information about OS version. </summary>
         </member>
-        <member name="M:wclCommon.wclHelpers.CreateMutex(System.String,System.Boolean,System.Boolean)">
-            <summary> Creates a new mutex with given name. </summary>
-            <param name="Name"> The mutex name. </param>
-            <param name="Unique"> Set this to <c>True</c> to create a process-dependent
-              unique mutex. Otherwise system wide named mutex will be created. </param>
-            <param name="Own"> The optionam parameter (default value is <c>false</c>
-              indicates if the Mutex must be owned by a called. </param>
-            <returns> If the function succeed the return value is the Mutex handle.
-              If the function failed the return value is zero. </returns>
+        <member name="P:wclCommon.wclOsVersion.IsWinIot">
+            <summary> Checks if software runs on Windows 10 IoT. </summary>
+            <value> Returns <c>true</c> if it runs on Windows 10 IoT. Otherwise
+              returns <c>false</c>. </value>
         </member>
-        <member name="M:wclCommon.wclHelpers.IncPtr(System.IntPtr,System.Int32)">
-            <summary> Increments a pointer on given offset. </summary>
-            <param name="p"> The pointer to be incremented. </param>
-            <param name="off"> The increment value (offset). </param>
-            <returns> Returns a new pointer. </returns>
+        <member name="P:wclCommon.wclOsVersion.OsVersion">
+            <summary> Gets Windows OS version. </summary>
+            <value> The Windows OS version. </value>
+            <seealso cref="T:wclCommon.wclWinVer" />
         </member>
-        <member name="M:wclCommon.wclHelpers.ZeroHGlobal(System.IntPtr,System.Int32)">
-            <summary> Zeros the memory allocated by the AllocHGlobal. </summary>
-            <param name="p"> The InPtr returned by the AllocHGlobal method. </param>
-            <param name="Size"> the busser size in bytes. </param>
-        </member>
-        <member name="M:wclCommon.wclHelpers.AllocHGlobal(System.Int32)">
-            <summary> Allocates and zeros memory. </summary>
-            <param name="Size"> Memory size. </param>
-            <returns>InPtr value for allocated memory or InPtr.Zero in case of out of memory. </returns>
-        </member>
-        <member name="M:wclCommon.wclHelpers.HResultFromWin32(System.Int32)">
-            <summary> Converts Win32 error code into HRESULT. </summary>
-            <param name="Win32Error"> Win32 error code. </param>
-            <returns>HRESULT value represents the given Win32 error code. </returns>
-        </member>
-        <member name="M:wclCommon.wclHelpers.Succeeded(System.Int32)">
-            <summary> Provides a generic test for success on any status value. </summary>
-            <param name="Status"> The status code. This value can be an HRESULT or an SCODE.
-              A non-negative number indicates success.  </param>
-            <returns> <c>True</c> if <c>Status</c> represents a success status value; otherwise,
-              <c>False</c>. </returns>
-        </member>
-        <member name="M:wclCommon.wclHelpers.Failed(System.Int32)">
-            <summary> Provides a generic test for failure on any status value. </summary>
-            <param name="Status"> The status code. This value can be an HRESULT or an SCODE.
-              A negative number indicates failure. </param>
-            <returns> <c>True</c> if <c>Status</c> represents a failed status value; otherwise,
-              <c>False</c>. </returns>
-        </member>
-        <member name="M:wclCommon.wclHelpers.wclGetWinVer(System.UInt16@)">
-            <summary> Reads Windows OS version. </summary>
-            <param name="Build"> On output contains the OS build number. </param>
-            <returns> Returns OS version. </returns>
+        <member name="P:wclCommon.wclOsVersion.OsBuild">
+            <summary> Gets the OS build number. </summary>
+            <value> The OS build number . </value>
             <remarks> <para> For Win 10 <c>Build</c> can be translated to OS version
-              (release) using table below. </para>
+              (release) using the table below. </para>
               <para><c> Build </c> <c> Release </c></para>
               <para><c>=======</c> <c>=========</c></para>
               <para><c> 10240 </c> <c>   1507  </c></para>
@@ -281,31 +245,74 @@
               <para><c> 17134 </c> <c>   1803  </c></para>
               <para><c> 17763 </c> <c>   1809  </c></para>
               <para><c> 18362 </c> <c>   1903  </c></para> </remarks>
-            <seealso cref="T:wclCommon.wclWinVer" />
         </member>
-        <member name="M:wclCommon.wclHelpers.wclIsWinIot">
-            <summary> Checks if software runs on Windows 10 IoT. </summary>
-            <returns> The function returns <c>True</c> if it runs on Windows 10 IoT.
-              Otherwise it returns <c>False</c>. </returns>
+        <member name="T:wclCommon.wclHelpers">
+            <summary> This static class includes some helpers methods used in WCL. </summary>
+        </member>
+        <member name="M:wclCommon.wclHelpers.CreateMutex(System.String,System.Boolean,System.Boolean)">
+            <summary> Creates a new mutex with given name. </summary>
+            <param name="Name"> The mutex name. </param>
+            <param name="Unique"> Set this to <c>true</c> to create a process-dependent
+              unique mutex. Otherwise system wide named mutex will be created. </param>
+            <param name="Own"> The optionam parameter (default value is <c>false</c>
+              indicates if the Mutex must be owned by a called. </param>
+            <returns> If the function succeed the return value is the Mutex handle.
+              If the function failed the return value is <c>IntPtr.Zero</c>. </returns>
+        </member>
+        <member name="M:wclCommon.wclHelpers.IncPtr(System.IntPtr,System.Int32)">
+            <summary> Increments a pointer on given offset. </summary>
+            <param name="p"> The pointer to be incremented. </param>
+            <param name="off"> The increment value (offset). </param>
+            <returns> Returns a new pointer. </returns>
+        </member>
+        <member name="M:wclCommon.wclHelpers.ZeroHGlobal(System.IntPtr,System.Int32)">
+            <summary> Zeros the memory allocated by the AllocHGlobal. </summary>
+            <param name="p"> The InPtr returned by the AllocHGlobal method. </param>
+            <param name="Size"> the buffer size in bytes. </param>
+        </member>
+        <member name="M:wclCommon.wclHelpers.AllocHGlobal(System.Int32)">
+            <summary> Allocates and zeros memory. </summary>
+            <param name="Size"> Memory size. </param>
+            <returns> The <c>IntPtr</c> value for allocated memory or <c>InPtr.Zero</c> in case of
+              out of memory. </returns>
+        </member>
+        <member name="M:wclCommon.wclHelpers.HResultFromWin32(System.Int32)">
+            <summary> Converts Win32 error code into HRESULT. </summary>
+            <param name="Win32Error"> Win32 error code. </param>
+            <returns> HRESULT value represents the given Win32 error code. </returns>
+        </member>
+        <member name="M:wclCommon.wclHelpers.Succeeded(System.Int32)">
+            <summary> Provides a generic test for success on any status value. </summary>
+            <param name="Status"> The status code. This value can be an HRESULT or an SCODE.
+              A non-negative number indicates success.  </param>
+            <returns> <c>true</c> if <c>Status</c> represents a success status value; otherwise,
+              <c>false</c>. </returns>
+        </member>
+        <member name="M:wclCommon.wclHelpers.Failed(System.Int32)">
+            <summary> Provides a generic test for failure on any status value. </summary>
+            <param name="Status"> The status code. This value can be an HRESULT or an SCODE.
+              A negative number indicates failure. </param>
+            <returns> <c>true</c> if <c>Status</c> represents a failed status value; otherwise,
+              <c>false</c>. </returns>
         </member>
         <member name="M:wclCommon.wclHelpers.LoWord(System.UInt32)">
-            <summary> Returns Lo Word of the UINt32 value. </summary>
-            <param name="nValue"> The UInt32 value. </param>
-            <returns> The Lo Byte. </returns>
+            <summary> Returns Lo Word of the <c>UInt32</c> value. </summary>
+            <param name="nValue"> The <c>UInt32</c> value. </param>
+            <returns> The Lo Word. </returns>
         </member>
         <member name="M:wclCommon.wclHelpers.HiWord(System.UInt32)">
-            <summary> Returns Hi Word of the UInt32 value. </summary>
-            <param name="nValue"> The UInt32 value. </param>
-            <returns> The Hi Byte. </returns>
+            <summary> Returns Hi Word of the <c>UInt32</c> value. </summary>
+            <param name="nValue"> The <c>UInt32</c> value. </param>
+            <returns> The Hi Word. </returns>
         </member>
         <member name="M:wclCommon.wclHelpers.LoByte(System.UInt16)">
-            <summary> Returns Lo Byte of the UInt16 value. </summary>
-            <param name="nValue"> The UInt16 value. </param>
+            <summary> Returns Lo Byte of the <c>UInt16</c> value. </summary>
+            <param name="nValue"> The <c>UInt16</c> value. </param>
             <returns> The Lo Byte. </returns>
         </member>
         <member name="M:wclCommon.wclHelpers.HiByte(System.UInt16)">
-            <summary> Returns Hi Byte of the UInt16 value. </summary>
-            <param name="nValue"> The UInt16 value. </param>
+            <summary> Returns Hi Byte of the <c>UInt16</c> value. </summary>
+            <param name="nValue"> The <c>UInt16</c> value. </param>
             <returns> The Hi Byte. </returns>
         </member>
         <member name="M:wclCommon.wclHelpers.SleepEx(System.UInt32)">
@@ -327,7 +334,7 @@
               functions. </para> </returns>
         </member>
         <member name="T:wclCommon.wclMessageSynchronizationKind">
-            <summary> Message synchronization methods used to inter-threading
+            <summary> Message synchronization methods used for inter-threading
               synchronization and notification. </summary>
         </member>
         <member name="F:wclCommon.wclMessageSynchronizationKind.skDefault">
@@ -348,13 +355,13 @@
             <summary> Frees the message object. </summary>
         </member>
         <member name="M:wclCommon.wclMessage.#ctor(System.Byte,System.Byte)">
-            <summary> Create a new message object. </summary>
-            <param name="Id"> The message's ID. </param>
+            <summary> Create new message object. </summary>
+            <param name="Id"> The message ID. </param>
             <param name="Category"> The message category ID. </param>
         </member>
         <member name="M:wclCommon.wclMessage.AddRef">
-            <summary> Increments the reference count for an object. This method
-              should be called for every new reference to an object. </summary>
+            <summary> Increments the reference count of the object. This method
+              should be called for every new reference to the object. </summary>
             <returns> The method returns the new reference count. This value is
               intended to be used only for test purposes. </returns>
         </member>
@@ -368,12 +375,12 @@
               implementation frees the object. </remarks>
         </member>
         <member name="P:wclCommon.wclMessage.Category">
-            <summary> Gets the message's category ID. </summary>
-            <value> The message's category ID. </value>
+            <summary> Gets the message category ID. </summary>
+            <value> The message category ID. </value>
         </member>
         <member name="P:wclCommon.wclMessage.Id">
-            <summary> Gets the message's ID. </summary>
-            <value> The message's ID. </value>
+            <summary> Gets the message ID. </summary>
+            <value> The message ID. </value>
         </member>
         <member name="F:wclCommon.wclMessage.WCL_MSG_CATEGORY_SYSTEM">
             <summary> System messages category. </summary>
@@ -407,35 +414,34 @@
               Category ID. </summary>
         </member>
         <member name="F:wclCommon.wclMessage.WCL_MSG_ID_SYS_HARDWARE_CHANGED">
-            <summary> The Hardware Change message's ID. </summary>
+            <summary> The Hardware Changed message ID. </summary>
         </member>
         <member name="T:wclCommon.wclSystemCategoryMessage">
-            <summary> The system categoiry message base class. </summary>
+            <summary> The system category message base class. </summary>
             <seealso cref="T:wclCommon.wclMessage" />
         </member>
         <member name="M:wclCommon.wclSystemCategoryMessage.#ctor(System.Byte)">
-            <summary> Create a new system message object. </summary>
-            <param name="Id"> The message's ID. </param>
+            <summary> Creates new system message object. </summary>
+            <param name="Id"> The message ID. </param>
         </member>
         <member name="T:wclCommon.wclHardwareChangeMessage">
-            <summary> The Hardware Change message is broadcasted to all subscribers
+            <summary> The Hardware Changed message is broadcasted to all subscribers
               when changes in the hardware configuration have been detected. The
-              message's ID is
+              message ID is
               <see cref="F:wclCommon.wclMessage.WCL_MSG_ID_SYS_HARDWARE_CHANGED" />. </summary>
             <seealso cref="T:wclCommon.wclSystemCategoryMessage" />
         </member>
         <member name="M:wclCommon.wclHardwareChangeMessage.#ctor(System.Guid,System.Guid,System.String,System.Boolean)">
-            <summary> Creates a new Hardware Change message object. </summary>
-            <param name="InterfaceClass"> The device's interface class
-              GUID. </param>
+            <summary> Creates new Hardware Changed message object. </summary>
+            <param name="InterfaceClass"> The device interface class GUID. </param>
             <param name="DeviceClass"> The device class GUID. </param>
             <param name="Instance"> The device instance string. </param>
-            <param name="Inserted"> <c>True</c> if the device has been
+            <param name="Inserted"> <c>true</c> if the device has been
               inserted. </param>
         </member>
         <member name="P:wclCommon.wclHardwareChangeMessage.InterfaceClass">
-            <summary> Gets the device's interface class GUID. </summary>
-            <value> The device's interface class GUID. </value>
+            <summary> Gets the device interface class GUID. </summary>
+            <value> The device interface class GUID. </value>
         </member>
         <member name="P:wclCommon.wclHardwareChangeMessage.DeviceClass">
             <summary> Gets the device class GUID. </summary>
@@ -447,75 +453,75 @@
         </member>
         <member name="P:wclCommon.wclHardwareChangeMessage.Inserted">
             <summary> Gets the device state. </summary>
-            <value> <c>True</c> if the device has been inserted. </value>
+            <value> <c>true</c> if the device has been inserted. </value>
         </member>
         <member name="T:wclCommon.wclWiFiCategoryMessage">
             <summary> The WiFi Category Message base class. </summary>
             <seealso cref="T:wclCommon.wclMessage" />
         </member>
         <member name="M:wclCommon.wclWiFiCategoryMessage.#ctor(System.Byte)">
-            <summary> Create a new WiFi message object. </summary>
-            <param name="Id"> The message's ID. </param>
+            <summary> Creates new WiFi message object. </summary>
+            <param name="Id"> The message ID. </param>
         </member>
         <member name="T:wclCommon.wclBluetoothCategoryMessage">
             <summary> The Bluetooth Category Message base class. </summary>
             <seealso cref="T:wclCommon.wclMessage" />
         </member>
         <member name="M:wclCommon.wclBluetoothCategoryMessage.#ctor(System.Byte)">
-            <summary> Create a new Bluetooth message object. </summary>
-            <param name="Id"> The message's ID. </param>
+            <summary> Creates new Bluetooth message object. </summary>
+            <param name="Id"> The message ID. </param>
         </member>
         <member name="T:wclCommon.wclIrDACategoryMessage">
             <summary> The IrDA Category Message base class. </summary>
             <seealso cref="T:wclCommon.wclMessage" />
         </member>
         <member name="M:wclCommon.wclIrDACategoryMessage.#ctor(System.Byte)">
-            <summary> Create a new IrDA message object. </summary>
-            <param name="Id"> The message's ID. </param>
+            <summary> Creates new IrDA message object. </summary>
+            <param name="Id"> The message ID. </param>
         </member>
         <member name="T:wclCommon.wclSerialCategoryMessage">
             <summary> The Serial Category Message base class. </summary>
             <seealso cref="T:wclCommon.wclMessage" />
         </member>
         <member name="M:wclCommon.wclSerialCategoryMessage.#ctor(System.Byte)">
-            <summary> Create a new Serial message object. </summary>
-            <param name="Id"> The message's ID. </param>
+            <summary> Creates new Serial message object. </summary>
+            <param name="Id"> The message ID. </param>
         </member>
         <member name="T:wclCommon.wclUsbCategoryMessage">
             <summary> The USB Category Message base class. </summary>
             <seealso cref="T:wclCommon.wclMessage" />
         </member>
         <member name="M:wclCommon.wclUsbCategoryMessage.#ctor(System.Byte)">
-            <summary> Create a new USB message object. </summary>
-            <param name="Id"> The message's ID. </param>
+            <summary> Creates new USB message object. </summary>
+            <param name="Id"> The message ID. </param>
         </member>
         <member name="T:wclCommon.wclWiiCategoryMessage">
             <summary> The Wii Remote Category Message base class. </summary>
             <seealso cref="T:wclCommon.wclMessage" />
         </member>
         <member name="M:wclCommon.wclWiiCategoryMessage.#ctor(System.Byte)">
-            <summary> Create a new Wiimote message object. </summary>
-            <param name="Id"> The message's ID. </param>
+            <summary> Creates new Wiimote message object. </summary>
+            <param name="Id"> The message ID. </param>
         </member>
         <member name="T:wclCommon.wclKinectCategoryMessage">
             <summary> The Kinect Category Message base class. </summary>
             <seealso cref="T:wclCommon.wclMessage" />
         </member>
         <member name="M:wclCommon.wclKinectCategoryMessage.#ctor(System.Byte)">
-            <summary> Create a new Kinect message object. </summary>
-            <param name="Id"> The message's ID. </param>
+            <summary> Creates new Kinect message object. </summary>
+            <param name="Id"> The message ID. </param>
         </member>
         <member name="T:wclCommon.wclConnectionCategoryMessage">
             <summary> The Connection Category Message base class. </summary>
             <seealso cref="T:wclCommon.wclMessage" />
         </member>
         <member name="M:wclCommon.wclConnectionCategoryMessage.#ctor(System.Byte)">
-            <summary> Create a new Connection message object. </summary>
-            <param name="Id"> The message's ID. </param>
+            <summary> Creates new Connection message object. </summary>
+            <param name="Id"> The message ID. </param>
         </member>
         <member name="T:wclCommon.wclMessageEvent">
-            <summary> The <c>OnMessage</c> event prototype. </summary>
-            <param name="Message"> The <see cref="T:wclCommon.wclMessage" /> object represents a
+            <summary> The <c>OnMessage</c> event handler prototype. </summary>
+            <param name="Message"> The <see cref="T:wclCommon.wclMessage" /> object represented the
               message. </param>
             <remarks> The <c>Message</c> object is valid only inside an event
               handler. </remarks>
@@ -532,7 +538,7 @@
               to create the receiver. </remarks>
         </member>
         <member name="M:wclCommon.wclMessageReceiver.#ctor">
-            <summary> Creates a new message receiver object. </summary>
+            <summary> Creates new message receiver object. </summary>
         </member>
         <member name="M:wclCommon.wclMessageReceiver.Finalize">
             <summary> Frees the message recevier.</summary>
@@ -547,8 +553,7 @@
               used to create the receiver. </remarks>
         </member>
         <member name="M:wclCommon.wclMessageReceiver.Open">
-            <summary> Opens the receiver and start listening for the
-              messages. </summary>
+            <summary> Opens the receiver and starts listening for the messages. </summary>
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
@@ -560,29 +565,28 @@
             <param name="Message"> The <see cref="T:wclCommon.wclMessage" /> object represents
               a message. A caller is responsible to dispose the message object
               passed into the method. </param>
-            <param name="Sync"> <para>If the <c>Sync</c> parameter set to
-              <c>True</c> and the thread that called the method is the same that
+            <param name="Sync"> <para> If the <c>Sync</c> parameter set to
+              <c>true</c> and the thread that called the method is the same that
               opened the receiver the message will be delivered without putting it
               into the message queue.</para>
-              <para>If the thread that posting the message is different than one
-              that opened the receiver or the <c>Sync</c> parameter is <c>False</c>
+              <para >If the thread that posting the message is different than one
+              that opened the receiver or the <c>Sync</c> parameter is <c>false</c>
               (the default value) the message will be posted into the message
               queue. </para> </param>
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
-            <remarks> <para>The method can be called from any thread.</para>
+            <remarks> <para> The method can be called from any thread. </para>
               <para> Note that if sync messages is posted it can be processed
-              before any other message in the queue. </para> </remarks>
+              before any other messages in the queue. </para> </remarks>
         </member>
         <member name="P:wclCommon.wclMessageReceiver.Listening">
-            <summary> Gets the receiver's state. </summary>
-            <value> <c>True</c> if the receiver is listening for the
+            <summary> Gets the receiver state. </summary>
+            <value> <c>true</c> if the receiver is listening for the
               messages. </value>
         </member>
         <member name="E:wclCommon.wclMessageReceiver.OnMessage">
-            <summary> The event fires when a new message has been
-              received. </summary>
+            <summary> The event fires when a new message has been received. </summary>
             <remarks> The event always fires in the same thread which was used
               to create the receiver. </remarks>
             <seealso cref="T:wclCommon.wclMessageEvent" />
@@ -618,10 +622,8 @@
               of the WCL error codes. </returns>
         </member>
         <member name="M:wclCommon.wclMessageBroadcaster.GetSyncMethod">
-            <summary> Gets current the inter-threading synchronization
-              method. </summary>
-            <returns> The current inter-threading synchronization
-              method. </returns>
+            <summary> Gets the current inter-threading synchronization method. </summary>
+            <returns> The current inter-threading synchronization method. </returns>
             <seealso cref="T:wclCommon.wclMessageSynchronizationKind" />
         </member>
         <member name="M:wclCommon.wclMessageBroadcaster.SetSyncMethod(wclCommon.wclMessageSynchronizationKind)">
@@ -645,10 +647,8 @@
               An application must override this method to execute initialization
               code. </summary>
             <returns> If initialization completed successfully the function must
-              return <c>True</c>. Otherwise the function must
-              return <c>False</c>. </returns>
-            <remarks> The default implementation always returns
-              <c>True</c>. </remarks>
+              return <c>true</c>. Otherwise the function must return <c>false</c>. </returns>
+            <remarks> The default implementation always returns <c>true</c>. </remarks>
         </member>
         <member name="M:wclCommon.wclThread.OnSignal(System.UInt32)">
             <summary> This procedure is called when a signal received from the
@@ -661,7 +661,7 @@
         </member>
         <member name="M:wclCommon.wclThread.#ctor">
             <summary> Creates new Thread object. </summary>
-            <remarks> The constructor does not start th thread. </remarks>
+            <remarks> The constructor does not start the thread. </remarks>
         </member>
         <member name="M:wclCommon.wclThread.Finalize">
             <summary> Frees the thread object. </summary>
@@ -671,8 +671,8 @@
             <returns> If the function succeed the returns value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the function returns one
               of the WCL error codes. </returns>
-            <remarks> The method waits for thread initialization (see
-              <c>OnInitialize</c> method description. </remarks>
+            <remarks> The method waits for thread initialization (refer to the
+              <c>OnInitialize</c> method description). </remarks>
         </member>
         <member name="M:wclCommon.wclThread.Terminate">
             <summary> Terminates the thread. </summary>
@@ -687,14 +687,13 @@
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the function returns one
               of the WCL error codes. </returns>
             <remarks> The signal is posted to the thread. That means that
-              the method does not wait when the Thread receive and processs the
+              the method does not wait when the Thread receive and proceses the
               signal. Also the method can not know if thread processed the
               signal. </remarks>
         </member>
         <member name="P:wclCommon.wclThread.Running">
             <summary> Gets the thread state. </summary>
-            <value> <c>True</c> if the Thread is running. <c>False</c>
-              otherwise. </value>
+            <value> <c>true</c> if the Thread is running. <c>false</c> otherwise. </value>
         </member>
         <member name="T:wclCommon.wclSetupApi">
             <exclude />

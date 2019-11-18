@@ -13,3 +13,5 @@
 /NET Edition/**/bin
 /NET Edition/**/obj
 /NET Edition/Help/build
+
+/NET Edition/Test/WeDoRobot

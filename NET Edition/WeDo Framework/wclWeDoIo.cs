@@ -30,14 +30,15 @@ namespace wclWeDoFramework
     /// <summary> The class represets an attached Input/Outpout device. </summary>
     public abstract class wclWeDoIo
     {
-        private const Byte WEDO_DEVICE_MOTOR = 1;
-        private const Byte WEDO_DEVICE_VOLTAGE_SENSOR = 20;
-        private const Byte WEDO_DEVICE_CURRENT_SENSOR = 21;
-        private const Byte WEDO_DEVICE_PIEZO = 22;
-        private const Byte WEDO_DEVICE_RGB = 23;
-        private const Byte WEDO_DEVICE_TILT_SENSOR = 34;
-        private const Byte WEDO_DEVICE_MOTION_SENSOR = 35;
-
+        internal const Byte WEDO_DEVICE_MOTOR = 0x01;
+        internal const Byte WEDO_DEVICE_VOLTAGE_SENSOR = 0x14;
+        internal const Byte WEDO_DEVICE_CURRENT_SENSOR = 0x15;
+        internal const Byte WEDO_DEVICE_PIEZO = 0x16;
+        internal const Byte WEDO_DEVICE_RGB = 0x17;
+        internal const Byte WEDO_DEVICE_TILT_SENSOR = 0x22;
+        internal const Byte WEDO_DEVICE_MOTION_SENSOR = 0x23;
+        internal const Byte WEDO_DEVICE_UNKNOWN = 0xFF;
+        
         private Boolean FAttached;
         private Byte FConnectionId;
         private List<wclWeDoDataFormat> FDataFormats;

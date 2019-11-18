@@ -43,6 +43,22 @@ namespace WeDoScan
             DisplayDeviceInforValue(laSoftwareVersion, Value, Res);
             Res = FHub.DeviceInformation.ReadManufacturerName(out Value);
             DisplayDeviceInforValue(laManufacturerName, Value, Res);
+
+            switch (FHub.BatteryType)
+            {
+                case wclWeDoBatteryType.btRechargeable:
+                    laBatteryType.Text = "Rechargeable";
+                    break;
+                case wclWeDoBatteryType.btStandard:
+                    laBatteryType.Text = "Standard";
+                    break;
+                case wclWeDoBatteryType.btUnknown:
+                    laBatteryType.Text = "Unknown";
+                    break;
+                default:
+                    laBatteryType.Text = "Undefined";
+                    break;
+            }
         }
 
         private void ReadDeviceName()

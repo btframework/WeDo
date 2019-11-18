@@ -29,6 +29,8 @@ type
     laLowSignal: TLabel;
     btTurnOff: TButton;
     btClose: TButton;
+    laBattTypeTitle: TLabel;
+    laBattType: TLabel;
     procedure btCloseClick(Sender: TObject);
     procedure btSetDeviceNameClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -259,6 +261,13 @@ begin
   DisplayDeviceInfoValue(laSoftwareVersion, Value, Res);
   Res := FHub.DeviceInformation.ReadManufacturerName(Value);
   DisplayDeviceInfoValue(laManufacturerName, Value, Res);
+
+  case FHub.BatteryType of
+    btRechargeable: laBattType.Caption := 'Rechargeable';
+    btStandard: laBattType.Caption := 'Standard';
+    btUnknown: laBattType.Caption := 'Unknown';
+    else laBattType.Caption := 'Undefined';
+  end;
 end;
 
 procedure TfmDevInfo.ReadDeviceName;

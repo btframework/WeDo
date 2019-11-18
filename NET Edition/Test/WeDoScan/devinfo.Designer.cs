@@ -54,6 +54,8 @@
             this.chPortId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.laLowSignal = new System.Windows.Forms.Label();
             this.btTurnOff = new System.Windows.Forms.Button();
+            this.laBattTypeTitle = new System.Windows.Forms.Label();
+            this.laBatteryType = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // laManufacturerName
@@ -284,6 +286,25 @@
             this.btTurnOff.UseVisualStyleBackColor = true;
             this.btTurnOff.Click += new System.EventHandler(this.BtTurnOff_Click);
             // 
+            // laBattTypeTitle
+            // 
+            this.laBattTypeTitle.AutoSize = true;
+            this.laBattTypeTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laBattTypeTitle.Location = new System.Drawing.Point(479, 148);
+            this.laBattTypeTitle.Name = "laBattTypeTitle";
+            this.laBattTypeTitle.Size = new System.Drawing.Size(79, 13);
+            this.laBattTypeTitle.TabIndex = 32;
+            this.laBattTypeTitle.Text = "Battery type:";
+            // 
+            // laBatteryType
+            // 
+            this.laBatteryType.AutoSize = true;
+            this.laBatteryType.Location = new System.Drawing.Point(564, 148);
+            this.laBatteryType.Name = "laBatteryType";
+            this.laBatteryType.Size = new System.Drawing.Size(56, 13);
+            this.laBatteryType.TabIndex = 33;
+            this.laBatteryType.Text = "Undefined";
+            // 
             // fmDevInfo
             // 
             this.AcceptButton = this.btClose;
@@ -291,6 +312,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btClose;
             this.ClientSize = new System.Drawing.Size(847, 229);
+            this.Controls.Add(this.laBatteryType);
+            this.Controls.Add(this.laBattTypeTitle);
             this.Controls.Add(this.btTurnOff);
             this.Controls.Add(this.laLowSignal);
             this.Controls.Add(this.lvAttachedDevices);
@@ -351,5 +374,7 @@
         private System.Windows.Forms.ColumnHeader chPortId;
         private System.Windows.Forms.Label laLowSignal;
         private System.Windows.Forms.Button btTurnOff;
+        private System.Windows.Forms.Label laBattTypeTitle;
+        private System.Windows.Forms.Label laBatteryType;
     }
 }

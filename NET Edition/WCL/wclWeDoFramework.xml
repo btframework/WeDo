@@ -185,6 +185,21 @@
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
               one of the Bluetooth Framework error code. </returns>
         </member>
+        <member name="T:wclWeDoFramework.wclWeDoBatteryType">
+            <summary> The enumeration defines supported battery types. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoBatteryType.btStandard">
+            <summary> Standard battery. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoBatteryType.btRechargeable">
+            <summary> Rechargeable block. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoBatteryType.btUnknown">
+            <summary> Unknown battery type. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoBatteryType.btUndefined">
+            <summary> Battery type undefined. </summary>
+        </member>
         <member name="T:wclWeDoFramework.wclWeDoHub">
             <summary> The class represents a WeDo Hub hardware. </summary>
         </member>
@@ -217,7 +232,7 @@
         </member>
         <member name="M:wclWeDoFramework.wclWeDoHub.DoDeviceAttached(wclWeDoFramework.wclWeDoIo)">
             <summary> Fires the <c>OnDeviceAttached</c> event. </summary>
-            /// <param name="Device"> The Input/Output device object. </param>
+            <param name="Device"> The Input/Output device object. </param>
             <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoHub.DoDeviceDetached(wclWeDoFramework.wclWeDoIo)">
@@ -275,6 +290,11 @@
             <summary> Gets the battery level service object. </summary>
             <value> The battery level service object. </value>
             <seealso cref="T:wclWeDoFramework.wclWeDoBatteryLevelService"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoHub.BatteryType">
+            <summary> Gets the battery type. </summary>
+            <value> The battery type. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoBatteryType"/>
         </member>
         <member name="P:wclWeDoFramework.wclWeDoHub.Address">
             <summary> Gets the connected WeDo Hub Address. </summary>
@@ -1061,6 +1081,61 @@
             <summary> The event fired when the RGB LED mode has been changed. </summary>
             <seealso cref="T:System.EventHandler"/>
         </member>
+        <member name="T:wclWeDoFramework.wclWeDoRobotHubConnectedEvent">
+            <summary> The <c>OnHubConnected</c> event handler prototype. </summary>
+            <param name="Sender"> The object that fired the event. </param>
+            <param name="Hub"> The WeDo HUB object that has been connected. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoRobotHubDisconnectedEvent">
+            <summary> The <c>OnHubDisconnected</c> event handler prototype. </summary>
+            <param name="Sender"> The object that fired the event. </param>
+            <param name="Hub"> The WeDo HUB object that has been disconnected. </param>
+            <param name="Reason"> The disconnection reason code. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoRobot">
+            <summary> The class represents a WeDo Robot.  </summary>
+            <remarks> The WeDo Robot is the class that combines all the WeDo Framework features into
+              a single place. It allows to work with more thean single Hub and hides all the
+              Bluetooth Framework prepartion steps required todiscover WeDo Hubs and to work with
+              them.</remarks>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRobot.#ctor">
+            <summary> Creates new instance of the WeDo Robot class. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRobot.Connect">
+            <summary> Connects to specified HUBs. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRobot.Disconnect">
+            <summary> Disconnects from  all connected HUBs. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoRobot.Addresses">
+            <summary> Gets the list of required addresses. </summary>
+            <value> The list of HUBs MACs. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoRobot.Connected">
+            <summary> Gets the class state. </summary>
+            <value> <c>True</c> if connection is running. <c>False</c> otherwise. </value>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoRobot.Hubs">
+            <summary> Gets the list of connected HUBs. </summary>
+            <value> The list of connected HUBs. </value>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoRobot.OnHubConnected">
+            <summary> The event fires when new found WeDo HUB has just been connected. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoRobotHubConnectedEvent"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoRobot.OnHubDisconnected">
+            <summary> The event fires when HUB has been disconnected. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoRobotHubDisconnectedEvent"/>
+        </member>
         <member name="T:wclWeDoFramework.wclWeDoSensorDataUnit">
             <summary> The sensor's data unit. </summary>
         </member>
@@ -1320,7 +1395,7 @@
         </member>
         <member name="E:wclWeDoFramework.wclWeDoTiltSensor.OnModeChanged">
             <summary> The event fires when Mode has been changed. </summary>
-            /// <seealso cref="T:System.EventHandler"/>
+            <seealso cref="T:System.EventHandler"/>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoVersion">
             <summary> The structure describes the device version number. </summary>

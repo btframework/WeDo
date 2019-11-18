@@ -35,6 +35,7 @@ requires
 
 contains
   wclWeDoWatcher in 'wclWeDoWatcher.pas',
-  wclWeDoHub in 'wclWeDoHub.pas';
+  wclWeDoHub in 'wclWeDoHub.pas',
+  wclWeDoRobot in 'wclWeDoRobot.pas';
 
 end.

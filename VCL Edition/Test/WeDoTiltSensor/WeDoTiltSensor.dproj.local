@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.904,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.213,=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.405,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoTiltSensor\main.pas=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.405,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoTiltSensor\main.dfm=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.588,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoTiltSensor\WeDoTiltSensor.dproj=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.977,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.213,=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.405,C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoTiltSensor\main.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.588,C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoTiltSensor\WeDoTiltSensor.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.405,C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.dfm=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoTiltSensor\main.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.367,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.018,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.904,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

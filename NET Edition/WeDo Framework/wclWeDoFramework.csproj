@@ -64,6 +64,7 @@
     <Compile Include="wclWeDoPieazo.cs" />
     <Compile Include="wclWeDoResetableSensor.cs" />
     <Compile Include="wclWeDoRgbLight.cs" />
+    <Compile Include="wclWeDoRobot.cs" />
     <Compile Include="wclWeDoSensorDataUnit.cs" />
     <Compile Include="wclWeDoService.cs" />
     <Compile Include="wclWeDoTiltSensor.cs" />

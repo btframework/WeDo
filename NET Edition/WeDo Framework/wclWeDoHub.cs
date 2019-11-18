@@ -28,6 +28,19 @@ using wclBluetooth;
 
 namespace wclWeDoFramework
 {
+    /// <summary> The enumeration defines supported battery types. </summary>
+    public enum wclWeDoBatteryType
+    {
+        /// <summary> Standard battery. </summary>
+        btStandard,
+        /// <summary> Rechargeable block. </summary>
+        btRechargeable,
+        /// <summary> Unknown battery type. </summary>
+        btUnknown,
+        /// <summary> Battery type undefined. </summary>
+        btUndefined
+    };
+    
     /// <summary> The class represents a WeDo Hub hardware. </summary>
     public class wclWeDoHub
     {
@@ -36,6 +49,8 @@ namespace wclWeDoFramework
         private List<wclWeDoIo> FDevices;
         private Boolean FHubConnected;
 
+        private wclWeDoBatteryType FBatteryType;
+        
         // Hub GATT services.
         private wclWeDoDeviceInformationService FDeviceInformation;
         private wclWeDoBatteryLevelService FBatteryLevel;
@@ -76,6 +91,8 @@ namespace wclWeDoFramework
                 // We have to release all services.
                 DisconnectServices();
 
+                FBatteryType = wclWeDoBatteryType.btUndefined;
+
                 FHubConnected = false;
             }
         }
@@ -107,7 +124,10 @@ namespace wclWeDoFramework
                             Res = FIo.Connect(Services);
                         if (Res == wclErrors.WCL_E_SUCCESS)
                             Res = FHub.Connect(Services);
-
+                        if (Res == wclErrors.WCL_E_SUCCESS)
+                            // It does not matter if the function completed with or without success!
+                            FHub.ReadBatteryType(out FBatteryType);
+                        
                         Services = null;
                     }
                 }
@@ -262,7 +282,7 @@ namespace wclWeDoFramework
         }
 
         /// <summary> Fires the <c>OnDeviceAttached</c> event. </summary>
-        /// /// <param name="Device"> The Input/Output device object. </param>
+        /// <param name="Device"> The Input/Output device object. </param>
         /// <seealso cref="wclWeDoIo"/>
         protected virtual void DoDeviceAttached(wclWeDoIo Device)
         {
@@ -285,6 +305,8 @@ namespace wclWeDoFramework
             FConnected = false;
             FHubConnected = false;
 
+            FBatteryType = wclWeDoBatteryType.btUndefined;
+            
             FClient = new wclGattClient();
             FClient.OnCharacteristicChanged += ClientCharacteristicChanged;
             FClient.OnConnect += ClientConnect;
@@ -389,6 +411,10 @@ namespace wclWeDoFramework
         /// <value> The battery level service object. </value>
         /// <seealso cref="wclWeDoBatteryLevelService"/>
         public wclWeDoBatteryLevelService BatteryLevel { get { return FBatteryLevel; } }
+        /// <summary> Gets the battery type. </summary>
+        /// <value> The battery type. </value>
+        /// <seealso cref="wclWeDoBatteryType"/>
+        public wclWeDoBatteryType BatteryType { get { return FBatteryType; } }
 
         /// <summary> Gets the connected WeDo Hub Address. </summary>
         /// <value> The Hub MAC address. </value>

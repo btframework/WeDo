@@ -294,7 +294,7 @@ namespace wclWeDoFramework
         /// <seealso cref="EventHandler"/>
         public event EventHandler OnDirectionChanged;
         /// <summary> The event fires when Mode has been changed. </summary>
-        /// /// <seealso cref="EventHandler"/>
+        /// <seealso cref="EventHandler"/>
         public event EventHandler OnModeChanged;
     };
 }

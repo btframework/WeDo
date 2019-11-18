@@ -30,6 +30,18 @@ uses
   Vcl.Graphics;
 
 type
+  /// <summary> The enumeration defines supported battery types. </summary>
+  TwclWeDoBatteryType = (
+    /// <summary> Standard battery. </summary>
+    btStandard,
+    /// <summary> Rechargeable block. </summary>
+    btRechargeable,
+    /// <summary> Unknown battery type. </summary>
+    btUnknown,
+    /// <summary> Battery type undefined. </summary>
+    btUndefined
+  );
+
   /// <summary> Represents a type of an attached IO (motor, sensor,
   ///   etc). </summary>
   TwclWeDoIoDeviceType = (
@@ -135,15 +147,6 @@ type
   TwclWeDoInputFormat = class sealed(TInterfacedObject, IwclWeDoInputFormat)
   private const
     INPUT_FORMAT_PACKET_SIZE = 11;
-
-    WEDO_DEVICE_MOTOR = 1;
-    WEDO_DEVICE_VOLTAGE_SENSOR = 20;
-    WEDO_DEVICE_CURRENT_SENSOR = 21;
-    WEDO_DEVICE_PIEZO = 22;
-    WEDO_DEVICE_RGB = 23;
-    WEDO_DEVICE_TILT_SENSOR = 34;
-    WEDO_DEVICE_MOTION_SENSOR = 35;
-    WEDO_DEVICE_UNKNOWN = 255;
 
     WEDO_DATA_UNIT_RAW = 0;
     WEDO_DATA_UNIT_PERCENTAGE = 1;
@@ -693,6 +696,8 @@ type
     function ReadDeviceName(out Name: string): Integer;
     function WriteDeviceName(Name: string): Integer;
 
+    function ReadBatteryType(out BatteryType: TwclWeDoBatteryType): Integer;
+
     function TurnOff: Integer;
 
     property OnButtonStateChanged: TwclWeDoHubButtonStateChangedEvent
@@ -772,6 +777,8 @@ type
     FDevices: TList<TwclWeDoIo>;
     FHubConnected: Boolean;
 
+    FBatteryType: TwclWeDoBatteryType;
+
     // Hub GATT services.
     FDeviceInformation: TwclWeDoDeviceInformationService;
     FBatteryLevel: TwclWeDoBatteryLevelService;
@@ -840,7 +847,7 @@ type
     ///   otherwise. </param>
     procedure DoLowSignalAlert(Alert: Boolean); virtual;
     /// <summary> Fires the <c>OnDeviceAttached</c> event. </summary>
-    /// /// <param name="Device"> The Input/Output device object. </param>
+    /// <param name="Device"> The Input/Output device object. </param>
     /// <seealso cref="TwclWeDoIo"/>
     procedure DoDeviceAttached(Device: TwclWeDoIo); virtual;
     /// <summary> Fires the <c>OnDeviceDetached</c> event. </summary>
@@ -902,6 +909,10 @@ type
     /// <seealso cref="TwclWeDoBatteryLevelService"/>
     property BatteryLevel: TwclWeDoBatteryLevelService
       read FBatteryLevel;
+    /// <summary> Gets the battery type. </summary>
+    /// <value> The battery type. </value>
+    /// <seealso cref="TwclWeDoBatteryType"/>
+    property BatteryType: TwclWeDoBatteryType read FBatteryType;
 
     /// <summary> Gets the connected WeDo Hub Address. </summary>
     /// <value> The Hub MAC address. </value>
@@ -961,13 +972,14 @@ type
   /// <summary> The class represets an attached Input/Outpout device. </summary>
   TwclWeDoIo = class abstract
   private const
-    WEDO_DEVICE_MOTOR = 1;
-    WEDO_DEVICE_VOLTAGE_SENSOR = 20;
-    WEDO_DEVICE_CURRENT_SENSOR = 21;
-    WEDO_DEVICE_PIEZO = 22;
-    WEDO_DEVICE_RGB = 23;
-    WEDO_DEVICE_TILT_SENSOR = 34;
-    WEDO_DEVICE_MOTION_SENSOR = 35;
+    WEDO_DEVICE_MOTOR = $01;
+    WEDO_DEVICE_VOLTAGE_SENSOR = $14;
+    WEDO_DEVICE_CURRENT_SENSOR = $15;
+    WEDO_DEVICE_PIEZO = $16;
+    WEDO_DEVICE_RGB = $17;
+    WEDO_DEVICE_TILT_SENSOR = $22;
+    WEDO_DEVICE_MOTION_SENSOR = $23;
+    WEDO_DEVICE_UNKNOWN = $FF;
 
   private
     FAttached: Boolean;
@@ -1906,19 +1918,19 @@ begin
     NumberOfBytes := Data[10];
 
     case Data[2] of
-      WEDO_DEVICE_MOTOR:
+      TwclWeDoIo.WEDO_DEVICE_MOTOR:
         DeviceType := iodMotor;
-      WEDO_DEVICE_VOLTAGE_SENSOR:
+      TwclWeDoIo.WEDO_DEVICE_VOLTAGE_SENSOR:
         DeviceType := iodVoltageSensor;
-      WEDO_DEVICE_CURRENT_SENSOR:
+      TwclWeDoIo.WEDO_DEVICE_CURRENT_SENSOR:
         DeviceType := iodCurrentSensor;
-      WEDO_DEVICE_PIEZO:
+      TwclWeDoIo.WEDO_DEVICE_PIEZO:
         DeviceType := iodPiezo;
-      WEDO_DEVICE_RGB:
+      TwclWeDoIo.WEDO_DEVICE_RGB:
         DeviceType := iodRgb;
-      WEDO_DEVICE_TILT_SENSOR:
+      TwclWeDoIo.WEDO_DEVICE_TILT_SENSOR:
         DeviceType := iodTiltSensor;
-      WEDO_DEVICE_MOTION_SENSOR:
+      TwclWeDoIo.WEDO_DEVICE_MOTION_SENSOR:
         DeviceType := iodMotionSensor;
       else
         DeviceType := iodUnknown;
@@ -1957,21 +1969,21 @@ begin
   SetLength(Result, 8);
   case FDeviceType of
     iodMotor:
-      Result[0] := WEDO_DEVICE_MOTOR;
+      Result[0] := TwclWeDoIo.WEDO_DEVICE_MOTOR;
     iodVoltageSensor:
-      Result[0] := WEDO_DEVICE_VOLTAGE_SENSOR;
+      Result[0] := TwclWeDoIo.WEDO_DEVICE_VOLTAGE_SENSOR;
     iodCurrentSensor:
-      Result[0] := WEDO_DEVICE_CURRENT_SENSOR;
+      Result[0] := TwclWeDoIo.WEDO_DEVICE_CURRENT_SENSOR;
     iodPiezo:
-      Result[0] := WEDO_DEVICE_PIEZO;
+      Result[0] := TwclWeDoIo.WEDO_DEVICE_PIEZO;
     iodRgb:
-      Result[0] := WEDO_DEVICE_RGB;
+      Result[0] := TwclWeDoIo.WEDO_DEVICE_RGB;
     iodTiltSensor:
-      Result[0] := WEDO_DEVICE_TILT_SENSOR;
+      Result[0] := TwclWeDoIo.WEDO_DEVICE_TILT_SENSOR;
     iodMotionSensor:
-      Result[0] := WEDO_DEVICE_MOTION_SENSOR;
+      Result[0] := TwclWeDoIo.WEDO_DEVICE_MOTION_SENSOR;
     else
-      Result[0] := WEDO_DEVICE_UNKNOWN;
+      Result[0] := TwclWeDoIo.WEDO_DEVICE_UNKNOWN;
   end;
   Result[1] := FMode;
   PCardinal(@Result[2])^ := FInterval;
@@ -2887,6 +2899,31 @@ begin
   end;
 end;
 
+function TwclWeDoHubService.ReadBatteryType(
+  out BatteryType: TwclWeDoBatteryType): Integer;
+var
+  Val: TwclGattCharacteristicValue;
+begin
+  BatteryType := btUndefined;
+
+  if IsNull(FBatteryTypeChar.Uuid) then
+    Result := WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND
+
+  else begin
+    Result := Client.ReadCharacteristicValue(FBatteryTypeChar, goNone, Val);
+    if (Result = WCL_E_SUCCESS) and (Length(Val) = 1) then begin
+      if Val[0] = 0 then
+        BatteryType := btStandard
+      else begin
+        if Val[0] = 1 then
+          BatteryType := btRechargeable
+        else
+          BatteryType := btUnknown;
+      end;
+    end;
+  end;
+end;
+
 function TwclWeDoHubService.ReadDeviceName(out Name: string): Integer;
 begin
   Result := ReadStringValue(FDeviceNameChar, Name);
@@ -2996,6 +3033,9 @@ begin
           Res := FIo.Connect(Services);
         if Res = WCL_E_SUCCESS then
           Res := FHub.Connect(Services);
+        if Res = WCL_E_SUCCESS then
+          // It does not matter if the function completed with or without success!
+          FHub.ReadBatteryType(FBatteryType);
 
         Services := nil;
       end;
@@ -3052,6 +3092,8 @@ begin
 
   FConnected := False;
   FHubConnected := False;
+
+  FBatteryType := btUndefined;
 
   FClient := TwclGattClient.Create(nil);
   FClient.OnCharacteristicChanged := ClientCharacteristicChanged;
@@ -3124,6 +3166,8 @@ begin
 
     // We have to release all services.
     DisconnectServices;
+
+    FBatteryType := btUndefined;
 
     FHubConnected := False;
   end;
