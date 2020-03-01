@@ -12,7 +12,8 @@ namespace WeDoMotor
         private wclBluetoothManager FManager;
         private wclWeDoWatcher FWatcher;
         private wclWeDoHub FHub;
-        private wclWeDoMotor FMotor;
+        private wclWeDoMotor FMotor1;
+        private wclWeDoMotor FMotor2;
         private wclWeDoCurrentSensor FCurrent;
         private wclWeDoVoltageSensor FVoltage;
 
@@ -23,7 +24,8 @@ namespace WeDoMotor
 
         private void FmMain_Load(Object sender, EventArgs e)
         {
-            cbDirection.SelectedIndex = 0;
+            cbDirection1.SelectedIndex = 0;
+            cbDirection2.SelectedIndex = 0;
 
             FManager = new wclBluetoothManager();
 
@@ -38,7 +40,8 @@ namespace WeDoMotor
             FHub.OnHighCurrentAlert += FHub_OnHighCurrentAlert;
             FHub.OnLowVoltageAlert += FHub_OnLowVoltageAlert;
 
-            FMotor = null;
+            FMotor1 = null;
+            FMotor2 = null;
             FCurrent = null;
             FVoltage = null;
         }
@@ -53,29 +56,9 @@ namespace WeDoMotor
             laHighCurrent.Visible = Alert;
         }
 
-        private void EnablePlay(Boolean Attached)
+        private void EnablePlay()
         {
-            if (Attached)
-                laIoState.Text = "Attached";
-            else
-            {
-                laIoState.Text = "Dectahed";
-
-                laCurrent.Text = "0";
-                laVoltage.Text = "0";
-
-                laHighCurrent.Visible = false;
-                laLowVoltage.Visible = false;
-            }
-
-            laDirection.Enabled = Attached;
-            cbDirection.Enabled = Attached;
-            laPower.Enabled = Attached;
-            edPower.Enabled = Attached;
-
-            btStart.Enabled = Attached;
-            btBrake.Enabled = Attached;
-            btDrift.Enabled = Attached;
+            Boolean Attached = (FMotor1 != null || FMotor2 != null);
 
             laCurrentTitle.Enabled = Attached;
             laCurrent.Enabled = Attached;
@@ -84,6 +67,53 @@ namespace WeDoMotor
             laVoltageTitle.Enabled = Attached;
             laVoltage.Enabled = Attached;
             laMV.Enabled = Attached;
+
+            if (!Attached)
+            {
+                laCurrent.Text = "0";
+                laVoltage.Text = "0";
+
+                laHighCurrent.Visible = false;
+                laLowVoltage.Visible = false;
+            }
+        }
+
+        private void EnablePlay1(Boolean Attached)
+        {
+            if (Attached)
+                laIoState1.Text = "Attached";
+            else
+                laIoState1.Text = "Detached";
+
+            laDirection1.Enabled = Attached;
+            cbDirection1.Enabled = Attached;
+            laPower1.Enabled = Attached;
+            edPower1.Enabled = Attached;
+
+            btStart1.Enabled = Attached;
+            btBrake1.Enabled = Attached;
+            btDrift1.Enabled = Attached;
+
+            EnablePlay();
+        }
+
+        private void EnablePlay2(Boolean Attached)
+        {
+            if (Attached)
+                laIoState2.Text = "Attached";
+            else
+                laIoState2.Text = "Detached";
+
+            laDirection2.Enabled = Attached;
+            cbDirection2.Enabled = Attached;
+            laPower2.Enabled = Attached;
+            edPower2.Enabled = Attached;
+
+            btStart2.Enabled = Attached;
+            btBrake2.Enabled = Attached;
+            btDrift2.Enabled = Attached;
+
+            EnablePlay();
         }
 
         private void EnableConnect(Boolean Connected)
@@ -104,10 +134,18 @@ namespace WeDoMotor
 
         private void FHub_OnDeviceDetached(Object Sender, wclWeDoIo Device)
         {
-            if (Device.DeviceType == wclWeDoIoDeviceType.iodMotor && FMotor != null && Device.ConnectionId == FMotor.ConnectionId)
+            if (Device.DeviceType == wclWeDoIoDeviceType.iodMotor)
             {
-                FMotor = null;
-                EnablePlay(false);
+                if (FMotor1 != null && FMotor1.ConnectionId == Device.ConnectionId)
+                {
+                    FMotor1 = null;
+                    EnablePlay1(false);
+                }
+                if (FMotor2 != null && FMotor2.ConnectionId == Device.ConnectionId)
+                {
+                    FMotor2 = null;
+                    EnablePlay2(false);
+                }
             }
             if (Device.DeviceType == wclWeDoIoDeviceType.iodCurrentSensor)
                 FCurrent = null;
@@ -117,13 +155,26 @@ namespace WeDoMotor
 
         private void FHub_OnDeviceAttached(Object Sender, wclWeDoIo Device)
         {
-            // This demo supports only single motor.
-            if (FMotor == null)
+            if (Device.DeviceType == wclWeDoIoDeviceType.iodMotor)
             {
-                if (Device.DeviceType == wclWeDoIoDeviceType.iodMotor)
+                if (FMotor1 == null)
                 {
-                    FMotor = (wclWeDoMotor)Device;
-                    EnablePlay(true);
+
+                    {
+                        FMotor1 = (wclWeDoMotor)Device;
+                        EnablePlay1(true);
+                    }
+                }
+                else
+                {
+                    if (FMotor2 == null)
+                    {
+
+                        {
+                            FMotor2 = (wclWeDoMotor)Device;
+                            EnablePlay2(true);
+                        }
+                    }
                 }
             }
 
@@ -276,14 +327,14 @@ namespace WeDoMotor
             }
         }
 
-        private void BtStart_Click(Object Sender, EventArgs e)
+        private void btStart1_Click(Object Sender, EventArgs e)
         {
-            if (FMotor == null)
+            if (FMotor1 == null)
                 MessageBox.Show("Device is not attached");
             else
             {
                 wclWeDoMotorDirection Dir;
-                switch (cbDirection.SelectedIndex)
+                switch (cbDirection1.SelectedIndex)
                 {
                     case 0:
                         Dir = wclWeDoMotorDirection.mdRight;
@@ -295,31 +346,80 @@ namespace WeDoMotor
                         Dir = wclWeDoMotorDirection.mdUnknown;
                         break;
                 }
-                Int32 Res = FMotor.Run(Dir, Convert.ToByte(edPower.Text));
+                Int32 Res = FMotor1.Run(Dir, Convert.ToByte(edPower1.Text));
                 if (Res != wclErrors.WCL_E_SUCCESS)
                     MessageBox.Show("Start motor failed: 0x" + Res.ToString("X8"));
             }
         }
 
-        private void BtBrake_Click(Object Sender, EventArgs e)
+        private void btBrake1_Click(Object Sender, EventArgs e)
         {
-            if (FMotor == null)
+            if (FMotor1 == null)
                 MessageBox.Show("Device is not attached");
             else
             {
-                Int32 Res = FMotor.Brake();
+                Int32 Res = FMotor1.Brake();
                 if (Res != wclErrors.WCL_E_SUCCESS)
                     MessageBox.Show("Brake failed; 0x" + Res.ToString("X8"));
             }
         }
 
-        private void BtDrift_Click(Object Sender, EventArgs e)
+        private void btDrift1_Click(Object Sender, EventArgs e)
         {
-            if (FMotor == null)
+            if (FMotor1 == null)
                 MessageBox.Show("Device is not attached");
             else
             {
-                Int32 Res = FMotor.Drift();
+                Int32 Res = FMotor1.Drift();
+                if (Res != wclErrors.WCL_E_SUCCESS)
+                    MessageBox.Show("Drift failed; 0x" + Res.ToString("X8"));
+            }
+        }
+
+        private void btStart2_Click(object sender, EventArgs e)
+        {
+            if (FMotor2 == null)
+                MessageBox.Show("Device is not attached");
+            else
+            {
+                wclWeDoMotorDirection Dir;
+                switch (cbDirection2.SelectedIndex)
+                {
+                    case 0:
+                        Dir = wclWeDoMotorDirection.mdRight;
+                        break;
+                    case 1:
+                        Dir = wclWeDoMotorDirection.mdLeft;
+                        break;
+                    default:
+                        Dir = wclWeDoMotorDirection.mdUnknown;
+                        break;
+                }
+                Int32 Res = FMotor2.Run(Dir, Convert.ToByte(edPower2.Text));
+                if (Res != wclErrors.WCL_E_SUCCESS)
+                    MessageBox.Show("Start motor failed: 0x" + Res.ToString("X8"));
+            }
+        }
+
+        private void btBrake2_Click(object sender, EventArgs e)
+        {
+            if (FMotor2 == null)
+                MessageBox.Show("Device is not attached");
+            else
+            {
+                Int32 Res = FMotor2.Brake();
+                if (Res != wclErrors.WCL_E_SUCCESS)
+                    MessageBox.Show("Brake failed; 0x" + Res.ToString("X8"));
+            }
+        }
+
+        private void btDrift2_Click(object sender, EventArgs e)
+        {
+            if (FMotor2 == null)
+                MessageBox.Show("Device is not attached");
+            else
+            {
+                Int32 Res = FMotor2.Drift();
                 if (Res != wclErrors.WCL_E_SUCCESS)
                     MessageBox.Show("Drift failed; 0x" + Res.ToString("X8"));
             }

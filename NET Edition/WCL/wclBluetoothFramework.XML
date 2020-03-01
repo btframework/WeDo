@@ -1566,7 +1566,7 @@
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
             <remarks> A derived class must override this method to provide
-              information about supported Bluetooth driver (API). </remarks>
+              hardware dependent code that installs driver. </remarks>
         </member>
         <member name="M:wclBluetooth.wclBluetoothRadio.HalUninstallDevice(System.Int64,System.Guid)">
             <summary> Uninstall drivers for specified Bluetooth device. </summary>
@@ -1576,7 +1576,74 @@
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
             <remarks> A derived class must override this method to provide
-              information about supported Bluetooth driver (API). </remarks>
+              hardware dependent code that uninstalls driver. </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.HalSetLeScanParams(System.UInt16,System.UInt16)">
+            <summary> Sets new Bluetooth LE scanning parameters. </summary>
+            <param name="Interval"> A scan interval in 0.625 ms units. </param>
+            <param name="Window"> A scan window in 0.625 ms units. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> A derived class must override this method to provide
+              hardware dependent code that changes Bluetooth LE scanning
+              parameters. </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.HalGetLeScanParams(System.UInt16@,System.UInt16@)">
+            <summary> Gets current Bluetooth LE scanning parameters. </summary>
+            <param name="Interval"> If the method completed with success on output
+              contains a scan interval in 0.625 ms units. </param>
+            <param name="Window"> If the method completed with success on output
+              contains a scan window in 0.625 ms units. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> A derived class must override this method to provide
+              hardware dependent code that reads Bluetooth LE scanning
+              parameters. </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.HalResetLeScanParams">
+            <summary> Resets Bluetooth LE scanning parameters to its default
+              values. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> A derived class must override this method to provide
+              hardware dependent code that resets Bluetooth LE scanning
+              parameters. </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.HalSetLeAdvParams(System.UInt16)">
+            <summary> Sets new Bluetooth LE advertising parameters. </summary>
+            <param name="Interval"> An advertising interval in 0.625 ms
+              units. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> A derived class must override this method to provide
+              hardware dependent code that changes Bluetooth LE advertising
+              parameters. </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.HalGetLeAdvParams(System.UInt16@)">
+            <summary> Gets current Bluetooth LE advertising parameters. </summary>
+            <param name="Interval"> If the method completed with success on output
+              contains an advertising interval in 0.625 ms
+              units. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> A derived class must override this method to provide
+              hardware dependent code that read Bluetooth LE advertising
+              parameters. </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.HalResetLeAdvParams">
+            <summary> Resets Bluetooth LE advertising parameters to its default
+              values. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> A derived class must override this method to provide
+              hardware dependent code that resets Bluetooth LE advertising
+              parameters. </remarks>
         </member>
         <member name="M:wclBluetooth.wclBluetoothRadio.HalGetApi">
             <summary> Returns a Bluetooth API supported by the Radio
@@ -1856,6 +1923,8 @@
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
+            <remarks> This function supports Classic Bluetooth devices
+              only. </remarks>
         </member>
         <member name="M:wclBluetooth.wclBluetoothRadio.GetRemoteAddressType(System.Int64,wclBluetooth.wclBluetoothAddressType@)">
             <summary> Reads a remote device address type. </summary>
@@ -2006,6 +2075,75 @@
               the WCL error codes. </returns>
             <remarks> This feature is supported with Microsoft Bluetooth
               drivers only. </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.SetLeScanParams(System.UInt16,System.UInt16)">
+            <summary> Sets new Bluetooth LE scanning parameters. </summary>
+            <param name="Interval"> A scan interval in 0.625 ms units. </param>
+            <param name="Window"> A scan window in 0.625 ms units. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> This feature is supported by Microsoft Bluetooth
+              drivers on Windows 10 platforms only. </para>
+              <para> Administrative rights required to use this
+              feature. </para> </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.GetLeScanParams(System.UInt16@,System.UInt16@)">
+            <summary> Gets current Bluetooth LE scanning parameters. </summary>
+            <param name="Interval"> If the method completed with success on output
+              contains a scan interval in 0.625 ms units. </param>
+            <param name="Window"> If the method completed with success on output
+              contains a scan window in 0.625 ms units. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> This feature is supported by Microsoft Bluetooth
+              drivers on Windows 10 platforms only.  </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.ResetLeScanParams">
+            <summary> Resets Bluetooth LE scanning parameters to its default
+              values. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> This feature is supported by Microsoft Bluetooth
+              drivers on Windows 10 platforms only. </para>
+              <para> Administrative rights required to use this
+              feature. </para> </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.SetLeAdvParams(System.UInt16)">
+            <summary> Sets new Bluetooth LE advertising parameters. </summary>
+            <param name="Interval"> An advertising interval in 0.625 ms
+              units. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> This feature is supported by Microsoft Bluetooth
+              drivers on Windows 10 platforms only. </para>
+              <para> Administrative rights required to use this
+              feature. </para> </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.GetLeAdvParams(System.UInt16@)">
+            <summary> Gets current Bluetooth LE advertising parameters. </summary>
+            <param name="Interval"> If the method completed with success on output
+              contains an advertising interval in 0.625 ms
+              units. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> This feature is supported by Microsoft Bluetooth
+              drivers on Windows 10 platforms only. </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.ResetLeAdvParams">
+            <summary> Resets Bluetooth LE advertising parameters to its default
+              values. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> This feature is supported by Microsoft Bluetooth
+              drivers on Windows 10 platforms only. </para>
+              <para> Administrative rights required to use this
+              feature. </para> </remarks>
         </member>
         <member name="P:wclBluetooth.wclBluetoothRadio.Api">
             <summary> Gets a Bluetooth driver (API) supported by this Bluetooth
@@ -6148,11 +6286,11 @@
             <summary> Drivers for the Bluetooth device has already been
               installed. </summary>
         </member>
-        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_DEVICE_NOT_INSTALLED">
-            <summary> Device has not been installed. </summary>
-        </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_DEVICE_NOT_CONNECTED">
             <summary> Disoonnect operation failed because device is not connected. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_DEVICE_NOT_INSTALLED">
+            <summary> Device has not been installed. </summary>
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_ENUM_CONNECTION_FAILED">
             <summary> Unable to enumerate connections. </summary>
@@ -6176,6 +6314,9 @@
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_UNKNOWN_DEVICE_TYPE">
             <summary> Unable read device's address type because device's type is unknown. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_START_WINRT_THREAD_FAILED">
+            <summary> Unable to start Win RT classic working thread. </summary>
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_BASE">
             <summary> The base error code for Bluetooth Low Energy. </summary>
@@ -6297,7 +6438,7 @@
             <summary> Unable start Bluetooth LE Advertisement Watcher. </summary>
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_START_WINRT_THREAD_FAILED">
-            <summary> Unable to start Win RT working thread. </summary>
+            <summary> Unable to start Win RT LE working thread. </summary>
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_SET_EVENT_HANDLER_FAILED">
             <summary> Unable to set Win RT object's event handler. </summary>
@@ -6747,6 +6888,57 @@
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_GATT_SERVER_OTHER_INSTANCE_RUNNING">
             <summary> Other instance of the GATT server is already running. Only
               one instance of the GATT server is allowed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ADMIN_RIGHTS_REQUIRED">
+            <summary> The operation requires administrative rights. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_UNEXPECTED">
+            <summary> Unexpected or unknown error. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_SET_SCAN_PARAMS_FAILED">
+            <summary> Unable to set Bluetooth LE scan parameters. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_GET_SCAN_PARAMS_FAILED">
+            <summary> Unable to get Bluetooth LE scan parameters. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_RESET_SCAN_PARAMS_FAILED">
+            <summary> Unable to reset Bluetooth LE scan parameters. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_SET_ADV_PARAMS_FAILED">
+            <summary> Unable to set Bluetooth LE advertising parameters. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_GET_ADV_PARAMS_FAILED">
+            <summary> Unable to get Bluetooth LE advertising parameters. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_RESET_ADV_PARAMS_FAILED">
+            <summary> Unable to reset Bluetooth LE advertising parameters. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_OPEN_PROCESS_TOKEN_FAILED">
+            <summary> Unable to open process token. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_LOOKUP_PRIVILEGE_FAILED">
+            <summary> Unable to find one or more required privilege. </summary> 
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ADJUST_PRIVILEGE_FAILED">
+            <summary> Unable to change one or more privilege. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ALLOCATE_SID_FAILED">
+            <summary> Unable to allocate and initialize SID. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_TAKE_OWNERSHIP_FAILED">
+            <summary> Unable to take registry key ownership. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_SET_ACL_FAILED">
+            <summary> Unable to set ACL. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_SET_REGISTRY_RIGHTS_FAILED">
+            <summary> Unable to change registry access rights. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_INVALID_CHARACTERISTIC_CONFIGURATION">
+            <summary> The characteristic has invalid configuration. This error means
+              that the characteristic has both <c>IsNotifiable</c> and
+              <c>IsIndicatable</c> properties are set to <c>True</c>. Set one of
+              the property to <c>False</c>. </summary>
         </member>
         <member name="T:wclBluetooth.wclEBluetooth">
             <summary> The base exception class for all Bluetooth

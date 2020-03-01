@@ -5,42 +5,57 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  Vcl.StdCtrls, wclBluetooth, wclWeDoWatcher, wclWeDoHub;
+  Vcl.StdCtrls, wclBluetooth, wclWeDoWatcher, wclWeDoHub, Vcl.ComCtrls;
 
 type
   TfmMain = class(TForm)
     btConnect: TButton;
     btDisconnect: TButton;
     laStatus: TLabel;
-    laIoState: TLabel;
     laCurrentTitle: TLabel;
     laCurrent: TLabel;
     laMA: TLabel;
     laVoltageTitle: TLabel;
     laVoltage: TLabel;
     laMV: TLabel;
-    laDirection: TLabel;
-    cbDirection: TComboBox;
-    laPower: TLabel;
-    edPower: TEdit;
-    btStart: TButton;
-    btBrake: TButton;
-    btDrift: TButton;
     laHighCurrent: TLabel;
     laLowVoltage: TLabel;
+    PageControl: TPageControl;
+    tsMotor1: TTabSheet;
+    laIoState1: TLabel;
+    laDirection1: TLabel;
+    laPower1: TLabel;
+    cbDirection1: TComboBox;
+    edPower1: TEdit;
+    btStart1: TButton;
+    btBrake1: TButton;
+    btDrift1: TButton;
+    tsMotor2: TTabSheet;
+    laIoState2: TLabel;
+    laDirection2: TLabel;
+    cbDirection2: TComboBox;
+    laPower2: TLabel;
+    edPower2: TEdit;
+    btStart2: TButton;
+    btDrift2: TButton;
+    btBrake2: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btDisconnectClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btConnectClick(Sender: TObject);
-    procedure btStartClick(Sender: TObject);
-    procedure btBrakeClick(Sender: TObject);
-    procedure btDriftClick(Sender: TObject);
+    procedure btStart1Click(Sender: TObject);
+    procedure btBrake1Click(Sender: TObject);
+    procedure btDrift1Click(Sender: TObject);
+    procedure btBrake2Click(Sender: TObject);
+    procedure btDrift2Click(Sender: TObject);
+    procedure btStart2Click(Sender: TObject);
 
   private
     FManager: TwclBluetoothManager;
     FWatcher: TwclWeDoWatcher;
     FHub: TwclWeDoHub;
-    FMotor: TwclWeDoMotor;
+    FMotor1: TwclWeDoMotor;
+    FMotor2: TwclWeDoMotor;
     FCurrent: TwclWeDoCurrentSensor;
     FVoltage: TwclWeDoVoltageSensor;
 
@@ -57,7 +72,9 @@ type
     procedure FWatcher_OnHubFound(Sender: TObject; Address: Int64;
       Name: string);
 
-    procedure EnablePlay(Attached: Boolean);
+    procedure EnablePlay;
+    procedure EnablePlay1(Attached: Boolean);
+    procedure EnablePlay2(Attached: Boolean);
     procedure EnableConnect(Connected: Boolean);
 
     procedure Disconnect;
@@ -73,14 +90,14 @@ uses
 
 {$R *.dfm}
 
-procedure TfmMain.btBrakeClick(Sender: TObject);
+procedure TfmMain.btBrake1Click(Sender: TObject);
 var
   Res: Integer;
 begin
-  if FMotor = nil then
+  if FMotor1 = nil then
     ShowMessage('Device is not attached')
   else begin
-    Res := FMotor.Brake;
+    Res := FMotor1.Brake;
     if Res <> WCL_E_SUCCESS then
       ShowMessage('Brake motor failed: 0x' + IntToHex(Res, 8));
   end;
@@ -160,33 +177,52 @@ begin
   Disconnect;
 end;
 
-procedure TfmMain.btDriftClick(Sender: TObject);
+procedure TfmMain.btDrift1Click(Sender: TObject);
 var
   Res: Integer;
 begin
-  if FMotor = nil then
+  if FMotor1 = nil then
     ShowMessage('Device is not attached')
   else begin
-    Res := FMotor.Drift;
+    Res := FMotor1.Drift;
     if Res <> WCL_E_SUCCESS then
       ShowMessage('Drift motor failed: 0x' + IntToHex(Res, 8));
   end;
 end;
 
-procedure TfmMain.btStartClick(Sender: TObject);
+procedure TfmMain.btStart1Click(Sender: TObject);
 var
   Dir: TwclWeDoMotorDirection;
   Res: Integer;
 begin
-  if FMotor = nil then
+  if FMotor1 = nil then
     ShowMessage('Device is not attached')
   else begin
-    case cbDirection.ItemIndex of
+    case cbDirection1.ItemIndex of
       0: Dir := mdRight;
       1: Dir := mdLeft;
       else Dir := mdUnknown;
     end;
-    Res := FMotor.Run(Dir, StrToInt(edPower.Text));
+    Res := FMotor1.Run(Dir, StrToInt(edPower1.Text));
+    if Res <> WCL_E_SUCCESS then
+      ShowMessage('Start motor failed: 0x' + IntToHex(Res, 8));
+  end;
+end;
+
+procedure TfmMain.btStart2Click(Sender: TObject);
+var
+  Dir: TwclWeDoMotorDirection;
+  Res: Integer;
+begin
+  if FMotor2 = nil then
+    ShowMessage('Device is not attached')
+  else begin
+    case cbDirection2.ItemIndex of
+      0: Dir := mdRight;
+      1: Dir := mdLeft;
+      else Dir := mdUnknown;
+    end;
+    Res := FMotor2.Run(Dir, StrToInt(edPower2.Text));
     if Res <> WCL_E_SUCCESS then
       ShowMessage('Start motor failed: 0x' + IntToHex(Res, 8));
   end;
@@ -215,28 +251,11 @@ begin
   end;
 end;
 
-procedure TfmMain.EnablePlay(Attached: Boolean);
+procedure TfmMain.EnablePlay;
+var
+  Attached: Boolean;
 begin
-  if Attached then
-    laIoState.Caption := 'Attached'
-  else begin
-    laIoState.Caption := 'Dectahed';
-
-    laCurrent.Caption := '0';
-    laVoltage.Caption := '0';
-
-    laHighCurrent.Visible := False;
-    laLowVoltage.Visible := False;
-  end;
-
-  laDirection.Enabled := Attached;
-  cbDirection.Enabled := Attached;
-  laPower.Enabled := Attached;
-  edPower.Enabled := Attached;
-
-  btStart.Enabled := Attached;
-  btBrake.Enabled := Attached;
-  btDrift.Enabled := Attached;
+  Attached := (FMotor1 <> nil) or (FMotor2 <> nil);
 
   laCurrentTitle.Enabled := Attached;
   laCurrent.Enabled := Attached;
@@ -245,6 +264,52 @@ begin
   laVoltageTitle.Enabled := Attached;
   laVoltage.Enabled := Attached;
   laMV.Enabled := Attached;
+
+  if not Attached then begin
+    laCurrent.Caption := '0';
+    laVoltage.Caption := '0';
+
+    laHighCurrent.Visible := False;
+    laLowVoltage.Visible := False;
+  end;
+end;
+
+procedure TfmMain.EnablePlay1(Attached: Boolean);
+begin
+  if Attached then
+    laIoState1.Caption := 'Attached'
+  else
+    laIoState1.Caption := 'Dectahed';
+
+  laDirection1.Enabled := Attached;
+  cbDirection1.Enabled := Attached;
+  laPower1.Enabled := Attached;
+  edPower1.Enabled := Attached;
+
+  btStart1.Enabled := Attached;
+  btBrake1.Enabled := Attached;
+  btDrift1.Enabled := Attached;
+
+  EnablePlay;
+end;
+
+procedure TfmMain.EnablePlay2(Attached: Boolean);
+begin
+  if Attached then
+    laIoState2.Caption := 'Attached'
+  else
+    laIoState2.Caption := 'Dectahed';
+
+  laDirection2.Enabled := Attached;
+  cbDirection2.Enabled := Attached;
+  laPower2.Enabled := Attached;
+  edPower2.Enabled := Attached;
+
+  btStart2.Enabled := Attached;
+  btBrake2.Enabled := Attached;
+  btDrift2.Enabled := Attached;
+
+  EnablePlay;
 end;
 
 procedure TfmMain.FCurrent_OnCurrentChanged(Sender: TObject);
@@ -266,10 +331,15 @@ end;
 procedure TfmMain.FHub_OnDeviceAttached(Sender: TObject; Device: TwclWeDoIo);
 begin
   // This demo supports only single motor.
-  if FMotor = nil then begin
-    if Device.DeviceType = iodMotor then begin
-      FMotor := TwclWeDoMotor(Device);
-      EnablePlay(True);
+  if Device.DeviceType = iodMotor then begin
+    if FMotor1 = nil then begin
+      FMotor1 := TwclWeDoMotor(Device);
+      EnablePlay1(True);
+    end else begin
+      if FMotor2 = nil then begin
+        FMotor2 := TwclWeDoMotor(Device);
+        EnablePlay2(True);
+      end
     end;
   end;
 
@@ -290,9 +360,16 @@ end;
 
 procedure TfmMain.FHub_OnDeviceDetached(Sender: TObject; Device: TwclWeDoIo);
 begin
-  if (Device.DeviceType = iodMotor) and (FMotor <> nil) and (Device.ConnectionId = FMotor.ConnectionId) then begin
-    FMotor := nil;
-    EnablePlay(False);
+  if (Device.DeviceType = iodMotor) then begin
+    if (FMotor1 <> nil) and (Device.ConnectionId = FMotor1.ConnectionId) then begin
+      FMotor1 := nil;
+      EnablePlay1(False);
+    end;
+
+    if (FMotor2 <> nil) and (Device.ConnectionId = FMotor2.ConnectionId) then begin
+      FMotor2 := nil;
+      EnablePlay2(False);
+    end;
   end;
   if Device.DeviceType = iodCurrentSensor then
     FCurrent := nil;
@@ -318,7 +395,8 @@ end;
 
 procedure TfmMain.FormCreate(Sender: TObject);
 begin
-  cbDirection.ItemIndex := 0;
+  cbDirection1.ItemIndex := 0;
+  cbDirection2.ItemIndex := 0;
 
   FManager := TwclBluetoothManager.Create(nil);
 
@@ -333,9 +411,12 @@ begin
   FHub.OnHighCurrentAlert := FHub_OnHighCurrentAlert;
   FHub.OnLowVoltageAlert := FHub_OnLowVoltageAlert;
 
-  FMotor := nil;
+  FMotor1 := nil;
+  FMotor2 := nil;
   FCurrent := nil;
   FVoltage := nil;
+
+  PageControl.ActivePageIndex := 0;
 end;
 
 procedure TfmMain.FormDestroy(Sender: TObject);
@@ -367,6 +448,32 @@ begin
     EnableConnect(False);
   end else
     laStatus.Caption := 'Connecting';
+end;
+
+procedure TfmMain.btBrake2Click(Sender: TObject);
+var
+  Res: Integer;
+begin
+  if FMotor2 = nil then
+    ShowMessage('Device is not attached')
+  else begin
+    Res := FMotor2.Brake;
+    if Res <> WCL_E_SUCCESS then
+      ShowMessage('Brake motor failed: 0x' + IntToHex(Res, 8));
+  end;
+end;
+
+procedure TfmMain.btDrift2Click(Sender: TObject);
+var
+  Res: Integer;
+begin
+  if FMotor2 = nil then
+    ShowMessage('Device is not attached')
+  else begin
+    Res := FMotor2.Drift;
+    if Res <> WCL_E_SUCCESS then
+      ShowMessage('Drift motor failed: 0x' + IntToHex(Res, 8));
+  end;
 end;
 
 end.

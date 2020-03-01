@@ -28,46 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.laIoState = new System.Windows.Forms.Label();
-            this.laStatus = new System.Windows.Forms.Label();
             this.btDisconnect = new System.Windows.Forms.Button();
             this.btConnect = new System.Windows.Forms.Button();
-            this.laDirection = new System.Windows.Forms.Label();
-            this.cbDirection = new System.Windows.Forms.ComboBox();
-            this.laPower = new System.Windows.Forms.Label();
-            this.edPower = new System.Windows.Forms.TextBox();
-            this.btStart = new System.Windows.Forms.Button();
-            this.btBrake = new System.Windows.Forms.Button();
-            this.btDrift = new System.Windows.Forms.Button();
-            this.laCurrentTitle = new System.Windows.Forms.Label();
-            this.laCurrent = new System.Windows.Forms.Label();
-            this.laMA = new System.Windows.Forms.Label();
-            this.laVoltageTitle = new System.Windows.Forms.Label();
-            this.laVoltage = new System.Windows.Forms.Label();
+            this.tcMotors = new System.Windows.Forms.TabControl();
+            this.tpMotor1 = new System.Windows.Forms.TabPage();
+            this.btDrift1 = new System.Windows.Forms.Button();
+            this.btBrake1 = new System.Windows.Forms.Button();
+            this.btStart1 = new System.Windows.Forms.Button();
+            this.edPower1 = new System.Windows.Forms.TextBox();
+            this.laPower1 = new System.Windows.Forms.Label();
+            this.cbDirection1 = new System.Windows.Forms.ComboBox();
+            this.laDirection1 = new System.Windows.Forms.Label();
+            this.laIoState1 = new System.Windows.Forms.Label();
+            this.tpMotor2 = new System.Windows.Forms.TabPage();
+            this.btDrift2 = new System.Windows.Forms.Button();
+            this.btBrake2 = new System.Windows.Forms.Button();
+            this.btStart2 = new System.Windows.Forms.Button();
+            this.edPower2 = new System.Windows.Forms.TextBox();
+            this.laPower2 = new System.Windows.Forms.Label();
+            this.cbDirection2 = new System.Windows.Forms.ComboBox();
+            this.laDirection2 = new System.Windows.Forms.Label();
+            this.laIoState2 = new System.Windows.Forms.Label();
+            this.laStatus = new System.Windows.Forms.Label();
             this.laMV = new System.Windows.Forms.Label();
+            this.laVoltage = new System.Windows.Forms.Label();
+            this.laVoltageTitle = new System.Windows.Forms.Label();
+            this.laMA = new System.Windows.Forms.Label();
+            this.laCurrent = new System.Windows.Forms.Label();
+            this.laCurrentTitle = new System.Windows.Forms.Label();
             this.laHighCurrent = new System.Windows.Forms.Label();
             this.laLowVoltage = new System.Windows.Forms.Label();
+            this.tcMotors.SuspendLayout();
+            this.tpMotor1.SuspendLayout();
+            this.tpMotor2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // laIoState
-            // 
-            this.laIoState.AutoSize = true;
-            this.laIoState.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.laIoState.Location = new System.Drawing.Point(181, 53);
-            this.laIoState.Name = "laIoState";
-            this.laIoState.Size = new System.Drawing.Size(62, 13);
-            this.laIoState.TabIndex = 15;
-            this.laIoState.Text = "Detached";
-            // 
-            // laStatus
-            // 
-            this.laStatus.AutoSize = true;
-            this.laStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.laStatus.Location = new System.Drawing.Point(12, 53);
-            this.laStatus.Name = "laStatus";
-            this.laStatus.Size = new System.Drawing.Size(85, 13);
-            this.laStatus.TabIndex = 14;
-            this.laStatus.Text = "Disconnected";
             // 
             // btDisconnect
             // 
@@ -90,150 +84,301 @@
             this.btConnect.UseVisualStyleBackColor = true;
             this.btConnect.Click += new System.EventHandler(this.BtConnect_Click);
             // 
-            // laDirection
+            // tcMotors
             // 
-            this.laDirection.AutoSize = true;
-            this.laDirection.Enabled = false;
-            this.laDirection.Location = new System.Drawing.Point(12, 111);
-            this.laDirection.Name = "laDirection";
-            this.laDirection.Size = new System.Drawing.Size(52, 13);
-            this.laDirection.TabIndex = 16;
-            this.laDirection.Text = "Direction:";
+            this.tcMotors.Controls.Add(this.tpMotor1);
+            this.tcMotors.Controls.Add(this.tpMotor2);
+            this.tcMotors.Location = new System.Drawing.Point(12, 105);
+            this.tcMotors.Name = "tcMotors";
+            this.tcMotors.SelectedIndex = 0;
+            this.tcMotors.Size = new System.Drawing.Size(459, 136);
+            this.tcMotors.TabIndex = 31;
             // 
-            // cbDirection
+            // tpMotor1
             // 
-            this.cbDirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbDirection.Enabled = false;
-            this.cbDirection.FormattingEnabled = true;
-            this.cbDirection.Items.AddRange(new object[] {
+            this.tpMotor1.Controls.Add(this.btDrift1);
+            this.tpMotor1.Controls.Add(this.btBrake1);
+            this.tpMotor1.Controls.Add(this.btStart1);
+            this.tpMotor1.Controls.Add(this.edPower1);
+            this.tpMotor1.Controls.Add(this.laPower1);
+            this.tpMotor1.Controls.Add(this.cbDirection1);
+            this.tpMotor1.Controls.Add(this.laDirection1);
+            this.tpMotor1.Controls.Add(this.laIoState1);
+            this.tpMotor1.Location = new System.Drawing.Point(4, 22);
+            this.tpMotor1.Name = "tpMotor1";
+            this.tpMotor1.Padding = new System.Windows.Forms.Padding(3);
+            this.tpMotor1.Size = new System.Drawing.Size(451, 110);
+            this.tpMotor1.TabIndex = 0;
+            this.tpMotor1.Text = "Motor 1";
+            this.tpMotor1.UseVisualStyleBackColor = true;
+            // 
+            // btDrift1
+            // 
+            this.btDrift1.Enabled = false;
+            this.btDrift1.Location = new System.Drawing.Point(164, 77);
+            this.btDrift1.Name = "btDrift1";
+            this.btDrift1.Size = new System.Drawing.Size(75, 23);
+            this.btDrift1.TabIndex = 39;
+            this.btDrift1.Text = "Drift";
+            this.btDrift1.UseVisualStyleBackColor = true;
+            this.btDrift1.Click += new System.EventHandler(this.btDrift1_Click);
+            // 
+            // btBrake1
+            // 
+            this.btBrake1.Enabled = false;
+            this.btBrake1.Location = new System.Drawing.Point(66, 77);
+            this.btBrake1.Name = "btBrake1";
+            this.btBrake1.Size = new System.Drawing.Size(75, 23);
+            this.btBrake1.TabIndex = 38;
+            this.btBrake1.Text = "Brake";
+            this.btBrake1.UseVisualStyleBackColor = true;
+            this.btBrake1.Click += new System.EventHandler(this.btBrake1_Click);
+            // 
+            // btStart1
+            // 
+            this.btStart1.Enabled = false;
+            this.btStart1.Location = new System.Drawing.Point(356, 37);
+            this.btStart1.Name = "btStart1";
+            this.btStart1.Size = new System.Drawing.Size(75, 23);
+            this.btStart1.TabIndex = 37;
+            this.btStart1.Text = "Start";
+            this.btStart1.UseVisualStyleBackColor = true;
+            this.btStart1.Click += new System.EventHandler(this.btStart1_Click);
+            // 
+            // edPower1
+            // 
+            this.edPower1.Enabled = false;
+            this.edPower1.Location = new System.Drawing.Point(250, 39);
+            this.edPower1.Name = "edPower1";
+            this.edPower1.Size = new System.Drawing.Size(100, 20);
+            this.edPower1.TabIndex = 36;
+            this.edPower1.Text = "20";
+            // 
+            // laPower1
+            // 
+            this.laPower1.AutoSize = true;
+            this.laPower1.Enabled = false;
+            this.laPower1.Location = new System.Drawing.Point(204, 42);
+            this.laPower1.Name = "laPower1";
+            this.laPower1.Size = new System.Drawing.Size(40, 13);
+            this.laPower1.TabIndex = 35;
+            this.laPower1.Text = "Power:";
+            // 
+            // cbDirection1
+            // 
+            this.cbDirection1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbDirection1.Enabled = false;
+            this.cbDirection1.FormattingEnabled = true;
+            this.cbDirection1.Items.AddRange(new object[] {
             "Right",
             "Left"});
-            this.cbDirection.Location = new System.Drawing.Point(70, 108);
-            this.cbDirection.Name = "cbDirection";
-            this.cbDirection.Size = new System.Drawing.Size(121, 21);
-            this.cbDirection.TabIndex = 17;
+            this.cbDirection1.Location = new System.Drawing.Point(66, 39);
+            this.cbDirection1.Name = "cbDirection1";
+            this.cbDirection1.Size = new System.Drawing.Size(121, 21);
+            this.cbDirection1.TabIndex = 34;
             // 
-            // laPower
+            // laDirection1
             // 
-            this.laPower.AutoSize = true;
-            this.laPower.Enabled = false;
-            this.laPower.Location = new System.Drawing.Point(208, 111);
-            this.laPower.Name = "laPower";
-            this.laPower.Size = new System.Drawing.Size(40, 13);
-            this.laPower.TabIndex = 18;
-            this.laPower.Text = "Power:";
+            this.laDirection1.AutoSize = true;
+            this.laDirection1.Enabled = false;
+            this.laDirection1.Location = new System.Drawing.Point(8, 42);
+            this.laDirection1.Name = "laDirection1";
+            this.laDirection1.Size = new System.Drawing.Size(52, 13);
+            this.laDirection1.TabIndex = 33;
+            this.laDirection1.Text = "Direction:";
             // 
-            // edPower
+            // laIoState1
             // 
-            this.edPower.Enabled = false;
-            this.edPower.Location = new System.Drawing.Point(254, 108);
-            this.edPower.Name = "edPower";
-            this.edPower.Size = new System.Drawing.Size(100, 20);
-            this.edPower.TabIndex = 19;
-            this.edPower.Text = "20";
+            this.laIoState1.AutoSize = true;
+            this.laIoState1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laIoState1.Location = new System.Drawing.Point(6, 16);
+            this.laIoState1.Name = "laIoState1";
+            this.laIoState1.Size = new System.Drawing.Size(62, 13);
+            this.laIoState1.TabIndex = 32;
+            this.laIoState1.Text = "Detached";
             // 
-            // btStart
+            // tpMotor2
             // 
-            this.btStart.Enabled = false;
-            this.btStart.Location = new System.Drawing.Point(360, 106);
-            this.btStart.Name = "btStart";
-            this.btStart.Size = new System.Drawing.Size(75, 23);
-            this.btStart.TabIndex = 20;
-            this.btStart.Text = "Start";
-            this.btStart.UseVisualStyleBackColor = true;
-            this.btStart.Click += new System.EventHandler(this.BtStart_Click);
+            this.tpMotor2.Controls.Add(this.btDrift2);
+            this.tpMotor2.Controls.Add(this.btBrake2);
+            this.tpMotor2.Controls.Add(this.btStart2);
+            this.tpMotor2.Controls.Add(this.edPower2);
+            this.tpMotor2.Controls.Add(this.laPower2);
+            this.tpMotor2.Controls.Add(this.cbDirection2);
+            this.tpMotor2.Controls.Add(this.laDirection2);
+            this.tpMotor2.Controls.Add(this.laIoState2);
+            this.tpMotor2.Location = new System.Drawing.Point(4, 22);
+            this.tpMotor2.Name = "tpMotor2";
+            this.tpMotor2.Padding = new System.Windows.Forms.Padding(3);
+            this.tpMotor2.Size = new System.Drawing.Size(451, 110);
+            this.tpMotor2.TabIndex = 1;
+            this.tpMotor2.Text = "Motor 2";
+            this.tpMotor2.UseVisualStyleBackColor = true;
             // 
-            // btBrake
+            // btDrift2
             // 
-            this.btBrake.Enabled = false;
-            this.btBrake.Location = new System.Drawing.Point(70, 146);
-            this.btBrake.Name = "btBrake";
-            this.btBrake.Size = new System.Drawing.Size(75, 23);
-            this.btBrake.TabIndex = 21;
-            this.btBrake.Text = "Brake";
-            this.btBrake.UseVisualStyleBackColor = true;
-            this.btBrake.Click += new System.EventHandler(this.BtBrake_Click);
+            this.btDrift2.Enabled = false;
+            this.btDrift2.Location = new System.Drawing.Point(171, 74);
+            this.btDrift2.Name = "btDrift2";
+            this.btDrift2.Size = new System.Drawing.Size(75, 23);
+            this.btDrift2.TabIndex = 47;
+            this.btDrift2.Text = "Drift";
+            this.btDrift2.UseVisualStyleBackColor = true;
+            this.btDrift2.Click += new System.EventHandler(this.btDrift2_Click);
             // 
-            // btDrift
+            // btBrake2
             // 
-            this.btDrift.Enabled = false;
-            this.btDrift.Location = new System.Drawing.Point(168, 146);
-            this.btDrift.Name = "btDrift";
-            this.btDrift.Size = new System.Drawing.Size(75, 23);
-            this.btDrift.TabIndex = 22;
-            this.btDrift.Text = "Drift";
-            this.btDrift.UseVisualStyleBackColor = true;
-            this.btDrift.Click += new System.EventHandler(this.BtDrift_Click);
+            this.btBrake2.Enabled = false;
+            this.btBrake2.Location = new System.Drawing.Point(73, 74);
+            this.btBrake2.Name = "btBrake2";
+            this.btBrake2.Size = new System.Drawing.Size(75, 23);
+            this.btBrake2.TabIndex = 46;
+            this.btBrake2.Text = "Brake";
+            this.btBrake2.UseVisualStyleBackColor = true;
+            this.btBrake2.Click += new System.EventHandler(this.btBrake2_Click);
             // 
-            // laCurrentTitle
+            // btStart2
             // 
-            this.laCurrentTitle.AutoSize = true;
-            this.laCurrentTitle.Enabled = false;
-            this.laCurrentTitle.Location = new System.Drawing.Point(12, 82);
-            this.laCurrentTitle.Name = "laCurrentTitle";
-            this.laCurrentTitle.Size = new System.Drawing.Size(47, 13);
-            this.laCurrentTitle.TabIndex = 23;
-            this.laCurrentTitle.Text = "Current: ";
+            this.btStart2.Enabled = false;
+            this.btStart2.Location = new System.Drawing.Point(363, 34);
+            this.btStart2.Name = "btStart2";
+            this.btStart2.Size = new System.Drawing.Size(75, 23);
+            this.btStart2.TabIndex = 45;
+            this.btStart2.Text = "Start";
+            this.btStart2.UseVisualStyleBackColor = true;
+            this.btStart2.Click += new System.EventHandler(this.btStart2_Click);
             // 
-            // laCurrent
+            // edPower2
             // 
-            this.laCurrent.AutoSize = true;
-            this.laCurrent.Enabled = false;
-            this.laCurrent.Location = new System.Drawing.Point(67, 82);
-            this.laCurrent.Name = "laCurrent";
-            this.laCurrent.Size = new System.Drawing.Size(13, 13);
-            this.laCurrent.TabIndex = 24;
-            this.laCurrent.Text = "0";
+            this.edPower2.Enabled = false;
+            this.edPower2.Location = new System.Drawing.Point(257, 36);
+            this.edPower2.Name = "edPower2";
+            this.edPower2.Size = new System.Drawing.Size(100, 20);
+            this.edPower2.TabIndex = 44;
+            this.edPower2.Text = "20";
             // 
-            // laMA
+            // laPower2
             // 
-            this.laMA.AutoSize = true;
-            this.laMA.Enabled = false;
-            this.laMA.Location = new System.Drawing.Point(123, 82);
-            this.laMA.Name = "laMA";
-            this.laMA.Size = new System.Drawing.Size(22, 13);
-            this.laMA.TabIndex = 25;
-            this.laMA.Text = "mA";
+            this.laPower2.AutoSize = true;
+            this.laPower2.Enabled = false;
+            this.laPower2.Location = new System.Drawing.Point(211, 39);
+            this.laPower2.Name = "laPower2";
+            this.laPower2.Size = new System.Drawing.Size(40, 13);
+            this.laPower2.TabIndex = 43;
+            this.laPower2.Text = "Power:";
             // 
-            // laVoltageTitle
+            // cbDirection2
             // 
-            this.laVoltageTitle.AutoSize = true;
-            this.laVoltageTitle.Enabled = false;
-            this.laVoltageTitle.Location = new System.Drawing.Point(208, 82);
-            this.laVoltageTitle.Name = "laVoltageTitle";
-            this.laVoltageTitle.Size = new System.Drawing.Size(46, 13);
-            this.laVoltageTitle.TabIndex = 26;
-            this.laVoltageTitle.Text = "Voltage:";
+            this.cbDirection2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbDirection2.Enabled = false;
+            this.cbDirection2.FormattingEnabled = true;
+            this.cbDirection2.Items.AddRange(new object[] {
+            "Right",
+            "Left"});
+            this.cbDirection2.Location = new System.Drawing.Point(73, 36);
+            this.cbDirection2.Name = "cbDirection2";
+            this.cbDirection2.Size = new System.Drawing.Size(121, 21);
+            this.cbDirection2.TabIndex = 42;
             // 
-            // laVoltage
+            // laDirection2
             // 
-            this.laVoltage.AutoSize = true;
-            this.laVoltage.Enabled = false;
-            this.laVoltage.Location = new System.Drawing.Point(260, 82);
-            this.laVoltage.Name = "laVoltage";
-            this.laVoltage.Size = new System.Drawing.Size(13, 13);
-            this.laVoltage.TabIndex = 27;
-            this.laVoltage.Text = "0";
+            this.laDirection2.AutoSize = true;
+            this.laDirection2.Enabled = false;
+            this.laDirection2.Location = new System.Drawing.Point(15, 39);
+            this.laDirection2.Name = "laDirection2";
+            this.laDirection2.Size = new System.Drawing.Size(52, 13);
+            this.laDirection2.TabIndex = 41;
+            this.laDirection2.Text = "Direction:";
+            // 
+            // laIoState2
+            // 
+            this.laIoState2.AutoSize = true;
+            this.laIoState2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laIoState2.Location = new System.Drawing.Point(13, 13);
+            this.laIoState2.Name = "laIoState2";
+            this.laIoState2.Size = new System.Drawing.Size(62, 13);
+            this.laIoState2.TabIndex = 40;
+            this.laIoState2.Text = "Detached";
+            // 
+            // laStatus
+            // 
+            this.laStatus.AutoSize = true;
+            this.laStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laStatus.Location = new System.Drawing.Point(179, 17);
+            this.laStatus.Name = "laStatus";
+            this.laStatus.Size = new System.Drawing.Size(85, 13);
+            this.laStatus.TabIndex = 32;
+            this.laStatus.Text = "Disconnected";
             // 
             // laMV
             // 
             this.laMV.AutoSize = true;
             this.laMV.Enabled = false;
-            this.laMV.Location = new System.Drawing.Point(319, 82);
+            this.laMV.Location = new System.Drawing.Point(319, 50);
             this.laMV.Name = "laMV";
             this.laMV.Size = new System.Drawing.Size(22, 13);
-            this.laMV.TabIndex = 28;
+            this.laMV.TabIndex = 51;
             this.laMV.Text = "mV";
+            // 
+            // laVoltage
+            // 
+            this.laVoltage.AutoSize = true;
+            this.laVoltage.Enabled = false;
+            this.laVoltage.Location = new System.Drawing.Point(260, 50);
+            this.laVoltage.Name = "laVoltage";
+            this.laVoltage.Size = new System.Drawing.Size(13, 13);
+            this.laVoltage.TabIndex = 50;
+            this.laVoltage.Text = "0";
+            // 
+            // laVoltageTitle
+            // 
+            this.laVoltageTitle.AutoSize = true;
+            this.laVoltageTitle.Enabled = false;
+            this.laVoltageTitle.Location = new System.Drawing.Point(208, 50);
+            this.laVoltageTitle.Name = "laVoltageTitle";
+            this.laVoltageTitle.Size = new System.Drawing.Size(46, 13);
+            this.laVoltageTitle.TabIndex = 49;
+            this.laVoltageTitle.Text = "Voltage:";
+            // 
+            // laMA
+            // 
+            this.laMA.AutoSize = true;
+            this.laMA.Enabled = false;
+            this.laMA.Location = new System.Drawing.Point(123, 50);
+            this.laMA.Name = "laMA";
+            this.laMA.Size = new System.Drawing.Size(22, 13);
+            this.laMA.TabIndex = 48;
+            this.laMA.Text = "mA";
+            // 
+            // laCurrent
+            // 
+            this.laCurrent.AutoSize = true;
+            this.laCurrent.Enabled = false;
+            this.laCurrent.Location = new System.Drawing.Point(67, 50);
+            this.laCurrent.Name = "laCurrent";
+            this.laCurrent.Size = new System.Drawing.Size(13, 13);
+            this.laCurrent.TabIndex = 47;
+            this.laCurrent.Text = "0";
+            // 
+            // laCurrentTitle
+            // 
+            this.laCurrentTitle.AutoSize = true;
+            this.laCurrentTitle.Enabled = false;
+            this.laCurrentTitle.Location = new System.Drawing.Point(12, 50);
+            this.laCurrentTitle.Name = "laCurrentTitle";
+            this.laCurrentTitle.Size = new System.Drawing.Size(47, 13);
+            this.laCurrentTitle.TabIndex = 46;
+            this.laCurrentTitle.Text = "Current: ";
             // 
             // laHighCurrent
             // 
             this.laHighCurrent.AutoSize = true;
             this.laHighCurrent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.laHighCurrent.ForeColor = System.Drawing.Color.Red;
-            this.laHighCurrent.Location = new System.Drawing.Point(260, 151);
+            this.laHighCurrent.Location = new System.Drawing.Point(12, 80);
             this.laHighCurrent.Name = "laHighCurrent";
             this.laHighCurrent.Size = new System.Drawing.Size(81, 13);
-            this.laHighCurrent.TabIndex = 29;
+            this.laHighCurrent.TabIndex = 52;
             this.laHighCurrent.Text = "High current!";
             this.laHighCurrent.Visible = false;
             // 
@@ -242,10 +387,10 @@
             this.laLowVoltage.AutoSize = true;
             this.laLowVoltage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.laLowVoltage.ForeColor = System.Drawing.Color.Red;
-            this.laLowVoltage.Location = new System.Drawing.Point(357, 151);
+            this.laLowVoltage.Location = new System.Drawing.Point(208, 80);
             this.laLowVoltage.Name = "laLowVoltage";
             this.laLowVoltage.Size = new System.Drawing.Size(81, 13);
-            this.laLowVoltage.TabIndex = 30;
+            this.laLowVoltage.TabIndex = 53;
             this.laLowVoltage.Text = "Low Voltage!";
             this.laLowVoltage.Visible = false;
             // 
@@ -253,7 +398,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 185);
+            this.ClientSize = new System.Drawing.Size(480, 253);
             this.Controls.Add(this.laLowVoltage);
             this.Controls.Add(this.laHighCurrent);
             this.Controls.Add(this.laMV);
@@ -262,15 +407,8 @@
             this.Controls.Add(this.laMA);
             this.Controls.Add(this.laCurrent);
             this.Controls.Add(this.laCurrentTitle);
-            this.Controls.Add(this.btDrift);
-            this.Controls.Add(this.btBrake);
-            this.Controls.Add(this.btStart);
-            this.Controls.Add(this.edPower);
-            this.Controls.Add(this.laPower);
-            this.Controls.Add(this.cbDirection);
-            this.Controls.Add(this.laDirection);
-            this.Controls.Add(this.laIoState);
             this.Controls.Add(this.laStatus);
+            this.Controls.Add(this.tcMotors);
             this.Controls.Add(this.btDisconnect);
             this.Controls.Add(this.btConnect);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -279,32 +417,47 @@
             this.Text = "WeDo Motor Test Application";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FmMain_FormClosed);
             this.Load += new System.EventHandler(this.FmMain_Load);
+            this.tcMotors.ResumeLayout(false);
+            this.tpMotor1.ResumeLayout(false);
+            this.tpMotor1.PerformLayout();
+            this.tpMotor2.ResumeLayout(false);
+            this.tpMotor2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label laIoState;
-        private System.Windows.Forms.Label laStatus;
         private System.Windows.Forms.Button btDisconnect;
         private System.Windows.Forms.Button btConnect;
-        private System.Windows.Forms.Label laDirection;
-        private System.Windows.Forms.ComboBox cbDirection;
-        private System.Windows.Forms.Label laPower;
-        private System.Windows.Forms.TextBox edPower;
-        private System.Windows.Forms.Button btStart;
-        private System.Windows.Forms.Button btBrake;
-        private System.Windows.Forms.Button btDrift;
-        private System.Windows.Forms.Label laCurrentTitle;
-        private System.Windows.Forms.Label laCurrent;
-        private System.Windows.Forms.Label laMA;
-        private System.Windows.Forms.Label laVoltageTitle;
-        private System.Windows.Forms.Label laVoltage;
+        private System.Windows.Forms.TabControl tcMotors;
+        private System.Windows.Forms.TabPage tpMotor1;
+        private System.Windows.Forms.Button btDrift1;
+        private System.Windows.Forms.Button btBrake1;
+        private System.Windows.Forms.Button btStart1;
+        private System.Windows.Forms.TextBox edPower1;
+        private System.Windows.Forms.Label laPower1;
+        private System.Windows.Forms.ComboBox cbDirection1;
+        private System.Windows.Forms.Label laDirection1;
+        private System.Windows.Forms.Label laIoState1;
+        private System.Windows.Forms.TabPage tpMotor2;
+        private System.Windows.Forms.Label laStatus;
         private System.Windows.Forms.Label laMV;
+        private System.Windows.Forms.Label laVoltage;
+        private System.Windows.Forms.Label laVoltageTitle;
+        private System.Windows.Forms.Label laMA;
+        private System.Windows.Forms.Label laCurrent;
+        private System.Windows.Forms.Label laCurrentTitle;
         private System.Windows.Forms.Label laHighCurrent;
         private System.Windows.Forms.Label laLowVoltage;
+        private System.Windows.Forms.Button btDrift2;
+        private System.Windows.Forms.Button btBrake2;
+        private System.Windows.Forms.Button btStart2;
+        private System.Windows.Forms.TextBox edPower2;
+        private System.Windows.Forms.Label laPower2;
+        private System.Windows.Forms.ComboBox cbDirection2;
+        private System.Windows.Forms.Label laDirection2;
+        private System.Windows.Forms.Label laIoState2;
     }
 }
 

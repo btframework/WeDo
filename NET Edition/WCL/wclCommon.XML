@@ -244,7 +244,8 @@
               <para><c> 16299 </c> <c>   1709  </c></para>
               <para><c> 17134 </c> <c>   1803  </c></para>
               <para><c> 17763 </c> <c>   1809  </c></para>
-              <para><c> 18362 </c> <c>   1903  </c></para> </remarks>
+              <para><c> 18362 </c> <c>   1903  </c></para>
+              <para><c> 18363 </c> <c>   1909  </c></para> </remarks>
         </member>
         <member name="T:wclCommon.wclHelpers">
             <summary> This static class includes some helpers methods used in WCL. </summary>
@@ -332,6 +333,24 @@
             <returns> <para> The return value is <c>false</c> if the specified time interval expired. </para>
               <para> The return value is <c>true</c> if the function returned due to one or more APC
               functions. </para> </returns>
+        </member>
+        <member name="M:wclCommon.wclHelpers.WaitEx(System.IntPtr[],System.UInt32)">
+            <summary> Waits until one or all of the specified objects are in the signaled state, an I/O completion routine or
+              asynchronous procedure call (APC) is queued to the thread, or the time-out interval elapses. </summary>
+            <param name="Handles"> An array of object handles. </param>
+            <param name="Milliseconds"> <para> The time interval for which execution is to be suspended, in milliseconds. </para>
+              <para> A value of zero causes the thread to relinquish the remainder of its time slice to any other thread that
+              is ready to run. If there are no other threads ready to run, the function returns immediately, and the thread
+              continues execution. Windows XP: A value of zero causes the thread to relinquish the remainder of its time slice
+              to any other thread of equal priority that is ready to run. If there are no other threads of equal priority ready
+              to run, the function returns immediately, and the thread continues execution. This behavior changed starting
+              with Windows Server 2003. </para>
+              <para> A value of <c>0xFFFFFFFF</c> indicates that the suspension should not time out. </para> </param>
+            <returns> <para> If the function succeeds, the return value indicates the event that caused the function to return. </para>
+              <para> Returning <c>wclWinAPI.WAIT_IO_COMPLETION</c> indicates that the wait was ended by one or more user-mode asynchronous procedure
+              calls (APC) queued to the thread. </para>
+              <para> Returning <c>wclWinAPI.WAIT_TIMEOUT</c> indicates that the time-out interval elapsed and no completion routines are queued. </para>
+              <para> Returning <c>wclWinAPI.WAIT_FAILED</c> indicates that the function has failed. </para> </returns>
         </member>
         <member name="T:wclCommon.wclMessageSynchronizationKind">
             <summary> Message synchronization methods used for inter-threading
@@ -717,6 +736,9 @@
             <exclude />
         </member>
         <member name="T:wclCommon.wclOle">
+            <exclude />
+        </member>
+        <member name="T:wclCommon.wclSecurity">
             <exclude />
         </member>
         <member name="T:wclCommon.wclWinRT">
