@@ -1085,6 +1085,8 @@
             <summary> The <c>OnHubConnected</c> event handler prototype. </summary>
             <param name="Sender"> The object that fired the event. </param>
             <param name="Hub"> The WeDo HUB object that has been connected. </param>
+            <param name="Error"> The connection result. If the connection completed with success the
+               <c>Error</c> value is <c>WCL_E_SUCCESS</c>. </param>
             <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoRobotHubDisconnectedEvent">
@@ -1094,47 +1096,90 @@
             <param name="Reason"> The disconnection reason code. </param>
             <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
         </member>
+        <member name="T:wclWeDoFramework.wclWeDoRobotHubFoundEvent">
+            <summary> The <c>OnHubFound</c> event handler prototype. </summary>
+            <param name="Sender"> The object that fired the event. </param>
+            <param name="Address"> The HUD address. </param>
+            <param name="Name"> The HUB name. </param>
+            <param name="Connect"> An application sets this boolean value to <c>true</c> to
+              accept connection to this HUB. Set this parameter to <c>false</c> to ignore HUB. </param>
+        </member>
         <member name="T:wclWeDoFramework.wclWeDoRobot">
             <summary> The class represents a WeDo Robot.  </summary>
             <remarks> The WeDo Robot is the class that combines all the WeDo Framework features into
-              a single place. It allows to work with more thean single Hub and hides all the
-              Bluetooth Framework prepartion steps required todiscover WeDo Hubs and to work with
+              a single place. It allows to work with more then single Hub and hides all the
+              Bluetooth Framework preparation steps required to discover WeDo Hubs and to work with
               them.</remarks>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRobot.DoHubConnected(wclWeDoFramework.wclWeDoHub,System.Int32)">
+            <summary> Fires the <c>OnHubConnected</c> event. </summary>
+            <param name="Hub"> The WeDo HUB object that has been connected. </param>
+            <param name="Error"> The connection result code. If connection completed with success the
+              value is<c>WCL_E_SUCCESS</c>. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRobot.DoHubDisconnected(wclWeDoFramework.wclWeDoHub,System.Int32)">
+            <summary> Fires the <c>OnHubDisconnected</c> event. </summary>
+            <param name="Hub"> The WeDo Hub that just disconnected. </param>
+            <param name="Reason"> The disconnection reason code. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRobot.DoHubFound(System.Int64,System.String,System.Boolean@)">
+            <summary> Fires the <c>OnHubFound</c> event </summary>
+            <param name="Address"> The HUD address. </param>
+            <param name="Name"> The HUB name. </param>
+            <param name="Connect"> An application sets this boolean value to <c>true</c> to
+              accept connection to this HUB. Set this parameter to <c>false</c> to ignore HUB. </param>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRobot.DoStarted">
+            <summary> Fires the <c>OnStarted</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRobot.DoStopped">
+            <summary> Fires the <c>OnStopped</c> event. </summary>
         </member>
         <member name="M:wclWeDoFramework.wclWeDoRobot.#ctor">
             <summary> Creates new instance of the WeDo Robot class. </summary>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoRobot.Connect">
-            <summary> Connects to specified HUBs. </summary>
+        <member name="M:wclWeDoFramework.wclWeDoRobot.Start">
+            <summary> Starts connection to the WeDo Hubs. </summary>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+            <remarks> The method starts searching for WeDo Hubs and to connect to each found. Once the Hub found
+              the <c>OnHubFound</c> event fires. An application may accept connection to this Hub by setting
+              the <c>Connect</c> parameter to <c>true</c>. </remarks>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRobot.Stop">
+            <summary> Stops the WeDo Robot. </summary>
             <returns> If the method completed with success the returning value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
               one of the Bluetooth Framework error code. </returns>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoRobot.Disconnect">
-            <summary> Disconnects from  all connected HUBs. </summary>
-            <returns> If the method completed with success the returning value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
-              one of the Bluetooth Framework error code. </returns>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoRobot.Addresses">
-            <summary> Gets the list of required addresses. </summary>
-            <value> The list of HUBs MACs. </value>
-        </member>
-        <member name="P:wclWeDoFramework.wclWeDoRobot.Connected">
+        <member name="P:wclWeDoFramework.wclWeDoRobot.Active">
             <summary> Gets the class state. </summary>
             <value> <c>True</c> if connection is running. <c>False</c> otherwise. </value>
         </member>
         <member name="P:wclWeDoFramework.wclWeDoRobot.Hubs">
-            <summary> Gets the list of connected HUBs. </summary>
-            <value> The list of connected HUBs. </value>
+            <summary> Gets list of the connected WeDo Hubs. </summary>
+            <value> The list of the WeDo Hubs. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
         </member>
         <member name="E:wclWeDoFramework.wclWeDoRobot.OnHubConnected">
-            <summary> The event fires when new found WeDo HUB has just been connected. </summary>
+            <summary> The event fires when connection operation has been completed. </summary>
             <seealso cref="T:wclWeDoFramework.wclWeDoRobotHubConnectedEvent"/>
         </member>
         <member name="E:wclWeDoFramework.wclWeDoRobot.OnHubDisconnected">
-            <summary> The event fires when HUB has been disconnected. </summary>
+            <summary> The event fires when the WeDo Hub has been disconnected. </summary>
             <seealso cref="T:wclWeDoFramework.wclWeDoRobotHubDisconnectedEvent"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoRobot.OnHubFound">
+            <summary> The event fires when new WeDo HUB found. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoRobotHubFoundEvent"/>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoRobot.OnStarted">
+            <summary> The event fires when search and connect to found WeDo Hubs has been started. </summary>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoRobot.OnStopped">
+            <summary> The event firs when search and connect to the WeDo Hubs stopped. </summary>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoSensorDataUnit">
             <summary> The sensor's data unit. </summary>

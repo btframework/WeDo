@@ -20,30 +20,6 @@
         <member name="F:wclCommon.wclErrors.WCL_E_OUT_OF_MEMORY">
             <summary> Out of system memory. </summary>
         </member>
-        <member name="F:wclCommon.wclErrors.WCL_E_THREAD_RUNNING">
-            <summary> The thread is already running. </summary>
-        </member>
-        <member name="F:wclCommon.wclErrors.WCL_E_UNABLE_CREATE_THREAD_INIT_EVENT">
-            <summary> Unable to create thread initialization event. </summary>
-        </member>
-        <member name="F:wclCommon.wclErrors.WCL_E_UNABLE_CREATE_THREAD">
-            <summary> Unable to create thread. </summary>
-        </member>
-        <member name="F:wclCommon.wclErrors.WCL_E_THREAD_NOT_RUNNING">
-            <summary> The thread is not running. </summary>
-        </member>
-        <member name="F:wclCommon.wclErrors.WCL_E_THREAD_SIGNAL_FAILED">
-            <summary> Unable to post signal to the thread. </summary>
-        </member>
-        <member name="F:wclCommon.wclErrors.WCL_E_THREAD_MESSAGE_REGISTRATION_FAILED">
-            <summary> Unable to register thread message. </summary>
-        </member>
-        <member name="F:wclCommon.wclErrors.WCL_E_THREAD_WINDOW_CREATION_FAILED">
-            <summary> Unable to create thread window. </summary>
-        </member>
-        <member name="F:wclCommon.wclErrors.WCL_E_THREAD_INITIALIZATION_FAILED">
-            <summary> Thread user initialization failed. </summary>
-        </member>
         <member name="F:wclCommon.wclErrors.WCL_E_MR_BASE">
             <summary> The base error code for the message receiver. </summary>
         </member>
@@ -162,6 +138,46 @@
         <member name="F:wclCommon.wclErrors.WCL_E_WINUSB_UNEXPECTED">
             <summary> Unknown or unexpected WinUSB error. </summary>
         </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_THREAD_BASE">
+            <summary> The base error code for all WCL thread errors. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_THREAD_RUNNING">
+            <summary> The thread is already running. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_THREAD_UNABLE_CREATE_THREAD_INIT_EVENT">
+            <summary> Unable to create thread initialization event. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_THREAD_UNABLE_CREATE_THREAD">
+            <summary> Unable to create thread. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_THREAD_NOT_RUNNING">
+            <summary> The thread is not running. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_THREAD_SIGNAL_FAILED">
+            <summary> Unable to post signal to the thread. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_THREAD_MESSAGE_REGISTRATION_FAILED">
+            <summary> Unable to register thread message. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_THREAD_WINDOW_CREATION_FAILED">
+            <summary> Unable to create thread window. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_THREAD_INITIALIZATION_FAILED">
+            <summary> Thread user initialization failed. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_PEM_BASE">
+            <summary> The base error code for Power Events monitor error codes. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_PEM_OPENED">
+            <summary> The power events monitor is already opened. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_PEM_CLOSED">
+            <summary> The power events monitor is already closed. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_PEM_FEATURE_NOT_SUPPORTED">
+            <summary> The power state monitoring feature is supported on Windows 8 and
+              above. </summary>
+        </member>
         <member name="T:wclCommon.wclException">
             <summary> The base WCL exceptions class. </summary>
         </member>
@@ -245,7 +261,8 @@
               <para><c> 17134 </c> <c>   1803  </c></para>
               <para><c> 17763 </c> <c>   1809  </c></para>
               <para><c> 18362 </c> <c>   1903  </c></para>
-              <para><c> 18363 </c> <c>   1909  </c></para> </remarks>
+              <para><c> 18363 </c> <c>   1909  </c></para>
+              <para><c> 19041 </c> <c>   2004  </c></para> </remarks>
         </member>
         <member name="T:wclCommon.wclHelpers">
             <summary> This static class includes some helpers methods used in WCL. </summary>
@@ -259,6 +276,26 @@
               indicates if the Mutex must be owned by a called. </param>
             <returns> If the function succeed the return value is the Mutex handle.
               If the function failed the return value is <c>IntPtr.Zero</c>. </returns>
+        </member>
+        <member name="M:wclCommon.wclHelpers.GetErrorInfo(System.Int32,System.String@,System.String@,System.String@,System.String@)">
+            <summary> Reads the error information. </summary>
+            <param name="Error"> The WCL error code. </param>
+            <param name="Framework"> If the function completed with success on output
+              contains the WCL Framework name that the error relates to. </param>
+            <param name="Category"> If the function completed with success on output
+              contains the error category. </param>
+            <param name="Constant"> If the function completed with success on output
+              contains the error constant name. </param>
+            <param name="Description"> If the function completed with success on output
+              contains the error description. </param>
+            <returns> If the function completed with success the returning value is
+              <c>true</c>. Otherwise the function returns <c>false</c>. </returns>
+            <remarks> <para> The function uses the errors.xml file located on our site.
+              The file link is https://www.btframework.com/errors.xml </para>
+              <para> If you want to use local file or implement the function in
+              different way you can use the sample code we published on GitHub and
+              available by this link:
+              https://github.com/btframework/ErrorToText </para> </remarks>
         </member>
         <member name="M:wclCommon.wclHelpers.IncPtr(System.IntPtr,System.Int32)">
             <summary> Increments a pointer on given offset. </summary>
@@ -435,6 +472,9 @@
         <member name="F:wclCommon.wclMessage.WCL_MSG_ID_SYS_HARDWARE_CHANGED">
             <summary> The Hardware Changed message ID. </summary>
         </member>
+        <member name="F:wclCommon.wclMessage.WCL_MSG_ID_SYS_POWER_STATE_CHANGED">
+            <summary> The Power State Changed message ID. </summary>
+        </member>
         <member name="T:wclCommon.wclSystemCategoryMessage">
             <summary> The system category message base class. </summary>
             <seealso cref="T:wclCommon.wclMessage" />
@@ -473,6 +513,44 @@
         <member name="P:wclCommon.wclHardwareChangeMessage.Inserted">
             <summary> Gets the device state. </summary>
             <value> <c>true</c> if the device has been inserted. </value>
+        </member>
+        <member name="T:wclCommon.wclPowerState">
+            <summary> The enumneration defines the system power states. </summary>
+        </member>
+        <member name="F:wclCommon.wclPowerState.psResumeAutomatic">
+            <summary>  Indicates that the system is resuming from sleep or
+              hibernation. This state is delivered every time the system resumes and
+              does not indicate whether a user is present. </summary>
+        </member>
+        <member name="F:wclCommon.wclPowerState.psResume">
+            <summary> Indicates that the system is resuming from a low-power state.
+              This state appears after <c>psResumeAutomatic</c> if the resume is
+              triggered by user input, such as pressing a key. </summary>
+        </member>
+        <member name="F:wclCommon.wclPowerState.psSuspend">
+            <summary> Indicates that the computer is about to enter a suspended
+              state. </summary>
+        </member>
+        <member name="F:wclCommon.wclPowerState.psUnknown">
+            <summary> Unknown power state. </summary>
+        </member>
+        <member name="T:wclCommon.wclPowerStateChangeMessage">
+            <summary> The Power State Changed message is broadcasted to all
+              subscribers when changes in the power state have been detected. The
+              message ID is
+              <see cref="F:wclCommon.wclMessage.WCL_MSG_ID_SYS_POWER_STATE_CHANGED" />. </summary>
+            <remarks> This message is supported on Windows 8 and above. </remarks>
+            <seealso cref="T:wclCommon.wclSystemCategoryMessage" />
+        </member>
+        <member name="M:wclCommon.wclPowerStateChangeMessage.#ctor(wclCommon.wclPowerState)">
+            <summary> Creates new Power State Changed message object. </summary>
+            <param name="State"> The current power state. </param>
+            <seealso cref="T:wclCommon.wclPowerState" />
+        </member>
+        <member name="P:wclCommon.wclPowerStateChangeMessage.State">
+            <summary> Gets the current power state. </summary>
+            <value> The current power state. </value>
+            <seealso cref="T:wclCommon.wclPowerState" />
         </member>
         <member name="T:wclCommon.wclWiFiCategoryMessage">
             <summary> The WiFi Category Message base class. </summary>
@@ -560,7 +638,7 @@
             <summary> Creates new message receiver object. </summary>
         </member>
         <member name="M:wclCommon.wclMessageReceiver.Finalize">
-            <summary> Frees the message recevier.</summary>
+            <summary> Frees the message receiver.</summary>
         </member>
         <member name="M:wclCommon.wclMessageReceiver.Close">
             <summary> Closes the receiver and stops listening for the
@@ -632,13 +710,21 @@
               receivers. </remarks>
         </member>
         <member name="M:wclCommon.wclMessageBroadcaster.Broadcast(wclCommon.wclMessage)">
-            <summary> Broadcasts a Messgae to all message receviers. </summary>
+            <summary> Broadcasts a Message to all message receivers. </summary>
             <param name="Message"> The <see cref="T:wclCommon.wclMessage" /> object represents
               the message. A caller is responsible to free the <c>Message</c> object
               after procedure call. </param>
             <returns> If the function succeed the returns value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the function returns one
               of the WCL error codes. </returns>
+        </member>
+        <member name="M:wclCommon.wclMessageBroadcaster.ProcessMessages">
+            <summary> Force message processing. </summary>
+            <returns> If the function succeed the returns value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the function returns one
+              of the WCL error codes. </returns>
+            <remarks> This function can be used to force message processing in case
+              if your execution thread is blocked. </remarks>
         </member>
         <member name="M:wclCommon.wclMessageBroadcaster.GetSyncMethod">
             <summary> Gets the current inter-threading synchronization method. </summary>
@@ -713,6 +799,60 @@
         <member name="P:wclCommon.wclThread.Running">
             <summary> Gets the thread state. </summary>
             <value> <c>true</c> if the Thread is running. <c>false</c> otherwise. </value>
+        </member>
+        <member name="T:wclCommon.wclPowerStateChangedEvent">
+            <summary> The <c>OnPowerStateChanged</c> event handler
+              prototype </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="State"> The new power state. </param>
+            <seealso cref="T:wclCommon.wclPowerState" />
+        </member>
+        <member name="T:wclCommon.wclPowerEventsMonitor">
+            <summary> The class allows an application to receive power state changes
+              notifications. </summary>
+        </member>
+        <member name="M:wclCommon.wclPowerEventsMonitor.MessageReceived(wclCommon.wclMessage)">
+            <summary> The method called when a new notification message
+              received. </summary>
+            <param name="Message"> A <see cref="T:wclCommon.wclMessage" /> object
+              represents a notification message. </param>
+            <remarks> <para> This method is for internal use only. </para>
+              <para> If a derived class overrides this method it must always call
+              the inherited implementation first. </para> </remarks>
+            <seealso cref="T:wclCommon.wclMessage" />
+        </member>
+        <member name="M:wclCommon.wclPowerEventsMonitor.DoPowerStateChanged(wclCommon.wclPowerState)">
+            <summary> Fires the <c>OnChanged</c> event. </summary>
+            <param name="State"> The new power state. </param>
+            <seealso cref="T:wclCommon.wclPowerState" />
+        </member>
+        <member name="M:wclCommon.wclPowerEventsMonitor.#ctor">
+            <summary> Creates new object of the <c>wclPowerEventsMonitor</c>
+              class. </summary>
+        </member>
+        <member name="M:wclCommon.wclPowerEventsMonitor.Close">
+            <summary> Stops listening for the power events and releases all
+              resources. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclCommon.wclPowerEventsMonitor.Open">
+            <summary> Opens the power state changes monitor and starts listening for
+              events. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="P:wclCommon.wclPowerEventsMonitor.Active">
+            <summary> Gets the monitor's state. </summary>
+            <value> <c>true</c> if the power state monitor is listening for power
+              state changes. <c>false</c> otherwise. </value>
+        </member>
+        <member name="E:wclCommon.wclPowerEventsMonitor.OnPowerStateChanged">
+            <summary> The event fires when the system's power state has been
+              changed. </summary>
+            <seealso cref="T:wclCommon.wclPowerStateChangedEvent" />
         </member>
         <member name="T:wclCommon.wclSetupApi">
             <exclude />

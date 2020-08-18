@@ -292,6 +292,18 @@
         <member name="F:wclCommunication.wclConnectionErrors.WCL_E_OBEX_INVALID_STATE">
             <summary> Invalid data processor state. </summary>
         </member>
+        <member name="F:wclCommunication.wclConnectionErrors.WCL_E_OBEX_INVALID_DIR_LIST">
+            <summary> Unable to parse directory listing. </summary>
+        </member>
+        <member name="F:wclCommunication.wclConnectionErrors.WCL_E_OBEX_INVALID_DIR_FORMAT">
+            <summary> Wrong directory listing format. </summary>
+        </member>
+        <member name="F:wclCommunication.wclConnectionErrors.WCL_E_OBEX_COM_INIT_FAILED">
+            <summary> COM initialization failed. </summary>
+        </member>
+        <member name="F:wclCommunication.wclConnectionErrors.WCL_E_OBEX_XML_NOT_AVAILABLE">
+            <summary> XML parser is not available. </summary>
+        </member>
         <member name="T:wclCommunication.wclEConnection">
             <summary> The base class for connections exceptions. </summary>
             <seealso cref="T:wclCommon.wclException" />
@@ -1375,23 +1387,13 @@
             <seealso cref="T:wclCommunication.wclServerDataConnection" />
             <seealso cref="T:wclCommunication.wclServerClientDataConnection" />
         </member>
-        <member name="T:wclCommunication.wclObexObjectOperationResultEvent">
-            <summary> The Put and Get OBEX operations result event handler prototype. </summary>
-            <param name="Sender"> The object that initiated the event. </param>
-            <param name="Error"> The operation result code. If operation has been
-              completed with success the <c>Error</c> is
-              <c>WCL_E_SUCCESS</c>. </param>
-            <param name="Description"> Additional optinal description of the
-              operation result. </param>
-            <param name="Stream"> The stream object used in operation. </param>
-        </member>
         <member name="T:wclCommunication.wclObexOperationResultEvent">
             <summary> The common OBEX operation result event handler
               prototype. </summary>
             <param name="Sender"> The object that initiated the event. </param>
             <param name="Error"> The operation result code. If operation has been
               completed with success the <c>Error</c> is
-              <c>WCL_E_SUCCESS</c>. </param>
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
             <param name="Description"> Additional optinal description of the
               operation result. </param>
         </member>
@@ -1526,7 +1528,7 @@
             <summary> Fires the <c>OnConnect</c> event. </summary>
             <param name="Error"> The operation result code. If operation has been
               completed with success the <c>Error</c> is
-              <c>WCL_E_SUCCESS</c>. </param>
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
             <param name="Description"> Additional optinal description of the
               operation result. </param>
         </member>
@@ -1534,16 +1536,17 @@
             <summary> Fires the <c>OnDisconnect</c> event. </summary>
             <param name="Error"> The operation result code. If operation has been
               completed with success the <c>Error</c> is
-              <c>WCL_E_SUCCESS</c>. </param>
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
             <param name="Description"> Additional optinal description of the
               operation result. </param>
         </member>
         <member name="M:wclCommunication.wclCustomObexClient.DoGetComplete(System.Int32,System.String,System.IO.Stream)">
-            <summary> Fires the <c>OnGetComplete</c> event. </summary>
+            <summary> The method called when the OBEX GET operation has been
+              completed. </summary>
             <param name="Error"> The operation result code. If operation has been
               completed with success the <c>Error</c> is
-              <c>WCL_E_SUCCESS</c>. </param>
-            <param name="Description"> Additional optinal description of the
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
+            <param name="Description"> Additional optional description of the
               operation result. </param>
             <param name="Stream"> The stream object used in operation. </param>
         </member>
@@ -1553,20 +1556,22 @@
             <param name="Position"> The current tranferring byte index. </param>
         </member>
         <member name="M:wclCommunication.wclCustomObexClient.DoPutComplete(System.Int32,System.String,System.IO.Stream)">
-            <summary> Fires the <c>OnPutComplete</c> event. </summary>
+            <summary> The method called when the OBEX PUT operation has been
+              completed. </summary>
             <param name="Error"> The operation result code. If operation has been
               completed with success the <c>Error</c> is
-              <c>WCL_E_SUCCESS</c>. </param>
-            <param name="Description"> Additional optinal description of the
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
+            <param name="Description"> Additional optional description of the
               operation result. </param>
             <param name="Stream"> The stream object used in operation. </param>
         </member>
         <member name="M:wclCommunication.wclCustomObexClient.DoSetPathComplete(System.Int32,System.String)">
-            <summary> Fires the <c>OnSetPathComplete</c> event. </summary>
+            <summary> The method called when the OBEX SET_PATH operation has
+              been completed. </summary>
             <param name="Error"> The operation result code. If operation has been
               completed with success the <c>Error</c> is
-              <c>WCL_E_SUCCESS</c>. </param>
-            <param name="Description"> Additional optinal description of the
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
+            <param name="Description"> Additional optional description of the
               operation result. </param>
         </member>
         <member name="M:wclCommunication.wclCustomObexClient.Free">
@@ -1618,69 +1623,56 @@
               completed. </summary>
             <seealso cref="T:wclCommunication.wclObexOperationResultEvent" />
         </member>
-        <member name="E:wclCommunication.wclCustomObexClient.OnGetComplete">
-            <summary> The event fires when the Get operation has been
-              completed. </summary>
-            <remarks> If the operation completed with success the Stream object
-              contains the object's data. If the operation completed with error
-              the Stream contains a partial data and is invalid. An application can
-              not use the object from the Stream if the operation completed with
-              error. </remarks>
-            <seealso cref="T:wclCommunication.wclObexObjectOperationResultEvent" />
-        </member>
         <member name="E:wclCommunication.wclCustomObexClient.OnProgress">
             <summary> The event fires during sending or receiving an object
               to indicate operation prorgess. </summary>
             <seealso cref="T:wclCommunication.wclObexOperationProgressEvent" />
         </member>
-        <member name="E:wclCommunication.wclCustomObexClient.OnPutComplete">
-            <summary> The event fires when the Put operation has been
-              completed. </summary>
-            <remarks> An application can dispose the Stream object passed to the Put
-              method. The state of the Stream object is changed. </remarks>
-            <seealso cref="T:wclCommunication.wclObexObjectOperationResultEvent" />
+        <member name="T:wclCommunication.wclObexObjectOperationResultEvent">
+            <summary> The Put and Get OBEX operations result event handler prototype. </summary>
+            <param name="Sender"> The object that initiated the event. </param>
+            <param name="Error"> The operation result code. If operation has been
+              completed with success the <c>Error</c> is
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
+            <param name="Description"> Additional optinal description of the
+              operation result. </param>
+            <param name="Stream"> The stream object used in operation. </param>
         </member>
-        <member name="T:wclCommunication.wclObexOppClient">
-            <summary> The data processor implements the OBEX Object Push Profile
-              client. </summary>
+        <member name="T:wclCommunication.wclObexFileClient">
+            <summary> The base class for OBEX file based clients: OPP, FTP,
+              etc. </summary>
+            <remarks> The class provides some basic events and methods that are common
+              for all file based OBEX clients. </remarks>
             <seealso cref="T:wclCommunication.wclCustomObexClient" />
         </member>
-        <member name="M:wclCommunication.wclObexOppClient.#ctor(wclCommunication.wclClientDataConnection)">
-            <summary> Creates new OBEX OPP Client. </summary>
+        <member name="M:wclCommunication.wclObexFileClient.DoGetComplete(System.Int32,System.String,System.IO.Stream)">
+            <summary> Fires the <c>OnGetComplete</c> event. </summary>
+            <param name="Error"> The operation result code. If operation has been
+              completed with success the <c>Error</c> is
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
+            <param name="Description"> Additional optional description of the
+              operation result. </param>
+            <param name="Stream"> The stream object used in operation. </param>
+        </member>
+        <member name="M:wclCommunication.wclObexFileClient.DoPutComplete(System.Int32,System.String,System.IO.Stream)">
+            <summary> Fires the <c>OnPutComplete</c> event. </summary>
+            <param name="Error"> The operation result code. If operation has been
+              completed with success the <c>Error</c> is
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
+            <param name="Description"> Additional optional description of the
+              operation result. </param>
+            <param name="Stream"> The stream object used in operation. </param>
+        </member>
+        <member name="M:wclCommunication.wclObexFileClient.#ctor(wclCommunication.wclClientDataConnection)">
+            <summary> Creates new OBEX File Client Data Processor. </summary>
             <param name="Connection"> A <see cref="T:wclCommunication.wclClientDataConnection" />
               object that is used to communicate with a remote device. If the
-             parameter is <c>null</c> the <see cref="T:wclCommon.wclEInvalidArgument" />
+             parameter is <c>nil</c> the <see cref="T:wclCommon.wclEInvalidArgument" />
               exception raises. </param>
             <exception cref="T:wclCommon.wclEInvalidArgument" />
             <seealso cref="T:wclCommunication.wclClientDataConnection" />
         </member>
-        <member name="M:wclCommunication.wclObexOppClient.Connect">
-            <summary> Connects to an OBEX server. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-        </member>
-        <member name="M:wclCommunication.wclObexOppClient.Pull(System.String,System.IO.Stream)">
-            <summary> The function reads the default object with given type from an
-              OBEX Push server. </summary>
-            <param name="aType"> The object's type. </param>
-            <param name="Stream"> The object's data stream. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> <para> This function can be used to pull (request) the default
-              business card (vCard) from a target device. To do that the
-              <c>aType</c> parameter must be "text/x-vCard" string. </para>
-              <para> An application must pass a valid Stream object to the method
-              and the stream object must be valid until <c>OnGetComplete</c> event
-              fires. An application can destroy the stream object passed as the
-              <c>Stream</c> parameter only after <c>OnGetComplete</c> event
-              fired. </para>
-              <para> During execution of the Pull operation the <c>OnProgress</c>
-              event may (or may not) fire indicating the operation
-              progress. </para> </remarks>
-        </member>
-        <member name="M:wclCommunication.wclObexOppClient.Push(System.String,System.String,System.IO.Stream)">
+        <member name="M:wclCommunication.wclObexFileClient.Put(System.String,System.String,System.IO.Stream)">
             <summary> Sends one object from the client to the server. </summary>
             <param name="Name"> The object's name. If the parameter is an empty
               string the Name is ignored.  </param>
@@ -1698,9 +1690,294 @@
               An application can destroy the stream object passed as the
               <c>Stream</c> parameter only after <c>OnPutComplete</c> event
               fired. </para>
-              <para> During execution of the Push operation the <c>OnProgress</c>
+              <para> During execution of the Put operation the <c>OnProgress</c>
               event may (or may not) fire indicating the operation
               progress. </para> </remarks>
+        </member>
+        <member name="E:wclCommunication.wclObexFileClient.OnGetComplete">
+            <summary> The event fires when the Get operation has been
+              completed. </summary>
+            <remarks> If the operation completed with success the Stream object
+              contains the object's data. If the operation completed with error
+              the Stream contains a partial data and is invalid. An application can
+              not use the object from the Stream if the operation completed with
+              error. </remarks>
+            <seealso cref="T:wclCommunication.wclObexObjectOperationResultEvent" />
+        </member>
+        <member name="E:wclCommunication.wclObexFileClient.OnPutComplete">
+            <summary> The event fires when the Put operation has been
+              completed. </summary>
+            <remarks> An application can dispose the Stream object passed to the Put
+              method. The state of the Stream object is changed. </remarks>
+            <seealso cref="T:wclCommunication.wclObexObjectOperationResultEvent" />
+        </member>
+        <member name="T:wclCommunication.wclObexOppClient">
+            <summary> The data processor implements the OBEX Object Push Profile
+              client. </summary>
+            <seealso cref="T:wclCommunication.wclObexFileClient" />
+        </member>
+        <member name="M:wclCommunication.wclObexOppClient.#ctor(wclCommunication.wclClientDataConnection)">
+            <summary> Creates new OBEX OPP Client. </summary>
+            <param name="Connection"> A <see cref="T:wclCommunication.wclClientDataConnection" />
+              object that is used to communicate with a remote device. If the
+             parameter is <c>null</c> the <see cref="T:wclCommon.wclEInvalidArgument" />
+              exception raises. </param>
+            <exception cref="T:wclCommon.wclEInvalidArgument" />
+            <seealso cref="T:wclCommunication.wclClientDataConnection" />
+        </member>
+        <member name="M:wclCommunication.wclObexOppClient.Connect">
+            <summary> Connects to an OBEX server. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclCommunication.wclObexOppClient.Get(System.String,System.IO.Stream)">
+            <summary> The function reads the default object with given type from an
+              OBEX Push server. </summary>
+            <param name="aType"> The object's type. </param>
+            <param name="Stream"> The object's data stream. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> This function can be used to pull (request) the default
+              business card (vCard) from a target device. To do that the
+              <c>aType</c> parameter must be "text/x-vCard" string. </para>
+              <para> An application must pass a valid Stream object to the method
+              and the stream object must be valid until <c>OnGetComplete</c> event
+              fires. An application can destroy the stream object passed as the
+              <c>Stream</c> parameter only after <c>OnGetComplete</c> event
+              fired. </para>
+              <para> During execution of the Get operation the <c>OnProgress</c>
+              event may (or may not) fire indicating the operation
+              progress. </para> </remarks>
+        </member>
+        <member name="T:wclCommunication.wclObexFilePermission">
+            <summary> The OBEX file object permission. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexFilePermission.opRead">
+            <summary> Read permission. </summary>
+            <remarks> The <c>READ</c> permission applies to all object types. It
+              indicates that an attempt to <c>GET</c> the named object should
+              successfully retrieve its contents. </remarks>
+        </member>
+        <member name="F:wclCommunication.wclObexFilePermission.opWrite">
+            <summary> Write permission. </summary>
+            <remarks> The <c>WRITE</c> permission applies to all object types. It
+              indicates that an attempt to modify the contents of the file by
+              <c>PUT</c>’ing to the file should succeed. For folder objects it
+              indicates that attempts to create a folder or other object within that
+              folder should succeed. </remarks>
+        </member>
+        <member name="F:wclCommunication.wclObexFilePermission.opDelete">
+            <summary> Delete permission. </summary>
+            <remarks> The <c>DELETE</c> permission applies to file types. It
+              indicates that the file may be removed by sending a <c>DELETE</c>
+              command. </remarks>
+        </member>
+        <member name="T:wclCommunication.wclObexFileObject">
+            <summary> The record describes the OBEX file system object. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexFileObject.IsDirectory">
+            <summary> If this member is <c>True</c> the file system object is
+              directory. If this member is <c>False</c> the file system object
+              if file. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexFileObject.Name">
+            <summary> The file system object name. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexFileObject.Description">
+            <summary> The object's description. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexFileObject.Size">
+            <summary> The file system object size in bytes. If the file system
+              object is directory this member is always 0. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexFileObject.Permissions">
+            <summary> The user level permissions. </summary>
+            <remarks> A permission indicator does not imply that the appropriate
+              command is guaranteed to work – just that it might. Other system
+              specific limitations, such as limitations on available space for
+              storing objects, may cause an operation to fail, where the permission
+              flags may have indicated that it was likely to succeed. The
+              permissions are a guide only. Some systems may have more specific
+              permissions than those listed here, such systems should map those
+              to the flags defined as best they are able. </remarks>
+            <seealso cref="T:wclCommunication.wclObexFilePermission" />
+        </member>
+        <member name="F:wclCommunication.wclObexFileObject.Modified">
+            <summary> The last modified time for the object. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexFileObject.Created">
+            <summary> The creation time for the object. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexFileObject.Accessed">
+            <summary> The last accessed time for the object. </summary>
+        </member>
+        <member name="T:wclCommunication.wclObexFtpDirCompleteEvent">
+            <summary> The <c>OnDirComplete</c> event handler prototype. </summary>
+            <param name="Sender"> The object that initiated the event. </param>
+            <param name="Error"> The operation result code. If operation has been
+              completed with success the <c>Error</c> is
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
+            <param name="Description"> Additional optinal description of the
+              operation result. </param>
+            <param name="Dirs"> The array of file system objects. This parameter can
+              be <c>nil</c> if no file system objects found in current directory or
+              if <c>Error</c> parameter is not <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
+            <seealso cref="T:wclCommunication.wclObexFileObject" />
+        </member>
+        <member name="T:wclCommunication.wclObexFtpClient">
+            <summary> The data processor implements the OBEX File Transfer Profile
+              client. </summary>
+            <seealso cref="T:wclCommunication.wclObexFileClient" />
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.DoGetComplete(System.Int32,System.String,System.IO.Stream)">
+            <summary> The method called when the OBEX GET operation has been
+              completed. </summary>
+            <param name="Error"> The operation result code. If operation has been
+              completed with success the <c>Error</c> is
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
+            <param name="Description"> Additional optinal description of the
+              operation result. </param>
+            <param name="Stream"> The stream object used in operation. </param>
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.DoPutComplete(System.Int32,System.String,System.IO.Stream)">
+            <summary> The method called when the OBEX PUT operation has been
+              completed. </summary>
+            <param name="Error"> The operation result code. If operation has been
+              completed with success the <c>Error</c> is
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
+            <param name="Description"> Additional optional description of the
+              operation result. </param>
+            <param name="Stream"> The stream object used in operation. </param>
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.DoSetPathComplete(System.Int32,System.String)">
+            <summary> The method called when the OBEX SET_PATH operation has
+              been completed. </summary>
+            <param name="Error"> The operation result code. If operation has been
+              completed with success the <c>Error</c> is
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
+            <param name="Description"> Additional optional description of the
+              operation result. </param>
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.#ctor(wclCommunication.wclClientDataConnection)">
+            <summary> Creates new OBEX File Transfer Profile Client Data
+              Processor. </summary>
+            <param name="Connection"> A <see cref="T:wclCommunication.wclClientDataConnection" />
+              object that is used to communicate with a remote device. If the
+              parameter is <c>nil</c> the <see cref="T:wclCommon.wclEInvalidArgument" />
+              exception raises. </param>
+            <exception cref="T:wclCommon.wclEInvalidArgument" />
+            <seealso cref="T:wclCommunication.wclClientDataConnection" />
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.Connect">
+            <summary> Connects to an OBEX server. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.ChangeDir(System.String)">
+            <summary> Changes current directory to the child directory. </summary>
+            <param name="Name"> The child directory name. Use ".." to go one level
+              up. Use empty name to go to the root directory. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> When operation completed the <c>OnChangeDirComplete</c>
+              event fires. </remarks>
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.Delete(System.String)">
+            <summary> Deletes the object with given name. </summary>
+            <param name="Name"> The object's name. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> The object can be any object: file, directory, virtual
+              object. </para>
+              <para> When the operation completed the <c>OnDeleteComplete</c> event
+              fires. </para> </remarks>
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.Dir">
+            <summary> Requests the files listing for the current
+              directory. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> When operation completed the <c>OnDirComplete</c> event
+              fires. </remarks>
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.Get(System.String,System.IO.Stream)">
+            <summary> Requests an object from a server. </summary>
+            <param name="Name"> The object's name. If the parameter is an empty
+              string the Name is ignored.  </param>
+            <param name="Stream"> The object's data stream. This must be valid
+              empty stream object. The stream must have write access
+              permition. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> The method starts receiving an object from an OBEX
+              server. When sending is completed the <c>OnGetComplete</c> event fires
+              with the operation result. </para>
+              <para> The Stream object passed to the method must be valid until
+              <c>OnGetComplete</c> event fires. An application can destroy the
+              stream object passed as the <c>Stream</c> parameter only after
+              <c>OnGetComplete</c> event fired. </para>
+              <para> During execution of the Get operation the <c>OnProgress</c>
+              event may (or may not) fire indicating the operation
+              progress. </para> </remarks>
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.MkDir(System.String)">
+            <summary> Creates new directory. </summary>
+            <param name="Name"> The directory name. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> When operation completed the <c>OnMakeDirComplete</c>
+              event fires. </para>
+              <para> If the operation completed with success the current directory
+              is changed to the just created directory. </para> </remarks>
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.Put(System.String,System.String,System.IO.Stream)">
+            <summary> Sends one object from the client to the server. </summary>
+            <param name="Name"> The object's name. </param>
+            <param name="Description"> The object's description. If the parameter is
+              an empty string the Description is ignored. </param>
+            <param name="Stream"> The object's data stream. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> The method starts sending an object to an OBEX server.
+              When sending is completed the <c>OnPutComplete</c> event fires with
+              the operation result. </para>
+              <para> If an application passes a valid Stream object to the method
+              the object must be valid until <c>OnPutComplete</c> event fires.
+              An application can destroy the stream object passed as the
+              <c>Stream</c> parameter only after <c>OnPutComplete</c> event
+              fired. </para>
+              <para> During execution of the Put operation the <c>OnProgress</c>
+              event may (or may not) fire indicating the operation
+              progress. </para> </remarks>
+        </member>
+        <member name="E:wclCommunication.wclObexFtpClient.OnChangeDirComplete">
+            <summary> The event fires when the change directory operation has been
+              completed. </summary>
+            <seealso cref="T:wclCommunication.wclObexOperationResultEvent" />
+        </member>
+        <member name="E:wclCommunication.wclObexFtpClient.OnDeleteComplete">
+            <summary> The event fires when the delet operation has been
+              completed. </summary>
+            <seealso cref="T:wclCommunication.wclObexOperationResultEvent" />
+        </member>
+        <member name="E:wclCommunication.wclObexFtpClient.OnDirComplete">
+            <summary> The event fires when directory listing has been
+              completed. </summary>
+            <seealso cref="T:wclCommunication.wclObexFtpDirCompleteEvent" />
+        </member>
+        <member name="E:wclCommunication.wclObexFtpClient.OnMakeDirComplete">
+            <summary> The event fires when the creting directory operation has been
+              completed. </summary>
+            <seealso cref="T:wclCommunication.wclObexOperationResultEvent" />
         </member>
         <member name="T:wclCommunication.wclObexServerClientDisconnectedEvent">
             <summary> The OBEX server data processor <c>OnDisconnect</c> event handler

@@ -352,6 +352,72 @@
         <member name="F:wclBluetooth.wclGattProtectionLevel.plEncryptionAndAuthentication">
             <summary> Require the link to be encrypted and authenticated. </summary>
         </member>
+        <member name="T:wclBluetooth.wclGattLocalCharacteristicProperty">
+            <summary> The enumeration represents the GATT local characteristic
+              properties, as defined by the GATT profile. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpNone">
+            <summary> Not specified. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpAuthenticatedSignedWritable">
+            <summary> The characteristic supports signed writes. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpBroadcastable">
+            <summary> The characteristic supports broadcasting. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpExtendedProperties">
+            <summary> The ExtendedProperties Descriptor is present. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpIndicatable">
+            <summary> The characteristic is indicatable. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpNotifiable">
+            <summary> The characteristic is notifiable. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpReadable">
+            <summary> The characteristic is readable. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpReliableWritable">
+            <summary> The characteristic supports reliable writes. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpWritableAuxiliaries">
+            <summary> The characteristic has writable auxiliaries. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpWritable">
+            <summary> The characteristic is writable. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpWritableWithoutResponse">
+            <summary> The characteristic supports Write Without Response. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclGattLocalCharacteristicParameters">
+            <summary> The structure represents a GATT local characteristic
+              parameters. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclGattLocalCharacteristicParameters.Props">
+            <summary> The characteristic's properties. </summary>
+            <seealso cref="T:wclBluetooth.wclGattLocalCharacteristicProperty" />
+        </member>
+        <member name="F:wclBluetooth.wclGattLocalCharacteristicParameters.ReadProtectionLevel">
+            <summary> The read protection level of a local
+              characteristic. </summary>
+            <seealso cref="T:wclBluetooth.wclGattProtectionLevel" />
+        </member>
+        <member name="F:wclBluetooth.wclGattLocalCharacteristicParameters.WriteProtectionLevel">
+            <summary> The write protection level of a local
+              characteristic. </summary>
+            <seealso cref="T:wclBluetooth.wclGattProtectionLevel" />
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeScanningMode">
+            <summary> Specifies the Bluetooth LE scanning mode. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeScanningMode.smActive">
+            <summary> Scanning mode is active. This indicates that scan request
+              packets will be sent from the platform to actively query for more
+              advertisement data of type ScanResponse. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeScanningMode.smPassive">
+            <summary> Scanning mode is passive. </summary>
+        </member>
         <member name="T:wclBluetooth.wclBluetoothLeAdvertisementType">
             <summary> Types of the Bluetooth LE advertisement packet. </summary>
         </member>
@@ -390,6 +456,12 @@
               <para> This corresponds with the <c>SCAN_RSP</c> type defined in the
               Bluetooth LE specifications. </para> </summary>
         </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAdvertisementType.atExtended">
+            <summary> This advertisement is a 5.0 extended advertisement. This
+              advertisement type may have different properties, and is not
+              necessarily directed, connected, scannable, nor a scan
+              response. </summary>
+        </member>
         <member name="F:wclBluetooth.wclBluetoothLeAdvertisementType.atUnknown">
             <summary> Unknown advertisement packet type. </summary>
         </member>
@@ -416,6 +488,29 @@
         <member name="F:wclBluetooth.wclBluetoothLeAdvertisementFlag.afDualModeHostCapable">
             <summary> Simultaneous Bluetooth LE and BR/EDR to same device capable
               (host). </summary>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeExtendedFrameFlag">
+            <summary> Extended advertisement frame flags. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeExtendedFrameFlag.efAnonymous">
+            <summary> Indicates whether a Bluetooth Address was omitted from the
+              received advertisement. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeExtendedFrameFlag.efConnectable">
+            <summary> Indicates whether the received advertisement is
+              connectable. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeExtendedFrameFlag.efDirected">
+            <summary> Indicates whether the received advertisement is
+              directed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeExtendedFrameFlag.efScannable">
+            <summary> Indicates whether the received advertisement is
+              scannable. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeExtendedFrameFlag.efScanResponse">
+            <summary> Indicates whether the received advertisement is a scan
+              response. </summary>
         </member>
         <member name="T:wclBluetooth.wclBluetoothMitmProtection">
             <summary> The enumeration specifies the "Man in the Middle" protection
@@ -529,6 +624,628 @@
         </member>
         <member name="F:wclBluetooth.wclBluetoothAddressType.atUnspecified">
             <summary> Unspecified address. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteAccelCalibration">
+            <summary> The structure represents a Wii Remote accelerometer calibration
+              data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteAccelCalibration.MinX">
+            <summary> A minimum X value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteAccelCalibration.MinY">
+            <summary> A minimum Y value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteAccelCalibration.MinZ">
+            <summary> A minimum Z value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteAccelCalibration.MaxX">
+            <summary> A maximum X value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteAccelCalibration.MaxY">
+            <summary> A maximum Y value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteAccelCalibration.MaxZ">
+            <summary> A maximum Z value. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteLeds">
+            <summary> The structure contains the Wii Remote LEDs states. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteLeds.Led1">
+            <summary> <c>True</c> if the first LED is turned ON. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteLeds.Led2">
+            <summary> <c>True</c> if the second LED is turned ON. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteLeds.Led3">
+            <summary> <c>True</c> if the third LED is turned ON. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteLeds.Led4">
+            <summary> <c>True</c> if the fourth LED is turned ON. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteIrMode">
+            <summary> The Wii Remote IR sensor modes. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteIrMode.wiiIrOff">
+            <summary> The IR sensor is turned off. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteIrMode.wiiIrBasicMode">
+            <summary> The basic mode. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteIrMode.wiiIrExtendedMode">
+            <summary> The extended mode. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteIrMode.wiiIrFullMode">
+            <summary> The full mode. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteIrSensitivity">
+            <summary> The Wii Remote IR sensor sensitivity. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteIrSensitivity.wiiIrLevelOff">
+            <summary> The IR sensor is turned off. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteIrSensitivity.wiiIrLevel1">
+            <summary> The Level 1. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteIrSensitivity.wiiIrLevel2">
+            <summary> The Level 2. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteIrSensitivity.wiiIrLevel3">
+            <summary> The Level 3. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteIrSensitivity.wiiIrLevel4">
+            <summary> The Level 4. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteIrSensitivity.wiiIrLevel5">
+            <summary> The Level 5. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteIrSensitivity.wiiIrLevelMax">
+            <summary> The maximum sensitivity. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteExtension">
+            <summary> The Wii Remote extension types. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteExtension.wiiNoExtension">
+            <summary> No extension is connected. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteExtension.wiiNunchuk">
+            <summary> The Nunchuk extension. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteExtension.wiiClassicController">
+            <summary> The Classic Controller extension. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteExtension.wiiGuitar">
+            <summary> The Guitar extension. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteExtension.wiiDrums">
+            <summary> The Drums extension. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteExtension.wiiBalanceBoard">
+            <summary> The Balance Board extension. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteButtons">
+            <summary> The structure contains information about the Wii Remote
+              buttons. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteButtons.A">
+            <summary> <c>True</c> if the "A" button is pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteButtons.B">
+            <summary> <c>True</c> if the "B" button is pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteButtons.Plus">
+            <summary> <c>True</c> if the "+" button is pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteButtons.Home">
+            <summary> <c>True</c> if the "Home" button is pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteButtons.Minus">
+            <summary> <c>True</c> if the "-" button is pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteButtons.One">
+            <summary> The "1" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteButtons.Two">
+            <summary> The "2" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteButtons.Up">
+            <summary> The "Up" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteButtons.Down">
+            <summary> The "Down" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteButtons.Left">
+            <summary> The "Left" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteButtons.Right">
+            <summary> The "Right" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemote3D">
+            <summary> The structure represents a 3D coordinate. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemote3D.X">
+            <summary> An X coordinate. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemote3D.Y">
+            <summary> An Y coordinate. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemote3D.Z">
+            <summary> A Z coordinate. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteAccel">
+            <summary> The structure describes a Wii Remote accelerometer
+              data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteAccel.Calibration">
+            <summary> Calibration data. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteAccelCalibration" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteAccel.Values">
+            <summary> Values. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemote3D" />
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemote2D">
+            <summary> The structure represents a 2D coordinate </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemote2D.X">
+            <summary> An X coordinate. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemote2D.Y">
+            <summary> An Y coordinate. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteIrSensor">
+            <summary> The structure contains a single IR sensor values. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteIrSensor.Position">
+            <summary> The IR sensor coordinates. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemote2D" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteIrSensor.Size">
+            <summary> Indicates the size of the detected object. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteIrSensor.Found">
+            <summary> <c>True</c> is the object detected. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteIrSensors">
+            <summary> The structure contains the Wii Remote IR sensors
+              values. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteIrSensors.Mode">
+            <summary> The IR sensor mode. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteIrMode" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteIrSensors.Sensitivity">
+            <summary> The IR sensitivity. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteIrSensitivity" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteIrSensors.Sensors">
+            <summary> The array of the IR sensors. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteIrSensor" />
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteNunchukCalibration">
+            <summary> The structure represents a Wii Remote Nunchuk extension
+              accelerometer calibration data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteNunchukCalibration.Accel">
+            <summary> The nunchuk accelerometer calibration data. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteAccelCalibration" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteNunchukCalibration.MinX">
+            <summary>The joystick minimum X value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteNunchukCalibration.MidX">
+            <summary>The joystick center X value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteNunchukCalibration.MaxX">
+            <summary>The joystick maximum X value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteNunchukCalibration.MinY">
+            <summary>The joystick minimum Y value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteNunchukCalibration.MidY">
+            <summary>The joystick center Y value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteNunchukCalibration.MaxY">
+            <summary>The joystick maximum Y value. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteNunchuk">
+            <summary> The structure describes a Wii Remote Nunchuk
+              extension. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteNunchuk.Calibration">
+            <summary> The Nunchuk extension calibration values. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteNunchukCalibration" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteNunchuk.Accel">
+            <summary> The Nunchuk extension accelerometer values. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteAccel" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteNunchuk.Joystick">
+            <summary> The Nunchuk extension joystick calculated values. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemote2D" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteNunchuk.C">
+            <summary> The Nunchuk extension "C" button state. <c>True</c> if
+              button is pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteNunchuk.Z">
+            <summary> The Nunchuk extension "Z" button state. <c>True</c> if
+              button is pressed. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteClassicControllerButtons">
+            <summary> The structure contains information about the Wii Remote Classic
+              Controller extension buttons. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerButtons.A">
+            <summary> The "A" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerButtons.B">
+            <summary> The "B" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerButtons.Plus">
+            <summary> The "+" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerButtons.Home">
+            <summary> The "Home" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerButtons.Minus">
+            <summary> The "-" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerButtons.Up">
+            <summary> The "Up" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerButtons.Down">
+            <summary> The "Down" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerButtons.Left">
+            <summary> The "Left" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerButtons.Right">
+            <summary> The "Right" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerButtons.X">
+            <summary> The "X" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerButtons.Y">
+            <summary> The "Y" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerButtons.ZL">
+            <summary> The "ZL" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerButtons.ZR">
+            <summary> The "ZR" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerButtons.L">
+            <summary> The "L" (Left Trigger) button state. <c>True</c> if the button
+              is pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerButtons.R">
+            <summary> The "R" (Right Trigger) button state. <c>True</c> if the
+              button is pressed. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteClassicControllerCalibration">
+            <summary> The structure represents a Wii Remote Classic Controller
+              accelerometer calibration data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerCalibration.LeftMinX">
+            <summary> The left joystick minimum X value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerCalibration.LeftMidX">
+            <summary> The left joystick center X value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerCalibration.LeftMaxX">
+            <summary> The left joystick maximum X value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerCalibration.LeftMinY">
+            <summary> The left joystick minimum Y value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerCalibration.LeftMidY">
+            <summary> The left joystick center Y value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerCalibration.LeftMaxY">
+            <summary> The left joystick maximum Y value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerCalibration.RightMinX">
+            <summary> The right joystick minimum X value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerCalibration.RightMidX">
+            <summary> The right joystick center X value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerCalibration.RightMaxX">
+            <summary> The right joystick maximum X value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerCalibration.RightMinY">
+            <summary> The right joystick minimum Y value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerCalibration.RightMidY">
+            <summary> The right joystick center Y value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerCalibration.RightMaxY">
+            <summary> The right joystick maximum Y value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerCalibration.LeftTriggerMin">
+            <summary> The left trigger minimum value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerCalibration.LeftTriggerMax">
+            <summary> The left trigger maximum value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerCalibration.RightTriggerMin">
+            <summary> The right trigger minimum value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicControllerCalibration.RightTriggerMax">
+            <summary> The right trigger maximum value. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteClassicController">
+            <summary> The structure describes a Wii Remote Classic controller
+              extension. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicController.Calibration">
+            <summary> The Wii Remote Classic controller calibration data. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteClassicControllerCalibration" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicController.Buttons">
+            <summary> The Wii Remote Classic controller buttons states. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteClassicControllerButtons" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicController.LeftJoystick">
+            <summary> The Wii Remote Classic controller left joystick
+              value. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemote2D" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicController.RightJoystick">
+            <summary> The Wii Remote Classic controller right joystick
+              value. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemote2D" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicController.LeftTrigger">
+            <summary> The Wii Remote Classic controller left trigger
+              value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClassicController.RightTrigger">
+            <summary> The Wii Remote Classic controller right trigger
+              value. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteGuitarType">
+            <summary> The Wii Remote Guitar extension type. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteGuitarType.wiiGuitarHero3">
+            <summary> The Guitar extension is the Hero 3 model. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteGuitarType.wiiGuitarHeroWorldTour">
+            <summary> The Guitar extension is the Hero World Tour model. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteGuitarButtons">
+            <summary> The structure contains information about the Wii Remote Guitar
+              extension buttons. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteGuitarButtons.StrumUp">
+            <summary> The "Strum Up" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteGuitarButtons.StrumDown">
+            <summary> The "Strum Down" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteGuitarButtons.Minus">
+            <summary> The "-" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteGuitarButtons.Plus">
+            <summary> The "+" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteGuitarFretButtons">
+            <summary> The structure contains the Wii Remote Guitar extension fret
+              buttons states. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteGuitarFretButtons.Green">
+            <summary> The "Green" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteGuitarFretButtons.Red">
+            <summary> The "Red" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteGuitarFretButtons.Yellow">
+            <summary> The "Yellow" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteGuitarFretButtons.Blue">
+            <summary> The "Blue" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteGuitarFretButtons.Orange">
+            <summary> The "Orange" button state. <c>True</c> if the button is
+              pressed. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteGuitar">
+            <summary> The structure describes a Wii Remote Guitar extension
+              data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteGuitar.GuitarType">
+            <summary> The Wii Remote Guitar extension type. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteGuitarType" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteGuitar.Buttons">
+            <summary> The Wii Remote Guitar extension buttons data. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteGuitarButtons" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteGuitar.FretButtons">
+            <summary> The Wii Remote Guitar extension fret buttons data. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteGuitarFretButtons" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteGuitar.Touchbar">
+            <summary> The Wii Remote Guitar extension touchbar data. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteGuitarFretButtons" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteGuitar.Joystick">
+            <summary> The Wii Remote Guitar extension joystick data. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemote2D" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteGuitar.WhammyBar">
+            <summary> The Wii Remote Guitar extension whammy bar data. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteDrums">
+            <summary> The structure describes the Wii Remote Drums
+              extension </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteDrums.Red">
+            <summary> <c>True</c> if the "Red" drum is touched. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteDrums.Green">
+            <summary> <c>True</c> if the "Green" drum is touched. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteDrums.Blue">
+            <summary> <c>True</c> if the "Blue" drum is touched. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteDrums.Orange">
+            <summary> <c>True</c> if the "Orange" drum is touched. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteDrums.Yellow">
+            <summary> <c>True</c> if the "Yellow" drum is touched. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteDrums.Pedal">
+            <summary> <c>True</c> if the Pedal is pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteDrums.RedVelocity">
+            <summary> The "Red" drum velocity. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteDrums.GreenVelocity">
+            <summary> The "Green" drum velocity. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteDrums.BlueVelocity">
+            <summary> The "Blue" drum velocity. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteDrums.OrangeVelocity">
+            <summary> The "Orange" drum velocity. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteDrums.YellowVelocity">
+            <summary> The "Yellow" drum velocity. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteDrums.PedalVelocity">
+            <summary> The Pedal velocity. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteDrums.Plus">
+            <summary> <c>True</c> if the "+" button is pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteDrums.Minus">
+            <summary> <c>True</c> if the "-" button is pressed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteDrums.Joystick">
+            <summary> The drum joystick data. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemote2D" />
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteBalanceBoardSensors">
+            <summary> The structure describes the Wii Remote Balance Board extension
+              sensors data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteBalanceBoardSensors.TopRight">
+            <summary> Top right sensor value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteBalanceBoardSensors.TopLeft">
+            <summary> Top left sensor value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteBalanceBoardSensors.BottomRight">
+            <summary> Bottom right sensor value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteBalanceBoardSensors.BottomLeft">
+            <summary> Bottom left sensor value. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteBalanceBoardSensorsWeight">
+            <summary> The structure describes the Wii Remote Balance Board extension
+              sensors weight. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteBalanceBoardSensorsWeight.TopRight">
+            <summary> Top right sensor value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteBalanceBoardSensorsWeight.TopLeft">
+            <summary> Top left sensor value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteBalanceBoardSensorsWeight.BottomRight">
+            <summary> Bottom right sensor value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteBalanceBoardSensorsWeight.BottomLeft">
+            <summary> Bottom left sensor value. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteBalanceBoardCalibration">
+            <summary> The structure describes the Wii Remote Balance Board extension
+              sensors calibration data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteBalanceBoardCalibration.Kg0">
+            <summary> The 0-17 KG calibration data. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteBalanceBoardSensors" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteBalanceBoardCalibration.Kg17">
+            <summary> The 17-34 KG calibration data. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteBalanceBoardSensors" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteBalanceBoardCalibration.Kg34">
+            <summary> The 34 and above KG calibration data. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteBalanceBoardSensors" />
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteBalanceBoardGC">
+            <summary> The structure represents the Balance Board extension center of
+              gravity. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteBalanceBoardGC.X">
+            <summary> An X coordinate. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteBalanceBoardGC.Y">
+            <summary> An Y coordinate. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteBalanceBoard">
+            <summary> The structure describes the Wii Remote Balance Board
+              extension. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteBalanceBoard.Calibration">
+            <summary> The Wii Remote Balance Board extension calibration
+              data. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteBalanceBoardCalibration" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteBalanceBoard.Sensors">
+            <summary> The Wii Remote Balance Board extension sensors
+              values. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteBalanceBoardSensors" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteBalanceBoard.SensorsKg">
+            <summary> The Wii Remote Balance Board extension sensors values
+              (KG). </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteBalanceBoardSensorsWeight" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteBalanceBoard.SensorsLb">
+            <summary> The Wii Remote Balance Board extension sensors values
+              (Lb). </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteBalanceBoardSensorsWeight" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteBalanceBoard.WeightKg">
+            <summary> The Wii Remote Balance Board extension detected weight
+              (KG). </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteBalanceBoard.WeightLb">
+            <summary> The Wii Remote Balance Board extension detected weight
+              (Lb). </summary>
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteBalanceBoard.CenterOfGravity">
+            <summary> The center of gravity coordinate. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteBalanceBoardGC" />
         </member>
         <member name="T:wclBluetooth.wclBluetoothConfirmEvent">
             <summary> The <c>OnConfirm</c> event handler prototype. </summary>
@@ -748,6 +1465,24 @@
             <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementType" />
             <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementFlag" />
         </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAdvertisementExtFrameInformationEvent">
+            <summary> The <c>OnAdvertisementExtFrameInformation</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Address"> The Bluetooth LE advertiser's MAC address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="AddressType"> The Bluetooth LE address type. </param>
+            <param name="TxPower"> The received transmit power of the
+              advertisement. Ranges from -127 dBm to 20 dBm. -128 indicates
+              "no value". </param>
+            <param name="Flags"> The Bluetooth LE advertisement extended frame
+              flags. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothAddressType" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeExtendedFrameFlag" />
+        </member>
         <member name="T:wclBluetooth.wclBluetoothLeAdvertisementRawFrameEvent">
             <summary> The <c>OnAdvertisementRawFrame</c> event handler
               prototype. </summary>
@@ -876,6 +1611,143 @@
             <param name="TxRssi"> The beacon's RSSI value in dBm at range between -100
               dBm and +20 dBm at 1 dBm resolution measured at 1 meter
               distance. </param>
+        </member>
+        <member name="T:wclBluetooth.wclGattLocalCharacteristicReadEvent">
+            <summary> The <c>OnRead</c> characteristic's event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Characteristic"> The characteristic object for which writes
+              is executing. </param>
+            <param name="Address"> The remote device's which executes write operation
+              MAC address. </param>
+            <param name="Value"> The local GATT characteristic value object. An
+              application must call the <c>SetData</c> method of the passed object to
+              provide characteristic's data. </param>
+            <seealso cref="T:wclBluetooth.wclGattLocalCharacteristic" />
+            <seealso cref="T:wclBluetooth.wclGattLocalCharacteristicValue" />
+        </member>
+        <member name="T:wclBluetooth.wclGattLocalCharacteristicWriteEvent">
+            <summary> The <c>OnWrite</c> characteristic's event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Characteristic"> The characteristic object for which writes
+              is executing. </param>
+            <param name="Address"> The remote device's which executes write operation
+              MAC address. </param>
+            <param name="Data"> The received data. </param>
+            <seealso cref="T:wclBluetooth.wclGattLocalCharacteristic" />
+        </member>
+        <member name="T:wclBluetooth.wclGattLocalCharacteristicSubscribedClientsChangedEvent">
+            <summary> The <c>OnClientSubscribed</c> and <c>OnClientUnsubscribed</c>
+              events handler prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Characteristic"> The characteristic object for which writes
+              is executing. </param>
+            <param name="Address"> The client's MAC address. </param>
+            <seealso cref="T:wclBluetooth.wclGattLocalCharacteristic" />
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteAccelChangedEvent">
+            <summary> The Wii Remote <c>OnAccelChanged</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Accel"> The current accelerometer data. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteAccel" />
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteBalanceBoardChangedEvent">
+            <summary> The Wii Remote <c>OnBalanceBoardChanged</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Board"> The new Balance Board extension
+              state. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteBalanceBoard" />
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteButtonsChangedEvent">
+            <summary> The Wii Remote <c>OnButtonsChanged</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Buttons"> The current state of the Wii Remote controller
+              buttons. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteButtons" />
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteClassicControllerChangedEvent">
+            <summary> The Wii Remote <c>OnClassicControllerChanged</c> event
+              handler prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Controller"> The current state of the Wii Remote Classic
+              Controller extension. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteClassicController" />
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteDrumsChangedEvent">
+            <summary> The Wii Remote <c>OnDrumsChanged</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Drums"> The current state of the Drums extension. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteDrums" />
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteGuitarChangedEvent">
+            <summary> The Wii Remote <c>OnGuitarChanged</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Guitar"> The current Guitar extension state. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteGuitar" />
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteIrChangedEvent">
+            <summary> The Wii Remote <c>OnIrChanged</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Ir"> The IR sensor data. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteIrSensors" />
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteNunchukChangedEvent">
+            <summary> The Wii Remote <c>OnNunchukChanged</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Nunchuk"> The current Nunchuk extension state. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteNunchuk" />
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteStatusChangedEvent">
+            <summary> The Wii Remote <c>OnStatusChanged</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Batt"> The WeDo Remote battery level. </param>
+            <param name="Leds"> The We Do Remote LEDs state. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteLeds" />
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothConnectionType">
+            <summary> Supported connection types. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothConnectionType.ctRfCommClient">
+            <summary> RFCOMM client connection. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothConnectionType.ctRfCommServer">
+            <summary> RFCOMM server connection. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothConnectionType.ctGattClient">
+            <summary> BLE GATT client connection. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothConnectionType.ctGattServer">
+            <summary> BLE GATT server connection. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothConnectionType.ctBeaconWatcher">
+            <summary> BLE beacon watcher connection. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothConnectionType.ctProximityBeacon">
+            <summary> BLE proximity beacon advertiser connection. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothConnectionType.ctAltBeacon">
+            <summary> BLE Alt beacon advertiser connection. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothConnectionType.ctEddystoneUidBeacon">
+            <summary> BLE Eddystone UID beacon advertiser connection. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothConnectionType.ctEddystoneUrlBeacon">
+            <summary> BLE Eddystone URL beacon advertiser connection. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothConnectionType.ctCustomeBeacon">
+            <summary> BLE customer beacon advertiser connection. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothConnectionType.ctWiiRemote">
+            <summary> Wii Remote controller client connection. </summary>
         </member>
         <member name="T:wclBluetooth.wclBluetoothRadio">
             <summary> The class represents a local Bluetooth radio module. </summary>
@@ -1447,77 +2319,41 @@
             <remarks> A derived class must override this method to provide
               driver-dependent code. </remarks>
         </member>
-        <member name="M:wclBluetooth.wclBluetoothRadio.HalCreateRfCommClient">
-            <summary> Creates a hardware-dependent RFCOMM client instance. </summary>
-            <returns> The instance of the hardware-dependent object of the
-              <see cref="T:wclBluetooth.wclRfCommClientConnection" /> class. </returns>
-            <seealso cref="T:wclBluetooth.wclRfCommClientConnection" />
+        <member name="M:wclBluetooth.wclBluetoothRadio.HalGetSimplePairingMode(System.Boolean@)">
+            <summary> Implements a hardware-dependent code that reads a radio
+              Secure Simple Pairing mode. </summary>
+            <param name="Enabled"> If the function completed with success on output
+              contains a boolean that indicates the current Secure Simple Pairing
+              (SSP) mode. <c>True</c> if SSP is enabled. <c>False</c> if SSP is
+              disabled. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> A derived class must override this method to provide
+              driver-dependent code. </remarks>
         </member>
-        <member name="M:wclBluetooth.wclBluetoothRadio.HalCreateRfCommServer">
-            <summary> Creates a hardware-dependent RFCOMM server instance. </summary>
-            <returns> The instance of the hardware-dependent object of the
-              <see cref="T:wclBluetooth.wclRfCommServerConnection" /> class. </returns>
-            <seealso cref="T:wclBluetooth.wclRfCommServerConnection" />
+        <member name="M:wclBluetooth.wclBluetoothRadio.HalSetSimplePairingMode(System.Boolean)">
+            <summary> Implements a hardware-dependent code that writes a radio
+              Secure Simple Pairing mode. </summary>
+            <param name="Enable"> A boolean that indicates the new Secure Simple
+              Pairing (SSP) mode. Set thsi parameter to <c>True</c> to enable SSP.
+              Set this parameter to <c>False</c> to disable SSP. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> A derived class must override this method to provide
+              driver-dependent code. </remarks>
         </member>
-        <member name="M:wclBluetooth.wclBluetoothRadio.HalCreateGattClient">
-            <summary> Creates a hardware-dependent GATT client instance. </summary>
-            <returns> The instance of the hardware-dependent object of the
-              <see cref="T:wclBluetooth.wclGattClientConnection" /> class. </returns>
-            <seealso cref="T:wclBluetooth.wclGattClientConnection" />
-        </member>
-        <member name="M:wclBluetooth.wclBluetoothRadio.HalCreateGattServer">
-            <summary> Creates a hardware-dependent GATT server instance. </summary>
-            <returns> The instance of the hardware-dependent object of the
-              <see cref="T:wclBluetooth.wclGattServerConnection" /> class. </returns>
-            <seealso cref="T:wclBluetooth.wclGattServerConnection" />
-        </member>
-        <member name="M:wclBluetooth.wclBluetoothRadio.HalCreateBeaconWatcher">
-            <summary> Creates a hardware-dependent Bluetooth LE Beacon Watcher
-              instance. </summary>
-            <returns> The instance of the hardware-dependent object of the
-              <see cref="T:wclBluetooth.wclBluetoothLeBeaconWatcherConnection" />
-              class. </returns>
-            <seealso cref="T:wclBluetooth.wclBluetoothLeBeaconWatcherConnection" />
-        </member>
-        <member name="M:wclBluetooth.wclBluetoothRadio.HalCreateProximityBeacon">
-            <summary> Creates a hardware-dependent Bluetooth LE Proxomity Beacon
-              Advertiser instance. </summary>
-            <returns> The instance of the hardware-dependent object of the
-              <see cref="T:wclBluetooth.wclBluetoothLeProximityBeaconConnection" />
-              class. </returns>
-            <seealso cref="T:wclBluetooth.wclBluetoothLeProximityBeaconConnection" />
-        </member>
-        <member name="M:wclBluetooth.wclBluetoothRadio.HalCreateAltBeacon">
-            <summary> Creates a hardware-dependent Bluetooth LE Alt Beacon
-              Advertiser instance. </summary>
-            <returns> The instance of the hardware-dependent object of the
-              <see cref="T:wclBluetooth.wclBluetoothLeAltBeaconConnection" />
-              class. </returns>
-            <seealso cref="T:wclBluetooth.wclBluetoothLeAltBeaconConnection" />
-        </member>
-        <member name="M:wclBluetooth.wclBluetoothRadio.HalCreateEddystoneUidBeacon">
-            <summary> Creates a hardware-dependent Bluetooth LE Eddystone UID Beacon
-              Advertiser instance. </summary>
-            <returns> The instance of the hardware-dependent object of the
-              <see cref="T:wclBluetooth.wclBluetoothLeEddystoneUidBeaconConnection" />
-              class. </returns>
-            <seealso cref="T:wclBluetooth.wclBluetoothLeEddystoneUidBeaconConnection" />
-        </member>
-        <member name="M:wclBluetooth.wclBluetoothRadio.HalCreateEddystoneUrlBeacon">
-            <summary> Creates a hardware-dependent Bluetooth LE Eddystone URL Beacon
-              Advertiser instance. </summary>
-            <returns> The instance of the hardware-dependent object of the
-              <see cref="T:wclBluetooth.wclBluetoothLeEddystoneUrlBeaconConnection" />
-              class. </returns>
-            <seealso cref="T:wclBluetooth.wclBluetoothLeEddystoneUrlBeaconConnection" />
-        </member>
-        <member name="M:wclBluetooth.wclBluetoothRadio.HalCreateCustomBeacon">
-            <summary> Creates a hardware-dependent Bluetooth LE Custom Beacon
-              Advertiser instance. </summary>
-            <returns> The instance of the hardware-dependent object of the
-              <see cref="T:wclBluetooth.wclBluetoothLeCustomBeaconConnection" />
-              class. </returns>
-            <seealso cref="T:wclBluetooth.wclBluetoothLeCustomBeaconConnection" />
+        <member name="M:wclBluetooth.wclBluetoothRadio.HalCreateConnection(wclBluetooth.wclBluetoothConnectionType)">
+            <summary> Creates a hardware-dependent connection object based on
+              connection type. </summary>
+            <param name="ConnectionType"> A type of the required connection
+              object. </param>
+            <returns> If the function completed with success it returns a connection
+              object. If the requested connection type is not supported the function
+              returns <c>null</c>. </returns>
+            <seealso cref="T:wclBluetooth.wclBluetoothConnectionType" />
+            <seealso cref="T:wclCommunication.wclCustomConnection" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothRadio.HalCreateComPort(System.Int64,System.Guid,System.UInt16@)">
             <summary> Creates new virtual COM port. </summary>
@@ -2012,6 +2848,25 @@
             <summary> Unpair a remote Bluetooth device. </summary>
             <param name="Address"> The remote Bluetooth device's MAC
               address. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.GetSimplePairingMode(System.Boolean@)">
+            <summary> Gets the radio Secure Simple Pairing mode. </summary>
+            <param name="Enabled"> If the function completed with success on output
+              contains a boolean that indicates the current Secure Simple Pairing
+              (SSP) mode. <c>True</c> if SSP is enabled. <c>False</c> if SSP is
+              disabled. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.SetSimplePairingMode(System.Boolean)">
+            <summary> Sets the radio Secure Simple Pairing mode. </summary>
+            <param name="Enable"> A boolean that indicates the new Secure Simple
+              Pairing (SSP) mode. Set thsi parameter to <c>True</c> to enable SSP.
+              Set this parameter to <c>False</c> to disable SSP. </param>
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
@@ -3122,9 +3977,13 @@
               the <c>WriteClientConfiguration</c> method. </remarks>
             <seealso cref="T:wclBluetooth.wclGattCharacteristic" />
         </member>
-        <member name="M:wclBluetooth.wclGattClientConnection.Connect(System.Int64)">
+        <member name="M:wclBluetooth.wclGattClientConnection.Connect(System.Int64,System.Boolean)">
             <summary> Connects to a remote device. </summary>
             <param name="Address"> A remote device MAC address. </param>
+            <param name="ConnectOnRead"> A Boolean indicates whether a connection
+              should made during <c>Connect</c> call or on first services
+              read. <c>True</c> indicates that the connection should be executed
+              on first services read on when OS decided to do that. </param>
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
@@ -3137,6 +3996,14 @@
         <member name="P:wclBluetooth.wclGattClientConnection.Address">
             <summary> Gets a remote device MAC address. </summary>
             <value> The remote device MAC address. </value>
+        </member>
+        <member name="P:wclBluetooth.wclGattClientConnection.ConnectOnRead">
+            <summary> Gets connection mode. </summary>
+            <value> The Boolean indicates the connection mode. </value>
+            <remarks> If this property set to <c>True</c> the connection to a target
+              device will be executed on first services read or when the OS decided
+              to do that. If the property is <c>False</c> the connection will be
+              executed (if possible) on <c>Connect</c> call. </remarks>
         </member>
         <member name="P:wclBluetooth.wclGattClientConnection.Radio">
             <summary> Gets the connection owner. </summary>
@@ -3155,61 +4022,6 @@
               must first subscribe for characteristic changes notification
               by calling <c>Subscribe</c> method. </remarks>
             <seealso cref="T:wclBluetooth.wclGattCharacteristicChangedEvent" />
-        </member>
-        <member name="T:wclBluetooth.wclGattLocalCharacteristicProperty">
-            <summary> The enumeration represents the GATT local characteristic
-              properties, as defined by the GATT profile. </summary>
-        </member>
-        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpNone">
-            <summary> Not specified. </summary>
-        </member>
-        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpAuthenticatedSignedWritable">
-            <summary> The characteristic supports signed writes. </summary>
-        </member>
-        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpBroadcastable">
-            <summary> The characteristic supports broadcasting. </summary>
-        </member>
-        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpExtendedProperties">
-            <summary> The ExtendedProperties Descriptor is present. </summary>
-        </member>
-        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpIndicatable">
-            <summary> The characteristic is indicatable. </summary>
-        </member>
-        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpNotifiable">
-            <summary> The characteristic is notifiable. </summary>
-        </member>
-        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpReadable">
-            <summary> The characteristic is readable. </summary>
-        </member>
-        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpReliableWritable">
-            <summary> The characteristic supports reliable writes. </summary>
-        </member>
-        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpWritableAuxiliaries">
-            <summary> The characteristic has writable auxiliaries. </summary>
-        </member>
-        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpWritable">
-            <summary> The characteristic is writable. </summary>
-        </member>
-        <member name="F:wclBluetooth.wclGattLocalCharacteristicProperty.cpWritableWithoutResponse">
-            <summary> The characteristic supports Write Without Response. </summary>
-        </member>
-        <member name="T:wclBluetooth.wclGattLocalCharacteristicParameters">
-            <summary> The structure represents a GATT local characteristic
-              parameters. </summary>
-        </member>
-        <member name="F:wclBluetooth.wclGattLocalCharacteristicParameters.Props">
-            <summary> The characteristic's properties. </summary>
-            <seealso cref="T:wclBluetooth.wclGattLocalCharacteristicProperty" />
-        </member>
-        <member name="F:wclBluetooth.wclGattLocalCharacteristicParameters.ReadProtectionLevel">
-            <summary> The read protection level of a local
-              characteristic. </summary>
-            <seealso cref="T:wclBluetooth.wclGattProtectionLevel" />
-        </member>
-        <member name="F:wclBluetooth.wclGattLocalCharacteristicParameters.WriteProtectionLevel">
-            <summary> The write protection level of a local
-              characteristic. </summary>
-            <seealso cref="T:wclBluetooth.wclGattProtectionLevel" />
         </member>
         <member name="T:wclBluetooth.wclGattLocalAttribute">
             <summary> The base class for local GATT attributes (characteristics,
@@ -3278,7 +4090,7 @@
             <summary> Creates new local GATT characteristic. </summary>
             <param name="Service"> The local GATT service object that owns the
               characteristic. If this parameter is <c>nil</c> the
-              <see cfef="wclECritical" /> exception raises. </param>
+              <see cref="T:wclCommon.wclECritical" /> exception raises. </param>
             <param name="Uuid"> The characteristic's UUID. </param>
             <param name="Params"> The characteristic's parameters. </param>
             <remarks> An application must not create this class directly.
@@ -3430,6 +4242,26 @@
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
         </member>
+        <member name="P:wclBluetooth.wclGattLocalService.Connectable">
+            <summary> Gets or sets a boolean that indicates if the GATT service is
+              connectable. </summary>
+            <value> A boolean that indicates if the GATT service is
+              connectable. </value>
+            <remarks> If the service has been published and an application
+              changes the property the <see cref="T:wclBluetooth.wclEGattServer" /> exception
+              raises. </remarks>
+            <exception cref="T:wclBluetooth.wclEGattServer" />
+        </member>
+        <member name="P:wclBluetooth.wclGattLocalService.Discoverable">
+            <summary> Gets or sets a boolean indicating that the GATT service is
+              discoverable. </summary>
+            <value> A boolean indicating that the GATT service is
+              discoverable. </value>
+            <remarks> If the service has been published and an application
+              changes the property the <see cref="T:wclBluetooth.wclEGattServer" /> exception
+              raises. </remarks>
+            <exception cref="T:wclBluetooth.wclEGattServer" />
+        </member>
         <member name="P:wclBluetooth.wclGattLocalService.Added">
             <summary> Gets the service state. </summary>
             <value> <c>True</c> if the service is added and published. <c>False</c>
@@ -3481,40 +4313,6 @@
         <member name="P:wclBluetooth.wclGattLocalCharacteristicValue.Data">
             <summary> Gets the pointer to the data. </summary>
             <value> The data bytes array. </value>
-        </member>
-        <member name="T:wclBluetooth.wclGattLocalCharacteristicReadEvent">
-            <summary> The <c>OnRead</c> characteristic's event handler
-              prototype. </summary>
-            <param name="Sender"> The object initiates the event. </param>
-            <param name="Characteristic"> The characteristic object for which writes
-              is executing. </param>
-            <param name="Address"> The remote device's which executes write operation
-              MAC address. </param>
-            <param name="Value"> The local GATT characteristic value object. An
-              application must call the <c>SetData</c> method of the passed object to
-              provide characteristic's data. </param>
-            <seealso cref="T:wclBluetooth.wclGattLocalCharacteristic" />
-            <seealso cref="T:wclBluetooth.wclGattLocalCharacteristicValue" />
-        </member>
-        <member name="T:wclBluetooth.wclGattLocalCharacteristicWriteEvent">
-            <summary> The <c>OnWrite</c> characteristic's event handler
-              prototype. </summary>
-            <param name="Sender"> The object initiates the event. </param>
-            <param name="Characteristic"> The characteristic object for which writes
-              is executing. </param>
-            <param name="Address"> The remote device's which executes write operation
-              MAC address. </param>
-            <param name="Data"> The received data. </param>
-            <seealso cref="T:wclBluetooth.wclGattLocalCharacteristic" />
-        </member>
-        <member name="T:wclBluetooth.wclGattLocalCharacteristicSubscribedClientsChangedEvent">
-            <summary> The <c>OnClientSubscribed</c> and <c>OnClientUnsubscribed</c>
-              events handler prototype. </summary>
-            <param name="Sender"> The object initiates the event. </param>
-            <param name="Characteristic"> The characteristic object for which writes
-              is executing. </param>
-            <param name="Address"> The client's MAC address. </param>
-            <seealso cref="T:wclBluetooth.wclGattLocalCharacteristic" />
         </member>
         <member name="T:wclBluetooth.wclGattServerConnection">
             <summary> The "virtual" connection for the Bluetooth GATT
@@ -3722,17 +4520,6 @@
               characteristic. </summary>
             <seealso cref="T:wclBluetooth.wclGattLocalCharacteristicWriteEvent" />
         </member>
-        <member name="T:wclBluetooth.wclBluetoothLeScanningMode">
-            <summary> Specifies the Bluetooth LE scanning mode. </summary>
-        </member>
-        <member name="F:wclBluetooth.wclBluetoothLeScanningMode.smActive">
-            <summary> Scanning mode is active. This indicates that scan request
-              packets will be sent from the platform to actively query for more
-              advertisement data of type ScanResponse. </summary>
-        </member>
-        <member name="F:wclBluetooth.wclBluetoothLeScanningMode.smPassive">
-            <summary> Scanning mode is passive. </summary>
-        </member>
         <member name="T:wclBluetooth.wclBluetoothLeBeaconWatcherConnection">
             <summary> The "virtual" connection for the Bluetooth LE Beacon Watcher. </summary>
             <remarks> An application must not create or use this class directly.
@@ -3766,6 +4553,24 @@
               flags. </param>
             <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementType" />
             <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementFlag" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAdvertisementExtFrameInformation(System.Int64,System.Int64,System.SByte,wclBluetooth.wclBluetoothAddressType,System.SByte,wclBluetooth.wclBluetoothLeExtendedFrameFlag)">
+            <summary> Fires the <c>OnAdvertisementExtFrameInformation</c>
+              event. </summary>
+            <param name="Address"> The Bluetooth LE advertiser's MAC
+              address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="AddressType"> The Bluetooth LE address type. </param>
+            <param name="TxPower"> The received transmit power of the
+              advertisement. Ranges from -127 dBm to 20 dBm. -128 indicates
+              "no value". </param>
+            <param name="Flags"> The Bluetooth LE advertisement extended frame
+              flags. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothAddressType" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeExtendedFrameFlag" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAdvertisementRawFrame(System.Int64,System.Int64,System.SByte,System.Byte,System.Byte[])">
             <summary> Fires the <c>OnAdvertisementRawFrame</c> event. </summary>
@@ -3963,6 +4768,12 @@
               has been received and provides the common basic information about
               the frame. </summary>
             <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementFrameInformationEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAdvertisementExtFrameInformation">
+            <summary> The event fires when new Bluetooth LE advertisement
+              extended frame has been received and provides the common basic
+              information about the frame. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementExtFrameInformationEvent" />
         </member>
         <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAdvertisementRawFrame">
             <summary> The event fires when an unsupported or unknown Bluetooth LE
@@ -4346,6 +5157,440 @@
             <summary> Gets and sets the beacons raw data. </summary>
             <value> The bytes array contains advertising data. </value>
             <exception cref="T:wclCommunication.wclEConnection" />
+        </member>
+        <member name="P:wclBluetooth.wclBluetoothLeCustomBeaconConnection.DataType">
+            <summary> Gets or sets the Bluetooth LE advertisement data type, as
+              defined by the Bluetooth Special Interest Group (SIG). </summary>
+            <value> The Bluetooth LE advertisement data type. </value>
+            <remarks> <para> The following advertisement types are allowed: </para>
+              <para> * Manufacturer Specific Information (0xFF); </para>
+              <para> * Any non-standard type not reserved by the system, as shown in
+                       the list below. </para>
+              <para> The following advertisement types are system-reserved and are
+                     not allowed: </para>
+              <para> * Flags (0x01) </para>
+              <para> * Incomplete List of 16-bit Service UUIDs (0x02) </para>
+              <para> * Complete List of 16-bit Service UUIDs (0x03) </para>
+              <para> * Incomplete List of 32-bit Service UUIDs (0x04) </para>
+              <para> * Complete List of 32-bit Service UUIDs (0x05) </para>
+              <para> * Incomplete List of 128-bit Service UUIDs (0x06) </para>
+              <para> * Complete List of 128-bit Service UUIDs (0x07) </para>
+              <para> * Shortened Local Name (0x08) </para>
+              <para> * Complete Local Name (0x09) </para>
+              <para> * Tx Power Level (0x0A) </para>
+              <para> * Class of Device (0x0D) </para>
+              <para> * Simple Pairing Hash C192 (0x0E) </para>
+              <para> * Simple Pairing Randomizer R192 (0x0F) </para>
+              <para> * Security Manager TK Values (0x10) </para>
+              <para> * Security Manager Out-of-Band Flags (0x11) </para>
+              <para> * Slave Connection Interval Range (0x12) </para>
+              <para> * List of 16-bit Service Solicitation UUIDs (0x14) </para>
+              <para> * List of 32-bit Service Solicitation UUIDs (0x1F) </para>
+              <para> * List of 128-bit Service Solicitation UUIDs (0x15) </para>
+              <para> * Service Data 16-bit UUID (0x16) </para>
+              <para> * Service Data 32-bit UUID (0x20) </para>
+              <para> * Service Data 128-bit UUID (0x21) </para>
+              <para> * Public Target Address (0x17) </para>
+              <para> * Random Target Address (0x18) </para>
+              <para> * Appearance (0x19) </para>
+              <para> * Advertising Interval (0x1A) </para>
+              <para> * LE Bluetooth Device Address (0x1B) </para>
+              <para> * LE Role (0x1C) </para>
+              <para> * Simple Pairing Hash C256 (0x1D) </para>
+              <para> * Simple Pairing Randomizer R256 (0x1E) </para>
+              <para> * 3D Information Data (0x3D) </para>
+              <para> If the Data Type value is not 0xFF (Manufacturer Specific
+                     Information) the <c>CompanyId</c> value will be
+                     ignored. </para> </remarks>
+            <exception cref="T:wclCommunication.wclEConnection" />
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteClientConnection">
+            <summary> The virtual connection represents a Wii Remote
+              client. </summary>
+            <remarks> <para> The class provides methods to receive data from
+              the Wii Remote controller. </para>
+              <para> An application must never create instances of this class
+              directly. Instead of that an application must use related methods
+              from the <see cref="T:wclBluetooth.wclBluetoothRadio" /> object. </para>
+              <para> The feature is supported only on Windows 10 platform with
+              Microsoft Bluetooth drivers. </para> </remarks>
+            <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
+            <seealso cref="T:wclCommunication.wclClientConnection" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClientConnection.WCL_WII_REMOTE_REPORT_LENGTH">
+            <summary> Wii Remote HID report length. </summary>
+            <remarks> Thsi constant is defined for internal use only. </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.ProcessReport(System.Byte[])">
+            <summary> The function parses the received report. </summary>
+            <param name="Report"> A pointer to the report data. </param>
+            <returns> The function returns <c>True</c> if the report was processed
+              with success. If the report has not been processed the function
+              returns <c>False</c>. </returns>
+            <remarks> The method must be called from the communication thread
+              to process received reports. </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.MessageReceived(wclCommon.wclMessage)">
+            <summary> The method called when a new notification message
+              received. </summary>
+            <param name="Message"> A <see cref="T:wclCommon.wclMessage" /> object
+              represents a notification message. </param>
+            <remarks> <para> This method is for internal use only. </para>
+              <para> If a derived class overrides this method it must always call
+              the inherited implementation first. </para> </remarks>
+            <seealso cref="T:wclCommon.wclMessage" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.HalConnect(System.IntPtr)">
+            <summary> Implements a hardware-dependent code that connects to a
+              remote device. </summary>
+            <param name="Event"> The system even object handle. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> Derived classes must override this method to implement
+              a hardware-dependent code that connects to a remote device. </para>
+              <para> The method executes in a separate thread. </para>
+              <para> The method implementation must monitor the <c>Event</c>
+              parameter. The <c>Event</c> parameter is set if the
+              <c>Disconnect</c> method was called. If the termination event was set
+              the method must terminate connection operation. </para>
+              <para> If connection to a remote device was terminated the method
+              must release all allocated resources because the <c>HalDisconnect</c>
+              will not be called. </para>
+              <para> A derived class must always call inherited
+              method. </para> </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.HalDisconnect">
+            <summary> Implements a hardware-dependent code that disconnects from the
+              connected remote device. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> The method is called only if a connection to a remote
+              device was established with success (the <c>Connect</c> method was
+              success). </para>
+              <para> The method will not be called if the connection to the  remote
+              device was terminated in the middle of the <c>HalConnect</c>
+              method. </para>
+              <para> A derived HalConnect implementation <c>must</c> always call
+              the <c>HalConnect</c> method first, before any other connection
+              operation. If the connection is failed the derived implementation
+              <c>must</c> always call inherited <c>HalDisconnect</c> method. </para>
+              <para> A derived class must always call inherited
+              method. </para> </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.HalWrite(System.Byte[])">
+            <summary> Implements a hardware-dependent code that writes data report
+              to the connected Wii Remote controller. </summary>
+            <param name="Report"> The pointer to the report data buffer. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> A derived class must override this method to implement
+              a hardware-dependent code that sends data to the connected device.
+              The method executes in the main thread and must be
+              synchronous. </para>
+              <para> A derived implementation must always call this method in case
+              of the derived <c>HalConnect</c> failed. </para> </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.DoAccelChanged(wclBluetooth.wclWiiRemoteAccel)">
+            <summary> Fire the <c>OnAccelChanged</c> event. </summary>
+            <param name="Accel"> The current accelerometer data. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteAccel" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.DoBalanceBoardChanged(wclBluetooth.wclWiiRemoteBalanceBoard)">
+            <summary> Fires the <c>OnBalanceBoardChanged</c> event </summary>
+            <param name="Board"> The new Balance Board extension
+              state. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteBalanceBoard" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.DoButtonsChanged(wclBluetooth.wclWiiRemoteButtons)">
+            <summary> Fires the <c>OnButtonsChanged</c> event. </summary>
+            <param name="Buttons"> The new buttons state. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteButtons" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.DoClassicControllerChanged(wclBluetooth.wclWiiRemoteClassicController)">
+            <summary> Fires the <c>OnClassicControllerChanged</c> event. </summary>
+            <param name="Controller"> The current state of the Wii Remote Classic
+              Controller extension. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteClassicController" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.DoConnect(System.Int32)">
+            <summary> Fires the <c>OnConnect</c> event. </summary>
+            <param name="Error"> The connection operation result code. If the
+              parameter is <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" /> the connection to a remote
+              device was established and the remote device is connected. Otherwise
+              the connection was not established and the remote device is
+              not connected. </param>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.DoDisconnect(System.Int32)">
+            <summary> Fires the <c>OnDisconnect</c> event. </summary>
+            <param name="Reason"> The disconnection code. If the
+              parameter is <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" /> the connection was closed
+              by the <c>Disconnect</c> call. Otherwise indicates the disconnection
+              reason. </param>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.DoDrumsChanged(wclBluetooth.wclWiiRemoteDrums)">
+            <summary> Fires the <c>OnDrumsChanged</c> event. </summary>
+            <param name="Drums"> The current state of the Drums extension. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteDrums" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.DoExtensionAttached">
+            <summary> Fires the <c>OnExtensionAttached</c> event. </summary>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.DoExtensionDetached">
+            <summary> Fires the <c>OnExtensionDetached</c> event. </summary>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.DoGuitarChanged(wclBluetooth.wclWiiRemoteGuitar)">
+            <summary> Fires the <c>OnGuitarChanged</c> event. </summary>
+            <param name="Guitar"> The current Guitar extension state. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteGuitar" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.DoIrChanged(wclBluetooth.wclWiiRemoteIrSensors)">
+            <summary> Fires the <c>OnIrChanged</c> event. </summary>
+            <param name="Ir"> The IR sensor data. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteIrSensors" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.DoNunchukChanged(wclBluetooth.wclWiiRemoteNunchuk)">
+            <summary> Fires the <c>OnNunchukChanged</c> event. </summary>
+            <param name="Nunchuk"> The current Nunchuk extension state. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteNunchuk" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.DoStatusChanged(System.Double,wclBluetooth.wclWiiRemoteLeds)">
+            <summary> Fires the <c>OnStatusChanged</c> event. </summary>
+            <param name="Batt"> The WeDo Remote battery level. </param>
+            <param name="Leds"> The We Do Remote LEDs state. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteLeds" />
+        </member>
+        <member name="P:wclBluetooth.wclWiiRemoteClientConnection.DisconnectEvent">
+            <summary> Gets the disconnect event object. </summary>
+            <value> The disconnect event object. </value>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.#ctor(wclBluetooth.wclBluetoothRadio)">
+            <summary> Create new Wii Remote client connection. </summary>
+            <param name="Radio"> The Radio object that owns the connection. </param>
+            <remarks> <para> An application must never create this class directly.
+              Instead of that an application must use upper-level methods and
+              classes. </para>
+              <para> If the <c>Radio</c> parameter is <c>nil</c> the
+              <see cref="T:wclCommon.wclECritical" /> exception raises. </para> </remarks>
+            <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
+            <exception cref="T:wclCommon.wclECritical" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.Connect(System.Int64,System.UInt32)">
+            <summary> Connects to a remote device. </summary>
+            <param name="Address"> The remote Bluetooth device address. </param>
+            <param name="Timeout"> The connect timeout in milliseconds. The
+              default value is 10000 milliseconds. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> The method starts a connection operation to a remote
+              device. If the method success that does not mean that the connection
+              was established. That just means that the connection operation was
+              started. The real connection result will be passed to the
+              <c>OnConnect</c> event handler. </para>
+              <para> NOTE: BlueSoleil does not support <c>Authentication</c>
+              and <c>Encryption</c> parameters per connection. </para> </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.GetStatus">
+            <summary> Requests the Wii Remote status. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> This is asynchronous method. When operation complets the
+              <c>OnStatusChanged</c> event fires. </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.SetLeds(wclBluetooth.wclWiiRemoteLeds)">
+            <summary> Changes the Wii Remote LEDs state. </summary>
+            <param name="Leds"> The new LEDs state. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteLeds" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.SetLeds(System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary> Changes the Wii Remote LEDs state. </summary>
+            <param name="Led1"> The new LED 1 state. </param>
+            <param name="Led2"> The new LED 2 state. </param>
+            <param name="Led3"> The new LED 3 state. </param>
+            <param name="Led4"> The new LED 4 state. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>/>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.SetRumble(System.Boolean)">
+            <summary> Turns the Rumble On and Off. </summary>
+            <param name="TurnOn"> Set to <c>True</c> to turn the Rumble On. Set
+              to <c>False</c> to turn the Rumble Off. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.EnableAccel">
+            <summary> Enables accelerometer. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.DisableAccel">
+            <summary> Disables accelerometer. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.SetIrSensitivity(wclBluetooth.wclWiiRemoteIrSensitivity)">
+            <summary> Sets IR IR sensor sensitivity (and turns it ON or
+              OFF). </summary>
+            <param name="Sensitivity"> The IR sensor sensitivity. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteIrSensitivity" />
+        </member>
+        <member name="P:wclBluetooth.wclWiiRemoteClientConnection.Address">
+            <summary> Gets a remote device MAC address. </summary>
+            <value> The remote device MAC address. </value>
+        </member>
+        <member name="P:wclBluetooth.wclWiiRemoteClientConnection.AccelEnabled">
+            <summary> Gets the current accelerometer status. </summary>
+            <value> <c>True</c> if the accelerometer is enabled. <c>False</c>
+              otherwise. </value>
+        </member>
+        <member name="P:wclBluetooth.wclWiiRemoteClientConnection.Extension">
+            <summary> Gets the current connected extension type. </summary>
+            <value> The currently connected extension. </value>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteExtension" />
+        </member>
+        <member name="P:wclBluetooth.wclWiiRemoteClientConnection.IrMode">
+            <summary> Gets the current IR sensor mode. </summary>
+            <value> The IR sensor mode. </value>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteIrMode" />
+        </member>
+        <member name="P:wclBluetooth.wclWiiRemoteClientConnection.IrSensitivity">
+            <summary> Gets the current IR sensor sensitivity. </summary>
+            <value> The IR sensor sesitivity. </value>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteIrSensitivity" />
+        </member>
+        <member name="P:wclBluetooth.wclWiiRemoteClientConnection.Leds">
+            <summary> Gets the current LEDs state. </summary>
+            <value> The LEDs state. </value>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteLeds" />
+        </member>
+        <member name="P:wclBluetooth.wclWiiRemoteClientConnection.Radio">
+            <summary> Gets the connection owner. </summary>
+            <value> The <see cref="T:wclBluetooth.wclBluetoothRadio" /> object owns the
+              connection. </value>
+            <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
+        </member>
+        <member name="P:wclBluetooth.wclWiiRemoteClientConnection.Rumble">
+            <summary> Gets the current Rumble status. </summary>
+            <value> <c>True</c> if the Rumble is turned ON. </value>
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClientConnection.OnAccelChanged">
+            <summary> The event fires when the accelerometer state has been
+              changed. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteAccelChangedEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClientConnection.OnBalanceBoardChanged">
+            <summary> The event fires when the stat eof the Balance Board extension
+              has been changed. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteBalanceBoardChangedEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClientConnection.OnButtonsChanged">
+            <summary> The event fires when the buttons state of the Wii Remote
+              controller has been changed. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteButtonsChangedEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClientConnection.OnClassicControllerChanged">
+            <summary> The event fires when a Classic Controller extension state has
+              been changed. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteClassicControllerChangedEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClientConnection.OnDrumsChanged">
+            <summary> The evtn fires when the Drums extension state has been
+              changed. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteDrumsChangedEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClientConnection.OnExtensionAttached">
+            <summary> The event fires when the extension is attached. </summary>
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClientConnection.OnExtensionDetached">
+            <summary> The event fires when the extension has been
+              detached. </summary>
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClientConnection.OnGuitarChanged">
+            <summary> The event fires when the Guitar extension state has been
+              changed. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteGuitarChangedEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClientConnection.OnIrChanged">
+            <summary> The event fires when the IR sensor data has been
+              changed. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteIrChangedEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClientConnection.OnNunchukChanged">
+            <summary> The event fires when the state of the Nunchuk extension has
+              been changed. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteNunchukChangedEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClientConnection.OnStatusChanged">
+            <summary> The event fires when the WeDo Remote status
+              changed. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteStatusChangedEvent" />
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteHidClientConnection">
+            <summary> The virtual connection represents a Wii Remote HID
+              client. </summary>
+            <remarks> <para> The class provides methods to receive data from
+              the Wii Remote controller. </para>
+              <para> An application must never create instances of this class
+              directly. Instead of that an application must use related methods
+              from the <see cref="T:wclBluetooth.wclBluetoothRadio" /> object. </para>
+              <para> The feature is supported only on Windows 10 platform with
+              Microsoft Bluetooth drivers. </para> </remarks>
+            <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
+            <seealso cref="T:wclBluetooth.wclWiiRemoteClientConnection" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteHidClientConnection.HalConnect(System.IntPtr)">
+            <summary> Connects to the Wii Remote as to HID device. </summary>
+            <param name="Event"> The system even object handle. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteHidClientConnection.HalCommunicate(System.IntPtr)">
+            <summary> Communicates with the Wii Remote as with HID
+              device. </summary>
+            <param name="Event"> The system even object handle (disconnect
+              event). </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteHidClientConnection.HalDisconnect">
+            <summary> Disconnects from the Wii Remote as from HID device. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteHidClientConnection.HalWrite(System.Byte[])">
+            <summary> Sends data to the Wii Remote as to HID device. </summary>
+            <param name="Report"> The pointer to the report data buffer. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteHidClientConnection.#ctor(wclBluetooth.wclBluetoothRadio)">
+            <summary> Create new Wii Remote HID client connection. </summary>
+            <param name="Radio"> The Radio object that owns the connection. </param>
+            <remarks> <para> An application must never create this class directly.
+              Instead of that an application must use upper-level methods and
+              classes. </para>
+              <para> If the <c>Radio</c> parameter is <c>nil</c> the
+              <see cref="T:wclCommon.wclECritical" /> exception raises. </para> </remarks>
+            <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
+            <exception cref="T:wclCommon.wclECritical" />
         </member>
         <member name="T:wclBluetooth.wclBluetoothComponent">
             <summary> The base class for all Bluetooth Components. </summary>
@@ -5060,6 +6305,15 @@
               raises. </remarks>
             <exception cref="T:wclBluetooth.wclEGattClient" />
         </member>
+        <member name="P:wclBluetooth.wclGattClient.ConnectOnRead">
+            <summary> Gets and sets connection mode. </summary>
+            <value> The Boolean indicates the connection mode. </value>
+            <remarks> If this property set to <c>True</c> the connection to a target
+              device will be executed on first services read or when the OS decided
+              to do that. If the property is <c>False</c> the connection will be
+              executed (if possible) on <c>Connect</c> call. </remarks>
+              /// <exception cref="T:wclBluetooth.wclEGattClient" />
+        </member>
         <member name="E:wclBluetooth.wclGattClient.OnCharacteristicChanged">
             <summary> The event fires when a subscribed characteristic value has
               been changed. </summary>
@@ -5275,6 +6529,24 @@
             <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementType" />
             <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementFlag" />
         </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAdvertisementExtFrameInformation(System.Int64,System.Int64,System.SByte,wclBluetooth.wclBluetoothAddressType,System.SByte,wclBluetooth.wclBluetoothLeExtendedFrameFlag)">
+            <summary> Fires the <c>OnAdvertisementExtFrameInformation</c>
+              event. </summary>
+            <param name="Address"> The Bluetooth LE advertiser's MAC
+              address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="AddressType"> The Bluetooth LE address type. </param>
+            <param name="TxPower"> The received transmit power of the
+              advertisement. Ranges from -127 dBm to 20 dBm. -128 indicates
+              "no value". </param>
+            <param name="Flags"> The Bluetooth LE advertisement extended frame
+              flags. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothAddressType" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeExtendedFrameFlag" />
+        </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAdvertisementRawFrame(System.Int64,System.Int64,System.SByte,System.Byte,System.Byte[])">
             <summary> Fires the <c>OnAdvertisementRawFrame</c> event. </summary>
             <param name="Address"> The Bluetooth LE advertiser's MAC
@@ -5459,6 +6731,12 @@
               has been received and provides the common basic information about
               the frame. </summary>
             <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementFrameInformationEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAdvertisementExtFrameInformation">
+            <summary> The event fires when new Bluetooth LE advertisement
+              extended frame has been received and provides the common basic
+              information about the frame. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementExtFrameInformationEvent" />
         </member>
         <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAdvertisementRawFrame">
             <summary> The event fires when an unsupported or unknown Bluetooth LE
@@ -5812,6 +7090,321 @@
               advertising is running the <see cref="T:wclBluetooth.wclEBluetoothLeBeacon" />
               exception raises. </remarks>
             <exception cref="T:wclBluetooth.wclEBluetoothLeBeacon" />
+        </member>
+        <member name="P:wclBluetooth.wclBluetoothLeCustomBeacon.DataType">
+            <summary> Gets or sets the Bluetooth LE advertisement data type, as
+              defined by the Bluetooth Special Interest Group (SIG). </summary>
+            <value> The Bluetooth LE advertisement data type. </value>
+            <remarks> <para> The following advertisement types are allowed: </para>
+              <para> * Manufacturer Specific Information (0xFF); </para>
+              <para> * Any non-standard type not reserved by the system, as shown in
+                       the list below. </para>
+              <para> The following advertisement types are system-reserved and are
+                     not allowed: </para>
+              <para> * Flags (0x01) </para>
+              <para> * Incomplete List of 16-bit Service UUIDs (0x02) </para>
+              <para> * Complete List of 16-bit Service UUIDs (0x03) </para>
+              <para> * Incomplete List of 32-bit Service UUIDs (0x04) </para>
+              <para> * Complete List of 32-bit Service UUIDs (0x05) </para>
+              <para> * Incomplete List of 128-bit Service UUIDs (0x06) </para>
+              <para> * Complete List of 128-bit Service UUIDs (0x07) </para>
+              <para> * Shortened Local Name (0x08) </para>
+              <para> * Complete Local Name (0x09) </para>
+              <para> * Tx Power Level (0x0A) </para>
+              <para> * Class of Device (0x0D) </para>
+              <para> * Simple Pairing Hash C192 (0x0E) </para>
+              <para> * Simple Pairing Randomizer R192 (0x0F) </para>
+              <para> * Security Manager TK Values (0x10) </para>
+              <para> * Security Manager Out-of-Band Flags (0x11) </para>
+              <para> * Slave Connection Interval Range (0x12) </para>
+              <para> * List of 16-bit Service Solicitation UUIDs (0x14) </para>
+              <para> * List of 32-bit Service Solicitation UUIDs (0x1F) </para>
+              <para> * List of 128-bit Service Solicitation UUIDs (0x15) </para>
+              <para> * Service Data 16-bit UUID (0x16) </para>
+              <para> * Service Data 32-bit UUID (0x20) </para>
+              <para> * Service Data 128-bit UUID (0x21) </para>
+              <para> * Public Target Address (0x17) </para>
+              <para> * Random Target Address (0x18) </para>
+              <para> * Appearance (0x19) </para>
+              <para> * Advertising Interval (0x1A) </para>
+              <para> * LE Bluetooth Device Address (0x1B) </para>
+              <para> * LE Role (0x1C) </para>
+              <para> * Simple Pairing Hash C256 (0x1D) </para>
+              <para> * Simple Pairing Randomizer R256 (0x1E) </para>
+              <para> * 3D Information Data (0x3D) </para>
+              <para> If the Data Type value is not 0xFF (Manufacturer Specific
+                     Information) the <c>CompanyId</c> value will be
+                     ignored. </para> </remarks>
+            <exception cref="T:wclBluetooth.wclEBluetoothLeBeacon" />
+        </member>
+        <member name="T:wclBluetooth.wclWiiRemoteClient">
+            <summary> The class provides methods to communicate with Wii Remote
+              controller. </summary>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.DoAccelChanged(wclBluetooth.wclWiiRemoteAccel)">
+            <summary> Fire the <c>OnAccelChanged</c> event. </summary>
+            <param name="Accel"> The current accelerometer data. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteAccel" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.DoBalanceBoardChanged(wclBluetooth.wclWiiRemoteBalanceBoard)">
+            <summary> Fires the <c>OnBalanceBoardChanged</c> event </summary>
+            <param name="Board"> The new Balance Board extension
+              state. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteBalanceBoard" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.DoButtonsChanged(wclBluetooth.wclWiiRemoteButtons)">
+            <summary> Fires the <c>OnButtonsChanged</c> event. </summary>
+            <param name="Buttons"> The new buttons state. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteButtons" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.DoClassicControllerChanged(wclBluetooth.wclWiiRemoteClassicController)">
+            <summary> Fires the <c>OnClassicControllerChanged</c> event. </summary>
+            <param name="Controller"> The current state of the Wii Remote Classic
+              Controller extension. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteClassicController" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.DoConnect(System.Int32)">
+            <summary> Fires the <c>OnConnect</c> event. </summary>
+            <param name="Error"> The connection operation result code. If the
+              parameter is <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" /> the connection to a remote
+              device was established and the remote device is connected. Otherwise
+              the connection was not established and the remote device is
+              not connected. </param>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.DoDisconnect(System.Int32)">
+            <summary> Fires the <c>OnDisconnect</c> event. </summary>
+            <param name="Reason"> The disconnection code. If the
+              parameter is <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" /> the connection was closed
+              by the <c>Disconnect</c> call. Otherwise indicates the disconnection
+              reason. </param>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.DoDrumsChanged(wclBluetooth.wclWiiRemoteDrums)">
+            <summary> Fires the <c>OnDrumsChanged</c> event. </summary>
+            <param name="Drums"> The current state of the Drums extension. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteDrums" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.DoExtensionAttached">
+            <summary> Fires the <c>OnExtensionAttached</c> event. </summary>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.DoExtensionDetached">
+            <summary> Fires the <c>OnExtensionDetached</c> event. </summary>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.DoGuitarChanged(wclBluetooth.wclWiiRemoteGuitar)">
+            <summary> Fires the <c>OnGuitarChanged</c> event. </summary>
+            <param name="Guitar"> The current Guitar extension state. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteGuitar" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.DoIrChanged(wclBluetooth.wclWiiRemoteIrSensors)">
+            <summary> Fires the <c>OnIrChanged</c> event. </summary>
+            <param name="Ir"> The IR sensor data. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteIrSensors" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.DoNunchukChanged(wclBluetooth.wclWiiRemoteNunchuk)">
+            <summary> Fires the <c>OnNunchukChanged</c> event. </summary>
+            <param name="Nunchuk"> The current Nunchuk extension state. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteNunchuk" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.DoStatusChanged(System.Double,wclBluetooth.wclWiiRemoteLeds)">
+            <summary> Fires the <c>OnStatusChanged</c> event. </summary>
+            <param name="Batt"> The WeDo Remote battery level. </param>
+            <param name="Leds"> The We Do Remote LEDs state. </param>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteLeds" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.#ctor">
+            <summary> Creates new Wii Remote client component. </summary>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.Connect(wclBluetooth.wclBluetoothRadio)">
+            <summary> Starts connecting to a Wii Remote device. </summary>
+            <param name="Radio"> The <see cref="T:wclBluetooth.wclBluetoothRadio" /> object
+              that handles the connection. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.Disconnect">
+            <summary> Disconnects from the Wii Remote. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.GetStatus">
+            <summary> Requests the Wii Remote status. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> This is asynchronous method. When operation complets the
+              <c>OnStatusChanged</c> event fires. </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.SetLeds(wclBluetooth.wclWiiRemoteLeds)">
+            <summary> Changes the Wii Remote LEDs state. </summary>
+            <param name="Leds"> The new LEDs state. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteLeds" />
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.SetLeds(System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary> Changes the Wii Remote LEDs state. </summary>
+            <param name="Led1"> The new LED 1 state. </param>
+            <param name="Led2"> The new LED 2 state. </param>
+            <param name="Led3"> The new LED 3 state. </param>
+            <param name="Led4"> The new LED 4 state. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.SetRumble(System.Boolean)">
+            <summary> Turns the Rumble On and Off. </summary>
+            <param name="TurnOn"> Set to <c>True</c> to turn the Rumble On. Set
+              to <c>False</c> to turn the Rumble Off. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.EnableAccel">
+            <summary> Enables accelerometer. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.DisableAccel">
+            <summary> Disables accelerometer. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclBluetooth.wclWiiRemoteClient.SetIrSensitivity(wclBluetooth.wclWiiRemoteIrSensitivity)">
+            <summary> Sets IR IR sensor sensitivity (and turns it ON or
+              OFF). </summary>
+            <param name="Sensitivity"> The IR sensor sensitivity. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteIrSensitivity" />
+        </member>
+        <member name="P:wclBluetooth.wclWiiRemoteClient.AccelEnabled">
+            <summary> Gets the current accelerometer status. </summary>
+            <value> <c>True</c> if the accelerometer is enabled. <c>False</c>
+              otherwise. </value>
+        </member>
+        <member name="P:wclBluetooth.wclWiiRemoteClient.Extension">
+            <summary> Gets the current connected extension type. </summary>
+            <value> The currently connected extension. </value>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteExtension" />
+        </member>
+        <member name="P:wclBluetooth.wclWiiRemoteClient.IrMode">
+            <summary> Gets the current IR sensor mode. </summary>
+            <value> The IR sensor mode. </value>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteIrMode" />
+        </member>
+        <member name="P:wclBluetooth.wclWiiRemoteClient.IrSensitivity">
+            <summary> Gets the current IR sensor sensitivity. </summary>
+            <value> The IR sensor sesitivity. </value>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteIrSensitivity" />
+        </member>
+        <member name="P:wclBluetooth.wclWiiRemoteClient.Leds">
+            <summary> Gets the current LEDs state. </summary>
+            <value> The LEDs state. </value>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteLeds" />
+        </member>
+        <member name="P:wclBluetooth.wclWiiRemoteClient.Radio">
+            <summary> Gets the radio object used for connection. </summary>
+            <value> The <see cref="T:wclBluetooth.wclBluetoothRadio" /> object. </value>
+            <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
+        </member>
+        <member name="P:wclBluetooth.wclWiiRemoteClient.Rumble">
+            <summary> Gets the current Rumble status. </summary>
+            <value> <c>True</c> if the Rumble is turned ON. </value>
+        </member>
+        <member name="P:wclBluetooth.wclWiiRemoteClient.State">
+            <summary> Gets the current client state. </summary>
+            <value> The client state. </value>
+            <seealso cref="T:wclCommunication.wclClientState" />
+        </member>
+        <member name="P:wclBluetooth.wclWiiRemoteClient.Address">
+            <summary> Gets and sets a target WiiRemote device's MAC
+              address. </summary>
+            <value> The Bluetooth MAC address. </value>
+            <remarks> If an application changes the property when connection
+              is active the <see cref="T:wclBluetooth.wclEBluetoothClient" /> exception
+              raises. </remarks>
+            <exception cref="T:wclBluetooth.wclEBluetoothClient" />
+        </member>
+        <member name="P:wclBluetooth.wclWiiRemoteClient.Timeout">
+            <summary> Gets and sets the connect timeout value. </summary>
+            <value> The connect timeout value in milliseconds. </value>
+            <remarks> If an application changes the property when client is
+              connected the <see cref="T:wclCommunication.wclEClientActive" /> exception
+              raises. If new value of the <c>Timeout</c> is <c>0</c> the
+              <see cref="T:wclCommon.wclEInvalidArgument" /> exception raises. </remarks>
+            <exception cref="T:wclCommunication.wclEClientActive" />
+            <exception cref="T:wclCommon.wclEInvalidArgument" />
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClient.OnAccelChanged">
+            <summary> The event fires when the accelerometer state has been
+              changed. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteAccelChangedEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClient.OnBalanceBoardChanged">
+            <summary> The event fires when the stat eof the Balance Board extension
+              has been changed. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteBalanceBoardChangedEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClient.OnButtonsChanged">
+            <summary> The event fires when the buttons state of the Wii Remote
+              controller has been changed. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteButtonsChangedEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClient.OnClassicControllerChanged">
+            <summary> The event fires when a Classic Controller extension state has
+              been changed. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteClassicControllerChangedEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClient.OnConnect">
+            <summary> The event fires when a connection to a remote device
+              has been completed (with or without success). </summary>
+            <remarks> If the <c>Error</c> parameter of the event is not
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" /> an application may call <c>Connect</c>
+              method again from inside the event handler. </remarks>
+            <seealso cref="T:wclCommunication.wclClientConnectionConnectEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClient.OnDisconnect">
+            <summary> The event fires when the remote connected device has been
+              disconnected. </summary>
+            <seealso cref="T:wclCommunication.wclClientConnectionDisconnectEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClient.OnDrumsChanged">
+            <summary> The evtn fires when the Drums extension state has been
+              changed. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteDrumsChangedEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClient.OnExtensionAttached">
+            <summary> The event fires when the extension is attached. </summary>
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClient.OnExtensionDetached">
+            <summary> The event fires when the extension has been
+              detached. </summary>
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClient.OnGuitarChanged">
+            <summary> The event fires when the Guitar extension state has been
+              changed. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteGuitarChangedEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClient.OnIrChanged">
+            <summary> The event fires when the IR sensor data has been
+              changed. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteIrChangedEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClient.OnNunchukChanged">
+            <summary> The event fires when the state of the Nunchuk extension has
+              been changed. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteNunchukChangedEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclWiiRemoteClient.OnStatusChanged">
+            <summary> The event fires when the WeDo Remote status
+              changed. </summary>
+            <seealso cref="T:wclBluetooth.wclWiiRemoteStatusChangedEvent" />
         </member>
         <member name="M:wclBluetooth.wclBlueSoleil.Load">
             <summary> Creates a BlueSoleil Bluetooth Radio object. </summary>
@@ -6317,6 +7910,62 @@
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_START_WINRT_THREAD_FAILED">
             <summary> Unable to start Win RT classic working thread. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_CREATE_WATCHER_FACTORY_FAILED">
+            <summary> Create Device Watcher Factory failed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_CREATE_FILTER_FAILED">
+            <summary> Create device's filter for Device Watcher failed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_CREATE_WATCHER_FAILED">
+            <summary> Create Bluetooth devices watcher failed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_CREATE_COMPLETION_EVENT_FAILED">
+            <summary> Create discovering completion event failed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_SET_ADDED_HANDLER_FAILED">
+            <summary> Set Bluetooth device watcher Added event handler failed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_SET_UPDATED_HANDLER_FAILED">
+            <summary> Set Bluetooth device watcher Updated event handler failed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_SET_REMOVED_HANDLER_FAILED">
+            <summary> Set Bluetooth device watcher Removed event handler failed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_SET_COMPLETED_HANDLER_FAILED">
+            <summary> Set Bluetooth device watcher Discovering Completed event handler failed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_WATCHER_START_FAILED">
+            <summary> Start discovering failed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_UNABLE_TO_CREATE_WRITE_EVENT">
+            <summary> Unable to create write completion event object. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_DISCOVERING_CANCELED">
+            <summary> Discovering has been canceled (aborted) by the
+              system. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_CREATE_STOPPED_EVENT_FAILED">
+            <summary> Unable to create asynchronous operation termination indication
+              event. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_SET_EVENT_HANDLER_FAILED">
+            <summary> Unable to set Win RT object's event handler. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_UNABLE_REGISTER_CONNECT_MESSAGE">
+            <summary> Unable to register Wii Remote client connect notification
+              message. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_UNABLE_REGISTER_DISCONNECT_MESSAGE">
+            <summary> Unable to register Wii Remote client disconnect notification
+              message. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_UNABLE_REGISTER_DATA_MESSAGE">
+            <summary> Unable to register Wii Remote client data notification
+              message. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_UNABLE_CREATE_DATA_EVENT">
+            <summary> Unable to create data received notification event. </summary>
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_BASE">
             <summary> The base error code for Bluetooth Low Energy. </summary>
@@ -6939,6 +8588,95 @@
               that the characteristic has both <c>IsNotifiable</c> and
               <c>IsIndicatable</c> properties are set to <c>True</c>. Set one of
               the property to <c>False</c>. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_CREATE_STOPPED_EVENT_FAILED">
+            <summary> Unable to create asynchronous operation termination indication
+              event. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_DISCOVERING_TERMINATED">
+            <summary> Discovering has been terminated. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_DISCOVERING_CANCELED">
+            <summary> Discovering has been canceled (aborted) by the system. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_BASE">
+            <summary> The base error code for Wii Remote errors. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_ENUM_HID_FAILED">
+            <summary> Can not ceate HID devices list. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_NOT_INSTALLED">
+            <summary> A Wii Remote controller has not been installed.</summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_CREATE_READ_EVENT_FAILED">
+            <summary> Unable to create overlapped read event. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_CREATE_WRITE_EVENT_FAILED">
+            <summary> Unable to create overlapped write event. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_CONNECT_FAILED">
+            <summary> Unable to connect to the Wii Remote controller. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_HID_UNABLE_CREATE_MUTEX">
+            <summary> Unable to create HID API access mutex. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_HID_SUBSYSTEM_NOT_AVAILABLE">
+            <summary> HID subsystem is not available on this platform. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_HID_NOT_SUPPORTED">
+            <summary> Not all required HID features are supported by the
+              system. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_READ_REPORT_FAILED">
+            <summary> Read data from the Wii Remote failed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_WRITE_REPORT_FAILED">
+            <summary> Write data to the Wii Remote failed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_WRITE_REPORT_TIMEOUT">
+            <summary> Write data to the Wii Remote has timed out. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_CREATE_READ_MEMORY_EVENT_FAILED">
+            <summary> Unable to create read memory event object. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_CREATE_WRITE_MEMORY_EVENT_FAILED">
+            <summary> Unable to create write memory event object. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_NOT_INITIALIZED">
+            <summary> The Wii Remote controller has not been initialized
+              yet. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_IR_LEVEL_WRONG">
+            <summary> Wrong IR sensor level has been specified. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_IR_LEVEL_UNKNOWN">
+            <summary> Unknown IR sensor level has been specified. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_IR_MODE_WRONG">
+            <summary> Wrong IR sensor mode has been specified. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_IR_MODE_UNKNOWN">
+            <summary> Unknown IR sensor mode has been specified. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_EXTENSION_NOT_FOUND">
+            <summary> The extension has not been detected (or partially inserted)
+              during initialization. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_EXTENSION_UNKNOWN">
+            <summary> Unknown or unsupported extension has been attached. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_FEATURE_NOT_SUPPORTED">
+            <summary> The requisted feature is not supported. Probably because
+              Balance Board is connected. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_ACCELEROMETER_ENABLED">
+            <summary> Accelerometer is already enabled. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_ACCELEROMETER_DISABLED">
+            <summary> Accelerometer is disabled. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_INVALID_CONFIGURATION">
+            <summary> Invalid Wii Remote configuration. </summary>
         </member>
         <member name="T:wclBluetooth.wclEBluetooth">
             <summary> The base exception class for all Bluetooth

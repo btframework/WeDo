@@ -25,14 +25,18 @@ using System.Collections.Generic;
 using wclCommon;
 using wclCommunication;
 using wclBluetooth;
+using System.Linq;
+using System.Collections.Specialized;
 
 namespace wclWeDoFramework
 {
     /// <summary> The <c>OnHubConnected</c> event handler prototype. </summary>
     /// <param name="Sender"> The object that fired the event. </param>
     /// <param name="Hub"> The WeDo HUB object that has been connected. </param>
+    /// <param name="Error"> The connection result. If the connection completed with success the
+    ///    <c>Error</c> value is <c>WCL_E_SUCCESS</c>. </param>
     /// <seealso cref="wclWeDoHub"/>
-    public delegate void wclWeDoRobotHubConnectedEvent(Object Sender, wclWeDoHub Hub);
+    public delegate void wclWeDoRobotHubConnectedEvent(Object Sender, wclWeDoHub Hub, Int32 Error);
     /// <summary> The <c>OnHubDisconnected</c> event handler prototype. </summary>
     /// <param name="Sender"> The object that fired the event. </param>
     /// <param name="Hub"> The WeDo HUB object that has been disconnected. </param>
@@ -40,28 +44,55 @@ namespace wclWeDoFramework
     /// <seealso cref="wclWeDoHub"/>
     public delegate void wclWeDoRobotHubDisconnectedEvent(Object Sender, wclWeDoHub Hub,
         Int32 Reason);
+    /// <summary> The <c>OnHubFound</c> event handler prototype. </summary>
+    /// <param name="Sender"> The object that fired the event. </param>
+    /// <param name="Address"> The HUD address. </param>
+    /// <param name="Name"> The HUB name. </param>
+    /// <param name="Connect"> An application sets this boolean value to <c>true</c> to
+    ///   accept connection to this HUB. Set this parameter to <c>false</c> to ignore HUB. </param>
+    public delegate void wclWeDoRobotHubFoundEvent(Object Sender, Int64 Address, String Name,
+        out Boolean Connect);
 
     /// <summary> The class represents a WeDo Robot.  </summary>
     /// <remarks> The WeDo Robot is the class that combines all the WeDo Framework features into
-    ///   a single place. It allows to work with more thean single Hub and hides all the
-    ///   Bluetooth Framework prepartion steps required todiscover WeDo Hubs and to work with
+    ///   a single place. It allows to work with more then single Hub and hides all the
+    ///   Bluetooth Framework preparation steps required to discover WeDo Hubs and to work with
     ///   them.</remarks>
-    public sealed class wclWeDoRobot
+    public class wclWeDoRobot
     {
-        private List<Int64> FAddresses;
         private Boolean FDisposed;
         private Dictionary<Int64, wclWeDoHub> FHubs;
         private wclBluetoothManager FManager;
         private wclBluetoothRadio FRadio;
         private wclWeDoWatcher FWatcher;
 
+        private void HubConnected(Object Sender, Int32 Error)
+        {
+            wclWeDoHub Hub = (wclWeDoHub)Sender;
+            DoHubConnected(Hub, Error);
+            if (Error != wclErrors.WCL_E_SUCCESS)
+                FHubs.Remove(Hub.Address);
+        }
+
+        private void HubDisconnected(Object Sender, Int32 Reason)
+        {
+            wclWeDoHub Hub = (wclWeDoHub)Sender;
+            if (FHubs.ContainsKey(Hub.Address))
+            {
+                FHubs.Remove(Hub.Address);
+                DoHubDisconnected(Hub, Reason);
+            }
+        }
+
         private void WatcherHubFound(Object Sender, Int64 Address, String Name)
         {
             // First, check that we are not connected to the HUB.
             if (!FHubs.ContainsKey(Address))
             {
-                // Now make sure we are interested in this HUB.
-                if (FAddresses.Count == 0 || FAddresses.Contains(Address))
+                // Query application about interest of this HUB.
+                Boolean Connect;
+                DoHubFound(Address, Name, out Connect);
+                if (Connect)
                 {
                     // Prepare HUB object.
                     wclWeDoHub Hub = new wclWeDoHub();
@@ -78,51 +109,92 @@ namespace wclWeDoFramework
             }
         }
 
-        private void HubDisconnected(Object Sender, Int32 Reason)
+        private void WatcherStarted(Object sender, EventArgs e)
         {
-            // Simple remove HUb from the list and fire the event.
-            Int64 Address = ((wclWeDoHub)Sender).Address;
-            if (FHubs.ContainsKey(Address))
-            {
-                FHubs.Remove(Address);
-                if (OnHubDisconnected != null)
-                    OnHubDisconnected(this, (wclWeDoHub)Sender, Reason);
-            }
+            DoStarted();
         }
 
-        private void HubConnected(Object Sender, Int32 Error)
+        /// <summary> Fires the <c>OnHubConnected</c> event. </summary>
+        /// <param name="Hub"> The WeDo HUB object that has been connected. </param>
+        /// <param name="Error"> The connection result code. If connection completed with success the
+        ///   value is<c>WCL_E_SUCCESS</c>. </param>
+        /// <seealso cref="wclWeDoHub"/>
+        protected virtual void DoHubConnected(wclWeDoHub Hub, Int32 Error)
         {
-            // If connection was success we can add HUB into the list and fire the event.
-            if (Error == wclErrors.WCL_E_SUCCESS)
-            {
-                FHubs.Add(((wclWeDoHub)Sender).Address, (wclWeDoHub)Sender);
-                if (OnHubConnected != null)
-                    OnHubConnected(this, (wclWeDoHub)Sender);
-            }
+            if (OnHubConnected != null)
+                OnHubConnected(this, Hub, Error);
+        }
+
+        /// <summary> Fires the <c>OnHubDisconnected</c> event. </summary>
+        /// <param name="Hub"> The WeDo Hub that just disconnected. </param>
+        /// <param name="Reason"> The disconnection reason code. </param>
+        protected virtual void DoHubDisconnected(wclWeDoHub Hub, Int32 Reason)
+        {
+            if (OnHubDisconnected != null)
+                OnHubDisconnected(this, Hub, Reason);
+        }
+
+        /// <summary> Fires the <c>OnHubFound</c> event </summary>
+        /// <param name="Address"> The HUD address. </param>
+        /// <param name="Name"> The HUB name. </param>
+        /// <param name="Connect"> An application sets this boolean value to <c>true</c> to
+        ///   accept connection to this HUB. Set this parameter to <c>false</c> to ignore HUB. </param>
+        protected virtual void DoHubFound(Int64 Address, String Name, out Boolean Connect)
+        {
+            Connect = false;
+            if (OnHubFound != null)
+                OnHubFound(this, Address, Name, out Connect);
+        }
+
+        /// <summary> Fires the <c>OnStarted</c> event. </summary>
+        protected virtual void DoStarted()
+        {
+            if (OnStarted != null)
+                OnStarted(this, EventArgs.Empty);
+        }
+
+        private void WatcherStopped(object sender, EventArgs e)
+        {
+            DoStopped();
+        }
+
+        /// <summary> Fires the <c>OnStopped</c> event. </summary>
+        protected virtual void DoStopped()
+        {
+            if (OnStopped != null)
+                OnStopped(this, EventArgs.Empty);
         }
 
         /// <summary> Creates new instance of the WeDo Robot class. </summary>
         public wclWeDoRobot()
         {
-            FAddresses = new List<Int64>();
             FDisposed = false;
             FHubs = new Dictionary<Int64, wclWeDoHub>();
             FManager = new wclBluetoothManager();
             FRadio = null;
             FWatcher = new wclWeDoWatcher();
 
-            // WeDoWatcher events
             FWatcher.OnHubFound += WatcherHubFound;
+            FWatcher.OnStarted += WatcherStarted;
+            FWatcher.OnStopped += WatcherStopped;
+
+            OnHubFound = null;
 
             OnHubConnected = null;
             OnHubDisconnected = null;
+            OnHubFound = null;
+            OnStarted = null;
+            OnStopped = null;
         }
 
-        /// <summary> Connects to specified HUBs. </summary>
+        /// <summary> Starts connection to the WeDo Hubs. </summary>
         /// <returns> If the method completed with success the returning value is
         ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
         ///   one of the Bluetooth Framework error code. </returns>
-        public Int32 Connect()
+        /// <remarks> The method starts searching for WeDo Hubs and to connect to each found. Once the Hub found
+        ///   the <c>OnHubFound</c> event fires. An application may accept connection to this Hub by setting
+        ///   the <c>Connect</c> parameter to <c>true</c>. </remarks>
+        public Int32 Start()
         {
             if (FDisposed)
                 throw new ObjectDisposedException(GetType().FullName);
@@ -130,7 +202,6 @@ namespace wclWeDoFramework
             if (FRadio != null)
                 return wclConnectionErrors.WCL_E_CONNECTION_ACTIVE;
 
-            // Now try to open Bluetooth Manager.
             Int32 Res = FManager.Open();
             if (Res == wclErrors.WCL_E_SUCCESS)
             {
@@ -168,11 +239,11 @@ namespace wclWeDoFramework
             return Res;
         }
 
-        /// <summary> Disconnects from  all connected HUBs. </summary>
+        /// <summary> Stops the WeDo Robot. </summary>
         /// <returns> If the method completed with success the returning value is
         ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
         ///   one of the Bluetooth Framework error code. </returns>
-        public Int32 Disconnect()
+        public Int32 Stop()
         {
             if (FDisposed)
                 throw new ObjectDisposedException(GetType().FullName);
@@ -180,34 +251,54 @@ namespace wclWeDoFramework
             if (FRadio == null)
                 return wclConnectionErrors.WCL_E_CONNECTION_NOT_ACTIVE;
 
-            // First, stop watcher to prevent from connecting other devices.
             FWatcher.Stop();
-            // Disconnect all HUBs.
             while (FHubs.Count > 0)
-                FHubs[0].Disconnect();
-            // Close Bluetooth Manager.
+                FHubs.Values.ElementAt(0).Disconnect();
             FManager.Close();
-            // And cleanup radio.
             FRadio = null;
 
             return wclErrors.WCL_E_SUCCESS;
         }
 
-        /// <summary> Gets the list of required addresses. </summary>
-        /// <value> The list of HUBs MACs. </value>
-        public List<Int64> Addresses {  get { return FAddresses; } }
         /// <summary> Gets the class state. </summary>
         /// <value> <c>True</c> if connection is running. <c>False</c> otherwise. </value>
-        public Boolean Connected { get { return FRadio != null; } }
-        /// <summary> Gets the list of connected HUBs. </summary>
-        /// <value> The list of connected HUBs. </value>
-        public Dictionary<Int64, wclWeDoHub> Hubs { get { return FHubs; } }
+        public Boolean Active
+        {
+            get
+            {
+                if (FDisposed)
+                    throw new ObjectDisposedException(GetType().FullName);
 
-        /// <summary> The event fires when new found WeDo HUB has just been connected. </summary>
+                return FRadio != null;
+            }
+        }
+
+        /// <summary> Gets list of the connected WeDo Hubs. </summary>
+        /// <value> The list of the WeDo Hubs. </value>
+        /// <seealso cref="wclWeDoHub"/>
+        public List<wclWeDoHub> Hubs
+        {
+            get
+            {
+                if (FDisposed)
+                    throw new ObjectDisposedException(GetType().FullName);
+
+                return FHubs.Values.ToList<wclWeDoHub>();
+            }
+        }
+
+        /// <summary> The event fires when connection operation has been completed. </summary>
         /// <seealso cref="wclWeDoRobotHubConnectedEvent"/>
         public event wclWeDoRobotHubConnectedEvent OnHubConnected;
-        /// <summary> The event fires when HUB has been disconnected. </summary>
+        /// <summary> The event fires when the WeDo Hub has been disconnected. </summary>
         /// <seealso cref="wclWeDoRobotHubDisconnectedEvent"/>
         public event wclWeDoRobotHubDisconnectedEvent OnHubDisconnected;
+        /// <summary> The event fires when new WeDo HUB found. </summary>
+        /// <seealso cref="wclWeDoRobotHubFoundEvent"/>
+        public event wclWeDoRobotHubFoundEvent OnHubFound;
+        /// <summary> The event fires when search and connect to found WeDo Hubs has been started. </summary>
+        public event EventHandler OnStarted;
+        /// <summary> The event firs when search and connect to the WeDo Hubs stopped. </summary>
+        public event EventHandler OnStopped;
     };
 }
