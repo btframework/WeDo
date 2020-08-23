@@ -1527,6 +1527,7 @@
             <param name="Reserved"> A 1-byte value from 0x00 to 0xFF. Interpretation
               of this value is to be defined by the manufacturer and is to be
               evaluated based on the CompanyId value. </param>
+            <param name="Data"> The additional frame data. </param>
         </member>
         <member name="T:wclBluetooth.wclBluetoothLeEddystoneTlmFrameEvent">
             <summary> The <c>OnEddystoneTlmFrame</c> event handler
@@ -1550,6 +1551,7 @@
               a reboot), the AdvCnt count field is also reset. </param>
             <param name="Temp"> The beacon temperature in degrees Celsius sensed by
               the beacon. If not supported the value is -128 °C. </param>
+            <param name="Data"> The additional frame data. </param>
         </member>
         <member name="T:wclBluetooth.wclBluetoothLeEddystoneUidFrameEvent">
             <summary> The <c>OnEddystoneUidFrame</c> event handler
@@ -1565,6 +1567,7 @@
               distance. </param>
             <param name="Uuid"> The Eddystone ID: 10 bytes - Namespace ID and 6
               bytes - Instance ID. </param>
+            <param name="Data"> The additional frame data. </param>
         </member>
         <member name="T:wclBluetooth.wclBluetoothLeEddystoneUrlFrameEvent">
             <summary> The <c>OnEddystoneUrlFrame</c> event handler
@@ -1611,6 +1614,7 @@
             <param name="TxRssi"> The beacon's RSSI value in dBm at range between -100
               dBm and +20 dBm at 1 dBm resolution measured at 1 meter
               distance. </param>
+            <param name="Data"> The additional frame data. </param>
         </member>
         <member name="T:wclBluetooth.wclGattLocalCharacteristicReadEvent">
             <summary> The <c>OnRead</c> characteristic's event handler
@@ -4594,7 +4598,7 @@
               dBm and +20 dBm at 1 dBm resolution. </param>
             <param name="Uuid"> The advertised UUID value. </param>
         </member>
-        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAltBeaconFrame(System.Int64,System.Int64,System.SByte,System.UInt16,System.UInt16,System.UInt16,System.Guid,System.SByte,System.Byte)">
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAltBeaconFrame(System.Int64,System.Int64,System.SByte,System.UInt16,System.UInt16,System.UInt16,System.Guid,System.SByte,System.Byte,System.Byte[])">
             <summary> Fires the <c>OnAltBeaconFrame</c> event. </summary>
             <param name="Address"> The Bluetooth LE advertiser's MAC
               address. </param>
@@ -4613,8 +4617,9 @@
             <param name="Reserved"> A 1-byte value from 0x00 to 0xFF. Interpretation
               of this value is to be defined by the manufacturer and is to be
               evaluated based on the CompanyId value. </param>
+            <param name="Data"> The additional frame data. </param>
         </member>
-        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoEddystoneTlmFrame(System.Int64,System.Int64,System.SByte,System.UInt32,System.UInt16,System.UInt32,System.Double)">
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoEddystoneTlmFrame(System.Int64,System.Int64,System.SByte,System.UInt32,System.UInt16,System.UInt32,System.Double,System.Byte[])">
             <summary> Fires the <c>OnEddystoneTlmFrame</c> event. </summary>
             <param name="Address"> The Bluetooth LE advertiser's MAC
               address. </param>
@@ -4635,8 +4640,9 @@
               a reboot), the AdvCnt count field is also reset. </param>
             <param name="Temp"> The beacon temperature in degrees Celsius sensed by
               the beacon. If not supported the value is -128 °C. </param>
+            <param name="Data"> The additional frame data. </param>
         </member>
-        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoEddystoneUidFrame(System.Int64,System.Int64,System.SByte,System.SByte,System.Guid)">
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoEddystoneUidFrame(System.Int64,System.Int64,System.SByte,System.SByte,System.Guid,System.Byte[])">
             <summary> Fires the <c>OnEddystoneUidFrame</c> event. </summary>
             <param name="Address"> The Bluetooth LE advertiser's MAC
               address. </param>
@@ -4649,6 +4655,7 @@
               distance. </param>
             <param name="Uuid"> The Eddystone ID: 10 bytes - Namespace ID and 6
               bytes - Instance ID. </param>
+            <param name="Data"> The additional frame data. </param>
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoEddystoneUrlFrame(System.Int64,System.Int64,System.SByte,System.SByte,System.String)">
             <summary> Fires the <c>OnEddystoneUrlFrame</c> event. </summary>
@@ -4676,7 +4683,7 @@
             <param name="Data"> The frame raw data. The value can be <c>null</c> if
               there is no any data available in the frame. </param>
         </member>
-        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoProximityBeaconFrame(System.Int64,System.Int64,System.SByte,System.UInt16,System.UInt16,System.UInt16,System.Guid,System.SByte)">
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoProximityBeaconFrame(System.Int64,System.Int64,System.SByte,System.UInt16,System.UInt16,System.UInt16,System.Guid,System.SByte,System.Byte[])">
             <summary> Fires the <c>OnProximityBeaconFrame</c> event. </summary>
             <param name="Address"> The Bluetooth LE advertiser's MAC
               address. </param>
@@ -4692,6 +4699,7 @@
             <param name="TxRssi"> The beacon's RSSI value in dBm at range between
               -100 dBm and +20 dBm at 1 dBm resolution measured at 1 meter
               distance. </param>
+            <param name="Data"> The additional frame data. </param>
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoStarted">
             <summary> Fires the <c>OnStarted</c> event. </summary>
@@ -6569,7 +6577,7 @@
               dBm and +20 dBm at 1 dBm resolution. </param>
             <param name="Uuid"> The advertised UUID value. </param>
         </member>
-        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAltBeaconFrame(System.Int64,System.Int64,System.SByte,System.UInt16,System.UInt16,System.UInt16,System.Guid,System.SByte,System.Byte)">
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAltBeaconFrame(System.Int64,System.Int64,System.SByte,System.UInt16,System.UInt16,System.UInt16,System.Guid,System.SByte,System.Byte,System.Byte[])">
             <summary> Fires the <c>OnAltBeaconFrame</c> event. </summary>
             <param name="Address"> The Bluetooth LE advertiser's MAC
               address. </param>
@@ -6588,8 +6596,9 @@
             <param name="Reserved"> A 1-byte value from 0x00 to 0xFF. Interpretation
               of this value is to be defined by the manufacturer and is to be
               evaluated based on the CompanyId value. </param>
+            <param name="Data"> The additional frame data. </param>
         </member>
-        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoEddystoneTlmFrame(System.Int64,System.Int64,System.SByte,System.UInt32,System.UInt16,System.UInt32,System.Double)">
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoEddystoneTlmFrame(System.Int64,System.Int64,System.SByte,System.UInt32,System.UInt16,System.UInt32,System.Double,System.Byte[])">
             <summary> Fires the <c>OnEddystoneTlmFrame</c> event. </summary>
             <param name="Address"> The Bluetooth LE advertiser's MAC
               address. </param>
@@ -6610,8 +6619,9 @@
               a reboot), the AdvCnt count field is also reset. </param>
             <param name="Temp"> The beacon temperature in degrees Celsius sensed by
               the beacon. If not supported the value is -128 °C. </param>
+            <param name="Data"> The additional frame data. </param>
         </member>
-        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoEddystoneUidFrame(System.Int64,System.Int64,System.SByte,System.SByte,System.Guid)">
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoEddystoneUidFrame(System.Int64,System.Int64,System.SByte,System.SByte,System.Guid,System.Byte[])">
             <summary> Fires the <c>OnEddystoneUidFrame</c> event. </summary>
             <param name="Address"> The Bluetooth LE advertiser's MAC
               address. </param>
@@ -6624,6 +6634,7 @@
               distance. </param>
             <param name="Uuid"> The Eddystone ID: 10 bytes - Namespace ID and 6
               bytes - Instance ID. </param>
+            <param name="Data"> The additional frame data. </param>
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoEddystoneUrlFrame(System.Int64,System.Int64,System.SByte,System.SByte,System.String)">
             <summary> Fires the <c>OnEddystoneUrlFrame</c> event. </summary>
@@ -6651,7 +6662,7 @@
             <param name="Data"> The frame raw data. The value can be <c>null</c> if
               there is no any data available in the frame. </param>
         </member>
-        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoProximityBeaconFrame(System.Int64,System.Int64,System.SByte,System.UInt16,System.UInt16,System.UInt16,System.Guid,System.SByte)">
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoProximityBeaconFrame(System.Int64,System.Int64,System.SByte,System.UInt16,System.UInt16,System.UInt16,System.Guid,System.SByte,System.Byte[])">
             <summary> Fires the <c>OnProximityBeaconFrame</c> event. </summary>
             <param name="Address"> The Bluetooth LE advertiser's MAC
               address. </param>
@@ -6667,6 +6678,7 @@
             <param name="TxRssi"> The beacon's RSSI value in dBm at range between
               -100 dBm and +20 dBm at 1 dBm resolution measured at 1 meter
               distance. </param>
+            <param name="Data"> The additional frame data. </param>
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoStarted">
             <summary> Fires the <c>OnStarted</c> event. </summary>

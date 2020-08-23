@@ -86,6 +86,21 @@ namespace wclWeDoFramework
 
         internal delegate void wclWeDoHubDeviceDetachedEvent(Object Sender, Byte ConnectionId);
 
+        internal Int32 ReadButtonState(out Boolean Pressed)
+        {
+            Pressed = false;
+
+            if (FButtonStateChar == null)
+                return wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND;
+
+            Byte[] Val;
+            Int32 Res = Client.ReadCharacteristicValue(FButtonStateChar.Value, wclGattOperationFlag.goNone, out Val);
+            if (Res == wclErrors.WCL_E_SUCCESS && Val != null && Val.Length == 1)
+                Pressed = (Val[0] != 0);
+
+            return Res;
+        }
+
         internal Int32 ReadDeviceName(out String Name)
         {
             return ReadStringValue(FDeviceNameChar, out Name);

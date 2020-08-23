@@ -27,6 +27,7 @@ using wclCommunication;
 using wclBluetooth;
 using System.Linq;
 using System.Collections.Specialized;
+using System.Runtime.CompilerServices;
 
 namespace wclWeDoFramework
 {
@@ -65,6 +66,19 @@ namespace wclWeDoFramework
         private wclBluetoothManager FManager;
         private wclBluetoothRadio FRadio;
         private wclWeDoWatcher FWatcher;
+
+        private wclWeDoIo GetDevice(wclWeDoHub Hub, wclWeDoIoDeviceType IoType)
+        {
+            if (Hub != null)
+            {
+                foreach (wclWeDoIo Io in Hub.IoDevices)
+                {
+                    if (Io.DeviceType == IoType)
+                        return Io;
+                }
+            }
+            return null;
+        }
 
         private void HubConnected(Object Sender, Int32 Error)
         {
@@ -260,6 +274,144 @@ namespace wclWeDoFramework
             return wclErrors.WCL_E_SUCCESS;
         }
 
+        /// <summary> Gets the voltage sensor object for the given Hub. </summary>
+        /// <param name="Hub"> The WeDo Hub object. </param>
+        /// <returns> The WeDo Voltage Sensor object or null if not found. </returns>
+        /// <seealso cref="wclWeDoVoltageSensor"/>
+        /// <seealso cref="wclWeDoHub"/>
+        public wclWeDoVoltageSensor GetVoltageSensor(wclWeDoHub Hub)
+        {
+            return (GetDevice(Hub, wclWeDoIoDeviceType.iodVoltageSensor) as wclWeDoVoltageSensor);
+        }
+
+        /// <summary> Gets the current sensor object for the given Hub. </summary>
+        /// <param name="Hub"> The WeDo Hub object. </param>
+        /// <returns> The WeDo Current Sensor object or null if not found. </returns>
+        /// <seealso cref="wclWeDoCurrentSensor"/>
+        /// <seealso cref="wclWeDoHub"/>
+        public wclWeDoCurrentSensor GetCurrentSensor(wclWeDoHub Hub)
+        {
+            return (GetDevice(Hub, wclWeDoIoDeviceType.iodCurrentSensor) as wclWeDoCurrentSensor);
+        }
+
+        /// <summary> Gets the piezo device object for the given Hub. </summary>
+        /// <param name="Hub"> The WeDo Hub object. </param>
+        /// <returns> The WeDo Piezo device object or null if not found. </returns>
+        /// <seealso cref="wclWeDoPiezo"/>
+        /// <seealso cref="wclWeDoHub"/>
+        public wclWeDoPiezo GetPiezoDevice(wclWeDoHub Hub)
+        {
+            return (GetDevice(Hub, wclWeDoIoDeviceType.iodPiezo) as wclWeDoPiezo);
+        }
+
+        /// <summary> Gets the RGB device object for the given Hub. </summary>
+        /// <param name="Hub"> The WeDo Hub object. </param>
+        /// <returns> The WeDo RGB device object or null if not found. </returns>
+        /// <seealso cref="wclWeDoRgbLight"/>
+        /// <seealso cref="wclWeDoHub"/>
+        public wclWeDoRgbLight GetRgbDevice(wclWeDoHub Hub)
+        {
+            return (GetDevice(Hub, wclWeDoIoDeviceType.iodRgb) as wclWeDoRgbLight);
+        }
+
+        /// <summary> Gets the Tilt sensor object for the given Hub. </summary>
+        /// <param name="Hub"> The WeDo Hub object. </param>
+        /// <returns> The WeDo Tilt sensor object or null if not found. </returns>
+        /// <seealso cref="wclWeDoTiltSensor"/>
+        /// <seealso cref="wclWeDoHub"/>
+        public List<wclWeDoTiltSensor> GetTiltSensors(wclWeDoHub Hub)
+        {
+            List<wclWeDoTiltSensor> Sensors = new List<wclWeDoTiltSensor>();
+            if (Hub != null)
+            {
+                foreach (wclWeDoIo Io in Hub.IoDevices)
+                {
+                    if (Io.DeviceType == wclWeDoIoDeviceType.iodTiltSensor)
+                        Sensors.Add(Io as wclWeDoTiltSensor);
+                }
+            }
+            return Sensors;
+        }
+
+        /// <summary> Gets the Motion sensors list for the given Hub. </summary>
+        /// <param name="Hub"> The WeDo Hub object. </param>
+        /// <returns> The WeDo Tilt sensor object or null if not found. </returns>
+        /// <seealso cref="wclWeDoMotionSensor"/>
+        /// <seealso cref="wclWeDoHub"/>
+        public List<wclWeDoMotionSensor> GetMotionSensors(wclWeDoHub Hub)
+        {
+            List<wclWeDoMotionSensor> Sensors = new List<wclWeDoMotionSensor>();
+            if (Hub != null)
+            {
+                foreach (wclWeDoIo Io in Hub.IoDevices)
+                {
+                    if (Io.DeviceType == wclWeDoIoDeviceType.iodMotionSensor)
+                        Sensors.Add(Io as wclWeDoMotionSensor);
+                }
+            }
+            return Sensors;
+        }
+
+        /// <summary> Gets the list of connected Motor devices. </summary>
+        /// <param name="Hub"> The WeDo Hub object. </param>
+        /// <returns> Te list of connected motors. </returns>
+        /// <seealso cref="wclWeDoMotor"/>
+        /// <seealso cref="wclWeDoHub"/>
+        public List<wclWeDoMotor> GetMotors(wclWeDoHub Hub)
+        {
+            List<wclWeDoMotor> Motors = new List<wclWeDoMotor>();
+            if (Hub != null)
+            {
+                foreach (wclWeDoIo Io in Hub.IoDevices)
+                {
+                    if (Io.DeviceType == wclWeDoIoDeviceType.iodMotor)
+                        Motors.Add(Io as wclWeDoMotor);
+                }
+            }
+            return Motors;
+        }
+
+        /// <summary> Gets the IO device connected to the specified port. </summary>
+        /// <param name="Hub"> The WeDo Hub object. </param>
+        /// <param name="Port"> The port ID. </param>
+        /// <returns> The IO device or null. </returns>
+        /// <seealso cref="wclWeDoHub"/>
+        /// <seealso cref="wclWeDoIo"/>
+        public wclWeDoIo GetIoDevice(wclWeDoHub Hub, Byte Port)
+        {
+            if (Hub != null)
+            {
+                foreach (wclWeDoIo Io in Hub.IoDevices)
+                {
+                    if (Io.PortId == Port)
+                        return Io;
+                }
+            }
+            return null;
+        }
+
+        /// <summary> Gets the IO device by its type. </summary>
+        /// <param name="Hub"> The WeDo Hub object. </param>
+        /// <param name="IoType"> The device type. </param>
+        /// <returns> The IO device or null. </returns>
+        /// <seealso cref="wclWeDoHub"/>
+        /// <seealso cref="wclWeDoIo"/>
+        /// <seealso cref="wclWeDoIoDeviceType"/>
+        public List<wclWeDoIo> GetIoDevices(wclWeDoHub Hub, wclWeDoIoDeviceType IoType)
+        {
+            if (Hub == null)
+                return null;
+
+            List<wclWeDoIo> Devices = new List<wclWeDoIo>();
+            foreach (wclWeDoIo Io in Hub.IoDevices)
+            {
+                if (Io.DeviceType == IoType)
+                    Devices.Add(Io);
+            }
+
+            return Devices;
+        }
+
         /// <summary> Gets the class state. </summary>
         /// <value> <c>True</c> if connection is running. <c>False</c> otherwise. </value>
         public Boolean Active
@@ -284,6 +436,20 @@ namespace wclWeDoFramework
                     throw new ObjectDisposedException(GetType().FullName);
 
                 return FHubs.Values.ToList<wclWeDoHub>();
+            }
+        }
+
+        /// <summary> Gets the WeDo Hub object by its MAC address. </summary>
+        /// <value> The WeDo Hubs object. </value>
+        /// <seealso cref="wclWeDoHub"/>
+        public wclWeDoHub this[Int64 Address]
+        {
+            get
+            {
+                if (FDisposed)
+                    throw new ObjectDisposedException(GetType().FullName);
+
+                return FHubs[Address];
             }
         }
 

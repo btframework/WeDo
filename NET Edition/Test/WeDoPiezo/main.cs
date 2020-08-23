@@ -12,7 +12,7 @@ namespace WeDoPiezo
         private wclBluetoothManager FManager;
         private wclWeDoWatcher FWatcher;
         private wclWeDoHub FHub;
-        private wclWeDoPieazo FPiezo;
+        private wclWeDoPiezo FPiezo;
 
         public fmMain()
         {
@@ -80,7 +80,7 @@ namespace WeDoPiezo
         {
             if (Device.DeviceType == wclWeDoIoDeviceType.iodPiezo)
             {
-                FPiezo = (wclWeDoPieazo)Device;
+                FPiezo = (wclWeDoPiezo)Device;
                 EnablePlay(true);
             }
         }

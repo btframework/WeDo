@@ -281,6 +281,13 @@
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
               one of the Bluetooth Framework error code. </returns>
         </member>
+        <member name="M:wclWeDoFramework.wclWeDoHub.ReadButtonState(System.Boolean@)">
+            <summary> Reads the button state. </summary>
+            <param name="Pressed"> <c>True</c> if button is pressed. </param>
+            <returns> If the method completed with success the returning value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+              one of the Bluetooth Framework error code. </returns>
+        </member>
         <member name="P:wclWeDoFramework.wclWeDoHub.DeviceInformation">
             <summary> Gets the Hub device information service object. </summary>
             <value> The Hub device information service object. </value>
@@ -839,7 +846,7 @@
             <value> Teh current motor power. </value>
         </member>
         <member name="T:wclWeDoFramework.wclWeDoPiezoNote">
-            <summary> Tones that can be played using the <see cref="T:wclWeDoFramework.wclWeDoPieazo"/> </summary>
+            <summary> Tones that can be played using the <see cref="T:wclWeDoFramework.wclWeDoPiezo"/> </summary>
         </member>
         <member name="F:wclWeDoFramework.wclWeDoPiezoNote.pnC">
             <summary> C </summary>
@@ -877,11 +884,11 @@
         <member name="F:wclWeDoFramework.wclWeDoPiezoNote.pnB">
             <summary> B </summary>
         </member>
-        <member name="T:wclWeDoFramework.wclWeDoPieazo">
+        <member name="T:wclWeDoFramework.wclWeDoPiezo">
             <summary> The class represents a Piezo tone player device. </summary>
             <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoPieazo.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
+        <member name="M:wclWeDoFramework.wclWeDoPiezo.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
             <summary> Creates new Piezo device object. </summary>
             <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
               the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
@@ -890,7 +897,7 @@
             <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
               parameter is <c>null</c>. </exception>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoPieazo.PlayTone(System.UInt16,System.UInt16)">
+        <member name="M:wclWeDoFramework.wclWeDoPiezo.PlayTone(System.UInt16,System.UInt16)">
             <summary> Plays a tone with a given frequency for the given duration in ms. </summary>
             <param name="Frequency"> The frequency to play (max allowed frequency is 1500). </param>
             <param name="Duration"> The duration to play (max supported is 65535 milli seconds). </param>
@@ -898,7 +905,7 @@
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
               one of the Bluetooth Framework error code. </returns>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoPieazo.PlayNote(wclWeDoFramework.wclWeDoPiezoNote,System.Byte,System.UInt16)">
+        <member name="M:wclWeDoFramework.wclWeDoPiezo.PlayNote(wclWeDoFramework.wclWeDoPiezoNote,System.Byte,System.UInt16)">
             <summary> Plays a note. The highest supported node is F# in 6th octave. </summary>
             <param name="Note"> The note to play. </param>
             <param name="Octave"> The octave in which to play the node. </param>
@@ -908,7 +915,7 @@
               one of the Bluetooth Framework error code. </returns>
             <seealso cref="T:wclWeDoFramework.wclWeDoPiezoNote"/>
         </member>
-        <member name="M:wclWeDoFramework.wclWeDoPieazo.StopPlaying">
+        <member name="M:wclWeDoFramework.wclWeDoPiezo.StopPlaying">
             <summary> Stop playing any currently playing tone. </summary>
             <returns> If the method completed with success the returning value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
@@ -1154,6 +1161,72 @@
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
               one of the Bluetooth Framework error code. </returns>
         </member>
+        <member name="M:wclWeDoFramework.wclWeDoRobot.GetVoltageSensor(wclWeDoFramework.wclWeDoHub)">
+            <summary> Gets the voltage sensor object for the given Hub. </summary>
+            <param name="Hub"> The WeDo Hub object. </param>
+            <returns> The WeDo Voltage Sensor object or null if not found. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoVoltageSensor"/>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRobot.GetCurrentSensor(wclWeDoFramework.wclWeDoHub)">
+            <summary> Gets the current sensor object for the given Hub. </summary>
+            <param name="Hub"> The WeDo Hub object. </param>
+            <returns> The WeDo Current Sensor object or null if not found. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoCurrentSensor"/>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRobot.GetPiezoDevice(wclWeDoFramework.wclWeDoHub)">
+            <summary> Gets the piezo device object for the given Hub. </summary>
+            <param name="Hub"> The WeDo Hub object. </param>
+            <returns> The WeDo Piezo device object or null if not found. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoPiezo"/>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRobot.GetRgbDevice(wclWeDoFramework.wclWeDoHub)">
+            <summary> Gets the RGB device object for the given Hub. </summary>
+            <param name="Hub"> The WeDo Hub object. </param>
+            <returns> The WeDo RGB device object or null if not found. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoRgbLight"/>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRobot.GetTiltSensors(wclWeDoFramework.wclWeDoHub)">
+            <summary> Gets the Tilt sensor object for the given Hub. </summary>
+            <param name="Hub"> The WeDo Hub object. </param>
+            <returns> The WeDo Tilt sensor object or null if not found. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoTiltSensor"/>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRobot.GetMotionSensors(wclWeDoFramework.wclWeDoHub)">
+            <summary> Gets the Motion sensors list for the given Hub. </summary>
+            <param name="Hub"> The WeDo Hub object. </param>
+            <returns> The WeDo Tilt sensor object or null if not found. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoMotionSensor"/>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRobot.GetMotors(wclWeDoFramework.wclWeDoHub)">
+            <summary> Gets the list of connected Motor devices. </summary>
+            <param name="Hub"> The WeDo Hub object. </param>
+            <returns> Te list of connected motors. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoMotor"/>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRobot.GetIoDevice(wclWeDoFramework.wclWeDoHub,System.Byte)">
+            <summary> Gets the IO device connected to the specified port. </summary>
+            <param name="Hub"> The WeDo Hub object. </param>
+            <param name="Port"> The port ID. </param>
+            <returns> The IO device or null. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoRobot.GetIoDevices(wclWeDoFramework.wclWeDoHub,wclWeDoFramework.wclWeDoIoDeviceType)">
+            <summary> Gets the IO device by its type. </summary>
+            <param name="Hub"> The WeDo Hub object. </param>
+            <param name="IoType"> The device type. </param>
+            <returns> The IO device or null. </returns>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIoDeviceType"/>
+        </member>
         <member name="P:wclWeDoFramework.wclWeDoRobot.Active">
             <summary> Gets the class state. </summary>
             <value> <c>True</c> if connection is running. <c>False</c> otherwise. </value>
@@ -1161,6 +1234,11 @@
         <member name="P:wclWeDoFramework.wclWeDoRobot.Hubs">
             <summary> Gets list of the connected WeDo Hubs. </summary>
             <value> The list of the WeDo Hubs. </value>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+        </member>
+        <member name="P:wclWeDoFramework.wclWeDoRobot.Item(System.Int64)">
+            <summary> Gets the WeDo Hub object by its MAC address. </summary>
+            <value> The WeDo Hubs object. </value>
             <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
         </member>
         <member name="E:wclWeDoFramework.wclWeDoRobot.OnHubConnected">

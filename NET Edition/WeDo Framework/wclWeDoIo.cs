@@ -178,7 +178,7 @@ namespace wclWeDoFramework
                     Io.FDeviceType = wclWeDoIoDeviceType.iodCurrentSensor;
                     break;
                 case WEDO_DEVICE_PIEZO:
-                    Io = new wclWeDoPieazo(Hub, ConnectionId);
+                    Io = new wclWeDoPiezo(Hub, ConnectionId);
                     Io.FDeviceType = wclWeDoIoDeviceType.iodPiezo;
                     break;
                 case WEDO_DEVICE_RGB:

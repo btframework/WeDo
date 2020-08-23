@@ -26,7 +26,7 @@ using wclBluetooth;
 
 namespace wclWeDoFramework
 {
-    /// <summary> Tones that can be played using the <see cref="wclWeDoPieazo"/> </summary>
+    /// <summary> Tones that can be played using the <see cref="wclWeDoPiezo"/> </summary>
 	public enum wclWeDoPiezoNote
     {
         /// <summary> C </summary>
@@ -57,7 +57,7 @@ namespace wclWeDoFramework
 
     /// <summary> The class represents a Piezo tone player device. </summary>
     /// <seealso cref="wclWeDoIo"/>
-    public class wclWeDoPieazo : wclWeDoIo
+    public class wclWeDoPiezo : wclWeDoIo
     {
         private const UInt16 PIEZO_MAX_FREQUENCY = 1500;
 
@@ -68,7 +68,7 @@ namespace wclWeDoFramework
         /// <seealso cref="wclWeDoHub"/>
         /// <exception cref="wclEInvalidArgument"> The exception raises when the <c>Hub</c>
         ///   parameter is <c>null</c>. </exception>
-        public wclWeDoPieazo(wclWeDoHub Hub, Byte ConnectionId)
+        public wclWeDoPiezo(wclWeDoHub Hub, Byte ConnectionId)
             : base(Hub, ConnectionId)
         {
         }

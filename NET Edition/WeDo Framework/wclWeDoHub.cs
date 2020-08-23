@@ -403,6 +403,16 @@ namespace wclWeDoFramework
             return FHub.WriteDeviceName(Name);
         }
 
+        /// <summary> Reads the button state. </summary>
+        /// <param name="Pressed"> <c>True</c> if button is pressed. </param>
+        /// <returns> If the method completed with success the returning value is
+        ///   <see cref="wclErrors.WCL_E_SUCCESS" />. If the method failed the returning value is
+        ///   one of the Bluetooth Framework error code. </returns>
+        public Int32 ReadButtonState(out Boolean Pressed)
+        {
+            return FHub.ReadButtonState(out Pressed);
+        }
+
         /// <summary> Gets the Hub device information service object. </summary>
         /// <value> The Hub device information service object. </value>
         /// <seealso cref="wclWeDoDeviceInformationService"/>
