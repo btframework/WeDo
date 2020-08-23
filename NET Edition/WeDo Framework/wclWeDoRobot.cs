@@ -61,7 +61,6 @@ namespace wclWeDoFramework
     ///   them.</remarks>
     public class wclWeDoRobot
     {
-        private Boolean FDisposed;
         private Dictionary<Int64, wclWeDoHub> FHubs;
         private wclBluetoothManager FManager;
         private wclBluetoothRadio FRadio;
@@ -128,6 +127,11 @@ namespace wclWeDoFramework
             DoStarted();
         }
 
+        private void WatcherStopped(object sender, EventArgs e)
+        {
+            DoStopped();
+        }
+
         /// <summary> Fires the <c>OnHubConnected</c> event. </summary>
         /// <param name="Hub"> The WeDo HUB object that has been connected. </param>
         /// <param name="Error"> The connection result code. If connection completed with success the
@@ -167,11 +171,6 @@ namespace wclWeDoFramework
                 OnStarted(this, EventArgs.Empty);
         }
 
-        private void WatcherStopped(object sender, EventArgs e)
-        {
-            DoStopped();
-        }
-
         /// <summary> Fires the <c>OnStopped</c> event. </summary>
         protected virtual void DoStopped()
         {
@@ -182,7 +181,6 @@ namespace wclWeDoFramework
         /// <summary> Creates new instance of the WeDo Robot class. </summary>
         public wclWeDoRobot()
         {
-            FDisposed = false;
             FHubs = new Dictionary<Int64, wclWeDoHub>();
             FManager = new wclBluetoothManager();
             FRadio = null;
@@ -191,8 +189,6 @@ namespace wclWeDoFramework
             FWatcher.OnHubFound += WatcherHubFound;
             FWatcher.OnStarted += WatcherStarted;
             FWatcher.OnStopped += WatcherStopped;
-
-            OnHubFound = null;
 
             OnHubConnected = null;
             OnHubDisconnected = null;
@@ -210,9 +206,6 @@ namespace wclWeDoFramework
         ///   the <c>Connect</c> parameter to <c>true</c>. </remarks>
         public Int32 Start()
         {
-            if (FDisposed)
-                throw new ObjectDisposedException(GetType().FullName);
-
             if (FRadio != null)
                 return wclConnectionErrors.WCL_E_CONNECTION_ACTIVE;
 
@@ -259,9 +252,6 @@ namespace wclWeDoFramework
         ///   one of the Bluetooth Framework error code. </returns>
         public Int32 Stop()
         {
-            if (FDisposed)
-                throw new ObjectDisposedException(GetType().FullName);
-
             if (FRadio == null)
                 return wclConnectionErrors.WCL_E_CONNECTION_NOT_ACTIVE;
 
@@ -414,44 +404,17 @@ namespace wclWeDoFramework
 
         /// <summary> Gets the class state. </summary>
         /// <value> <c>True</c> if connection is running. <c>False</c> otherwise. </value>
-        public Boolean Active
-        {
-            get
-            {
-                if (FDisposed)
-                    throw new ObjectDisposedException(GetType().FullName);
-
-                return FRadio != null;
-            }
-        }
+        public Boolean Active { get { return FRadio != null; } }
 
         /// <summary> Gets list of the connected WeDo Hubs. </summary>
         /// <value> The list of the WeDo Hubs. </value>
         /// <seealso cref="wclWeDoHub"/>
-        public List<wclWeDoHub> Hubs
-        {
-            get
-            {
-                if (FDisposed)
-                    throw new ObjectDisposedException(GetType().FullName);
-
-                return FHubs.Values.ToList<wclWeDoHub>();
-            }
-        }
+        public List<wclWeDoHub> Hubs { get { return FHubs.Values.ToList<wclWeDoHub>(); } }
 
         /// <summary> Gets the WeDo Hub object by its MAC address. </summary>
         /// <value> The WeDo Hubs object. </value>
         /// <seealso cref="wclWeDoHub"/>
-        public wclWeDoHub this[Int64 Address]
-        {
-            get
-            {
-                if (FDisposed)
-                    throw new ObjectDisposedException(GetType().FullName);
-
-                return FHubs[Address];
-            }
-        }
+        public wclWeDoHub this[Int64 Address] { get { return FHubs[Address]; } }
 
         /// <summary> The event fires when connection operation has been completed. </summary>
         /// <seealso cref="wclWeDoRobotHubConnectedEvent"/>

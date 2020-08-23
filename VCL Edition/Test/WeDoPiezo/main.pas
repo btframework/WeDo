@@ -32,7 +32,7 @@ type
     FManager: TwclBluetoothManager;
     FWatcher: TwclWeDoWatcher;
     FHub: TwclWeDoHub;
-    FPiezo: TwclWeDoPieazo;
+    FPiezo: TwclWeDoPiezo;
 
     procedure EnablePlay(Attached: Boolean);
     procedure EnableConnect(Connected: Boolean);
@@ -214,7 +214,7 @@ end;
 procedure TfmMain.FHub_OnDeviceAttached(Sender: TObject; Device: TwclWeDoIo);
 begin
   if Device.DeviceType = iodPiezo then begin
-    FPiezo := TwclWeDoPieazo(Device);
+    FPiezo := TwclWeDoPiezo(Device);
     EnablePlay(True);
   end;
 end;

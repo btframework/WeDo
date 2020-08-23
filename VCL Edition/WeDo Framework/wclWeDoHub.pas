@@ -251,21 +251,19 @@ type
     property Connected: Boolean read FConnected;
 
   protected
-    /// <summary> Converts <see cref="TwclGattUuid"/> type to standard system
+    /// <summary> Converts <c>TwclGattUuid</c> type to standard system
     ///   GUID. </summary>
-    /// <param name="Uuid"> The <see cref="TwclGattUuid"/> that should be
+    /// <param name="Uuid"> The <c>TwclGattUuid</c> that should be
     ///   converted. </param>
     /// <returns> The GUID composed from the <c>Uuid</c>. </returns>
-    /// <seealso cref="TwclGattUuid"/>
     function ToGuid(Uuid: TwclGattUuid): TGUID;
-    /// <summary> Compares the attribute's <see cref="TwclGattUuid"/> with
+    /// <summary> Compares the attribute's <c>TwclGattUuid</c> with
     ///   given standard system GUID. </summary>
     /// <param name="GattUuid"> The attribute's
-    ///   <see cref="TwclGattUuid"/>. </param>
+    ///   <c>TwclGattUuid</c>. </param>
     /// <param name="Uuid">The system GUID. </param>
     /// <returns> Returns <c>true</c> if the attribute's UUID is equals to the
     ///   GUID. Returns <c>false</c> otherwise. </returns>
-    /// <seealso cref="TwclGattUuid"/>
     function CompareGuid(GattUuid: TwclGattUuid; Uuid: TGUID): Boolean;
 
     /// <summary> Finds the service with given UUID. </summary>
@@ -273,9 +271,8 @@ type
     /// <param name="Service"> If the method completed with success the
     ///   parameter contains found service. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
-    /// <seealso cref="TwclGattService"/>
     function FindService(Uuid: TGUID; out Service: TwclGattService): Integer;
     /// <summary> Finds the characteristic with given UUID. </summary>
     /// <param name="Uuid"> The characteristic's UUID. </param>
@@ -284,10 +281,8 @@ type
     /// <param name="Characteristic"> If the method completed with success the
     ///   parameter contains the found characteristic. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
-    /// <seealso cref="TwclGattService"/>
-    /// <seealso cref="TwclGattCharacteristic"/>
     function FindCharactersitc(Uuid: TGUID; Service: TwclGattService;
       out Characteristic: TwclGattCharacteristic): Integer;
 
@@ -295,15 +290,13 @@ type
     ///   characteristic. </summary>
     /// <param name="Characteristic"> The characteristic. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
-    /// <seealso cref="TwclGattCharacteristic"/>
     function SubscribeForNotifications(
       Characteristic: TwclGattCharacteristic): Integer;
     /// <summary> Unsubscribes from the changes notifications of the given
     ///   characteristic. </summary>
     /// <param name="Characteristic"> The characteristic to unsubsribe. </param>
-    /// <seealso cref="TwclGattCharacteristic"/>
     procedure UnsubscribeFromNotifications(
       Characteristic: TwclGattCharacteristic);
 
@@ -312,7 +305,7 @@ type
     /// <param name="Value"> If the method completed with success contains the
     ///   read value. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function ReadStringValue(Characteristic: TwclGattCharacteristic;
       out Value: string): Integer;
@@ -321,14 +314,14 @@ type
     /// <param name="Value"> If the method completed with success contains the
     ///   read value. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function ReadByteValue(Characteristic: TwclGattCharacteristic;
       out Value: Byte): Integer;
 
     /// <summary> Initializes the WeDo service. </summary>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
      /// <remarks> A derived clases must override this method to initialize all required
      ///   parameters to work with WeDo service. </remarks>
@@ -340,17 +333,14 @@ type
 
      /// <summary> Gets the GATT client object. </summary>
      /// <value> The GATT client object. </value>
-     /// <seealso cref="TwclGattClient"/>
      property Client: TwclGattClient read FClient;
 
   public
     /// <summary> Creates new WeDo Service Client object. </summary>
-    /// <param name="Client"> The <see cref="TwclGattClient"/> object that
+    /// <param name="Client"> The <c>TwclGattClient</c> object that
     ///   handles the connection to a WeDo device. </param>
     /// <param name="Hub"> The <see cref="TwclWeDoHub"/> object that owns the
     ///   service. </param>
-    /// <exception cref="wclEInvalidArgument"> The exception raises if the
-    ///   <c>Client</c> or <c>Hub</c> parameter is <c>nil</c>. </exception>
     constructor Create(Client: TwclGattClient; Hub: TwclWeDoHub); virtual;
 
     /// <summary> Gets the <see cref="TwclWeDoHub"/> object that owns the
@@ -386,7 +376,7 @@ type
   protected
     /// <summary> Initializes the WeDo service. </summary>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function Initialize: Integer; override;
     /// <summary> Uninitializes the WeDo service. </summary>
@@ -394,40 +384,38 @@ type
 
   public
     /// <summary> Creates new Device Information service client. </summary>
-    /// <param name="Client"> The <see cref="TwclGattClient"/> object that
+    /// <param name="Client"> The <c>TwclGattClient</c> object that
     ///   handles the connection to a WeDo device. </param>
     /// <param name="Hub"> The <see cref="TwclWeDoHub"/> object that owns the
     ///   service. </param>
-    /// <exception cref="wclEInvalidArgument"> The exception raises if the
-    ///   <c>Client</c> or <c>Hub</c> parameter is <c>nil</c>. </exception>
     constructor Create(Client: TwclGattClient; Hub: TwclWeDoHub); override;
 
     /// <summary> Reads the firmware version. </summary>
     /// <param name="Version"> If the method completed with success the
     ///   parameter contains the current device's firmware version. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function ReadFirmwareVersion(out Version: string): Integer;
     /// <summary> Reads the hardware version. </summary>
     /// <param name="Version"> If the method completed with success the
     ///   parameter contains the current device's hardware version. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function ReadHardwareVersion(out Version: string): Integer;
     /// <summary> Reads the software version. </summary>
     /// <param name="Version"> If the method completed with success the
     ///   parameter contains the current device's software version. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function ReadSoftwareVersion(out Version: string): Integer;
     /// <summary> Reads the device's manufacturer name. </summary>
     /// <param name="Name"> If the method completed with success the parameter
     ///   contains the current device's manufacturer name. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function ReadManufacturerName(out Name: string): Integer;
   end;
@@ -471,7 +459,7 @@ type
 
     /// <summary> Initializes the WeDo service. </summary>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function Initialize: Integer; override;
     /// <summary> Uninitializes the WeDo service. </summary>
@@ -479,18 +467,16 @@ type
 
   public
     /// <summary> Creates new Battery Level service client. </summary>
-    /// <param name="Client"> The <see cref="TwclGattClient"/> object that
+    /// <param name="Client"> The <c>TwclGattClient</c> object that
     ///   handles the connection to a WeDo device. </param>
     /// <param name="Hub"> The <see cref="TwclWeDoHub"/> object that owns the
     ///   service. </param>
-    /// <exception cref="wclEInvalidArgument"> The exception raises if the
-    ///   <c>Client</c> or <c>Hub</c> parameter is <c>nil</c>. </exception>
     constructor Create(Client: TwclGattClient; Hub: TwclWeDoHub); override;
 
     /// <summary> Reads the device's battery level. </summary>
     /// <param name="Level"> the current battery level in percents. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function ReadBatteryLevel(out Level: Byte): Integer;
 
@@ -593,7 +579,7 @@ type
   protected
     /// <summary> Initializes the WeDo service. </summary>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function Initialize: Integer; override;
     /// <summary> Uninitializes the WeDo service. </summary>
@@ -601,14 +587,12 @@ type
 
   public
     /// <summary> Creates new IO service client. </summary>
-    /// <param name="Client"> The <see cref="TwclGattClient"/> object that
+    /// <param name="Client"> The <c>TwclGattClient</c> object that
     ///   handles the connection to a WeDo device. </param>
     /// <param name="Hub"> The <see cref="TwclWeDoHub"/> object that owns
     ///   the service. </param>
-    /// <exception cref="wclEInvalidArgument"> The exception raises if the
-    ///   <c>Client</c> or <c>Hub</c> parameter is <c>nil</c>. </exception>
     constructor Create(Client: TwclGattClient; Hub: TwclWeDoHub); override;
-    /// <summary. Frees the object. </summary>
+    /// <summary> Frees the object. </summary>
     destructor Destroy; override;
   end;
 
@@ -716,7 +700,7 @@ type
   protected
     /// <summary> Initializes the WeDo service. </summary>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function Initialize: Integer; override;
     /// <summary> Uninitializes the WeDo service. </summary>
@@ -748,12 +732,10 @@ type
 
   public
     /// <summary> Creates new IO service client. </summary>
-    /// <param name="Client"> The <see cref="TwclGattClient"/> object that
+    /// <param name="Client"> The <c>TwclGattClient</c> object that
     ///   handles the connection to a WeDo device. </param>
     /// <param name="Hub"> The <see cref="TwclWeDoHub"/> object that owns the
     ///   service. </param>
-    /// <exception cref="wclEInvalidArgument"> The exception raises if the
-    ///   <c>Client</c> or <c>Hub</c> parameter is <c>nil</c>. </exception>
     constructor Create(Client: TwclGattClient; Hub: TwclWeDoHub); override;
   end;
 
@@ -769,7 +751,6 @@ type
     Reason: Integer) of object;
 
   /// <summary> The class represents a WeDo Hub hardware. </summary>
-  /// <seealso cref="TComponent" />
   TwclWeDoHub = class(TComponent)
   private
     FClient: TwclGattClient;
@@ -823,7 +804,7 @@ type
   protected
     /// <summary> Fires the <c>OnConnected</c> event. </summary>
     /// <param name="Error"> If the connection has been established the
-    ///   parameter is <see cref="WCL_E_SUCCESS" />. If connection has not been
+    ///   parameter is <c>WCL_E_SUCCESS</c>. If connection has not been
     ///   established the parameter value is one of the Bluetooth error
     ///   codes. </param>
     procedure DoConnected(Error: Integer); virtual;
@@ -863,23 +844,22 @@ type
     destructor Destroy; override;
 
     /// <summary> Connects to a selected WeDo Hub. </summary>
-    /// <param name="Radio"> The <see cref="TwclBluetoothRadio" /> object that
+    /// <param name="Radio"> The <c>TwclBluetoothRadio</c> object that
     ///   should be used for executing Bluetooth LE connection. </param>
     /// <param name="Address"> The WeDo Hub MAC address. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
-    /// <seealso cref="TwclBluetoothRadio" />
     function Connect(Radio: TwclBluetoothRadio; Address: Int64): Integer;
     /// <summary> Disconnects from WeDo Hub. </summary>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function Disconnect: Integer;
 
     /// <summary> Turns the Hub off. </summary>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     /// <remarks> The method sends the Turn Off command to the connected
     ///   Hub. </remarks>
@@ -889,13 +869,13 @@ type
     /// <param name="Name"> If the method completed with success the parameter
     ///   contains the current device name. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function ReadDeviceName(out Name: string): Integer;
     /// <summary> Writes new device name. </summary>
     /// <param name="Name"> The new device name. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function WriteDeviceName(Name: string): Integer;
 
@@ -922,11 +902,10 @@ type
     property Connected: Boolean read FConnected;
     /// <summary> Gets internal GATT client state. </summary>
     /// <value> The internal GATT client state. </value>
-    /// <seealso cref="wclClientState" />
     property ClientState: TwclClientState read GetState;
     /// <summary> Gets the list of the attached IO devices. </summary>
     /// <value> The list of the attached IO devices. </value>
-    /// <seealso cref="wclWeDoIo"/>
+    /// <seealso cref="TwclWeDoIo"/>
     property IoDevices: TList<TwclWeDoIo> read FDevices;
 
   published
@@ -1027,19 +1006,19 @@ type
     /// <summary> Sends data to the IO service. </summary>
     /// <param name="Data"> The data to write. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function WriteData(Data: TArray<Byte>): Integer;
     /// <summary> If the notifications is disabled for the service in the Input
     ///   Format you will have to use this method to request an updated value
     ///   for the service. </summary>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function SendReadValueRequest: Integer;
     /// <summary> Sends a reset command to the Device. </summary>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function ResetSensor: Integer;
 
@@ -1055,14 +1034,14 @@ type
     ///   device. </summary>
     /// <param name="Format"> New input format. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     /// <seelso cref="IwclWeDoInputFormat"/>
     function SendInputFormat(Format: IwclWeDoInputFormat): Integer;
     /// <summary> Changes mode of the Input Format. </summary>
     /// <param name="Mode"> The Input Format mode. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function SetInputFormatMode(Mode: Byte): Integer;
 
@@ -1086,7 +1065,7 @@ type
     property AsInteger: Integer read GetAsInteger;
     /// <summary> Gets the list of supported Data Formats. </summary>
     /// <value> The list of supported Data Formats. </value>
-    /// <seealso cref="iwclWeDoDataFormat"/>
+    /// <seealso cref="IwclWeDoDataFormat"/>
     property DataFormats: TList<IwclWeDoDataFormat> read FDataFormats;
     /// <summary> Gets and sets the default input format. </summary>
     /// <value> The default input format. </value>
@@ -1111,12 +1090,10 @@ type
   public
     /// <summary> Creates new IO device object. </summary>
     /// <param name="Hub"> The Hub object that owns the device. If this
-    ///   parameter is <c>nil</c> the <seealso cref="wclEInvalidArgument"/>
+    ///   parameter is <c>nil</c> the <c>wclEInvalidArgument</c>
     ///   exception raises. </param>
     /// <param name="ConnectionId"> The device's Connection ID. </param>
     /// <seealso cref="TwclWeDoHub"/>
-    /// <exception cref="wclEInvalidArgument"> The exception raises when the
-    ///  <c>Hub</c> parameter is <c>nil</c>. </exception>
     constructor Create(Hub: TwclWeDoHub; ConnectionId: Byte); virtual;
     /// <summary> Frees the object. </summary>
     destructor Destroy; override;
@@ -1156,7 +1133,7 @@ type
   end;
 
   /// <summary> Tones that can be played using the
-  ///   <see cref="TwclWeDoPieazo"/> </summary>
+  ///   <see cref="TwclWeDoPiezo"/> </summary>
   TwclWeDoPiezoNote = (
     /// <summary> C </summary>
     pnC = 1,
@@ -1186,19 +1163,17 @@ type
 
   /// <summary> The class represents a Piezo tone player device. </summary>
   /// <seealso cref="TwclWeDoIo"/>
-  TwclWeDoPieazo = class(TwclWeDoIo)
+  TwclWeDoPiezo = class(TwclWeDoIo)
   private const
     PIEZO_MAX_FREQUENCY = 1500;
     
   public
     /// <summary> Creates new Piezo device object. </summary>
     /// <param name="Hub"> The Hub object that owns the device. If this
-    ///   parameter is <c>nil</c> the <seealso cref="wclEInvalidArgument"/>
+    ///   parameter is <c>nil</c> the <c>wclEInvalidArgument</c>
     ///   exception raises. </param>
     /// <param name="ConnectionId"> The device's Connection ID. </param>
     /// <seealso cref="TwclWeDoHub"/>
-    /// <exception cref="wclEInvalidArgument"> The exception raises when the
-    ///  <c>Hub</c> parameter is <c>nil</c>. </exception>
     constructor Create(Hub: TwclWeDoHub; ConnectionId: Byte); override;
 
     /// <summary> Plays a tone with a given frequency for the given
@@ -1208,7 +1183,7 @@ type
     /// <param name="Duration"> The duration to play (max supported is 65535
     ///   milli seconds). </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function PlayTone(Frequency: Word; Duration: Word): Integer;
     /// <summary> Plays a note. The highest supported node is F# in 6th
@@ -1218,14 +1193,14 @@ type
     /// <param name="Duration"> The duration to play (max supported is 65535
     ///   milli seconds). </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     /// <seealso cref="TwclWeDoPiezoNote"/>
     function PlayNote(Note: TwclWeDoPiezoNote; Octave: Byte;
       Duration: Word): Integer;
     /// <summary> Stop playing any currently playing tone. </summary>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function StopPlaying: Integer;
   end;
@@ -1306,43 +1281,41 @@ type
   public
     /// <summary> Creates new RGB light device object. </summary>
     /// <param name="Hub"> The Hub object that owns the device. If this
-    ///   parameter is <c>nil</c> the <seealso cref="wclEInvalidArgument"/>
+    ///   parameter is <c>nil</c> the <c>wclEInvalidArgument</c>
     ///   exception raises. </param>
     /// <param name="ConnectionId"> The device's Connection ID. </param>
     /// <seealso cref="TwclWeDoHub"/>
-    /// <exception cref="wclEInvalidArgument"> The exception raises when the
-    ///   <c>Hub</c> parameter is <c>nil</c>. </exception>
     constructor Create(Hub: TwclWeDoHub; ConnectionId: Byte); override;
 
     /// <summary> Switch off the RGB light on the device. </summary>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function SwitchOff: Integer;
     /// <summary> Switches to the default Color (i.e. the same color as the
     ///   device has right after a successful connection has
     ///   been established). </summary>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function SwitchToDefaultColor: Integer;
     /// <summary> Sets the RGB color. </summary>
     /// <param name="Rgb"> The RGB color. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function SetColor(Rgb: TColor): Integer;
     /// <summary> Sets the index of the currently selected color (discrete
     ///   mode). </summary>
     /// <param name="Index"> The color index. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function SetColorIndex(Index: TwclWeDoColor): Integer;
     /// <summary> Sets the mode of the RGB light. </summary>
     /// <param name="Mode"> The RGB lite mode. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     /// <seealso cref="TwclWeDoRgbLightMode"/>
     function SetMode(Mode: TwclWeDoRgbLightMode): Integer;
@@ -1396,12 +1369,10 @@ type
   public
     /// <summary> Creates new current sensor device object. </summary>
     /// <param name="Hub"> The Hub object that owns the device. If this
-    ///   parameter is <c>nil</c> the <seealso cref="wclEInvalidArgument"/>
+    ///   parameter is <c>nil</c> the <c>wclEInvalidArgument</c>
     ///   exception raises. </param>
     /// <param name="ConnectionId"> The device's Connection ID. </param>
     /// <seealso cref="TwclWeDoHub"/>
-    /// <exception cref="wclEInvalidArgument"> The exception raises when the
-    ///   <c>Hub</c> parameter is <c>nil</c>. </exception>
     constructor Create(Hub: TwclWeDoHub; ConnectionId: Byte); override;
 
     /// <summary> Gets the battery current in mA. </summary>
@@ -1431,12 +1402,10 @@ type
   public
     /// <summary> Creates new voltage sensor device object. </summary>
     /// <param name="Hub"> The Hub object that owns the device. If this
-    ///   parameter is <c>nil</c> the <seealso cref="wclEInvalidArgument"/>
+    ///   parameter is <c>nil</c> the <c>wclEInvalidArgument</c>
     ///   exception raises. </param>
     /// <param name="ConnectionId"> The device's Connection ID. </param>
     /// <seealso cref="TwclWeDoHub"/>
-    /// <exception cref="wclEInvalidArgument"> The exception raises when the
-    ///   <c>Hub</c> parameter is <c>nil</c>. </exception>
     constructor Create(Hub: TwclWeDoHub; ConnectionId: Byte); override;
 
     /// <summary> Gets the current battery voltage in milli volts. </summary>
@@ -1494,21 +1463,19 @@ type
     /// <summary> Creates new motor class object. </summary>
     /// <param name="Hub"> The Hub object that owns the device. If this
     ///   parameter is <c>nil</c>
-    ///   the <seealso cref="wclEInvalidArgument"/> exception raises. </param>
+    ///   the <c>wclEInvalidArgument</c> exception raises. </param>
     /// <param name="ConnectionId"> The device's Connection ID. </param>
     /// <seealso cref="TwclWeDoHub"/>
-    /// <exception cref="wclEInvalidArgument"> The exception raises when the
-    ///   <c>Hub</c> parameter is <c>nil</c>. </exception>
     constructor Create(Hub: TwclWeDoHub; ConnectionId: Byte); override;
 
     /// <summary> Sends a command to stop (brake) the motor. </summary>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function Brake: Integer;
     /// <summary> Sends a command to stop (drift/float) the motor. </summary>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function Drift: Integer;
     /// <summary> Sends a command to run the motor at a given <c>Power</c> in
@@ -1517,7 +1484,7 @@ type
     /// <param name="Direction"> The direction to run the motor. </param>
     /// <param name="Power"> The power to run the motor with. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     /// <seealso cref="TwclWeDoMotorDirection"/>
     function Run(Direction: TwclWeDoMotorDirection; Power: Byte): Integer;
@@ -1547,17 +1514,15 @@ type
  public
    /// <summary> Creates new device object. </summary>
     /// <param name="Hub"> The Hub object that owns the device. If this
-    ///   parameter is <c>nil</c> the <seealso cref="wclEInvalidArgument"/>
+    ///   parameter is <c>nil</c> the <c>wclEInvalidArgument</c>
     ///   exception raises. </param>
     /// <param name="ConnectionId"> The device's Connection ID. </param>
     /// <seealso cref="TwclWeDoHub"/>
-    /// <exception cref="wclEInvalidArgument"> The exception raises when the
-    ///   <c>Hub</c> parameter is <c>nil</c>. </exception>
     constructor Create(Hub: TwclWeDoHub; ConnectionId: Byte); override;
 
     /// <summary> Resets the sensor. </summary>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function Reset: Integer;
  end;
@@ -1607,18 +1572,16 @@ type
  public
    /// <summary> Creates new motion sensor device object. </summary>
     /// <param name="Hub"> The Hub object that owns the device. If this
-    ///   parameter is <c>nil</c> the <seealso cref="wclEInvalidArgument"/>
+    ///   parameter is <c>nil</c> the <c>wclEInvalidArgument</c>
     ///   exception raises. </param>
     /// <param name="ConnectionId"> The device's Connection ID. </param>
     /// <seealso cref="TwclWeDoHub"/>
-    /// <exception cref="wclEInvalidArgument"> The exception raises when the
-    ///   <c>Hub</c> parameter is <c>nil</c>. </exception>
     constructor Create(Hub: TwclWeDoHub; ConnectionId: Byte); override;
 
     /// <summary> Sets the motion sensor mode. </summary>
     /// <param name="Mode"> The motion sensor mode. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     /// <seealso cref="TwclWeDoMotionSensorMode"/>
     function SetMode(Mode: TwclWeDoMotionSensorMode): Integer;
@@ -1731,17 +1694,15 @@ type
     /// <summary> Creates new tilt sensor device object. </summary>
     /// <param name="Hub"> The Hub object that owns the device. If this
     ///   parameter is <c>nil</c>
-    ///   the <seealso cref="wclEInvalidArgument"/> exception raises. </param>
+    ///   the <c>wclEInvalidArgument</c> exception raises. </param>
     /// <param name="ConnectionId"> The device's Connection ID. </param>
     /// <seealso cref="TwclWeDoHub"/>
-    /// <exception cref="wclEInvalidArgument"> The exception raises when the
-    ///   <c>Hub</c> parameter is <c>nil</c>. </exception>
     constructor Create(Hub: TwclWeDoHub; ConnectionId: Byte); override;
 
     /// <summary> Sets the tilt sensor mode. </summary>
     /// <param name="Mode"> The tils sensor mode. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     /// <seealso cref="TwclWeDoTiltSensorMode"/>
     function SetMode(Mode: TwclWeDoTiltSensorMode): Integer;
@@ -3361,7 +3322,7 @@ begin
             end;
           WEDO_DEVICE_PIEZO:
             begin
-              Result := TwclWeDoPieazo.Create(Hub, ConnectionId);
+              Result := TwclWeDoPiezo.Create(Hub, ConnectionId);
               Result.FDeviceType := iodPiezo;
             end;
           WEDO_DEVICE_RGB:
@@ -3655,14 +3616,14 @@ begin
   Result := FHub.Io.WriteData(Data, FConnectionId);
 end;
 
-{ TwclWeDoPieazo }
+{ TwclWeDoPiezo }
 
-constructor TwclWeDoPieazo.Create(Hub: TwclWeDoHub; ConnectionId: Byte);
+constructor TwclWeDoPiezo.Create(Hub: TwclWeDoHub; ConnectionId: Byte);
 begin
   inherited Create(Hub, ConnectionId);
 end;
 
-function TwclWeDoPieazo.PlayNote(Note: TwclWeDoPiezoNote; Octave: Byte;
+function TwclWeDoPiezo.PlayNote(Note: TwclWeDoPiezoNote; Octave: Byte;
   Duration: Word): Integer;
 var
   BaseTone: Double;
@@ -3698,7 +3659,7 @@ begin
   end;
 end;
 
-function TwclWeDoPieazo.PlayTone(Frequency: Word; Duration: Word): Integer;
+function TwclWeDoPiezo.PlayTone(Frequency: Word; Duration: Word): Integer;
 begin
   if Frequency > PIEZO_MAX_FREQUENCY then
     Result := WCL_E_INVALID_ARGUMENT
@@ -3710,7 +3671,7 @@ begin
   end;
 end;
 
-function TwclWeDoPieazo.StopPlaying: Integer;
+function TwclWeDoPiezo.StopPlaying: Integer;
 begin
   if not Attached then
     Result := WCL_E_BLUETOOTH_DEVICE_NOT_INSTALLED

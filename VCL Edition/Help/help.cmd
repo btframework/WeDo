@@ -1,1 +1,3 @@
-"c:\Program Files (x86)\Doc-O-Matic 7 Express\domexpress.exe" -w1 -config "HTML Help" -noshow WeDoFramework.dox-express
+pushd "c:\Program Files (x86)\Documentation Insight 3"
+DocInsight.exe "d:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Help\WeDoFramework.diproj" -doc -silent
+popd

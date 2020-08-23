@@ -3,13 +3,20 @@
 /VCL Edition/**/__history
 /VCL Edition/**/__recovery
 /VCL Edition/**/*.dsk
-/VCL Edition/**/*.~*
+/VCL Edition/**/*.~**
 /VCL Edition/**/*.identcache
 /VCL Edition/**/*.stat
 /VCL Edition/Test/**/build
 /VCL Edition/Help/Build
+/VCL Edition/Help/help.cmd
+/VCL Edition/Help/WeDoFramework.diproj
+/VCL Edition/Help/WeDoFramework.dpk
+/VCL Edition/Help/WeDoFramework.log
+/VCL Edition/build
 
 /NET Edition/.vs/wclWeDoFramework/v16/Server
 /NET Edition/**/bin
 /NET Edition/**/obj
+/NET Edition/WCL/wclWeDoFramework.pdb
 /NET Edition/Help/build
+

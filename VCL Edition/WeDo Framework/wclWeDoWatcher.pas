@@ -46,7 +46,6 @@ type
     OldName: string; NewName: string) of object;
 
   /// <summary> The class used to search WeDo devices (Hubs). </summary>
-  /// <seealso cref="TComponent" />
   TwclWeDoWatcher = class(TComponent)
   private type
     // Structure used internally to monitor WeDo Hubs.
@@ -126,16 +125,15 @@ type
     constructor Create(AOwner: TComponent); override;
 
     /// <summary> Starts watching (discovering) for WeDo devices. </summary>
-    /// <param name="Radio"> The <see cref="TwclBluetoothRadio" /> object that
+    /// <param name="Radio"> The <c>TwclBluetoothRadio</c> object that
     ///   should be used for executing Bluetooth LE discovering. </param>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
-    /// <seealso cref="TwclBluetoothRadio" />
     function Start(Radio: TwclBluetoothRadio): Integer;
     /// <summary> Stops discovering WeDo devices. </summary>
     /// <returns> If the method completed with success the returning value is
-    ///   <see cref="WCL_E_SUCCESS" />. If the method failed the returning value
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function Stop: Integer;
 
@@ -143,12 +141,11 @@ type
     /// <value> Returns <c>true</c> if Watcher is running (searching for WeDo
     ///   Hubs). Returns <c>false</c> otherwise. </value>
     property Active: Boolean read GetActive;
-    /// <summary> Gets the <see cref="TwclBluetoothRadio"/> object that is used
+    /// <summary> Gets the <c>TwclBluetoothRadio</c> object that is used
     ///   for searching WeDo hubs. </summary>
     /// <value> If Watcher is searching returns the
-    ///   <see cref="TwclBluetoothRadio"/> object used for searching. If the
+    ///   <c>TwclBluetoothRadio</c> object used for searching. If the
     ///   Watcher is not active returns <c>nil</c>. </value>
-    /// <seealso cref="TwclBluetoothRadio"/>
     property Radio: TwclBluetoothRadio read GetRadio;
 
   published
