@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2020.08.24 07:22:31.094,=C:\Users\mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020.08.24 07:23:38.959,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRobot\main.dfm=C:\Users\mike\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2020.08.24 07:23:38.959,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRobot\main.pas=C:\Users\mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020.08.24 07:23:46.405,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRobot\WeDoRobot.dproj=C:\Users\mike\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

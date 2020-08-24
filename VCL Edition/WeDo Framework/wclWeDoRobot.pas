@@ -206,7 +206,7 @@ type
     /// <summary> Gets the WeDo Hub object by its MAC address. </summary>
     /// <value> The WeDo Hubs object. </value>
     /// <seealso cref="TwclWeDoHub"/>
-    property Hub[Address: Int64]: TwclWeDoHub read GetHub;
+    property Hub[Address: Int64]: TwclWeDoHub read GetHub; default;
 
   published
     /// <summary> The event fires when connection operation has been

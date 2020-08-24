@@ -677,6 +677,7 @@ type
     procedure CharacteristicChanged(Handle: Word;
       Value: TArray<Byte>); override;
 
+    function ReadButtonState(out Pressed: Boolean): Integer;
     function ReadDeviceName(out Name: string): Integer;
     function WriteDeviceName(Name: string): Integer;
 
@@ -878,6 +879,13 @@ type
     ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
     function WriteDeviceName(Name: string): Integer;
+
+    /// <summary> Reads the button state. </summary>
+    /// <param name="Pressed"> <c>True</c> if button is pressed. </param>
+    /// <returns> If the method completed with success the returning value is
+    ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value is
+    ///   one of the Bluetooth Framework error code. </returns>
+    function ReadButtonState(out Pressed: Boolean): Integer;
 
     /// <summary> Gets the Hub device information service object. </summary>
     /// <value> The Hub device information service object. </value>
@@ -2885,6 +2893,22 @@ begin
   end;
 end;
 
+function TwclWeDoHubService.ReadButtonState(out Pressed: Boolean): Integer;
+var
+  Val: TwclGattCharacteristicValue;
+begin
+  Pressed := False;
+
+  if IsNull(FButtonStateChar.Uuid) then
+    Result := WCL_E_BLUETOOTH_LE_ATTRIBUTE_NOT_FOUND
+
+  else begin
+    Result := Client.ReadCharacteristicValue(FButtonStateChar, goNone, Val);
+    if (Result = WCL_E_SUCCESS) and (Val <> nil) and (Length(Val) = 1) then
+      Pressed := (Val[0] <> 0);
+  end;
+end;
+
 function TwclWeDoHubService.ReadDeviceName(out Name: string): Integer;
 begin
   Result := ReadStringValue(FDeviceNameChar, Name);
@@ -3258,6 +3282,11 @@ end;
 procedure TwclWeDoHub.HubLowVoltageAlert(Sender: TObject; Alert: Boolean);
 begin
   DoLowVoltageAlert(Alert);
+end;
+
+function TwclWeDoHub.ReadButtonState(out Pressed: Boolean): Integer;
+begin
+  Result := FHub.ReadButtonState(Pressed);
 end;
 
 function TwclWeDoHub.ReadDeviceName(out Name: string): Integer;

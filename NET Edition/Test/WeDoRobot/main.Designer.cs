@@ -80,7 +80,7 @@
             this.laVoltageVersionCaption = new System.Windows.Forms.Label();
             this.laVotageDeviceInformation = new System.Windows.Forms.Label();
             this.tsPiezo = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btStopSound = new System.Windows.Forms.Button();
             this.btPlay = new System.Windows.Forms.Button();
             this.edDuration = new System.Windows.Forms.TextBox();
             this.laDuration = new System.Windows.Forms.Label();
@@ -151,25 +151,6 @@
             this.laMotionVersionCaption2 = new System.Windows.Forms.Label();
             this.laMotionDeviceInformation2 = new System.Windows.Forms.Label();
             this.tsTilt1 = new System.Windows.Forms.TabPage();
-            this.laTiltConnectionId1 = new System.Windows.Forms.Label();
-            this.laTiltConnectionCaption1 = new System.Windows.Forms.Label();
-            this.laTiltDeviceType1 = new System.Windows.Forms.Label();
-            this.laTiltDeviceTypeCaption1 = new System.Windows.Forms.Label();
-            this.laTiltVersion1 = new System.Windows.Forms.Label();
-            this.laTiltVersionCaption1 = new System.Windows.Forms.Label();
-            this.laTiltDeviceInformation1 = new System.Windows.Forms.Label();
-            this.tsTilt2 = new System.Windows.Forms.TabPage();
-            this.laTiltConnectionId2 = new System.Windows.Forms.Label();
-            this.laTiltConnectionCaption2 = new System.Windows.Forms.Label();
-            this.laTiltDeviceType2 = new System.Windows.Forms.Label();
-            this.laTiltDeviceTypeCaption2 = new System.Windows.Forms.Label();
-            this.laTiltVersion2 = new System.Windows.Forms.Label();
-            this.laTiltVersionCaption2 = new System.Windows.Forms.Label();
-            this.laTiltDeviceInformation2 = new System.Windows.Forms.Label();
-            this.btResetTilt1 = new System.Windows.Forms.Button();
-            this.btChangeTilt1 = new System.Windows.Forms.Button();
-            this.cbTiltMode1 = new System.Windows.Forms.ComboBox();
-            this.laTiltMode1 = new System.Windows.Forms.Label();
             this.laZ1 = new System.Windows.Forms.Label();
             this.laZTitle1 = new System.Windows.Forms.Label();
             this.laY1 = new System.Windows.Forms.Label();
@@ -178,6 +159,18 @@
             this.laXTitle1 = new System.Windows.Forms.Label();
             this.laDirection1 = new System.Windows.Forms.Label();
             this.laDirectionTitle1 = new System.Windows.Forms.Label();
+            this.btResetTilt1 = new System.Windows.Forms.Button();
+            this.btChangeTilt1 = new System.Windows.Forms.Button();
+            this.cbTiltMode1 = new System.Windows.Forms.ComboBox();
+            this.laTiltMode1 = new System.Windows.Forms.Label();
+            this.laTiltConnectionId1 = new System.Windows.Forms.Label();
+            this.laTiltConnectionCaption1 = new System.Windows.Forms.Label();
+            this.laTiltDeviceType1 = new System.Windows.Forms.Label();
+            this.laTiltDeviceTypeCaption1 = new System.Windows.Forms.Label();
+            this.laTiltVersion1 = new System.Windows.Forms.Label();
+            this.laTiltVersionCaption1 = new System.Windows.Forms.Label();
+            this.laTiltDeviceInformation1 = new System.Windows.Forms.Label();
+            this.tsTilt2 = new System.Windows.Forms.TabPage();
             this.laZ2 = new System.Windows.Forms.Label();
             this.laZTitle2 = new System.Windows.Forms.Label();
             this.laY2 = new System.Windows.Forms.Label();
@@ -190,7 +183,21 @@
             this.btChangeTilt2 = new System.Windows.Forms.Button();
             this.cbTiltMode2 = new System.Windows.Forms.ComboBox();
             this.laTiltMode2 = new System.Windows.Forms.Label();
+            this.laTiltConnectionId2 = new System.Windows.Forms.Label();
+            this.laTiltConnectionCaption2 = new System.Windows.Forms.Label();
+            this.laTiltDeviceType2 = new System.Windows.Forms.Label();
+            this.laTiltDeviceTypeCaption2 = new System.Windows.Forms.Label();
+            this.laTiltVersion2 = new System.Windows.Forms.Label();
+            this.laTiltVersionCaption2 = new System.Windows.Forms.Label();
+            this.laTiltDeviceInformation2 = new System.Windows.Forms.Label();
             this.tsMotor1 = new System.Windows.Forms.TabPage();
+            this.btDrift1 = new System.Windows.Forms.Button();
+            this.btBrake1 = new System.Windows.Forms.Button();
+            this.btStart1 = new System.Windows.Forms.Button();
+            this.edPower1 = new System.Windows.Forms.TextBox();
+            this.laPower1 = new System.Windows.Forms.Label();
+            this.cbMotorDirection1 = new System.Windows.Forms.ComboBox();
+            this.laMotorDirectionCaption1 = new System.Windows.Forms.Label();
             this.laMotorConnectionId1 = new System.Windows.Forms.Label();
             this.laMotorConnectionIdCaption1 = new System.Windows.Forms.Label();
             this.laMotorDeviceType1 = new System.Windows.Forms.Label();
@@ -199,20 +206,6 @@
             this.laMotorVersionCaption1 = new System.Windows.Forms.Label();
             this.laMotorDeviceInformation1 = new System.Windows.Forms.Label();
             this.tsMotor2 = new System.Windows.Forms.TabPage();
-            this.laMotorConnectionId2 = new System.Windows.Forms.Label();
-            this.laMotorConnectionIdCaption2 = new System.Windows.Forms.Label();
-            this.laMotorDeviceType2 = new System.Windows.Forms.Label();
-            this.laMotorDeviceTypeCaption2 = new System.Windows.Forms.Label();
-            this.laMotorVersion2 = new System.Windows.Forms.Label();
-            this.laMotorVersionCaption2 = new System.Windows.Forms.Label();
-            this.laMotorDeviceInformation2 = new System.Windows.Forms.Label();
-            this.btDrift1 = new System.Windows.Forms.Button();
-            this.btBrake1 = new System.Windows.Forms.Button();
-            this.btStart1 = new System.Windows.Forms.Button();
-            this.edPower1 = new System.Windows.Forms.TextBox();
-            this.laPower1 = new System.Windows.Forms.Label();
-            this.cbMotorDirection1 = new System.Windows.Forms.ComboBox();
-            this.laMotorDirectionCaption1 = new System.Windows.Forms.Label();
             this.btDrift2 = new System.Windows.Forms.Button();
             this.btBrake2 = new System.Windows.Forms.Button();
             this.btStart2 = new System.Windows.Forms.Button();
@@ -220,6 +213,13 @@
             this.laPower2 = new System.Windows.Forms.Label();
             this.cbMotorDirection2 = new System.Windows.Forms.ComboBox();
             this.laMotorDirectionCaption2 = new System.Windows.Forms.Label();
+            this.laMotorConnectionId2 = new System.Windows.Forms.Label();
+            this.laMotorConnectionIdCaption2 = new System.Windows.Forms.Label();
+            this.laMotorDeviceType2 = new System.Windows.Forms.Label();
+            this.laMotorDeviceTypeCaption2 = new System.Windows.Forms.Label();
+            this.laMotorVersion2 = new System.Windows.Forms.Label();
+            this.laMotorVersionCaption2 = new System.Windows.Forms.Label();
+            this.laMotorDeviceInformation2 = new System.Windows.Forms.Label();
             this.pcHub.SuspendLayout();
             this.tsHubInfo.SuspendLayout();
             this.tsCurrent.SuspendLayout();
@@ -775,7 +775,7 @@
             // 
             // tsPiezo
             // 
-            this.tsPiezo.Controls.Add(this.button1);
+            this.tsPiezo.Controls.Add(this.btStopSound);
             this.tsPiezo.Controls.Add(this.btPlay);
             this.tsPiezo.Controls.Add(this.edDuration);
             this.tsPiezo.Controls.Add(this.laDuration);
@@ -798,15 +798,15 @@
             this.tsPiezo.Text = "Piezo";
             this.tsPiezo.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btStopSound
             // 
-            this.button1.Location = new System.Drawing.Point(130, 146);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 67;
-            this.button1.Text = "Stop";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btStopSound.Location = new System.Drawing.Point(130, 146);
+            this.btStopSound.Name = "btStopSound";
+            this.btStopSound.Size = new System.Drawing.Size(75, 23);
+            this.btStopSound.TabIndex = 67;
+            this.btStopSound.Text = "Stop";
+            this.btStopSound.UseVisualStyleBackColor = true;
+            this.btStopSound.Click += new System.EventHandler(this.button1_Click);
             // 
             // btPlay
             // 
@@ -1566,6 +1566,120 @@
             this.tsTilt1.Text = "Tilt sensor 1";
             this.tsTilt1.UseVisualStyleBackColor = true;
             // 
+            // laZ1
+            // 
+            this.laZ1.AutoSize = true;
+            this.laZ1.Location = new System.Drawing.Point(82, 223);
+            this.laZ1.Name = "laZ1";
+            this.laZ1.Size = new System.Drawing.Size(13, 13);
+            this.laZ1.TabIndex = 93;
+            this.laZ1.Text = "0";
+            // 
+            // laZTitle1
+            // 
+            this.laZTitle1.AutoSize = true;
+            this.laZTitle1.Location = new System.Drawing.Point(6, 223);
+            this.laZTitle1.Name = "laZTitle1";
+            this.laZTitle1.Size = new System.Drawing.Size(17, 13);
+            this.laZTitle1.TabIndex = 92;
+            this.laZTitle1.Text = "Z:";
+            // 
+            // laY1
+            // 
+            this.laY1.AutoSize = true;
+            this.laY1.Location = new System.Drawing.Point(82, 198);
+            this.laY1.Name = "laY1";
+            this.laY1.Size = new System.Drawing.Size(13, 13);
+            this.laY1.TabIndex = 91;
+            this.laY1.Text = "0";
+            // 
+            // laYTitle1
+            // 
+            this.laYTitle1.AutoSize = true;
+            this.laYTitle1.Location = new System.Drawing.Point(6, 198);
+            this.laYTitle1.Name = "laYTitle1";
+            this.laYTitle1.Size = new System.Drawing.Size(17, 13);
+            this.laYTitle1.TabIndex = 90;
+            this.laYTitle1.Text = "Y:";
+            // 
+            // laX1
+            // 
+            this.laX1.AutoSize = true;
+            this.laX1.Location = new System.Drawing.Point(82, 175);
+            this.laX1.Name = "laX1";
+            this.laX1.Size = new System.Drawing.Size(13, 13);
+            this.laX1.TabIndex = 89;
+            this.laX1.Text = "0";
+            // 
+            // laXTitle1
+            // 
+            this.laXTitle1.AutoSize = true;
+            this.laXTitle1.Location = new System.Drawing.Point(6, 175);
+            this.laXTitle1.Name = "laXTitle1";
+            this.laXTitle1.Size = new System.Drawing.Size(17, 13);
+            this.laXTitle1.TabIndex = 88;
+            this.laXTitle1.Text = "X:";
+            // 
+            // laDirection1
+            // 
+            this.laDirection1.AutoSize = true;
+            this.laDirection1.Location = new System.Drawing.Point(82, 151);
+            this.laDirection1.Name = "laDirection1";
+            this.laDirection1.Size = new System.Drawing.Size(53, 13);
+            this.laDirection1.TabIndex = 87;
+            this.laDirection1.Text = "Unknown";
+            // 
+            // laDirectionTitle1
+            // 
+            this.laDirectionTitle1.AutoSize = true;
+            this.laDirectionTitle1.Location = new System.Drawing.Point(6, 151);
+            this.laDirectionTitle1.Name = "laDirectionTitle1";
+            this.laDirectionTitle1.Size = new System.Drawing.Size(52, 13);
+            this.laDirectionTitle1.TabIndex = 86;
+            this.laDirectionTitle1.Text = "Direction:";
+            // 
+            // btResetTilt1
+            // 
+            this.btResetTilt1.Location = new System.Drawing.Point(176, 141);
+            this.btResetTilt1.Name = "btResetTilt1";
+            this.btResetTilt1.Size = new System.Drawing.Size(75, 23);
+            this.btResetTilt1.TabIndex = 85;
+            this.btResetTilt1.Text = "Reset";
+            this.btResetTilt1.UseVisualStyleBackColor = true;
+            this.btResetTilt1.Click += new System.EventHandler(this.btResetTilt1_Click);
+            // 
+            // btChangeTilt1
+            // 
+            this.btChangeTilt1.Location = new System.Drawing.Point(176, 112);
+            this.btChangeTilt1.Name = "btChangeTilt1";
+            this.btChangeTilt1.Size = new System.Drawing.Size(75, 23);
+            this.btChangeTilt1.TabIndex = 84;
+            this.btChangeTilt1.Text = "Change";
+            this.btChangeTilt1.UseVisualStyleBackColor = true;
+            this.btChangeTilt1.Click += new System.EventHandler(this.btChangeTilt1_Click);
+            // 
+            // cbTiltMode1
+            // 
+            this.cbTiltMode1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTiltMode1.FormattingEnabled = true;
+            this.cbTiltMode1.Items.AddRange(new object[] {
+            "Angle",
+            "Tilt",
+            "Crash"});
+            this.cbTiltMode1.Location = new System.Drawing.Point(49, 114);
+            this.cbTiltMode1.Name = "cbTiltMode1";
+            this.cbTiltMode1.Size = new System.Drawing.Size(121, 21);
+            this.cbTiltMode1.TabIndex = 83;
+            // 
+            // laTiltMode1
+            // 
+            this.laTiltMode1.AutoSize = true;
+            this.laTiltMode1.Location = new System.Drawing.Point(6, 117);
+            this.laTiltMode1.Name = "laTiltMode1";
+            this.laTiltMode1.Size = new System.Drawing.Size(37, 13);
+            this.laTiltMode1.TabIndex = 82;
+            this.laTiltMode1.Text = "Mode:";
+            // 
             // laTiltConnectionId1
             // 
             this.laTiltConnectionId1.AutoSize = true;
@@ -1658,184 +1772,6 @@
             this.tsTilt2.TabIndex = 8;
             this.tsTilt2.Text = "Tilt sensor 2";
             this.tsTilt2.UseVisualStyleBackColor = true;
-            // 
-            // laTiltConnectionId2
-            // 
-            this.laTiltConnectionId2.AutoSize = true;
-            this.laTiltConnectionId2.Location = new System.Drawing.Point(114, 87);
-            this.laTiltConnectionId2.Name = "laTiltConnectionId2";
-            this.laTiltConnectionId2.Size = new System.Drawing.Size(47, 13);
-            this.laTiltConnectionId2.TabIndex = 88;
-            this.laTiltConnectionId2.Text = "<empty>";
-            // 
-            // laTiltConnectionCaption2
-            // 
-            this.laTiltConnectionCaption2.AutoSize = true;
-            this.laTiltConnectionCaption2.Location = new System.Drawing.Point(30, 87);
-            this.laTiltConnectionCaption2.Name = "laTiltConnectionCaption2";
-            this.laTiltConnectionCaption2.Size = new System.Drawing.Size(78, 13);
-            this.laTiltConnectionCaption2.TabIndex = 87;
-            this.laTiltConnectionCaption2.Text = "Connection ID:";
-            // 
-            // laTiltDeviceType2
-            // 
-            this.laTiltDeviceType2.AutoSize = true;
-            this.laTiltDeviceType2.Location = new System.Drawing.Point(114, 63);
-            this.laTiltDeviceType2.Name = "laTiltDeviceType2";
-            this.laTiltDeviceType2.Size = new System.Drawing.Size(47, 13);
-            this.laTiltDeviceType2.TabIndex = 86;
-            this.laTiltDeviceType2.Text = "<empty>";
-            // 
-            // laTiltDeviceTypeCaption2
-            // 
-            this.laTiltDeviceTypeCaption2.AutoSize = true;
-            this.laTiltDeviceTypeCaption2.Location = new System.Drawing.Point(30, 63);
-            this.laTiltDeviceTypeCaption2.Name = "laTiltDeviceTypeCaption2";
-            this.laTiltDeviceTypeCaption2.Size = new System.Drawing.Size(67, 13);
-            this.laTiltDeviceTypeCaption2.TabIndex = 85;
-            this.laTiltDeviceTypeCaption2.Text = "Device type:";
-            // 
-            // laTiltVersion2
-            // 
-            this.laTiltVersion2.AutoSize = true;
-            this.laTiltVersion2.Location = new System.Drawing.Point(114, 40);
-            this.laTiltVersion2.Name = "laTiltVersion2";
-            this.laTiltVersion2.Size = new System.Drawing.Size(47, 13);
-            this.laTiltVersion2.TabIndex = 84;
-            this.laTiltVersion2.Text = "<empty>";
-            // 
-            // laTiltVersionCaption2
-            // 
-            this.laTiltVersionCaption2.AutoSize = true;
-            this.laTiltVersionCaption2.Location = new System.Drawing.Point(30, 40);
-            this.laTiltVersionCaption2.Name = "laTiltVersionCaption2";
-            this.laTiltVersionCaption2.Size = new System.Drawing.Size(45, 13);
-            this.laTiltVersionCaption2.TabIndex = 83;
-            this.laTiltVersionCaption2.Text = "Version:";
-            // 
-            // laTiltDeviceInformation2
-            // 
-            this.laTiltDeviceInformation2.AutoSize = true;
-            this.laTiltDeviceInformation2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.laTiltDeviceInformation2.Location = new System.Drawing.Point(6, 17);
-            this.laTiltDeviceInformation2.Name = "laTiltDeviceInformation2";
-            this.laTiltDeviceInformation2.Size = new System.Drawing.Size(113, 13);
-            this.laTiltDeviceInformation2.TabIndex = 82;
-            this.laTiltDeviceInformation2.Text = "Device information";
-            // 
-            // btResetTilt1
-            // 
-            this.btResetTilt1.Location = new System.Drawing.Point(176, 141);
-            this.btResetTilt1.Name = "btResetTilt1";
-            this.btResetTilt1.Size = new System.Drawing.Size(75, 23);
-            this.btResetTilt1.TabIndex = 85;
-            this.btResetTilt1.Text = "Reset";
-            this.btResetTilt1.UseVisualStyleBackColor = true;
-            this.btResetTilt1.Click += new System.EventHandler(this.btResetTilt1_Click);
-            // 
-            // btChangeTilt1
-            // 
-            this.btChangeTilt1.Location = new System.Drawing.Point(176, 112);
-            this.btChangeTilt1.Name = "btChangeTilt1";
-            this.btChangeTilt1.Size = new System.Drawing.Size(75, 23);
-            this.btChangeTilt1.TabIndex = 84;
-            this.btChangeTilt1.Text = "Change";
-            this.btChangeTilt1.UseVisualStyleBackColor = true;
-            this.btChangeTilt1.Click += new System.EventHandler(this.btChangeTilt1_Click);
-            // 
-            // cbTiltMode1
-            // 
-            this.cbTiltMode1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTiltMode1.FormattingEnabled = true;
-            this.cbTiltMode1.Items.AddRange(new object[] {
-            "Angle",
-            "Tilt",
-            "Crash"});
-            this.cbTiltMode1.Location = new System.Drawing.Point(49, 114);
-            this.cbTiltMode1.Name = "cbTiltMode1";
-            this.cbTiltMode1.Size = new System.Drawing.Size(121, 21);
-            this.cbTiltMode1.TabIndex = 83;
-            // 
-            // laTiltMode1
-            // 
-            this.laTiltMode1.AutoSize = true;
-            this.laTiltMode1.Location = new System.Drawing.Point(6, 117);
-            this.laTiltMode1.Name = "laTiltMode1";
-            this.laTiltMode1.Size = new System.Drawing.Size(37, 13);
-            this.laTiltMode1.TabIndex = 82;
-            this.laTiltMode1.Text = "Mode:";
-            // 
-            // laZ1
-            // 
-            this.laZ1.AutoSize = true;
-            this.laZ1.Location = new System.Drawing.Point(82, 223);
-            this.laZ1.Name = "laZ1";
-            this.laZ1.Size = new System.Drawing.Size(13, 13);
-            this.laZ1.TabIndex = 93;
-            this.laZ1.Text = "0";
-            // 
-            // laZTitle1
-            // 
-            this.laZTitle1.AutoSize = true;
-            this.laZTitle1.Location = new System.Drawing.Point(6, 223);
-            this.laZTitle1.Name = "laZTitle1";
-            this.laZTitle1.Size = new System.Drawing.Size(17, 13);
-            this.laZTitle1.TabIndex = 92;
-            this.laZTitle1.Text = "Z:";
-            // 
-            // laY1
-            // 
-            this.laY1.AutoSize = true;
-            this.laY1.Location = new System.Drawing.Point(82, 198);
-            this.laY1.Name = "laY1";
-            this.laY1.Size = new System.Drawing.Size(13, 13);
-            this.laY1.TabIndex = 91;
-            this.laY1.Text = "0";
-            // 
-            // laYTitle1
-            // 
-            this.laYTitle1.AutoSize = true;
-            this.laYTitle1.Location = new System.Drawing.Point(6, 198);
-            this.laYTitle1.Name = "laYTitle1";
-            this.laYTitle1.Size = new System.Drawing.Size(17, 13);
-            this.laYTitle1.TabIndex = 90;
-            this.laYTitle1.Text = "Y:";
-            // 
-            // laX1
-            // 
-            this.laX1.AutoSize = true;
-            this.laX1.Location = new System.Drawing.Point(82, 175);
-            this.laX1.Name = "laX1";
-            this.laX1.Size = new System.Drawing.Size(13, 13);
-            this.laX1.TabIndex = 89;
-            this.laX1.Text = "0";
-            // 
-            // laXTitle1
-            // 
-            this.laXTitle1.AutoSize = true;
-            this.laXTitle1.Location = new System.Drawing.Point(6, 175);
-            this.laXTitle1.Name = "laXTitle1";
-            this.laXTitle1.Size = new System.Drawing.Size(17, 13);
-            this.laXTitle1.TabIndex = 88;
-            this.laXTitle1.Text = "X:";
-            // 
-            // laDirection1
-            // 
-            this.laDirection1.AutoSize = true;
-            this.laDirection1.Location = new System.Drawing.Point(82, 151);
-            this.laDirection1.Name = "laDirection1";
-            this.laDirection1.Size = new System.Drawing.Size(53, 13);
-            this.laDirection1.TabIndex = 87;
-            this.laDirection1.Text = "Unknown";
-            // 
-            // laDirectionTitle1
-            // 
-            this.laDirectionTitle1.AutoSize = true;
-            this.laDirectionTitle1.Location = new System.Drawing.Point(6, 151);
-            this.laDirectionTitle1.Name = "laDirectionTitle1";
-            this.laDirectionTitle1.Size = new System.Drawing.Size(52, 13);
-            this.laDirectionTitle1.TabIndex = 86;
-            this.laDirectionTitle1.Text = "Direction:";
             // 
             // laZ2
             // 
@@ -1951,6 +1887,70 @@
             this.laTiltMode2.TabIndex = 94;
             this.laTiltMode2.Text = "Mode:";
             // 
+            // laTiltConnectionId2
+            // 
+            this.laTiltConnectionId2.AutoSize = true;
+            this.laTiltConnectionId2.Location = new System.Drawing.Point(114, 87);
+            this.laTiltConnectionId2.Name = "laTiltConnectionId2";
+            this.laTiltConnectionId2.Size = new System.Drawing.Size(47, 13);
+            this.laTiltConnectionId2.TabIndex = 88;
+            this.laTiltConnectionId2.Text = "<empty>";
+            // 
+            // laTiltConnectionCaption2
+            // 
+            this.laTiltConnectionCaption2.AutoSize = true;
+            this.laTiltConnectionCaption2.Location = new System.Drawing.Point(30, 87);
+            this.laTiltConnectionCaption2.Name = "laTiltConnectionCaption2";
+            this.laTiltConnectionCaption2.Size = new System.Drawing.Size(78, 13);
+            this.laTiltConnectionCaption2.TabIndex = 87;
+            this.laTiltConnectionCaption2.Text = "Connection ID:";
+            // 
+            // laTiltDeviceType2
+            // 
+            this.laTiltDeviceType2.AutoSize = true;
+            this.laTiltDeviceType2.Location = new System.Drawing.Point(114, 63);
+            this.laTiltDeviceType2.Name = "laTiltDeviceType2";
+            this.laTiltDeviceType2.Size = new System.Drawing.Size(47, 13);
+            this.laTiltDeviceType2.TabIndex = 86;
+            this.laTiltDeviceType2.Text = "<empty>";
+            // 
+            // laTiltDeviceTypeCaption2
+            // 
+            this.laTiltDeviceTypeCaption2.AutoSize = true;
+            this.laTiltDeviceTypeCaption2.Location = new System.Drawing.Point(30, 63);
+            this.laTiltDeviceTypeCaption2.Name = "laTiltDeviceTypeCaption2";
+            this.laTiltDeviceTypeCaption2.Size = new System.Drawing.Size(67, 13);
+            this.laTiltDeviceTypeCaption2.TabIndex = 85;
+            this.laTiltDeviceTypeCaption2.Text = "Device type:";
+            // 
+            // laTiltVersion2
+            // 
+            this.laTiltVersion2.AutoSize = true;
+            this.laTiltVersion2.Location = new System.Drawing.Point(114, 40);
+            this.laTiltVersion2.Name = "laTiltVersion2";
+            this.laTiltVersion2.Size = new System.Drawing.Size(47, 13);
+            this.laTiltVersion2.TabIndex = 84;
+            this.laTiltVersion2.Text = "<empty>";
+            // 
+            // laTiltVersionCaption2
+            // 
+            this.laTiltVersionCaption2.AutoSize = true;
+            this.laTiltVersionCaption2.Location = new System.Drawing.Point(30, 40);
+            this.laTiltVersionCaption2.Name = "laTiltVersionCaption2";
+            this.laTiltVersionCaption2.Size = new System.Drawing.Size(45, 13);
+            this.laTiltVersionCaption2.TabIndex = 83;
+            this.laTiltVersionCaption2.Text = "Version:";
+            // 
+            // laTiltDeviceInformation2
+            // 
+            this.laTiltDeviceInformation2.AutoSize = true;
+            this.laTiltDeviceInformation2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laTiltDeviceInformation2.Location = new System.Drawing.Point(6, 17);
+            this.laTiltDeviceInformation2.Name = "laTiltDeviceInformation2";
+            this.laTiltDeviceInformation2.Size = new System.Drawing.Size(113, 13);
+            this.laTiltDeviceInformation2.TabIndex = 82;
+            this.laTiltDeviceInformation2.Text = "Device information";
+            // 
             // tsMotor1
             // 
             this.tsMotor1.Controls.Add(this.btDrift1);
@@ -1974,6 +1974,74 @@
             this.tsMotor1.TabIndex = 9;
             this.tsMotor1.Text = "Motor 1";
             this.tsMotor1.UseVisualStyleBackColor = true;
+            // 
+            // btDrift1
+            // 
+            this.btDrift1.Location = new System.Drawing.Point(146, 166);
+            this.btDrift1.Name = "btDrift1";
+            this.btDrift1.Size = new System.Drawing.Size(75, 23);
+            this.btDrift1.TabIndex = 95;
+            this.btDrift1.Text = "Drift";
+            this.btDrift1.UseVisualStyleBackColor = true;
+            this.btDrift1.Click += new System.EventHandler(this.btDrift1_Click);
+            // 
+            // btBrake1
+            // 
+            this.btBrake1.Location = new System.Drawing.Point(65, 166);
+            this.btBrake1.Name = "btBrake1";
+            this.btBrake1.Size = new System.Drawing.Size(75, 23);
+            this.btBrake1.TabIndex = 94;
+            this.btBrake1.Text = "Brake";
+            this.btBrake1.UseVisualStyleBackColor = true;
+            this.btBrake1.Click += new System.EventHandler(this.btBrake1_Click);
+            // 
+            // btStart1
+            // 
+            this.btStart1.Location = new System.Drawing.Point(192, 138);
+            this.btStart1.Name = "btStart1";
+            this.btStart1.Size = new System.Drawing.Size(75, 23);
+            this.btStart1.TabIndex = 93;
+            this.btStart1.Text = "Start";
+            this.btStart1.UseVisualStyleBackColor = true;
+            this.btStart1.Click += new System.EventHandler(this.btStart1_Click);
+            // 
+            // edPower1
+            // 
+            this.edPower1.Location = new System.Drawing.Point(65, 140);
+            this.edPower1.Name = "edPower1";
+            this.edPower1.Size = new System.Drawing.Size(121, 20);
+            this.edPower1.TabIndex = 92;
+            this.edPower1.Text = "20";
+            // 
+            // laPower1
+            // 
+            this.laPower1.AutoSize = true;
+            this.laPower1.Location = new System.Drawing.Point(7, 143);
+            this.laPower1.Name = "laPower1";
+            this.laPower1.Size = new System.Drawing.Size(37, 13);
+            this.laPower1.TabIndex = 91;
+            this.laPower1.Text = "Power";
+            // 
+            // cbMotorDirection1
+            // 
+            this.cbMotorDirection1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMotorDirection1.FormattingEnabled = true;
+            this.cbMotorDirection1.Items.AddRange(new object[] {
+            "Right",
+            "Left"});
+            this.cbMotorDirection1.Location = new System.Drawing.Point(65, 113);
+            this.cbMotorDirection1.Name = "cbMotorDirection1";
+            this.cbMotorDirection1.Size = new System.Drawing.Size(121, 21);
+            this.cbMotorDirection1.TabIndex = 90;
+            // 
+            // laMotorDirectionCaption1
+            // 
+            this.laMotorDirectionCaption1.AutoSize = true;
+            this.laMotorDirectionCaption1.Location = new System.Drawing.Point(7, 116);
+            this.laMotorDirectionCaption1.Name = "laMotorDirectionCaption1";
+            this.laMotorDirectionCaption1.Size = new System.Drawing.Size(52, 13);
+            this.laMotorDirectionCaption1.TabIndex = 89;
+            this.laMotorDirectionCaption1.Text = "Direction:";
             // 
             // laMotorConnectionId1
             // 
@@ -2063,138 +2131,6 @@
             this.tsMotor2.Text = "Motor 2";
             this.tsMotor2.UseVisualStyleBackColor = true;
             // 
-            // laMotorConnectionId2
-            // 
-            this.laMotorConnectionId2.AutoSize = true;
-            this.laMotorConnectionId2.Location = new System.Drawing.Point(114, 85);
-            this.laMotorConnectionId2.Name = "laMotorConnectionId2";
-            this.laMotorConnectionId2.Size = new System.Drawing.Size(47, 13);
-            this.laMotorConnectionId2.TabIndex = 95;
-            this.laMotorConnectionId2.Text = "<empty>";
-            // 
-            // laMotorConnectionIdCaption2
-            // 
-            this.laMotorConnectionIdCaption2.AutoSize = true;
-            this.laMotorConnectionIdCaption2.Location = new System.Drawing.Point(30, 85);
-            this.laMotorConnectionIdCaption2.Name = "laMotorConnectionIdCaption2";
-            this.laMotorConnectionIdCaption2.Size = new System.Drawing.Size(78, 13);
-            this.laMotorConnectionIdCaption2.TabIndex = 94;
-            this.laMotorConnectionIdCaption2.Text = "Connection ID:";
-            // 
-            // laMotorDeviceType2
-            // 
-            this.laMotorDeviceType2.AutoSize = true;
-            this.laMotorDeviceType2.Location = new System.Drawing.Point(114, 61);
-            this.laMotorDeviceType2.Name = "laMotorDeviceType2";
-            this.laMotorDeviceType2.Size = new System.Drawing.Size(47, 13);
-            this.laMotorDeviceType2.TabIndex = 93;
-            this.laMotorDeviceType2.Text = "<empty>";
-            // 
-            // laMotorDeviceTypeCaption2
-            // 
-            this.laMotorDeviceTypeCaption2.AutoSize = true;
-            this.laMotorDeviceTypeCaption2.Location = new System.Drawing.Point(30, 61);
-            this.laMotorDeviceTypeCaption2.Name = "laMotorDeviceTypeCaption2";
-            this.laMotorDeviceTypeCaption2.Size = new System.Drawing.Size(67, 13);
-            this.laMotorDeviceTypeCaption2.TabIndex = 92;
-            this.laMotorDeviceTypeCaption2.Text = "Device type:";
-            // 
-            // laMotorVersion2
-            // 
-            this.laMotorVersion2.AutoSize = true;
-            this.laMotorVersion2.Location = new System.Drawing.Point(114, 38);
-            this.laMotorVersion2.Name = "laMotorVersion2";
-            this.laMotorVersion2.Size = new System.Drawing.Size(47, 13);
-            this.laMotorVersion2.TabIndex = 91;
-            this.laMotorVersion2.Text = "<empty>";
-            // 
-            // laMotorVersionCaption2
-            // 
-            this.laMotorVersionCaption2.AutoSize = true;
-            this.laMotorVersionCaption2.Location = new System.Drawing.Point(30, 38);
-            this.laMotorVersionCaption2.Name = "laMotorVersionCaption2";
-            this.laMotorVersionCaption2.Size = new System.Drawing.Size(45, 13);
-            this.laMotorVersionCaption2.TabIndex = 90;
-            this.laMotorVersionCaption2.Text = "Version:";
-            // 
-            // laMotorDeviceInformation2
-            // 
-            this.laMotorDeviceInformation2.AutoSize = true;
-            this.laMotorDeviceInformation2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.laMotorDeviceInformation2.Location = new System.Drawing.Point(6, 15);
-            this.laMotorDeviceInformation2.Name = "laMotorDeviceInformation2";
-            this.laMotorDeviceInformation2.Size = new System.Drawing.Size(113, 13);
-            this.laMotorDeviceInformation2.TabIndex = 89;
-            this.laMotorDeviceInformation2.Text = "Device information";
-            // 
-            // btDrift1
-            // 
-            this.btDrift1.Location = new System.Drawing.Point(146, 166);
-            this.btDrift1.Name = "btDrift1";
-            this.btDrift1.Size = new System.Drawing.Size(75, 23);
-            this.btDrift1.TabIndex = 95;
-            this.btDrift1.Text = "Drift";
-            this.btDrift1.UseVisualStyleBackColor = true;
-            this.btDrift1.Click += new System.EventHandler(this.btDrift1_Click);
-            // 
-            // btBrake1
-            // 
-            this.btBrake1.Location = new System.Drawing.Point(65, 166);
-            this.btBrake1.Name = "btBrake1";
-            this.btBrake1.Size = new System.Drawing.Size(75, 23);
-            this.btBrake1.TabIndex = 94;
-            this.btBrake1.Text = "Brake";
-            this.btBrake1.UseVisualStyleBackColor = true;
-            this.btBrake1.Click += new System.EventHandler(this.btBrake1_Click);
-            // 
-            // btStart1
-            // 
-            this.btStart1.Location = new System.Drawing.Point(192, 138);
-            this.btStart1.Name = "btStart1";
-            this.btStart1.Size = new System.Drawing.Size(75, 23);
-            this.btStart1.TabIndex = 93;
-            this.btStart1.Text = "Start";
-            this.btStart1.UseVisualStyleBackColor = true;
-            this.btStart1.Click += new System.EventHandler(this.btStart1_Click);
-            // 
-            // edPower1
-            // 
-            this.edPower1.Location = new System.Drawing.Point(65, 140);
-            this.edPower1.Name = "edPower1";
-            this.edPower1.Size = new System.Drawing.Size(121, 20);
-            this.edPower1.TabIndex = 92;
-            this.edPower1.Text = "20";
-            // 
-            // laPower1
-            // 
-            this.laPower1.AutoSize = true;
-            this.laPower1.Location = new System.Drawing.Point(7, 143);
-            this.laPower1.Name = "laPower1";
-            this.laPower1.Size = new System.Drawing.Size(40, 13);
-            this.laPower1.TabIndex = 91;
-            this.laPower1.Text = "Power:";
-            // 
-            // cbMotorDirection1
-            // 
-            this.cbMotorDirection1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbMotorDirection1.FormattingEnabled = true;
-            this.cbMotorDirection1.Items.AddRange(new object[] {
-            "Right",
-            "Left"});
-            this.cbMotorDirection1.Location = new System.Drawing.Point(65, 113);
-            this.cbMotorDirection1.Name = "cbMotorDirection1";
-            this.cbMotorDirection1.Size = new System.Drawing.Size(121, 21);
-            this.cbMotorDirection1.TabIndex = 90;
-            // 
-            // laMotorDirectionCaption1
-            // 
-            this.laMotorDirectionCaption1.AutoSize = true;
-            this.laMotorDirectionCaption1.Location = new System.Drawing.Point(7, 116);
-            this.laMotorDirectionCaption1.Name = "laMotorDirectionCaption1";
-            this.laMotorDirectionCaption1.Size = new System.Drawing.Size(52, 13);
-            this.laMotorDirectionCaption1.TabIndex = 89;
-            this.laMotorDirectionCaption1.Text = "Direction:";
-            // 
             // btDrift2
             // 
             this.btDrift2.Location = new System.Drawing.Point(145, 168);
@@ -2262,6 +2198,70 @@
             this.laMotorDirectionCaption2.Size = new System.Drawing.Size(52, 13);
             this.laMotorDirectionCaption2.TabIndex = 96;
             this.laMotorDirectionCaption2.Text = "Direction:";
+            // 
+            // laMotorConnectionId2
+            // 
+            this.laMotorConnectionId2.AutoSize = true;
+            this.laMotorConnectionId2.Location = new System.Drawing.Point(114, 85);
+            this.laMotorConnectionId2.Name = "laMotorConnectionId2";
+            this.laMotorConnectionId2.Size = new System.Drawing.Size(47, 13);
+            this.laMotorConnectionId2.TabIndex = 95;
+            this.laMotorConnectionId2.Text = "<empty>";
+            // 
+            // laMotorConnectionIdCaption2
+            // 
+            this.laMotorConnectionIdCaption2.AutoSize = true;
+            this.laMotorConnectionIdCaption2.Location = new System.Drawing.Point(30, 85);
+            this.laMotorConnectionIdCaption2.Name = "laMotorConnectionIdCaption2";
+            this.laMotorConnectionIdCaption2.Size = new System.Drawing.Size(78, 13);
+            this.laMotorConnectionIdCaption2.TabIndex = 94;
+            this.laMotorConnectionIdCaption2.Text = "Connection ID:";
+            // 
+            // laMotorDeviceType2
+            // 
+            this.laMotorDeviceType2.AutoSize = true;
+            this.laMotorDeviceType2.Location = new System.Drawing.Point(114, 61);
+            this.laMotorDeviceType2.Name = "laMotorDeviceType2";
+            this.laMotorDeviceType2.Size = new System.Drawing.Size(47, 13);
+            this.laMotorDeviceType2.TabIndex = 93;
+            this.laMotorDeviceType2.Text = "<empty>";
+            // 
+            // laMotorDeviceTypeCaption2
+            // 
+            this.laMotorDeviceTypeCaption2.AutoSize = true;
+            this.laMotorDeviceTypeCaption2.Location = new System.Drawing.Point(30, 61);
+            this.laMotorDeviceTypeCaption2.Name = "laMotorDeviceTypeCaption2";
+            this.laMotorDeviceTypeCaption2.Size = new System.Drawing.Size(67, 13);
+            this.laMotorDeviceTypeCaption2.TabIndex = 92;
+            this.laMotorDeviceTypeCaption2.Text = "Device type:";
+            // 
+            // laMotorVersion2
+            // 
+            this.laMotorVersion2.AutoSize = true;
+            this.laMotorVersion2.Location = new System.Drawing.Point(114, 38);
+            this.laMotorVersion2.Name = "laMotorVersion2";
+            this.laMotorVersion2.Size = new System.Drawing.Size(47, 13);
+            this.laMotorVersion2.TabIndex = 91;
+            this.laMotorVersion2.Text = "<empty>";
+            // 
+            // laMotorVersionCaption2
+            // 
+            this.laMotorVersionCaption2.AutoSize = true;
+            this.laMotorVersionCaption2.Location = new System.Drawing.Point(30, 38);
+            this.laMotorVersionCaption2.Name = "laMotorVersionCaption2";
+            this.laMotorVersionCaption2.Size = new System.Drawing.Size(45, 13);
+            this.laMotorVersionCaption2.TabIndex = 90;
+            this.laMotorVersionCaption2.Text = "Version:";
+            // 
+            // laMotorDeviceInformation2
+            // 
+            this.laMotorDeviceInformation2.AutoSize = true;
+            this.laMotorDeviceInformation2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laMotorDeviceInformation2.Location = new System.Drawing.Point(6, 15);
+            this.laMotorDeviceInformation2.Name = "laMotorDeviceInformation2";
+            this.laMotorDeviceInformation2.Size = new System.Drawing.Size(113, 13);
+            this.laMotorDeviceInformation2.TabIndex = 89;
+            this.laMotorDeviceInformation2.Text = "Device information";
             // 
             // fmMain
             // 
@@ -2398,7 +2398,7 @@
         private System.Windows.Forms.Label laOctave;
         private System.Windows.Forms.ComboBox cbNote;
         private System.Windows.Forms.Label laNote;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btStopSound;
         private System.Windows.Forms.Button btPlay;
         private System.Windows.Forms.TabPage tsMotion1;
         private System.Windows.Forms.Label laMotionConnectionId1;
