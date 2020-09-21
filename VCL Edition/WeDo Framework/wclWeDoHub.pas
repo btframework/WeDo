@@ -21,7 +21,7 @@
 
 unit wclWeDoHub;
 
-{$I ..\..\..\..\..\WCL7\VCL\Source\wcl.inc}
+{$I wclWeDo.inc}
 
 interface
 
