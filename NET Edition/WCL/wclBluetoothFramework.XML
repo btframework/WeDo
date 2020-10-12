@@ -1933,6 +1933,16 @@
             <remarks> A derived class must override this method to provide
               driver-dependent code. </remarks>
         </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.HalGetCod(System.UInt32@)">
+            <summary> Implements a hardware-dependent code for Local Bluetooth
+              Radio module Class Of Device (COD) reading. </summary>
+            <param name="Cod"> On output the local Bluetooth Radio COD. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> A derived class must override this method to provide
+              driver-dependent code. </remarks>
+        </member>
         <member name="M:wclBluetooth.wclBluetoothRadio.HalGetConnectable(System.Boolean@)">
             <summary> Implements a hardware-dependent code for reading the local
               Bluetooth Radio connectable state. </summary>
@@ -1992,6 +2002,16 @@
               Radio name. </summary>
             <param name="Name"> On output the local Bluetooth Radio
               name. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> A derived class must override this method to provide
+              driver-dependent code. </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.HalSetCod(System.UInt32)">
+            <summary> Implements a hardware-dependent code to changing the
+              local Bluetooth Radio Class Of Device (COD). </summary>
+            <param name="Cod"> The new local Bluetooth Radio COD. </param>
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
@@ -2508,6 +2528,14 @@
             <remarks> A derived class must override this method to provide
               information about supported Bluetooth driver. </remarks>
         </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.HalGetPlugged">
+            <summary> Implements a hardware-dependent code to check a Bluetooth
+              hardware physical state. </summary>
+            <returns> Returns <c>True</c> if a Bluetooth hardware is physically
+              available. <c>False</c> otherwise. </returns>
+            <remarks> A derived class must override this method to provide
+              information about supported Bluetooth driver. </remarks>
+        </member>
         <member name="M:wclBluetooth.wclBluetoothRadio.CheckAvailable">
             <summary> The method checks that a Bluetooth driver and a hardware is
               available. </summary>
@@ -2542,6 +2570,14 @@
             <summary> Reads the local Bluetooth Radio MAC address. </summary>
             <param name="Address"> On output the local Bluetooth Radio
               address. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.GetCod(System.UInt32@)">
+            <summary> Reads the local Bluetooth Radio Class Of Device
+              (COD). </summary>
+            <param name="Cod"> On output the local Bluetooth Radio COD. </param>
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
@@ -2628,6 +2664,14 @@
             <summary> Reads the local Radio name. </summary>
             <param name="Name"> On output the local Bluetooth Radio
               name. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.SetCod(System.UInt32)">
+            <summary> Changes the local Bluetooth Radio Class Of Device
+              (COD). </summary>
+            <param name="Cod"> The new local Bluetooth Radio COD. </param>
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
@@ -3019,6 +3063,11 @@
             <value> <c>True</c> if a Bluetooth hardware represented by this Radio
               is availbale. <c>False</c> otherwise. </value>
         </member>
+        <member name="P:wclBluetooth.wclBluetoothRadio.Plugged">
+            <summary> Gets a Radio hardware physical state. </summary>
+            <value> <c>True</c> if a Bluetooth hardware represented by this Radio
+              is physically connected. <c>False</c> otherwise. </value>
+        </member>
         <member name="P:wclBluetooth.wclBluetoothRadio.ComPorts">
             <summary> Gets the array of the created virtual COM ports. </summary>
             <value> The virtual COM ports array. </value>
@@ -3196,6 +3245,16 @@
               of the Bluetooth Framework features. </para>
               <para> An application must call this method from its main thread
               only. </para> </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothManager.GetRadio(wclBluetooth.wclBluetoothRadio@)">
+            <summary> Gets the first available Radio object. </summary>
+            <param name="Radio"> If the function completed with success on output
+              contains the first found available Bluetooth Radio object. Otherwise
+              the parameter contains <c>null</c>. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
         </member>
         <member name="P:wclBluetooth.wclBluetoothManager.Active">
             <summary> Gets the Bluetooth Manager state. </summary>
@@ -5161,6 +5220,11 @@
               (https://www.bluetooth.com/specifications/assigned-numbers/company-identifiers). </value>
             <exception cref="T:wclCommunication.wclEConnection" />
         </member>
+        <member name="P:wclBluetooth.wclBluetoothLeCustomBeaconConnection.CompanyData">
+            <summary> Gets and sets the beacons manufacturer specific data. </summary>
+            <value> The bytes array contains advertising data. </value>
+            <exception cref="T:wclCommunication.wclEConnection" />
+        </member>
         <member name="P:wclBluetooth.wclBluetoothLeCustomBeaconConnection.Data">
             <summary> Gets and sets the beacons raw data. </summary>
             <value> The bytes array contains advertising data. </value>
@@ -7092,6 +7156,11 @@
               advertising is running the <see cref="T:wclBluetooth.wclEBluetoothLeBeacon" />
               exception raises. </remarks>
             <exception cref="T:wclBluetooth.wclEBluetoothLeBeacon" />
+        </member>
+        <member name="P:wclBluetooth.wclBluetoothLeCustomBeacon.CompanyData">
+            <summary> Gets and sets the beacons manufacturer specific data. </summary>
+            <value> The bytes array contains advertising data. </value>
+            <exception cref="T:wclCommunication.wclEConnection" />
         </member>
         <member name="P:wclBluetooth.wclBluetoothLeCustomBeacon.Data">
             <summary> Gets and sets advertising data. </summary>
