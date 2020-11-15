@@ -16,6 +16,9 @@
         <member name="F:wclBluetooth.wclBluetoothApi.baToshiba">
             <summary> Toshiba Bluetooth driver. </summary>
         </member>
+        <member name="F:wclBluetooth.wclBluetoothApi.baBled112">
+            <summary> Silicon Labs BLED112 module. </summary>
+        </member>
         <member name="T:wclBluetooth.wclBluetoothDeviceType">
             <summary> A remote device types. </summary>
         </member>
@@ -2544,6 +2547,11 @@
               the WCL error codes. </returns>
             <remarks> Any call to this method must be protected by
               the local radio Critical Section. </remarks>
+        </member>
+        <member name="P:wclBluetooth.wclBluetoothRadio.LeDiscovering">
+            <summary> Gets the discovering type flag. </summary>
+            <value> <c>True</c> if LE discovering is executing. <c>False</c> if
+              classic discovering is executing. </value>
         </member>
         <member name="P:wclBluetooth.wclBluetoothRadio.Receiver">
             <summary> Gets the message receiver object. </summary>
@@ -5289,10 +5297,6 @@
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
             <seealso cref="T:wclCommunication.wclClientConnection" />
         </member>
-        <member name="F:wclBluetooth.wclWiiRemoteClientConnection.WCL_WII_REMOTE_REPORT_LENGTH">
-            <summary> Wii Remote HID report length. </summary>
-            <remarks> Thsi constant is defined for internal use only. </remarks>
-        </member>
         <member name="M:wclBluetooth.wclWiiRemoteClientConnection.ProcessReport(System.Byte[])">
             <summary> The function parses the received report. </summary>
             <param name="Report"> A pointer to the report data. </param>
@@ -5610,6 +5614,10 @@
             <summary> The event fires when the WeDo Remote status
               changed. </summary>
             <seealso cref="T:wclBluetooth.wclWiiRemoteStatusChangedEvent" />
+        </member>
+        <member name="F:wclBluetooth.wclWiiRemoteClientConnection.WCL_WII_REMOTE_REPORT_LENGTH">
+            <summary> Wii Remote HID report length. </summary>
+            <remarks> This constant is defined for internal use only. </remarks>
         </member>
         <member name="T:wclBluetooth.wclWiiRemoteHidClientConnection">
             <summary> The virtual connection represents a Wii Remote HID
@@ -6861,6 +6869,18 @@
         <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnStopped">
             <summary> The event fires when the Bluetooth LE beacon monitoring
               stopped. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeBeaconWatcher.WCL_EDDYSTONE_UID_FRAME_ID">
+            <summary> Eddystone UID beacon frame ID. </summary>
+            <remarks> This constant is defined for internal use only. </remarks>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeBeaconWatcher.WCL_EDDYSTONE_URL_FRAME_ID">
+            <summary> Eddystone URL beacon frame ID. </summary>
+            <remarks> This constant is defined for internal use only. </remarks>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeBeaconWatcher.WCL_EDDYSTONE_TLM_FRAME_ID">
+            <summary> Eddystone TLM beacon frame ID. </summary>
+            <remarks> This constant is defined for internal use only. </remarks>
         </member>
         <member name="T:wclBluetooth.wclBluetoothLeAdvertiser">
             <summary> The base class for Bluetooth LE advertisers
@@ -8680,6 +8700,48 @@
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_DISCOVERING_CANCELED">
             <summary> Discovering has been canceled (aborted) by the system. </summary>
         </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_CONNECTION_TERMINATED">
+            <summary> Local device terminated the connection. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_WRONG_CONNECTION_INTERVAL">
+            <summary> The error code indicates that the remote device terminated the
+              connection because of an unacceptable connection interval. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_DIRECT_ADVERTISING_TIMEOUT">
+            <summary> Directed advertising completed without a connection being
+              created. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_MIC_FAILED">
+            <summary> Connection was terminated because the Message Integrity Check
+              (MIC) failed on a received packet. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_CONNECTION_ESTABLISHING_FAILED">
+            <summary> LL initiated a connection but the connection has failed to be
+              established. Controller did not receive any packets from remote
+              end. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_AUTH_OOB_NOT_AVAILABLE">
+            <summary> Out of Band data is not available for authentication. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_AUTH_REPEATED_ATTEMPTS">
+            <summary> Pairing or authentication procedure is disallowed because too
+              little time has elapsed since last pairing request or security
+              request. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_APPLICATION">
+            <summary> Application error code defined by a higher layer
+              specification. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_CREATE_DISCOVERING_EVENT_FAILED">
+            <summary> Unable to create LE devices discovering thread termination
+              event. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_CREATE_DISCOVERING_THREAD_FAILED">
+            <summary> Unable to start LE devices discovering thread. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_CREATE_CONNECTION_COMPLETION_EVENT_FAILED">
+            <summary> Unable to create connection completion event. </summary>
+        </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_BASE">
             <summary> The base error code for Wii Remote errors. </summary>
         </member>
@@ -8758,6 +8820,70 @@
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_INVALID_CONFIGURATION">
             <summary> Invalid Wii Remote configuration. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_BASE">
+            <summary> The base error code for Wii Remote errors. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_INVALID_PARAM">
+            <summary> Command contained invalid parameter. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_WRONG_STATE">
+            <summary> Device is in wrong state to receive command. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_OUT_OF_MEMORY">
+            <summary> Device has run out of memory. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_NOT_IMPLEMENTED">
+            <summary> Feature is not implemented. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_INVALID_COMMAND">
+            <summary> Command was not recognized. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_TIMEOUT">
+            <summary> Command or Procedure failed due to timeout. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_NOT_CONNECTED">
+            <summary> Connection handle passed is to command is not a valid
+              handle. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_FLOW">
+            <summary> Command would cause either underflow or overflow
+              error. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_USER_ATTRIBUTE">
+            <summary> User attribute was accessed through API which is not
+              supported. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_INVALID_LICENSE_KEY">
+            <summary> No valid license key found. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_COMMAND_TOO_LONG">
+            <summary> Command maximum length exceeded. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_OUT_OF_BONDS">
+            <summary> Bonding procedure can not be started because device has no space
+              left for bond. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_SCRIPT_OVERFLOW">
+            <summary> Module was reset due to script stack overflow. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_TOO_MANY_CONNECTIONS">
+            <summary> Controller is at limit of connections it can support. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_BUSY">
+            <summary> Operation was rejected because the controller is busy and unable
+              to process the request. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_COMMAND_IN_POROGRESS">
+            <summary> A command can not be executed because other command is still
+              running. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_CREATE_DEV_MON_EVENT_FAILED">
+            <summary> Unable to create LE devices monitoring thread termination
+              event. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_START_DEV_MON_THREAD_FAILED">
+            <summary> Unable to start LE devices monitoring thread. </summary>
         </member>
         <member name="T:wclBluetooth.wclEBluetooth">
             <summary> The base exception class for all Bluetooth
