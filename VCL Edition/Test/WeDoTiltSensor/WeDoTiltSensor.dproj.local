@@ -1,13 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
+<<<<<<< HEAD
     <Transaction>1899.12.30 00:00:00.000.367,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.213,=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.405,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoTiltSensor\main.pas=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.405,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoTiltSensor\main.dfm=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.588,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoTiltSensor\WeDoTiltSensor.dproj=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.018,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+=======
+>>>>>>> parent of b86013e... Bug fixes
     <Transaction>1899.12.30 00:00:00.000.904,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.213,=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.405,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoTiltSensor\main.pas=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.405,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoTiltSensor\main.dfm=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.588,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoTiltSensor\WeDoTiltSensor.dproj=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.977,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+<<<<<<< HEAD
+=======
+    <Transaction>1899.12.30 00:00:00.000.367,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.018,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+>>>>>>> parent of b86013e... Bug fixes
   </Transactions>
 </BorlandProject>
