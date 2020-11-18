@@ -380,25 +380,25 @@ namespace WeDoRobot
                         RemovePage(tsRgb);
                         break;
 
-                    case wclWeDoIoDeviceType.iodWeDo20Piezo:
+                    case wclWeDoIoDeviceType.iodPiezo:
                         RemovePage(tsPiezo);
                         break;
 
-                    case wclWeDoIoDeviceType.iodWeDo20MotionSensor:
+                    case wclWeDoIoDeviceType.iodMotionSensor:
                         if (Device.PortId == 0)
                             RemovePage(tsMotion1);
                         else
                             RemovePage(tsMotion2);
                         break;
 
-                    case wclWeDoIoDeviceType.iodWeDo20TiltSensor:
+                    case wclWeDoIoDeviceType.iodTiltSensor:
                         if (Device.PortId == 0)
                             RemovePage(tsTilt1);
                         else
                             RemovePage(tsTilt2);
                         break;
 
-                    case wclWeDoIoDeviceType.iodMediumMotor:
+                    case wclWeDoIoDeviceType.iodMotor:
                         if (Device.PortId == 0)
                             RemovePage(tsMotor1);
                         else
@@ -426,14 +426,14 @@ namespace WeDoRobot
                     Rgb.OnModeChanged += FmMain_OnModeChanged;
                     break;
 
-                case wclWeDoIoDeviceType.iodWeDo20MotionSensor:
+                case wclWeDoIoDeviceType.iodMotionSensor:
                     wclWeDoMotionSensor Motion = (Device as wclWeDoMotionSensor);
                     Motion.OnCountChanged += FmMain_OnCountChanged;
                     Motion.OnDistanceChanged += FmMain_OnDistanceChanged;
                     Motion.OnModeChanged += FmMain_OnMotionModeChanged;
                     break;
 
-                case wclWeDoIoDeviceType.iodWeDo20TiltSensor:
+                case wclWeDoIoDeviceType.iodTiltSensor:
                     wclWeDoTiltSensor Tilt = (Device as wclWeDoTiltSensor);
                     Tilt.OnModeChanged += Tilt_OnModeChanged;
                     Tilt.OnDirectionChanged += Tilt_OnDirectionChanged;
@@ -626,12 +626,12 @@ namespace WeDoRobot
                         UpdateRgb(Device as wclWeDoRgbLight);
                         break;
 
-                    case wclWeDoIoDeviceType.iodWeDo20Piezo:
+                    case wclWeDoIoDeviceType.iodPiezo:
                         AddPage(tsPiezo);
                         UpdatePiezo(Device as wclWeDoPiezo);
                         break;
 
-                    case wclWeDoIoDeviceType.iodWeDo20MotionSensor:
+                    case wclWeDoIoDeviceType.iodMotionSensor:
                         if (Device.PortId == 0)
                             AddPage(tsMotion1);
                         else
@@ -639,7 +639,7 @@ namespace WeDoRobot
                         UpdateMotion(Device as wclWeDoMotionSensor);
                         break;
 
-                    case wclWeDoIoDeviceType.iodWeDo20TiltSensor:
+                    case wclWeDoIoDeviceType.iodTiltSensor:
                         if (Device.PortId == 0)
                             AddPage(tsTilt1);
                         else
@@ -647,7 +647,7 @@ namespace WeDoRobot
                         UpdateTilt(Device as wclWeDoTiltSensor);
                         break;
 
-                    case wclWeDoIoDeviceType.iodMediumMotor:
+                    case wclWeDoIoDeviceType.iodMotor:
                         if (Device.PortId == 0)
                             AddPage(tsMotor1);
                         else

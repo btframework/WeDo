@@ -1,16 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-<<<<<<< HEAD
-    <Transaction>1899.12.30 00:00:00.000.405,C:\Users\mike\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRobot\WeDoRobot.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.405,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRobot\WeDoRobot.dproj=C:\Users\mike\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.959,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRobot\main.pas=C:\Users\mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.959,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRobot\main.dfm=C:\Users\mike\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.094,=C:\Users\mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.959,C:\Users\mike\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRobot\main.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.959,C:\Users\mike\Documents\Embarcadero\Studio\Projects\Unit1.dfm=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRobot\main.dfm</Transaction>
-=======
-    <Transaction>1899.12.30 00:00:00.000.959,C:\Users\mike\Documents\Embarcadero\Studio\Projects\Unit1.dfm=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRobot\main.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.094,=C:\Users\mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.959,C:\Users\mike\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRobot\main.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.405,C:\Users\mike\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoRobot\WeDoRobot.dproj</Transaction>
->>>>>>> parent of b86013e... Bug fixes
   </Transactions>
 </BorlandProject>

@@ -676,14 +676,14 @@ begin
         Rgb.OnColorChanged := FmMain_OnColorChanged;
         Rgb.OnModeChanged := FmMain_OnModeChanged;
       end;
-    iodWeDo20MotionSensor:
+    iodMotionSensor:
       begin
         Motion := TwclWeDoMotionSensor(Device);
         Motion.OnCountChanged := FmMain_OnCountChanged;
         Motion.OnDistanceChanged := FmMain_OnDistanceChanged;
         Motion.OnModeChanged := FmMain_OnMotionModeChanged;
       end;
-    iodWeDo20TiltSensor:
+    iodTiltSensor:
       begin
         Tilt := TwclWeDoTiltSensor(Device);
         Tilt.OnModeChanged := Tilt_OnModeChanged;
@@ -1010,12 +1010,12 @@ begin
           AddPage(tsRgb);
           UpdateRgb(TwclWeDoRgbLight(Device));
         end;
-      iodWeDo20Piezo:
+      iodPiezo:
         begin
           AddPage(tsPiezo);
           UpdatePiezo(TwclWeDoPiezo(Device));
         end;
-      iodWeDo20MotionSensor:
+      iodMotionSensor:
         begin
           if Device.PortId = 0 then
             AddPage(tsMotion1)
@@ -1023,7 +1023,7 @@ begin
             AddPage(tsMotion2);
           UpdateMotion(TwclWeDoMotionSensor(Device));
         end;
-      iodWeDo20TiltSensor:
+      iodTiltSensor:
         begin
           if Device.PortId = 0 then
             AddPage(tsTilt1)
@@ -1031,7 +1031,7 @@ begin
             AddPage(tsTilt2);
           UpdateTilt(TwclWeDoTiltSensor(Device));
         end;
-      iodMediumMotor:
+      iodMotor:
         begin
           if Device.PortId = 0 then
             AddPage(tsMotor1)
@@ -1056,19 +1056,19 @@ begin
         RemovePage(tsVoltage);
       iodRgb:
         RemovePage(tsRgb);
-      iodWeDo20Piezo:
+      iodPiezo:
         RemovePage(tsPiezo);
-      iodWeDo20MotionSensor:
+      iodMotionSensor:
         if Device.PortId = 0 then
           RemovePage(tsMotion1)
         else
           RemovePage(tsMotion2);
-      iodWeDo20TiltSensor:
+      iodTiltSensor:
         if Device.PortId = 0 then
           RemovePage(tsTilt1)
         else
           RemovePage(tsTilt2);
-      iodMediumMotor:
+      iodMotor:
         if Device.PortId = 0 then
           RemovePage(tsMotor1)
         else

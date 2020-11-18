@@ -647,113 +647,29 @@
         <member name="T:wclWeDoFramework.wclWeDoIoDeviceType">
             <summary> Represents a type of an attached IO (motor, sensor, etc). </summary>
         </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodMediumMotor">
-            <summary> Powered Up Medium Motor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodTrainMotor">
-            <summary> Powered Up Train Motor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodLights">
-            <summary> Powered Up Lights. </summary>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodMotor">
+            <summary> A Motor. </summary>
         </member>
         <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodVoltageSensor">
-            <summary> Powered Up Hub battery voltage. </summary>
+            <summary> A Voltage Sensor. </summary>
         </member>
         <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodCurrentSensor">
-            <summary> Powered Up Hub battery current. </summary>
+            <summary> A Current Sensor. </summary>
         </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodWeDo20Piezo">
-            <summary> Powered Up Hub piezo tone (WeDo 2.0 only). </summary>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodPiezo">
+            <summary> A Piezo Tone player. </summary>
         </member>
         <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodRgb">
-            <summary> Powered Up Hub indicator light. </summary>
+            <summary> An RGB light. </summary>
         </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodEv3ColorSensor">
-            <summary> EV3 Color Sensor. </summary>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodTiltSensor">
+            <summary> A Tilt Sensor. </summary>
         </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodEv3UltrasonicSensor">
-            <summary> EV3 Ultrasonic Sensor. </summary>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodMotionSensor">
+            <summary> A Motion Sensor (aka. Detect Sensor). </summary>
         </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodEv3GyroSensor">
-            <summary> EV3 Gyro Sensor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodEv3InfraredSensor">
-            <summary> EV3 Infrared Sensor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodWeDo20TiltSensor">
-            <summary> WeDo 2.0 Tilt Sensor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodWeDo20MotionSensor">
-            <summary> WeDo 2.0 Motion Sensor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodWeDo20Generic">
-            <summary> WeDo 2.0 generic device. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodBoostColorSensor">
-            <summary> BOOST Color and Distance Sensor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodBoostInteractiveMotor">
-            <summary> BOOST Interactive Motor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodBoostHubMotor">
-            <summary> BOOST Move Hub motor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodBoostHubTiltSensor">
-            <summary> BOOST Move Hub Tilt sensor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodDuploHubMotor">
-            <summary> DUPLO Train hub motor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodDuploHubBeeper">
-            <summary> DUPLO Train hub beeper. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodDuploHubColorSensor">
-            <summary> DUPLO Train hub color sensor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodDuploHubSpeedSensor">
-            <summary> DUPLO Train hub speed. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodTechnicLargeMotor">
-            <summary> Technic Control+ Large Motor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodTechnicXlMotor">
-            <summary> Technic Control+ XL Motor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodSpikeMediumMotor">
-            <summary> SPIKE Prime Medium Motor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodSpikeLargeMotor">
-            <summary> SPIKE Prime Large Motor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodImuGesture">
-            <summary> Powered Up hub IMU gesture. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodHandsetButtons">
-            <summary> Powered Up Handset Buttons. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodHandsetLight">
-            <summary> Powered Up Handset Light. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodImuAccel">
-            <summary> Powered Up hub IMU accelerometer. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodImuGyro">
-            <summary> Powered Up hub IMU gyro. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodImuPosition">
-            <summary> Powered Up hub IMU position. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodImuTemp">
-            <summary> Powered Up hub IMU temperature. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodSpikeColorSensor">
-            <summary> SPIKE Prime Color Sensor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodSpikeUltrasonicSensor">
-            <summary> SPIKE Prime Ultrasonic Sensor. </summary>
-        </member>
-        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodSpikeUForceSensor">
-            <summary> SPIKE Prime Force Sensor. </summary>
+        <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodColorSensor">
+            <summary> A Color Sensor. </summary>
         </member>
         <member name="F:wclWeDoFramework.wclWeDoIoDeviceType.iodUnknown">
             <summary> A type is unknown. </summary>

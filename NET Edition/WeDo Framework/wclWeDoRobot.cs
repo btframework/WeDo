@@ -291,7 +291,7 @@ namespace wclWeDoFramework
         /// <seealso cref="wclWeDoHub"/>
         public wclWeDoPiezo GetPiezoDevice(wclWeDoHub Hub)
         {
-            return (GetDevice(Hub, wclWeDoIoDeviceType.iodWeDo20Piezo) as wclWeDoPiezo);
+            return (GetDevice(Hub, wclWeDoIoDeviceType.iodPiezo) as wclWeDoPiezo);
         }
 
         /// <summary> Gets the RGB device object for the given Hub. </summary>
@@ -316,7 +316,7 @@ namespace wclWeDoFramework
             {
                 foreach (wclWeDoIo Io in Hub.IoDevices)
                 {
-                    if (Io.DeviceType == wclWeDoIoDeviceType.iodWeDo20TiltSensor)
+                    if (Io.DeviceType == wclWeDoIoDeviceType.iodTiltSensor)
                         Sensors.Add(Io as wclWeDoTiltSensor);
                 }
             }
@@ -335,7 +335,7 @@ namespace wclWeDoFramework
             {
                 foreach (wclWeDoIo Io in Hub.IoDevices)
                 {
-                    if (Io.DeviceType == wclWeDoIoDeviceType.iodWeDo20MotionSensor)
+                    if (Io.DeviceType == wclWeDoIoDeviceType.iodMotionSensor)
                         Sensors.Add(Io as wclWeDoMotionSensor);
                 }
             }
@@ -354,7 +354,7 @@ namespace wclWeDoFramework
             {
                 foreach (wclWeDoIo Io in Hub.IoDevices)
                 {
-                    if (Io.DeviceType == wclWeDoIoDeviceType.iodMediumMotor)
+                    if (Io.DeviceType == wclWeDoIoDeviceType.iodMotor)
                         Motors.Add(Io as wclWeDoMotor);
                 }
             }

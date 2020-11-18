@@ -242,7 +242,7 @@ namespace wclWeDoFramework
             AddValidDataFormat(new wclWeDoDataFormat(3, 1, (Byte)wclWeDoTiltSensorMode.tmCrash, wclWeDoSensorDataUnit.suPercentage));
             AddValidDataFormat(new wclWeDoDataFormat(3, 4, (Byte)wclWeDoTiltSensorMode.tmCrash, wclWeDoSensorDataUnit.suSi));
 
-            DefaultInputFormat = new wclWeDoInputFormat(ConnectionId, wclWeDoIoDeviceType.iodWeDo20TiltSensor,
+            DefaultInputFormat = new wclWeDoInputFormat(ConnectionId, wclWeDoIoDeviceType.iodTiltSensor,
                 (Byte)wclWeDoTiltSensorMode.tmTilt, 1, wclWeDoSensorDataUnit.suRaw, true, 0, 1);
 
             OnAngleChanged = null;

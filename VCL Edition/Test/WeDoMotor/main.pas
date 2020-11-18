@@ -331,7 +331,7 @@ end;
 procedure TfmMain.FHub_OnDeviceAttached(Sender: TObject; Device: TwclWeDoIo);
 begin
   // This demo supports only single motor.
-  if Device.DeviceType = iodMediumMotor then begin
+  if Device.DeviceType = iodMotor then begin
     if FMotor1 = nil then begin
       FMotor1 := TwclWeDoMotor(Device);
       EnablePlay1(True);
@@ -360,7 +360,7 @@ end;
 
 procedure TfmMain.FHub_OnDeviceDetached(Sender: TObject; Device: TwclWeDoIo);
 begin
-  if (Device.DeviceType = iodMediumMotor) then begin
+  if (Device.DeviceType = iodMotor) then begin
     if (FMotor1 <> nil) and (Device.ConnectionId = FMotor1.ConnectionId) then begin
       FMotor1 := nil;
       EnablePlay1(False);

@@ -45,78 +45,22 @@ type
   /// <summary> Represents a type of an attached IO (motor, sensor,
   ///   etc). </summary>
   TwclWeDoIoDeviceType = (
-    /// <summary> Powered Up Medium Motor. </summary>
-    iodMediumMotor,
-    /// <summary> Powered Up Train Motor. </summary>
-    iodTrainMotor,
-    /// <summary> Powered Up Lights. </summary>
-    iodLights,
-    /// <summary> Powered Up Hub battery voltage. </summary>
+    /// <summary> A Motor. </summary>
+    iodMotor,
+    /// <summary> A Voltage Sensor. </summary>
     iodVoltageSensor,
-    /// <summary> Powered Up Hub battery current. </summary>
+    /// <summary> A Current Sensor. </summary>
     iodCurrentSensor,
-    /// <summary> Powered Up Hub piezo tone (WeDo 2.0 only). </summary>
-    iodWeDo20Piezo,
-    /// <summary> Powered Up Hub indicator light. </summary>
+    /// <summary> A Piezo Tone player. </summary>
+    iodPiezo,
+    /// <summary> An RGB light. </summary>
     iodRgb,
-    /// <summary> EV3 Color Sensor. </summary>
-    iodEv3ColorSensor,
-    /// <summary> EV3 Ultrasonic Sensor. </summary>
-    iodEv3UltrasonicSensor,
-    /// <summary> EV3 Gyro Sensor. </summary>
-    iodEv3GyroSensor,
-    /// <summary> EV3 Infrared Sensor. </summary>
-    iodEv3InfraredSensor,
-    /// <summary> WeDo 2.0 Tilt Sensor. </summary>
-    iodWeDo20TiltSensor,
-    /// <summary> WeDo 2.0 Motion Sensor. </summary>
-    iodWeDo20MotionSensor,
-    /// <summary> WeDo 2.0 generic device. </summary>
-    iodWeDo20Generic,
-    /// <summary> BOOST Color and Distance Sensor.. </summary>
-    iodBoostColorSensor,
-    /// <summary> BOOST Interactive Motor. </summary>
-    iodBoostInteractiveMotor,
-    /// <summary> BOOST Move Hub motor. </summary>
-    iodBoostHubMotor,
-    /// <summary> BOOST Move Hub Tilt sensor. </summary>
-    iodBoostHubTiltSensor,
-    /// <summary> DUPLO Train hub motor. </summary>
-    iodDuploHubMotor,
-    /// <summary> DUPLO Train hub beeper. </summary>
-    iodDuploHubBeeper,
-    /// <summary> DUPLO Train hub color sensor. </summary>
-    iodDuploHubColorSensor,
-    /// <summary> DUPLO Train hub speed. </summary>
-    iodDuploHubSpeedSensor,
-    /// <summary> Technic Control+ Large Motor. </summary>
-    iodTechnicLargeMotor,
-    /// <summary> Technic Control+ XL Motor. </summary>
-    iodTechnicXlMotor,
-    /// <summary> SPIKE Prime Medium Motor. </summary>
-    iodSpikeMediumMotor,
-    /// <summary> SPIKE Prime Large Motor. </summary>
-    iodSpikeLargeMotor,
-    /// <summary> Powered Up hub IMU gesture. </summary>
-    iodImuGesture,
-    /// <summary> Powered Up Handset Buttons. </summary>
-    iodHandsetButtons,
-    /// <summary> Powered Up Handset Light. </summary>
-    iodHandsetLight,
-    /// <summary> Powered Up hub IMU accelerometer. </summary>
-    iodImuAccel,
-    /// <summary> Powered Up hub IMU gyro. </summary>
-    iodImuGyro,
-    /// <summary> Powered Up hub IMU position. </summary>
-    iodImuPosition,
-    /// <summary> Powered Up hub IMU temperature. </summary>
-    iodImuTemp,
-    /// <summary> SPIKE Prime Color Sensor. </summary>
-    iodSpikeColorSensor,
-    /// <summary> SPIKE Prime Ultrasonic Sensor. </summary>
-    iodSpikeUltrasonicSensor,
-    /// <summary> SPIKE Prime Force Sensor. </summary>
-    iodSpikeUForceSensor,
+    /// <summary> A Tilt Sensor. </summary>
+    iodTiltSensor,
+    /// <summary> A Motion Sensor (aka. Detect Sensor). </summary>
+    iodMotionSensor,
+    /// <summary> A Color Sensor. </summary>
+    iodColorSensor,
     /// <summary> A type is unknown. </summary>
     iodUnknown
   );
@@ -381,8 +325,8 @@ type
     /// <returns> If the method completed with success the returning value is
     ///   <c>WCL_E_SUCCESS</c>. If the method failed the returning value
     ///   is one of the Bluetooth Framework error code. </returns>
-     /// <remarks> A derived clases must override this method to initialize all
-     ///   required parameters to work with WeDo service. </remarks>
+     /// <remarks> A derived clases must override this method to initialize all required
+     ///   parameters to work with WeDo service. </remarks>
      function Initialize: Integer; virtual; abstract;
      /// <summary> Uninitializes the WeDo service. </summary>
      /// <remarks> A derived clases must override this method to cleanup
@@ -1017,43 +961,14 @@ type
   /// <summary> The class represets an attached Input/Outpout device. </summary>
   TwclWeDoIo = class abstract
   private const
-    WEDO_DEVICE_MEDIUM_MOTOR = $01;
-    WEDO_DEVICE_TRAIN_MOTOR = $02;
-    WEDO_DEVICE_LIGHTS = $08;
+    WEDO_DEVICE_MOTOR = $01;
     WEDO_DEVICE_VOLTAGE_SENSOR = $14;
     WEDO_DEVICE_CURRENT_SENSOR = $15;
-    WEDO_DEVICE_WEDO20_PIEZO = $16;
+    WEDO_DEVICE_PIEZO = $16;
     WEDO_DEVICE_RGB = $17;
-    WEDO_DEVICE_EV3_COLOR_SENSOR = $1D;
-    WEDO_DEVICE_EV3_ULTRASONIC_SENSOR = $1E;
-    WEDO_DEVICE_EV3_GYRO_SENSOR = $20;
-    WEDO_DEVICE_EV3_IR_SENSOR = $21;
-    WEDO_DEVICE_WEDO20_TILT_SENSOR = $22;
-    WEDO_DEVICE_WEDO20_MOTION_SENSOR = $23;
-    WEDO_DEVICE_WEDO20_GENERIC = $24;
-    WEDO_DEVICE_BOOST_COLOR_SENSOR = $25;
-    WEDO_DEVICE_BOOST_INTERACTIVE_MOTOR = $26;
-    WEDO_DEVICE_BOOST_HUB_MOTOR = $27;
-    WEDO_DEVICE_BOOST_HUB_TILT_SENSOR = $28;
-    WEDO_DEVICE_DUPLO_HUB_MOTOR = $29;
-    WEDO_DEVICE_DUPLO_HUB_BEEPER = $2A;
-    WEDO_DEVICE_DUPLO_HUB_COLOR_SENSOR = $2B;
-    WEDO_DEVICE_DUPLO_HUB_SPEED = $2C;
-    WEDO_DEVICE_TECHNIC_LARGE_MOTOR = $2E;
-    WEDO_DEVICE_TECHNIC_XL_MOTOR = $2F;
-    WEDO_DEVICE_SPIKE_MEDIUM_MOTOR = $30;
-    WEDO_DEVICE_SPIKE_LARGE_MOTOR = $31;
-    WEDO_DEVICE_IMU_GESTURE = $36;
-    WEDO_DEVICE_HANDSET_BUTTONS = $37;
-    WEDO_DEVICE_HANDSET_LIGHTS = $38;
-    WEDO_DEVICE_IMU_ACCEL = $39;
-    WEDO_DEVICE_IMU_GYRO = $3A;
-    WEDO_DEVICE_IMU_POSITION = $3B;
-    WEDO_DEVICE_IMU_TEMP = $3C;
-    WEDO_DEVICE_SPIKE_COLOR_SENSOR = $3D;
-    WEDO_DEVICE_SPIKE_ULTRASONIC_SENSOR = $3E;
-    WEDO_DEVICE_SPIKE_FORCE_SENSOR = $3F;
-    WEDO_DEVICE_TECHNIC_MEDIUM_MOTOR = $4B;
+    WEDO_DEVICE_TILT_SENSOR = $22;
+    WEDO_DEVICE_MOTION_SENSOR = $23;
+    WEDO_DEVICE_COLOR_SENSOR = $25;
     WEDO_DEVICE_UNKNOWN = $FF;
 
   private
@@ -1442,8 +1357,7 @@ type
     /// <summary> The event fires when color has been changed. </summary>
     property OnColorChanged: TNotifyEvent read FOnColorChanged
       write FOnColorChanged;
-    /// <summary> The event fired when the RGB LED mode has been
-    ///   changed. </summary>
+    /// <summary> The event fired when the RGB LED mode has been changed. </summary>
     property OnModeChanged: TNotifyEvent read FOnModeChanged
       write FOnModeChanged;
   end;
@@ -1976,20 +1890,20 @@ begin
     NumberOfBytes := Data[10];
 
     case Data[2] of
-      TwclWeDoIo.WEDO_DEVICE_MEDIUM_MOTOR:
-        DeviceType := iodMediumMotor;
+      TwclWeDoIo.WEDO_DEVICE_MOTOR:
+        DeviceType := iodMotor;
       TwclWeDoIo.WEDO_DEVICE_VOLTAGE_SENSOR:
         DeviceType := iodVoltageSensor;
       TwclWeDoIo.WEDO_DEVICE_CURRENT_SENSOR:
         DeviceType := iodCurrentSensor;
-      TwclWeDoIo.WEDO_DEVICE_WEDO20_PIEZO:
-        DeviceType := iodWeDo20Piezo;
+      TwclWeDoIo.WEDO_DEVICE_PIEZO:
+        DeviceType := iodPiezo;
       TwclWeDoIo.WEDO_DEVICE_RGB:
         DeviceType := iodRgb;
-      TwclWeDoIo.WEDO_DEVICE_WEDO20_TILT_SENSOR:
-        DeviceType := iodWeDo20TiltSensor;
-      TwclWeDoIo.WEDO_DEVICE_WEDO20_MOTION_SENSOR:
-        DeviceType := iodWeDo20MotionSensor;
+      TwclWeDoIo.WEDO_DEVICE_TILT_SENSOR:
+        DeviceType := iodTiltSensor;
+      TwclWeDoIo.WEDO_DEVICE_MOTION_SENSOR:
+        DeviceType := iodMotionSensor;
       else
         DeviceType := iodUnknown;
     end;
@@ -2026,20 +1940,20 @@ function TwclWeDoInputFormat.ToBytesArray: TArray<Byte>;
 begin
   SetLength(Result, 8);
   case FDeviceType of
-    iodMediumMotor:
-      Result[0] := TwclWeDoIo.WEDO_DEVICE_MEDIUM_MOTOR;
+    iodMotor:
+      Result[0] := TwclWeDoIo.WEDO_DEVICE_MOTOR;
     iodVoltageSensor:
       Result[0] := TwclWeDoIo.WEDO_DEVICE_VOLTAGE_SENSOR;
     iodCurrentSensor:
       Result[0] := TwclWeDoIo.WEDO_DEVICE_CURRENT_SENSOR;
-    iodWeDo20Piezo:
-      Result[0] := TwclWeDoIo.WEDO_DEVICE_WEDO20_PIEZO;
+    iodPiezo:
+      Result[0] := TwclWeDoIo.WEDO_DEVICE_PIEZO;
     iodRgb:
       Result[0] := TwclWeDoIo.WEDO_DEVICE_RGB;
-    iodWeDo20TiltSensor:
-      Result[0] := TwclWeDoIo.WEDO_DEVICE_WEDO20_TILT_SENSOR;
-    iodWeDo20MotionSensor:
-      Result[0] := TwclWeDoIo.WEDO_DEVICE_WEDO20_MOTION_SENSOR;
+    iodTiltSensor:
+      Result[0] := TwclWeDoIo.WEDO_DEVICE_TILT_SENSOR;
+    iodMotionSensor:
+      Result[0] := TwclWeDoIo.WEDO_DEVICE_MOTION_SENSOR;
     else
       Result[0] := TwclWeDoIo.WEDO_DEVICE_UNKNOWN;
   end;
@@ -3423,10 +3337,10 @@ begin
       else begin
         ConnectionId := RawInfo[0];
         case RawInfo[3] of
-          WEDO_DEVICE_MEDIUM_MOTOR:
+          WEDO_DEVICE_MOTOR:
             begin
               Result := TwclWeDoMotor.Create(Hub, ConnectionId);
-              Result.FDeviceType := iodMediumMotor;
+              Result.FDeviceType := iodMotor;
             end;
           WEDO_DEVICE_VOLTAGE_SENSOR:
             begin
@@ -3438,25 +3352,25 @@ begin
               Result := TwclWeDoCurrentSensor.Create(Hub, ConnectionId);
               Result.FDeviceType := iodCurrentSensor;
             end;
-          WEDO_DEVICE_WEDO20_PIEZO:
+          WEDO_DEVICE_PIEZO:
             begin
               Result := TwclWeDoPiezo.Create(Hub, ConnectionId);
-              Result.FDeviceType := iodWeDo20Piezo;
+              Result.FDeviceType := iodPiezo;
             end;
           WEDO_DEVICE_RGB:
             begin
               Result := TwclWeDoRgbLight.Create(Hub, ConnectionId);
               Result.FDeviceType := iodRgb;
             end;
-          WEDO_DEVICE_WEDO20_TILT_SENSOR:
+          WEDO_DEVICE_TILT_SENSOR:
             begin
               Result := TwclWeDoTiltSensor.Create(Hub, ConnectionId);
-              Result.FDeviceType := iodWeDo20TiltSensor;
+              Result.FDeviceType := iodTiltSensor;
             end;
-          WEDO_DEVICE_WEDO20_MOTION_SENSOR:
+          WEDO_DEVICE_MOTION_SENSOR:
             begin
               Result := TwclWeDoMotionSensor.Create(Hub, ConnectionId);
-              Result.FDeviceType := iodWeDo20MotionSensor;
+              Result.FDeviceType := iodMotionSensor;
             end;
           else
             Result := nil;
@@ -4172,7 +4086,7 @@ begin
   AddValidDataFormat(TwclWeDoDataFormat.Create(1, 4, Byte(mmCount), suSi));
 
   DefaultInputFormat := TwclWeDoInputFormat.Create(ConnectionId,
-    iodWeDo20MotionSensor, 0, 1, suRaw, True, 0, 4);
+    iodMotionSensor, 0, 1, suRaw, True, 0, 4);
 
   FOnCountChanged := nil;
   FOnDistanceChanged := nil;
@@ -4296,8 +4210,8 @@ begin
   AddValidDataFormat(TwclWeDoDataFormat.Create(3, 1, Byte(tmCrash), suPercentage));
   AddValidDataFormat(TwclWeDoDataFormat.Create(3, 4, Byte(tmCrash), suSi));
 
-  DefaultInputFormat := TwclWeDoInputFormat.Create(ConnectionId,
-    iodWeDo20TiltSensor, Byte(tmTilt), 1, suRaw, True, 0, 1);
+  DefaultInputFormat := TwclWeDoInputFormat.Create(ConnectionId, iodTiltSensor,
+    Byte(tmTilt), 1, suRaw, True, 0, 1);
 
   FOnAngleChanged := nil;
   FOnCrashChanged := nil;

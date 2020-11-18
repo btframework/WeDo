@@ -144,7 +144,7 @@ namespace wclWeDoFramework
             AddValidDataFormat(new wclWeDoDataFormat(1, 1, (Byte)wclWeDoMotionSensorMode.mmCount, wclWeDoSensorDataUnit.suPercentage));
             AddValidDataFormat(new wclWeDoDataFormat(1, 4, (Byte)wclWeDoMotionSensorMode.mmCount, wclWeDoSensorDataUnit.suSi));
 
-            DefaultInputFormat = new wclWeDoInputFormat(ConnectionId, wclWeDoIoDeviceType.iodWeDo20MotionSensor, 0, 1,
+            DefaultInputFormat = new wclWeDoInputFormat(ConnectionId, wclWeDoIoDeviceType.iodMotionSensor, 0, 1,
                 wclWeDoSensorDataUnit.suRaw, true, 0, 4);
 
             OnCountChanged = null;
