@@ -213,7 +213,7 @@ end;
 
 procedure TfmMain.FHub_OnDeviceAttached(Sender: TObject; Device: TwclWeDoIo);
 begin
-  if Device.DeviceType = iodPiezo then begin
+  if Device.DeviceType = iodWeDo20Piezo then begin
     FPiezo := TwclWeDoPiezo(Device);
     EnablePlay(True);
   end;
@@ -221,7 +221,7 @@ end;
 
 procedure TfmMain.FHub_OnDeviceDetached(Sender: TObject; Device: TwclWeDoIo);
 begin
-  if Device.DeviceType = iodPiezo then begin
+  if Device.DeviceType = iodWeDo20Piezo then begin
     FPiezo := nil;
     EnablePlay(False);
   end;

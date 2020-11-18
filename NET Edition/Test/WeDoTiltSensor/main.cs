@@ -83,7 +83,7 @@ namespace WeDoTiltSensor
 
         private void FHub_OnDeviceDetached(Object Sender, wclWeDoIo Device)
         {
-            if (Device.DeviceType == wclWeDoIoDeviceType.iodTiltSensor && FTilt != null && Device.ConnectionId == FTilt.ConnectionId)
+            if (Device.DeviceType == wclWeDoIoDeviceType.iodWeDo20TiltSensor && FTilt != null && Device.ConnectionId == FTilt.ConnectionId)
             {
                 FTilt = null;
                 EnableControl(false);
@@ -94,7 +94,7 @@ namespace WeDoTiltSensor
         {
             if (FTilt == null)
             {
-                if (Device.DeviceType == wclWeDoIoDeviceType.iodTiltSensor)
+                if (Device.DeviceType == wclWeDoIoDeviceType.iodWeDo20TiltSensor)
                 {
                     FTilt = (wclWeDoTiltSensor)Device;
                     FTilt.OnAngleChanged += FTilt_OnAngleChanged;

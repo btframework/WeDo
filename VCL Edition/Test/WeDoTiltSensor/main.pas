@@ -241,7 +241,7 @@ end;
 procedure TfmMain.FHub_OnDeviceAttached(Sender: TObject; Device: TwclWeDoIo);
 begin
   if FTilt <> nil then begin
-    if Device.DeviceType = iodTiltSensor then begin
+    if Device.DeviceType = iodWeDo20TiltSensor then begin
       FTilt := TwclWeDoTiltSensor(Device);
       FTilt.OnAngleChanged := FTilt_OnAngleChanged;
       FTilt.OnCrashChanged := FTilt_OnCrashChanged;
@@ -254,7 +254,7 @@ end;
 
 procedure TfmMain.FHub_OnDeviceDetached(Sender: TObject; Device: TwclWeDoIo);
 begin
-  if (Device.DeviceType = iodTiltSensor) and (FTilt <> nil) and (Device.ConnectionId = FTilt.ConnectionId) then begin
+  if (Device.DeviceType = iodWeDo20TiltSensor) and (FTilt <> nil) and (Device.ConnectionId = FTilt.ConnectionId) then begin
     FTilt := nil;
     EnableControl(False);
   end;

@@ -73,6 +73,8 @@ object fmMain: TfmMain
     TabOrder = 4
     object tsHubInfo: TTabSheet
       Caption = 'Hub'
+      ExplicitLeft = 0
+      ExplicitTop = 0
       ExplicitWidth = 537
       ExplicitHeight = 406
       object laDeviceInformationTitle: TLabel
@@ -293,6 +295,10 @@ object fmMain: TfmMain
     object tsCurrent: TTabSheet
       Caption = 'Current'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object laCurrentDeviceInfo: TLabel
         Left = 16
         Top = 16
@@ -372,6 +378,10 @@ object fmMain: TfmMain
     object tsVoltage: TTabSheet
       Caption = 'Voltage'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object laVotageDeviceInformation: TLabel
         Left = 16
         Top = 16
@@ -453,6 +463,8 @@ object fmMain: TfmMain
       ImageIndex = 3
       ExplicitLeft = 8
       ExplicitTop = 28
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object laPiezoDeviceInformation: TLabel
         Left = 16
         Top = 16
@@ -595,6 +607,10 @@ object fmMain: TfmMain
     object tsRgb: TTabSheet
       Caption = 'RGB'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object laRgbDeviceInformation: TLabel
         Left = 16
         Top = 16
@@ -788,6 +804,8 @@ object fmMain: TfmMain
       ImageIndex = 5
       ExplicitLeft = 8
       ExplicitTop = 28
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object laMotionDeviceInformation1: TLabel
         Left = 16
         Top = 16
@@ -911,6 +929,10 @@ object fmMain: TfmMain
     object tsMotion2: TTabSheet
       Caption = 'Motion sensor 2'
       ImageIndex = 6
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object laMotionDeviceInformation2: TLabel
         Left = 16
         Top = 16
@@ -1034,6 +1056,10 @@ object fmMain: TfmMain
     object tsTilt1: TTabSheet
       Caption = 'Tilt sensor 1'
       ImageIndex = 7
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object laTiltDeviceInformation1: TLabel
         Left = 16
         Top = 16
@@ -1186,6 +1212,10 @@ object fmMain: TfmMain
     object tsTilt2: TTabSheet
       Caption = 'Tilt sensor 2'
       ImageIndex = 8
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object laTiltDeviceInformation2: TLabel
         Left = 16
         Top = 16
@@ -1338,6 +1368,10 @@ object fmMain: TfmMain
     object tsMotor1: TTabSheet
       Caption = 'Motor 1'
       ImageIndex = 9
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object laMotorDeviceInformation1: TLabel
         Left = 16
         Top = 16
@@ -1457,6 +1491,10 @@ object fmMain: TfmMain
     object tsMotor2: TTabSheet
       Caption = 'Motor 2'
       ImageIndex = 10
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object laMotorDeviceInformation2: TLabel
         Left = 16
         Top = 16

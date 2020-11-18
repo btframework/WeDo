@@ -69,7 +69,7 @@ namespace WeDoPiezo
 
         private void FHub_OnDeviceDetached(Object Sender, wclWeDoIo Device)
         {
-            if (Device.DeviceType == wclWeDoIoDeviceType.iodPiezo)
+            if (Device.DeviceType == wclWeDoIoDeviceType.iodWeDo20Piezo)
             {
                 FPiezo = null;
                 EnablePlay(false);
@@ -78,7 +78,7 @@ namespace WeDoPiezo
 
         private void FHub_OnDeviceAttached(Object Sender, wclWeDoIo Device)
         {
-            if (Device.DeviceType == wclWeDoIoDeviceType.iodPiezo)
+            if (Device.DeviceType == wclWeDoIoDeviceType.iodWeDo20Piezo)
             {
                 FPiezo = (wclWeDoPiezo)Device;
                 EnablePlay(true);

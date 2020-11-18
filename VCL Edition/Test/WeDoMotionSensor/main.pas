@@ -231,7 +231,7 @@ end;
 procedure TfmMain.FHub_OnDeviceAttached(Sender: TObject; Device: TwclWeDoIo);
 begin
   if FMotion = nil then begin
-    if Device.DeviceType = iodMotionSensor then begin
+    if Device.DeviceType = iodWeDo20MotionSensor then begin
       FMotion := TwclWeDoMotionSensor(Device);
       FMotion.OnCountChanged := FMotion_OnCountChanged;
       FMotion.OnDistanceChanged := FMotion_OnDistanceChanged;
@@ -243,7 +243,7 @@ end;
 
 procedure TfmMain.FHub_OnDeviceDetached(Sender: TObject; Device: TwclWeDoIo);
 begin
-  if (Device.DeviceType = iodMotionSensor) and (FMotion <> nil) and (Device.ConnectionId = FMotion.ConnectionId) then begin
+  if (Device.DeviceType = iodWeDo20MotionSensor) and (FMotion <> nil) and (Device.ConnectionId = FMotion.ConnectionId) then begin
     FMotion := nil;
     EnableControl(False);
   end;

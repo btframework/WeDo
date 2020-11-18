@@ -33,14 +33,15 @@ type
   /// <summary> The <c>OnHubConnected</c> event handler prototype. </summary>
   /// <param name="Sender"> The object that fired the event. </param>
   /// <param name="Hub"> The WeDo HUB object that has been connected. </param>
-  /// <param name="Error"> The connection result. If the connection completed with
-  ///   success the <c>Error</c> value is <c>WCL_E_SUCCESS</c>. </param>
+  /// <param name="Error"> The connection result. If the connection completed
+  ///   with success the <c>Error</c> value is <c>WCL_E_SUCCESS</c>. </param>
   /// <seealso cref="TwclWeDoHub"/>
   TwclWeDoRobotHubConnectedEvent = procedure(Sender: TObject; Hub: TwclWeDoHub;
     Error: Integer) of object;
   /// <summary> The <c>OnHubDisconnected</c> event handler prototype. </summary>
   /// <param name="Sender"> The object that fired the event. </param>
-  /// <param name="Hub"> The WeDo HUB object that has been disconnected. </param>
+  /// <param name="Hub"> The WeDo HUB object that has been
+  ///   disconnected. </param>
   /// <param name="Reason"> The disconnection reason code. </param>
   /// <seealso cref="TwclWeDoHub"/>
   TwclWeDoRobotHubDisconnectedEvent = procedure(Sender: TObject;
@@ -378,7 +379,7 @@ begin
   Result := TList<TwclWeDoMotionSensor>.Create;
   if Hub <> nil then begin
     for Io in Hub.IoDevices do begin
-      if Io.DeviceType = iodMotionSensor then
+      if Io.DeviceType = iodWeDo20MotionSensor then
         Result.Add(TwclWeDoMotionSensor(Io));
     end;
   end;
@@ -391,7 +392,7 @@ begin
   Result := TList<TwclWeDoMotor>.Create;
   if Hub <> nil then begin
     for Io in Hub.IoDevices do begin
-      if Io.DeviceType = iodMotor then
+      if Io.DeviceType = iodMediumMotor then
         Result.Add(TwclWeDoMotor(Io));
     end;
   end;
@@ -399,7 +400,7 @@ end;
 
 function TwclWeDoRobot.GetPiezoDevice(Hub: TwclWeDoHub): TwclWeDoPiezo;
 begin
-  Result := TwclWeDoPiezo(GetDevice(Hub, iodPiezo));
+  Result := TwclWeDoPiezo(GetDevice(Hub, iodWeDo20Piezo));
 end;
 
 function TwclWeDoRobot.GetRgbDevice(Hub: TwclWeDoHub): TwclWeDoRgbLight;
@@ -415,7 +416,7 @@ begin
   Result := TList<TwclWeDoTiltSensor>.Create;
   if Hub <> nil then begin
     for Io in Hub.IoDevices do begin
-      if Io.DeviceType = iodTiltSensor then
+      if Io.DeviceType = iodWeDo20TiltSensor then
         Result.Add(TwclWeDoTiltSensor(Io));
     end;
   end;

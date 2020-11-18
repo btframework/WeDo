@@ -157,13 +157,13 @@ begin
   Item := lvAttachedDevices.Items.Add();
   Item.Caption := IntToStr(Device.ConnectionId);
   case Device.DeviceType of
-    iodMotor: Item.SubItems.Add('Motor');
+    iodMediumMotor: Item.SubItems.Add('Motor');
     iodVoltageSensor: Item.SubItems.Add('Voltage Sensor');
     iodCurrentSensor: Item.SubItems.Add('Current Sensor');
-    iodPiezo: Item.SubItems.Add('Piezo');
+    iodWeDo20Piezo: Item.SubItems.Add('Piezo');
     iodRgb: Item.SubItems.Add('RGB');
-    iodTiltSensor: Item.SubItems.Add('Tilt Sensor');
-    iodMotionSensor: Item.SubItems.Add('Motion Sensor');
+    iodWeDo20TiltSensor: Item.SubItems.Add('Tilt Sensor');
+    iodWeDo20MotionSensor: Item.SubItems.Add('Motion Sensor');
     else Item.SubItems.Add('Unknown');
   end;
   Item.SubItems.Add(Device.FirmwareVersion.ToString());

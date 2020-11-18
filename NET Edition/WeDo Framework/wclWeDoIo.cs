@@ -30,15 +30,45 @@ namespace wclWeDoFramework
     /// <summary> The class represets an attached Input/Outpout device. </summary>
     public abstract class wclWeDoIo
     {
-        internal const Byte WEDO_DEVICE_MOTOR = 0x01;
+        internal const Byte WEDO_DEVICE_MEDIUM_MOTOR = 0x01;
+        internal const Byte WEDO_DEVICE_TRAIN_MOTOR = 0x02;
+        internal const Byte WEDO_DEVICE_LIGHTS = 0x08;
         internal const Byte WEDO_DEVICE_VOLTAGE_SENSOR = 0x14;
         internal const Byte WEDO_DEVICE_CURRENT_SENSOR = 0x15;
-        internal const Byte WEDO_DEVICE_PIEZO = 0x16;
+        internal const Byte WEDO_DEVICE_WEDO20_PIEZO = 0x16;
         internal const Byte WEDO_DEVICE_RGB = 0x17;
-        internal const Byte WEDO_DEVICE_TILT_SENSOR = 0x22;
-        internal const Byte WEDO_DEVICE_MOTION_SENSOR = 0x23;
+        internal const Byte WEDO_DEVICE_EV3_COLOR_SENSOR = 0x1D;
+        internal const Byte WEDO_DEVICE_EV3_ULTRASONIC_SENSOR = 0x1E;
+        internal const Byte WEDO_DEVICE_EV3_GYRO_SENSOR = 0x20;
+        internal const Byte WEDO_DEVICE_EV3_IR_SENSOR = 0x21;
+        internal const Byte WEDO_DEVICE_WEDO20_TILT_SENSOR = 0x22;
+        internal const Byte WEDO_DEVICE_WEDO20_MOTION_SENSOR = 0x23;
+        internal const Byte WEDO_DEVICE_WEDO20_GENERIC = 0x24;
+        internal const Byte WEDO_DEVICE_BOOST_COLOR_SENSOR = 0x25;
+        internal const Byte WEDO_DEVICE_BOOST_INTERACTIVE_MOTOR = 0x26;
+        internal const Byte WEDO_DEVICE_BOOST_HUB_MOTOR = 0x27;
+        internal const Byte WEDO_DEVICE_BOOST_HUB_TILT_SENSOR = 0x28;
+        internal const Byte WEDO_DEVICE_DUPLO_HUB_MOTOR = 0x29;
+        internal const Byte WEDO_DEVICE_DUPLO_HUB_BEEPER = 0x2A;
+        internal const Byte WEDO_DEVICE_DUPLO_HUB_COLOR_SENSOR = 0x2B;
+        internal const Byte WEDO_DEVICE_DUPLO_HUB_SPEED = 0x2C;
+        internal const Byte WEDO_DEVICE_TECHNIC_LARGE_MOTOR = 0x2E;
+        internal const Byte WEDO_DEVICE_TECHNIC_XL_MOTOR = 0x2F;
+        internal const Byte WEDO_DEVICE_SPIKE_MEDIUM_MOTOR = 0x30;
+        internal const Byte WEDO_DEVICE_SPIKE_LARGE_MOTOR = 0x31;
+        internal const Byte WEDO_DEVICE_IMU_GESTURE = 0x36;
+        internal const Byte WEDO_DEVICE_HANDSET_BUTTONS = 0x37;
+        internal const Byte WEDO_DEVICE_HANDSET_LIGHTS = 0x38;
+        internal const Byte WEDO_DEVICE_IMU_ACCEL = 0x39;
+        internal const Byte WEDO_DEVICE_IMU_GYRO = 0x3A;
+        internal const Byte WEDO_DEVICE_IMU_POSITION = 0x3B;
+        internal const Byte WEDO_DEVICE_IMU_TEMP = 0x3C;
+        internal const Byte WEDO_DEVICE_SPIKE_COLOR_SENSOR = 0x3D;
+        internal const Byte WEDO_DEVICE_SPIKE_ULTRASONIC_SENSOR = 0x3E;
+        internal const Byte WEDO_DEVICE_SPIKE_FORCE_SENSOR = 0x3F;
+        internal const Byte WEDO_DEVICE_TECHNIC_MEDIUM_MOTOR = 0x4B;
         internal const Byte WEDO_DEVICE_UNKNOWN = 0xFF;
-        
+
         private Boolean FAttached;
         private Byte FConnectionId;
         private List<wclWeDoDataFormat> FDataFormats;
@@ -165,9 +195,9 @@ namespace wclWeDoFramework
             Byte ConnectionId = RawInfo[0];
             switch (RawInfo[3])
             {
-                case WEDO_DEVICE_MOTOR:
+                case WEDO_DEVICE_MEDIUM_MOTOR:
                     Io = new wclWeDoMotor(Hub, ConnectionId);
-                    Io.FDeviceType = wclWeDoIoDeviceType.iodMotor;
+                    Io.FDeviceType = wclWeDoIoDeviceType.iodMediumMotor;
                     break;
                 case WEDO_DEVICE_VOLTAGE_SENSOR:
                     Io = new wclWeDoVoltageSensor(Hub, ConnectionId);
@@ -177,21 +207,21 @@ namespace wclWeDoFramework
                     Io = new wclWeDoCurrentSensor(Hub, ConnectionId);
                     Io.FDeviceType = wclWeDoIoDeviceType.iodCurrentSensor;
                     break;
-                case WEDO_DEVICE_PIEZO:
+                case WEDO_DEVICE_WEDO20_PIEZO:
                     Io = new wclWeDoPiezo(Hub, ConnectionId);
-                    Io.FDeviceType = wclWeDoIoDeviceType.iodPiezo;
+                    Io.FDeviceType = wclWeDoIoDeviceType.iodWeDo20Piezo;
                     break;
                 case WEDO_DEVICE_RGB:
                     Io = new wclWeDoRgbLight(Hub, ConnectionId);
                     Io.FDeviceType = wclWeDoIoDeviceType.iodRgb;
                     break;
-                case WEDO_DEVICE_TILT_SENSOR:
+                case WEDO_DEVICE_WEDO20_TILT_SENSOR:
                     Io = new wclWeDoTiltSensor(Hub, ConnectionId);
-                    Io.FDeviceType = wclWeDoIoDeviceType.iodTiltSensor;
+                    Io.FDeviceType = wclWeDoIoDeviceType.iodWeDo20TiltSensor;
                     break;
-                case WEDO_DEVICE_MOTION_SENSOR:
+                case WEDO_DEVICE_WEDO20_MOTION_SENSOR:
                     Io = new wclWeDoMotionSensor(Hub, ConnectionId);
-                    Io.FDeviceType = wclWeDoIoDeviceType.iodMotionSensor;
+                    Io.FDeviceType = wclWeDoIoDeviceType.iodWeDo20MotionSensor;
                     break;
                 default:
                     Io = null;

@@ -134,7 +134,7 @@ namespace WeDoMotor
 
         private void FHub_OnDeviceDetached(Object Sender, wclWeDoIo Device)
         {
-            if (Device.DeviceType == wclWeDoIoDeviceType.iodMotor)
+            if (Device.DeviceType == wclWeDoIoDeviceType.iodMediumMotor)
             {
                 if (FMotor1 != null && FMotor1.ConnectionId == Device.ConnectionId)
                 {
@@ -155,7 +155,7 @@ namespace WeDoMotor
 
         private void FHub_OnDeviceAttached(Object Sender, wclWeDoIo Device)
         {
-            if (Device.DeviceType == wclWeDoIoDeviceType.iodMotor)
+            if (Device.DeviceType == wclWeDoIoDeviceType.iodMediumMotor)
             {
                 if (FMotor1 == null)
                 {
