@@ -1753,6 +1753,63 @@ type
       write FOnModeChanged;
   end;
 
+  /// <summary> Color sensor colors. </summary>
+  TwclWeDoColorSensorColor = (
+    /// <summary> Black color detected. </summary>
+    ccBlack,
+    /// <summary> Blue color detected. </summary>
+    ccBlue,
+    /// <summary> Green color detected. </summary>
+    ccGreen,
+    /// <summary> Yellow color detected. </summary>
+    ccYellow,
+    /// <summary> Red color detected. </summary>
+    ccRed,
+    /// <summary> White color detected. </summary>
+    ccWhite,
+    /// <summary> No object or unknown color detected. </summary>
+    ccNoObject
+  );
+
+  /// <summary> The <c>OnColorDetected</c> event handler prototype. </summary>
+  /// <param name="Sender"> The object that fired the event. </param>
+  /// <param name="Color"> The detected color. </param>
+  /// <seealso cref="TwclWeDoColorSensorColor"/>
+  TwclWeDoColorDetectedEbent = procedure(Sender: TObject;
+    Color: TwclWeDoColorSensorColor) of object;
+
+  /// <summary> The class represents a WeDo Color Sensor device. </summary>
+  /// <seealso cref="TwclWeDoIo"/>
+  TwclWeDoColorSensor = class(TwclWeDoIo)
+  private
+    FOnColorDetected: TwclWeDoColorDetectedEbent;
+
+  protected
+    /// <summary> Fires the <c>OnVoltageChanged</c> event. </summary>
+    procedure ValueChanged; override;
+
+    /// <summary> Fires the <c>OnColorDetected</c> event. </summary>
+    /// <param name="Color"> The color. </param>
+    /// <seealso cref="TwclWeDoColorSensorColor"/>
+    procedure DoColorDetected(Color: TwclWeDoColorSensorColor); virtual;
+
+  public
+    /// <summary> Creates new color sensor device object. </summary>
+    /// <param name="Hub"> The Hub object that owns the device. If this
+    ///   parameter is <c>null</c> the <seealso cref="wclEInvalidArgument"/>
+    ///   exception raises. </param>
+    /// <param name="ConnectionId"> The device's Connection ID. </param>
+    /// <seealso cref="TwclWeDoHub"/>
+    /// <exception cref="wclEInvalidArgument"> The exception raises when the
+    ///   <c>Hub</c> parameter is <c>null</c>. </exception>
+    constructor Create(Hub: TwclWeDoHub; ConnectionId: Byte); override;
+
+    /// <summary> The event fires when the sensor detected a color. </summary>
+    /// <seealso cref="TwclWeDoColorDetectedEbent"/>
+    property OnColorDetected: TwclWeDoColorDetectedEbent read FOnColorDetected
+      write FOnColorDetected;
+  end;
+
 implementation
 
 uses
@@ -3376,6 +3433,11 @@ begin
               Result := TwclWeDoMotionSensor.Create(Hub, ConnectionId);
               Result.FDeviceType := iodMotionSensor;
             end;
+          WEDO_DEVICE_COLOR_SENSOR:
+            begin
+              Result := TwclWeDoColorSensor.Create(Hub, ConnectionId);
+              Result.FDeviceType := iodColorSensor;
+            end
           else
             Result := nil;
         end;
@@ -4333,6 +4395,48 @@ begin
     else begin
       if Mode = tmTilt then
         DoDirectionChanged;
+    end;
+  end;
+end;
+
+{ TwclWeDoColorSensor }
+
+constructor TwclWeDoColorSensor.Create(Hub: TwclWeDoHub; ConnectionId: Byte);
+begin
+  inherited;
+
+  AddValidDataFormat(TwclWeDoDataFormat.Create(1, 1, 0, suRaw));
+
+  DefaultInputFormat := TwclWeDoInputFormat.Create(ConnectionId, iodColorSensor,
+    0, 1, suRaw, true, 0, 1);
+
+  OnColorDetected := nil;
+end;
+
+procedure TwclWeDoColorSensor.DoColorDetected(Color: TwclWeDoColorSensorColor);
+begin
+  if Assigned(FOnColorDetected) then
+    FOnColorDetected(Self, Color);
+end;
+
+procedure TwclWeDoColorSensor.ValueChanged;
+begin
+  if Length(Value) > 0 then begin
+    case Value[0] of
+      $00:
+        DoColorDetected(ccBlack);
+      $03:
+        DoColorDetected(ccBlue);
+      $05:
+        DoColorDetected(ccGreen);
+      $07:
+        DoColorDetected(ccYellow);
+      $09:
+        DoColorDetected(ccRed);
+      $0A:
+        DoColorDetected(ccWhite);
+      $FF:
+        DoColorDetected(ccNoObject);
     end;
   end;
 end;

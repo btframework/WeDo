@@ -3,40 +3,27 @@ unit main;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  Vcl.StdCtrls, wclBluetooth, wclWeDoWatcher, wclWeDoHub;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, wclWeDoHub, Vcl.StdCtrls, wclBluetooth,
+  wclWeDoWatcher;
 
 type
   TfmMain = class(TForm)
-    laStatus: TLabel;
-    laIoState: TLabel;
     btConnect: TButton;
     btDisconnect: TButton;
-    laMode: TLabel;
-    cbMode: TComboBox;
-    btChange: TButton;
-    btReset: TButton;
-    laDirectionTitle: TLabel;
-    laDirection: TLabel;
-    laXTitle: TLabel;
-    laYTitle: TLabel;
-    laZTitle: TLabel;
-    laX: TLabel;
-    laY: TLabel;
-    laZ: TLabel;
-    procedure FormCreate(Sender: TObject);
-    procedure btDisconnectClick(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
+    laStatus: TLabel;
+    laIoState: TLabel;
     procedure btConnectClick(Sender: TObject);
-    procedure btChangeClick(Sender: TObject);
-    procedure btResetClick(Sender: TObject);
+    procedure btDisconnectClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
 
   private
     FManager: TwclBluetoothManager;
     FWatcher: TwclWeDoWatcher;
     FHub: TwclWeDoHub;
-    FTilt: TwclWeDoTiltSensor;
+    FColor: TwclWeDoColorSensor;
+    FRgb: TwclWeDoRgbLight;
 
     procedure EnableControl(Attached: Boolean);
     procedure EnableConnect(Connected: Boolean);
@@ -49,10 +36,8 @@ type
     procedure FWatcher_OnHubFound(Sender: TObject; Address: Int64;
       Name: string);
 
-    procedure FTilt_OnModeChanged(Sender: TObject);
-    procedure FTilt_OnDirectionChanged(Sender: TObject);
-    procedure FTilt_OnCrashChanged(Sender: TObject);
-    procedure FTilt_OnAngleChanged(Sender: TObject);
+    procedure FColor_OnColorDetected(Sender: TObject;
+      Color: TwclWeDoColorSensorColor);
 
     procedure Disconnect;
   end;
@@ -66,30 +51,6 @@ uses
   wclErrors;
 
 {$R *.dfm}
-
-procedure TfmMain.btChangeClick(Sender: TObject);
-var
-  Mode: TwclWeDoTiltSensorMode;
-  Res: Integer;
-begin
-  if FTilt = nil then
-    ShowMessage('Device is not attached')
-  else begin
-    case cbMode.ItemIndex of
-      0: Mode := tmAngle;
-      1: Mode := tmTilt;
-      2: Mode := tmCrash;
-      else Mode := tmUnknown;
-    end;
-    if Mode = tmUnknown then
-      ShowMessage('"Invalid mode.')
-    else begin
-      Res := FTilt.SetMode(Mode);
-      if Res <> WCL_E_SUCCESS then
-        ShowMessage('Mode change failed: 0x' + IntToHex(Res, 8));
-    end;
-  end;
-end;
 
 procedure TfmMain.btConnectClick(Sender: TObject);
 var
@@ -165,19 +126,6 @@ begin
   Disconnect;
 end;
 
-procedure TfmMain.btResetClick(Sender: TObject);
-var
-  Res: Integer;
-begin
-  if FTilt = nil then
-    ShowMessage('Device is not attached')
-  else begin
-    Res := FTilt.Reset;
-    if Res <> WCL_E_SUCCESS then
-      ShowMessage('Reset failed: 0x' + IntToHex(Res, 8));
-  end;
-end;
-
 procedure TfmMain.Disconnect;
 begin
   FWatcher.Stop;
@@ -205,27 +153,29 @@ procedure TfmMain.EnableControl(Attached: Boolean);
 begin
   if Attached then
     laIoState.Caption := 'Attached'
-  else begin
+  else
     laIoState.Caption := 'Dectahed';
+end;
 
-    laDirection.Caption := 'Unknown';
-    laX.Caption := '0';
-    laY.Caption := '0';
-    laZ.Caption := '0';
+procedure TfmMain.FColor_OnColorDetected(Sender: TObject;
+  Color: TwclWeDoColorSensorColor);
+begin
+  if FRgb <> nil then begin
+    case Color of
+      ccBlue:
+        FRgb.SetColorIndex(TwclWeDoColor.wclBlue);
+      ccGreen:
+        FRgb.SetColorIndex(TwclWeDoColor.wclGreen);
+      ccRed:
+        FRgb.SetColorIndex(TwclWeDoColor.wclRed);
+      ccWhite:
+        FRgb.SetColorIndex(TwclWeDoColor.wclWhite);
+      ccYellow:
+        FRgb.SetColorIndex(TwclWeDoColor.wclYellow);
+      else
+        FRgb.SetColorIndex(TwclWeDoColor.wclBlack);
+    end;
   end;
-
-  laMode.Enabled := Attached;
-  cbMode.Enabled := Attached;
-  btChange.Enabled := Attached;
-  laXTitle.Enabled := Attached;
-  laX.Enabled := Attached;
-  laYTitle.Enabled := Attached;
-  laY.Enabled := Attached;
-  laZTitle.Enabled := Attached;
-  laZ.Enabled := Attached;
-  laDirectionTitle.Enabled := Attached;
-  laDirection.Enabled := Attached;
-  btReset.Enabled := Attached;
 end;
 
 procedure TfmMain.FHub_OnConnected(Sender: TObject; Error: Integer);
@@ -240,24 +190,27 @@ end;
 
 procedure TfmMain.FHub_OnDeviceAttached(Sender: TObject; Device: TwclWeDoIo);
 begin
-  if FTilt = nil then begin
-    if Device.DeviceType = iodTiltSensor then begin
-      FTilt := TwclWeDoTiltSensor(Device);
-      FTilt.OnAngleChanged := FTilt_OnAngleChanged;
-      FTilt.OnCrashChanged := FTilt_OnCrashChanged;
-      FTilt.OnDirectionChanged := FTilt_OnDirectionChanged;
-      FTilt.OnModeChanged := FTilt_OnModeChanged;
+  if FColor = nil then begin
+    if Device.DeviceType = iodColorSensor then begin
+      FColor := TwclWeDoColorSensor(Device);
+      FColor.OnColorDetected := FColor_OnColorDetected;
       EnableControl(True);
     end;
   end;
+
+  if Device.DeviceType = iodRgb then
+    FRgb := TwclWeDoRgbLight(Device);
 end;
 
 procedure TfmMain.FHub_OnDeviceDetached(Sender: TObject; Device: TwclWeDoIo);
 begin
-  if (Device.DeviceType = iodTiltSensor) and (FTilt <> nil) and (Device.ConnectionId = FTilt.ConnectionId) then begin
-    FTilt := nil;
+  if (Device.DeviceType = iodColorSensor) and (FColor <> nil) and (Device.ConnectionId = FColor.ConnectionId) then begin
+    FColor := nil;
     EnableControl(False);
   end;
+
+  if Device.DeviceType = iodRgb then
+    FRgb := nil;
 end;
 
 procedure TfmMain.FHub_OnDisconnected(Sender: TObject; Reason: Integer);
@@ -268,8 +221,6 @@ end;
 
 procedure TfmMain.FormCreate(Sender: TObject);
 begin
-  cbMode.ItemIndex := 0;
-
   FManager := TwclBluetoothManager.Create(nil);
 
   FWatcher := TwclWeDoWatcher.Create(nil);
@@ -281,7 +232,8 @@ begin
   FHub.OnDeviceAttached := FHub_OnDeviceAttached;
   FHub.OnDeviceDetached := FHub_OnDeviceDetached;
 
-  FTilt := nil;
+  FColor:= nil;
+  FRgb := nil;
 end;
 
 procedure TfmMain.FormDestroy(Sender: TObject);
@@ -291,53 +243,6 @@ begin
   FManager.Free;
   FWatcher.Free;
   FHub.Free;
-end;
-
-procedure TfmMain.FTilt_OnAngleChanged(Sender: TObject);
-var
-  Angle: TwclWeDoTiltSensorAngle;
-begin
-  Angle := FTilt.Angle;
-  laX.Caption := FloatToStr(Angle.X);
-  laY.Caption := FloatToStr(Angle.Y);
-  laZ.Caption := '0';
-  laDirection.Caption := 'Unknown';
-end;
-
-procedure TfmMain.FTilt_OnCrashChanged(Sender: TObject);
-var
-  Crash: TwclWeDoTiltSensorCrash;
-begin
-  Crash := FTilt.Crash;
-  laX.Caption := FloatToStr(Crash.X);
-  laY.Caption := FloatToStr(Crash.Y);
-  laZ.Caption := FloatToStr(Crash.Z);
-  laDirection.Caption := 'Unknown';
-end;
-
-procedure TfmMain.FTilt_OnDirectionChanged(Sender: TObject);
-begin
-  case FTilt.Direction of
-    tdBackward: laDirection.Caption := 'Backward';
-    tdForward: laDirection.Caption := 'Forward';
-    tdLeft: laDirection.Caption := 'Left';
-    tdNeutral: laDirection.Caption := 'Neutral';
-    tdRight: laDirection.Caption := 'Right';
-    else laDirection.Caption := 'Unknown';
-  end;
-  laX.Caption := '0';
-  laY.Caption := '0';
-  laZ.Caption := '0';
-end;
-
-procedure TfmMain.FTilt_OnModeChanged(Sender: TObject);
-begin
-  case FTilt.Mode of
-    tmAngle: cbMode.ItemIndex:= 0;
-    tmTilt: cbMode.ItemIndex:= 1;
-    tmCrash: cbMode.ItemIndex:= 2;
-    else cbMode.ItemIndex:= -1;
-  end;
 end;
 
 procedure TfmMain.FWatcher_OnHubFound(Sender: TObject; Address: Int64;

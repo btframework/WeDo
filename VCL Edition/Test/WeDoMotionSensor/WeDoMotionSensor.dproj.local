@@ -1,38 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.227,=D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetoothErrors.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.741,D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetoothErrors.pas=</Transaction>
     <Transaction>1899.12.30 00:00:00.000.877,=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoHub.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.471,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\WeDo Framework\wclWeDoHub.pas=</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.329,=D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetoothMicrosoft.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.712,D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetoothMicrosoft.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.752,=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.278,C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoMotionSensor\main.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.044,=D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetoothMicrosoft.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.922,D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetoothMicrosoft.pas=</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.752,=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.227,=D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetoothErrors.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.741,D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetoothErrors.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.442,=D:\Projects\WCL7\VCL\Source\Bluetooth\wclCODs.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.929,=D:\Projects\WCL7\VCL\Source\Communication\wclObex.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.456,D:\Projects\WCL7\VCL\Source\Communication\wclObex.pas=</Transaction>
     <Transaction>1899.12.30 00:00:00.000.198,=D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetoothBlueSoleil.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.755,D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetoothBlueSoleil.pas=</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.442,=D:\Projects\WCL7\VCL\Source\Bluetooth\wclCODs.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.684,D:\Projects\WCL7\VCL\Source\Bluetooth\wclCODs.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.497,C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoMotionSensor\WeDoMotionSensor.dproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.399,=D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetoothToshiba.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.699,D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetoothToshiba.pas=</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.278,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoMotionSensor\main.pas=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.434,D:\Projects\WCL7\VCL\Source\Bluetooth\wclUUIDs.pas=</Transaction>
     <Transaction>1899.12.30 00:00:00.000.487,=D:\Projects\WCL7\VCL\Source\Bluetooth\wclUUIDs.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.977,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.497,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoMotionSensor\WeDoMotionSensor.dproj=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.904,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.018,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.278,C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.dfm=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoMotionSensor\main.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.049,=D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetooth.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.771,D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetooth.pas=</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.278,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoMotionSensor\main.dfm=C:\Users\Mike.000\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.904,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.891,=D:\Projects\WCL7\VCL\Source\Communication\wclConnections.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.599,D:\Projects\WCL7\VCL\Source\Communication\wclConnections.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.434,D:\Projects\WCL7\VCL\Source\Bluetooth\wclUUIDs.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.367,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.259,=D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetoothMessages.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.725,D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetoothMessages.pas=</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.018,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.367,=C:\Users\Mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.329,=D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetoothMicrosoft.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.712,D:\Projects\WCL7\VCL\Source\Bluetooth\wclBluetoothMicrosoft.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.891,=D:\Projects\WCL7\VCL\Source\Communication\wclConnections.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.599,D:\Projects\WCL7\VCL\Source\Communication\wclConnections.pas=</Transaction>
     <Transaction>1899.12.30 00:00:00.000.848,=D:\Projects\WCL7\VCL\Source\Communication\wclConnectionErrors.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.660,D:\Projects\WCL7\VCL\Source\Communication\wclConnectionErrors.pas=</Transaction>
   </Transactions>

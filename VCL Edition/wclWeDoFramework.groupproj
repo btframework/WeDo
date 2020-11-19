@@ -30,6 +30,9 @@
         <Projects Include="Test\WeDoRobot\WeDoRobot.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="Test\WeDoColorSensor\WeDoColorSensor.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -119,14 +122,23 @@
     <Target Name="WeDoRobot:Make">
         <MSBuild Projects="Test\WeDoRobot\WeDoRobot.dproj" Targets="Make"/>
     </Target>
+    <Target Name="WeDoColorSensor">
+        <MSBuild Projects="Test\WeDoColorSensor\WeDoColorSensor.dproj"/>
+    </Target>
+    <Target Name="WeDoColorSensor:Clean">
+        <MSBuild Projects="Test\WeDoColorSensor\WeDoColorSensor.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="WeDoColorSensor:Make">
+        <MSBuild Projects="Test\WeDoColorSensor\WeDoColorSensor.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="wclWeDoFramework;WeDoScan;WeDoPiezo;WeDoRgb;WeDoHubButton;WeDoMotor;WeDoMotionSensor;WeDoTiltSensor;WeDoRobot"/>
+        <CallTarget Targets="wclWeDoFramework;WeDoScan;WeDoPiezo;WeDoRgb;WeDoHubButton;WeDoMotor;WeDoMotionSensor;WeDoTiltSensor;WeDoRobot;WeDoColorSensor"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="wclWeDoFramework:Clean;WeDoScan:Clean;WeDoPiezo:Clean;WeDoRgb:Clean;WeDoHubButton:Clean;WeDoMotor:Clean;WeDoMotionSensor:Clean;WeDoTiltSensor:Clean;WeDoRobot:Clean"/>
+        <CallTarget Targets="wclWeDoFramework:Clean;WeDoScan:Clean;WeDoPiezo:Clean;WeDoRgb:Clean;WeDoHubButton:Clean;WeDoMotor:Clean;WeDoMotionSensor:Clean;WeDoTiltSensor:Clean;WeDoRobot:Clean;WeDoColorSensor:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="wclWeDoFramework:Make;WeDoScan:Make;WeDoPiezo:Make;WeDoRgb:Make;WeDoHubButton:Make;WeDoMotor:Make;WeDoMotionSensor:Make;WeDoTiltSensor:Make;WeDoRobot:Make"/>
+        <CallTarget Targets="wclWeDoFramework:Make;WeDoScan:Make;WeDoPiezo:Make;WeDoRgb:Make;WeDoHubButton:Make;WeDoMotor:Make;WeDoMotionSensor:Make;WeDoTiltSensor:Make;WeDoRobot:Make;WeDoColorSensor:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
