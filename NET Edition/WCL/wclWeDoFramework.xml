@@ -52,6 +52,61 @@
             <summary> The event fires when the battery level has been changed. </summary>
             <seealso cref="T:wclWeDoFramework.wclBatteryLevelChangedEvent" />
         </member>
+        <member name="T:wclWeDoFramework.wclWeDoColorSensorColor">
+            <summary> Color sensor colors. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoColorSensorColor.ccBlack">
+            <summary> Black color detected. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoColorSensorColor.ccBlue">
+            <summary> Blue color detected. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoColorSensorColor.ccGreen">
+            <summary> Green color detected. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoColorSensorColor.ccYellow">
+            <summary> Yellow color detected. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoColorSensorColor.ccRed">
+            <summary> Red color detected. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoColorSensorColor.ccWhite">
+            <summary> White color detected. </summary>
+        </member>
+        <member name="F:wclWeDoFramework.wclWeDoColorSensorColor.ccNoObject">
+            <summary> No object or unknown color detected. </summary>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoColorDetectedEbent">
+            <summary> The <c>OnColorDetected</c> event handler prototype. </summary>
+            <param name="Sender"> The object that fired the event. </param>
+            <param name="Color"> The detected color. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoColorSensorColor"/>
+        </member>
+        <member name="T:wclWeDoFramework.wclWeDoColorSensor">
+            <summary> The class represents a WeDo Color Sensor device. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoColorSensor.ValueChanged">
+            <summary> Fires the <c>OnVoltageChanged</c> event. </summary>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoColorSensor.DoColorDetected(wclWeDoFramework.wclWeDoColorSensorColor)">
+            <summary> Fires the <c>OnColorDetected</c> event. </summary>
+            <param name="Color"> The color. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoColorSensorColor"/>
+        </member>
+        <member name="M:wclWeDoFramework.wclWeDoColorSensor.#ctor(wclWeDoFramework.wclWeDoHub,System.Byte)">
+            <summary> Creates new color sensor device object. </summary>
+            <param name="Hub"> The Hub object that owns the device. If this parameter is <c>null</c>
+              the <seealso cref="T:wclCommon.wclEInvalidArgument"/> exception raises. </param>
+            <param name="ConnectionId"> The device's Connection ID. </param>
+            <seealso cref="T:wclWeDoFramework.wclWeDoHub"/>
+            <exception cref="T:wclCommon.wclEInvalidArgument"> The exception raises when the <c>Hub</c>
+              parameter is <c>null</c>. </exception>
+        </member>
+        <member name="E:wclWeDoFramework.wclWeDoColorSensor.OnColorDetected">
+            <summary> The event fires when the sensor detected a color. </summary>
+            <seealso cref="T:wclWeDoFramework.wclWeDoColorDetectedEbent"/>
+        </member>
         <member name="T:wclWeDoFramework.wclWeDoCurrentSensor">
             <summary> The class represents a WeDo Hub current sensor. </summary>
             <seealso cref="T:wclWeDoFramework.wclWeDoIo"/>

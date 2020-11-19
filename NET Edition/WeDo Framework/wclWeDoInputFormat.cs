@@ -80,6 +80,9 @@ namespace wclWeDoFramework
                 case wclWeDoIo.WEDO_DEVICE_MOTION_SENSOR:
                     DeviceType = wclWeDoIoDeviceType.iodMotionSensor;
                     break;
+                case wclWeDoIo.WEDO_DEVICE_COLOR_SENSOR:
+                    DeviceType = wclWeDoIoDeviceType.iodColorSensor;
+                    break;
                 default:
                     DeviceType = wclWeDoIoDeviceType.iodUnknown;
                     break;
@@ -133,6 +136,9 @@ namespace wclWeDoFramework
                     break;
                 case wclWeDoIoDeviceType.iodMotionSensor:
                     DeviceType = wclWeDoIo.WEDO_DEVICE_MOTION_SENSOR;
+                    break;
+                case wclWeDoIoDeviceType.iodColorSensor:
+                    DeviceType = wclWeDoIo.WEDO_DEVICE_COLOR_SENSOR;
                     break;
                 default:
                     DeviceType = wclWeDoIo.WEDO_DEVICE_UNKNOWN;

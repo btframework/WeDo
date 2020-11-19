@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="wclWeDoBatteryLevelService.cs" />
+    <Compile Include="wclWeDoColorSensor.cs" />
     <Compile Include="wclWeDoCurrentSensor.cs" />
     <Compile Include="wclWeDoDataFormat.cs" />
     <Compile Include="wclWeDoDeviceInformationService.cs" />

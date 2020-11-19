@@ -1904,6 +1904,8 @@ begin
         DeviceType := iodTiltSensor;
       TwclWeDoIo.WEDO_DEVICE_MOTION_SENSOR:
         DeviceType := iodMotionSensor;
+      TwclWeDoIo.WEDO_DEVICE_COLOR_SENSOR:
+        DeviceType := iodColorSensor;
       else
         DeviceType := iodUnknown;
     end;
@@ -1954,6 +1956,8 @@ begin
       Result[0] := TwclWeDoIo.WEDO_DEVICE_TILT_SENSOR;
     iodMotionSensor:
       Result[0] := TwclWeDoIo.WEDO_DEVICE_MOTION_SENSOR;
+    iodColorSensor:
+      Result[0] := TwclWeDoIo.WEDO_DEVICE_COLOR_SENSOR;
     else
       Result[0] := TwclWeDoIo.WEDO_DEVICE_UNKNOWN;
   end;

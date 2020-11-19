@@ -81,6 +81,7 @@
             this.cbMode.Name = "cbMode";
             this.cbMode.Size = new System.Drawing.Size(121, 21);
             this.cbMode.TabIndex = 29;
+            this.cbMode.SelectedIndexChanged += new System.EventHandler(this.cbMode_SelectedIndexChanged);
             // 
             // laMode
             // 
@@ -91,6 +92,7 @@
             this.laMode.Size = new System.Drawing.Size(37, 13);
             this.laMode.TabIndex = 28;
             this.laMode.Text = "Mode:";
+            this.laMode.Click += new System.EventHandler(this.laMode_Click);
             // 
             // laIoState
             // 

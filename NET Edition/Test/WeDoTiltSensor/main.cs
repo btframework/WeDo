@@ -333,5 +333,15 @@ namespace WeDoTiltSensor
                     MessageBox.Show("Reset failed; 0x" + Res.ToString("X8"));
             }
         }
+
+        private void cbMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void laMode_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

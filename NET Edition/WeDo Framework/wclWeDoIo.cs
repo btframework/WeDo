@@ -194,6 +194,10 @@ namespace wclWeDoFramework
                     Io = new wclWeDoMotionSensor(Hub, ConnectionId);
                     Io.FDeviceType = wclWeDoIoDeviceType.iodMotionSensor;
                     break;
+                case WEDO_DEVICE_COLOR_SENSOR:
+                    Io = new wclWeDoColorSensor(Hub, ConnectionId);
+                    Io.FDeviceType = wclWeDoIoDeviceType.iodColorSensor;
+                    break;
                 default:
                     Io = null;
                     break;
