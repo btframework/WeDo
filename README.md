@@ -35,18 +35,18 @@ For any other usage of the We Do Framework refer to the [Wireless Communication 
 
 ### Windows 7, 8
 
-To be able to run the Lego WeDo 2.0 Education Framework on Windows 7 you need to install [BlueSoleil](http://www.bluesoleil.com) Bluetooth drivers (version 10 and above required).
+To be able to run the Lego WeDo 2.0 Education Framework on Windows 7 you need to install [BlueSoleil](http://www.bluesoleil.com) Bluetooth drivers (version 10 and above required). Or use [BLED112](https://www.btframework.com/bled112.htm) Bluetooth dongle.
 
-The **wclWeDoWatcher** is not supported on this platform. Use **wclBluetoothManager** to discover (find) Lego WeDo 2.0 Hubs instead.
+The **wclWeDoWatcher** is not supported on this platform with BlueSoleil drivers. Use **wclBluetoothManager** to discover (find) Lego WeDo 2.0 Hubs instead.
 
 ### Windows 8.1
 
-On this Windows version the Framework can be used with Microsoft and [BlueSoleil](http://www.bluesoleil.com) Bluetooth drivers (version 10 and above required). Bluetooth drivers. If yo uuse Microsoft Bluetooth drivers you must pair your Lego WeDo 2.0 Hub with Windows first with using **Add Bluetooth Device** dialog.
+On this Windows version the Framework can be used with Microsoft, [BlueSoleil](http://www.bluesoleil.com) Bluetooth drivers (version 10 and above required) or with [BLED112](https://www.btframework.com/bled112.htm) Bluetooth dongle. If yo use Microsoft Bluetooth drivers you must pair your Lego WeDo 2.0 Hub with Windows first with using **Add Bluetooth Device** dialog.
 
-The **wclWeDoWatcher** is not supported on this platform. Use **wclBluetoothManager** to discover (find) Lego WeDo 2.0 Hubs instead.
+The **wclWeDoWatcher** is not supported on this platform with BlueSoleil and Microsoft Bluetooth drivers. Use **wclBluetoothManager** to discover (find) Lego WeDo 2.0 Hubs instead.
 
 ### Windows 10
 
-On this Windows version the Framework can be used with Microsoft and [BlueSoleil](http://www.bluesoleil.com) Bluetooth drivers (version 10 and above required). Bluetooth drivers. **Full features** of the Framework are supported on Windows 10 **with Microsoft Bluetooth drivers**.
+On this Windows version the Framework can be used with Microsoft, [BlueSoleil](http://www.bluesoleil.com) Bluetooth drivers (version 10 and above required) or [BLED112](https://www.btframework.com/bled112.htm) Bluetooth dongle **Full features** of the Framework are supported on Windows 10 **with Microsoft Bluetooth drivers and with BLED112 Bluetooth dongle**.
 
 With [BlueSoleil](http://www.bluesoleil.com) Bluetooth drivers (version 10 and above required). Bluetooth drivers the **wclWeDoWatcher** is not supported. Use **wclBluetoothManager** to discover (find) Lego WeDo 2.0 Hubs instead.
