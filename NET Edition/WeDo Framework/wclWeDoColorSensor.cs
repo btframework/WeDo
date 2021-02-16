@@ -107,7 +107,7 @@ namespace wclWeDoFramework
             : base(Hub, ConnectionId)
         {
             AddValidDataFormat(new wclWeDoDataFormat(1, 1, 0, wclWeDoSensorDataUnit.suRaw));
-
+            
             DefaultInputFormat = new wclWeDoInputFormat(ConnectionId, wclWeDoIoDeviceType.iodColorSensor,
                 0, 1, wclWeDoSensorDataUnit.suRaw, true, 0, 1);
 

@@ -153,8 +153,9 @@
         <member name="F:wclCommon.wclErrors.WCL_E_THREAD_NOT_RUNNING">
             <summary> The thread is not running. </summary>
         </member>
-        <member name="F:wclCommon.wclErrors.WCL_E_THREAD_SIGNAL_FAILED">
-            <summary> Unable to post signal to the thread. </summary>
+        <member name="F:wclCommon.wclErrors.WCL_E_THREAD_INVALID_SYNCHRONIZATION">
+            <summary> The synchronization method is not supported by the wclThread
+              class. </summary>
         </member>
         <member name="F:wclCommon.wclErrors.WCL_E_THREAD_MESSAGE_REGISTRATION_FAILED">
             <summary> Unable to register thread message. </summary>
@@ -164,6 +165,9 @@
         </member>
         <member name="F:wclCommon.wclErrors.WCL_E_THREAD_INITIALIZATION_FAILED">
             <summary> Thread user initialization failed. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_THREAD_UNABLE_CREATE_THREAD_TERM_EVENT">
+            <summary> Unable to create thread termination event. </summary>
         </member>
         <member name="F:wclCommon.wclErrors.WCL_E_PEM_BASE">
             <summary> The base error code for Power Events monitor error codes. </summary>
@@ -262,7 +266,8 @@
               <para><c> 17763 </c> <c>   1809  </c></para>
               <para><c> 18362 </c> <c>   1903  </c></para>
               <para><c> 18363 </c> <c>   1909  </c></para>
-              <para><c> 19041 </c> <c>   2004  </c></para> </remarks>
+              <para><c> 19041 </c> <c>   2004  </c></para>
+              <para><c> 19042 </c> <c>   20H2  </c></para> </remarks>
         </member>
         <member name="T:wclCommon.wclHelpers">
             <summary> This static class includes some helpers methods used in WCL. </summary>
@@ -272,7 +277,7 @@
             <param name="Name"> The mutex name. </param>
             <param name="Unique"> Set this to <c>true</c> to create a process-dependent
               unique mutex. Otherwise system wide named mutex will be created. </param>
-            <param name="Own"> The optionam parameter (default value is <c>false</c>
+            <param name="Own"> The optional parameter (default value is <c>false</c>
               indicates if the Mutex must be owned by a called. </param>
             <returns> If the function succeed the return value is the Mutex handle.
               If the function failed the return value is <c>IntPtr.Zero</c>. </returns>
@@ -389,17 +394,80 @@
               <para> Returning <c>wclWinAPI.WAIT_TIMEOUT</c> indicates that the time-out interval elapsed and no completion routines are queued. </para>
               <para> Returning <c>wclWinAPI.WAIT_FAILED</c> indicates that the function has failed. </para> </returns>
         </member>
+        <member name="M:wclCommon.wclHelpers.WaitEx(System.Threading.WaitHandle[],System.UInt32)">
+            <summary> Waits until one or all of the specified objects are in the signaled state, an I/O completion routine or
+              asynchronous procedure call (APC) is queued to the thread, or the time-out interval elapses. </summary>
+            <param name="Handles"> An array of object handles. </param>
+            <param name="Milliseconds"> <para> The time interval for which execution is to be suspended, in milliseconds. </para>
+              <para> A value of zero causes the thread to relinquish the remainder of its time slice to any other thread that
+              is ready to run. If there are no other threads ready to run, the function returns immediately, and the thread
+              continues execution. Windows XP: A value of zero causes the thread to relinquish the remainder of its time slice
+              to any other thread of equal priority that is ready to run. If there are no other threads of equal priority ready
+              to run, the function returns immediately, and the thread continues execution. This behavior changed starting
+              with Windows Server 2003. </para>
+              <para> A value of <c>0xFFFFFFFF</c> indicates that the suspension should not time out. </para> </param>
+            <returns> <para> If the function succeeds, the return value indicates the event that caused the function to return. </para>
+              <para> Returning <c>wclWinAPI.WAIT_IO_COMPLETION</c> indicates that the wait was ended by one or more user-mode asynchronous procedure
+              calls (APC) queued to the thread. </para>
+              <para> Returning <c>wclWinAPI.WAIT_TIMEOUT</c> indicates that the time-out interval elapsed and no completion routines are queued. </para>
+              <para> Returning <c>wclWinAPI.WAIT_FAILED</c> indicates that the function has failed. </para> </returns>
+        </member>
+        <member name="M:wclCommon.wclHelpers.WaitEx(System.IntPtr,System.UInt32)">
+            <summary> Waits until the specified objects are in the signaled state, an I/O completion routine or
+              asynchronous procedure call (APC) is queued to the thread, or the time-out interval elapses. </summary>
+            <param name="Handle"> An object handles. </param>
+            <param name="Milliseconds"> <para> The time interval for which execution is to be suspended, in milliseconds. </para>
+              <para> A value of zero causes the thread to relinquish the remainder of its time slice to any other thread that
+              is ready to run. If there are no other threads ready to run, the function returns immediately, and the thread
+              continues execution. Windows XP: A value of zero causes the thread to relinquish the remainder of its time slice
+              to any other thread of equal priority that is ready to run. If there are no other threads of equal priority ready
+              to run, the function returns immediately, and the thread continues execution. This behavior changed starting
+              with Windows Server 2003. </para>
+              <para> A value of <c>0xFFFFFFFF</c> indicates that the suspension should not time out. </para> </param>
+            <returns> <para> If the function succeeds, the return value indicates the event that caused the function to return. </para>
+              <para> Returning <c>wclWinAPI.WAIT_IO_COMPLETION</c> indicates that the wait was ended by one or more user-mode asynchronous procedure
+              calls (APC) queued to the thread. </para>
+              <para> Returning <c>wclWinAPI.WAIT_TIMEOUT</c> indicates that the time-out interval elapsed and no completion routines are queued. </para>
+              <para> Returning <c>wclWinAPI.WAIT_FAILED</c> indicates that the function has failed. </para> </returns>
+        </member>
+        <member name="M:wclCommon.wclHelpers.WaitEx(System.Threading.WaitHandle,System.UInt32)">
+            <summary> Waits until the specified objects is in the signaled state, an I/O completion routine or
+              asynchronous procedure call (APC) is queued to the thread, or the time-out interval elapses. </summary>
+            <param name="Handle"> An object handles. </param>
+            <param name="Milliseconds"> <para> The time interval for which execution is to be suspended, in milliseconds. </para>
+              <para> A value of zero causes the thread to relinquish the remainder of its time slice to any other thread that
+              is ready to run. If there are no other threads ready to run, the function returns immediately, and the thread
+              continues execution. Windows XP: A value of zero causes the thread to relinquish the remainder of its time slice
+              to any other thread of equal priority that is ready to run. If there are no other threads of equal priority ready
+              to run, the function returns immediately, and the thread continues execution. This behavior changed starting
+              with Windows Server 2003. </para>
+              <para> A value of <c>0xFFFFFFFF</c> indicates that the suspension should not time out. </para> </param>
+            <returns> <para> If the function succeeds, the return value indicates the event that caused the function to return. </para>
+              <para> Returning <c>wclWinAPI.WAIT_IO_COMPLETION</c> indicates that the wait was ended by one or more user-mode asynchronous procedure
+              calls (APC) queued to the thread. </para>
+              <para> Returning <c>wclWinAPI.WAIT_TIMEOUT</c> indicates that the time-out interval elapsed and no completion routines are queued. </para>
+              <para> Returning <c>wclWinAPI.WAIT_FAILED</c> indicates that the function has failed. </para> </returns>
+        </member>
+        <member name="M:wclCommon.wclHelpers.WaitEx(System.IntPtr)">
+            <summary> Waits until the specified objects is in the signaled state. </summary>
+            <param name="Handle"> An object handle. </param>
+        </member>
+        <member name="M:wclCommon.wclHelpers.WaitEx(System.Threading.WaitHandle)">
+            <summary> Waits until the specified objects is in the signaled state. </summary>
+            <param name="Handle"> An object handle. </param>
+        </member>
         <member name="T:wclCommon.wclMessageSynchronizationKind">
             <summary> Message synchronization methods used for inter-threading
               synchronization and notification. </summary>
         </member>
-        <member name="F:wclCommon.wclMessageSynchronizationKind.skDefault">
+        <member name="F:wclCommon.wclMessageSynchronizationKind.skMessages">
             <summary> Default synchronization method based on Windows
               Messages. </summary>
         </member>
-        <member name="F:wclCommon.wclMessageSynchronizationKind.skNone">
-            <summary> Asynchronous notifications. Synchronization is not used.
-              All events will fire in "free" (undefined) thread. </summary>
+        <member name="F:wclCommon.wclMessageSynchronizationKind.skThread">
+            <summary> Asynchronous notifications. All events fire in a separate
+              thread. An application is responsible for the synchronization with
+              UI thread. Must be used carefully. </summary>
         </member>
         <member name="F:wclCommon.wclMessageSynchronizationKind.skApc">
             <summary> Asynchronous Procedure Call (APC) synchronization. </summary>
@@ -514,26 +582,6 @@
             <summary> Gets the device state. </summary>
             <value> <c>true</c> if the device has been inserted. </value>
         </member>
-        <member name="T:wclCommon.wclPowerState">
-            <summary> The enumneration defines the system power states. </summary>
-        </member>
-        <member name="F:wclCommon.wclPowerState.psResumeAutomatic">
-            <summary>  Indicates that the system is resuming from sleep or
-              hibernation. This state is delivered every time the system resumes and
-              does not indicate whether a user is present. </summary>
-        </member>
-        <member name="F:wclCommon.wclPowerState.psResume">
-            <summary> Indicates that the system is resuming from a low-power state.
-              This state appears after <c>psResumeAutomatic</c> if the resume is
-              triggered by user input, such as pressing a key. </summary>
-        </member>
-        <member name="F:wclCommon.wclPowerState.psSuspend">
-            <summary> Indicates that the computer is about to enter a suspended
-              state. </summary>
-        </member>
-        <member name="F:wclCommon.wclPowerState.psUnknown">
-            <summary> Unknown power state. </summary>
-        </member>
         <member name="T:wclCommon.wclPowerStateChangeMessage">
             <summary> The Power State Changed message is broadcasted to all
               subscribers when changes in the power state have been detected. The
@@ -542,15 +590,13 @@
             <remarks> This message is supported on Windows 8 and above. </remarks>
             <seealso cref="T:wclCommon.wclSystemCategoryMessage" />
         </member>
-        <member name="M:wclCommon.wclPowerStateChangeMessage.#ctor(wclCommon.wclPowerState)">
+        <member name="M:wclCommon.wclPowerStateChangeMessage.#ctor(System.UInt32)">
             <summary> Creates new Power State Changed message object. </summary>
             <param name="State"> The current power state. </param>
-            <seealso cref="T:wclCommon.wclPowerState" />
         </member>
         <member name="P:wclCommon.wclPowerStateChangeMessage.State">
             <summary> Gets the current power state. </summary>
             <value> The current power state. </value>
-            <seealso cref="T:wclCommon.wclPowerState" />
         </member>
         <member name="T:wclCommon.wclWiFiCategoryMessage">
             <summary> The WiFi Category Message base class. </summary>
@@ -743,62 +789,25 @@
               WCL. </remarks>
             <seealso cref="T:wclCommon.wclMessageSynchronizationKind" />
         </member>
-        <member name="T:wclCommon.wclThread">
-            <summary> The class allows to use WCL components in threads, console and
-              service applications. </summary>
+        <member name="T:wclCommon.wclPowerState">
+            <summary> The enumeration defines the system power states. </summary>
         </member>
-        <member name="M:wclCommon.wclThread.OnInitialize">
-            <summary> The method called by the thread when it just started.
-              An application must override this method to execute initialization
-              code. </summary>
-            <returns> If initialization completed successfully the function must
-              return <c>true</c>. Otherwise the function must return <c>false</c>. </returns>
-            <remarks> The default implementation always returns <c>true</c>. </remarks>
+        <member name="F:wclCommon.wclPowerState.psResumeAutomatic">
+            <summary>  Indicates that the system is resuming from sleep or
+              hibernation. This state is delivered every time the system resumes and
+              does not indicate whether a user is present. </summary>
         </member>
-        <member name="M:wclCommon.wclThread.OnSignal(System.UInt32)">
-            <summary> This procedure is called when a signal received from the
-              other thread. </summary>
-            <param name="Id"> The user defined signal ID. </param>
+        <member name="F:wclCommon.wclPowerState.psResume">
+            <summary> Indicates that the system is resuming from a low-power state.
+              This state appears after <c>psResumeAutomatic</c> if the resume is
+              triggered by user input, such as pressing a key. </summary>
         </member>
-        <member name="M:wclCommon.wclThread.OnTerminate">
-            <summary> The procedure is called when the thread is about termination.
-              An application must execute all finalization code here. </summary>
+        <member name="F:wclCommon.wclPowerState.psSuspend">
+            <summary> Indicates that the computer is about to enter a suspended
+              state. </summary>
         </member>
-        <member name="M:wclCommon.wclThread.#ctor">
-            <summary> Creates new Thread object. </summary>
-            <remarks> The constructor does not start the thread. </remarks>
-        </member>
-        <member name="M:wclCommon.wclThread.Finalize">
-            <summary> Frees the thread object. </summary>
-        </member>
-        <member name="M:wclCommon.wclThread.Run">
-            <summary> Starts the Thread execution. </summary>
-            <returns> If the function succeed the returns value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the function returns one
-              of the WCL error codes. </returns>
-            <remarks> The method waits for thread initialization (refer to the
-              <c>OnInitialize</c> method description). </remarks>
-        </member>
-        <member name="M:wclCommon.wclThread.Terminate">
-            <summary> Terminates the thread. </summary>
-            <returns> If the function succeed the returns value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the function returns one
-              of the WCL error codes. </returns>
-        </member>
-        <member name="M:wclCommon.wclThread.Signal(System.UInt32)">
-            <summary> Posts signal to the Thread. </summary>
-            <param name="Id"> The user defined Signal ID. </param>
-            /// <returns> If the function succeed the returns value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the function returns one
-              of the WCL error codes. </returns>
-            <remarks> The signal is posted to the thread. That means that
-              the method does not wait when the Thread receive and proceses the
-              signal. Also the method can not know if thread processed the
-              signal. </remarks>
-        </member>
-        <member name="P:wclCommon.wclThread.Running">
-            <summary> Gets the thread state. </summary>
-            <value> <c>true</c> if the Thread is running. <c>false</c> otherwise. </value>
+        <member name="F:wclCommon.wclPowerState.psUnknown">
+            <summary> Unknown power state. </summary>
         </member>
         <member name="T:wclCommon.wclPowerStateChangedEvent">
             <summary> The <c>OnPowerStateChanged</c> event handler
@@ -853,6 +862,47 @@
             <summary> The event fires when the system's power state has been
               changed. </summary>
             <seealso cref="T:wclCommon.wclPowerStateChangedEvent" />
+        </member>
+        <member name="T:wclCommon.wclThread">
+            <summary> The class allows to use WCL components in threads, console and
+              service applications. </summary>
+        </member>
+        <member name="M:wclCommon.wclThread.OnInitialize">
+            <summary> The method called by the thread when it just started.
+              An application must override this method to execute initialization
+              code. </summary>
+            <returns> If initialization completed successfully the function must
+              return <c>true</c>. Otherwise the function must return <c>false</c>. </returns>
+            <remarks> The default implementation always returns <c>true</c>. </remarks>
+        </member>
+        <member name="M:wclCommon.wclThread.OnTerminate">
+            <summary> The procedure is called when the thread is about termination.
+              An application must execute all finalization code here. </summary>
+        </member>
+        <member name="M:wclCommon.wclThread.#ctor">
+            <summary> Creates new Thread object. </summary>
+            <remarks> The constructor does not start the thread. </remarks>
+        </member>
+        <member name="M:wclCommon.wclThread.Finalize">
+            <summary> Frees the thread object. </summary>
+        </member>
+        <member name="M:wclCommon.wclThread.Run">
+            <summary> Starts the Thread execution. </summary>
+            <returns> If the function succeed the returns value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the function returns one
+              of the WCL error codes. </returns>
+            <remarks> The method waits for thread initialization (refer to the
+              <c>OnInitialize</c> method description). </remarks>
+        </member>
+        <member name="M:wclCommon.wclThread.Terminate">
+            <summary> Terminates the thread. </summary>
+            <returns> If the function succeed the returns value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the function returns one
+              of the WCL error codes. </returns>
+        </member>
+        <member name="P:wclCommon.wclThread.Running">
+            <summary> Gets the thread state. </summary>
+            <value> <c>true</c> if the Thread is running. <c>false</c> otherwise. </value>
         </member>
         <member name="T:wclCommon.wclSetupApi">
             <exclude />

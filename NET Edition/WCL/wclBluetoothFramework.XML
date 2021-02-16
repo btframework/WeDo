@@ -227,7 +227,7 @@
               attributes. </summary>
         </member>
         <member name="T:wclBluetooth.wclGattCharacteristicExtendedProperties">
-            <summary> The structure contacins of the different characteristic
+            <summary> The structure contains of the different characteristic
               extended property members. </summary>
         </member>
         <member name="F:wclBluetooth.wclGattCharacteristicExtendedProperties.IsReliableWriteEnabled">
@@ -254,14 +254,14 @@
               has been registered. Otherwise, <c>False</c>. </summary>
         </member>
         <member name="T:wclBluetooth.wclGattServerCharacteristicConfiguration">
-            <summary> The structure decribes the different server characteristic
+            <summary> The structure describes the different server characteristic
               configuration members. </summary>
         </member>
         <member name="F:wclBluetooth.wclGattServerCharacteristicConfiguration.IsBroadcast">
             <summary> The parent characteristic value can be broadcast. </summary>
         </member>
         <member name="T:wclBluetooth.wclGattCharacteristicFormat">
-            <summary> Teh structure describes the different characteristic format
+            <summary> The structure describes the different characteristic format
               members. </summary>
         </member>
         <member name="F:wclBluetooth.wclGattCharacteristicFormat.Format">
@@ -309,7 +309,7 @@
         </member>
         <member name="F:wclBluetooth.wclGattDescriptorValue.ServerCharacteristicConfiguration">
             <summary> Container structure for the different server characteristic
-              configuration members. This memeber is valid only if <c>AType</c> is
+              configuration members. This member is valid only if <c>AType</c> is
               <c>dtServerCharacteristicConfiguration</c>. </summary>
             <seealso cref="T:wclBluetooth.wclGattServerCharacteristicConfiguration" />
         </member>
@@ -321,7 +321,7 @@
         </member>
         <member name="F:wclBluetooth.wclGattDescriptorValue.Data">
             <summary> The descriptor value data. An application is
-              responsible to free a memory alloocated for this dinamic array.
+              responsible to free a memory allocated for this dynamic array.
               If there is no data the member is <c>null</c>. </summary>
         </member>
         <member name="T:wclBluetooth.wclGattOperationFlag">
@@ -329,7 +329,7 @@
               should be executed. </summary>
         </member>
         <member name="F:wclBluetooth.wclGattOperationFlag.goNone">
-            <summary> Use default behaviour. </summary>
+            <summary> Use default behavior. </summary>
         </member>
         <member name="F:wclBluetooth.wclGattOperationFlag.goReadFromDevice">
             <summary> The value is to be read directly from the device. This
@@ -2371,14 +2371,16 @@
             <remarks> A derived class must override this method to provide
               driver-dependent code. </remarks>
         </member>
-        <member name="M:wclBluetooth.wclBluetoothRadio.HalCreateConnection(wclBluetooth.wclBluetoothConnectionType)">
+        <member name="M:wclBluetooth.wclBluetoothRadio.HalCreateConnection(wclBluetooth.wclBluetoothConnectionType,wclCommunication.wclCustomConnection@)">
             <summary> Creates a hardware-dependent connection object based on
               connection type. </summary>
             <param name="ConnectionType"> A type of the required connection
               object. </param>
-            <returns> If the function completed with success it returns a connection
-              object. If the requested connection type is not supported the function
-              returns <c>null</c>. </returns>
+            <param name="Connection"> If the function completed with success on
+              output contains the connection object. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
             <seealso cref="T:wclBluetooth.wclBluetoothConnectionType" />
             <seealso cref="T:wclCommunication.wclCustomConnection" />
         </member>
@@ -2636,7 +2638,9 @@
                       <para> 7 - Bluetooth Core Specification 4.1 </para>
                       <para> 8 - Bluetooth Core Specification 4.2 </para>
                       <para> 9 - Bluetooth Core Specification 5.0 </para>
-                      <para> 10-255 - Reserved </para> </remarks>
+                      <para> 10 - Bluetooth Core Specification 5.1 </para>
+                      <para> 11 - Bluetooth Core Specification 5.2 </para>
+                      <para> 12-255 - Reserved </para> </remarks>
         </member>
         <member name="M:wclBluetooth.wclBluetoothRadio.GetLmpVersion(System.Byte@,System.UInt16@)">
             <summary> Reads the LMP version of the local Radio module. </summary>
@@ -2656,7 +2660,9 @@
                       <para> 7 - Bluetooth Core Specification 4.1 </para>
                       <para> 8 - Bluetooth Core Specification 4.2 </para>
                       <para> 9 - Bluetooth Core Specification 5.0 </para>
-                      <para> 10–255 - Reserved </para> </remarks>
+                      <para> 10 - Bluetooth Core Specification 5.1 </para>
+                      <para> 11 - Bluetooth Core Specification 5.2 </para>
+                      <para> 12–255 - Reserved </para> </remarks>
         </member>
         <member name="M:wclBluetooth.wclBluetoothRadio.GetManufacturer(System.UInt16@)">
             <summary> Reads the Bluetooth Radio manufacturer ID. </summary>
@@ -3113,6 +3119,9 @@
         <member name="M:wclBluetooth.wclBluetoothManager.DoBeforeClose">
             <summary> Fires the <c>BeforeClose</c> event. </summary>
         </member>
+        <member name="M:wclBluetooth.wclBluetoothManager.DoClosed">
+            <summary> Fires the <c>OnClosed</c> event. </summary>
+        </member>
         <member name="M:wclBluetooth.wclBluetoothManager.DoConfirm(wclBluetooth.wclBluetoothRadio,System.Int64,System.Boolean@)">
             <summary> Fires the <c>OnConfirm</c> event. </summary>
             <param name="Radio"> A <see cref="T:wclBluetooth.wclBluetoothRadio" /> object
@@ -3289,6 +3298,10 @@
             <summary> The event fires when authentication (pairing) with a remote
               Bluetooth device has completed. </summary>
             <seealso cref="T:wclBluetooth.wclBluetoothDeviceResultEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothManager.OnClosed">
+            <summary> The event fires when the Bluetooth Manager has completely
+              been closed. </summary>
         </member>
         <member name="E:wclBluetooth.wclBluetoothManager.OnConfirm">
             <summary> The event fires when a remote Bluetooth device requires
@@ -5242,12 +5255,16 @@
             <summary> Gets or sets the Bluetooth LE advertisement data type, as
               defined by the Bluetooth Special Interest Group (SIG). </summary>
             <value> The Bluetooth LE advertisement data type. </value>
-            <remarks> <para> The following advertisement types are allowed: </para>
-              <para> * Manufacturer Specific Information (0xFF); </para>
+            <remarks> <para> <c>Microsoft</c> Bluetooth driver has some limitations
+              for allowed data types. The following advertisement types <c>are
+              allowed</c> when the advertiser is used with <c>Microsoft</c>
+              Bluetooth driver: </para>
+              <para> * Manufacturer Specific Information (0xFF) </para>
               <para> * Any non-standard type not reserved by the system, as shown in
-                       the list below. </para>
-              <para> The following advertisement types are system-reserved and are
-                     not allowed: </para>
+                       the list below </para>
+              <para> The following advertisement types <c>are system-reserved and
+              are not allowed</c> if the advertiser is used with <c>Microsoft</c>
+              Bluetooth driver: </para>
               <para> * Flags (0x01) </para>
               <para> * Incomplete List of 16-bit Service UUIDs (0x02) </para>
               <para> * Complete List of 16-bit Service UUIDs (0x03) </para>
@@ -5279,6 +5296,8 @@
               <para> * Simple Pairing Hash C256 (0x1D) </para>
               <para> * Simple Pairing Randomizer R256 (0x1E) </para>
               <para> * 3D Information Data (0x3D) </para>
+              <para> There is <c>no limitations</c> for advertising data type when
+              the advertised is used with <c>BLED112</c> Bluetooth dongle.</para>
               <para> If the Data Type value is not 0xFF (Manufacturer Specific
                      Information) the <c>CompanyId</c> value will be
                      ignored. </para> </remarks>
@@ -6775,18 +6794,6 @@
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
             <seealso cref="T:wclBluetooth.wclBluetoothLeScanningMode" />
         </member>
-        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.Start(wclBluetooth.wclBluetoothRadio)">
-            <summary> Starts monitoring for Bluetooth LE Beacons. </summary>
-            <param name="Radio"> The <see cref="T:wclBluetooth.wclBluetoothRadio" /> object used
-              to communicate with a remote Bluetooth device. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> <para> This method starts scannin in Active mode. </para>
-              <para> This feature is supported on Windows 10 with the Microsoft
-              Bluetooth drivers only. </para> </remarks>
-            <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
-        </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.Stop">
             <summary> Stops monitoring for Bluetooth LE Beacons. </summary>
             <returns> If the function succeed the return value is
@@ -7196,12 +7203,16 @@
             <summary> Gets or sets the Bluetooth LE advertisement data type, as
               defined by the Bluetooth Special Interest Group (SIG). </summary>
             <value> The Bluetooth LE advertisement data type. </value>
-            <remarks> <para> The following advertisement types are allowed: </para>
-              <para> * Manufacturer Specific Information (0xFF); </para>
+            <remarks> <para> <c>Microsoft</c> Bluetooth driver has some limitations
+              for allowed data types. The following advertisement types <c>are
+              allowed</c> when the advertiser is used with <c>Microsoft</c>
+              Bluetooth driver: </para>
+              <para> * Manufacturer Specific Information (0xFF) </para>
               <para> * Any non-standard type not reserved by the system, as shown in
-                       the list below. </para>
-              <para> The following advertisement types are system-reserved and are
-                     not allowed: </para>
+                       the list below </para>
+              <para> The following advertisement types <c>are system-reserved and
+              are not allowed</c> if the advertiser is used with <c>Microsoft</c>
+              Bluetooth driver: </para>
               <para> * Flags (0x01) </para>
               <para> * Incomplete List of 16-bit Service UUIDs (0x02) </para>
               <para> * Complete List of 16-bit Service UUIDs (0x03) </para>
@@ -7233,6 +7244,8 @@
               <para> * Simple Pairing Hash C256 (0x1D) </para>
               <para> * Simple Pairing Randomizer R256 (0x1E) </para>
               <para> * 3D Information Data (0x3D) </para>
+              <para> There is <c>no limitations</c> for advertising data type when
+              the advertised is used with <c>BLED112</c> Bluetooth dongle.</para>
               <para> If the Data Type value is not 0xFF (Manufacturer Specific
                      Information) the <c>CompanyId</c> value will be
                      ignored. </para> </remarks>
@@ -7506,6 +7519,14 @@
             <summary> The event fires when the WeDo Remote status
               changed. </summary>
             <seealso cref="T:wclBluetooth.wclWiiRemoteStatusChangedEvent" />
+        </member>
+        <member name="M:wclBluetooth.wclBled112.GetPort(System.String,System.String@)">
+            <summary> Gets the BLED112 device COM port name. </summary>
+            <param name="Instance"> The device instance string. </param>
+            <param name="Port"> If the function completed with success on output
+               contains the BLED112 device COM port name. </param>
+            <returns> Returns <c>True</c> if the device represented with the
+              <c>Instance</c> parameter is a BLED112 device. </returns>
         </member>
         <member name="M:wclBluetooth.wclBlueSoleil.Load">
             <summary> Creates a BlueSoleil Bluetooth Radio object. </summary>
@@ -8067,6 +8088,24 @@
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_UNABLE_CREATE_DATA_EVENT">
             <summary> Unable to create data received notification event. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_UNABLE_CREATE_PAIRING_TIMEOUT_EVENT">
+            <summary> Unable to create pairing timeout event. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_HARDWARE_FAILED">
+            <summary> Bluetooth hardware failed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_AUTHENTICATION_DEVICE_IGNORED">
+            <summary> This is Microsoft specific error indicates that the pairing with
+              remote classic Bluetooth enabled device was not started and need to be
+              re-initiated. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_UNSUPPORTED_BY_HARDWARE">
+            <summary> Bluetooth features are unsupported by the hardware. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_RADIO_CLOSING">
+            <summary> A Bluetooth Radio object is closing. The operation can not be
+              executed. </summary>
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_BASE">
             <summary> The base error code for Bluetooth Low Energy. </summary>
@@ -8741,6 +8780,23 @@
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_CREATE_CONNECTION_COMPLETION_EVENT_FAILED">
             <summary> Unable to create connection completion event. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_CREATE_ADVERTISING_MUTEX_FAILED">
+            <summary> Unable to create advertising protection mutex object. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ADVERTISING">
+            <summary> Bluetooth LE advertising is already running on this radio. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_MANUFACTURER_DATA_TOO_LONG">
+            <summary> The manufacturer specific data is too long. The maximum allowed
+              length is 27 bytes. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_DATA_TOO_LONG">
+            <summary> The advertisement payload data is too long. The maximum allowed
+              length is 29 bytes. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_INVALID_DATA_TYPE">
+            <summary> Invalid advertisement data type. </summary>
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_BASE">
             <summary> The base error code for Wii Remote errors. </summary>
