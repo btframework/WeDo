@@ -919,6 +919,9 @@
         <member name="T:wclCommon.wclWinAPI">
             <exclude />
         </member>
+        <member name="T:wclCommon.wclSerialApi">
+            <exclude />
+        </member>
         <member name="T:wclCommon.wclWinSock">
             <exclude />
         </member>

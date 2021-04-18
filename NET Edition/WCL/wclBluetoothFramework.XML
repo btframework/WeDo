@@ -1499,6 +1499,74 @@
             <param name="Data"> The frame's raw bytes data. If there is no data the
               value is <c>null</c>. </param>
         </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAdvertisementService16DataFrameEvent">
+            <summary> The <c>OnService16DataFrame</c> event handler prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Address"> The Bluetooth LE advertiser's MAC address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Uuid"> The 16 bits service UUID. </param>
+            <param name="Data"> The service data. </param>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAdvertisementService32DataFrameEvent">
+            <summary> The <c>OnService32DataFrame</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Address"> The Bluetooth LE advertiser's MAC address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Uuid"> The 32 bits service UUID. </param>
+            <param name="Data"> The service data. </param>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAdvertisementService128DataFrameEvent">
+            <summary> The <c>OnService128DataFrame</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Address"> The Bluetooth LE advertiser's MAC address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Uuid"> The 128 bits service UUID. </param>
+            <param name="Data"> The service data. </param>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAdvertisementServiceSol16FrameEvent">
+            <summary> The <c>OnServiceSol16Frame</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Address"> The Bluetooth LE advertiser's MAC address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Uuid"> The 16 bits service UUID. </param>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAdvertisementServiceSol32FrameEvent">
+            <summary> The <c>OnServiceSol32Frame</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Address"> The Bluetooth LE advertiser's MAC address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Uuid"> The 32 bits service UUID. </param>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAdvertisementServiceSol128FrameEvent">
+            <summary> The <c>OnServiceSol128Frame</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Address"> The Bluetooth LE advertiser's MAC address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Uuid"> The 128 bits service UUID. </param>
+        </member>
         <member name="T:wclBluetooth.wclBluetoothLeAdvertisementUuidFrameEvent">
             <summary> The <c>OnAdvertisementUuidFrame</c> event handler
               prototype. </summary>
@@ -4668,6 +4736,66 @@
             <param name="Data"> The frame's raw bytes data. If there is no data the
               value is <c>null</c>. </param>
         </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAdvertisementService16DataFrame(System.Int64,System.Int64,System.SByte,System.UInt16,System.Byte[])">
+            <summary> Fires the <c>OnService16DataFrame</c> event. </summary>
+            <param name="Address"> The Bluetooth LE advertiser's MAC address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Uuid"> The 16 bit service UUID. </param>
+            <param name="Data"> The service data. </param>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAdvertisementService32DataFrame(System.Int64,System.Int64,System.SByte,System.UInt32,System.Byte[])">
+            <summary> Fires the <c>OnService32DataFrame</c> event. </summary>
+            <param name="Address"> The Bluetooth LE advertiser's MAC address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Uuid"> The 32 bit service UUID. </param>
+            <param name="Data"> The service data. </param>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAdvertisementService128DataFrame(System.Int64,System.Int64,System.SByte,System.Guid,System.Byte[])">
+            <summary> Fires the <c>OnService128DataFrame</c> event. </summary>
+            <param name="Address"> The Bluetooth LE advertiser's MAC address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Uuid"> The 128 bit service UUID. </param>
+            <param name="Data"> The service data. </param>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAdvertisementServiceSol16Frame(System.Int64,System.Int64,System.SByte,System.UInt16)">
+            <summary> Fires the <c>OnServiceSol16Frame</c> event. </summary>
+            <param name="Address"> The Bluetooth LE advertiser's MAC
+              address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Uuid"> The 16 bit service UUID. </param>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAdvertisementServiceSol32Frame(System.Int64,System.Int64,System.SByte,System.UInt32)">
+            <summary> Fires the <c>OnServiceSol32Frame</c> event. </summary>
+            <param name="Address"> The Bluetooth LE advertiser's MAC
+              address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Uuid"> The 32 bit service UUID. </param>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAdvertisementServiceSol128Frame(System.Int64,System.Int64,System.SByte,System.Guid)">
+            <summary> Fires the <c>OnServiceSol128Frame</c> event. </summary>
+            <param name="Address"> The Bluetooth LE advertiser's MAC
+              address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Uuid"> The 128 bit service UUID. </param>
+        </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAdvertisementUuidFrame(System.Int64,System.Int64,System.SByte,System.Guid)">
             <summary> Fires the <c>OnAdvertisementUuidFrame</c> event. </summary>
             <param name="Address"> The Bluetooth LE advertiser's MAC
@@ -4868,6 +4996,36 @@
               advertisement frame received. </summary>
             <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementRawFrameEvent" />
         </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAdvertisementService16DataFrame">
+            <summary> The event fires when a Bluetooth LE 16 bit Service Data
+              advertisement frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementService16DataFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAdvertisementService32DataFrame">
+            <summary> The event fires when a Bluetooth LE 32 bit Service Data
+              advertisement frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementService32DataFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAdvertisementService128DataFrame">
+            <summary> The event fires when a Bluetooth LE 128 bit Service Data
+              advertisement frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementService128DataFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAdvertisementServiceSol16Frame">
+            <summary> The event fires when a Bluetooth LE 16 bit Service
+              Solicitation advertisement frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementServiceSol16FrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAdvertisementServiceSol32Frame">
+            <summary> The event fires when a Bluetooth LE 32 bit Service
+              Solicitation advertisement frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementServiceSol32FrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAdvertisementServiceSol128Frame">
+            <summary> The event fires when a Bluetooth LE 128 bit Service
+              Solicitation advertisement frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementServiceSol128FrameEvent" />
+        </member>
         <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAdvertisementUuidFrame">
             <summary> The event fires when an UUID advertisement frame has been
               received. </summary>
@@ -4912,10 +5070,13 @@
               stopped. </summary>
         </member>
         <member name="T:wclBluetooth.wclBluetoothLeAdvertiserConnection">
-            <summary> The base virtual connection class for Bluetooth LE Advertisers. </summary>
-            <remarks> <para> The class provides methods to enable Bluetooth LE Advertising. </para>
+            <summary> The virtual connection class enables Bluetooth LE
+              advertising feature. </summary>
+            <remarks> <para> The class provides methods to enable Bluetooth LE
+              advertising. </para>
               <para> The feature is supported only on Windows 10 platform with
-              Microsoft Bluetooth drivers. </para> </remarks>
+              <c>Microsoft</c> Bluetooth drivers or on any Windows platform with
+              <c>BLED112</c> Bluetooth dongle. </para> </remarks>
             <seealso cref="T:wclCommunication.wclCustomConnection" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeAdvertiserConnection.MessageReceived(wclCommon.wclMessage)">
@@ -4964,6 +5125,9 @@
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
             <exception cref="T:wclCommon.wclECritical" />
         </member>
+        <member name="M:wclBluetooth.wclBluetoothLeAdvertiserConnection.Finalize">
+            <summary> Frees the object. </summary>
+        </member>
         <member name="M:wclBluetooth.wclBluetoothLeAdvertiserConnection.Start">
             <summary> Starts Bluetooth LE Advertising. </summary>
             <returns> If the function succeed the return value is
@@ -5001,6 +5165,9 @@
         <member name="T:wclBluetooth.wclBluetoothLeRssiAdvertiserConnection">
             <summary> The base class for Bluetooth LE advertisers that advertise
               calibrated RSSI value. </summary>
+            <remarks> The feature is supported only on Windows 10 platform with
+              <c>Microsoft</c> Bluetooth drivers or on any Windows platform with
+              <c>BLED112</c> Bluetooth dongle. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertiserConnection" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeRssiAdvertiserConnection.#ctor(wclBluetooth.wclBluetoothRadio)">
@@ -5032,6 +5199,9 @@
         <member name="T:wclBluetooth.wclBluetoothLeIdAdvertiserConnection">
             <summary> The base Bluetooth LE advertiser connection class that advertises the
               UUIDs. </summary>
+            <remarks> The feature is supported only on Windows 10 platform with
+              <c>Microsoft</c> Bluetooth drivers or on any Windows platform with
+              <c>BLED112</c> Bluetooth dongle. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothLeRssiAdvertiserConnection" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeIdAdvertiserConnection.#ctor(wclBluetooth.wclBluetoothRadio)">
@@ -5076,7 +5246,8 @@
               directly. Instead of that an application must use related methods
               from the <see cref="T:wclBluetooth.wclBluetoothRadio" /> object. </para>
               <para> The feature is supported only on Windows 10 platform with
-              Microsoft Bluetooth drivers. </para> </remarks>
+              <c>Microsoft</c> Bluetooth drivers or on any Windows platform with
+              <c>BLED112</c> Bluetooth dongle. </para> </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
             <seealso cref="T:wclBluetooth.wclBluetoothLeIdAdvertiserConnection" />
         </member>
@@ -5101,7 +5272,8 @@
               directly. Instead of that an application must use related methods
               from the <see cref="T:wclBluetooth.wclBluetoothRadio" /> object. </para>
               <para> The feature is supported only on Windows 10 platform with
-              Microsoft Bluetooth drivers. </para> </remarks>
+              <c>Microsoft</c> Bluetooth drivers or on any Windows platform with
+              <c>BLED112</c> Bluetooth dongle. </para> </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
             <seealso cref="T:wclBluetooth.wclBluetoothLeIdAdvertiserConnection" />
         </member>
@@ -5133,7 +5305,8 @@
               directly. Instead of that an application must use related methods
               from the <see cref="T:wclBluetooth.wclBluetoothRadio" /> object. </para>
               <para> The feature is supported only on Windows 10 platform with
-              Microsoft Bluetooth drivers. </para> </remarks>
+              <c>Microsoft</c> Bluetooth drivers or on any Windows platform with
+              <c>BLED112</c> Bluetooth dongle. </para> </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
             <seealso cref="T:wclBluetooth.wclBluetoothLeRssiAdvertiserConnection" />
         </member>
@@ -5163,7 +5336,8 @@
               directly. Instead of that an application must use related methods
               from the <see cref="T:wclBluetooth.wclBluetoothRadio" /> object. </para>
               <para> The feature is supported only on Windows 10 platform with
-              Microsoft Bluetooth drivers. </para> </remarks>
+              <c>Microsoft</c> Bluetooth drivers or on any Windows platform with
+              <c>BLED112</c> Bluetooth dongle. </para> </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
             <seealso cref="T:wclBluetooth.wclBluetoothLeRssiAdvertiserConnection" />
         </member>
@@ -5211,7 +5385,8 @@
               directly. Instead of that an application must use related methods
               from the <see cref="T:wclBluetooth.wclBluetoothRadio" /> object. </para>
               <para> The feature is supported only on Windows 10 platform with
-              Microsoft Bluetooth drivers. </para> </remarks>
+              <c>Microsoft</c> Bluetooth drivers or on any Windows platform with
+              <c>BLED112</c> Bluetooth dongle. </para> </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
             <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertiserConnection" />
         </member>
@@ -5267,7 +5442,6 @@
               Bluetooth driver: </para>
               <para> * Flags (0x01) </para>
               <para> * Incomplete List of 16-bit Service UUIDs (0x02) </para>
-              <para> * Complete List of 16-bit Service UUIDs (0x03) </para>
               <para> * Incomplete List of 32-bit Service UUIDs (0x04) </para>
               <para> * Complete List of 32-bit Service UUIDs (0x05) </para>
               <para> * Incomplete List of 128-bit Service UUIDs (0x06) </para>
@@ -5281,12 +5455,6 @@
               <para> * Security Manager TK Values (0x10) </para>
               <para> * Security Manager Out-of-Band Flags (0x11) </para>
               <para> * Slave Connection Interval Range (0x12) </para>
-              <para> * List of 16-bit Service Solicitation UUIDs (0x14) </para>
-              <para> * List of 32-bit Service Solicitation UUIDs (0x1F) </para>
-              <para> * List of 128-bit Service Solicitation UUIDs (0x15) </para>
-              <para> * Service Data 16-bit UUID (0x16) </para>
-              <para> * Service Data 32-bit UUID (0x20) </para>
-              <para> * Service Data 128-bit UUID (0x21) </para>
               <para> * Public Target Address (0x17) </para>
               <para> * Random Target Address (0x18) </para>
               <para> * Appearance (0x19) </para>
@@ -6658,6 +6826,68 @@
             <param name="Data"> The frame's raw bytes data. If there is no data the
               value is <c>null</c>. </param>
         </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAdvertisementService16DataFrame(System.Int64,System.Int64,System.SByte,System.UInt16,System.Byte[])">
+            <summary> Fires the <c>OnService16DataFrame</c> event. </summary>
+            <param name="Address"> The Bluetooth LE advertiser's MAC address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Uuid"> The 16 bit service UUID. </param>
+            <param name="Data"> The service data. </param>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAdvertisementService32DataFrame(System.Int64,System.Int64,System.SByte,System.UInt32,System.Byte[])">
+            <summary> Fires the <c>OnService32DataFrame</c> event. </summary>
+            <param name="Address"> The Bluetooth LE advertiser's MAC
+              address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Uuid"> The 32 bit service UUID. </param>
+            <param name="Data"> The service data. </param>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAdvertisementService128DataFrame(System.Int64,System.Int64,System.SByte,System.Guid,System.Byte[])">
+            <summary> Fires the <c>OnService128DataFrame</c> event. </summary>
+            <param name="Address"> The Bluetooth LE advertiser's MAC
+              address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Uuid"> The 128 bit service UUID. </param>
+            <param name="Data"> The service data. </param>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAdvertisementServiceSol16Frame(System.Int64,System.Int64,System.SByte,System.UInt16)">
+            <summary> Fires the <c>OnServiceSol16Frame</c> event. </summary>
+            <param name="Address"> The Bluetooth LE advertiser's MAC
+              address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Uuid"> The 16 bit service UUID. </param>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAdvertisementServiceSol32Frame(System.Int64,System.Int64,System.SByte,System.UInt32)">
+            <summary> Fires the <c>OnServiceSol32Frame</c> event. </summary>
+            <param name="Address"> The Bluetooth LE advertiser's MAC
+              address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Uuid"> The 32 bit service UUID. </param>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAdvertisementServiceSol128Frame(System.Int64,System.Int64,System.SByte,System.Guid)">
+            <summary> Fires the <c>OnServiceSol128Frame</c> event. </summary>
+            <param name="Address"> The Bluetooth LE advertiser's MAC
+              address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Uuid"> The 128 bit service UUID. </param>
+        </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAdvertisementUuidFrame(System.Int64,System.Int64,System.SByte,System.Guid)">
             <summary> Fires the <c>OnAdvertisementUuidFrame</c> event. </summary>
             <param name="Address"> The Bluetooth LE advertiser's MAC
@@ -6834,6 +7064,36 @@
               advertisement frame received. </summary>
             <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementRawFrameEvent" />
         </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAdvertisementService16DataFrame">
+            <summary> The event fires when a Bluetooth LE 16 bit Service Data
+              advertisement frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementService16DataFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAdvertisementService32DataFrame">
+            <summary> The event fires when a Bluetooth LE 32 bit Service Data
+              advertisement frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementService32DataFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAdvertisementService128DataFrame">
+            <summary> The event fires when a Bluetooth LE 128 bit Service Data
+              advertisement frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementService128DataFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAdvertisementServiceSol16Frame">
+            <summary> The event fires when a Bluetooth LE 16 bit Service
+              Solicitation advertisement frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementServiceSol16FrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAdvertisementServiceSol32Frame">
+            <summary> The event fires when a Bluetooth LE 32 bit Service
+              Solicitation advertisement frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementServiceSol32FrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAdvertisementServiceSol128Frame">
+            <summary> The event fires when a Bluetooth LE 128 bit Service
+              Solicitation advertisement frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementServiceSol128FrameEvent" />
+        </member>
         <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAdvertisementUuidFrame">
             <summary> The event fires when an UUID advertisement frame has been
               received. </summary>
@@ -6877,21 +7137,12 @@
             <summary> The event fires when the Bluetooth LE beacon monitoring
               stopped. </summary>
         </member>
-        <member name="F:wclBluetooth.wclBluetoothLeBeaconWatcher.WCL_EDDYSTONE_UID_FRAME_ID">
-            <summary> Eddystone UID beacon frame ID. </summary>
-            <remarks> This constant is defined for internal use only. </remarks>
-        </member>
-        <member name="F:wclBluetooth.wclBluetoothLeBeaconWatcher.WCL_EDDYSTONE_URL_FRAME_ID">
-            <summary> Eddystone URL beacon frame ID. </summary>
-            <remarks> This constant is defined for internal use only. </remarks>
-        </member>
-        <member name="F:wclBluetooth.wclBluetoothLeBeaconWatcher.WCL_EDDYSTONE_TLM_FRAME_ID">
-            <summary> Eddystone TLM beacon frame ID. </summary>
-            <remarks> This constant is defined for internal use only. </remarks>
-        </member>
         <member name="T:wclBluetooth.wclBluetoothLeAdvertiser">
             <summary> The base class for Bluetooth LE advertisers
               components. </summary>
+            <remarks> The feature is supported only on Windows 10 platform with
+              <c>Microsoft</c> Bluetooth drivers or on any Windows platform with
+              <c>BLED112</c> Bluetooth dongle. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothComponent" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeAdvertiser.DoStarted">
@@ -6972,6 +7223,9 @@
         <member name="T:wclBluetooth.wclBluetoothLeRssiAdvertiser">
             <summary> The base class for Bluetooth LE advertiser components that
               advertise calibrated RSSI value. </summary>
+            <remarks> The feature is supported only on Windows 10 platform with
+              <c>Microsoft</c> Bluetooth drivers or on any Windows platform with
+              <c>BLED112</c> Bluetooth dongle. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertiser" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeRssiAdvertiser.#ctor">
@@ -6990,6 +7244,9 @@
         <member name="T:wclBluetooth.wclBluetoothLeIdAdvertiser">
             <summary> The base class for Bluetooth LE advertiser components that
               advertise the UUIDs. </summary>
+            <remarks> The feature is supported only on Windows 10 platform with
+              <c>Microsoft</c> Bluetooth drivers or on any Windows platform with
+              <c>BLED112</c> Bluetooth dongle. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothLeRssiAdvertiser" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeIdAdvertiser.#ctor">
@@ -7033,7 +7290,8 @@
             <remarks> <para> The component allows you application to switch PC into
               the Bluetooth LE Proximity Beacon (iBeacon). </para>
               <para> The feature is supported only on Windows 10 platform with
-              Microsoft Bluetooth drivers. </para> </remarks>
+              <c>Microsoft</c> Bluetooth drivers or on any Windows platform with
+              <c>BLED112</c> Bluetooth dongle. </para> </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothLeIdAdvertiser" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeProximityBeacon.PrepareAdvertiser(wclBluetooth.wclBluetoothRadio,wclBluetooth.wclBluetoothLeAdvertiserConnection@)">
@@ -7057,7 +7315,8 @@
             <remarks> <para> The component allows you application to switch PC into
               the Bluetooth LE Alt Beacon. </para>
               <para> The feature is supported only on Windows 10 platform with
-              Microsoft Bluetooth drivers. </para> </remarks>
+              <c>Microsoft</c> Bluetooth drivers or on any Windows platform with
+              <c>BLED112</c> Bluetooth dongle. </para> </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothLeIdAdvertiser" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeAltBeacon.PrepareAdvertiser(wclBluetooth.wclBluetoothRadio,wclBluetooth.wclBluetoothLeAdvertiserConnection@)">
@@ -7092,7 +7351,8 @@
             <remarks> <para> The component allows you application to switch PC into
               the Bluetooth LE Eddystone UID Beacon. </para>
               <para> The feature is supported only on Windows 10 platform with
-              Microsoft Bluetooth drivers. </para> </remarks>
+              <c>Microsoft</c> Bluetooth drivers or on any Windows platform with
+              <c>BLED112</c> Bluetooth dongle. </para> </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothLeRssiAdvertiser" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeEddystoneUidBeacon.PrepareAdvertiser(wclBluetooth.wclBluetoothRadio,wclBluetooth.wclBluetoothLeAdvertiserConnection@)">
@@ -7124,7 +7384,8 @@
             <remarks> <para> The component allows you application to switch PC into
               the Bluetooth LE Eddystone URL Beacon. </para>
               <para> The feature is supported only on Windows 10 platform with
-              Microsoft Bluetooth drivers. </para> </remarks>
+              <c>Microsoft</c> Bluetooth drivers or on any Windows platform with
+              <c>BLED112</c> Bluetooth dongle. </para> </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothLeRssiAdvertiser" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeEddystoneUrlBeacon.PrepareAdvertiser(wclBluetooth.wclBluetoothRadio,wclBluetooth.wclBluetoothLeAdvertiserConnection@)">
@@ -7156,7 +7417,8 @@
             <remarks> <para> The component allows you application to switch PC into
               the Bluetooth LE Beacon that advertises any custom data. </para>
               <para> The feature is supported only on Windows 10 platform with
-              Microsoft Bluetooth drivers. </para> </remarks>
+              <c>Microsoft</c> Bluetooth drivers or on any Windows platform with
+              <c>BLED112</c> Bluetooth dongle. </para> </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertiser" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeCustomBeacon.PrepareAdvertiser(wclBluetooth.wclBluetoothRadio,wclBluetooth.wclBluetoothLeAdvertiserConnection@)">
@@ -7215,7 +7477,6 @@
               Bluetooth driver: </para>
               <para> * Flags (0x01) </para>
               <para> * Incomplete List of 16-bit Service UUIDs (0x02) </para>
-              <para> * Complete List of 16-bit Service UUIDs (0x03) </para>
               <para> * Incomplete List of 32-bit Service UUIDs (0x04) </para>
               <para> * Complete List of 32-bit Service UUIDs (0x05) </para>
               <para> * Incomplete List of 128-bit Service UUIDs (0x06) </para>
@@ -7229,12 +7490,6 @@
               <para> * Security Manager TK Values (0x10) </para>
               <para> * Security Manager Out-of-Band Flags (0x11) </para>
               <para> * Slave Connection Interval Range (0x12) </para>
-              <para> * List of 16-bit Service Solicitation UUIDs (0x14) </para>
-              <para> * List of 32-bit Service Solicitation UUIDs (0x1F) </para>
-              <para> * List of 128-bit Service Solicitation UUIDs (0x15) </para>
-              <para> * Service Data 16-bit UUID (0x16) </para>
-              <para> * Service Data 32-bit UUID (0x20) </para>
-              <para> * Service Data 128-bit UUID (0x21) </para>
               <para> * Public Target Address (0x17) </para>
               <para> * Random Target Address (0x18) </para>
               <para> * Appearance (0x19) </para>
@@ -8798,6 +9053,10 @@
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_INVALID_DATA_TYPE">
             <summary> Invalid advertisement data type. </summary>
         </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ADVERTISING_UNBALE_CREATE_SHARED_EVENT">
+            <summary> Unable create shared termination event for the Bluetooth LE
+              advertising thread. </summary>
+        </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_BASE">
             <summary> The base error code for Wii Remote errors. </summary>
         </member>
@@ -8940,6 +9199,27 @@
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_START_DEV_MON_THREAD_FAILED">
             <summary> Unable to start LE devices monitoring thread. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_SET_QUEUE_SIZE_FAILED">
+            <summary> Unable to set input and output queue size. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_SET_TIMEOUTS_FAILED">
+            <summary> Unable to set communication timeouts. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_SET_BAUD_RATE_FAILED">
+            <summary> Unable to set required baud rate. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_SET_DTR_FAILED">
+            <summary> Set DTR control failed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_SET_LINE_CONTROL_FAILED">
+            <summary> Set line control failed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_SET_CHARS_FAILED">
+            <summary> Set the special characters failed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLED112_SET_HANDFLOW_FAILED">
+            <summary> Set handflow failed. </summary>
         </member>
         <member name="T:wclBluetooth.wclEBluetooth">
             <summary> The base exception class for all Bluetooth
@@ -10111,6 +10391,156 @@
         </member>
         <member name="F:wclBluetooth.wclUUIDs.LE_GAP_APPEARANCE_OUTDOOR_SPORTS_ACTIVITY_SUBCATEGORY_LOCATION_NAVIGATION_POD">
             <exclude />
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_NONE">
+            <summary> None or invlid. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_FLAGS">
+            <summary> Flags. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_SERVICES_16_MORE">
+            <summary> Incomplete List of 16-bit Service Class UUIDs. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_SERVICES_16_ALL">
+            <summary> Complete List of 16-bit Service Class UUIDs. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_SERVICES_32_MORE">
+            <summary> Incomplete List of 32-bit Service Class UUIDs. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_SERVICES_32_ALL">
+            <summary> Complete List of 32-bit Service Class UUIDs. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_SERVICES_128_MORE">
+            <summary> Incomplete List of 128-bit Service Class UUIDs. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_SERVICES_128_ALL">
+            <summary> Complete List of 128-bit Service Class UUIDs. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_LOCAL_NAME_SHORT">
+            <summary> Shortened Local Name. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_LOCAL_NAME_COMPLETE">
+            <summary> Complete Local Name. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_TXPOWER">
+            <summary> Tx Power Level. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_COD">
+            <summary> Class of Device. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_PAIRING_HASH_C">
+            <summary> Simple Pairing Hash C. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_PAIRING_RAND_R">
+            <summary> Simple Pairing Randomizer R. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_DEVICE_ID">
+            <summary> Device ID. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_SM_OOB_FLAGS">
+            <summary> Security Manager Out of Band Flags. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_CON_INTERVALS">
+            <summary> Slave Connection Interval Range. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_SERVICE_SOL_UUIDS_16">
+            <summary> List of 16-bit Service Solicitation UUIDs. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_SERVICE_SOL_UUIDS_128">
+            <summary> List of 128-bit Service Solicitation UUIDs. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_SERVICE_DATA_16">
+            <summary> Service Data 16-bit UUID. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_PUBLIC_TARGET_ADDRESS">
+            <summary> Public Target Address. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_RANDOM_TARGET_ADDRESS">
+            <summary> Random Target Address. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_APPEARANCE">
+            <summary> Appearance. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_ADV_INTERVAL">
+            <summary> Advertising Interval. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_ADDRESS">
+            <summary> LE Bluetooth Device Address. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_ROLE">
+            <summary> LE Role. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_PAIRING_HASH_C_256">
+            <summary> Simple Pairing Hash C-256. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_PAIRING_RAND_R_256">
+            <summary> Simple Pairing Randomizer R-256. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_SERVICE_SOL_UUIDS_32">
+            <summary> List of 32-bit Service Solicitation UUIDs. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_SERVICE_DATA_32">
+            <summary> Service Data - 32-bit UUID. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_SERVICE_DATA_128">
+            <summary> Service Data - 128-bit UUID. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_SECURE_CONFIRM">
+            <summary> LE Secure Connections Confirmation Value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_SECURE_RAND">
+            <summary> LE Secure Connections Random Value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_URI">
+            <summary> URI. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_INDOOR_POS">
+            <summary> Indoor Positioning. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_TRANS_DISC_DATA">
+            <summary> Transport Discovery Data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_FEATURES">
+            <summary> LE Supported Features. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_CH_MAP">
+            <summary> Channel Map Update Indication. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_PB_ADV">
+            <summary> PB-ADV. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_MESH_MSG">
+            <summary> Mesh Message. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_MESH_BEACON">
+            <summary> Mesh Beacon. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_BIG_INGO">
+            <summary> BIGInfo. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_BROADCAST_CODE">
+            <summary> Broadcast Code. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_3D_INFO">
+            <summary> 3D Information Data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.LE_GAP_AD_TYPE_MANUFACTURER">
+            <summary> Manufacturer Specific Data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.EDDYSTONE_BEACON_UUID_16">
+            <summary> Eddysone Beacon service UUID. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.EDDYSTONE_UID_FRAME_ID">
+            <summary> Eddystone UID beacon frame ID. </summary>
+            <remarks> This constant is defined for internal use only. </remarks>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.EDDYSTONE_URL_FRAME_ID">
+            <summary> Eddystone URL beacon frame ID. </summary>
+            <remarks> This constant is defined for internal use only. </remarks>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.EDDYSTONE_TLM_FRAME_ID">
+            <summary> Eddystone TLM beacon frame ID. </summary>
+            <remarks> This constant is defined for internal use only. </remarks>
         </member>
     </members>
 </doc>

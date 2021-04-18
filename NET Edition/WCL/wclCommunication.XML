@@ -371,6 +371,16 @@
               the inherited implementation first. </para> </remarks>
             <seealso cref="T:wclCommon.wclMessage" />
         </member>
+        <member name="M:wclCommunication.wclCustomConnection.Enter">
+            <summary> Enters the connection's critical section. </summary>
+            <remarks> The method should be used to protect connection in
+              multi-threaded applications. </remarks>
+        </member>
+        <member name="M:wclCommunication.wclCustomConnection.Leave">
+            <summary> Exists *leaves) the connection's critical section. </summary>
+            <remarks> The method should be used to protect connection in
+              multi-threaded applications. </remarks>
+        </member>
         <member name="M:wclCommunication.wclCustomConnection.#ctor">
             <summary> Creates a new connection. </summary>
         </member>
