@@ -449,8 +449,6 @@ begin
 end;
 
 function TwclWeDoRobot.Start: Integer;
-var
-  i: Integer;
 begin
   if FRadio <> nil then
     Result := WCL_E_CONNECTION_ACTIVE
@@ -458,28 +456,14 @@ begin
   else begin
     Result := FManager.Open;
     if Result = WCL_E_SUCCESS then begin
-      if FManager.Count = 0 then
-        Result := WCL_E_BLUETOOTH_API_NOT_FOUND
+      Result := FManager.GetLeRadio(FRadio);
+      if Result = WCL_E_SUCCESS then begin
+        // Try to start watching for HUBs.
+        Result := FWatcher.Start(FRadio);
 
-      else begin
-        // Look for first available radio.
-        for i := 0 to FManager.Count - 1 do begin
-          if FManager[i].Available then begin
-            FRadio := FManager[i];
-            Break;
-          end;
-        end;
-
-        if FRadio = nil then
-          Result := WCL_E_BLUETOOTH_RADIO_UNAVAILABLE
-        else begin
-          // Try to start watching for HUBs.
-          Result := FWatcher.Start(FRadio);
-
-          // If something went wrong we must clear the working radio objecy.
-          if Result <> WCL_E_SUCCESS then
-            FRadio := nil;
-        end;
+        // If something went wrong we must clear the working radio objecy.
+        if Result <> WCL_E_SUCCESS then
+          FRadio := nil;
       end;
 
       // If something went wrong we must close Bluetooth Manager

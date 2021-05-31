@@ -91,7 +91,6 @@ procedure TfmMain.btConnectClick(Sender: TObject);
 var
   Res: Integer;
   Radio: TwclBluetoothRadio;
-  i: Integer;
 begin
   // The very first thing we have to do is to open Bluetooth Manager.
   // That initializes the underlying drivers and allows us to work with
@@ -106,53 +105,34 @@ begin
   else begin
     // Assume that no one Bluetooth Radio available.
     Radio := nil;
+    Res := FManager.GetLeRadio(Radio);
+    if Res <> WCL_E_SUCCESS then
+      // If not, let user know that he has no Bluetooth.
+      ShowMessage('No available Bluetooth Radio found')
 
-    // Check that at least one Bluetooth Radio exists (or at least Bluetooth
-    // drivers installed).
-    if FManager.Count = 0 then
-      // No one, even drivers?
-
-      ShowMessage('No Bluetooth Hardware installed')
     else begin
-      // Ok, at least one Bluetooth Radio module should be available.
-      for i := 0 to FManager.Count - 1 do begin
-        // Check if current Radio module is available (plugged in and turned ON).
-        if FManager[i].Available then begin
-          // Looks like we have Bluetooth on this PC!
-          Radio := FManager[i];
-          // Terminate the loop.
-          Break;
-        end;
-      end;
-
-      // Check that we found the Bluetooth Radio module.
-      if Radio = nil then
-        // If not, let user know that he has no Bluetooth.
-        ShowMessage('No available Bluetooth Radio found')
+      // If found, try to start discovering.
+      Res := FWatcher.Start(Radio);
+      if Res <> WCL_E_SUCCESS then
+        // It is something wrong with discovering starting. Notify user about
+        // the error.
+        ShowMessage('Unable to start discovering: 0x' + IntToHex(Res, 8))
 
       else begin
-        // If found, try to start discovering.
-        Res := FWatcher.Start(Radio);
-        if Res <> WCL_E_SUCCESS then begin
-          // It is something wrong with discovering starting. Notify user about
-          // the error.
-          ShowMessage('Unable to start discovering: 0x' + IntToHex(Res, 8));
-          // Also clean up found Radio variable so we can check it later.
-          Radio := nil;
-
-        end else begin
-          btConnect.Enabled := False;
-          btDisconnect.Enabled := True;
-          laStatus.Caption := 'Searching...';
-        end;
+        btConnect.Enabled := False;
+        btDisconnect.Enabled := True;
+        laStatus.Caption := 'Searching...';
       end;
     end;
 
     // Again, check the found Radio.
-    if Radio = nil then
+    if Res <> WCL_E_SUCCESS then begin
       // And if it is null (not found or discovering was not started
       // close the Bluetooth Manager to release all the allocated resources.
       FManager.Close;
+      // Also clean up found Radio variable so we can check it later.
+      Radio := nil;
+    end;
   end;
 end;
 

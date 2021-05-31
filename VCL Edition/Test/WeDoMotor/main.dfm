@@ -133,7 +133,6 @@ object fmMain: TfmMain
     TabOrder = 2
     object tsMotor1: TTabSheet
       Caption = 'Motor 1'
-      ExplicitHeight = 121
       object laIoState1: TLabel
         Left = 14
         Top = 13
@@ -218,7 +217,6 @@ object fmMain: TfmMain
     object tsMotor2: TTabSheet
       Caption = 'Motor 2'
       ImageIndex = 1
-      ExplicitLeft = 0
       object laIoState2: TLabel
         Left = 22
         Top = 21

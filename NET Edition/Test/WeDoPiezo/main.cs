@@ -151,55 +151,34 @@ namespace WeDoPiezo
             {
                 // Assume that no one Bluetooth Radio available.
                 wclBluetoothRadio Radio = null;
-
-                // Check that at least one Bluetooth Radio exists (or at least Bluetooth drivers installed).
-                if (FManager.Count == 0)
-                    // No one, even drivers?
-                    MessageBox.Show("No Bluetooth Hardware installed");
+                Res = FManager.GetLeRadio(out Radio);
+                if (Res != wclErrors.WCL_E_SUCCESS)
+                    // If not, let user know that he has no Bluetooth.
+                    MessageBox.Show("No available Bluetooth Radio found");
                 else
                 {
-                    // Ok, at least one Bluetooth Radio module should be available.
-                    for (Int32 i = 0; i < FManager.Count; i++)
-                    {
-                        // Check if current Radio module is available (plugged in and turned ON).
-                        if (FManager[i].Available)
-                        {
-                            // Looks like we have Bluetooth on this PC!
-                            Radio = FManager[i];
-                            // Terminate the loop.
-                            break;
-                        }
-                    }
-
-                    // Check that we found the Bluetooth Radio module.
-                    if (Radio == null)
-                        // If not, let user know that he has no Bluetooth.
-                        MessageBox.Show("No available Bluetooth Radio found");
+                    // If found, try to start discovering.
+                    Res = FWatcher.Start(Radio);
+                    if (Res != wclErrors.WCL_E_SUCCESS)
+                        // It is something wrong with discovering starting. Notify user about the error.
+                        MessageBox.Show("Unable to start discovering: 0x" + Res.ToString("X8"));
                     else
                     {
-                        // If found, try to start discovering.
-                        Res = FWatcher.Start(Radio);
-                        if (Res != wclErrors.WCL_E_SUCCESS)
-                        {
-                            // It is something wrong with discovering starting. Notify user about the error.
-                            MessageBox.Show("Unable to start discovering: 0x" + Res.ToString("X8"));
-                            // Also clean up found Radio variable so we can check it later.
-                            Radio = null;
-                        }
-                        else
-                        {
-                            btConnect.Enabled = false;
-                            btDisconnect.Enabled = true;
-                            laStatus.Text = "Searching...";
-                        }
+                        btConnect.Enabled = false;
+                        btDisconnect.Enabled = true;
+                        laStatus.Text = "Searching...";
                     }
                 }
 
                 // Again, check the found Radio.
-                if (Radio == null)
+                if (Res != wclErrors.WCL_E_SUCCESS)
+                {
                     // And if it is null (not found or discovering was not started
                     // close the Bluetooth Manager to release all the allocated resources.
                     FManager.Close();
+                    // Also clean up found Radio variable so we can check it later.
+                    Radio = null;
+                }
             }
         }
 

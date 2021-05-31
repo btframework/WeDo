@@ -212,31 +212,15 @@ namespace wclWeDoFramework
             Int32 Res = FManager.Open();
             if (Res == wclErrors.WCL_E_SUCCESS)
             {
-                if (FManager.Count == 0)
-                    Res = wclBluetoothErrors.WCL_E_BLUETOOTH_API_NOT_FOUND;
-                else
+                Res = FManager.GetLeRadio(out FRadio);
+                if (Res == wclErrors.WCL_E_SUCCESS)
                 {
-                    // Look for first available radio.
-                    for (int i = 0; i < FManager.Count; i++)
-                    {
-                        if (FManager[i].Available)
-                        {
-                            FRadio = FManager[i];
-                            break;
-                        }
-                    }
+                    // Try to start watching for HUBs.
+                    Res = FWatcher.Start(FRadio);
 
-                    if (FRadio == null)
-                        Res = wclBluetoothErrors.WCL_E_BLUETOOTH_RADIO_UNAVAILABLE;
-                    else
-                    {
-                        // Try to start watching for HUBs.
-                        Res = FWatcher.Start(FRadio);
-
-                        // If something went wrong we must clear the working radio objecy.
-                        if (Res != wclErrors.WCL_E_SUCCESS)
-                            FRadio = null;
-                    }
+                    // If something went wrong we must clear the working radio objecy.
+                    if (Res != wclErrors.WCL_E_SUCCESS)
+                        FRadio = null;
                 }
 
                 // If something went wrong we must close Bluetooth Manager
