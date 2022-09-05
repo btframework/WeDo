@@ -13,8 +13,8 @@
     <RootNamespace>Documentation</RootNamespace>
     <Name>Documentation</Name>
     <!-- SHFB properties -->
-    <FrameworkVersion>.NET Framework 4.5</FrameworkVersion>
-    <OutputPath>.\</OutputPath>
+    <FrameworkVersion>.NET Framework 4.0</FrameworkVersion>
+    <OutputPath>..\Help\</OutputPath>
     <HtmlHelpName>WeDoFramework</HtmlHelpName>
     <Language>en-US</Language>
     <HelpFileFormat>HtmlHelp1</HelpFileFormat>
