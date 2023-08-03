@@ -123,7 +123,7 @@ namespace wclWeDoFramework
         /// <seealso cref="Guid"/>
         /// <seealso cref="wclGattService"/>
         /// <seealso cref="wclGattCharacteristic"/>
-        protected Int32 FindCharactersitc(Guid Uuid, wclGattService? Service,
+        protected Int32 FindCharacteristic(Guid Uuid, wclGattService? Service,
             out wclGattCharacteristic? Characteristic)
         {
             Characteristic = null;

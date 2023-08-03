@@ -59,10 +59,10 @@ namespace wclWeDoFramework
             if (Res == wclErrors.WCL_E_SUCCESS)
             {
                 // These characteristics are not important so we can ignore errors if some was not found.
-                FindCharactersitc(WEDO_CHARACTERISTIC_FIRMWARE_REVISION, Service, out FFirmwareVersionChar);
-                FindCharactersitc(WEDO_CHARACTERISTIC_HARDWARE_REVISION, Service, out FHardwareVersionChar);
-                FindCharactersitc(WEDO_CHARACTERISTIC_SOFTWARE_REVISION, Service, out FSoftwareVersionChar);
-                FindCharactersitc(WEDO_CHARACTERISTIC_MANUFACTURER_NAME, Service, out FManufacturerNameChar);
+                FindCharacteristic(WEDO_CHARACTERISTIC_FIRMWARE_REVISION, Service, out FFirmwareVersionChar);
+                FindCharacteristic(WEDO_CHARACTERISTIC_HARDWARE_REVISION, Service, out FHardwareVersionChar);
+                FindCharacteristic(WEDO_CHARACTERISTIC_SOFTWARE_REVISION, Service, out FSoftwareVersionChar);
+                FindCharacteristic(WEDO_CHARACTERISTIC_MANUFACTURER_NAME, Service, out FManufacturerNameChar);
             }
             return Res;
         }

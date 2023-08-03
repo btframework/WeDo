@@ -332,13 +332,13 @@ namespace wclWeDoFramework
             if (Res == wclErrors.WCL_E_SUCCESS)
             {
                 // All the IO characteristics are important!
-                Res = FindCharactersitc(WEDO_CHARACTERISTIC_SENSOR_VALUE, Service, out FSensorValueChar);
+                Res = FindCharacteristic(WEDO_CHARACTERISTIC_SENSOR_VALUE, Service, out FSensorValueChar);
                 if (Res == wclErrors.WCL_E_SUCCESS)
-                    Res = FindCharactersitc(WEDO_CHARACTERISTIC_SENSOR_VALUE_FORMAT, Service, out FSensorValueFormatChar);
+                    Res = FindCharacteristic(WEDO_CHARACTERISTIC_SENSOR_VALUE_FORMAT, Service, out FSensorValueFormatChar);
                 if (Res == wclErrors.WCL_E_SUCCESS)
-                    Res = FindCharactersitc(WEDO_CHARACTERISTIC_INPUT_COMMAND, Service, out FInputCommandChar);
+                    Res = FindCharacteristic(WEDO_CHARACTERISTIC_INPUT_COMMAND, Service, out FInputCommandChar);
                 if (Res == wclErrors.WCL_E_SUCCESS)
-                    Res = FindCharactersitc(WEDO_CHARACTERISTIC_OUTPUT_COMMAND, Service, out FOutputCommandChar);
+                    Res = FindCharacteristic(WEDO_CHARACTERISTIC_OUTPUT_COMMAND, Service, out FOutputCommandChar);
                 if (Res == wclErrors.WCL_E_SUCCESS)
                 {
                     Res = SubscribeForNotifications(FSensorValueChar);

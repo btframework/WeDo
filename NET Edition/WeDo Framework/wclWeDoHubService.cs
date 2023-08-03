@@ -184,15 +184,15 @@ namespace wclWeDoFramework
             if (Res == wclErrors.WCL_E_SUCCESS)
             {
                 // The following characteristics are important so we have to check if they are present.
-                Res = FindCharactersitc(WEDO_CHARACTERISTIC_DEVICE_NAME, Service, out FDeviceNameChar);
+                Res = FindCharacteristic(WEDO_CHARACTERISTIC_DEVICE_NAME, Service, out FDeviceNameChar);
                 if (Res == wclErrors.WCL_E_SUCCESS)
-                    Res = FindCharactersitc(WEDO_CHARACTERISTIC_BUTTON_STATE, Service, out FButtonStateChar);
+                    Res = FindCharacteristic(WEDO_CHARACTERISTIC_BUTTON_STATE, Service, out FButtonStateChar);
                 if (Res == wclErrors.WCL_E_SUCCESS)
-                    Res = FindCharactersitc(WEDO_CHARACTERISTIC_IO_ATTACHED, Service, out FIoAttachedChar);
+                    Res = FindCharacteristic(WEDO_CHARACTERISTIC_IO_ATTACHED, Service, out FIoAttachedChar);
                 if (Res == wclErrors.WCL_E_SUCCESS)
-                    Res = FindCharactersitc(WEDO_CHARACTERISTIC_LOW_VOLTAGE_ALERT, Service, out FLowVoltageAlertChar);
+                    Res = FindCharacteristic(WEDO_CHARACTERISTIC_LOW_VOLTAGE_ALERT, Service, out FLowVoltageAlertChar);
                 if (Res == wclErrors.WCL_E_SUCCESS)
-                    Res = FindCharactersitc(WEDO_CHARACTERISTIC_TURN_OFF, Service, out FTurnOffChar);
+                    Res = FindCharacteristic(WEDO_CHARACTERISTIC_TURN_OFF, Service, out FTurnOffChar);
 
                 // Subscribe for mandatory chars.
                 if (Res == wclErrors.WCL_E_SUCCESS)
@@ -216,11 +216,11 @@ namespace wclWeDoFramework
                 // that previous characteristics (which are important) have been found.
                 if (Res == wclErrors.WCL_E_SUCCESS)
                 {
-                    FindCharactersitc(WEDO_CHARACTERISTIC_HIGH_CURRENT_ALERT, Service, out FHighCurrentAleartChar);
-                    FindCharactersitc(WEDO_CHARACTERISTIC_LOW_SIGNAL_ALERT, Service, out FLowSignalChar);
-                    FindCharactersitc(WEDO_CHARACTERISTIC_VCC_PORT_CONTROL, Service, out FVccPortChar);
-                    FindCharactersitc(WEDO_CHARACTERISTIC_BATTERY_TYPE, Service, out FBatteryTypeChar);
-                    FindCharactersitc(WEDO_CHARACTERISTIC_DEVICE_DISCONNECT, Service, out FDeviceDisconnectChar);
+                    FindCharacteristic(WEDO_CHARACTERISTIC_HIGH_CURRENT_ALERT, Service, out FHighCurrentAleartChar);
+                    FindCharacteristic(WEDO_CHARACTERISTIC_LOW_SIGNAL_ALERT, Service, out FLowSignalChar);
+                    FindCharacteristic(WEDO_CHARACTERISTIC_VCC_PORT_CONTROL, Service, out FVccPortChar);
+                    FindCharacteristic(WEDO_CHARACTERISTIC_BATTERY_TYPE, Service, out FBatteryTypeChar);
+                    FindCharacteristic(WEDO_CHARACTERISTIC_DEVICE_DISCONNECT, Service, out FDeviceDisconnectChar);
 
                     // Subscribe for optional chars.
                     if (FHighCurrentAleartChar != null)

@@ -62,7 +62,7 @@ namespace wclWeDoFramework
             Int32 Res = FindService(WEDO_SERVICE_BATTERY_LEVEL, out Service);
             if (Res == wclErrors.WCL_E_SUCCESS)
             {
-                Res = FindCharactersitc(WEDO_CHARACTERISTIC_BATTERY_LEVEL, Service, out FBatteryLevelChar);
+                Res = FindCharacteristic(WEDO_CHARACTERISTIC_BATTERY_LEVEL, Service, out FBatteryLevelChar);
                 if (Res == wclErrors.WCL_E_SUCCESS)
                 {
                     Res = SubscribeForNotifications(FBatteryLevelChar);
