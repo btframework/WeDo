@@ -86,10 +86,10 @@ type
     function GetRadio: TwclBluetoothRadio;
 
     procedure WatcherAdvertisementUuidFrame(Sender: TObject;
-      const Address: Int64; const Timestamp: Int64; const Rssi: ShortInt;
+      const Address: Int64; const Timestamp: Int64; const Rssi: SByte;
       const Uuid: TGUID);
     procedure WatcherAdvertisementFrameInformation(Sender: TObject;
-      const Address: Int64; const Timestamp: Int64; const Rssi: ShortInt;
+      const Address: Int64; const Timestamp: Int64; const Rssi: SByte;
       const Name: string; const PacketType: TwclBluetoothLeAdvertisementType;
       const Flags: TwclBluetoothLeAdvertisementFlags);
     procedure WatcherStarted(Sender: TObject);
@@ -326,7 +326,7 @@ begin
 end;
 
 procedure TwclWeDoWatcher.WatcherAdvertisementFrameInformation(Sender: TObject;
-  const Address: Int64; const Timestamp: Int64; const Rssi: ShortInt;
+  const Address: Int64; const Timestamp: Int64; const Rssi: SByte;
   const Name: string; const PacketType: TwclBluetoothLeAdvertisementType;
   const Flags: TwclBluetoothLeAdvertisementFlags);
 var
@@ -357,7 +357,7 @@ begin
 end;
 
 procedure TwclWeDoWatcher.WatcherAdvertisementUuidFrame(Sender: TObject;
-  const Address: Int64; const Timestamp: Int64; const Rssi: ShortInt;
+  const Address: Int64; const Timestamp: Int64; const Rssi: SByte;
   const Uuid: TGUID);
 var
   Hub: TWeDoHub;
