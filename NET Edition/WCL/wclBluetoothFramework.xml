@@ -996,6 +996,29 @@
             <param name="Data"> The frame raw data. The value can be <c>null</c> if
               there is no any data available in the frame. </param>
         </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoMicrosoftCdpBeaconFrame(System.Int64,System.Int64,System.SByte,wclBluetooth.wclBluetoothLeCdpBeaconScenarioType,System.Byte,wclBluetooth.wclBluetoothLeCdpBeaconDeviceType,System.Byte,System.Boolean,System.Boolean,wclBluetooth.wclBluetoothLeCdpBeaconExtendedDeviceStatus,System.Byte[],System.Byte[])">
+            <summary> Fires the <c>OnMicrosoftCdpBeaconFrame</c> event. </summary>
+            <param name="Address"> The Bluetooth LE advertiser's MAC
+              address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="ScenarioType"> The beacon scenario. </param>
+            <param name="Version"> The protocol version. </param>
+            <param name="DeviceType"> The device type. </param>
+            <param name="SubVersion"> The protocol subversion. </param>
+            <param name="ShareNearBy"> If <c>True</c> then the NearBy share setting
+              is everyone rather than only my devices. </param>
+            <param name="AddressAsDeviceId"> <c>True</c> indicates that the
+              Bluetooth address can be used as the device ID. </param>
+            <param name="ExtendedDeviceStatus"> The extended device status. </param>
+            <param name="Salt"> The beacon salt (4 random bytes). </param>
+            <param name="Hash"> SHA256 Hash of Salt plus Device Thumbprint. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeCdpBeaconScenarioType" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeCdpBeaconDeviceType" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeCdpBeaconExtendedDeviceStatus" />
+        </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoProximityBeaconFrame(System.Int64,System.Int64,System.SByte,System.UInt16,System.UInt16,System.UInt16,System.Guid,System.SByte,System.Byte[])">
             <summary> Fires the <c>OnProximityBeaconFrame</c> event. </summary>
             <param name="Address"> The Bluetooth LE advertiser's MAC
@@ -1023,39 +1046,17 @@
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.#ctor">
             <summary> Creates new component. </summary>
         </member>
-        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.Start(wclBluetooth.wclBluetoothRadio,wclBluetooth.wclBluetoothLeScanningMode,System.UInt16,System.UInt16)">
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.Start(wclBluetooth.wclBluetoothRadio)">
             <summary> Starts monitoring for Bluetooth LE Beacons. </summary>
             <param name="Radio"> The <see cref="T:wclBluetooth.wclBluetoothRadio" /> object used
               to communicate with a remote Bluetooth device. </param>
-            <param name="ScanningMode"> Specifies the Bluetooth LE scanning
-              mode. </param>
-            <param name="ScanInterval"> Specifies the Bluetooth LE scan in 0.625 ms
-              units. The value must be in range between
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MIN_SCAN_INTERVAL" /> and
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MAX_SCAN_INTERVAL" />. The default value is
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_DEFAULT_SCAN_INTERVAL" />. </param>
-            <param name="ScanWindow"> Specifies the Bluetooth LE scan window in
-              0.625 ms units. The value must be in range between
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MIN_SCAN_WINDOW" /> and
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MAX_SCAN_WINDOW" />. The default value is
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_DEFAULT_SCAN_WINDOW" />. The scan window must be
-              less or equal to <c>ScanInterval</c>. </param>
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
-            <remarks> <para> This feature is supported on Windows 10 with the
-              Microsoft Bluetooth drivers only. </para>
-              <para> If the method returns one of the following errors:
-              <see cref="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_CREATE_SCAN_PARAMS_SET_EVENT_FAILED" />,
-              <see cref="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_RADIO_INSTANCE_NOT_FOUND" />,
-              <see cref="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_OPEN_RADIO_FAILED" /> or
-              <see cref="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_SET_SCAN_PARAMS_FAILED" /> then simple
-              call this method with default scan parameters. </para> </remarks>
+            <remarks> This feature is supported on Windows 10 with the
+              Microsoft Bluetooth drivers only. If the method returns error try to
+              call this method with default scan parameters. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
-            <seealso cref="T:wclBluetooth.wclBluetoothLeScanningMode" />
-            <seealso cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MIN_SCAN_WINDOW" />
-            <seealso cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MAX_SCAN_WINDOW" />
-            <seealso cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_DEFAULT_SCAN_WINDOW" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.Stop">
             <summary> Stops monitoring for Bluetooth LE Beacons. </summary>
@@ -1064,6 +1065,20 @@
               the WCL error codes. </returns>
             <remarks> This feature is supported on Windows 10 with the Microsoft
               Bluetooth drivers only. </remarks>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.RestoreDefaults">
+            <summary> Restores the default scan parameters. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="P:wclBluetooth.wclBluetoothLeBeaconWatcher.AllowExtendedAdvertisements">
+            <summary> Gets and sets the Extended Advertisement receiving
+              flag. </summary>
+            <value> Set this parameter to <c>True</c> to enable receiving
+              advertisements of the Extended Advertising format can be
+              received. </value>
+            <exception cref="T:wclBluetooth.wclEBluetoothLeBeacon" />
         </member>
         <member name="P:wclBluetooth.wclBluetoothLeBeaconWatcher.Monitoring">
             <summary> Gets Beacon Monitoring state. </summary>
@@ -1076,21 +1091,25 @@
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
         </member>
         <member name="P:wclBluetooth.wclBluetoothLeBeaconWatcher.ScanInterval">
-            <summary> Gets the current scan interval value. </summary>
-            <value> The current scan interval. If the watcher is stopped the
-              returning value is always
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_DEFAULT_SCAN_INTERVAL" /> </value>
+            <summary> Gets and sets the current scan interval value. </summary>
+            <value> Specifies the Bluetooth LE scan in 0.625 ms units. The value
+              must be in range between 4 and 16384. </value>
+            <exception cref="T:wclCommon.wclEInvalidArgument" />
+            <exception cref="T:wclBluetooth.wclEBluetoothLeBeacon" />
         </member>
         <member name="P:wclBluetooth.wclBluetoothLeBeaconWatcher.ScanningMode">
-            <summary> Gets the current scanning mode. </summary>
+            <summary> Gets and sets the current scanning mode. </summary>
             <value> The Bluetooth LE scanning mode. </value>
             <seealso cref="T:wclBluetooth.wclBluetoothLeScanningMode" />
+            <exception cref="T:wclBluetooth.wclEBluetoothLeBeacon" />
         </member>
         <member name="P:wclBluetooth.wclBluetoothLeBeaconWatcher.ScanWindow">
-            <summary> Gets the current scan window value. </summary>
-            <value> The current scan window. If the watcher is stopped the
-              returning value is always
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_DEFAULT_SCAN_WINDOW" /> </value>
+            <summary> Gets and sets the current scan window value. </summary>
+            <value> Specifies the Bluetooth LE scan window in 0.625 ms units.
+              The value must be in range between 4 and 16384. The scan window must
+              be less or equal to <c>ScanInterval</c>. </value>
+            <exception cref="T:wclCommon.wclEInvalidArgument" />
+            <exception cref="T:wclBluetooth.wclEBluetoothLeBeacon" />
         </member>
         <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAdvertisementAppearanceFrame">
             <summary> The event fires when an appearance advertisement frame
@@ -1186,6 +1205,11 @@
             <summary> The event fires when an unknown or unsupported manufacturer
               specific Bluetooth LE advertisement frame received. </summary>
             <seealso cref="T:wclBluetooth.wclBluetoothLeManufacturerRawFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnMicrosoftCdpBeaconFrame">
+            <summary> The event fires when Microsoft CDP Beacon frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeMicrosoftCdpBeaconFrameEvent" />
         </member>
         <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnProximityBeaconFrame">
             <summary> The event fires when a Bluetooth LE proximity beacon
@@ -1453,6 +1477,29 @@
             <param name="Data"> The frame raw data. The value can be <c>null</c> if
               there is no any data available in the frame. </param>
         </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoMicrosoftCdpBeaconFrame(System.Int64,System.Int64,System.SByte,wclBluetooth.wclBluetoothLeCdpBeaconScenarioType,System.Byte,wclBluetooth.wclBluetoothLeCdpBeaconDeviceType,System.Byte,System.Boolean,System.Boolean,wclBluetooth.wclBluetoothLeCdpBeaconExtendedDeviceStatus,System.Byte[],System.Byte[])">
+            <summary> Fires the <c>OnMicrosoftCdpBeaconFrame</c> event. </summary>
+            <param name="Address"> The Bluetooth LE advertiser's MAC
+              address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="ScenarioType"> The beacon scenario. </param>
+            <param name="Version"> The protocol version. </param>
+            <param name="DeviceType"> The device type. </param>
+            <param name="SubVersion"> The protocol subversion. </param>
+            <param name="ShareNearBy"> If <c>True</c> then the NearBy share setting
+              is everyone rather than only my devices. </param>
+            <param name="AddressAsDeviceId"> <c>True</c> indicates that the
+              Bluetooth address can be used as the device ID. </param>
+            <param name="ExtendedDeviceStatus"> The extended device status. </param>
+            <param name="Salt"> The beacon salt (4 random bytes). </param>
+            <param name="Hash"> SHA256 Hash of Salt plus Device Thumbprint. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeCdpBeaconScenarioType" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeCdpBeaconDeviceType" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeCdpBeaconExtendedDeviceStatus" />
+        </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoProximityBeaconFrame(System.Int64,System.Int64,System.SByte,System.UInt16,System.UInt16,System.UInt16,System.Guid,System.SByte,System.Byte[])">
             <summary> Fires the <c>OnProximityBeaconFrame</c> event. </summary>
             <param name="Address"> The Bluetooth LE advertiser's MAC
@@ -1507,36 +1554,29 @@
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
             <exception cref="T:wclCommon.wclECritical" />
         </member>
-        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.Start(wclBluetooth.wclBluetoothLeScanningMode,System.UInt16,System.UInt16)">
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.Start(System.Boolean,System.UInt16,wclBluetooth.wclBluetoothLeScanningMode,System.UInt16)">
             <summary> Starts monitoring for Bluetooth LE Beacons. </summary>
+            <param name="AllowExtendedAdvertisements"> Set this parameter to
+              <c>true</c> to enable receiving advertisements of the Extended
+              Advertising format can be received. If this parameter set to
+              <c>true</c> and a hardware or OS does not support Extended
+              Advertisements the
+              <see cref="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_EXT_ADV_NOT_SUPPORTED" /> error will
+              be returned. </param>
+            <param name="ScanInterval"> Specifies the Bluetooth LE scan in 0.625 ms
+              units. The value must be in range between 4 and 16384. </param>
             <param name="ScanningMode"> Specifies the Bluetooth LE scanning
               mode. </param>
-            <param name="ScanInterval"> Specifies the Bluetooth LE scan in 0.625 ms
-              units. The value must be in range between
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MIN_SCAN_INTERVAL" /> and
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MAX_SCAN_INTERVAL" />. The default value is
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_DEFAULT_SCAN_INTERVAL" />. </param>
             <param name="ScanWindow"> Specifies the Bluetooth LE scan window in
-              0.625 ms units. The value must be in range between
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MIN_SCAN_WINDOW" /> and
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MAX_SCAN_WINDOW" />. The default value is
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_DEFAULT_SCAN_WINDOW" />. The scan window must be
-              less or equal to <c>ScanInterval</c>. </param>
+              0.625 ms units. The value must be in range between 4 and 16384. The
+              scan window must be less or equal to <c>ScanInterval</c>. </param>
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
-            <remarks> <para> This feature is supported on Windows 10 with the
-              Microsoft Bluetooth drivers only. </para>
-              <para> If the method returns one of the following errors:
-              <see cref="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_CREATE_SCAN_PARAMS_SET_EVENT_FAILED" />,
-              <see cref="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_RADIO_INSTANCE_NOT_FOUND" />,
-              <see cref="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_OPEN_RADIO_FAILED" /> or
-              <see cref="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_SET_SCAN_PARAMS_FAILED" /> then simple
-              call this method with default scan parameters. </para> </remarks>
+            <remarks> This feature is supported on Windows 10 with the
+              Microsoft Bluetooth drivers only. If the method returns error try to
+              call this method with default scan parameters. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothLeScanningMode" />
-            <seealso cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MIN_SCAN_WINDOW" />
-            <seealso cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MAX_SCAN_WINDOW" />
-            <seealso cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_DEFAULT_SCAN_WINDOW" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.Stop">
             <summary> Stops monitoring for Bluetooth LE Beacons. </summary>
@@ -1545,6 +1585,11 @@
               the WCL error codes. </returns>
             <remarks> This feature is supported on Windows 10 with the Microsoft
               Bluetooth drivers only. </remarks>
+        </member>
+        <member name="P:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.AllowExtendedAdvertisements">
+            <summary> Gets the Extended Advertisement receiving flag. </summary>
+            <value> <c>true</c> if the receiving the Extended Advertisement is
+              enabled. <c>false</c> otherwise. </value>
         </member>
         <member name="P:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.Monitoring">
             <summary> Gets Beacon Monitoring state. </summary>
@@ -1558,9 +1603,7 @@
         </member>
         <member name="P:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.ScanInterval">
             <summary> Gets the current scan interval value. </summary>
-            <value> The current scan interval. If the watcher is stopped the
-              returning value is always
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_DEFAULT_SCAN_INTERVAL" /> </value>
+            <value> The current scan interval. </value>
         </member>
         <member name="P:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.ScanningMode">
             <summary> Gets the current scanning mode. </summary>
@@ -1569,9 +1612,7 @@
         </member>
         <member name="P:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.ScanWindow">
             <summary> Gets the current scan window value. </summary>
-            <value> The current scan window. If the watcher is stopped the
-              returning value is always
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_DEFAULT_SCAN_WINDOW" /> </value>
+            <value> The current scan window. </value>
         </member>
         <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAdvertisementAppearanceFrame">
             <summary> The event fires when an appearance advertisement frame
@@ -1667,6 +1708,11 @@
             <summary> The event fires when an unknown or unsupported manufacturer
               specific Bluetooth LE advertisement frame received. </summary>
             <seealso cref="T:wclBluetooth.wclBluetoothLeManufacturerRawFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnMicrosoftCdpBeaconFrame">
+            <summary> The event fires when Microsoft CDP Beacon frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeMicrosoftCdpBeaconFrameEvent" />
         </member>
         <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnProximityBeaconFrame">
             <summary> The event fires when a Bluetooth LE proximity beacon
@@ -2704,24 +2750,28 @@
         <member name="M:wclBluetooth.wclBluetoothLeAdvertiserConnection.Finalize">
             <summary> Frees the object. </summary>
         </member>
-        <member name="M:wclBluetooth.wclBluetoothLeAdvertiserConnection.Start(System.Collections.Generic.List{wclBluetooth.wclBluetoothLeAdvertisement},System.UInt16)">
+        <member name="M:wclBluetooth.wclBluetoothLeAdvertiserConnection.Start(System.Collections.Generic.List{wclBluetooth.wclBluetoothLeAdvertisement},System.UInt16,System.Boolean,System.Boolean,System.Boolean,System.SByte)">
             <summary> Starts Bluetooth LE Advertising. </summary>
             <param name="Advertisements"> The Bluetooth LE Advertisements
               list. </param>
             <param name="Interval"> An advertising interval in 0.625 ms
-              units. The value must be in range between
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MIN_ADVERTISING_INTERVAL" /> and
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MAX_ADVERTISING_INTERVAL" />. The default value is
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_DEFAULT_ADVERTISING_INTERVAL" />. </param>
+              units. The value must be in range between 32 and 16384. </param>
+            <param name="UseExtendedAdvertisement"> Specifies that the advertisement
+              publisher should use the Extended Advertising format. </param>
+            <param name="Anonymous"> Specifies whether or not the device address is
+              included in the advertisement header. </param>
+            <param name="IncludeTxRssi"> Specifies whether the transmit power level
+              is included in the advertisement header. </param>
+            <param name="PreferredTxRssi"> If specified, requests that the radio use
+              the indicated transmit power level for the advertisement. The
+              requested power level in dDm at range between -100 dBm and +20 for the
+              radio transmission. </param>
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
             <remarks> This feature is supported on Windows 10 with the Microsoft
               Bluetooth drivers only. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisement" />
-            <seealso cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MIN_ADVERTISING_INTERVAL" />
-            <seealso cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MAX_ADVERTISING_INTERVAL" />
-            <seealso cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_DEFAULT_ADVERTISING_INTERVAL" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeAdvertiserConnection.Stop">
             <summary> Stops Bluetooth LE Advertising. </summary>
@@ -2740,71 +2790,37 @@
             <summary> Gets advertising state. </summary>
             <value> <c>True</c> if advertising is running. </value>
         </member>
-        <member name="P:wclBluetooth.wclBluetoothLeAdvertiserConnection.Interval">
-            <summary> Gets the advertising interval. </summary>
-            <value> The advertising interval in 0.625ms units. </value>
-        </member>
         <member name="P:wclBluetooth.wclBluetoothLeAdvertiserConnection.Radio">
             <summary> Gets the connection owner. </summary>
             <value> The <see cref="T:wclBluetooth.wclBluetoothRadio" /> object owns the
               connection. </value>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
         </member>
+        <member name="P:wclBluetooth.wclBluetoothLeAdvertiserConnection.Interval">
+            <summary> Gets the advertising interval. </summary>
+            <value> The advertising interval in 0.625ms units. </value>
+        </member>
         <member name="P:wclBluetooth.wclBluetoothLeAdvertiserConnection.Anonymous">
-            <summary> Specifies whether or not the device address is included in the
-              advertisement header. By default, the address is included. </summary>
-            <value> Indicates whether the device address is hidden. The default
-              value is <c>False</c>, indicating that the address is
-              included. </value>
-            <remarks> <para> The Extended Advertising format must be enabled by
-              setting the <c>UseExtendedAdvertisement</c> to <c>True</c> to use this
-              property. If the <c>UseExtendedAdvertisement</c> is <c>False</c> the
-              value of this property is ignored. </para>
-              <para> If the advertiser is running and an application changes the
-              property the <see cref="T:wclBluetooth.wclEBluetoothLeBeacon" /> exception
-              raises. </para> </remarks>
-            <exception cref="T:wclBluetooth.wclEBluetoothLeBeacon" />
+            <summary> Gets if the device address is included in the advertisement
+              header. </summary>
+            <value> Indicates whether the device address is hidden. </value>
         </member>
         <member name="P:wclBluetooth.wclBluetoothLeAdvertiserConnection.IncludeTxRssi">
-            <summary> Specifies whether the transmit power level is included in
-              the advertisement header. </summary>
-            <value> Indicates whether the transmit power level is included. The
-              default value is <c>False</c>. </value>
-            <remarks> <para> The Extended Advertising format must be enabled by
-              setting the <c>UseExtendedAdvertisement</c> to <c>True</c> to use this
-              property. If the <c>UseExtendedAdvertisement</c> is <c>False</c> the
-              value of this property is ignored. </para>
-              <para> If the advertiser is running and an application changes the
-              property the <see cref="T:wclBluetooth.wclEBluetoothLeBeacon" /> exception
-              raises. </para> </remarks>
-            <exception cref="T:wclBluetooth.wclEBluetoothLeBeacon" />
+            <summary> Gets if the transmit power level is included in the
+              advertisement header. </summary>
+            <value> Indicates whether the transmit power level is included. </value>
         </member>
         <member name="P:wclBluetooth.wclBluetoothLeAdvertiserConnection.PreferredTxRssi">
             <summary> If specified, requests that the radio use the indicated
               transmit power level for the advertisement. </summary>
             <value> The requested power level in dDm at range between -100
-              dBm and +20 for the radio transmission. The default is -127 indicating
-              that this feature is disabled. If the parameter is out of range the
-              <see cref="T:wclCommon.wclEInvalidArgument" /> exception raises.</value>
-            <remarks> <para> Enabling the Extended Advertising format is necessary
-              to enable several other related properties. </para>
-             <para> If the advertiser is running and an application changes the
-              property the <see cref="T:wclBluetooth.wclEBluetoothLeBeacon" /> exception
-              raises. </para> </remarks>
-            <exception cref="T:wclCommon.wclEInvalidArgument" />
-            <exception cref="T:wclBluetooth.wclEBluetoothLeBeacon" />
+              dBm and +20 for the radio transmission. </value>
         </member>
         <member name="P:wclBluetooth.wclBluetoothLeAdvertiserConnection.UseExtendedAdvertisement">
             <summary> Specifies that the advertisement publisher should use the
               Extended Advertising format. </summary>
             <value> Indicates whether or not the Extended Advertising format should
-              be used. The default value is <c>False</c>. </value>
-            <remarks> <para> Enabling the Extended Advertising format is necessary
-              to enable several other related properties. </para>
-             <para> If the advertiser is running and an application changes the
-              property the <see cref="T:wclBluetooth.wclEBluetoothLeBeacon" /> exception
-              raises. </para> </remarks>
-            <exception cref="T:wclBluetooth.wclEBluetoothLeBeacon" />
+              be used. </value>
         </member>
         <member name="E:wclBluetooth.wclBluetoothLeAdvertiserConnection.OnStarted">
             <summary> The event fires when the Bluetooth LE advertising
@@ -3208,8 +3224,7 @@
         <member name="M:wclBluetooth.wclWiiRemoteClientConnection.Connect(System.Int64,System.UInt32)">
             <summary> Connects to a remote device. </summary>
             <param name="Address"> The remote Bluetooth device address. </param>
-            <param name="Timeout"> The connect timeout in milliseconds. The
-              default value is 10000 milliseconds. </param>
+            <param name="Timeout"> The connect timeout in milliseconds. </param>
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
@@ -3419,39 +3434,6 @@
               <see cref="T:wclCommon.wclECritical" /> exception raises. </para> </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
             <exception cref="T:wclCommon.wclECritical" />
-        </member>
-        <member name="T:wclBluetooth.wclBluetoothConstants">
-            <summary> Some useful constants. </summary>
-        </member>
-        <member name="F:wclBluetooth.wclBluetoothConstants.WCL_WII_REMOTE_REPORT_LENGTH">
-            <summary> Wii Remote HID report length. </summary>
-        </member>
-        <member name="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MIN_SCAN_INTERVAL">
-            <summary> The minimum allowed scan interval value (2.5ms) </summary>
-        </member>
-        <member name="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MAX_SCAN_INTERVAL">
-            <summary> The maximum allowed scan interval value (10.24s) </summary>
-        </member>
-        <member name="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_DEFAULT_SCAN_INTERVAL">
-            <summary> Default BLE scan interval value (118.125ms). </summary>
-        </member>
-        <member name="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MIN_SCAN_WINDOW">
-            <summary> The minimum allowed scan window value (2.5ms) </summary>
-        </member>
-        <member name="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MAX_SCAN_WINDOW">
-            <summary> The maximum allowed scan window value (10.24s) </summary>
-        </member>
-        <member name="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_DEFAULT_SCAN_WINDOW">
-            <summary> Default BLE scan window value (18.125ms). </summary>
-        </member>
-        <member name="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MIN_ADVERTISING_INTERVAL">
-            <summary> The minimum allowed advertising interval (20ms) </summary>
-        </member>
-        <member name="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MAX_ADVERTISING_INTERVAL">
-            <summary> The maximum allowed advertising interval (10.24s) </summary>
-        </member>
-        <member name="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_DEFAULT_ADVERTISING_INTERVAL">
-            <summary> Default BLE advertising interval (100ms). </summary>
         </member>
         <member name="T:wclBluetooth.wclBluetoothConfirmEvent">
             <summary> The <c>OnConfirm</c> event handler prototype. </summary>
@@ -3973,6 +3955,30 @@
               distance. </param>
             <param name="Data"> The additional frame data. </param>
         </member>
+        <member name="T:wclBluetooth.wclBluetoothLeMicrosoftCdpBeaconFrameEvent">
+            <summary> The <c>OnMicrosoftCdpBeaconFrame</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Address"> The Bluetooth LE advertiser's MAC address. </param>
+            <param name="Timestamp"> The frame's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="ScenarioType"> The beacon scenario. </param>
+            <param name="Version"> The protocol version. </param>
+            <param name="DeviceType"> The device type. </param>
+            <param name="SubVersion"> The protocol subversion. </param>
+            <param name="ShareNearBy"> If <c>True</c> then the NearBy share setting is
+              everyone rather than only my devices. </param>
+            <param name="AddressAsDeviceId"> <c>True</c> indicates that the Bluetooth
+              address can be used as the device ID. </param>
+            <param name="ExtendedDeviceStatus"> The extended device status. </param>
+            <param name="Salt"> The beacon salt (4 random bytes). </param>
+            <param name="Hash"> SHA256 Hash of Salt plus Device Thumbprint. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeCdpBeaconScenarioType" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeCdpBeaconDeviceType" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeCdpBeaconExtendedDeviceStatus" />
+        </member>
         <member name="T:wclBluetooth.wclBleSnifferAdvDirectIndReceivedEvent">
             <summary> The BLE sniffer <c>OnAdvDirectIndReceived</c> event handler
               prototype. </summary>
@@ -4177,6 +4183,54 @@
         </member>
         <member name="F:wclBluetooth.wclBluetoothApi.baBled112">
             <summary> Silicon Labs BLED112 module. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothVersion">
+            <summary> Bluetooth versions. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothVersion.bt10">
+            <summary> Bluetooth 1.0b. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothVersion.bt11">
+            <summary> Bluetooth 1.1. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothVersion.bt12">
+            <summary> Bluetooth 1.2. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothVersion.bt20">
+            <summary> Bluetooth 2.0 + EDR. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothVersion.bt21">
+            <summary> Bluetooth 2.1 + EDR. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothVersion.bt30">
+            <summary> Bluetooth 3.0 + HS. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothVersion.bt40">
+            <summary> Bluetooth 4.0. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothVersion.bt41">
+            <summary> Bluetooth 4.1. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothVersion.bt42">
+            <summary> Bluetooth 4.2. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothVersion.bt50">
+            <summary> Bluetooth 5.0. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothVersion.bt51">
+            <summary> Bluetooth 5.1. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothVersion.bt52">
+            <summary> Bluetooth 5.2. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothVersion.bt53">
+            <summary> Bluetooth 5.3. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothVersion.bt54">
+            <summary> Bluetooth 5.4. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothVersion.btOther">
+            <summary> Other Bluetooth version. </summary>
         </member>
         <member name="T:wclBluetooth.wclBluetoothDeviceType">
             <summary> A remote device types. </summary>
@@ -4795,6 +4849,65 @@
         <member name="F:wclBluetooth.wclBluetoothConnectionType.ctWiiRemote">
             <summary> Wii Remote controller client connection. </summary>
         </member>
+        <member name="T:wclBluetooth.wclBluetoothLeCdpBeaconDeviceType">
+            <summary> The Microsoft CDP Beacon device type. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeCdpBeaconDeviceType.dtXboxOne">
+            <summary> Xbox One. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeCdpBeaconDeviceType.dtiPhone">
+            <summary> Apple iPhone. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeCdpBeaconDeviceType.dtiPad">
+            <summary> Apple iPad. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeCdpBeaconDeviceType.dtAndroid">
+            <summary> Android device. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeCdpBeaconDeviceType.dtWindowsDesktop">
+            <summary> Windows 10 Desktop. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeCdpBeaconDeviceType.dtWindowsPhone">
+            <summary> Windows 10 Phone. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeCdpBeaconDeviceType.dtLinux">
+            <summary> Linux device. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeCdpBeaconDeviceType.dtWindowsIoT">
+            <summary> Windows IoT. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeCdpBeaconDeviceType.dtSurfaceHub">
+            <summary> Surface Hub. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeCdpBeaconDeviceType.dtWindowsLaptop">
+            <summary> Windows laptop. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeCdpBeaconDeviceType.dtWindowsTablet">
+            <summary> Windows tablet. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeCdpBeaconScenarioType">
+            <summary> The Microsoft CDP Beacon scenario type. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeCdpBeaconScenarioType.stBluetooth">
+            <summary> Bluetooth scenario. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeCdpBeaconExtendedDeviceStatus">
+            <summary> The Microsoft CDP Beacon extended device status. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeCdpBeaconExtendedDeviceStatus.edsRemoteSessionsHosted">
+            <summary> Hosted by remote session. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeCdpBeaconExtendedDeviceStatus.edsRemoteSessionsNotHosted">
+            <summary> Indicates the device does not have session hosting status
+              available. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeCdpBeaconExtendedDeviceStatus.edsNearShareAuthPolicySameUser">
+            <summary> Indicates the device supports NearShare if the user is the
+              same for the other device. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeCdpBeaconExtendedDeviceStatus.edsNearShareAuthPolicyPermissive">
+            <summary> Indicates the device supports NearShare. </summary>
+        </member>
         <member name="T:wclBluetooth.wclBluetoothErrors">
             <summary> The static class contains the Bluetooth Error Codes. </summary>
         </member>
@@ -5365,6 +5478,33 @@
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_OPEN_RADIO_FAILED">
             <summary> Unable to open a Bluetooth Radio driver. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_OPEN_RADIO_INVALID_DRIVER">
+            <summary> Invalid Bluetooth Radio driver instance name. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_OPEN_RADIO_INVALID_PATH">
+            <summary> Invalid Bluetooth Radio driver instance path. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_OPEN_RADIO_ACCESS_DENIED">
+            <summary> An application does not have enough rights to open Bluetooth
+              Radio driver. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_OPEN_RADIO_DEVICE_NOT_FOUND">
+            <summary> Bluetooth Radio driver not found or not working. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_OPEN_RADIO_IN_USE">
+            <summary> The Bluetooth Radio driver is already in use by other
+              application. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_OPEN_RADIO_INVALID_PARAM">
+            <summary> Invalid parameters specified in Bluetooth Radio driver open
+              request. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_OPEN_RADIO_INVALID_NAME">
+            <summary> Invalid Bluetooth Radio driver name. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_OPEN_RADIO_COUNT_LIMIT">
+            <summary> Too many opened Bluetooth Radio driver instances. </summary>
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_BASE">
             <summary> The base error code for Bluetooth Low Energy. </summary>
@@ -5940,11 +6080,11 @@
             <summary> Unable to set GATT local characteristic subscribed clients
               changed event handler. </summary>
         </member>
-        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_GATT_SERVER_GET_CLIENTS_LIST_FAILED">
-            <summary> Unable to get list of the characteristic's subscribed clients. </summary>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_UNSUBSCRIBE_FAILED">
+            <summary> Unable to start unsubscribing thread. </summary>
         </member>
-        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_GATT_SERVER_GET_CLIENTS_COUNT_FAILED">
-            <summary> Unable to get number of subscribed clients. </summary>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_INVALID_CONNECTION_PARAMETERS_VALUE">
+            <summary> One or more connection parameter values are not valid. </summary>
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_GATT_SERVER_CHARACTERISTIC_NOT_NOTIFIABLE">
             <summary> Characteristic is not notifiable or indicatable. </summary>
@@ -6050,7 +6190,7 @@
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_EXT_ADV_NOT_SUPPORTED">
             <summary> The extended advertisement properties are not supported.
               Set the <c>UseExtendedAdvertisement</c> property of the
-              <c>TwclBluetoothLeAdvertiser</c> component to <c>False</c> and
+              <c>wclBluetoothLeAdvertiser</c> component to <c>False</c> and
               try to restart the advertisement. </summary>
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_SET_EXT_ADV_FAILED">
@@ -6149,8 +6289,8 @@
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_SUBSCRIBE_FAILED">
             <summary> Unable to start subscribing thread. </summary>
         </member>
-        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_UNSUBSCRIBE_FAILED">
-            <summary> Unable to start unsubscribing thread. </summary>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_GATT_SERVER_NO_SUBSCRIBED_CLIENTS">
+            <summary> No subscribed clients found. </summary>
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_BASE">
             <summary> The base error code for Wii Remote errors. </summary>
@@ -6447,6 +6587,7 @@
               When connection operation completed the <c>OnConnected</c> event will
               fire. The operation result will be passed into the <c>OnConnected</c>
               event. </remarks>
+            <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
         </member>
         <member name="M:wclBluetooth.wclGattClient.Disconnect">
             <summary> Disconnects from a remote device. </summary>
@@ -7195,7 +7336,9 @@
         <member name="M:wclBluetooth.wclGattLocalCharacteristic.HalNotify(System.Int64,System.Byte[])">
             <summary> The function implements a driver specific code to send
               notification to the given subscribed client. </summary>
-            <param name="Address"> The client's MAC address. </param>
+            <param name="Address"> The client's MAC address. If the address
+              parameter is <c>0</c> the notification must be sent to all
+              subscribed clients. </param>
             <param name="Data"> The notification data. </param>
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
@@ -7218,6 +7361,13 @@
             <seealso cref="T:wclBluetooth.wclGattUuid" />
             <seealso cref="T:wclBluetooth.wclGattLocalCharacteristicParameters" />
             <exception cref="T:wclCommon.wclECritical" />
+        </member>
+        <member name="M:wclBluetooth.wclGattLocalCharacteristic.Notify(System.Byte[])">
+            <summary> Sends notification to all subscribed clients. </summary>
+            <param name="Data"> The notification data. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
         </member>
         <member name="M:wclBluetooth.wclGattLocalCharacteristic.Notify(System.Int64,System.Byte[])">
             <summary> Sends notification to the given subscribed client. </summary>
@@ -7943,24 +8093,22 @@
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
         </member>
-        <member name="M:wclBluetooth.wclBluetoothLeAdvertiser.Start(wclBluetooth.wclBluetoothRadio,System.UInt16)">
+        <member name="M:wclBluetooth.wclBluetoothLeAdvertiser.Start(wclBluetooth.wclBluetoothRadio)">
             <summary> Starts advertising. </summary>
             <param name="Radio"> The <see cref="T:wclBluetooth.wclBluetoothRadio" /> object used
               to communicate with a remote Bluetooth device. </param>
-            <param name="Interval"> An advertising interval in 0.625 ms
-              units. The value must be in range between
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MIN_ADVERTISING_INTERVAL" /> and
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MAX_ADVERTISING_INTERVAL" />. The default value is
-              <see cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_DEFAULT_ADVERTISING_INTERVAL" />. </param>
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
             <remarks> This feature is supported on Windows 10 with the Microsoft
               Bluetooth drivers only. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
-            <seealso cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MIN_ADVERTISING_INTERVAL" />
-            <seealso cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_MAX_ADVERTISING_INTERVAL" />
-            <seealso cref="F:wclBluetooth.wclBluetoothConstants.WCL_BLE_DEFAULT_ADVERTISING_INTERVAL" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeAdvertiser.RestoreDefaults">
+            <summary> Restores the default advertising parameters. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeAdvertiser.Stop">
             <summary> Stops advertising. </summary>
@@ -7988,8 +8136,11 @@
             <value> The number of the Bluetooth LE advertisements. </value>
         </member>
         <member name="P:wclBluetooth.wclBluetoothLeAdvertiser.Interval">
-            <summary> Gets the advertising interval. </summary>
-            <value> The advertising interval in 0.625ms units. </value>
+            <summary> Gets and sets the advertising interval. </summary>
+            <value> The advertising interval in 0.625ms units. The value must be in
+              range between 32 and 16384. </value>
+            <exception cref="T:wclCommon.wclEInvalidArgument" />
+            <exception cref="T:wclBluetooth.wclEBluetoothLeBeacon" />
         </member>
         <member name="P:wclBluetooth.wclBluetoothLeAdvertiser.Radio">
             <summary> Gets the advertiser owner. </summary>
@@ -9721,6 +9872,15 @@
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
         </member>
+        <member name="M:wclBluetooth.wclBluetoothRadio.GetBluetoothVersion(wclBluetooth.wclBluetoothVersion@)">
+            <summary> Gets the radio Bluetooth version. </summary>
+            <param name="Version"> If the method completed with success on output
+              contains the Radio's Bluetooth version. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <seealso cref="T:wclBluetooth.wclBluetoothVersion" />
+        </member>
         <member name="M:wclBluetooth.wclBluetoothRadio.GetCod(System.UInt32@)">
             <summary> Reads the local Bluetooth Radio Class Of Device
               (COD). </summary>
@@ -9777,7 +9937,9 @@
                       <para> 9 - Bluetooth Core Specification 5.0 </para>
                       <para> 10 - Bluetooth Core Specification 5.1 </para>
                       <para> 11 - Bluetooth Core Specification 5.2 </para>
-                      <para> 12-255 - Reserved </para> </remarks>
+                      <para> 12 - Bluetooth Core Specification 5.3 </para>
+                      <para> 13 - Bluetooth Core Specification 5.4 </para>
+                      <para> 14-255 - Reserved </para> </remarks>
         </member>
         <member name="M:wclBluetooth.wclBluetoothRadio.GetLmpVersion(System.Byte@,System.UInt16@)">
             <summary> Reads the LMP version of the local Radio module. </summary>
@@ -9799,7 +9961,9 @@
                       <para> 9 - Bluetooth Core Specification 5.0 </para>
                       <para> 10 - Bluetooth Core Specification 5.1 </para>
                       <para> 11 - Bluetooth Core Specification 5.2 </para>
-                      <para> 12–255 - Reserved </para> </remarks>
+                      <para> 12 - Bluetooth Core Specification 5.3 </para>
+                      <para> 13 - Bluetooth Core Specification 5.4 </para>
+                      <para> 14-255 - Reserved </para> </remarks>
         </member>
         <member name="M:wclBluetooth.wclBluetoothRadio.GetManufacturer(System.UInt16@)">
             <summary> Reads the Bluetooth Radio manufacturer ID. </summary>

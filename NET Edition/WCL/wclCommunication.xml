@@ -1740,7 +1740,7 @@
         </member>
         <member name="T:wclCommunication.wclObexOppClient">
             <summary> The data processor implements the OBEX Object Push Profile
-              client. </summary>
+              (OPP) client. </summary>
             <seealso cref="T:wclCommunication.wclObexFileClient" />
         </member>
         <member name="M:wclCommunication.wclObexOppClient.#ctor(wclCommunication.wclClientDataConnection)">
@@ -1854,7 +1854,7 @@
         </member>
         <member name="T:wclCommunication.wclObexFtpClient">
             <summary> The data processor implements the OBEX File Transfer Profile
-              client. </summary>
+              (FTP) client. </summary>
             <seealso cref="T:wclCommunication.wclObexFileClient" />
         </member>
         <member name="M:wclCommunication.wclObexFtpClient.DoGetComplete(System.Int32,System.String,System.IO.Stream)">
@@ -2321,7 +2321,7 @@
         </member>
         <member name="T:wclCommunication.wclObexOppServer">
             <summary> The data processor implements the OBEX Object Push Profile
-              server. </summary>
+              (OPP) server. </summary>
             <seealso cref="T:wclCommunication.wclCustomObexServer" />
         </member>
         <member name="M:wclCommunication.wclObexOppServer.DoConnect(System.Guid,System.Guid,System.String)">
