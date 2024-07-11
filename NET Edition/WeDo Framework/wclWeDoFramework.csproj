@@ -46,6 +46,10 @@
     <Reference Include="wclCommunication">
       <HintPath>..\..\..\..\..\WCL7\NET\Lib\netframework\wclCommunication.dll</HintPath>
     </Reference>
+    <Reference Include="wclDri, Version=7.0.0.0, Culture=neutral, PublicKeyToken=5f93920b964d5575, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WCL\wclDri.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

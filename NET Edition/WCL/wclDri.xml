@@ -1,0 +1,637 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>wclDri</name>
+    </assembly>
+    <members>
+        <member name="T:wclDri.wclDriVendor">
+            <summary> The enumeration defines supported Drone Remote ID
+              vendors. </summary>
+        </member>
+        <member name="F:wclDri.wclDriVendor.driAsd">
+            <summary> ASD-STAN. </summary>
+        </member>
+        <member name="T:wclDri.wclDriMessage">
+            <summary> The base class for Drone Remote ID messages. </summary>
+        </member>
+        <member name="M:wclDri.wclDriMessage.#ctor(System.Byte[],wclDri.wclDriVendor)">
+            <summary> Creates new DRI message object. </summary>
+            <param name="Data"> The raw DRI message data. </param>
+            <param name="Vendor"> The DRI system vendor ID. </param>
+            <seealso cref="T:wclDri.wclDriVendor" />
+        </member>
+        <member name="P:wclDri.wclDriMessage.Data">
+            <summary> Gets the message raw data. </summary>
+            <value> The raw bytes array. </value>
+        </member>
+        <member name="P:wclDri.wclDriMessage.Vendor">
+            <summary> Gets the vendor ID. </summary>
+            <value> The vendor ID. </value>
+            <seealso cref="T:wclDri.wclDriVendor" />
+        </member>
+        <member name="T:wclDri.wclDriAsdMessageType">
+            <summary> The ASD DRI message types. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdMessageType.mtBasicId">
+            <summary> The Basic ID message. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdMessageType.mtLocation">
+            <summary> The Location message. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdMessageType.mtAuth">
+            <summary> The Authentication message. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdMessageType.mtSelfId">
+            <summary> The Self ID message. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdMessageType.mtSystem">
+            <summary> The System message. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdMessageType.mtOperatorId">
+            <summary> The Operator ID message. </summary>
+        </member>
+        <member name="T:wclDri.wclDriAsdIdType">
+            <summary> The ASD UAV ID type. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdIdType.itNone">
+            <summary> Not assigned. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdIdType.itSerialNumber">
+            <summary> Serial number. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdIdType.itCaaRegistrationId">
+            <summary> Civil Aviation Authority. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdIdType.itUtmAssignedUuid">
+            <summary> UAS (Unmanned Aircraft System) Traffic Management. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdIdType.itSpecificSessionId">
+            <summary> ICAO managed ID. </summary>
+        </member>
+        <member name="T:wclDri.wclDriAsdUavType">
+            <summary> The ASD UAV type. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavType.utNone">
+            <summary> Not specified. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavType.utAeroplane">
+            <summary> Fixed wing. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavType.utCopter">
+            <summary> Helicopter or multirotor. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavType.utGyroplane">
+            <summary> Gyroplane. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavType.utHybridLift">
+            <summary> Fixed wing aircraft that can take off vertically. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavType.utOrnithopter">
+            <summary> Ornithopter. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavType.utGlider">
+            <summary> Glider. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavType.utKite">
+            <summary> Kite. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavType.utFreeBalloon">
+            <summary> Free balloon. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavType.utCaptiveBalloon">
+            <summary> Captive balloon. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavType.utAirship">
+            <summary> Such as a blimp. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavType.utFreeFallParachute">
+            <summary> Unpowered parachute. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavType.utRocket">
+            <summary> Rocket. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavType.utTetheredPoweredAircraft">
+            <summary> Tethered powered aircraft. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavType.utGroundObstacle">
+            <summary> Ground obstacle. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavType.utOther">
+            <summary> Any other. </summary>
+        </member>
+        <member name="T:wclDri.wclDriAsdDescriptionType">
+            <summary> The description type. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdDescriptionType.dtText">
+            <summary> General free-form information text. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdDescriptionType.dtEmergency">
+            <summary> Emergency status description. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdDescriptionType.dtExtended">
+            <summary> Extended status description. </summary>
+        </member>
+        <member name="T:wclDri.wclDriAsdOperatorLocationType">
+            <summary> UAV operator location type. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdOperatorLocationType.ltTakeOff">
+            <summary> Takeoff location and altitude. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdOperatorLocationType.ltLiveGnss">
+            <summary> Dynamic/Live location and altitude. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdOperatorLocationType.ltFixed">
+            <summary> Fixed location and altitude. </summary>
+        </member>
+        <member name="T:wclDri.wclDriAsdOperatorClassification">
+            <summary> UAV operator classification. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdOperatorClassification.ocUndeclared">
+            <summary> Classification not specififed. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdOperatorClassification.ocEu">
+            <summary> European Union. </summary>
+        </member>
+        <member name="T:wclDri.wclDriAsdUavEuCategory">
+            <summary> European UAV category. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavEuCategory.ucUndeclared">
+            <summary> Unspecified. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavEuCategory.ucOpen">
+            <summary> Open category. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavEuCategory.ucSpecific">
+            <summary> Specific category. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavEuCategory.ucCertified">
+            <summary> Certified category. </summary>
+        </member>
+        <member name="T:wclDri.wclDriAsdUavEuClass">
+            <summary> European UAV class. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavEuClass.ucUnspecified">
+            <summary> Unspecified. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavEuClass.ucClass0">
+            <summary> Class 0. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavEuClass.ucClass1">
+            <summary> Class 0. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavEuClass.ucClass2">
+            <summary> Class 0. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavEuClass.ucClass3">
+            <summary> Class 0. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavEuClass.ucClass4">
+            <summary> Class 0. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavEuClass.ucClass5">
+            <summary> Class 0. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavEuClass.ucClass6">
+            <summary> Class 0. </summary>
+        </member>
+        <member name="T:wclDri.wclDriAsdUavStatus">
+            <summary> The ASD UAV status. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavStatus.usUndeclared">
+            <summary> Undeclared. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavStatus.usGround">
+            <summary> Ground. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavStatus.usAirborne">
+            <summary> Airborne. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavStatus.usEmergency">
+            <summary> Emergency. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavStatus.usFailure">
+            <summary> RID system failure. </summary>
+        </member>
+        <member name="T:wclDri.wclDriAsdUavHeightReference">
+            <summary> The ASD UAV height reference. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavHeightReference.hrTakeOff">
+            <summary> Takeoff reference. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavHeightReference.hrGround">
+            <summary> Ground reference. </summary>
+        </member>
+        <member name="T:wclDri.wclDriAsdUavHorizontalAccuracy">
+            <summary> ASD UAV horizontal accuracy. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavHorizontalAccuracy.haUnknown">
+            <summary> Unknown. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavHorizontalAccuracy.ha10Nm">
+            <summary> 10 Nautical miles. 18.52 km </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavHorizontalAccuracy.ha4Nm">
+            <summary> 4 Nautical miles. 7.408 km </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavHorizontalAccuracy.ha2Nm">
+            <summary> 2 Nautical miles. 3.704 km </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavHorizontalAccuracy.ha1Nm">
+            <summary> 1 Nautical mile. 1.852 km </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavHorizontalAccuracy.ha05Nm">
+            <summary> 0.5 Nautical mile. 926 m </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavHorizontalAccuracy.ha03Nm">
+            <summary> 0.3 Nautical mile. 555.6 m </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavHorizontalAccuracy.ha01Nm">
+            <summary> 0.1 Nautical mile. 185.2 m </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavHorizontalAccuracy.ha005Nm">
+            <summary> 0.05 Nautical mile. 92.6 m </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavHorizontalAccuracy.ha30M">
+            <summary> 30 meters. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavHorizontalAccuracy.ha10M">
+            <summary> 10 meters. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavHorizontalAccuracy.ha3M">
+            <summary> 3 meters. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavHorizontalAccuracy.ha1M">
+            <summary> 1 meter. </summary>
+        </member>
+        <member name="T:wclDri.wclDriAsdUavVerticalAccuracy">
+            <summary> ASD UAV vertical accuracy. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavVerticalAccuracy.vaUnknown">
+            <summary> Unknown. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavVerticalAccuracy.va150M">
+            <summary> 150 meters. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavVerticalAccuracy.va45M">
+            <summary> 45 meters. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavVerticalAccuracy.va25M">
+            <summary> 25 meters. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavVerticalAccuracy.va10M">
+            <summary> 10 meters. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavVerticalAccuracy.va3M">
+            <summary> 3 meters. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavVerticalAccuracy.va1M">
+            <summary> 1 meter. </summary>
+        </member>
+        <member name="T:wclDri.wclDriAsdUavSpeedAccuracy">
+            <summary> ASD UAV speed accuracy. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavSpeedAccuracy.saUnknown">
+            <summary> Unknown. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavSpeedAccuracy.sa10MS">
+            <summary> 10 m/s. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavSpeedAccuracy.sa3MS">
+            <summary> 3 m/s. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavSpeedAccuracy.sa1Ms">
+            <summary> 1 m/s. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavSpeedAccuracy.sa03Ms">
+            <summary> 0.3 m/s. </summary>
+        </member>
+        <member name="T:wclDri.wclDriAsdUavTimestampAccuracy">
+            <summary> ASD UAV timestamp accuracy. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavTimestampAccuracy.taUnknown">
+            <summary> Unknown. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavTimestampAccuracy.ta01s">
+            <summary> 0.1 second. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavTimestampAccuracy.ta02s">
+            <summary> 0.2 second. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavTimestampAccuracy.ta03s">
+            <summary> 0.3 second. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavTimestampAccuracy.ta04s">
+            <summary> 0.4 second. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavTimestampAccuracy.ta05s">
+            <summary> 0.5 second. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavTimestampAccuracy.ta06s">
+            <summary> 0.6 second. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavTimestampAccuracy.ta07s">
+            <summary> 0.7 second. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavTimestampAccuracy.ta08s">
+            <summary> 0.8 second. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavTimestampAccuracy.ta09s">
+            <summary> 0.9 second. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavTimestampAccuracy.ta1s">
+            <summary> 1 second. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavTimestampAccuracy.ta11s">
+            <summary> 1.1 second. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavTimestampAccuracy.ta12s">
+            <summary> 1.2 second. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavTimestampAccuracy.ta13s">
+            <summary> 1.3 second. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavTimestampAccuracy.ta14s">
+            <summary> 1.4 second. </summary>
+        </member>
+        <member name="F:wclDri.wclDriAsdUavTimestampAccuracy.ta15s">
+            <summary> 1.5 second. </summary>
+        </member>
+        <member name="T:wclDri.wclDriAsdMessage">
+            <summary> The base class for ASD DRI message. </summary>
+            <seealso cref="T:wclDri.wclDriMessage" />
+        </member>
+        <member name="M:wclDri.wclDriAsdMessage.#ctor(System.Byte,System.Byte[])">
+            <summary> Creates new DRI message object. </summary>
+            <param name="Counter"> The message counter. </param>
+            <param name="Data"> The raw DRI message data. </param>
+        </member>
+        <member name="P:wclDri.wclDriAsdMessage.Counter">
+            <summary> Gets the message counter. </summary>
+            <value> The message counter. </value>
+        </member>
+        <member name="P:wclDri.wclDriAsdMessage.MessageType">
+            <summary> Gets the message type. </summary>
+            <value> The ASD DRI message type. </value>
+            <seealso cref="T:wclDri.wclDriAsdMessageType" />
+        </member>
+        <member name="P:wclDri.wclDriAsdMessage.Version">
+            <summary> Gets the protocol version. </summary>
+            <value> The protocol version number. </value>
+        </member>
+        <member name="T:wclDri.wclDriAsdIdMessage">
+            <summary> The base class for ASD ID messages. </summary>
+            <seealso cref="T:wclDri.wclDriAsdMessage" />
+        </member>
+        <member name="M:wclDri.wclDriAsdIdMessage.#ctor(System.Byte,System.Byte[])">
+            <summary> Creates new DRI message object. </summary>
+            <param name="Counter"> The message counter. </param>
+            <param name="Data"> The raw DRI message data. </param>
+        </member>
+        <member name="P:wclDri.wclDriAsdIdMessage.Id">
+            <summary> Gets the ID. </summary>
+            <value> The ID. </value>
+        </member>
+        <member name="T:wclDri.wclDriAsdBasicIdMessage">
+            <summary> The ASD Basic ID message. </summary>
+            <seealso cref="T:wclDri.wclDriAsdIdMessage" />
+        </member>
+        <member name="M:wclDri.wclDriAsdBasicIdMessage.#ctor(System.Byte,System.Byte[])">
+            <summary> Creates new DRI message object. </summary>
+            <param name="Counter"> The message counter. </param>
+            <param name="Data"> The raw DRI message data. </param>
+        </member>
+        <member name="P:wclDri.wclDriAsdBasicIdMessage.IdType">
+            <summary> Gets the UAV ID type. </summary>
+            <value> The ID type. </value>
+            <seealso cref="T:wclDri.wclDriAsdIdType" />
+        </member>
+        <member name="P:wclDri.wclDriAsdBasicIdMessage.UavType">
+            <summary> Gets the UAV type. </summary>
+            <value> The UAV type. </value>
+            <seealso cref="T:wclDri.wclDriAsdUavType" />
+        </member>
+        <member name="T:wclDri.wclDriAsdSelfIdMessage">
+            <summary> The ASD Self ID message. </summary>
+            <seealso cref="T:wclDri.wclDriAsdMessage" />
+        </member>
+        <member name="M:wclDri.wclDriAsdSelfIdMessage.#ctor(System.Byte,System.Byte[])">
+            <summary> Creates new DRI message object. </summary>
+            <param name="Counter"> The message counter. </param>
+            <param name="Data"> The raw DRI message data. </param>
+        </member>
+        <member name="P:wclDri.wclDriAsdSelfIdMessage.Description">
+            <summary> Gets the description. </summary>
+            <value> The description. </value>
+        </member>
+        <member name="P:wclDri.wclDriAsdSelfIdMessage.DescriptionType">
+            <summary> Gets the description type. </summary>
+            <value> The description type. </value>
+            <seealso cref="T:wclDri.wclDriAsdDescriptionType" />
+        </member>
+        <member name="T:wclDri.wclDriAsdCoordinateMessage">
+            <summary> The base class for ASD messages with coordinates. </summary>
+            <seealso cref="T:wclDri.wclDriAsdMessage" />
+        </member>
+        <member name="M:wclDri.wclDriAsdCoordinateMessage.DecodeAltitude(System.UInt16)">
+            <summary> Converts unsigned integer encoded value to a floating point
+             altitude value. </summary>
+            <param name="Value"> The encoded value. </param>
+            <returns> The decoded altitude. </returns>
+        </member>
+        <member name="M:wclDri.wclDriAsdCoordinateMessage.DecodeCoordinate(System.Int32)">
+            <summary> Converts unsigned integer encoded values to a floating point
+              coordinate value. </summary>
+            <param name="Value"> The encoded value. </param>
+            <returns> The decoded coordinate. </returns>
+        </member>
+        <member name="M:wclDri.wclDriAsdCoordinateMessage.#ctor(System.Byte,System.Byte[])">
+            <summary> Creates new DRI message object. </summary>
+            <param name="Counter"> The message counter. </param>
+            <param name="Data"> The raw DRI message data. </param>
+        </member>
+        <member name="T:wclDri.wclDriAsdSystemMessage">
+            <summary> The ASD System message. </summary>
+            <seealso cref="T:wclDri.wclDriAsdCoordinateMessage" />
+        </member>
+        <member name="M:wclDri.wclDriAsdSystemMessage.#ctor(System.Byte,System.Byte[])">
+            <summary> Creates new DRI message object. </summary>
+            <param name="Counter"> The message counter. </param>
+            <param name="Data"> The raw DRI message data. </param>
+        </member>
+        <member name="P:wclDri.wclDriAsdSystemMessage.AreaCeiling">
+            <summary> Gets the area ceiling. </summary>
+            <value> The area ceiling in meters. If ceiling is unknown or invalid the
+              value is -1000m. </value>
+        </member>
+        <member name="P:wclDri.wclDriAsdSystemMessage.AreaCount">
+            <summary> Gets the area count. </summary>
+            <value> The area count. </value>
+        </member>
+        <member name="P:wclDri.wclDriAsdSystemMessage.AreaFloor">
+            <summary> Gets the area floor. </summary>
+            <value> The area floor in meters.  If floor is unknown or invalid the
+              value is -1000m. </value>
+        </member>
+        <member name="P:wclDri.wclDriAsdSystemMessage.AreaRadius">
+            <summary> Gets the area radius. </summary>
+            <value> The area radius in meters. </value>
+        </member>
+        <member name="P:wclDri.wclDriAsdSystemMessage.OperatorAltitude">
+            <summary> Gets the operator altitude. </summary>
+            <value> The operator altitude. </value>
+        </member>
+        <member name="P:wclDri.wclDriAsdSystemMessage.OperatorClassification">
+            <summary> Gets the UAV operator classification. </summary>
+            <value> The operator classification. </value>
+            <seealso cref="T:wclDri.wclDriAsdOperatorClassification" />
+        </member>
+        <member name="P:wclDri.wclDriAsdSystemMessage.OperatorLatitude">
+            <summary> Gets the UAV operator latitude. </summary>
+            <value> The latitude value. </value>
+        </member>
+        <member name="P:wclDri.wclDriAsdSystemMessage.OperatorLocation">
+            <summary> Gets the UAV operator location type. </summary>
+            <value> The location type. </value>
+            <seealso cref="T:wclDri.wclDriAsdOperatorLocationType" />
+        </member>
+        <member name="P:wclDri.wclDriAsdSystemMessage.OperatorLongitude">
+            <summary> Gets the UAV operator longitude. </summary>
+            <value> The longitude value. </value>
+        </member>
+        <member name="P:wclDri.wclDriAsdSystemMessage.Timestamp">
+            <summary> Gets the timestamp. </summary>
+            <value> The timestamp. </value>
+        </member>
+        <member name="P:wclDri.wclDriAsdSystemMessage.UavEuCategory">
+            <summary> Gets the European UAV category. </summary>
+            <value> The UAV category. </value>
+            <seealso cref="T:wclDri.wclDriAsdUavEuCategory" />
+        </member>
+        <member name="P:wclDri.wclDriAsdSystemMessage.UavEuClass">
+            <summary> Gets the European UAV class. </summary>
+            <value> The UAV class. </value>
+            <seealso cref="T:wclDri.wclDriAsdUavEuClass" />
+        </member>
+        <member name="T:wclDri.wclDriAsdOperatorIdMessage">
+            <summary> The ASD Operator ID message. </summary>
+            <seealso cref="T:wclDri.wclDriAsdIdMessage" />
+        </member>
+        <member name="M:wclDri.wclDriAsdOperatorIdMessage.#ctor(System.Byte,System.Byte[])">
+            <summary> Creates new DRI message object. </summary>
+            <param name="Counter"> The message counter. </param>
+            <param name="Data"> The raw DRI message data. </param>
+        </member>
+        <member name="P:wclDri.wclDriAsdOperatorIdMessage.IdType">
+            <summary> Gets the UAV operator ID type. </summary>
+            <value> The operator ID type. </value>
+        </member>
+        <member name="T:wclDri.wclDriAsdLocationMessage">
+            <summary> The ASD UAV Location message. </summary>
+            <seealso cref="T:wclDri.wclDriAsdCoordinateMessage" />
+        </member>
+        <member name="M:wclDri.wclDriAsdLocationMessage.#ctor(System.Byte,System.Byte[])">
+            <summary> Creates new DRI message object. </summary>
+            <param name="Counter"> The message counter. </param>
+            <param name="Data"> The raw DRI message data. </param>
+        </member>
+        <member name="P:wclDri.wclDriAsdLocationMessage.BaroAltitude">
+            <summary> Gets the baro altitude. </summary>
+            <value> The altitude in meters. If altitude is unknown or invalid the
+              value is -1000m. </value>
+        </member>
+        <member name="P:wclDri.wclDriAsdLocationMessage.BaroAccuracy">
+            <summary> Gets the baro altitude accuracy. </summary>
+            <value> The baro accuracy. </value>
+            <seealso cref="T:wclDri.wclDriAsdUavVerticalAccuracy" />
+        </member>
+        <member name="P:wclDri.wclDriAsdLocationMessage.Direction">
+            <summary> Gets the UAV direction. </summary>
+            <value> The UAV direction in degrees. If the direction is unknown or
+              invalid the value is 361. </value>
+        </member>
+        <member name="P:wclDri.wclDriAsdLocationMessage.GeoAltitude">
+            <summary> Gets the geo altitude. </summary>
+            <value> The altitude in meters. If altitude is unknown or invalid the
+              value is -1000m. </value>
+        </member>
+        <member name="P:wclDri.wclDriAsdLocationMessage.Height">
+            <summary> Gets height. </summary>
+            <value> The height in meters. If height is unknown or invalid the
+              value is -1000m. </value>
+        </member>
+        <member name="P:wclDri.wclDriAsdLocationMessage.HeightReference">
+            <summary> Gets the height reference. </summary>
+            <value> The height reference. </value>
+            <seealso cref="T:wclDri.wclDriAsdUavHeightReference" />
+        </member>
+        <member name="P:wclDri.wclDriAsdLocationMessage.HorizontalAccuracy">
+            <summary> Gets the horizontal accuracy. </summary>
+            <value> The horizontal accuracy. </value>
+            <seealso cref="T:wclDri.wclDriAsdUavHorizontalAccuracy" />
+        </member>
+        <member name="P:wclDri.wclDriAsdLocationMessage.HorizontalSpeed">
+            <summary> Gets the horizontal speed. </summary>
+            <value> The horizontal speed in m/s. The maximum speed value is
+              254.25 m/s. If the speed is unknown or invalid the value is
+              255 m/s. </value>
+        </member>
+        <member name="P:wclDri.wclDriAsdLocationMessage.Latitude">
+            <summary> Gets the latitude. </summary>
+            <value> The latitude. If the latitude is invalid or unknown the value
+              is 0. </value>
+        </member>
+        <member name="P:wclDri.wclDriAsdLocationMessage.Longitude">
+            <summary> Gets the longitude. </summary>
+            <value> The longitude. If the longitude is invalid or unknown the value
+              is 0. </value>
+        </member>
+        <member name="P:wclDri.wclDriAsdLocationMessage.SpeedAccuracy">
+            <summary> Gets the speed accuracy. </summary>
+            <value> The speed accuracy. </value>
+            <seealso cref="T:wclDri.wclDriAsdUavSpeedAccuracy" />
+        </member>
+        <member name="P:wclDri.wclDriAsdLocationMessage.Status">
+            <summary> Gets the UAV status. </summary>
+            <value> The UAV status. </value>
+            <seealso cref="T:wclDri.wclDriAsdUavStatus" />
+        </member>
+        <member name="P:wclDri.wclDriAsdLocationMessage.Timestamp">
+            <summary> Gets the timestamp. </summary>
+            <value> The timestamp. </value>
+        </member>
+        <member name="P:wclDri.wclDriAsdLocationMessage.TimestampAccuracy">
+            <summary> Gets the timestamp accuracy. </summary>
+            <value> The timestamp accuracy. </value>
+            <seealso cref="T:wclDri.wclDriAsdUavTimestampAccuracy" />
+        </member>
+        <member name="P:wclDri.wclDriAsdLocationMessage.VerticalAccuracy">
+            <summary> Gets the vertical accuracy. </summary>
+            <value> The vertical accuracy. </value>
+            <seealso cref="T:wclDri.wclDriAsdUavVerticalAccuracy" />
+        </member>
+        <member name="P:wclDri.wclDriAsdLocationMessage.VerticalSpeed">
+            <summary> Gets the vertical speed. </summary>
+            <value> The vertical speed in m/s. The maximum value is 62 m/s. If the
+              speed is unknown or invalid the value is 63 m/s. </value>
+        </member>
+        <member name="T:wclDri.wclDriAsdParser">
+            <summary> The Drone Remote ID ASD messages parser. </summary>
+            <remarks> The class is for internal use only. Use high-level DRI
+              parsers or watchers instead. </remarks>
+        </member>
+        <member name="M:wclDri.wclDriAsdParser.#ctor">
+            <summary> Creates ASD DRI parser. </summary>
+        </member>
+        <member name="M:wclDri.wclDriAsdParser.Parse(System.Byte[],System.Collections.Generic.List{wclDri.wclDriMessage})">
+            <summary> Parse ASD DRI messages. </summary>
+            <param name="Raw"> The ASD DRI raw data. </param>
+            <param name="Messages"> If the method completed with success on output
+              contains the DRI messages list. An application is responsible to free
+              the returned list. If no one DRI message found the returning value
+              is the empty list. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+    </members>
+</doc>

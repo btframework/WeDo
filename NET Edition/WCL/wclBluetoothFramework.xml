@@ -932,6 +932,15 @@
               evaluated based on the CompanyId value. </param>
             <param name="Data"> The additional frame data. </param>
         </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoDriAsdMessage(System.Int64,System.Int64,System.SByte,System.Byte[])">
+            <summary> Fires the <c>OnDriAsdMessage</c> event. </summary>
+            <param name="Address"> The drone's MAC address. </param>
+            <param name="Timestamp"> The message's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Raw"> The raw DRI ASD messages data. </param>
+        </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoEddystoneTlmFrame(System.Int64,System.Int64,System.SByte,System.UInt32,System.UInt16,System.UInt32,System.Double,System.Byte[])">
             <summary> Fires the <c>OnEddystoneTlmFrame</c> event. </summary>
             <param name="Address"> The Bluetooth LE advertiser's MAC
@@ -1186,6 +1195,11 @@
               advertisement frame received. </summary>
             <seealso cref="T:wclBluetooth.wclBluetoothLeAltBeaconFrameEvent" />
         </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnDriAsdMessage">
+            <summary> The event fires when a Drone Remote ID ASD message
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeDriAsdMessageEvent" />
+        </member>
         <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnEddystoneTlmFrame">
             <summary> The event fires when an Eddystone TLM advertisement frame
               received. </summary>
@@ -1412,6 +1426,15 @@
               of this value is to be defined by the manufacturer and is to be
               evaluated based on the CompanyId value. </param>
             <param name="Data"> The additional frame data. </param>
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoDriAsdMessage(System.Int64,System.Int64,System.SByte,System.Byte[])">
+            <summary> Fires the <c>OnDriAsdMessage</c> event. </summary>
+            <param name="Address"> The drone's MAC address. </param>
+            <param name="Timestamp"> The message's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Raw"> The raw DRI ASD messages data. </param>
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoEddystoneTlmFrame(System.Int64,System.Int64,System.SByte,System.UInt32,System.UInt16,System.UInt32,System.Double,System.Byte[])">
             <summary> Fires the <c>OnEddystoneTlmFrame</c> event. </summary>
@@ -1688,6 +1711,11 @@
             <summary> The event fires when a Bluetooth LE Alt beacon
               advertisement frame received. </summary>
             <seealso cref="T:wclBluetooth.wclBluetoothLeAltBeaconFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnDriAsdMessage">
+            <summary> The event fires when a Drone Remote ID ASD message
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeDriAsdMessageEvent" />
         </member>
         <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnEddystoneTlmFrame">
             <summary> The event fires when an Eddystone TLM advertisement frame
@@ -3867,6 +3895,16 @@
               of this value is to be defined by the manufacturer and is to be
               evaluated based on the CompanyId value. </param>
             <param name="Data"> The additional frame data. </param>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeDriAsdMessageEvent">
+            <summary> The <c>OnDriAsdMessage</c> event handler prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Address"> The drone's MAC address. </param>
+            <param name="Timestamp"> The message's timestamp in Universal Time
+              format. </param>
+            <param name="Rssi"> The measured RSSI value in dBm at range between -100
+              dBm and +20 dBm at 1 dBm resolution. </param>
+            <param name="Raw"> The raw DRI ASD messages data. </param>
         </member>
         <member name="T:wclBluetooth.wclBluetoothLeEddystoneTlmFrameEvent">
             <summary> The <c>OnEddystoneTlmFrame</c> event handler
@@ -16386,6 +16424,9 @@
         <member name="F:wclBluetooth.wclUUIDs.EDDYSTONE_TLM_FRAME_ID">
             <summary> Eddystone TLM beacon frame ID. </summary>
             <remarks> This constant is defined for internal use only. </remarks>
+        </member>
+        <member name="F:wclBluetooth.wclUUIDs.DRI_ASD_UUID_16">
+            <summary> The Drone Remote ID ASD service UUID. </summary>
         </member>
     </members>
 </doc>
