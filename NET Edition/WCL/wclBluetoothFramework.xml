@@ -5180,7 +5180,7 @@
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_UNABLE_TO_RESOLVE_ADDRESS">
             <summary> Unable to resolve connected remote device address. </summary>
         </member>
-        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_UNABLE_ADD_ADP_RECORD">
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_UNABLE_ADD_SDP_RECORD">
             <summary> Unable to add new SDP record. </summary>
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_UNABLE_SET_SERVER_SECURITY">
@@ -5543,6 +5543,14 @@
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_OPEN_RADIO_COUNT_LIMIT">
             <summary> Too many opened Bluetooth Radio driver instances. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_DRIVER_BUSY">
+            <summary> <para> A Bluetooth driver is busy. </para>
+              <para> This error usually returned when your application tries to change
+              Radio state (ON/OFF) right inside OnStatusChanged event handler when
+              Radio was turned ON/OFF from system control panel. </para>
+              <para> If you receive this error simple add small delay (about 200 ms)
+              and try to switch radio state again. </para>. </summary>
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_BASE">
             <summary> The base error code for Bluetooth Low Energy. </summary>
