@@ -59,7 +59,7 @@ namespace wclWeDoFramework
         private class WeDoLostTimerMessage : wclMessage
         {
             public WeDoLostTimerMessage()
-                : base(WEDO_LOST_TIMER_MESSAGE_ID, wclMessage.WCL_MSG_CATEGORY_USER)
+                : base(WEDO_LOST_TIMER_MESSAGE_ID, wclMessageCategory.mcUser)
             {
             }
         };
@@ -231,16 +231,16 @@ namespace wclWeDoFramework
             FWatcher.OnStarted += WatcherStarted;
             FWatcher.OnStopped += WatcherStopped;
 
-            // We also need timer that allows to checkif device is still available.
+            // We also need timer that allows to check if device is still available.
             FTimer = new Timer();
-            // Check that devide is available during 3 seconds. If it did not update
+            // Check that device is available during 3 seconds. If it did not update
             // information - it is disappeared.
             FTimer.Interval = 3000;
             FTimer.AutoReset = true;
             FTimer.Elapsed += TimerElapsed;
 
             // We need message receiver to process messages from timer.
-            FReceiver = new wclMessageReceiver();
+            FReceiver = wclMessageBroadcaster.CreateMessageReceiver(wclMessageProcessingMethod.mpSync);
             FReceiver.OnMessage += ReceiverMessage;
 
             OnHubFound = null;

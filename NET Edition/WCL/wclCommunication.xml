@@ -4,46 +4,6 @@
         <name>wclCommunication</name>
     </assembly>
     <members>
-        <member name="T:wclCommunication.wclCustomConnection">
-            <summary> The base class for all WCL connections. </summary>
-            <remarks> A connection implements a hardware-dependent methods
-             to communicate with a remote devices: IrDA, Classic Bluetooth, BLE,
-             Serial etc. </remarks>
-        </member>
-        <member name="M:wclCommunication.wclCustomConnection.MessageReceived(wclCommon.wclMessage)">
-            <summary> The message receiver calls this method when a new notification
-              message has been received. </summary>
-            <param name="Message"> A <see cref="T:wclCommon.wclMessage" /> object
-              represents the notification message. </param>
-            <remarks> <para> This method is for internal use only. </para>
-              <para> If a derived class overrides this method it must always call
-              the inherited implementation first. </para> </remarks>
-            <seealso cref="T:wclCommon.wclMessage" />
-        </member>
-        <member name="M:wclCommunication.wclCustomConnection.Enter">
-            <summary> Enters the connection's critical section. </summary>
-            <remarks> The method should be used to protect connection in
-              multi-threaded applications. </remarks>
-        </member>
-        <member name="M:wclCommunication.wclCustomConnection.Leave">
-            <summary> Exists *leaves) the connection's critical section. </summary>
-            <remarks> The method should be used to protect connection in
-              multi-threaded applications. </remarks>
-        </member>
-        <member name="M:wclCommunication.wclCustomConnection.#ctor">
-            <summary> Creates a new connection. </summary>
-        </member>
-        <member name="P:wclCommunication.wclCustomConnection.Receiver">
-            <summary> Gets the connection message receiver object. </summary>
-            <value> The internal message receiver object. </value>
-            <seealso cref="T:wclCommon.wclMessageReceiver" />
-        </member>
-        <member name="P:wclCommunication.wclCustomConnection.ThreadId">
-            <summary> Gets the connection's thread ID. </summary>
-            <value> The thread ID. </value>
-            <remarks> The connection's thread ID is the ID of the thread that
-              created and used to handle the connection. </remarks>
-        </member>
         <member name="T:wclCommunication.wclClientConnection">
             <summary> The base class for all client oriented connections. </summary>
             <remarks> The class provides the basic methods for client
@@ -86,11 +46,10 @@
               by the <c>Disconnect</c> call. Otherwise indicates the disconnection
               reason. </param>
         </member>
-        <member name="M:wclCommunication.wclClientConnection.HalCommunicate(System.IntPtr)">
+        <member name="M:wclCommunication.wclClientConnection.HalCommunicate(System.Threading.EventWaitHandle)">
             <summary> Implements a hardware-dependent code that communicate with the
               connected remote device. </summary>
-            <param name="Event"> The system even object handle (disconnect
-              event). </param>
+            <param name="Event"> The system even object (disconnect event). </param>
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
@@ -105,10 +64,10 @@
               <para> The default implementation simple waits for the <c>Event</c>
               and exists when the events signaled. </para> </remarks>
         </member>
-        <member name="M:wclCommunication.wclClientConnection.HalConnect(System.IntPtr)">
+        <member name="M:wclCommunication.wclClientConnection.HalConnect(System.Threading.EventWaitHandle)">
             <summary> Implements a hardware-dependent code that connects to a
               remote device. </summary>
-            <param name="Event"> The system even object handle. </param>
+            <param name="Event"> The system even object. </param>
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
@@ -190,6 +149,14 @@
             <summary> The base class for the client connection that requires data
               exchange with a remote device. </summary>
             <seealso cref="T:wclCommunication.wclClientConnection" />
+        </member>
+        <member name="M:wclCommunication.wclClientDataConnection.AllocateReadBuffer(System.IntPtr@,System.UInt32@)">
+            <summary> Allocates memory for incoming data buffer. </summary>
+            <param name="Buffer"> The read buffer. </param>
+            <param name="Size"> The read buffer size. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
         </member>
         <member name="M:wclCommunication.wclClientDataConnection.NotifyDataReceived(System.Byte[])">
             <summary> Send a data notification message. </summary>
@@ -315,391 +282,58 @@
               connected remote device. </summary>
             <seealso cref="T:wclCommunication.wclConnectionDataEvent" />
         </member>
-        <member name="T:wclCommunication.wclServerClientConnection">
-            <summary> The base class for all server client connection. </summary>
-            <remarks> The class provides the basic methods for server
-              connections. </remarks>
-            <seealso cref="T:wclCommunication.wclCustomConnection" />
+        <member name="T:wclCommunication.wclCustomConnection">
+            <summary> The base class for all WCL connections. </summary>
+            <remarks> A connection implements a hardware-dependent methods
+             to communicate with a remote devices: IrDA, Classic Bluetooth, BLE,
+             Serial etc. </remarks>
         </member>
-        <member name="M:wclCommunication.wclServerClientConnection.NotifyClosed(System.Int32)">
-            <summary> Send a Disconnect notification message. </summary>
-            <param name="Reason"> The disconnection code. If the
-              parameter is <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" /> the connection was closed
-              by the <c>Disconnect</c> call. Otherwise indicates the disconnection
-              reason. </param>
-        </member>
-        <member name="M:wclCommunication.wclServerClientConnection.MessageReceived(wclCommon.wclMessage)">
+        <member name="M:wclCommunication.wclCustomConnection.MessageReceived(wclCommon.wclMessage)">
             <summary> The message receiver calls this method when a new notification
               message has been received. </summary>
             <param name="Message"> A <see cref="T:wclCommon.wclMessage" /> object
               represents the notification message. </param>
+            <remarks> <para> This method is for internal use only. </para>
+              <para> If a derived class overrides this method it must always call
+              the inherited implementation first. </para> </remarks>
             <seealso cref="T:wclCommon.wclMessage" />
         </member>
-        <member name="M:wclCommunication.wclServerClientConnection.DoConnect(System.Int32)">
-            <summary> Fires the <c>OnConnect</c> event. </summary>
-            <param name="Error"> The connection operation result code. If the
-              parameter is <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" /> the connection to a remote
-              device was established and the remote device is connected. Otherwise
-              the connection was not established and the remote device is
-              not connected. </param>
+        <member name="M:wclCommunication.wclCustomConnection.Enter">
+            <summary> Enters the connection's critical section. </summary>
+            <remarks> The method should be used to protect connection in
+              multi-threaded applications. </remarks>
         </member>
-        <member name="M:wclCommunication.wclServerClientConnection.DoDisconnect(System.Int32)">
-            <summary> Fires the <c>OnDisconnect</c> event. </summary>
-            <param name="Reason"> The disconnection code. If the
-              parameter is <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" /> the connection was closed
-              by the <c>Disconnect</c> call. Otherwise indicates the disconnection
-              reason. </param>
+        <member name="M:wclCommunication.wclCustomConnection.Leave">
+            <summary> Exists *leaves) the connection's critical section. </summary>
+            <remarks> The method should be used to protect connection in
+              multi-threaded applications. </remarks>
         </member>
-        <member name="M:wclCommunication.wclServerClientConnection.Accept(wclCommunication.wclServerConnection,System.Object)">
-            <summary> The method accepts the client connection request. </summary>
-            <param name="Server"> A <see cref="T:wclCommunication.wclServerConnection" />
-              object owns the client connection. </param>
-            <param name="Params"> An optional pointer to the hardware-dependent
-              data contains information about client connection request. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> <para> The method called by the server when connection from a
-              remote client device has already been accepted. </para>
-              <para> The method is always called from the main (or from the same)
-              thread that runs the server. </para>
-              <para> The method prepares the class for communication with a remote
-              client. </para>
-              <para> If the method fails it disconnects already accepted client
-              connection. </para> </remarks>
-            <seealso cref="T:wclCommunication.wclServerConnection" />
+        <member name="M:wclCommunication.wclCustomConnection.#ctor">
+            <summary> Creates a new connection. </summary>
         </member>
-        <member name="M:wclCommunication.wclServerClientConnection.HalAccept">
-            <summary> Hardware-dependent method that prepares to communicate
-              with a connected remote client device. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> A derived class must override this method to provide a
-              hardware-dependent code that prepares the class to communicate
-              with a remote connected device. </remarks>
+        <member name="P:wclCommunication.wclCustomConnection.Receiver">
+            <summary> Gets the connection message receiver object. </summary>
+            <value> The internal message receiver object. </value>
+            <seealso cref="T:wclCommon.wclMessageReceiver" />
         </member>
-        <member name="M:wclCommunication.wclServerClientConnection.HalCommunicate(System.IntPtr)">
-            <summary> Implements a hardware-dependent code that communicate with the
-              connected remote device. </summary>
-            <param name="Event"> The system even object handle (disconnect
-              event). </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> <para> Derived classes must override this method to implement
-              a hardware-dependent code that exchanges data with a remote
-              device. </para>
-              <para> The method executes in a separate thread. </para>
-              <para> The method implementation must monitor the <c>Event</c>
-              parameter. The <c>Event</c> parameter is set if the
-              <c>Disconnect</c> method was called and the method must terminate
-              communication and exit. </para>
-              <para> The default implementation simple waits for the <c>Event</c>
-              and exists when the events signaled. </para> </remarks>
+        <member name="P:wclCommunication.wclCustomConnection.ThreadId">
+            <summary> Gets the connection's thread ID. </summary>
+            <value> The thread ID. </value>
+            <remarks> The connection's thread ID is the ID of the thread that
+              created and used to handle the connection. </remarks>
         </member>
-        <member name="M:wclCommunication.wclServerClientConnection.HalDisconnect">
-            <summary> Implements a hardware-dependent code that disconnects from the
-              connected remote device. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> A derived class must override this method to provide a
-              hardware-dependent code that disconnects from a remote connected
-              device. </remarks>
+        <member name="T:wclCommunication.wclCustomClientDataProcessor">
+            <summary> The base class for all WCL Client Data Processors. </summary>
+            <remarks> The Client Data Processor allows to add additional data
+              processing for the Client Data Connections. </remarks>
+            <seealso cref="T:wclCommunication.wclCustomDataProcessor" />
+            <seealso cref="T:wclCommunication.wclClientDataConnection" />
         </member>
-        <member name="P:wclCommunication.wclServerClientConnection.Disconnected">
-            <summary> Gets the connection state. </summary>
-            <value> <c>True</c> if the connection is disconnected. </value>
+        <member name="M:wclCommunication.wclCustomClientDataProcessor.Free">
+            <summary> Frees the data processor object. </summary>
         </member>
-        <member name="P:wclCommunication.wclServerClientConnection.Params">
-            <summary> Custom connection parameters. </summary>
-            <value> The pointer to the custom connection parameters. </value>
-            <remarks> The parameters passed from the
-              <see cref="T:wclCommunication.wclServerConnection" /> object and contains
-              hardware-dependent data about accepted client connections. </remarks>
-        </member>
-        <member name="M:wclCommunication.wclServerClientConnection.#ctor">
-            <summary> Creates a new server client connection. </summary>
-        </member>
-        <member name="M:wclCommunication.wclServerClientConnection.Finalize">
-            <summary> Frees the connection. </summary>
-        </member>
-        <member name="M:wclCommunication.wclServerClientConnection.Disconnect">
-            <summary> Disconnects from the connected remote device. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> <para> The method disconnects from the connected remote
-              device. </para>
-              <para> The method also frees the object. After calling this method an
-              application must not use the object. </para> </remarks>
-        </member>
-        <member name="P:wclCommunication.wclServerClientConnection.Server">
-            <summary> Gets the client owner. </summary>
-            <value> The <see cref="T:wclCommunication.wclServerConnection" /> object
-              that owns the connection. </value>
-            <seealso cref="T:wclCommunication.wclServerConnection" />
-        </member>
-        <member name="E:wclCommunication.wclServerClientConnection.OnConnect">
-            <summary> The event fires when a connection for a remote device
-              has been accepted. </summary>
-            <seealso cref="T:wclCommunication.wclClientConnectionConnectEvent" />
-        </member>
-        <member name="E:wclCommunication.wclServerClientConnection.OnDisconnect">
-            <summary> The event fires when the remote connected device has been
-              disconnected. </summary>
-            <seealso cref="T:wclCommunication.wclClientConnectionDisconnectEvent"/>
-        </member>
-        <member name="T:wclCommunication.wclServerConnection">
-            <summary> The base class for all server connections. </summary>
-            <remarks> An application must never create this class directly.
-              Instead of that an application must use high-level
-              components. </remarks>
-            <seealso cref="T:wclCommunication.wclCustomConnection" />
-        </member>
-        <member name="M:wclCommunication.wclServerConnection.InternalClose(System.Int32)">
-            <summary> Closes the server. </summary>
-            <param name="Reason"> The close reason code. If the server closed by
-              the <c>Close</c> method call the <c>Reason</c> is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" /> </param>
-        </member>
-        <member name="M:wclCommunication.wclServerConnection.CreateNewClientConnection(System.Object)">
-            <summary> Sends a notification to the main thread to create and init
-              new client connection. </summary>
-            <param name="Params"> An optional pointer to the hardware-dependent
-              data contains information about client connection request. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> The <c>HalListen</c> method should call this method to
-              create and initialize new client connection. </remarks>
-        </member>
-        <member name="M:wclCommunication.wclServerConnection.MessageReceived(wclCommon.wclMessage)">
-            <summary> The message receiver calls this method when a new notification
-              message has been received. </summary>
-            <param name="Message"> A <see cref="T:wclCommon.wclMessage" /> object
-              represents the notification message. </param>
-            <seealso cref="T:wclCommon.wclMessage" />
-        </member>
-        <member name="M:wclCommunication.wclServerConnection.DoClosed(System.Int32)">
-            <summary> Fires the <c>OnClosed</c> event. </summary>
-            /// <param name="Reason"> The close reason code. If the server closed by
-              the <c>Close</c> method call the <c>Reason</c> is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" /> </param>
-        </member>
-        <member name="M:wclCommunication.wclServerConnection.DoConnect(wclCommunication.wclServerClientConnection,System.Int32)">
-            <summary> Fires the <c>OnConnect</c> event. </summary>
-            <param name="Client"> The
-              <see cref="T:wclCommunication.wclServerClientConnection" /> represents a remote
-              connected client. </param>
-            <param name="Error"> The connection operation result code. If the
-              parameter is <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" /> the connection to a remote
-              device was established and the remote device is connected. Otherwise
-              the connection was not established and the remote device is
-              not connected. </param>
-            <seealso cref="T:wclCommunication.wclServerClientConnection" />
-        </member>
-        <member name="M:wclCommunication.wclServerConnection.DoDisconnect(wclCommunication.wclServerClientConnection,System.Int32)">
-            <summary> Fires the <c>OnDisconnect</c> event. </summary>
-            <param name="Client"> The
-              <see cref="T:wclCommunication.wclServerClientConnection" /> represents a remote
-              connected client. </param>
-            <param name="Reason"> The disconnection code. If the
-              parameter is <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" /> the connection was closed
-              by the <c>Disconnect</c> call. Otherwise indicates the disconnection
-              reason. </param>
-            <seealso cref="T:wclCommunication.wclServerClientConnection" />
-        </member>
-        <member name="M:wclCommunication.wclServerConnection.DoListen">
-            <summary> Fires the <c>OnListen</c> event. </summary>
-        </member>
-        <member name="M:wclCommunication.wclServerConnection.SetClientEvents(wclCommunication.wclServerClientConnection)">
-            <summary> The method sets the client's event handlers. </summary>
-            <param name="Client"> The
-              <see cref="T:wclCommunication.wclServerClientConnection" /> represents a client
-              connection. </param>
-            <seealso cref="T:wclCommunication.wclServerClientConnection" />
-        </member>
-        <member name="M:wclCommunication.wclServerConnection.HalListen(System.IntPtr)">
-            <summary> Implements a hardware-dependent method for listening the client
-              connections. </summary>
-            <param name="Event"> The termination event handle. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> A derived class must override this method to implement
-              a hardware-dependent code for listening for incoming
-              connections. </remarks>
-        </member>
-        <member name="M:wclCommunication.wclServerConnection.HalClose">
-            <summary> Implements a hardware-dependent method to stop
-              listening. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> The method is called only if the <c>HalListen</c> was
-              success. </remarks>
-        </member>
-        <member name="M:wclCommunication.wclServerConnection.HalCreateClient">
-            <summary> The method creates a hardware and transport-dependent
-              client connection. </summary>
-            <returns> If the method success the return value is the object
-              represents the client connection. Otherwise the method returns
-              <c>null</c>. </returns>
-            <remarks> A derived class must override this method to create a
-              custom HAL server client connection. </remarks>
-            <seealso cref="T:wclCommunication.wclServerClientConnection" />
-        </member>
-        <member name="M:wclCommunication.wclServerConnection.HalPrepare">
-            <summary> Implements a hardware-dependent code that prepares for
-              listening. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> A derived class must override this method to implement a
-              hardware-dependent code that prepares the server connection. </remarks>
-        </member>
-        <member name="M:wclCommunication.wclServerConnection.#ctor">
-            <summary> Creates a new server connection. </summary>
-        </member>
-        <member name="M:wclCommunication.wclServerConnection.Finalize">
-            <summary> Frees the server connection. </summary>
-        </member>
-        <member name="M:wclCommunication.wclServerConnection.Close">
-            <summary> The method disconnects all connected clients and closes the
-              server. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> The method must be called from the same thread that called
-              the <c>Listen</c> method. The method is not thread-safe. </remarks>
-        </member>
-        <member name="M:wclCommunication.wclServerConnection.Listen">
-            <summary> The method starts listening for client connections. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-        </member>
-        <member name="P:wclCommunication.wclServerConnection.Item(System.Int32)">
-            <summary> Gets a connected client by its index. </summary>
-            <value> The connected client. </value>
-            <seealso cref="T:wclCommunication.wclServerClientConnection" />
-        </member>
-        <member name="P:wclCommunication.wclServerConnection.ClientsCount">
-            <summary> Gets the number of connected clients. </summary>
-            <value> The number of the connected clients. </value>
-        </member>
-        <member name="P:wclCommunication.wclServerConnection.State">
-            <summary> Gets the connection state. </summary>
-            <value> The <see cref="T:wclCommunication.wclServerState" /> indicates the current
-              connection state. </value>
-            <seealso cref="T:wclCommunication.wclServerState" />
-        </member>
-        <member name="E:wclCommunication.wclServerConnection.OnClosed">
-            <summary> The event fires when the server is closed. </summary>
-            <seealso cref="T:wclCommunication.wclClientConnectionDisconnectEvent" /> 
-        </member>
-        <member name="E:wclCommunication.wclServerConnection.OnConnect">
-            <summary> The event fires when a remote client is connected to
-              the server. </summary>
-            <seealso cref="T:wclCommunication.wclServerConnectionConnectEvent" />
-        </member>
-        <member name="E:wclCommunication.wclServerConnection.OnDisconnect">
-            <summary> The event fires when a remote client has disconnected from the
-              server. </summary>
-            <seealso cref="T:wclCommunication.wclServerConnectionDisconnectEvent" />
-        </member>
-        <member name="E:wclCommunication.wclServerConnection.OnListen">
-            <summary> The event fires when the server is ready to accept incoming
-              connections (is in listening state). </summary>
-        </member>
-        <member name="T:wclCommunication.wclServerClientDataConnection">
-            <summary> The base class for the server client connection that
-              requires data exchange with a remote device. </summary>
-            <seealso cref="T:wclCommunication.wclServerClientConnection" />
-        </member>
-        <member name="M:wclCommunication.wclServerClientDataConnection.NotifyDataReceived(System.Byte[])">
-            <summary> Send a data notification message. </summary>
-            <param name="Data"> The data buffer contains received data. </param>
-        </member>
-        <member name="M:wclCommunication.wclServerClientDataConnection.MessageReceived(wclCommon.wclMessage)">
-            <summary> The message receiver calls this method when a new notification
-              message has been received. </summary>
-            <param name="Message"> A <see cref="T:wclCommon.wclMessage" /> object
-              represents the notification message. </param>
-            <seealso cref="T:wclCommon.wclMessage" />
-        </member>
-        <member name="M:wclCommunication.wclServerClientDataConnection.Accept(wclCommunication.wclServerConnection,System.Object)">
-            <summary> The method accepts the client connection request. </summary>
-            <param name="Server"> A <see cref="T:wclCommunication.wclServerConnection" />
-              object owns the client connection. </param>
-            <param name="Params"> An optional pointer to the hardware-dependent
-              data contains information about client connection request. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> <para> The method called by the server when connection from a
-              remote client device has already been accepted. </para>
-              <para> The method is always called from the main (or from the same)
-              thread that runs the server. </para>
-              <para> The method prepares the class for communication with a remote
-              client. </para>
-              <para> If the method fails it disconnects already accepted client
-              connection. </para>
-              <para> The <c>Server</c> parameter must be a
-              <see cref="T:wclCommunication.wclServerDataConnection" />
-               object. </para> </remarks>
-            <seealso cref="T:wclCommunication.wclServerConnection" />
-            <seealso cref="T:wclCommunication.wclServerDataConnection" />
-        </member>
-        <member name="M:wclCommunication.wclServerClientDataConnection.DoData(System.Byte[])">
-            <summary> Fires the <c>OnData</c> event. </summary>
-            <param name="Data"> The pointer to the received data buffer.
-              It is guaranteed that the parameter points to a valid data buffer.
-              The data buffer is valid only inside the event handler. If an
-              application needs to use the data outside the event handle it must
-              allocate own buffer and copy data into it. </param>
-        </member>
-        <member name="M:wclCommunication.wclServerClientDataConnection.HalGetReadBufferSize(System.UInt32@)">
-            <summary> Reads the read buffer size. </summary>
-            <param name="Size"> On output he read buffer size in bytes. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> A derived class must override this method to implement the
-             buffer size reading code. </remarks>
-        </member>
-        <member name="M:wclCommunication.wclServerClientDataConnection.HalGetWriteBufferSize(System.UInt32@)">
-            <summary> Reads the write buffer size. </summary>
-            <param name="Size"> On output the write buffer size in bytes. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> A derived class must override this method to implement the
-             buffer size reading code. </remarks>
-        </member>
-        <member name="M:wclCommunication.wclServerClientDataConnection.HalSetReadBufferSize(System.UInt32)">
-            <summary> Sets the read buffer size. </summary>
-            <param name="Size"> The new read buffer size in bytes. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> A derived class must override this method to implement the
-             buffer size setting code. </remarks>
-        </member>
-        <member name="M:wclCommunication.wclServerClientDataConnection.HalSetWriteBufferSize(System.UInt32)">
-            <summary> Sets the write buffer size. </summary>
-            <param name="Size"> The new write buffer size in bytes. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> A derived class must override this method to implement the
-             buffer size setting code. </remarks>
-        </member>
-        <member name="M:wclCommunication.wclServerClientDataConnection.HalWrite(System.Byte[],System.UInt32@)">
-            <summary> Implements a hardware-dependent code that sends data to the
-              connected device. </summary>
+        <member name="M:wclCommunication.wclCustomClientDataProcessor.WriteData(System.Byte[],System.UInt32@)">
+            <summary> Writes data to the Client Connection. </summary>
             <param name="Data"> The pointer to the data buffer that should be sent
               to the connected device. </param>
             <param name="Written"> The amount of bytes actually written to the
@@ -707,96 +341,18 @@
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
-            <remarks> A derived class must override this method to implement a
-              hardware-dependent code that sends data to the connected device.
-              The method executes in the main thread and must be
-              synchronous. </remarks>
         </member>
-        <member name="M:wclCommunication.wclServerClientDataConnection.#ctor">
-            <summary> Creates a new server client data connection. </summary>
+        <member name="M:wclCommunication.wclCustomClientDataProcessor.#ctor(wclCommunication.wclClientDataConnection)">
+            <summary> Creates new Client Data Processor. </summary>
+            <param name="Connection"> A <see cref="T:wclCommunication.wclClientDataConnection" />
+              object that is used to communicate with a remote device. </param>
+            <seealso cref="T:wclCommunication.wclClientDataConnection" />
         </member>
-        <member name="M:wclCommunication.wclServerClientDataConnection.GetReadBufferSize(System.UInt32@)">
-            <summary> Reads the read buffer size. </summary>
-            <param name="Size"> On output he read buffer size in bytes. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-        </member>
-        <member name="M:wclCommunication.wclServerClientDataConnection.GetWriteBufferSize(System.UInt32@)">
-            <summary> Reads the write buffer size. </summary>
-            <param name="Size"> On output the write buffer size in bytes. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-        </member>
-        <member name="M:wclCommunication.wclServerClientDataConnection.SetReadBufferSize(System.UInt32)">
-            <summary> Sets the read buffer size. </summary>
-            <param name="Size"> The new read buffer size in bytes. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-        </member>
-        <member name="M:wclCommunication.wclServerClientDataConnection.SetWriteBufferSize(System.UInt32)">
-            <summary> Sets the write buffer size. </summary>
-            <param name="Size"> The new write buffer size in bytes. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-        </member>
-        <member name="M:wclCommunication.wclServerClientDataConnection.Write(System.Byte[],System.UInt32@)">
-            <summary> Sends data to the connected device. </summary>
-            <param name="Data"> The pointer to the data buffer that should be sent
-              to the connected device. </param>
-            <param name="Written"> The amount of bytes actually written to the
-              device. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> The write is synchronous operation. </remarks>
-        </member>
-        <member name="P:wclCommunication.wclServerClientDataConnection.Processor">
-            <summary> Gets the current Data Processor object assigned to the
-              Connection. </summary>
-            <value> The <see cref="T:wclCommunication.wclCustomServerClientDataProcessor" /> object
-              used by the Connection to process data. </value>
-            <seealso cref="T:wclCommunication.wclCustomServerClientDataProcessor" />
-        </member>
-        <member name="E:wclCommunication.wclServerClientDataConnection.OnData">
-            <summary> The event fires when new data is received from the
-              connected remote device. </summary>
-            <seealso cref="T:wclCommunication.wclConnectionDataEvent" />
-        </member>
-        <member name="T:wclCommunication.wclServerDataConnection">
-            <summary> The base class for the server connection that
-              requires data exchange with a remote device. </summary>
-            <seealso cref="T:wclCommunication.wclServerConnection" />
-        </member>
-        <member name="M:wclCommunication.wclServerDataConnection.SetClientEvents(wclCommunication.wclServerClientConnection)">
-            <summary> The method sets the client's event handlers. </summary>
-            <param name="Client"> The
-              <see cref="T:wclCommunication.wclServerClientConnection" /> represents a client
-              connection. </param>
-            <seealso cref="T:wclCommunication.wclServerClientConnection" />
-        </member>
-        <member name="M:wclCommunication.wclServerDataConnection.DoData(wclCommunication.wclServerClientDataConnection,System.Byte[])">
-            <summary> Fires the <c>OnData</c> event. </summary>
-            <param name="Client"> A
-              <see cref="T:wclCommunication.wclServerClientDataConnection" /> object
-              represents a remote client connection. </param>
-            <param name="Data"> The pointer to the received data buffer.
-              It is guaranteed that the parameter points to a valid data buffer.
-              The data buffer is valid only inside the event handler. If an
-              application needs to use the data outside the event handle it must
-              allocate own buffer and copy data into it. </param>
-            <seealso cref="T:wclCommunication.wclServerClientDataConnection" />
-        </member>
-        <member name="M:wclCommunication.wclServerDataConnection.#ctor">
-            <summary> Creates a new client data connection. </summary>
-        </member>
-        <member name="E:wclCommunication.wclServerDataConnection.OnData">
-            <summary> The event fires when new data is received from the
-              connected remote device. </summary>
-            <seealso cref="T:wclCommunication.wclServerConnectionDataEvent" />
+        <member name="P:wclCommunication.wclCustomClientDataProcessor.Connection">
+            <summary> Gets the connection object used to communicate with a remote
+              device. </summary>
+            <value> The <see cref="T:wclCommunication.wclClientDataConnection" /> object. </value>
+            <seealso cref="T:wclCommunication.wclClientDataConnection" />
         </member>
         <member name="T:wclCommunication.wclCustomDataProcessor">
             <summary> The base class for all WCL Data Processors. </summary>
@@ -863,38 +419,6 @@
             <summary> The event fires when the Data Processor needs to write data
               to a connection but a connection is not assigned. </summary>
             <seealso cref="T:wclCommunication.wclDataProcessorWriteEvent" />
-        </member>
-        <member name="T:wclCommunication.wclCustomClientDataProcessor">
-            <summary> The base class for all WCL Client Data Processors. </summary>
-            <remarks> The Client Data Processor allows to add additional data
-              processing for the Client Data Connections. </remarks>
-            <seealso cref="T:wclCommunication.wclCustomDataProcessor" />
-            <seealso cref="T:wclCommunication.wclClientDataConnection" />
-        </member>
-        <member name="M:wclCommunication.wclCustomClientDataProcessor.Free">
-            <summary> Frees the data processor object. </summary>
-        </member>
-        <member name="M:wclCommunication.wclCustomClientDataProcessor.WriteData(System.Byte[],System.UInt32@)">
-            <summary> Writes data to the Client Connection. </summary>
-            <param name="Data"> The pointer to the data buffer that should be sent
-              to the connected device. </param>
-            <param name="Written"> The amount of bytes actually written to the
-              device. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-        </member>
-        <member name="M:wclCommunication.wclCustomClientDataProcessor.#ctor(wclCommunication.wclClientDataConnection)">
-            <summary> Creates new Client Data Processor. </summary>
-            <param name="Connection"> A <see cref="T:wclCommunication.wclClientDataConnection" />
-              object that is used to communicate with a remote device. </param>
-            <seealso cref="T:wclCommunication.wclClientDataConnection" />
-        </member>
-        <member name="P:wclCommunication.wclCustomClientDataProcessor.Connection">
-            <summary> Gets the connection object used to communicate with a remote
-              device. </summary>
-            <value> The <see cref="T:wclCommunication.wclClientDataConnection" /> object. </value>
-            <seealso cref="T:wclCommunication.wclClientDataConnection" />
         </member>
         <member name="T:wclCommunication.wclCustomServerClientDataProcessor">
             <summary> The base class for all WCL Server Client Data
@@ -1416,23 +940,6 @@
             <summary> Initializes a new instance of the exception class with a specified error message. </summary>
             <param name="message">The message that describes the error.</param>
         </member>
-        <member name="T:wclCommunication.wclObexOperationResultEvent">
-            <summary> The common OBEX operation result event handler
-              prototype. </summary>
-            <param name="Sender"> The object that initiated the event. </param>
-            <param name="Error"> The operation result code. If operation has been
-              completed with success the <c>Error</c> is
-              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
-            <param name="Description"> Additional optional description of the
-              operation result. </param>
-        </member>
-        <member name="T:wclCommunication.wclObexOperationProgressEvent">
-            <summary> The <c>OnProgress</c> event handler prototype. </summary>
-            <param name="Sender"> The object that initiated the event. </param>
-            <param name="Length"> The current object's length (size) in
-              bytes. </param>
-            <param name="Position"> The current transferring byte index. </param> 
-        </member>
         <member name="T:wclCommunication.wclCustomObexClient">
             <summary> The base class for OBEX client data processors. </summary>
             <seealso cref="T:wclCommunication.wclCustomClientDataProcessor" />
@@ -1658,443 +1165,6 @@
               to indicate operation progress. </summary>
             <seealso cref="T:wclCommunication.wclObexOperationProgressEvent" />
         </member>
-        <member name="T:wclCommunication.wclObexObjectOperationResultEvent">
-            <summary> The Put and Get OBEX operations result event handler prototype. </summary>
-            <param name="Sender"> The object that initiated the event. </param>
-            <param name="Error"> The operation result code. If operation has been
-              completed with success the <c>Error</c> is
-              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
-            <param name="Description"> Additional optional description of the
-              operation result. </param>
-            <param name="Stream"> The stream object used in operation. </param>
-        </member>
-        <member name="T:wclCommunication.wclObexFileClient">
-            <summary> The base class for OBEX file based clients: OPP, FTP,
-              etc. </summary>
-            <remarks> The class provides some basic events and methods that are common
-              for all file based OBEX clients. </remarks>
-            <seealso cref="T:wclCommunication.wclCustomObexClient" />
-        </member>
-        <member name="M:wclCommunication.wclObexFileClient.DoGetComplete(System.Int32,System.String,System.IO.Stream)">
-            <summary> Fires the <c>OnGetComplete</c> event. </summary>
-            <param name="Error"> The operation result code. If operation has been
-              completed with success the <c>Error</c> is
-              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
-            <param name="Description"> Additional optional description of the
-              operation result. </param>
-            <param name="Stream"> The stream object used in operation. </param>
-        </member>
-        <member name="M:wclCommunication.wclObexFileClient.DoPutComplete(System.Int32,System.String,System.IO.Stream)">
-            <summary> Fires the <c>OnPutComplete</c> event. </summary>
-            <param name="Error"> The operation result code. If operation has been
-              completed with success the <c>Error</c> is
-              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
-            <param name="Description"> Additional optional description of the
-              operation result. </param>
-            <param name="Stream"> The stream object used in operation. </param>
-        </member>
-        <member name="M:wclCommunication.wclObexFileClient.#ctor(wclCommunication.wclClientDataConnection)">
-            <summary> Creates new OBEX File Client Data Processor. </summary>
-            <param name="Connection"> A <see cref="T:wclCommunication.wclClientDataConnection" />
-              object that is used to communicate with a remote device. </param>
-            <seealso cref="T:wclCommunication.wclClientDataConnection" />
-        </member>
-        <member name="M:wclCommunication.wclObexFileClient.Put(System.String,System.String,System.IO.Stream)">
-            <summary> Sends one object from the client to the server. </summary>
-            <param name="Name"> The object's name. If the parameter is an empty
-              string the Name is ignored.  </param>
-            <param name="Description"> The object's description. If the parameter is
-              an empty string the Description is ignored. </param>
-            <param name="Stream"> The object's data stream. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> <para> The method starts sending an object to an OBEX server.
-              When sending is completed the <c>OnPutComplete</c> event fires with
-              the operation result. </para>
-              <para> If an application passes a valid Stream object to the method
-              the object must be valid until <c>OnPutComplete</c> event fires.
-              An application can destroy the stream object passed as the
-              <c>Stream</c> parameter only after <c>OnPutComplete</c> event
-              fired. </para>
-              <para> During execution of the Put operation the <c>OnProgress</c>
-              event may (or may not) fire indicating the operation
-              progress. </para> </remarks>
-        </member>
-        <member name="E:wclCommunication.wclObexFileClient.OnGetComplete">
-            <summary> The event fires when the Get operation has been
-              completed. </summary>
-            <remarks> If the operation completed with success the Stream object
-              contains the object's data. If the operation completed with error
-              the Stream contains a partial data and is invalid. An application can
-              not use the object from the Stream if the operation completed with
-              error. </remarks>
-            <seealso cref="T:wclCommunication.wclObexObjectOperationResultEvent" />
-        </member>
-        <member name="E:wclCommunication.wclObexFileClient.OnPutComplete">
-            <summary> The event fires when the Put operation has been
-              completed. </summary>
-            <remarks> An application can dispose the Stream object passed to the Put
-              method. The state of the Stream object is changed. </remarks>
-            <seealso cref="T:wclCommunication.wclObexObjectOperationResultEvent" />
-        </member>
-        <member name="T:wclCommunication.wclObexOppClient">
-            <summary> The data processor implements the OBEX Object Push Profile
-              (OPP) client. </summary>
-            <seealso cref="T:wclCommunication.wclObexFileClient" />
-        </member>
-        <member name="M:wclCommunication.wclObexOppClient.#ctor(wclCommunication.wclClientDataConnection)">
-            <summary> Creates new OBEX OPP Client. </summary>
-            <param name="Connection"> A <see cref="T:wclCommunication.wclClientDataConnection" />
-              object that is used to communicate with a remote device. </param>
-            <seealso cref="T:wclCommunication.wclClientDataConnection" />
-        </member>
-        <member name="M:wclCommunication.wclObexOppClient.Connect(System.UInt16)">
-            <summary> Connects to an OBEX server. </summary>
-            <param name="PacketSize"> The maximum OBEX packet size. The minimum
-              allowed value is 0x00FF. The default value is 0xFFFF. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-        </member>
-        <member name="M:wclCommunication.wclObexOppClient.Get(System.String,System.IO.Stream)">
-            <summary> The function reads the default object with given type from an
-              OBEX Push server. </summary>
-            <param name="aType"> The object's type. </param>
-            <param name="Stream"> The object's data stream. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> <para> This function can be used to pull (request) the default
-              business card (vCard) from a target device. To do that the
-              <c>aType</c> parameter must be "text/x-vCard" string. </para>
-              <para> An application must pass a valid Stream object to the method
-              and the stream object must be valid until <c>OnGetComplete</c> event
-              fires. An application can destroy the stream object passed as the
-              <c>Stream</c> parameter only after <c>OnGetComplete</c> event
-              fired. </para>
-              <para> During execution of the Get operation the <c>OnProgress</c>
-              event may (or may not) fire indicating the operation
-              progress. </para> </remarks>
-        </member>
-        <member name="T:wclCommunication.wclObexFilePermission">
-            <summary> The OBEX file object permission. </summary>
-        </member>
-        <member name="F:wclCommunication.wclObexFilePermission.opRead">
-            <summary> Read permission. </summary>
-            <remarks> The <c>READ</c> permission applies to all object types. It
-              indicates that an attempt to <c>GET</c> the named object should
-              successfully retrieve its contents. </remarks>
-        </member>
-        <member name="F:wclCommunication.wclObexFilePermission.opWrite">
-            <summary> Write permission. </summary>
-            <remarks> The <c>WRITE</c> permission applies to all object types. It
-              indicates that an attempt to modify the contents of the file by
-              <c>PUT</c>’ing to the file should succeed. For folder objects it
-              indicates that attempts to create a folder or other object within that
-              folder should succeed. </remarks>
-        </member>
-        <member name="F:wclCommunication.wclObexFilePermission.opDelete">
-            <summary> Delete permission. </summary>
-            <remarks> The <c>DELETE</c> permission applies to file types. It
-              indicates that the file may be removed by sending a <c>DELETE</c>
-              command. </remarks>
-        </member>
-        <member name="T:wclCommunication.wclObexFileObject">
-            <summary> The record describes the OBEX file system object. </summary>
-        </member>
-        <member name="F:wclCommunication.wclObexFileObject.IsDirectory">
-            <summary> If this member is <c>True</c> the file system object is
-              directory. If this member is <c>False</c> the file system object
-              if file. </summary>
-        </member>
-        <member name="F:wclCommunication.wclObexFileObject.Name">
-            <summary> The file system object name. </summary>
-        </member>
-        <member name="F:wclCommunication.wclObexFileObject.Description">
-            <summary> The object's description. </summary>
-        </member>
-        <member name="F:wclCommunication.wclObexFileObject.Size">
-            <summary> The file system object size in bytes. If the file system
-              object is directory this member is always 0. </summary>
-        </member>
-        <member name="F:wclCommunication.wclObexFileObject.Permissions">
-            <summary> The user level permissions. </summary>
-            <remarks> A permission indicator does not imply that the appropriate
-              command is guaranteed to work – just that it might. Other system
-              specific limitations, such as limitations on available space for
-              storing objects, may cause an operation to fail, where the permission
-              flags may have indicated that it was likely to succeed. The
-              permissions are a guide only. Some systems may have more specific
-              permissions than those listed here, such systems should map those
-              to the flags defined as best they are able. </remarks>
-            <seealso cref="T:wclCommunication.wclObexFilePermission" />
-        </member>
-        <member name="F:wclCommunication.wclObexFileObject.Modified">
-            <summary> The last modified time for the object. </summary>
-        </member>
-        <member name="F:wclCommunication.wclObexFileObject.Created">
-            <summary> The creation time for the object. </summary>
-        </member>
-        <member name="F:wclCommunication.wclObexFileObject.Accessed">
-            <summary> The last accessed time for the object. </summary>
-        </member>
-        <member name="T:wclCommunication.wclObexFtpDirCompleteEvent">
-            <summary> The <c>OnDirComplete</c> event handler prototype. </summary>
-            <param name="Sender"> The object that initiated the event. </param>
-            <param name="Error"> The operation result code. If operation has been
-              completed with success the <c>Error</c> is
-              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
-            <param name="Description"> Additional optional description of the
-              operation result. </param>
-            <param name="Dirs"> The array of file system objects. This parameter can
-              be <c>nil</c> if no file system objects found in current directory or
-              if <c>Error</c> parameter is not <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
-            <seealso cref="T:wclCommunication.wclObexFileObject" />
-        </member>
-        <member name="T:wclCommunication.wclObexFtpClient">
-            <summary> The data processor implements the OBEX File Transfer Profile
-              (FTP) client. </summary>
-            <seealso cref="T:wclCommunication.wclObexFileClient" />
-        </member>
-        <member name="M:wclCommunication.wclObexFtpClient.DoGetComplete(System.Int32,System.String,System.IO.Stream)">
-            <summary> The method called when the OBEX GET operation has been
-              completed. </summary>
-            <param name="Error"> The operation result code. If operation has been
-              completed with success the <c>Error</c> is
-              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
-            <param name="Description"> Additional optional description of the
-              operation result. </param>
-            <param name="Stream"> The stream object used in operation. </param>
-        </member>
-        <member name="M:wclCommunication.wclObexFtpClient.DoPutComplete(System.Int32,System.String,System.IO.Stream)">
-            <summary> The method called when the OBEX PUT operation has been
-              completed. </summary>
-            <param name="Error"> The operation result code. If operation has been
-              completed with success the <c>Error</c> is
-              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
-            <param name="Description"> Additional optional description of the
-              operation result. </param>
-            <param name="Stream"> The stream object used in operation. </param>
-        </member>
-        <member name="M:wclCommunication.wclObexFtpClient.DoSetPathComplete(System.Int32,System.String)">
-            <summary> The method called when the OBEX SET_PATH operation has
-              been completed. </summary>
-            <param name="Error"> The operation result code. If operation has been
-              completed with success the <c>Error</c> is
-              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
-            <param name="Description"> Additional optional description of the
-              operation result. </param>
-        </member>
-        <member name="M:wclCommunication.wclObexFtpClient.#ctor(wclCommunication.wclClientDataConnection)">
-            <summary> Creates new OBEX File Transfer Profile Client Data
-              Processor. </summary>
-            <param name="Connection"> A <see cref="T:wclCommunication.wclClientDataConnection" />
-              object that is used to communicate with a remote device. </param>
-            <seealso cref="T:wclCommunication.wclClientDataConnection" />
-        </member>
-        <member name="M:wclCommunication.wclObexFtpClient.Connect(System.UInt16)">
-            <summary> Connects to an OBEX server. </summary>
-            <param name="PacketSize"> The maximum OBEX packet size. The minimum
-              allowed value is 0x00FF. The default value is 0xFFFF. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-        </member>
-        <member name="M:wclCommunication.wclObexFtpClient.ChangeDir(System.String)">
-            <summary> Changes current directory to the child directory. </summary>
-            <param name="Name"> The child directory name. Use ".." to go one level
-              up. Use empty name to go to the root directory. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> When operation completed the <c>OnChangeDirComplete</c>
-              event fires. </remarks>
-        </member>
-        <member name="M:wclCommunication.wclObexFtpClient.Delete(System.String)">
-            <summary> Deletes the object with given name. </summary>
-            <param name="Name"> The object's name. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> <para> The object can be any object: file, directory, virtual
-              object. </para>
-              <para> When the operation completed the <c>OnDeleteComplete</c> event
-              fires. </para> </remarks>
-        </member>
-        <member name="M:wclCommunication.wclObexFtpClient.Dir">
-            <summary> Requests the files listing for the current
-              directory. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> When operation completed the <c>OnDirComplete</c> event
-              fires. </remarks>
-        </member>
-        <member name="M:wclCommunication.wclObexFtpClient.Get(System.String,System.IO.Stream)">
-            <summary> Requests an object from a server. </summary>
-            <param name="Name"> The object's name. If the parameter is an empty
-              string the Name is ignored.  </param>
-            <param name="Stream"> The object's data stream. This must be valid
-              empty stream object. The stream must have write access
-              permission. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> <para> The method starts receiving an object from an OBEX
-              server. When sending is completed the <c>OnGetComplete</c> event fires
-              with the operation result. </para>
-              <para> The Stream object passed to the method must be valid until
-              <c>OnGetComplete</c> event fires. An application can destroy the
-              stream object passed as the <c>Stream</c> parameter only after
-              <c>OnGetComplete</c> event fired. </para>
-              <para> During execution of the Get operation the <c>OnProgress</c>
-              event may (or may not) fire indicating the operation
-              progress. </para> </remarks>
-        </member>
-        <member name="M:wclCommunication.wclObexFtpClient.MkDir(System.String)">
-            <summary> Creates new directory. </summary>
-            <param name="Name"> The directory name. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> <para> When operation completed the <c>OnMakeDirComplete</c>
-              event fires. </para>
-              <para> If the operation completed with success the current directory
-              is changed to the just created directory. </para> </remarks>
-        </member>
-        <member name="M:wclCommunication.wclObexFtpClient.Put(System.String,System.String,System.IO.Stream)">
-            <summary> Sends one object from the client to the server. </summary>
-            <param name="Name"> The object's name. </param>
-            <param name="Description"> The object's description. If the parameter is
-              an empty string the Description is ignored. </param>
-            <param name="Stream"> The object's data stream. </param>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> <para> The method starts sending an object to an OBEX server.
-              When sending is completed the <c>OnPutComplete</c> event fires with
-              the operation result. </para>
-              <para> If an application passes a valid Stream object to the method
-              the object must be valid until <c>OnPutComplete</c> event fires.
-              An application can destroy the stream object passed as the
-              <c>Stream</c> parameter only after <c>OnPutComplete</c> event
-              fired. </para>
-              <para> During execution of the Put operation the <c>OnProgress</c>
-              event may (or may not) fire indicating the operation
-              progress. </para> </remarks>
-        </member>
-        <member name="E:wclCommunication.wclObexFtpClient.OnChangeDirComplete">
-            <summary> The event fires when the change directory operation has been
-              completed. </summary>
-            <seealso cref="T:wclCommunication.wclObexOperationResultEvent" />
-        </member>
-        <member name="E:wclCommunication.wclObexFtpClient.OnDeleteComplete">
-            <summary> The event fires when the delete operation has been
-              completed. </summary>
-            <seealso cref="T:wclCommunication.wclObexOperationResultEvent" />
-        </member>
-        <member name="E:wclCommunication.wclObexFtpClient.OnDirComplete">
-            <summary> The event fires when directory listing has been
-              completed. </summary>
-            <seealso cref="T:wclCommunication.wclObexFtpDirCompleteEvent" />
-        </member>
-        <member name="E:wclCommunication.wclObexFtpClient.OnMakeDirComplete">
-            <summary> The event fires when the creating directory operation has been
-              completed. </summary>
-            <seealso cref="T:wclCommunication.wclObexOperationResultEvent" />
-        </member>
-        <member name="T:wclCommunication.wclObexServerOperationResult">
-            <summary> The possible OBEX server operation results that can be returned
-              to the client. </summary>
-        </member>
-        <member name="F:wclCommunication.wclObexServerOperationResult.orSuccess">
-            <summary> The success result. Operation completed or started with
-              success. </summary>
-        </member>
-        <member name="F:wclCommunication.wclObexServerOperationResult.orForbidden">
-            <summary> The request was valid, but the server is refusing action. The
-              user might not have the necessary permissions for an
-              object. </summary>
-        </member>
-        <member name="F:wclCommunication.wclObexServerOperationResult.orObjectNotFound">
-            <summary> The requested object could not be found. </summary>
-        </member>
-        <member name="F:wclCommunication.wclObexServerOperationResult.orUnsupportedMedia">
-            <summary> The request entity has a media type which the server or
-              resource does not support. For example, the client uploads an image as
-              image/svg+xml, but the server requires that images use a different
-              format. </summary>
-        </member>
-        <member name="F:wclCommunication.wclObexServerOperationResult.orAccessDenied">
-            <summary> Similar to <c>orForbidden</c>, but specifically for use when
-              authentication is required and has failed or has not yet been
-              provided. </summary>
-        </member>
-        <member name="F:wclCommunication.wclObexServerOperationResult.orUnexpected">
-            <summary> Unexpected or unknown OBEX result code. </summary>
-        </member>
-        <member name="T:wclCommunication.wclObexServerClientDisconnectedEvent">
-            <summary> The OBEX server data processor <c>OnDisconnect</c> event handler
-              prototype. </summary>
-            <param name="Sender"> The object that initiated the event. </param>
-            <param name="Reason"> The disconnection reason code. </param>
-            <param name="Description"> The disconnect reason description. </param>
-        </member>
-        <member name="T:wclCommunication.wclObexServerClientGetCompletedEvent">
-            <summary> The OBEX server data processor <c>OnGetCompleted</c> event
-              handler prototype. </summary>
-            <param name="Sender"> The object that initiated the event. </param>
-            <param name="Error"> The operation completion reason code. If operation
-              completed with success the <c>Error</c> is WCL_E_SUCCESS. </param>
-            <param name="Stream"> The requested OBEX object's data stream. This is the
-              same stream object that was passed to the <c>OnGetRequest</c> event
-              handler. An application can dispose the stream in this event
-              handler.</param>
-        </member>
-        <member name="T:wclCommunication.wclObexServerClientOperationProgressEvent">
-            <summary> The OBEX server data processor <c>OnPutProgress</c> and
-              <c>OnGetProgress</c> operations event handler. </summary>
-            <param name="Sender"> The object that initiated the event. </param>
-            <param name="Position"> The current position in object's data in
-              bytes </param>
-            <param name="Length"> The current object's length (size) in
-              bytes. </param>
-            <param name="Continue"> An application must set this flag to <c>True</c>
-              if still want continue process the object. If application wants to
-              terminate the operation set this flags to <c>False</c>. </param>
-        </member>
-        <member name="T:wclCommunication.wclObexServerClientPutBeginEvent">
-            <summary> The OBEX server data processor <c>OnPutBegin</c> event handler
-              prototype. </summary>
-            <param name="Sender"> The object that initiated the event. </param>
-            <param name="Name"> The object's name. Can be empty. </param>
-            <param name="Description"> The object's description. Can be
-              empty. </param>
-            <param name="Mime"> The object's MIME type. Can be empty. </param>
-            <param name="Length"> The object's data size (length) in bytes.
-              Can be 0. </param>
-            <param name="Accept"> Must be set to <c>True</c> to accept object.
-              If set to <c>False</c> the object will be rejected. </param>
-        </member>
-        <member name="T:wclCommunication.wclObexServerClientPutCompletedEvent">
-            <summary> The OBEX server data processor <c>OnPutCompleted</c> event
-              handler prototype. </summary>
-            <param name="Sender"> The object that initiated the event. </param>
-            <param name="Error"> The operation completion reason code. If operation
-              completed with success the <c>Reason</c> is WCL_E_SUCCESS. An
-              application may accept or reject all the object by setting the
-              <c>Accept</c> parameter. </param>
-            <param name="Stream"> The received object's data stream. </param>
-            <param name="Accept"> Set this parameter to <c>True</c> to accept the
-              object. Set this parameter to <c>False</c> to reject the object. In case
-              if object rejected the OBEX Forbidden error will be send. </param>
-            <remarks> The <c>Stream</c> parameter contains the received object's data.
-              This parameter is valid only inside the event handler and must be saved
-              or copied by an application if an application needs to use it later.
-              The <c>Stream</c> parameter can be <c>null</c> or empty if received
-              object does not have body (data). </remarks>
-        </member>
         <member name="T:wclCommunication.wclCustomObexServer">
             <summary> The base class for OBEX server data processors. </summary>
             <seealso cref="T:wclCommunication.wclCustomServerClientDataProcessor" />
@@ -2297,6 +1367,107 @@
             <remarks> The event may fire one or more times per object. </remarks>
             <seealso cref="T:wclCommunication.wclObexServerClientOperationProgressEvent" />
         </member>
+        <member name="T:wclCommunication.wclObexOperationResultEvent">
+            <summary> The common OBEX operation result event handler
+              prototype. </summary>
+            <param name="Sender"> The object that initiated the event. </param>
+            <param name="Error"> The operation result code. If operation has been
+              completed with success the <c>Error</c> is
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
+            <param name="Description"> Additional optional description of the
+              operation result. </param>
+        </member>
+        <member name="T:wclCommunication.wclObexOperationProgressEvent">
+            <summary> The <c>OnProgress</c> event handler prototype. </summary>
+            <param name="Sender"> The object that initiated the event. </param>
+            <param name="Length"> The current object's length (size) in
+              bytes. </param>
+            <param name="Position"> The current transferring byte index. </param> 
+        </member>
+        <member name="T:wclCommunication.wclObexObjectOperationResultEvent">
+            <summary> The Put and Get OBEX operations result event handler prototype. </summary>
+            <param name="Sender"> The object that initiated the event. </param>
+            <param name="Error"> The operation result code. If operation has been
+              completed with success the <c>Error</c> is
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
+            <param name="Description"> Additional optional description of the
+              operation result. </param>
+            <param name="Stream"> The stream object used in operation. </param>
+        </member>
+        <member name="T:wclCommunication.wclObexFtpDirCompleteEvent">
+            <summary> The <c>OnDirComplete</c> event handler prototype. </summary>
+            <param name="Sender"> The object that initiated the event. </param>
+            <param name="Error"> The operation result code. If operation has been
+              completed with success the <c>Error</c> is
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
+            <param name="Description"> Additional optional description of the
+              operation result. </param>
+            <param name="Dirs"> The array of file system objects. This parameter can
+              be <c>nil</c> if no file system objects found in current directory or
+              if <c>Error</c> parameter is not <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
+            <seealso cref="T:wclCommunication.wclObexFileObject" />
+        </member>
+        <member name="T:wclCommunication.wclObexServerClientDisconnectedEvent">
+            <summary> The OBEX server data processor <c>OnDisconnect</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object that initiated the event. </param>
+            <param name="Reason"> The disconnection reason code. </param>
+            <param name="Description"> The disconnect reason description. </param>
+        </member>
+        <member name="T:wclCommunication.wclObexServerClientGetCompletedEvent">
+            <summary> The OBEX server data processor <c>OnGetCompleted</c> event
+              handler prototype. </summary>
+            <param name="Sender"> The object that initiated the event. </param>
+            <param name="Error"> The operation completion reason code. If operation
+              completed with success the <c>Error</c> is WCL_E_SUCCESS. </param>
+            <param name="Stream"> The requested OBEX object's data stream. This is the
+              same stream object that was passed to the <c>OnGetRequest</c> event
+              handler. An application can dispose the stream in this event
+              handler.</param>
+        </member>
+        <member name="T:wclCommunication.wclObexServerClientOperationProgressEvent">
+            <summary> The OBEX server data processor <c>OnPutProgress</c> and
+              <c>OnGetProgress</c> operations event handler. </summary>
+            <param name="Sender"> The object that initiated the event. </param>
+            <param name="Position"> The current position in object's data in
+              bytes </param>
+            <param name="Length"> The current object's length (size) in
+              bytes. </param>
+            <param name="Continue"> An application must set this flag to <c>True</c>
+              if still want continue process the object. If application wants to
+              terminate the operation set this flags to <c>False</c>. </param>
+        </member>
+        <member name="T:wclCommunication.wclObexServerClientPutBeginEvent">
+            <summary> The OBEX server data processor <c>OnPutBegin</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object that initiated the event. </param>
+            <param name="Name"> The object's name. Can be empty. </param>
+            <param name="Description"> The object's description. Can be
+              empty. </param>
+            <param name="Mime"> The object's MIME type. Can be empty. </param>
+            <param name="Length"> The object's data size (length) in bytes.
+              Can be 0. </param>
+            <param name="Accept"> Must be set to <c>True</c> to accept object.
+              If set to <c>False</c> the object will be rejected. </param>
+        </member>
+        <member name="T:wclCommunication.wclObexServerClientPutCompletedEvent">
+            <summary> The OBEX server data processor <c>OnPutCompleted</c> event
+              handler prototype. </summary>
+            <param name="Sender"> The object that initiated the event. </param>
+            <param name="Error"> The operation completion reason code. If operation
+              completed with success the <c>Reason</c> is WCL_E_SUCCESS. An
+              application may accept or reject all the object by setting the
+              <c>Accept</c> parameter. </param>
+            <param name="Stream"> The received object's data stream. </param>
+            <param name="Accept"> Set this parameter to <c>True</c> to accept the
+              object. Set this parameter to <c>False</c> to reject the object. In case
+              if object rejected the OBEX Forbidden error will be send. </param>
+            <remarks> The <c>Stream</c> parameter contains the received object's data.
+              This parameter is valid only inside the event handler and must be saved
+              or copied by an application if an application needs to use it later.
+              The <c>Stream</c> parameter can be <c>null</c> or empty if received
+              object does not have body (data). </remarks>
+        </member>
         <member name="T:wclCommunication.wclObexOppServerConnectEvent">
             <summary> The <c>OnConnect</c> even handler prototype for the
               OBEX Object Push Profile Server data processor. </summary>
@@ -2318,6 +1489,320 @@
               the event must be valid during all Get operation and can be released
               when the <c>OnGetCompleted</c> event received. </param>
             <seealso cref="T:wclCommunication.wclObexServerOperationResult" />
+        </member>
+        <member name="T:wclCommunication.wclObexFilePermission">
+            <summary> The OBEX file object permission. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexFilePermission.opRead">
+            <summary> Read permission. </summary>
+            <remarks> The <c>READ</c> permission applies to all object types. It
+              indicates that an attempt to <c>GET</c> the named object should
+              successfully retrieve its contents. </remarks>
+        </member>
+        <member name="F:wclCommunication.wclObexFilePermission.opWrite">
+            <summary> Write permission. </summary>
+            <remarks> The <c>WRITE</c> permission applies to all object types. It
+              indicates that an attempt to modify the contents of the file by
+              <c>PUT</c>’ing to the file should succeed. For folder objects it
+              indicates that attempts to create a folder or other object within that
+              folder should succeed. </remarks>
+        </member>
+        <member name="F:wclCommunication.wclObexFilePermission.opDelete">
+            <summary> Delete permission. </summary>
+            <remarks> The <c>DELETE</c> permission applies to file types. It
+              indicates that the file may be removed by sending a <c>DELETE</c>
+              command. </remarks>
+        </member>
+        <member name="T:wclCommunication.wclObexServerOperationResult">
+            <summary> The possible OBEX server operation results that can be returned
+              to the client. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexServerOperationResult.orSuccess">
+            <summary> The success result. Operation completed or started with
+              success. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexServerOperationResult.orForbidden">
+            <summary> The request was valid, but the server is refusing action. The
+              user might not have the necessary permissions for an
+              object. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexServerOperationResult.orObjectNotFound">
+            <summary> The requested object could not be found. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexServerOperationResult.orUnsupportedMedia">
+            <summary> The request entity has a media type which the server or
+              resource does not support. For example, the client uploads an image as
+              image/svg+xml, but the server requires that images use a different
+              format. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexServerOperationResult.orAccessDenied">
+            <summary> Similar to <c>orForbidden</c>, but specifically for use when
+              authentication is required and has failed or has not yet been
+              provided. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexServerOperationResult.orUnexpected">
+            <summary> Unexpected or unknown OBEX result code. </summary>
+        </member>
+        <member name="T:wclCommunication.wclObexFileClient">
+            <summary> The base class for OBEX file based clients: OPP, FTP,
+              etc. </summary>
+            <remarks> The class provides some basic events and methods that are common
+              for all file based OBEX clients. </remarks>
+            <seealso cref="T:wclCommunication.wclCustomObexClient" />
+        </member>
+        <member name="M:wclCommunication.wclObexFileClient.DoGetComplete(System.Int32,System.String,System.IO.Stream)">
+            <summary> Fires the <c>OnGetComplete</c> event. </summary>
+            <param name="Error"> The operation result code. If operation has been
+              completed with success the <c>Error</c> is
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
+            <param name="Description"> Additional optional description of the
+              operation result. </param>
+            <param name="Stream"> The stream object used in operation. </param>
+        </member>
+        <member name="M:wclCommunication.wclObexFileClient.DoPutComplete(System.Int32,System.String,System.IO.Stream)">
+            <summary> Fires the <c>OnPutComplete</c> event. </summary>
+            <param name="Error"> The operation result code. If operation has been
+              completed with success the <c>Error</c> is
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
+            <param name="Description"> Additional optional description of the
+              operation result. </param>
+            <param name="Stream"> The stream object used in operation. </param>
+        </member>
+        <member name="M:wclCommunication.wclObexFileClient.#ctor(wclCommunication.wclClientDataConnection)">
+            <summary> Creates new OBEX File Client Data Processor. </summary>
+            <param name="Connection"> A <see cref="T:wclCommunication.wclClientDataConnection" />
+              object that is used to communicate with a remote device. </param>
+            <seealso cref="T:wclCommunication.wclClientDataConnection" />
+        </member>
+        <member name="M:wclCommunication.wclObexFileClient.Put(System.String,System.String,System.IO.Stream)">
+            <summary> Sends one object from the client to the server. </summary>
+            <param name="Name"> The object's name. If the parameter is an empty
+              string the Name is ignored.  </param>
+            <param name="Description"> The object's description. If the parameter is
+              an empty string the Description is ignored. </param>
+            <param name="Stream"> The object's data stream. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> The method starts sending an object to an OBEX server.
+              When sending is completed the <c>OnPutComplete</c> event fires with
+              the operation result. </para>
+              <para> If an application passes a valid Stream object to the method
+              the object must be valid until <c>OnPutComplete</c> event fires.
+              An application can destroy the stream object passed as the
+              <c>Stream</c> parameter only after <c>OnPutComplete</c> event
+              fired. </para>
+              <para> During execution of the Put operation the <c>OnProgress</c>
+              event may (or may not) fire indicating the operation
+              progress. </para> </remarks>
+        </member>
+        <member name="E:wclCommunication.wclObexFileClient.OnGetComplete">
+            <summary> The event fires when the Get operation has been
+              completed. </summary>
+            <remarks> If the operation completed with success the Stream object
+              contains the object's data. If the operation completed with error
+              the Stream contains a partial data and is invalid. An application can
+              not use the object from the Stream if the operation completed with
+              error. </remarks>
+            <seealso cref="T:wclCommunication.wclObexObjectOperationResultEvent" />
+        </member>
+        <member name="E:wclCommunication.wclObexFileClient.OnPutComplete">
+            <summary> The event fires when the Put operation has been
+              completed. </summary>
+            <remarks> An application can dispose the Stream object passed to the Put
+              method. The state of the Stream object is changed. </remarks>
+            <seealso cref="T:wclCommunication.wclObexObjectOperationResultEvent" />
+        </member>
+        <member name="T:wclCommunication.wclObexFtpClient">
+            <summary> The data processor implements the OBEX File Transfer Profile
+              (FTP) client. </summary>
+            <seealso cref="T:wclCommunication.wclObexFileClient" />
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.DoGetComplete(System.Int32,System.String,System.IO.Stream)">
+            <summary> The method called when the OBEX GET operation has been
+              completed. </summary>
+            <param name="Error"> The operation result code. If operation has been
+              completed with success the <c>Error</c> is
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
+            <param name="Description"> Additional optional description of the
+              operation result. </param>
+            <param name="Stream"> The stream object used in operation. </param>
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.DoPutComplete(System.Int32,System.String,System.IO.Stream)">
+            <summary> The method called when the OBEX PUT operation has been
+              completed. </summary>
+            <param name="Error"> The operation result code. If operation has been
+              completed with success the <c>Error</c> is
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
+            <param name="Description"> Additional optional description of the
+              operation result. </param>
+            <param name="Stream"> The stream object used in operation. </param>
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.DoSetPathComplete(System.Int32,System.String)">
+            <summary> The method called when the OBEX SET_PATH operation has
+              been completed. </summary>
+            <param name="Error"> The operation result code. If operation has been
+              completed with success the <c>Error</c> is
+              <seealso cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. </param>
+            <param name="Description"> Additional optional description of the
+              operation result. </param>
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.#ctor(wclCommunication.wclClientDataConnection)">
+            <summary> Creates new OBEX File Transfer Profile Client Data
+              Processor. </summary>
+            <param name="Connection"> A <see cref="T:wclCommunication.wclClientDataConnection" />
+              object that is used to communicate with a remote device. </param>
+            <seealso cref="T:wclCommunication.wclClientDataConnection" />
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.Connect(System.UInt16)">
+            <summary> Connects to an OBEX server. </summary>
+            <param name="PacketSize"> The maximum OBEX packet size. The minimum
+              allowed value is 0x00FF. The default value is 0xFFFF. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.ChangeDir(System.String)">
+            <summary> Changes current directory to the child directory. </summary>
+            <param name="Name"> The child directory name. Use ".." to go one level
+              up. Use empty name to go to the root directory. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> When operation completed the <c>OnChangeDirComplete</c>
+              event fires. </remarks>
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.Delete(System.String)">
+            <summary> Deletes the object with given name. </summary>
+            <param name="Name"> The object's name. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> The object can be any object: file, directory, virtual
+              object. </para>
+              <para> When the operation completed the <c>OnDeleteComplete</c> event
+              fires. </para> </remarks>
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.Dir">
+            <summary> Requests the files listing for the current
+              directory. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> When operation completed the <c>OnDirComplete</c> event
+              fires. </remarks>
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.Get(System.String,System.IO.Stream)">
+            <summary> Requests an object from a server. </summary>
+            <param name="Name"> The object's name. If the parameter is an empty
+              string the Name is ignored.  </param>
+            <param name="Stream"> The object's data stream. This must be valid
+              empty stream object. The stream must have write access
+              permission. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> The method starts receiving an object from an OBEX
+              server. When sending is completed the <c>OnGetComplete</c> event fires
+              with the operation result. </para>
+              <para> The Stream object passed to the method must be valid until
+              <c>OnGetComplete</c> event fires. An application can destroy the
+              stream object passed as the <c>Stream</c> parameter only after
+              <c>OnGetComplete</c> event fired. </para>
+              <para> During execution of the Get operation the <c>OnProgress</c>
+              event may (or may not) fire indicating the operation
+              progress. </para> </remarks>
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.MkDir(System.String)">
+            <summary> Creates new directory. </summary>
+            <param name="Name"> The directory name. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> When operation completed the <c>OnMakeDirComplete</c>
+              event fires. </para>
+              <para> If the operation completed with success the current directory
+              is changed to the just created directory. </para> </remarks>
+        </member>
+        <member name="M:wclCommunication.wclObexFtpClient.Put(System.String,System.String,System.IO.Stream)">
+            <summary> Sends one object from the client to the server. </summary>
+            <param name="Name"> The object's name. </param>
+            <param name="Description"> The object's description. If the parameter is
+              an empty string the Description is ignored. </param>
+            <param name="Stream"> The object's data stream. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> The method starts sending an object to an OBEX server.
+              When sending is completed the <c>OnPutComplete</c> event fires with
+              the operation result. </para>
+              <para> If an application passes a valid Stream object to the method
+              the object must be valid until <c>OnPutComplete</c> event fires.
+              An application can destroy the stream object passed as the
+              <c>Stream</c> parameter only after <c>OnPutComplete</c> event
+              fired. </para>
+              <para> During execution of the Put operation the <c>OnProgress</c>
+              event may (or may not) fire indicating the operation
+              progress. </para> </remarks>
+        </member>
+        <member name="E:wclCommunication.wclObexFtpClient.OnChangeDirComplete">
+            <summary> The event fires when the change directory operation has been
+              completed. </summary>
+            <seealso cref="T:wclCommunication.wclObexOperationResultEvent" />
+        </member>
+        <member name="E:wclCommunication.wclObexFtpClient.OnDeleteComplete">
+            <summary> The event fires when the delete operation has been
+              completed. </summary>
+            <seealso cref="T:wclCommunication.wclObexOperationResultEvent" />
+        </member>
+        <member name="E:wclCommunication.wclObexFtpClient.OnDirComplete">
+            <summary> The event fires when directory listing has been
+              completed. </summary>
+            <seealso cref="T:wclCommunication.wclObexFtpDirCompleteEvent" />
+        </member>
+        <member name="E:wclCommunication.wclObexFtpClient.OnMakeDirComplete">
+            <summary> The event fires when the creating directory operation has been
+              completed. </summary>
+            <seealso cref="T:wclCommunication.wclObexOperationResultEvent" />
+        </member>
+        <member name="T:wclCommunication.wclObexOppClient">
+            <summary> The data processor implements the OBEX Object Push Profile
+              (OPP) client. </summary>
+            <seealso cref="T:wclCommunication.wclObexFileClient" />
+        </member>
+        <member name="M:wclCommunication.wclObexOppClient.#ctor(wclCommunication.wclClientDataConnection)">
+            <summary> Creates new OBEX OPP Client. </summary>
+            <param name="Connection"> A <see cref="T:wclCommunication.wclClientDataConnection" />
+              object that is used to communicate with a remote device. </param>
+            <seealso cref="T:wclCommunication.wclClientDataConnection" />
+        </member>
+        <member name="M:wclCommunication.wclObexOppClient.Connect(System.UInt16)">
+            <summary> Connects to an OBEX server. </summary>
+            <param name="PacketSize"> The maximum OBEX packet size. The minimum
+              allowed value is 0x00FF. The default value is 0xFFFF. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclCommunication.wclObexOppClient.Get(System.String,System.IO.Stream)">
+            <summary> The function reads the default object with given type from an
+              OBEX Push server. </summary>
+            <param name="aType"> The object's type. </param>
+            <param name="Stream"> The object's data stream. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> This function can be used to pull (request) the default
+              business card (vCard) from a target device. To do that the
+              <c>aType</c> parameter must be "text/x-vCard" string. </para>
+              <para> An application must pass a valid Stream object to the method
+              and the stream object must be valid until <c>OnGetComplete</c> event
+              fires. An application can destroy the stream object passed as the
+              <c>Stream</c> parameter only after <c>OnGetComplete</c> event
+              fired. </para>
+              <para> During execution of the Get operation the <c>OnProgress</c>
+              event may (or may not) fire indicating the operation
+              progress. </para> </remarks>
         </member>
         <member name="T:wclCommunication.wclObexOppServer">
             <summary> The data processor implements the OBEX Object Push Profile
@@ -2366,6 +1851,535 @@
             <summary> The event fires when a remote connected client requests the
               OBEX object (sends the get request). </summary>
             <seealso cref="T:wclCommunication.wclObexOppServerGetRequestEvent" />
+        </member>
+        <member name="T:wclCommunication.wclObexFileObject">
+            <summary> The record describes the OBEX file system object. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexFileObject.IsDirectory">
+            <summary> If this member is <c>True</c> the file system object is
+              directory. If this member is <c>False</c> the file system object
+              if file. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexFileObject.Name">
+            <summary> The file system object name. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexFileObject.Description">
+            <summary> The object's description. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexFileObject.Size">
+            <summary> The file system object size in bytes. If the file system
+              object is directory this member is always 0. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexFileObject.Permissions">
+            <summary> The user level permissions. </summary>
+            <remarks> A permission indicator does not imply that the appropriate
+              command is guaranteed to work – just that it might. Other system
+              specific limitations, such as limitations on available space for
+              storing objects, may cause an operation to fail, where the permission
+              flags may have indicated that it was likely to succeed. The
+              permissions are a guide only. Some systems may have more specific
+              permissions than those listed here, such systems should map those
+              to the flags defined as best they are able. </remarks>
+            <seealso cref="T:wclCommunication.wclObexFilePermission" />
+        </member>
+        <member name="F:wclCommunication.wclObexFileObject.Modified">
+            <summary> The last modified time for the object. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexFileObject.Created">
+            <summary> The creation time for the object. </summary>
+        </member>
+        <member name="F:wclCommunication.wclObexFileObject.Accessed">
+            <summary> The last accessed time for the object. </summary>
+        </member>
+        <member name="T:wclCommunication.wclServerConnection">
+            <summary> The base class for all server connections. </summary>
+            <remarks> An application must never create this class directly.
+              Instead of that an application must use high-level
+              components. </remarks>
+            <seealso cref="T:wclCommunication.wclCustomConnection" />
+        </member>
+        <member name="M:wclCommunication.wclServerConnection.InternalClose(System.Int32)">
+            <summary> Closes the server. </summary>
+            <param name="Reason"> The close reason code. If the server closed by
+              the <c>Close</c> method call the <c>Reason</c> is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" /> </param>
+        </member>
+        <member name="M:wclCommunication.wclServerConnection.CreateNewClientConnection(System.Object)">
+            <summary> Sends a notification to the main thread to create and init
+              new client connection. </summary>
+            <param name="Params"> An optional pointer to the hardware-dependent
+              data contains information about client connection request. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> The <c>HalListen</c> method should call this method to
+              create and initialize new client connection. </remarks>
+        </member>
+        <member name="M:wclCommunication.wclServerConnection.MessageReceived(wclCommon.wclMessage)">
+            <summary> The message receiver calls this method when a new notification
+              message has been received. </summary>
+            <param name="Message"> A <see cref="T:wclCommon.wclMessage" /> object
+              represents the notification message. </param>
+            <seealso cref="T:wclCommon.wclMessage" />
+        </member>
+        <member name="M:wclCommunication.wclServerConnection.DoClosed(System.Int32)">
+            <summary> Fires the <c>OnClosed</c> event. </summary>
+            /// <param name="Reason"> The close reason code. If the server closed by
+              the <c>Close</c> method call the <c>Reason</c> is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" /> </param>
+        </member>
+        <member name="M:wclCommunication.wclServerConnection.DoConnect(wclCommunication.wclServerClientConnection,System.Int32)">
+            <summary> Fires the <c>OnConnect</c> event. </summary>
+            <param name="Client"> The
+              <see cref="T:wclCommunication.wclServerClientConnection" /> represents a remote
+              connected client. </param>
+            <param name="Error"> The connection operation result code. If the
+              parameter is <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" /> the connection to a remote
+              device was established and the remote device is connected. Otherwise
+              the connection was not established and the remote device is
+              not connected. </param>
+            <seealso cref="T:wclCommunication.wclServerClientConnection" />
+        </member>
+        <member name="M:wclCommunication.wclServerConnection.DoDisconnect(wclCommunication.wclServerClientConnection,System.Int32)">
+            <summary> Fires the <c>OnDisconnect</c> event. </summary>
+            <param name="Client"> The
+              <see cref="T:wclCommunication.wclServerClientConnection" /> represents a remote
+              connected client. </param>
+            <param name="Reason"> The disconnection code. If the
+              parameter is <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" /> the connection was closed
+              by the <c>Disconnect</c> call. Otherwise indicates the disconnection
+              reason. </param>
+            <seealso cref="T:wclCommunication.wclServerClientConnection" />
+        </member>
+        <member name="M:wclCommunication.wclServerConnection.DoListen">
+            <summary> Fires the <c>OnListen</c> event. </summary>
+        </member>
+        <member name="M:wclCommunication.wclServerConnection.SetClientEvents(wclCommunication.wclServerClientConnection)">
+            <summary> The method sets the client's event handlers. </summary>
+            <param name="Client"> The
+              <see cref="T:wclCommunication.wclServerClientConnection" /> represents a client
+              connection. </param>
+            <seealso cref="T:wclCommunication.wclServerClientConnection" />
+        </member>
+        <member name="M:wclCommunication.wclServerConnection.HalListen(System.Threading.EventWaitHandle)">
+            <summary> Implements a hardware-dependent method for listening the client
+              connections. </summary>
+            <param name="Event"> The termination event. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> A derived class must override this method to implement
+              a hardware-dependent code for listening for incoming
+              connections. </remarks>
+        </member>
+        <member name="M:wclCommunication.wclServerConnection.HalClose">
+            <summary> Implements a hardware-dependent method to stop
+              listening. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> The method is called only if the <c>HalListen</c> was
+              success. </remarks>
+        </member>
+        <member name="M:wclCommunication.wclServerConnection.HalCreateClient">
+            <summary> The method creates a hardware and transport-dependent
+              client connection. </summary>
+            <returns> If the method success the return value is the object
+              represents the client connection. Otherwise the method returns
+              <c>null</c>. </returns>
+            <remarks> A derived class must override this method to create a
+              custom HAL server client connection. </remarks>
+            <seealso cref="T:wclCommunication.wclServerClientConnection" />
+        </member>
+        <member name="M:wclCommunication.wclServerConnection.HalPrepare">
+            <summary> Implements a hardware-dependent code that prepares for
+              listening. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> A derived class must override this method to implement a
+              hardware-dependent code that prepares the server connection. </remarks>
+        </member>
+        <member name="M:wclCommunication.wclServerConnection.#ctor">
+            <summary> Creates a new server connection. </summary>
+        </member>
+        <member name="M:wclCommunication.wclServerConnection.Finalize">
+            <summary> Frees the server connection. </summary>
+        </member>
+        <member name="M:wclCommunication.wclServerConnection.Close">
+            <summary> The method disconnects all connected clients and closes the
+              server. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> The method must be called from the same thread that called
+              the <c>Listen</c> method. The method is not thread-safe. </remarks>
+        </member>
+        <member name="M:wclCommunication.wclServerConnection.Listen">
+            <summary> The method starts listening for client connections. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="P:wclCommunication.wclServerConnection.Item(System.Int32)">
+            <summary> Gets a connected client by its index. </summary>
+            <value> The connected client. </value>
+            <seealso cref="T:wclCommunication.wclServerClientConnection" />
+        </member>
+        <member name="P:wclCommunication.wclServerConnection.ClientsCount">
+            <summary> Gets the number of connected clients. </summary>
+            <value> The number of the connected clients. </value>
+        </member>
+        <member name="P:wclCommunication.wclServerConnection.State">
+            <summary> Gets the connection state. </summary>
+            <value> The <see cref="T:wclCommunication.wclServerState" /> indicates the current
+              connection state. </value>
+            <seealso cref="T:wclCommunication.wclServerState" />
+        </member>
+        <member name="E:wclCommunication.wclServerConnection.OnClosed">
+            <summary> The event fires when the server is closed. </summary>
+            <seealso cref="T:wclCommunication.wclClientConnectionDisconnectEvent" /> 
+        </member>
+        <member name="E:wclCommunication.wclServerConnection.OnConnect">
+            <summary> The event fires when a remote client is connected to
+              the server. </summary>
+            <seealso cref="T:wclCommunication.wclServerConnectionConnectEvent" />
+        </member>
+        <member name="E:wclCommunication.wclServerConnection.OnDisconnect">
+            <summary> The event fires when a remote client has disconnected from the
+              server. </summary>
+            <seealso cref="T:wclCommunication.wclServerConnectionDisconnectEvent" />
+        </member>
+        <member name="E:wclCommunication.wclServerConnection.OnListen">
+            <summary> The event fires when the server is ready to accept incoming
+              connections (is in listening state). </summary>
+        </member>
+        <member name="T:wclCommunication.wclServerClientConnection">
+            <summary> The base class for all server client connection. </summary>
+            <remarks> The class provides the basic methods for server
+              connections. </remarks>
+            <seealso cref="T:wclCommunication.wclCustomConnection" />
+        </member>
+        <member name="M:wclCommunication.wclServerClientConnection.NotifyClosed(System.Int32)">
+            <summary> Send a Disconnect notification message. </summary>
+            <param name="Reason"> The disconnection code. If the
+              parameter is <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" /> the connection was closed
+              by the <c>Disconnect</c> call. Otherwise indicates the disconnection
+              reason. </param>
+        </member>
+        <member name="M:wclCommunication.wclServerClientConnection.MessageReceived(wclCommon.wclMessage)">
+            <summary> The message receiver calls this method when a new notification
+              message has been received. </summary>
+            <param name="Message"> A <see cref="T:wclCommon.wclMessage" /> object
+              represents the notification message. </param>
+            <seealso cref="T:wclCommon.wclMessage" />
+        </member>
+        <member name="M:wclCommunication.wclServerClientConnection.DoConnect(System.Int32)">
+            <summary> Fires the <c>OnConnect</c> event. </summary>
+            <param name="Error"> The connection operation result code. If the
+              parameter is <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" /> the connection to a remote
+              device was established and the remote device is connected. Otherwise
+              the connection was not established and the remote device is
+              not connected. </param>
+        </member>
+        <member name="M:wclCommunication.wclServerClientConnection.DoDisconnect(System.Int32)">
+            <summary> Fires the <c>OnDisconnect</c> event. </summary>
+            <param name="Reason"> The disconnection code. If the
+              parameter is <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" /> the connection was closed
+              by the <c>Disconnect</c> call. Otherwise indicates the disconnection
+              reason. </param>
+        </member>
+        <member name="M:wclCommunication.wclServerClientConnection.Accept(wclCommunication.wclServerConnection,System.Object)">
+            <summary> The method accepts the client connection request. </summary>
+            <param name="Server"> A <see cref="T:wclCommunication.wclServerConnection" />
+              object owns the client connection. </param>
+            <param name="Params"> An optional pointer to the hardware-dependent
+              data contains information about client connection request. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> The method called by the server when connection from a
+              remote client device has already been accepted. </para>
+              <para> The method is always called from the main (or from the same)
+              thread that runs the server. </para>
+              <para> The method prepares the class for communication with a remote
+              client. </para>
+              <para> If the method fails it disconnects already accepted client
+              connection. </para> </remarks>
+            <seealso cref="T:wclCommunication.wclServerConnection" />
+        </member>
+        <member name="M:wclCommunication.wclServerClientConnection.HalAccept">
+            <summary> Hardware-dependent method that prepares to communicate
+              with a connected remote client device. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> A derived class must override this method to provide a
+              hardware-dependent code that prepares the class to communicate
+              with a remote connected device. </remarks>
+        </member>
+        <member name="M:wclCommunication.wclServerClientConnection.HalCommunicate(System.Threading.EventWaitHandle)">
+            <summary> Implements a hardware-dependent code that communicate with the
+              connected remote device. </summary>
+            <param name="Event"> The system even object (disconnect event). </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> Derived classes must override this method to implement
+              a hardware-dependent code that exchanges data with a remote
+              device. </para>
+              <para> The method executes in a separate thread. </para>
+              <para> The method implementation must monitor the <c>Event</c>
+              parameter. The <c>Event</c> parameter is set if the
+              <c>Disconnect</c> method was called and the method must terminate
+              communication and exit. </para>
+              <para> The default implementation simple waits for the <c>Event</c>
+              and exists when the events signaled. </para> </remarks>
+        </member>
+        <member name="M:wclCommunication.wclServerClientConnection.HalDisconnect">
+            <summary> Implements a hardware-dependent code that disconnects from the
+              connected remote device. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> A derived class must override this method to provide a
+              hardware-dependent code that disconnects from a remote connected
+              device. </remarks>
+        </member>
+        <member name="P:wclCommunication.wclServerClientConnection.Disconnected">
+            <summary> Gets the connection state. </summary>
+            <value> <c>True</c> if the connection is disconnected. </value>
+        </member>
+        <member name="P:wclCommunication.wclServerClientConnection.Params">
+            <summary> Custom connection parameters. </summary>
+            <value> The pointer to the custom connection parameters. </value>
+            <remarks> The parameters passed from the
+              <see cref="T:wclCommunication.wclServerConnection" /> object and contains
+              hardware-dependent data about accepted client connections. </remarks>
+        </member>
+        <member name="M:wclCommunication.wclServerClientConnection.#ctor">
+            <summary> Creates a new server client connection. </summary>
+        </member>
+        <member name="M:wclCommunication.wclServerClientConnection.Finalize">
+            <summary> Frees the connection. </summary>
+        </member>
+        <member name="M:wclCommunication.wclServerClientConnection.Disconnect">
+            <summary> Disconnects from the connected remote device. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> The method disconnects from the connected remote
+              device. </para>
+              <para> The method also frees the object. After calling this method an
+              application must not use the object. </para> </remarks>
+        </member>
+        <member name="P:wclCommunication.wclServerClientConnection.Server">
+            <summary> Gets the client owner. </summary>
+            <value> The <see cref="T:wclCommunication.wclServerConnection" /> object
+              that owns the connection. </value>
+            <seealso cref="T:wclCommunication.wclServerConnection" />
+        </member>
+        <member name="E:wclCommunication.wclServerClientConnection.OnConnect">
+            <summary> The event fires when a connection for a remote device
+              has been accepted. </summary>
+            <seealso cref="T:wclCommunication.wclClientConnectionConnectEvent" />
+        </member>
+        <member name="E:wclCommunication.wclServerClientConnection.OnDisconnect">
+            <summary> The event fires when the remote connected device has been
+              disconnected. </summary>
+            <seealso cref="T:wclCommunication.wclClientConnectionDisconnectEvent"/>
+        </member>
+        <member name="T:wclCommunication.wclServerClientDataConnection">
+            <summary> The base class for the server client connection that
+              requires data exchange with a remote device. </summary>
+            <seealso cref="T:wclCommunication.wclServerClientConnection" />
+        </member>
+        <member name="M:wclCommunication.wclServerClientDataConnection.AllocateReadBuffer(System.IntPtr@,System.UInt32@)">
+            <summary> Allocates memory for incoming data buffer. </summary>
+            <param name="Buffer"> The read buffer. </param>
+            <param name="Size"> The read buffer size. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclCommunication.wclServerClientDataConnection.NotifyDataReceived(System.Byte[])">
+            <summary> Send a data notification message. </summary>
+            <param name="Data"> The data buffer contains received data. </param>
+        </member>
+        <member name="M:wclCommunication.wclServerClientDataConnection.MessageReceived(wclCommon.wclMessage)">
+            <summary> The message receiver calls this method when a new notification
+              message has been received. </summary>
+            <param name="Message"> A <see cref="T:wclCommon.wclMessage" /> object
+              represents the notification message. </param>
+            <seealso cref="T:wclCommon.wclMessage" />
+        </member>
+        <member name="M:wclCommunication.wclServerClientDataConnection.Accept(wclCommunication.wclServerConnection,System.Object)">
+            <summary> The method accepts the client connection request. </summary>
+            <param name="Server"> A <see cref="T:wclCommunication.wclServerConnection" />
+              object owns the client connection. </param>
+            <param name="Params"> An optional pointer to the hardware-dependent
+              data contains information about client connection request. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> <para> The method called by the server when connection from a
+              remote client device has already been accepted. </para>
+              <para> The method is always called from the main (or from the same)
+              thread that runs the server. </para>
+              <para> The method prepares the class for communication with a remote
+              client. </para>
+              <para> If the method fails it disconnects already accepted client
+              connection. </para>
+              <para> The <c>Server</c> parameter must be a
+              <see cref="T:wclCommunication.wclServerDataConnection" />
+               object. </para> </remarks>
+            <seealso cref="T:wclCommunication.wclServerConnection" />
+            <seealso cref="T:wclCommunication.wclServerDataConnection" />
+        </member>
+        <member name="M:wclCommunication.wclServerClientDataConnection.DoData(System.Byte[])">
+            <summary> Fires the <c>OnData</c> event. </summary>
+            <param name="Data"> The pointer to the received data buffer.
+              It is guaranteed that the parameter points to a valid data buffer.
+              The data buffer is valid only inside the event handler. If an
+              application needs to use the data outside the event handle it must
+              allocate own buffer and copy data into it. </param>
+        </member>
+        <member name="M:wclCommunication.wclServerClientDataConnection.HalGetReadBufferSize(System.UInt32@)">
+            <summary> Reads the read buffer size. </summary>
+            <param name="Size"> On output he read buffer size in bytes. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> A derived class must override this method to implement the
+             buffer size reading code. </remarks>
+        </member>
+        <member name="M:wclCommunication.wclServerClientDataConnection.HalGetWriteBufferSize(System.UInt32@)">
+            <summary> Reads the write buffer size. </summary>
+            <param name="Size"> On output the write buffer size in bytes. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> A derived class must override this method to implement the
+             buffer size reading code. </remarks>
+        </member>
+        <member name="M:wclCommunication.wclServerClientDataConnection.HalSetReadBufferSize(System.UInt32)">
+            <summary> Sets the read buffer size. </summary>
+            <param name="Size"> The new read buffer size in bytes. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> A derived class must override this method to implement the
+             buffer size setting code. </remarks>
+        </member>
+        <member name="M:wclCommunication.wclServerClientDataConnection.HalSetWriteBufferSize(System.UInt32)">
+            <summary> Sets the write buffer size. </summary>
+            <param name="Size"> The new write buffer size in bytes. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> A derived class must override this method to implement the
+             buffer size setting code. </remarks>
+        </member>
+        <member name="M:wclCommunication.wclServerClientDataConnection.HalWrite(System.Byte[],System.UInt32@)">
+            <summary> Implements a hardware-dependent code that sends data to the
+              connected device. </summary>
+            <param name="Data"> The pointer to the data buffer that should be sent
+              to the connected device. </param>
+            <param name="Written"> The amount of bytes actually written to the
+              device. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> A derived class must override this method to implement a
+              hardware-dependent code that sends data to the connected device.
+              The method executes in the main thread and must be
+              synchronous. </remarks>
+        </member>
+        <member name="M:wclCommunication.wclServerClientDataConnection.#ctor">
+            <summary> Creates a new server client data connection. </summary>
+        </member>
+        <member name="M:wclCommunication.wclServerClientDataConnection.GetReadBufferSize(System.UInt32@)">
+            <summary> Reads the read buffer size. </summary>
+            <param name="Size"> On output he read buffer size in bytes. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclCommunication.wclServerClientDataConnection.GetWriteBufferSize(System.UInt32@)">
+            <summary> Reads the write buffer size. </summary>
+            <param name="Size"> On output the write buffer size in bytes. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclCommunication.wclServerClientDataConnection.SetReadBufferSize(System.UInt32)">
+            <summary> Sets the read buffer size. </summary>
+            <param name="Size"> The new read buffer size in bytes. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclCommunication.wclServerClientDataConnection.SetWriteBufferSize(System.UInt32)">
+            <summary> Sets the write buffer size. </summary>
+            <param name="Size"> The new write buffer size in bytes. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclCommunication.wclServerClientDataConnection.Write(System.Byte[],System.UInt32@)">
+            <summary> Sends data to the connected device. </summary>
+            <param name="Data"> The pointer to the data buffer that should be sent
+              to the connected device. </param>
+            <param name="Written"> The amount of bytes actually written to the
+              device. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+            <remarks> The write is synchronous operation. </remarks>
+        </member>
+        <member name="P:wclCommunication.wclServerClientDataConnection.Processor">
+            <summary> Gets the current Data Processor object assigned to the
+              Connection. </summary>
+            <value> The <see cref="T:wclCommunication.wclCustomServerClientDataProcessor" /> object
+              used by the Connection to process data. </value>
+            <seealso cref="T:wclCommunication.wclCustomServerClientDataProcessor" />
+        </member>
+        <member name="E:wclCommunication.wclServerClientDataConnection.OnData">
+            <summary> The event fires when new data is received from the
+              connected remote device. </summary>
+            <seealso cref="T:wclCommunication.wclConnectionDataEvent" />
+        </member>
+        <member name="T:wclCommunication.wclServerDataConnection">
+            <summary> The base class for the server connection that
+              requires data exchange with a remote device. </summary>
+            <seealso cref="T:wclCommunication.wclServerConnection" />
+        </member>
+        <member name="M:wclCommunication.wclServerDataConnection.SetClientEvents(wclCommunication.wclServerClientConnection)">
+            <summary> The method sets the client's event handlers. </summary>
+            <param name="Client"> The
+              <see cref="T:wclCommunication.wclServerClientConnection" /> represents a client
+              connection. </param>
+            <seealso cref="T:wclCommunication.wclServerClientConnection" />
+        </member>
+        <member name="M:wclCommunication.wclServerDataConnection.DoData(wclCommunication.wclServerClientDataConnection,System.Byte[])">
+            <summary> Fires the <c>OnData</c> event. </summary>
+            <param name="Client"> A
+              <see cref="T:wclCommunication.wclServerClientDataConnection" /> object
+              represents a remote client connection. </param>
+            <param name="Data"> The pointer to the received data buffer.
+              It is guaranteed that the parameter points to a valid data buffer.
+              The data buffer is valid only inside the event handler. If an
+              application needs to use the data outside the event handle it must
+              allocate own buffer and copy data into it. </param>
+            <seealso cref="T:wclCommunication.wclServerClientDataConnection" />
+        </member>
+        <member name="M:wclCommunication.wclServerDataConnection.#ctor">
+            <summary> Creates a new client data connection. </summary>
+        </member>
+        <member name="E:wclCommunication.wclServerDataConnection.OnData">
+            <summary> The event fires when new data is received from the
+              connected remote device. </summary>
+            <seealso cref="T:wclCommunication.wclServerConnectionDataEvent" />
         </member>
     </members>
 </doc>

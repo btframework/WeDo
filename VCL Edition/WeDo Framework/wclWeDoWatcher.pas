@@ -177,7 +177,7 @@ uses
 
 constructor TwclWeDoWatcher.TWeDoLostTimerMessage.Create;
 begin
-  inherited Create(WEDO_LOST_TIMER_MESSAGE_ID, WCL_MSG_CATEGORY_USER);
+  inherited Create(WEDO_LOST_TIMER_MESSAGE_ID, mcUser);
 end;
 
 { TwclWeDoWatcher }
@@ -205,7 +205,7 @@ begin
   FTimer.OnTimer := TimerElapsed;
 
   // We need message receiver to process messages from timer.
-  FReceiver := TwclMessageReceiver.Create;
+  FReceiver := TwclMessageBroadcaster.CreateMessageReceiver(mpSync);
   FReceiver.OnMessage := ReceiverMessage;
 
   FOnHubFound := nil;

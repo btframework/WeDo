@@ -1062,9 +1062,8 @@
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
-            <remarks> This feature is supported on Windows 10 with the
-              Microsoft Bluetooth drivers only. If the method returns error try to
-              call this method with default scan parameters. </remarks>
+            <remarks> If the method returns error try to call this method with default
+              scan parameters. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.Stop">
@@ -1569,13 +1568,11 @@
             <summary> Creates a new "virtual" Beacon Watcher connection
               object. </summary>
             <param name="Radio"> The Radio object that owns the connection. </param>
-            <remarks> <para> An application must never create this class directly.
+            <remarks> An application must never create this class directly.
               Instead of that an application must use upper-level methods and
-              classes. </para>
-              <para> If the <c>Radio</c> parameter is <c>null</c> the
-              <see cref="T:wclCommon.wclECritical" /> exception raises. </para> </remarks>
+              classes. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
-            <exception cref="T:wclCommon.wclECritical" />
+            <exception cref="T:wclCommon.wclEInvalidArgument" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.Start(System.Boolean,System.UInt16,wclBluetooth.wclBluetoothLeScanningMode,System.UInt16)">
             <summary> Starts monitoring for Bluetooth LE Beacons. </summary>
@@ -1596,9 +1593,6 @@
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
-            <remarks> This feature is supported on Windows 10 with the
-              Microsoft Bluetooth drivers only. If the method returns error try to
-              call this method with default scan parameters. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothLeScanningMode" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.Stop">
@@ -1784,7 +1778,7 @@
               the inherited implementation first. </para> </remarks>
             <seealso cref="T:wclCommon.wclMessage" />
         </member>
-        <member name="M:wclBluetooth.wclGattClientConnection.HalConnect(System.IntPtr)">
+        <member name="M:wclBluetooth.wclGattClientConnection.HalConnect(System.Threading.EventWaitHandle)">
             <summary> Implements a hardware-dependent code that connects to a
               remote device. </summary>
             <param name="Event"> The system even object handle. </param>
@@ -2054,13 +2048,11 @@
         <member name="M:wclBluetooth.wclGattClientConnection.#ctor(wclBluetooth.wclBluetoothRadio)">
             <summary> Creates a new GATT client connection object. </summary>
             <param name="Radio"> The Radio object that owns the connection. </param>
-            <remarks> <para> An application must never create this class directly.
+            <remarks> An application must never create this class directly.
               Instead of that an application must use upper-level methods and
-              classes. </para>
-              <para> If the <c>Radio</c> parameter is <c>null</c> the
-              <see cref="T:wclCommon.wclECritical" /> exception raises. </para> </remarks>
+              classes. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
-            <exception cref="T:wclCommon.wclECritical" />
+            <exception cref="T:wclCommon.wclEInvalidArgument" />
         </member>
         <member name="M:wclBluetooth.wclGattClientConnection.ReadCharacteristics(wclBluetooth.wclGattService,wclBluetooth.wclGattOperationFlag,wclBluetooth.wclGattCharacteristic[]@)">
             <summary> The method reads all the characteristics available for the
@@ -2561,20 +2553,18 @@
             <summary> Creates a new "virtual" GATT Server connection
               object. </summary>
             <param name="Radio"> The Radio object that owns the connection. </param>
-            <remarks> <para> An application must never create this class directly.
+            <remarks> An application must never create this class directly.
               Instead of that an application must use upper-level methods and
-              classes. </para>
-              <para> If the <c>Radio</c> parameter is <c>nil</c> the
-              <see cref="T:wclCommon.wclECritical" /> exception raises. </para> </remarks>
+              classes. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
-            <exception cref="T:wclCommon.wclECritical" />
+            <exception cref="T:wclCommon.wclEInvalidArgument" />
         </member>
         <member name="M:wclBluetooth.wclGattServerConnection.Start">
             <summary> Starts the Bluetooth LE GATT Server. </summary>
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
-            <remarks> This feature is supported on Windows 10 with the Microsoft
+            <remarks> This feature is supported on Windows 10 and above with the Microsoft
               Bluetooth drivers or on any other Windows platform with BlueSoleil
               Bluetooth drivers. </remarks>
         </member>
@@ -2767,13 +2757,11 @@
             <summary> Creates a new "virtual" Bluetooth LE Advertising connection
               object. </summary>
             <param name="Radio"> The Radio object that owns the connection. </param>
-            <remarks> <para> An application must never create this class directly.
+            <remarks> An application must never create this class directly.
               Instead of that an application must use upper-level methods and
-              classes. </para>
-              <para> If the <c>Radio</c> parameter is <c>null</c> the
-              <see cref="T:wclCommon.wclECritical" /> exception raises. </para> </remarks>
+              classes. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
-            <exception cref="T:wclCommon.wclECritical" />
+            <exception cref="T:wclCommon.wclEInvalidArgument" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeAdvertiserConnection.Finalize">
             <summary> Frees the object. </summary>
@@ -2797,8 +2785,6 @@
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
-            <remarks> This feature is supported on Windows 10 with the Microsoft
-              Bluetooth drivers only. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisement" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeAdvertiserConnection.Stop">
@@ -2880,13 +2866,11 @@
         <member name="M:wclBluetooth.wclRfCommClientConnection.#ctor(wclBluetooth.wclBluetoothRadio)">
             <summary> Create new Classic Bluetooth client connection. </summary>
             <param name="Radio"> The Radio object that owns the connection. </param>
-            <remarks> <para> An application must never create this class directly.
+            <remarks> An application must never create this class directly.
               Instead of that an application must use upper-level methods and
-              classes. </para>
-              <para> If the <c>Radio</c> parameter is <c>null</c> the
-              <see cref="T:wclCommon.wclECritical" /> exception raises. </para> </remarks>
+              classes. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
-            <exception cref="T:wclCommon.wclECritical" />
+            <exception cref="T:wclCommon.wclEInvalidArgument" />
         </member>
         <member name="M:wclBluetooth.wclRfCommClientConnection.Connect(System.Int64,System.Guid,System.Byte,System.Boolean,System.Boolean,System.UInt32)">
             <summary> Connects to a remote device. </summary>
@@ -3005,13 +2989,11 @@
         <member name="M:wclBluetooth.wclRfCommServerConnection.#ctor(wclBluetooth.wclBluetoothRadio)">
             <summary> Create new Classic Bluetooth server connection. </summary>
             <param name="Radio"> The Radio object that owns the connection. </param>
-            <remarks> <para> An application must never create this class directly.
+            <remarks> An application must never create this class directly.
               Instead of that an application must use upper-level methods and
-              classes. </para>
-              <para> If the <c>Radio</c> parameter is <c>null</c> the
-              <see cref="T:wclCommon.wclECritical" /> exception raises. </para> </remarks>
+              classes. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
-            <exception cref="T:wclCommon.wclECritical" />
+            <exception cref="T:wclCommon.wclEInvalidArgument" />
         </member>
         <member name="M:wclBluetooth.wclRfCommServerConnection.Listen(System.Guid,System.String,System.Byte,System.Boolean,System.Boolean)">
             <summary> The method starts listening for client connections. </summary>
@@ -3112,7 +3094,7 @@
               the inherited implementation first. </para> </remarks>
             <seealso cref="T:wclCommon.wclMessage" />
         </member>
-        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.HalConnect(System.IntPtr)">
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.HalConnect(System.Threading.EventWaitHandle)">
             <summary> Implements a hardware-dependent code that connects to a
               remote device. </summary>
             <param name="Event"> The system even object handle. </param>
@@ -3241,13 +3223,11 @@
         <member name="M:wclBluetooth.wclWiiRemoteClientConnection.#ctor(wclBluetooth.wclBluetoothRadio)">
             <summary> Create new Wii Remote client connection. </summary>
             <param name="Radio"> The Radio object that owns the connection. </param>
-            <remarks> <para> An application must never create this class directly.
+            <remarks> An application must never create this class directly.
               Instead of that an application must use upper-level methods and
-              classes. </para>
-              <para> If the <c>Radio</c> parameter is <c>nil</c> the
-              <see cref="T:wclCommon.wclECritical" /> exception raises. </para> </remarks>
+              classes. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
-            <exception cref="T:wclCommon.wclECritical" />
+            <exception cref="T:wclCommon.wclEInvalidArgument" />
         </member>
         <member name="M:wclBluetooth.wclWiiRemoteClientConnection.Connect(System.Int64,System.UInt32)">
             <summary> Connects to a remote device. </summary>
@@ -3423,14 +3403,14 @@
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
             <seealso cref="T:wclBluetooth.wclWiiRemoteClientConnection" />
         </member>
-        <member name="M:wclBluetooth.wclWiiRemoteHidClientConnection.HalConnect(System.IntPtr)">
+        <member name="M:wclBluetooth.wclWiiRemoteHidClientConnection.HalConnect(System.Threading.EventWaitHandle)">
             <summary> Connects to the Wii Remote as to HID device. </summary>
             <param name="Event"> The system even object handle. </param>
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
         </member>
-        <member name="M:wclBluetooth.wclWiiRemoteHidClientConnection.HalCommunicate(System.IntPtr)">
+        <member name="M:wclBluetooth.wclWiiRemoteHidClientConnection.HalCommunicate(System.Threading.EventWaitHandle)">
             <summary> Communicates with the Wii Remote as with HID
               device. </summary>
             <param name="Event"> The system even object handle (disconnect
@@ -3455,13 +3435,10 @@
         <member name="M:wclBluetooth.wclWiiRemoteHidClientConnection.#ctor(wclBluetooth.wclBluetoothRadio)">
             <summary> Create new Wii Remote HID client connection. </summary>
             <param name="Radio"> The Radio object that owns the connection. </param>
-            <remarks> <para> An application must never create this class directly.
+            <remarks> An application must never create this class directly.
               Instead of that an application must use upper-level methods and
-              classes. </para>
-              <para> If the <c>Radio</c> parameter is <c>nil</c> the
-              <see cref="T:wclCommon.wclECritical" /> exception raises. </para> </remarks>
+              classes. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
-            <exception cref="T:wclCommon.wclECritical" />
         </member>
         <member name="T:wclBluetooth.wclBluetoothConfirmEvent">
             <summary> The <c>OnConfirm</c> event handler prototype. </summary>
@@ -5756,12 +5733,11 @@
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_UNABLE_GET_ADVERTISER">
             <summary> Unable to get Bluetooth LE Advertiser object. </summary>
         </member>
-        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ADVERTISING">
-            <summary> Bluetooth LE advertising is already running on this
-              radio. </summary>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_SUBSCRIBE_FAILED">
+            <summary> Unable to start subscribing thread. </summary>
         </member>
-        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_CREATE_ADVERTISING_MUTEX_FAILED">
-            <summary> Unable to create advertising protection mutex object. </summary>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_GATT_SERVER_NO_SUBSCRIBED_CLIENTS">
+            <summary> No subscribed clients found. </summary>
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_CREATE_CONNECTION_COMPLETION_EVENT_FAILED">
             <summary> Unable to create connection completion event. </summary>
@@ -6331,12 +6307,6 @@
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_CLIENT_NOT_CONNECTED">
             <summary> A client is not connected to a Bluetooth device. </summary>
-        </member>
-        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_SUBSCRIBE_FAILED">
-            <summary> Unable to start subscribing thread. </summary>
-        </member>
-        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_GATT_SERVER_NO_SUBSCRIBED_CLIENTS">
-            <summary> No subscribed clients found. </summary>
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_BASE">
             <summary> The base error code for Wii Remote errors. </summary>
@@ -7396,8 +7366,7 @@
         <member name="M:wclBluetooth.wclGattLocalCharacteristic.#ctor(wclBluetooth.wclGattLocalService,wclBluetooth.wclGattUuid,wclBluetooth.wclGattLocalCharacteristicParameters)">
             <summary> Creates new local GATT characteristic. </summary>
             <param name="Service"> The local GATT service object that owns the
-              characteristic. If this parameter is <c>nil</c> the
-              <see cref="T:wclCommon.wclECritical" /> exception raises. </param>
+              characteristic. </param>
             <param name="Uuid"> The characteristic's UUID. </param>
             <param name="Params"> The characteristic's parameters. </param>
             <remarks> An application must not create this class directly.
@@ -7406,7 +7375,7 @@
             <seealso cref="T:wclBluetooth.wclGattLocalService" />
             <seealso cref="T:wclBluetooth.wclGattUuid" />
             <seealso cref="T:wclBluetooth.wclGattLocalCharacteristicParameters" />
-            <exception cref="T:wclCommon.wclECritical" />
+            <exception cref="T:wclCommon.wclEInvalidArgument" />
         </member>
         <member name="M:wclBluetooth.wclGattLocalCharacteristic.Notify(System.Byte[])">
             <summary> Sends notification to all subscribed clients. </summary>
@@ -7522,15 +7491,14 @@
         <member name="M:wclBluetooth.wclGattLocalService.#ctor(wclBluetooth.wclGattServerConnection,wclBluetooth.wclGattUuid)">
             <summary> Creates new Local GATT service. </summary>
             <param name="Server"> The GATT server connection object that owns
-              the service. If this parameter is <c>nil</c> the
-              <seealso cref="T:wclCommon.wclECritical" /> raises. </param>
+              the service. </param>
             <param name="Uuid"> The service's UUID. </param>
             <remarks> An application must not create this class directly.
               Instead of that an application must use methods of high-level
               classes. </remarks>
             <seealso cref="T:wclBluetooth.wclGattServerConnection" />
             <seealso cref="T:wclBluetooth.wclGattUuid" />
-            <exception cref="T:wclCommon.wclECritical" />
+            <exception cref="T:wclCommon.wclEInvalidArgument" />
         </member>
         <member name="M:wclBluetooth.wclGattLocalService.AddCharacteristic(wclBluetooth.wclGattUuid,wclBluetooth.wclGattLocalCharacteristicParameters,wclBluetooth.wclGattLocalCharacteristic@)">
             <summary> Creates new characteristic and adds it to the service
@@ -8146,8 +8114,6 @@
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
-            <remarks> This feature is supported on Windows 10 with the Microsoft
-              Bluetooth drivers only. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeAdvertiser.RestoreDefaults">
@@ -9899,13 +9865,12 @@
         <member name="M:wclBluetooth.wclBluetoothRadio.#ctor(wclBluetooth.wclBluetoothManager)">
             <summary> Creates a new radio object. </summary>
             <param name="Manager"> The <see cref="T:wclBluetooth.wclBluetoothManager" /> object
-              that creates and owns the Radio. If the <c>Manager</c> parameter is
-              <c>null</c> the <see cref="T:wclCommon.wclECritical" /> exception raises. </param>
+              that creates and owns the Radio. </param>
             <remarks> An application must never create the Radio objects directly.
               Instead of that an application must use methods of the
               <c>wclBluetoothManager</c> component. </remarks>
             <seealso cref="T:wclBluetooth.wclBluetoothManager" />
-            <exception cref="T:wclCommon.wclECritical" />
+            <exception cref="T:wclCommon.wclEInvalidArgument" />
         </member>
         <member name="M:wclBluetooth.wclBluetoothRadio.Finalize">
             <summary> Frees the radio object</summary>

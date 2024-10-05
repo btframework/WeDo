@@ -16,7 +16,7 @@ For any other usage of the We Do Framework refer to the [Wireless Communication 
 
 ### Common Requirements
 
-- [Bluetooth Framework](https://www.btframework.com/bluetoothframework.htm) 7.7.6.0 or later
+- [Bluetooth Framework](https://www.btframework.com/bluetoothframework.htm) 7.18.2.0 or later
 - Windows 7 and above (see remarks below)
 - Bluetooth 4.0 (or high) hardware
 
@@ -28,7 +28,7 @@ For any other usage of the We Do Framework refer to the [Wireless Communication 
 
 ### VCL Edition Requirements
 
-- RAD Studio 10.3 Rio
+- RAD Studio 10 Seattle
 - [Bluetooth Framework VCL Edition](https://www.btframework.com/bluetoothframework.htm#download)
 
 ## Windows versions
