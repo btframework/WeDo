@@ -156,6 +156,9 @@
             <summary> Unable to create asynchronous message processing thread
               termination event. </summary>
         </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_MR_INVALID_MESSAGE_PROCESSING_METHOD">
+            <summary> Invalid or unsupported message processing method. </summary>
+        </member>
         <member name="F:wclCommon.wclErrors.WCL_E_MB_BASE">
             <summary> The base error code for the message broadcaster. </summary>
         </member>
@@ -368,6 +371,14 @@
             <summary> Initializes a new instance of the exception class with a specified error message. </summary>
             <param name="message">The message that describes the error.</param>
         </member>
+        <member name="T:wclCommon.wclEPowerEvents">
+            <summary> The Power Events Monitor exceptions class. </summary>
+            <seealso cref="T:wclCommon.wclException" />
+        </member>
+        <member name="M:wclCommon.wclEPowerEvents.#ctor(System.String)">
+            <summary> Initializes a new instance of the exception class with a specified error message. </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
         <member name="T:wclCommon.wclErrorInformation">
             <summary> The class provides methods to get human readable information
               about Wireless Communication Library errors. </summary>
@@ -508,24 +519,6 @@
               directly. It is destroyed when not needed any more by the message
               receivers. </remarks>
         </member>
-        <member name="M:wclCommon.wclMessageBroadcaster.CreateMessageReceiver(wclCommon.wclMessageProcessingMethod)">
-            <summary> Creates a message receiver for specified message processing
-              method. </summary>
-            <param name="Method"> A message processing method. </param>
-            <returns> If the method completed with success returns new message
-              receiver object instance. If the method failed returns
-              <c>nil</c>. </returns>
-            <seealso cref="T:wclCommon.wclMessageProcessingMethod" />
-            <seealso cref="T:wclCommon.wclMessageReceiver" />
-        </member>
-        <member name="M:wclCommon.wclMessageBroadcaster.CreateMessageReceiver">
-            <summary> Creates a message receiver for the default message processing
-              method. </summary>
-            <returns> If the method completed with success returns new message
-              receiver object instance. If the method failed returns
-              <c>nil</c>. </returns>
-            <seealso cref="T:wclCommon.wclMessageReceiver" />
-        </member>
         <member name="M:wclCommon.wclMessageBroadcaster.Broadcast(wclCommon.wclMessage)">
             <summary> Broadcasts a Message to all message receivers. </summary>
             <param name="Message"> The <see cref="T:wclCommon.wclMessage" /> object represents
@@ -555,22 +548,6 @@
               of the WCL error codes. </returns>
             <remarks> This function can be used to force WCL message processing in
               case if your execution thread is blocked. </remarks>
-        </member>
-        <member name="M:wclCommon.wclMessageBroadcaster.GetMessageProcessingMethod">
-            <summary> Gets the current message processing method. </summary>
-            <returns> The current message processing method. </returns>
-            <seealso cref="T:wclCommon.wclMessageProcessingMethod" />
-        </member>
-        <member name="M:wclCommon.wclMessageBroadcaster.SetMessageProcessingMethod(wclCommon.wclMessageProcessingMethod)">
-            <summary> Changes the current message processing method. </summary>
-            <param name="Method"> The new message processing method. </param>
-            <returns> If the function succeed the returns value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the function returns one
-              of the WCL error codes. </returns>
-            <remarks> An application must call this method to change the current
-              message processing method before any other calls to
-              WCL. </remarks>
-            <seealso cref="T:wclCommon.wclMessageProcessingMethod" />
         </member>
         <member name="T:wclCommon.wclAudioCategoryMessage">
             <summary> The Audio category messages base class. </summary>
@@ -797,44 +774,6 @@
             <remarks> This method is recommended for single threading UI
               applications. </remarks>
         </member>
-        <member name="T:wclCommon.wclAsyncMessageReceiver">
-            <summary> Asynchronous message receiver. </summary>
-            <seealso cref="T:wclCommon.wclMessageReceiver" />
-        </member>
-        <member name="M:wclCommon.wclAsyncMessageReceiver.Initialize">
-            <summary> Initializes the message receiver. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-        </member>
-        <member name="M:wclCommon.wclAsyncMessageReceiver.Uninitialize">
-            <summary> Uninitializes the message receiver. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-        </member>
-        <member name="M:wclCommon.wclAsyncMessageReceiver.Synchronize">
-            <summary> Sends a synchronization signal to a message processing
-              code. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-        </member>
-        <member name="M:wclCommon.wclAsyncMessageReceiver.ProcessMessage">
-            <summary> Processes all messages in the messages queue. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-        </member>
-        <member name="M:wclCommon.wclAsyncMessageReceiver.GetMethod">
-            <summary> Get a message processing method supported by the message
-              receiver. </summary>
-            <returns> A message processing method. </returns>
-            <seealso cref="T:wclCommon.wclMessageProcessingMethod" />
-        </member>
-        <member name="M:wclCommon.wclAsyncMessageReceiver.#ctor">
-            <summary> Creates new message receiver object. </summary>
-        </member>
         <member name="T:wclCommon.wclMessageEvent">
             <summary> The <c>OnMessage</c> event handler prototype. </summary>
             <param name="Message"> The <see cref="T:wclCommon.wclMessage" /> object represented the
@@ -844,13 +783,7 @@
             <seealso cref="T:wclCommon.wclMessage" />
         </member>
         <member name="T:wclCommon.wclMessageReceiver">
-            <summary> The base class for Wireless Communication Library message
-              receivers. </summary>
-        </member>
-        <member name="M:wclCommon.wclMessageReceiver.DispatchMessages">
-            <summary> Dispatches the messages in the messages queue. </summary>
-            <remarks> A derived class must call this method when a synchronization
-              signal received. </remarks>
+            <summary> The Wireless Communication Library message receiver. </summary>
         </member>
         <member name="M:wclCommon.wclMessageReceiver.DoMessage(wclCommon.wclMessage)">
             <summary> Calls the <c>OnMessage</c> event </summary>
@@ -858,47 +791,6 @@
             <remarks> The <c>Message</c> parameter is valid only inside the
               method. </remarks>
             <seealso cref="T:wclCommon.wclMessage" />
-        </member>
-        <member name="M:wclCommon.wclMessageReceiver.Initialize">
-            <summary> Initializes the message receiver. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> A derived class must override this method to provide
-              message processing method specific initialization code. </remarks>
-        </member>
-        <member name="M:wclCommon.wclMessageReceiver.Uninitialize">
-            <summary> Uninitializes the message receiver. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> A derived class must override this method to provide
-              message processing method specific uninitialization code. </remarks>
-        </member>
-        <member name="M:wclCommon.wclMessageReceiver.Synchronize">
-            <summary> Sends a synchronization signal to a message processing
-              code. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> A derived class must override this method to provide
-              message processing method specific synchronization code. </remarks>
-        </member>
-        <member name="M:wclCommon.wclMessageReceiver.ProcessMessage">
-            <summary> Processes all messages in the messages queue. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-            <remarks> A derived class must override this method to provide
-              specific code to force message processing. </remarks>
-        </member>
-        <member name="M:wclCommon.wclMessageReceiver.GetMethod">
-            <summary> Get a message processing method supported by the message
-              receiver. </summary>
-            <returns> A message processing method. </returns>
-            <remarks> A derived class must override this method to provide
-              information about supported message processing method. </remarks>
-            <seealso cref="T:wclCommon.wclMessageProcessingMethod" />
         </member>
         <member name="M:wclCommon.wclMessageReceiver.#ctor">
             <summary> Creates new message receiver object. </summary>
@@ -912,11 +804,14 @@
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
         </member>
-        <member name="M:wclCommon.wclMessageReceiver.Open">
+        <member name="M:wclCommon.wclMessageReceiver.Open(wclCommon.wclMessageProcessingMethod)">
             <summary> Opens the message receiver. </summary>
+            <param name="Method"> The message processing method that should be used
+              by the Message Receiver. </param>
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
+            <seealso cref="T:wclCommon.wclMessageProcessingMethod" />
         </member>
         <member name="M:wclCommon.wclMessageReceiver.Post(wclCommon.wclMessage,System.Boolean)">
             <summary> Places a message to the messages queue and starts processing
@@ -939,7 +834,7 @@
               other messages in the queue. </remarks>
             <seealso cref="T:wclCommon.wclMessage" />
         </member>
-        <member name="M:wclCommon.wclMessageReceiver.ProcessAllMessage">
+        <member name="M:wclCommon.wclMessageReceiver.ProcessAllMessages">
             <summary> Processes all messages in the messages queue. </summary>
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
@@ -960,7 +855,7 @@
             <value> A message processing method. </value>
             <seealso cref="T:wclCommon.wclMessageProcessingMethod" />
         </member>
-        <member name="P:wclCommon.wclMessageReceiver.ThreadId">
+        <member name="P:wclCommon.wclMessageReceiver.OpenThreadId">
             <summary> Gets an ID of a thread that was used to call the <c>Open</c>
               method. </summary>
             <value> Thread ID. </value>
@@ -968,44 +863,6 @@
         <member name="E:wclCommon.wclMessageReceiver.OnMessage">
             <summary> The event called when new message was received. </summary>
             <seealso cref="T:wclCommon.wclMessageEvent" />
-        </member>
-        <member name="T:wclCommon.wclSyncMessageReceiver">
-            <summary> Synchronous message receiver. </summary>
-            <seealso cref="T:wclCommon.wclMessageReceiver" />
-        </member>
-        <member name="M:wclCommon.wclSyncMessageReceiver.Initialize">
-            <summary> Initializes the message receiver. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-        </member>
-        <member name="M:wclCommon.wclSyncMessageReceiver.Uninitialize">
-            <summary> Uninitializes the message receiver. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-        </member>
-        <member name="M:wclCommon.wclSyncMessageReceiver.Synchronize">
-            <summary> Sends a synchronization signal to a message processing
-              code. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-        </member>
-        <member name="M:wclCommon.wclSyncMessageReceiver.ProcessMessage">
-            <summary> Processes all messages in the messages queue. </summary>
-            <returns> If the function succeed the return value is
-              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
-              the WCL error codes. </returns>
-        </member>
-        <member name="M:wclCommon.wclSyncMessageReceiver.GetMethod">
-            <summary> Get a message processing method supported by the message
-              receiver. </summary>
-            <returns> A message processing method. </returns>
-            <seealso cref="T:wclCommon.wclMessageProcessingMethod" />
-        </member>
-        <member name="M:wclCommon.wclSyncMessageReceiver.#ctor">
-            <summary> Creates new message receiver object. </summary>
         </member>
         <member name="T:wclCommon.wclOsVersion">
             <summary> The class provides information about OS version. </summary>
@@ -1195,6 +1052,13 @@
             <summary> Gets the monitor's state. </summary>
             <value> <c>true</c> if the power state monitor is listening for power
               state changes. <c>false</c> otherwise. </value>
+        </member>
+        <member name="P:wclCommon.wclPowerEventsMonitor.MessageProcessing">
+            <summary> Gets and sets the monitor's message processing
+             method. </summary>
+            <value> The message processing method. </value>
+            <seealso cref="T:wclCommon.wclMessageProcessingMethod" />
+            <exception cref="T:wclCommon.wclEPowerEvents" />
         </member>
         <member name="E:wclCommon.wclPowerEventsMonitor.OnPowerStateChanged">
             <summary> The event fires when the system's power state has been

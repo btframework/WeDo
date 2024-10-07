@@ -86,6 +86,13 @@
             <value> <c>True</c> if the Audio Switcher is active. <c>False</c>
               otherwise. </value>
         </member>
+        <member name="P:wclAudio.wclCustomAudio.MessageProcessing">
+            <summary> Gets and sets a message processing method that should be used
+              by the Audio component. </summary>
+            <value> The message processing method. </value>
+            <seealso cref="T:wclCommon.wclMessageProcessingMethod" />
+            <exception cref="T:wclAudio.wclEAudio" />
+        </member>
         <member name="E:wclAudio.wclCustomAudio.OnClosed">
             <summary> The event fires when the Audio Switcher was closed. </summary>
         </member>
@@ -6517,6 +6524,14 @@
             <summary> Initializes a new instance of the exception class with a specified error message. </summary>
             <param name="message">The message that describes the error.</param>
         </member>
+        <member name="T:wclBluetooth.wclEBluetoothManager">
+            <summary> The Bluetooth Manager exceptions. </summary>
+            <seealso cref="T:wclBluetooth.wclEBluetooth" />
+        </member>
+        <member name="M:wclBluetooth.wclEBluetoothManager.#ctor(System.String)">
+            <summary> Initializes a new instance of the exception class with a specified error message. </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
         <member name="T:wclBluetooth.wclEBluetoothClient">
             <summary> The Bluetooth clients exceptions. </summary>
             <seealso cref="T:wclBluetooth.wclEBluetooth" />
@@ -6550,10 +6565,18 @@
             <param name="message">The message that describes the error.</param>
         </member>
         <member name="T:wclBluetooth.wclEBluetoothLeBeacon">
-            <summary> The Bluetooth LE beacon exception. </summary>
+            <summary> The Bluetooth LE beacon exceptions. </summary>
             <seealso cref="T:wclBluetooth.wclEBluetooth" />
         </member>
         <member name="M:wclBluetooth.wclEBluetoothLeBeacon.#ctor(System.String)">
+            <summary> Initializes a new instance of the exception class with a specified error message. </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="T:wclBluetooth.wclEBluetoothLeSniffer">
+            <summary> The Bluetooth LE Sniffer exceptions. </summary>
+            <seealso cref="T:wclBluetooth.wclEBluetooth" />
+        </member>
+        <member name="M:wclBluetooth.wclEBluetoothLeSniffer.#ctor(System.String)">
             <summary> Initializes a new instance of the exception class with a specified error message. </summary>
             <param name="message">The message that describes the error.</param>
         </member>
@@ -8989,6 +9012,13 @@
             <remarks> This flag doe snot affect <c>Bled112</c> USB dongle because
               it does not have any support from the OS. </remarks>
         </member>
+        <member name="P:wclBluetooth.wclBluetoothManager.MessageProcessing">
+            <summary> Gets and sets message processing method used by the Bluetooth
+             Framework. </summary>
+            <value> The message processing method. </value>
+            <seealso cref="T:wclCommon.wclMessageProcessingMethod" />
+            /// <exception cref="T:wclBluetooth.wclEBluetoothManager" />
+        </member>
         <member name="P:wclBluetooth.wclBluetoothManager.Item(System.Int32)">
             <summary> Gets the Bluetooth Radio by its index. </summary>
             <value> The <see cref="T:wclBluetooth.wclBluetoothRadio" /> object. </value>
@@ -9850,12 +9880,24 @@
             <value> <c>True</c> if LE discovering is executing. <c>False</c> if
               classic discovering is executing. </value>
         </member>
+        <member name="P:wclBluetooth.wclBluetoothRadio.MessageProcessing">
+            <summary> Gets the message processing method used by the
+              Radio. </summary>
+            <value> The message processing method. </value>
+            <seealso cref="T:wclCommon.wclMessageProcessingMethod" />
+        </member>
         <member name="P:wclBluetooth.wclBluetoothRadio.Receiver">
             <summary> Gets the message receiver object. </summary>
             <value> A <see cref="T:wclCommon.wclMessageReceiver" /> object used in
               radio. </value>
             <remarks> For internal use only. </remarks>
             <seealso cref="T:wclCommon.wclMessageReceiver" />
+        </member>
+        <member name="P:wclBluetooth.wclBluetoothRadio.ThreadId">
+            <summary> Gets the ID of the thread in which Radio was created. It is
+              the same thread that was used to call BluetoothManager.Open()
+              method. </summary>
+            <value> The thread ID. </value>
         </member>
         <member name="P:wclBluetooth.wclBluetoothRadio.PairAddress">
             <summary> Gets the pairing device address for manual pairing. </summary>
@@ -11060,6 +11102,13 @@
         <member name="P:wclBluetooth.wclBleSniffer.DevicePath">
             <summary> Gets the current device's path. </summary>
             <value> The device's path. </value>
+        </member>
+        <member name="P:wclBluetooth.wclBleSniffer.MessageProcessing">
+            <summary> Gets and sets a message processing method used by the
+              Sniffer. </summary>
+            <value> The message processing method. </value>
+            <seealso cref="T:wclCommon.wclMessageProcessingMethod" />
+            <exception cref="T:wclBluetooth.wclEBluetoothLeSniffer" />
         </member>
         <member name="E:wclBluetooth.wclBleSniffer.OnAdvDirectIndReceived">
             <summary> The event fires when the <c>ADV_DIRECT_IND</c> PDU

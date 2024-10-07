@@ -205,7 +205,7 @@ begin
   FTimer.OnTimer := TimerElapsed;
 
   // We need message receiver to process messages from timer.
-  FReceiver := TwclMessageBroadcaster.CreateMessageReceiver(mpSync);
+  FReceiver := TwclMessageReceiver.Create;
   FReceiver.OnMessage := ReceiverMessage;
 
   FOnHubFound := nil;
@@ -295,7 +295,7 @@ end;
 function TwclWeDoWatcher.Start(Radio: TwclBluetoothRadio): Integer;
 begin
   // First, try to open message receiver.
-  Result := FReceiver.Open();
+  Result := FReceiver.Open(mpSync);
   if Result = WCL_E_SUCCESS then begin
     // Now try to start watcher.
     Result := FWatcher.Start(Radio);

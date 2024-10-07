@@ -240,7 +240,7 @@ namespace wclWeDoFramework
             FTimer.Elapsed += TimerElapsed;
 
             // We need message receiver to process messages from timer.
-            FReceiver = wclMessageBroadcaster.CreateMessageReceiver(wclMessageProcessingMethod.mpSync);
+            FReceiver = new wclMessageReceiver();
             FReceiver.OnMessage += ReceiverMessage;
 
             OnHubFound = null;
@@ -260,7 +260,7 @@ namespace wclWeDoFramework
         public Int32 Start(wclBluetoothRadio Radio)
         {
             // First, try to open message receiver.
-            Int32 Res = FReceiver.Open();
+            Int32 Res = FReceiver.Open(wclMessageProcessingMethod.mpSync);
             if (Res == wclErrors.WCL_E_SUCCESS)
             {
                 // Now try to start watcher.

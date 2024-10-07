@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.371,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoColorSensor\main.pas=C:\Users\mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.576,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoColorSensor\WeDoColorSensor.dproj=C:\Users\mike\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.371,D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoColorSensor\main.dfm=C:\Users\mike\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.670,=C:\Users\mike\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.576,C:\Users\mike\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoColorSensor\WeDoColorSensor.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.371,C:\Users\mike\Documents\Embarcadero\Studio\Projects\Unit1.dfm=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoColorSensor\main.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.371,C:\Users\mike\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\Projects\Shared Projects\Windows\WeDo\VCL Edition\Test\WeDoColorSensor\main.pas</Transaction>
   </Transactions>
 </BorlandProject>
