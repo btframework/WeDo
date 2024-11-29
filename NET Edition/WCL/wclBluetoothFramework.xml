@@ -11,6 +11,205 @@
             <exclude />
             <exclude />
         </member>
+        <member name="T:wclAudio.wclBluetoothAudioReceiverState">
+            <summary> A Bluetooth audio receiver state. </summary>
+        </member>
+        <member name="F:wclAudio.wclBluetoothAudioReceiverState.arClosed">
+            <summary> A receiver is closed. </summary>
+        </member>
+        <member name="F:wclAudio.wclBluetoothAudioReceiverState.arOpening">
+            <summary> A receiver is opening. </summary>
+        </member>
+        <member name="F:wclAudio.wclBluetoothAudioReceiverState.arListen">
+            <summary> A receiver is listening. </summary>
+        </member>
+        <member name="F:wclAudio.wclBluetoothAudioReceiverState.arConnecting">
+            <summary> A receiver is connecting to a remote audio device. </summary>
+        </member>
+        <member name="F:wclAudio.wclBluetoothAudioReceiverState.arConnected">
+            <summary> A remote device is connected to a receiver. </summary>
+        </member>
+        <member name="F:wclAudio.wclBluetoothAudioReceiverState.arClosing">
+            <summary> A receiver is closing. </summary>
+        </member>
+        <member name="T:wclAudio.wclBluetoothAudioReceiver">
+            <summary> A Bluetooth audio Receiver. </summary>
+            <remarks> <para> This class switches your PC to a Bluetooth speaker
+              that can receiver an audio stream from remote Bluetooth device and play
+              it through PC speaker. </para>
+              <para> <c>The class is not thread-safe.</c> </para> </remarks>
+            <summary> A Bluetooth audio Receiver. </summary>
+            <remarks> <para> This class switches your PC to a Bluetooth speaker
+              that can receiver an audio stream from remote Bluetooth device and play
+              it through PC speaker. </para>
+              <para> <c>The class is not thread-safe.</c> </para> </remarks>
+        </member>
+        <member name="M:wclAudio.wclBluetoothAudioReceiver.MessageReceived(wclCommon.wclMessage)">
+            <summary> The method called when a new notification message
+              received. </summary>
+            <param name="Message"> A <see cref="T:wclCommon.wclMessage" /> object
+              represents a notification message. </param>
+            <remarks> <para> This method is for internal use only. </para>
+              <para> If a derived class overrides this method it must always call
+              the inherited implementation first. </para> </remarks>
+            <seealso cref="T:wclCommon.wclMessage" />
+        </member>
+        <member name="M:wclAudio.wclBluetoothAudioReceiver.DoClosed">
+            <summary> Calls the <c>OnClosed</c> event. </summary>
+        </member>
+        <member name="M:wclAudio.wclBluetoothAudioReceiver.DoConnected">
+            <summary> Calls the <c>OnConnected</c> event. </summary>
+        </member>
+        <member name="M:wclAudio.wclBluetoothAudioReceiver.DoDisconnected">
+            <summary> Calls the <c>OnDisconnected</c> event. </summary>
+        </member>
+        <member name="M:wclAudio.wclBluetoothAudioReceiver.DoListen">
+            <summary> Calls the <c>OnListen</c> event. </summary>
+        </member>
+        <member name="M:wclAudio.wclBluetoothAudioReceiver.#ctor">
+            <summary> Creates new component. </summary>
+        </member>
+        <member name="M:wclAudio.wclBluetoothAudioReceiver.Finalize">
+            <summary> Frees the component. </summary>
+        </member>
+        <member name="M:wclAudio.wclBluetoothAudioReceiver.Close">
+            <summary> Closes the Bluetooth audio receiver and stops listening for
+              audio connections. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclAudio.wclBluetoothAudioReceiver.Listen(System.String)">
+            <summary> Initializes the Bluetooth audio receiver and starts listening
+              for audio connections. </summary>
+            <param name="Id"> A Bluetooth audio device ID. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclAudio.wclBluetoothAudioReceiver.Connect">
+            <summary> Initiates a connection to an associated Bluetooth audio
+              device. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="P:wclAudio.wclBluetoothAudioReceiver.Id">
+            <summary> Gets the Bluetooth audio device ID associated with the
+              receiver. </summary>
+            <value> A Bluetooth audio device ID. </value>
+        </member>
+        <member name="P:wclAudio.wclBluetoothAudioReceiver.State">
+            <summary> Gets the Bluetooth audio receiver state. </summary>
+            <value> A Bluetooth audio receiver state. </value>
+            <seealso cref="T:wclAudio.wclBluetoothAudioReceiverState" />
+        </member>
+        <member name="P:wclAudio.wclBluetoothAudioReceiver.MessageProcessing">
+            <summary> Gets and sets a message processing method that should be used
+              by the Audio component. </summary>
+            <value> The message processing method. </value>
+            <seealso cref="T:wclCommon.wclMessageProcessingMethod" />
+            <exception cref="T:wclAudio.wclEAudio" />
+        </member>
+        <member name="E:wclAudio.wclBluetoothAudioReceiver.OnClosed">
+            <summary> The event called when a Bluetooth audio receiver is
+              closed. </summary>
+        </member>
+        <member name="E:wclAudio.wclBluetoothAudioReceiver.OnConnected">
+            <summary> The event called when a remote Bluetooth audio device is
+              connected to the receiver. </summary>
+        </member>
+        <member name="E:wclAudio.wclBluetoothAudioReceiver.OnDisconnected">
+            <summary> The event called when a remote Bluetooth audio device is
+              disconnected from the receiver. </summary>
+        </member>
+        <member name="E:wclAudio.wclBluetoothAudioReceiver.OnListen">
+            <summary> The event called when the receiver is started listeting for
+              audio connections. </summary>
+        </member>
+        <member name="T:wclAudio.wclBluetoothAudioWatcher">
+            <summary> The Bluetooth Audio device watcher class. </summary>
+            <remarks> <para> The class helps to find Audio devices that can accept
+              incoming audio stream from extract Bluetooth devices. </para>
+              <para> <c>The class is not thread-safe.</c> </para> </remarks>
+            <summary> The Bluetooth Audio device watcher class. </summary>
+            <remarks> <para> The class helps to find Audio devices that can accept
+              incoming audio stream from extract Bluetooth devices. </para>
+              <para> <c>The class is not thread-safe.</c> </para> </remarks>
+        </member>
+        <member name="M:wclAudio.wclBluetoothAudioWatcher.MessageReceived(wclCommon.wclMessage)">
+            <summary> The method called when a new notification message
+              received. </summary>
+            <param name="Message"> A <see cref="T:wclCommon.wclMessage" /> object
+              represents a notification message. </param>
+            <remarks> <para> This method is for internal use only. </para>
+              <para> If a derived class overrides this method it must always call
+              the inherited implementation first. </para> </remarks>
+            <seealso cref="T:wclCommon.wclMessage" />
+        </member>
+        <member name="M:wclAudio.wclBluetoothAudioWatcher.DoDeviceAdded(System.String,System.String)">
+            <summary> Calls the <c>OnDeviceAdded</c> event. </summary>
+            <param name="Id"> A device's ID. </param>
+            <param name="Name"> A device's name. </param>
+        </member>
+        <member name="M:wclAudio.wclBluetoothAudioWatcher.DoDeviceRemoved(System.String)">
+            <summary> Calls the <c>OnDeviceRemoved</c> event. </summary>
+            <param name="Id"> A device's ID. </param>
+        </member>
+        <member name="M:wclAudio.wclBluetoothAudioWatcher.DoStarted">
+            <summary> Calls the <c>OnStarted</c> event. </summary>
+        </member>
+        <member name="M:wclAudio.wclBluetoothAudioWatcher.DoStopped">
+            <summary> Calls the <c>OnStopped</c> event. </summary>
+        </member>
+        <member name="M:wclAudio.wclBluetoothAudioWatcher.#ctor">
+            <summary> Creates new object. </summary>
+        </member>
+        <member name="M:wclAudio.wclBluetoothAudioWatcher.Finalize">
+            <summary> Frees the component. </summary>
+        </member>
+        <member name="M:wclAudio.wclBluetoothAudioWatcher.Start">
+            <summary> Starts the Bluetooth audio watcher. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclAudio.wclBluetoothAudioWatcher.Stop">
+            <summary> Stops the Bluetooth audio watcher. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="P:wclAudio.wclBluetoothAudioWatcher.Active">
+            <summary> Gets the Bluetooth audio watcher state. </summary>
+            <value> <c>True</c> if the watcher is active. <c>False</c>
+              otherwise. </value>
+        </member>
+        <member name="P:wclAudio.wclBluetoothAudioWatcher.MessageProcessing">
+            <summary> Gets and sets a message processing method that should be used
+              by the audio component. </summary>
+            <value> The message processing method. </value>
+            <seealso cref="T:wclCommon.wclMessageProcessingMethod" />
+            <exception cref="T:wclAudio.wclEAudio" />
+        </member>
+        <member name="E:wclAudio.wclBluetoothAudioWatcher.OnDeviceAdded">
+            <summary> The event called when new Bluetooth audio device added
+              (found). </summary>
+            <seealso cref="T:wclAudio.wclBluetoothAudioDeviceAddedEvent" />
+        </member>
+        <member name="E:wclAudio.wclBluetoothAudioWatcher.OnDeviceRemoved">
+            <summary> The event called when new Bluetooth audio device
+              removed. </summary>
+            <seealso cref="T:wclAudio.wclBluetoothAudioDeviceRemovedEvent" />
+        </member>
+        <member name="E:wclAudio.wclBluetoothAudioWatcher.OnStarted">
+            <summary> The event called when the Bluetooth audio watcher was
+              started. </summary>
+        </member>
+        <member name="E:wclAudio.wclBluetoothAudioWatcher.OnStopped">
+            <summary> The event called when the Bluetooth audio watcher was
+              stopped. </summary>
+        </member>
         <member name="T:wclAudio.wclCustomAudio">
             <summary> The custom Audio component. </summary>
             <remarks> The class implements the basic Audio features for all Audio
@@ -197,6 +396,19 @@
             <param name="Volume"> The master volume. </param>
             <param name="Volumes"> The channel volumes. </param>
         </member>
+        <member name="T:wclAudio.wclBluetoothAudioDeviceAddedEvent">
+            <summary> The Bluetooth audio device watcher <c>OnDeviceAdded</c> event
+              handler prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Id"> An audio device ID. </param>
+            <param name="Name"> An audio device name. </param>
+        </member>
+        <member name="T:wclAudio.wclBluetoothAudioDeviceRemovedEvent">
+            <summary> The Bluetooth audio device watcher <c>OnDeviceRemoved</c> event
+              handler prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Id"> An audio device ID. </param>
+        </member>
         <member name="T:wclAudio.wclAudioDeviceDataFlow">
             <summary> The audio device data flow direction. </summary>
             <remarks> The Data Flow indicates the direction in which audio data flows
@@ -372,6 +584,98 @@
         </member>
         <member name="F:wclAudio.wclAudioErrors.WCL_E_AUDIO_VOLUME_SET_MUTE_FAILED">
             <summary> Unable to set audio endpoint mute status. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_BASE">
+            <summary> The base error code for Bluetooth Audio errors. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_FEATURE_NOT_SUPPORTED">
+            <summary> This Bluetooth audio feature is not supported on this
+              platform. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_WATCHER_BASE">
+            <summary> The base error code for Bluetooth Audio Watcher
+              errors. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_WATCHER_STARTED">
+            <summary> Bluetooth Audio Watcher already started. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_WATCHER_STOPPED">
+            <summary> Bluetooth Audio Watcher already stopped. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_WATCHER_CREATE_INIT_EVENT_FAILED">
+            <summary> Unable to create Bluetooth Audio Watcher initialization
+              event. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_WATCHER_CREATE_TERM_EVENT_FAILED">
+            <summary> Create Bluetooth Audio Watcher termination event
+              failed. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_WATCHER_START_THREAD_FAILED">
+            <summary> Unable to start Bluetooth Audio Watcher working
+              thread. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_WATCHER_GET_SELECTOR_FAILED">
+            <summary> Unable to get Bluetooth Audio Device selector. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_WATCHER_CREATE_FAILED">
+            <summary> Create device watcher failed. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_WATCHER_SET_ADDED_EVENT_FAILED">
+            <summary> Set Device Added event handler failed. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_WATCHER_SET_REMOVED_EVENT_FAILED">
+            <summary> Set Device Removed event handler failed. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_WATCHER_START_FAILED">
+            <summary> Unable to start Bluetooth Audio device watcher. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_RECEIVER_BASE">
+            <summary> The base error code for Bluetooth Audio Receiver
+              errors. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_RECEIVER_CLOSED">
+            <summary> The audio receiver is closed. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_RECEIVER_OPENED">
+            <summary> The audio receiver is opened closed. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_RECEIVER_CREATE_INIT_EVENT_FAILED">
+            <summary> Unable to create Bluetooth Audio Receiver initialization
+              event. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_RECEIVER_CREATE_TERM_EVENT_FAILED">
+            <summary> Create Bluetooth Audio Receiver termination event
+              failed. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_RECEIVER_START_THREAD_FAILED">
+            <summary> Unable to start Bluetooth Audio Receiver working
+              thread. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_RECEIVER_CREATE_CONNECTION_FAILED">
+            <summary> Unable to create Audio Connection Listener for the specified
+              Bluetooth Audio device. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_RECEIVER_SET_EVENT_HANDLER_FAILED">
+            <summary> Unable to add Audio Connect Listener event handler. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_RECEIVER_ENABLE_FAILED">
+            <summary> Enable incoming Bluetooth Audio connection failed. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_RECEIVER_DEVICE_CONNECTED">
+            <summary> A Bluetooth audio device is already connected. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_RECEIVER_START_CONNECT_FAILED">
+            <summary> Start Bluetooth Audio connection failed. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_RECEIVER_START_TIMEOUT">
+            <summary> Start Bluetooth Audio connection timedout. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_RECEIVER_START_DENIED">
+            <summary> Start Bluetooth Audio connection denied by system. </summary>
+        </member>
+        <member name="F:wclAudio.wclAudioErrors.WCL_E_BT_AUDIO_RECEIVER_START_UNKNOWN_FAILED">
+            <summary> Unknow error occured during starting Bluetooth Audio
+              connection. </summary>
         </member>
         <member name="T:wclAudio.wclEAudio">
             <summary> The base exception class for all Audio exceptions. </summary>
@@ -939,6 +1243,121 @@
               evaluated based on the CompanyId value. </param>
             <param name="Data"> The additional frame data. </param>
         </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAppleAirdropFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleAirdropFrameData)">
+            <summary> Fires the <c>OnAppleAirdropFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleAirdropFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAppleAirplaySourceFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleAirplaySourceFrameData)">
+            <summary> Fires the <c>OnAppleAirplaySourceFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleAirplaySourceFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAppleAirplayTargetFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleAirplayTargetFrameData)">
+            <summary> Fires the <c>OnAppleAirplayTargetFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleAirplayTargetFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAppleAirprintFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleAirprintFrameData)">
+            <summary> Fires the <c>OnAppleAirprintFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleAirprintFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAppleFindMyFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleFindMyFrameData)">
+            <summary> Fires the <c>OnAppleFindMyFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleFindMyFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAppleHandoffFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleHandoffFrameData)">
+            <summary> Fires the <c>OnAppleHandoffFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleHeySiriFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAppleHeySiriFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleHeySiriFrameData)">
+            <summary> Fires the <c>OnAppleHeySiriFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleHeySiriFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAppleHomeKitFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleHomeKitFrameData)">
+            <summary> Fires the <c>OnAppleHomeKitFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleHomeKitFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAppleiBeaconFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleiBeaconFrameData)">
+            <summary> Fires the <c>OnAppleiBeaconFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleiBeaconFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAppleMagicSwitchFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleMagicSwitchFrameData)">
+            <summary> Fires the <c>OnAppleMagicSwitchFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleMagicSwitchFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAppleNearbyActionFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleNearbyActionFrameData)">
+            <summary> Fires the <c>OnAppleNearbyActionFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleNearbyActionFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAppleNearbyInfoFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleNearbyInfoFrameData)">
+            <summary> Fires the <c>OnAppleNearbyInfoFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleNearbyInfoFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAppleProximityPairingFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleProximityPairingFrameData)">
+            <summary> Fires the <c>OnAppleProximityPairingFrame</c>
+              event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleProximityPairingFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAppleTetheringSourceFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleTetheringSourceFrameData)">
+            <summary> Fires the <c>OnAppleTetheringSourceFrame</c>
+              event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleTetheringSourceFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAppleTetheringTargetFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleTetheringTargetFrameData)">
+            <summary> Fires the <c>OnAppleTetheringTargetFrame</c>
+              event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleTetheringTargetFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoAppleUnknownFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleUnknownFrameData)">
+            <summary> Fires the <c>OnAppleUnknownFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleUnknownFrameData" />
+        </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoDriAsdMessage(System.Int64,System.Int64,System.SByte,System.Byte[])">
             <summary> Fires the <c>OnDriAsdMessage</c> event. </summary>
             <param name="Address"> The drone's MAC address. </param>
@@ -1034,24 +1453,6 @@
             <seealso cref="T:wclBluetooth.wclBluetoothLeCdpBeaconScenarioType" />
             <seealso cref="T:wclBluetooth.wclBluetoothLeCdpBeaconDeviceType" />
             <seealso cref="T:wclBluetooth.wclBluetoothLeCdpBeaconExtendedDeviceStatus" />
-        </member>
-        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoProximityBeaconFrame(System.Int64,System.Int64,System.SByte,System.UInt16,System.UInt16,System.UInt16,System.Guid,System.SByte,System.Byte[])">
-            <summary> Fires the <c>OnProximityBeaconFrame</c> event. </summary>
-            <param name="Address"> The Bluetooth LE advertiser's MAC
-              address. </param>
-            <param name="Timestamp"> The frame's timestamp in Universal Time
-              format. </param>
-            <param name="Rssi"> The measured RSSI value in dBm at range between -100
-              dBm and +20 dBm at 1 dBm resolution. </param>
-            <param name="CompanyId"> The beacon's manufacturer ID as defined in the
-              Bluetooth SIG Assigned Numbers. </param>
-            <param name="Major"> The beacon's Major value. </param>
-            <param name="Minor"> The beacon's Minor value. </param>
-            <param name="Uuid"> The beacon's UUID. </param>
-            <param name="TxRssi"> The beacon's RSSI value in dBm at range between
-              -100 dBm and +20 dBm at 1 dBm resolution measured at 1 meter
-              distance. </param>
-            <param name="Data"> The additional frame data. </param>
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcher.DoStarted">
             <summary> Fires the <c>OnStarted</c> event. </summary>
@@ -1201,6 +1602,86 @@
               advertisement frame received. </summary>
             <seealso cref="T:wclBluetooth.wclBluetoothLeAltBeaconFrameEvent" />
         </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAppleAirdropFrame">
+            <summary> The event fires when an Apple Airdrop advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleAirdropFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAppleAirplaySourceFrame">
+            <summary> The event fires when an Apple Airplay Source advertisement
+              frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleAirplaySourceFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAppleAirplayTargetFrame">
+            <summary> The event fires when an Apple Airplay Target advertisement
+              frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleAirplayTargetFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAppleAirprintFrame">
+            <summary> The event fires when an Apple Airprint advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleAirprintFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAppleFindMyFrame">
+            <summary> The event fires when an Apple Find My advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleFindMyFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAppleHandoffFrame">
+            <summary> The event fires when an Apple Handoff advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleHandoffFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAppleHeySiriFrame">
+            <summary> The event fires when an Apple Hey Siri advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleHeySiriFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAppleHomeKitFrame">
+            <summary> The event fires when an Apple HomeKit advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleHomeKitFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAppleiBeaconFrame">
+            <summary> The event fires when an Apple iBeacon advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleiBeaconFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAppleMagicSwitchFrame">
+            <summary> The event fires when an Apple Magic Switch advertisement
+              frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleMagicSwitchFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAppleNearbyActionFrame">
+            <summary> The event fires when an Apple Nearby Action advertisement
+              frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleNearbyActionFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAppleNearbyInfoFrame">
+            <summary> The event fires when an Apple Nearby Info advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleNearbyInfoFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAppleProximityPairingFrame">
+            <summary> The event fires when an Apple Proximity Pairing advertisement
+              frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleProximityPairingFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAppleTetheringSourceFrame">
+            <summary> The event fires when an Tethering Source advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleTetheringSourceFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAppleTetheringTargetFrame">
+            <summary> The event fires when an Tethering Target advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleTetheringTargetFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnAppleUnknownFrame">
+            <summary> The event fires when an unknown Apple advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleUnknownFrameEvent" />
+        </member>
         <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnDriAsdMessage">
             <summary> The event fires when a Drone Remote ID ASD message
               received. </summary>
@@ -1231,11 +1712,6 @@
               received. </summary>
             <seealso cref="T:wclBluetooth.wclBluetoothLeMicrosoftCdpBeaconFrameEvent" />
         </member>
-        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnProximityBeaconFrame">
-            <summary> The event fires when a Bluetooth LE proximity beacon
-              advertisement frame received. </summary>
-            <seealso cref="T:wclBluetooth.wclBluetoothLeProximityBeaconFrameEvent" />
-        </member>
         <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnStarted">
             <summary> The event fires when the Bluetooth LE beacon monitoring
               started. </summary>
@@ -1243,6 +1719,514 @@
         <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcher.OnStopped">
             <summary> The event fires when the Bluetooth LE beacon monitoring
               stopped. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAdvertisementInfo">
+            <summary> The record contains basic information about Bluetooth LE
+              advertisement frame. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAdvertisementInfo.Address">
+            <summary> The Bluetooth LE advertiser's MAC address. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAdvertisementInfo.Timestamp">
+            <summary> The frame's timestamp in Universal Time format. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAdvertisementInfo.Rssi">
+            <summary> The measured RSSI value in dBm at range between -100 dBm and
+              +20 dBm at 1 dBm resolution. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleAirdropFrameData">
+            <summary> The record contains Apple Airdrop Bluetooth LE advertisement
+              data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleAirdropFrameData.Prefix">
+            <summary> Message prefix. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleAirdropFrameData.Version">
+            <summary> Version. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleAirdropFrameData.AppleId">
+            <summary> Truncated SHA256 hash of apple ID. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleAirdropFrameData.PhoneNumber">
+            <summary> Truncated SHA256 hash of phone number. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleAirdropFrameData.Email">
+            <summary> Truncated SHA256 hash of E-Mail. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleAirdropFrameData.Email2">
+            <summary> Truncated SHA256 hash of E-Mail 2. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleAirdropFrameData.Suffix">
+            <summary> Suffix. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleAirplaySourceFrameData">
+            <summary> The record contains Apple Airplay source Bluetooth LE
+              advertisement data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleAirplaySourceFrameData.Data">
+            <summary> The data byte. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleAirplayTargetFrameData">
+            <summary> The record contains Apple Airplay target Bluetooth LE
+              advertisement data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleAirplayTargetFrameData.Flags">
+            <summary> AirPlay flags. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleAirplayTargetFrameData.Seed">
+            <summary> AirPlay configuration seed. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleAirplayTargetFrameData.Address">
+            <summary> IPv4 address. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleAirprintFrameData">
+            <summary> The record contains Apple Airprint Bluetooth LE advertisement
+              data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleAirprintFrameData.AddressType">
+            <summary> Address type. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleAirprintFrameData.ResourceType">
+            <summary> Path resource type. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleAirprintFrameData.SecurityType">
+            <summary> Security type. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleAirprintFrameData.Port">
+            <summary> QID or TCP port. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleAirprintFrameData.Address">
+            <summary> IPv4 or IPv6 address. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleAirprintFrameData.Power">
+            <summary> Measured Power. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleFindMyFrameData">
+            <summary> The record contains Apple Find My Bluetooth LE advertisement
+              data. </summary>
+            <remarks> The Find My message is broadcast by apple devices that are
+              marked as lost by the user or that do not have internet connectivity.
+              This message includes the x-coordinate of the currently active elliptic
+              curve public key for the disconnected device. Because BLE advertisements
+              are limited to 31 total bytes, some of which are used to encode the
+              company identifier and other metadata, Apple encodes part of the key in
+              the BLE Advertising Address, with the remaining public key included in
+              the advertisement payload. When a nearby internet-connected apple device
+              sees this BLE message, it sends a location report using its own GPS to
+              Apple Servers. This location report is encrypted with the advertised
+              public key so that only the device owner can decrypt the location
+              report. The owner of the lost device will then see the lost device's
+              location appear on their Find My app.  </remarks>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleFindMyFrameData.Status">
+            <summary> <para> Find My status: </para>
+              <para> 0x00 - Owner did not connect within key rotation
+                            period (15 min.) </para>
+              <para> 0x24 - Owner connected with key roation period,
+                            Battery Full </para>
+              <para> 0x64 - Owner connected with key roation period,
+                            Battery Medium </para>
+              <para> 0xA4 - Owner connected with key roation period,
+                            Battery Low </para>
+              <para> 0xE4 - Owner connected with key roation period,
+                            Battery Critically Low </para> </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleFindMyFrameData.Key">
+            <summary> Public key. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleFindMyFrameData.KeyBits">
+            <summary> <para> Public key bits: </para>
+              <para> 0x00 - bits 6 and 7 not set in public key </para>
+              <para> 0x01 - bit 6 set in public key </para>
+              <para> 0x02 - bit 7 set in public key </para>
+              <para> 0x03 - bits 6 and 7 set in public key </para> </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleFindMyFrameData.Hint">
+            <summary> Byte 5 of BT_ADDR of the primary key. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleHandoffFrameData">
+            <summary> The record contains Apple Handoff Bluetooth LE advertisement
+              data. </summary>
+            <remarks> Handoff Messages enable users to start tasks on one iOS or macOS
+              device and finish them on another. Handoff is supported with the Apple
+              Calendar, Contacts, Mail, Maps, Messages, Notes, Reminders, Safari,
+              Pages, Numbers, Keynote applications, as well as certain third-party
+              applications that are designed to support Handoff by their
+              developers. </remarks>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleHandoffFrameData.Clipboard">
+            <summary> A clipboard status. Indicates copy/cut operation. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleHandoffFrameData.Sequence">
+            <summary> Sequence number. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleHandoffFrameData.AuthTag">
+            <summary> AES-GCM Auth Tag. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleHandoffFrameData.Data">
+            <summary> Encrypted Handoff data. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleHeySiriFrameData">
+            <summary> The record contains Apple Hey Siri Bluetooth LE
+              advertisement data. </summary>
+            <remarks> 'Hey Siri' messages are emitted by a device when the voice
+              assistant Siri is used. Of note, a perceptual hash of the voice command
+              is included in the packet. </remarks>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleHeySiriFrameData.Hash">
+            <summary> Perceptual Hash. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleHeySiriFrameData.Snr">
+            <summary> Signal-to-Noise Ration. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleHeySiriFrameData.Confidence">
+            <summary> <para> Wrist confidence level: </para>
+              <para> 0x03 - Not on Wrist </para>
+              <para> 0x1F - Wrist detection disabled </para>
+              <para> 0x3F - On Wrist </para> </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleHeySiriFrameData.DeviceClass">
+            <summary> <para> Device Class: </para>
+              <para> 0x0002 - iPhone </para>
+              <para> 0x0003 - iPad </para>
+              <para> 0x0007 - HomePod </para>
+              <para> 0x0009 - MacBook </para>
+              <para> 0x000A - Watch </para> </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleHeySiriFrameData.Rand">
+            <summary> Random byte. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleHomeKitFrameData">
+            <summary> The record contains Apple Home Kit Bluetooth LE advertisement
+              data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleHomeKitFrameData.Status">
+            <summary> Status flags. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleHomeKitFrameData.DeviceId">
+            <summary> A device ID. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleHomeKitFrameData.Category">
+            <summary> <para> HomeKit device category: </para>
+              <para> 0x0000 - Unknown </para>
+              <para> 0x0001 - Other </para>
+              <para> 0x0002 - Bridge </para>
+              <para> 0x0003 - Fan </para>
+              <para> 0x0004 - Garage Door Opener </para>
+              <para> 0x0005 - Lightbulb </para>
+              <para> 0x0006 - Door Lock </para>
+              <para> 0x0007 - Outlet </para>
+              <para> 0x0008 - Switch </para>
+              <para> 0x0009 - Thermostat </para>
+              <para> 0x000A - Sensor </para>
+              <para> 0x000B - Security System </para>
+              <para> 0x000C - Door </para>
+              <para> 0x000D - Window </para>
+              <para> 0x000E - Window Covering </para>
+              <para> 0x000F - Programmable Switch </para>
+              <para> 0x0010 - Range Extender </para>
+              <para> 0x0011 - IP Camera </para>
+              <para> 0x0012 - Video Doorbell </para>
+              <para> 0x0013 - Air Purifier </para>
+              <para> 0x0014 - Heater </para>
+              <para> 0x0015 - Air Conditioner </para>
+              <para> 0x0016 - Humidifier </para>
+              <para> 0x0017 - Dehumidifier </para>
+              <para> 0x001C - Sprinklers </para>
+              <para> 0x001D - Faucets </para>
+              <para> 0x001E - Shower Systems </para> </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleHomeKitFrameData.StateNumber">
+            <summary> State number. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleHomeKitFrameData.ConfigNumber">
+            <summary> Config number. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleHomeKitFrameData.Version">
+            <summary> Compatible version. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleiBeaconFrameData">
+            <summary> The record contains Apple iBeacon Bluetooth LE advertisement
+              data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleiBeaconFrameData.Uuid">
+            <summary> The beacon's UUID. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleiBeaconFrameData.Minor">
+            <summary> The beacon's Minor value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleiBeaconFrameData.Major">
+            <summary> The beacon's Major value. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleiBeaconFrameData.TxRssi">
+            <summary> The beacon's RSSI value in dBm at range between -100 dBm and
+              +20 dBm at 1 dBm resolution measured at 1 meter distance. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleMagicSwitchFrameData">
+            <summary> The record contains Apple Magic Switch Bluetooth LE
+              advertisement data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleMagicSwitchFrameData.Data">
+            <summary> Message data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleMagicSwitchFrameData.Confidence">
+            <summary> <para> Wrist confidence level: </para>
+              <para> 0x03 - Not on Wrist </para>
+              <para> 0x1F - Wrist detection disabled </para>
+              <para> 0x3F - On Wrist </para> </summary>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleNearbyActionFrameData">
+            <summary> The record contains Apple Nearby Action Bluetooth LE
+              advertisement data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleNearbyActionFrameData.Flags">
+            <summary> Action flags. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleNearbyActionFrameData.Action">
+            <summary> <para> Action type. Known values: </para>
+              <para> 0x01 - Apple TV Setup </para>
+              <para> 0x04 - Mobile Backup </para>
+              <para> 0x05 - Watch Setup </para>
+              <para> 0x06 - Apple TV Pair </para>
+              <para> 0x07 - Internet Relay </para>
+              <para> 0x08 - WiFi Password </para>
+              <para> 0x09 - iOS Setup </para>
+              <para> 0x0A - Repair </para>
+              <para> 0x0B - Speaker Setupd </para>
+              <para> 0x0C - Apple Pay </para>
+              <para> 0x0D - Whole Home Audio Setup </para>
+              <para> 0x0E - Developer Tools Pairing Request </para>
+              <para> 0x0F - Answered Call </para>
+              <para> 0x10 - Ended Call </para>
+              <para> 0x11 - DD Ping </para>
+              <para> 0x12 - DD Pong </para>
+              <para> 0x13 - Remote Auto Fill </para>
+              <para> 0x14 - Companion Link Proximity </para>
+              <para> 0x15 - Remote Management </para>
+              <para> 0x16 - Remote Auto Fill Pong </para>
+              <para> 0x17 - Remote Display </para> </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleNearbyActionFrameData.Tag">
+            <summary> Authentication tag. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleNearbyActionFrameData.Device">
+            <summary> <para> Action device class. Known values: </para>
+              <para> 0x02 - iPhone </para>
+              <para> 0x04 - iPod </para>
+              <para> 0x06 - iPad </para>
+              <para> 0x08 - Audio accessory (HomePod) </para>
+              <para> 0x0A - Mac </para>
+              <para> 0x0C - AppleTV </para>
+              <para> 0x0E - Watch </para> </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleNearbyActionFrameData.Params">
+            <summary> Action parameters. The structure of the Nearby Action
+              Parameters field is dependent upon the Action Type value. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleNearbyInfoFrameData">
+            <summary> The record contains Apple Nearby Info Bluetooth LE advertisement
+              data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleNearbyInfoFrameData.Status">
+            <summary> <para> Status flags. Used as a bitmask, more than one may be
+              enabled at any time. Known values: </para>
+              <para> 0x01 - Indicates if this is the primary iCloud account
+                            device </para>
+              <para> 0x04 - Indicates whether AirDrop Receiving is
+                            enabled </para> </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleNearbyInfoFrameData.Action">
+            <summary> <para> Action flags. Indicates the action state of the
+              device. Known values: </para>
+              <para> 0x00 - Activity level unknown </para>
+              <para> 0x01 - Activity reporting disabled </para>
+              <para> 0x03 - Idle user </para>
+              <para> 0x05 - Audio playing while screen locked </para>
+              <para> 0x07 - Active user (screen on) </para>
+              <para> 0x09 - Screen on with video playing </para>
+              <para> 0x0A - Watch on wrist and unlocked </para>
+              <para> 0x0B - Recent user interaction </para>
+              <para> 0x0D - User is driving a vehicle </para>
+              <para> 0x0E - Phone or Facetime Call </para> </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleNearbyInfoFrameData.Flags">
+            <summary> <para> Indicates current device state. Used as a bitmask, more
+              than one may be enabled at any time. Known values: </para>
+              <para> 0x01 - Indicates if AirPods are connected and the screen is
+                            on </para>
+              <para> 0x02 - Indicates if the Authentication Tag is 4 bytes </para>
+              <para> 0x04 - Indicates whether WiFi is on or off </para>
+              <para> 0x10 - Indicates whether the Authentication Tag is present or
+                            not </para>
+              <para> 0x20 - Indicates whether the Apple Watch is locked or not </para>
+              <para> 0x40 - Indicates whether Auto Unlock on the Apple Watch is
+                            enabled or not </para>
+              <para> 0x80 - Indicates whether Auto Unlock is enabled or
+                            not </para> </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleNearbyInfoFrameData.Tag">
+            <summary> Authentication tag. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleProximityPairingFrameData">
+            <summary> The record contains Apple Proximity Pairing Bluetooth LE
+              advertisement data. </summary>
+            <remarks> Proximity Pairing is an Apple technology that is used to pair
+              AirPods and iOS devices. These messages carry unencrypted information
+              detailing the status, model, and color of the audio device as well as
+              the power and charging status. </remarks>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleProximityPairingFrameData.Prefix">
+            <summary> Proximity Pairing message prefix. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleProximityPairingFrameData.DeviceModel">
+            <summary> <para> Device model: </para>
+              <para> 0x2002 - AirPods </para>
+              <para> 0x2003 - Powerbeats 3 </para>
+              <para> 0x2005 - BeatsX </para>
+              <para> 0x2006 - Beats Solo 3 </para>
+              <para> 0x2007 - Beats Studio 3 </para>
+              <para> 0x2009 - Beats Studio 3 </para>
+              <para> 0x200A - AirPods Max </para>
+              <para> 0x200B - Powerbeats Pro </para>
+              <para> 0x200C - Beats Solo Pro </para>
+              <para> 0x200D - Powerbeats 4 </para>
+              <para> 0x200E - AirPods Pro </para>
+              <para> 0x200F - AirPods 2 </para>
+              <para> 0x2010 - Beats Flex </para>
+              <para> 0x2011 - Beats Studio Buds </para>
+              <para> 0x2012 - Beats Fit Pro </para>
+              <para> 0x2013 - AirPods 3 </para>
+              <para> 0x2014 - AirPods Pro 2 </para> </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleProximityPairingFrameData.Status">
+            <summary> <para> Device status: </para>
+              <para> 0x01 - AirPods: Both out of case, not in ear </para>
+              <para> 0x02 - Right in ear, Left in case </para>
+              <para> 0x03 - AirPods: Right in ear, Left out of case </para>
+              <para> 0x0B - Both AirPods in ear </para>
+              <para> 0x11 - AirPods: Right out of case, Left in case </para>
+              <para> 0x13 - AirPods: Right in ear, Left in case </para>
+              <para> 0x21 - Both taken out of ears, Pause Audio </para>
+              <para> 0x22 - Left in ear, Right in case </para>
+              <para> 0x23 - AirPods: Left in ear, Right out of case </para>
+              <para> 0x2B - Both AirPods in ear </para>
+              <para> 0x31 - AirPods: Left out of case, Right in case </para>
+              <para> 0x33 - AirPods: Left in ear, Right in case </para>
+              <para> 0x51 - Case: Left out of case, Right in case </para>
+              <para> 0x53 - Case: Left in ear, Right in case </para>
+              <para> 0x55 - Case: Both AirPods in case </para>
+              <para> 0x71 - Case: Right out of case, Left in case </para>
+              <para> 0x73 - Case: Right in ear, Left in case </para>
+              <para> 0x75 - Case: Both AirPods in case </para> </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleProximityPairingFrameData.LeftBattery">
+            <summary> Battery of left pod. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleProximityPairingFrameData.RightBattery">
+            <summary> Battery of right pod. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleProximityPairingFrameData.CaseCharging">
+            <summary> Whether the case is charging. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleProximityPairingFrameData.RightCharging">
+            <summary> Whether right pod is charging. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleProximityPairingFrameData.LeftCharging">
+            <summary> Whether left pod is charging. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleProximityPairingFrameData.CaseBattery">
+            <summary> Case battery. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleProximityPairingFrameData.Counter">
+            <summary> Lid open counter. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleProximityPairingFrameData.Color">
+            <summary> <para> Device color: </para>
+              <para> 0x00 - White </para>
+              <para> 0x01 - Black </para>
+              <para> 0x02 - Red </para>
+              <para> 0x03 - Blue </para>
+              <para> 0x04 - Pink </para>
+              <para> 0x05 - Gray </para>
+              <para> 0x06 - Silver </para>
+              <para> 0x07 - Gold </para>
+              <para> 0x08 - Rose Gold </para>
+              <para> 0x09 - Space Gray </para>
+              <para> 0x0A - Dark Blue </para>
+              <para> 0x0B - Light Blue </para>
+              <para> 0x0C - Yellow </para> </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleProximityPairingFrameData.Suffix">
+            <summary> Proximity Pairing message suffix. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleProximityPairingFrameData.Data">
+            <summary> Encrypted data. </summary>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleTetheringSourceFrameData">
+            <summary> The record contains Apple Tethering Source Bluetooth LE
+              advertisement data. </summary>
+            <remarks> The Tethering Source Continuity message is broadcast in response
+              to a Tethering Target message generated by another device (typically a
+              MacBook) linked to the same iCloud account as the iPhone or iPad that is
+              to be used as a hotspot. The Tethering Source message contains
+              information pertaining to the battery life, and type and quality of
+              cellular service the hotspot device has. Some of this information is
+              listed in the 'available WiFi networks' listed on the Tethering Target
+              device when searching for the hotspot. </remarks>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleTetheringSourceFrameData.Version">
+            <summary> Version. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleTetheringSourceFrameData.Flags">
+            <summary> Flags. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleTetheringSourceFrameData.Battery">
+            <summary> Battery status. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleTetheringSourceFrameData.CellType">
+            <summary> <para> Cell service type: </para>
+              <para> 0x0000 - 4G (GSM) </para>
+              <para> 0x0001 - 1xRTT </para>
+              <para> 0x0002 - GPRS </para>
+              <para> 0x0003 - EDGE </para>
+              <para> 0x0004 - 3G (EV-DO) </para>
+              <para> 0x0005 - 3G </para>
+              <para> 0x0006 - 4G </para>
+              <para> 0x0007 - LTE </para> </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleTetheringSourceFrameData.Bars">
+            <summary> Cell Service Quality (Bars). </summary>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleTetheringTargetFrameData">
+            <summary> The record contains Apple Tethering Target Bluetooth LE
+              advertisement data. </summary>
+            <remarks> The Tethering Target Continuity message is broadcast in order to
+              elicit a response from a device to be used as a hotspot, which will
+              reply with a Tethering Source message. In a typical usage example, a
+              user clicks on the menu button that displays the list of available WiFi
+              networks on a MacBook. This action generates a stream of Tethering
+              Target messages that continue for the duration of the period in which
+              the available networks tab is opened. In response, a hotspot-capable
+              device linked to the same iCloud account (an iPhone or iPad with
+              cellular connection) responds with Tethering Source messages to
+              advertise its presence and connection capabilities, including battery
+              status, type of cellular connection, and strength of cellular
+              signal.  </remarks>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleTetheringTargetFrameData.Id">
+            <summary> iCloud ID. </summary>
+            <remarks> Derived from user's iCloud DSID. Rotates every 24 hours.
+              Constant across all devices on same iCloud Account </remarks>
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleUnknownFrameData">
+            <summary> The record contains an unknown Apple specified Bluetooth LE
+              advertisement data. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleUnknownFrameData.Id">
+            <summary> An Apple message ID. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAppleUnknownFrameData.Payload">
+            <summary> An Apple message payload. </summary>
         </member>
         <member name="T:wclBluetooth.wclBluetoothLeBeaconWatcherConnection">
             <summary> The "virtual" connection for the Bluetooth LE Beacon Watcher. </summary>
@@ -1433,6 +2417,121 @@
               evaluated based on the CompanyId value. </param>
             <param name="Data"> The additional frame data. </param>
         </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAppleAirdropFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleAirdropFrameData)">
+            <summary> Fires the <c>OnAppleAirdropFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleAirdropFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAppleAirplaySourceFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleAirplaySourceFrameData)">
+            <summary> Fires the <c>OnAppleAirplaySourceFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleAirplaySourceFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAppleAirplayTargetFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleAirplayTargetFrameData)">
+            <summary> Fires the <c>OnAppleAirplayTargetFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleAirplayTargetFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAppleAirprintFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleAirprintFrameData)">
+            <summary> Fires the <c>OnAppleAirprintFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleAirprintFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAppleFindMyFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleFindMyFrameData)">
+            <summary> Fires the <c>OnAppleFindMyFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleFindMyFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAppleHandoffFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleHandoffFrameData)">
+            <summary> Fires the <c>OnAppleHandoffFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleHeySiriFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAppleHeySiriFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleHeySiriFrameData)">
+            <summary> Fires the <c>OnAppleHeySiriFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleHeySiriFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAppleHomeKitFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleHomeKitFrameData)">
+            <summary> Fires the <c>OnAppleHomeKitFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleHomeKitFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAppleiBeaconFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleiBeaconFrameData)">
+            <summary> Fires the <c>OnAppleiBeaconFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleiBeaconFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAppleMagicSwitchFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleMagicSwitchFrameData)">
+            <summary> Fires the <c>OnAppleMagicSwitchFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleMagicSwitchFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAppleNearbyActionFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleNearbyActionFrameData)">
+            <summary> Fires the <c>OnAppleNearbyActionFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleNearbyActionFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAppleNearbyInfoFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleNearbyInfoFrameData)">
+            <summary> Fires the <c>OnAppleNearbyInfoFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleNearbyInfoFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAppleProximityPairingFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleProximityPairingFrameData)">
+            <summary> Fires the <c>OnAppleProximityPairingFrame</c>
+              event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleProximityPairingFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAppleTetheringSourceFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleTetheringSourceFrameData)">
+            <summary> Fires the <c>OnAppleTetheringSourceFrame</c>
+              event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleTetheringSourceFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAppleTetheringTargetFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleTetheringTargetFrameData)">
+            <summary> Fires the <c>OnAppleTetheringTargetFrame</c>
+              event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleTetheringTargetFrameData" />
+        </member>
+        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoAppleUnknownFrame(wclBluetooth.wclBluetoothLeAdvertisementInfo,wclBluetooth.wclBluetoothLeAppleUnknownFrameData)">
+            <summary> Fires the <c>OnAppleUnknownFrame</c> event. </summary>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleUnknownFrameData" />
+        </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoDriAsdMessage(System.Int64,System.Int64,System.SByte,System.Byte[])">
             <summary> Fires the <c>OnDriAsdMessage</c> event. </summary>
             <param name="Address"> The drone's MAC address. </param>
@@ -1528,24 +2627,6 @@
             <seealso cref="T:wclBluetooth.wclBluetoothLeCdpBeaconScenarioType" />
             <seealso cref="T:wclBluetooth.wclBluetoothLeCdpBeaconDeviceType" />
             <seealso cref="T:wclBluetooth.wclBluetoothLeCdpBeaconExtendedDeviceStatus" />
-        </member>
-        <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoProximityBeaconFrame(System.Int64,System.Int64,System.SByte,System.UInt16,System.UInt16,System.UInt16,System.Guid,System.SByte,System.Byte[])">
-            <summary> Fires the <c>OnProximityBeaconFrame</c> event. </summary>
-            <param name="Address"> The Bluetooth LE advertiser's MAC
-              address. </param>
-            <param name="Timestamp"> The frame's timestamp in Universal Time
-              format. </param>
-            <param name="Rssi"> The measured RSSI value in dBm at range between -100
-              dBm and +20 dBm at 1 dBm resolution. </param>
-            <param name="CompanyId"> The beacon's manufacturer ID as defined in the
-              Bluetooth SIG Assigned Numbers. </param>
-            <param name="Major"> The beacon's Major value. </param>
-            <param name="Minor"> The beacon's Minor value. </param>
-            <param name="Uuid"> The beacon's UUID. </param>
-            <param name="TxRssi"> The beacon's RSSI value in dBm at range between
-              -100 dBm and +20 dBm at 1 dBm resolution measured at 1 meter
-              distance. </param>
-            <param name="Data"> The additional frame data. </param>
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.DoStarted">
             <summary> Fires the <c>OnStarted</c> event. </summary>
@@ -1713,6 +2794,86 @@
               advertisement frame received. </summary>
             <seealso cref="T:wclBluetooth.wclBluetoothLeAltBeaconFrameEvent" />
         </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAppleAirdropFrame">
+            <summary> The event fires when an Apple Airdrop advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleAirdropFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAppleAirplaySourceFrame">
+            <summary> The event fires when an Apple Airplay Source advertisement
+              frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleAirplaySourceFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAppleAirplayTargetFrame">
+            <summary> The event fires when an Apple Airplay Target advertisement
+              frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleAirplayTargetFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAppleAirprintFrame">
+            <summary> The event fires when an Apple Airprint advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleAirprintFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAppleFindMyFrame">
+            <summary> The event fires when an Apple Find My advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleFindMyFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAppleHandoffFrame">
+            <summary> The event fires when an Apple Handoff advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleHandoffFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAppleHeySiriFrame">
+            <summary> The event fires when an Apple Hey Siri advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleHeySiriFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAppleHomeKitFrame">
+            <summary> The event fires when an Apple HomeKit advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleHomeKitFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAppleiBeaconFrame">
+            <summary> The event fires when an Apple iBeacon advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleiBeaconFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAppleMagicSwitchFrame">
+            <summary> The event fires when an Apple Magic Switch advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleMagicSwitchFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAppleNearbyActionFrame">
+            <summary> The event fires when an Apple Nearby Action advertisement
+              frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleNearbyActionFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAppleNearbyInfoFrame">
+            <summary> The event fires when an Apple Nearby Info advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleNearbyInfoFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAppleProximityPairingFrame">
+            <summary> The event fires when an Apple Proximity Pairing advertisement
+              frame received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleProximityPairingFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAppleTetheringSourceFrame">
+            <summary> The event fires when an Tethering Source advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleTetheringSourceFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAppleTetheringTargetFrame">
+            <summary> The event fires when an Tethering Target advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleTetheringTargetFrameEvent" />
+        </member>
+        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnAppleUnknownFrame">
+            <summary> The event fires when an unknown Apple advertisement frame
+              received. </summary>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleUnknownFrameEvent" />
+        </member>
         <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnDriAsdMessage">
             <summary> The event fires when a Drone Remote ID ASD message
               received. </summary>
@@ -1742,11 +2903,6 @@
             <summary> The event fires when Microsoft CDP Beacon frame
               received. </summary>
             <seealso cref="T:wclBluetooth.wclBluetoothLeMicrosoftCdpBeaconFrameEvent" />
-        </member>
-        <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnProximityBeaconFrame">
-            <summary> The event fires when a Bluetooth LE proximity beacon
-              advertisement frame received. </summary>
-            <seealso cref="T:wclBluetooth.wclBluetoothLeProximityBeaconFrameEvent" />
         </member>
         <member name="E:wclBluetooth.wclBluetoothLeBeaconWatcherConnection.OnStarted">
             <summary> The event fires when the Bluetooth LE beacon monitoring
@@ -3958,24 +5114,148 @@
             <param name="Data"> The frame raw data. The value can be <c>null</c> if
               there is no any data available in the frame. </param>
         </member>
-        <member name="T:wclBluetooth.wclBluetoothLeProximityBeaconFrameEvent">
-            <summary> The <c>OnProximityBeaconFrame</c> event handler
+        <member name="T:wclBluetooth.wclBluetoothLeAppleAirdropFrameEvent">
+            <summary> The <c>OnAppleAirdropFrame</c> event handler
               prototype. </summary>
             <param name="Sender"> The object initiates the event. </param>
-            <param name="Address"> The Bluetooth LE advertiser's MAC address. </param>
-            <param name="Timestamp"> The frame's timestamp in Universal Time
-              format. </param>
-            <param name="Rssi"> The measured RSSI value in dBm at range between -100
-              dBm and +20 dBm at 1 dBm resolution. </param>
-            <param name="CompanyId"> The beacon's manufacturer ID as defined in the
-              Bluetooth SIG Assigned Numbers. </param>
-            <param name="Major"> The beacon's Major value. </param>
-            <param name="Minor"> The beacon's Minor value. </param>
-            <param name="Uuid"> The beacon's UUID. </param>
-            <param name="TxRssi"> The beacon's RSSI value in dBm at range between -100
-              dBm and +20 dBm at 1 dBm resolution measured at 1 meter
-              distance. </param>
-            <param name="Data"> The additional frame data. </param>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleAirdropFrameData" />
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleAirplaySourceFrameEvent">
+            <summary> The <c>OnAppleAirplaySourceFrame</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleAirplaySourceFrameData" />
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleAirplayTargetFrameEvent">
+            <summary> The <c>OnAppleAirplayTargetFrame</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleAirplayTargetFrameData" />
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleAirprintFrameEvent">
+            <summary> The <c>OnAppleAirprintFrame</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleAirprintFrameData" />
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleFindMyFrameEvent">
+            <summary> The <c>OnAppleFindMyFrame</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleFindMyFrameData" />
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleHandoffFrameEvent">
+            <summary> The <c>OnAppleHandoffFrame</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleHandoffFrameData" />
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleHeySiriFrameEvent">
+            <summary> The <c>OnAppleHeySiriFrame</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleHeySiriFrameData" />
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleHomeKitFrameEvent">
+            <summary> The <c>OnAppleHomeKitFrame</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleHomeKitFrameData" />
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleiBeaconFrameEvent">
+            <summary> The <c>OnAppleiBeaconFrame</c> event handler prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleiBeaconFrameData" />
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleMagicSwitchFrameEvent">
+            <summary> The <c>OnAppleMagicSwitchFrame</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleMagicSwitchFrameData" />
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleNearbyActionFrameEvent">
+            <summary> The <c>OnAppleNearbyActionFrame</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleNearbyActionFrameData" />
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleNearbyInfoFrameEvent">
+            <summary> The <c>OnAppleNearbyInfoFrame</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleNearbyInfoFrameData" />
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleProximityPairingFrameEvent">
+            <summary> The <c>OnApplePriximityPairingFrame</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleProximityPairingFrameData" />
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleTetheringSourceFrameEvent">
+            <summary> The <c>OnAppleTetheringSourceFrame</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleTetheringSourceFrameData" />
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleTetheringTargetFrameEvent">
+            <summary> The <c>OnAppleTetheringTargetFrame</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleTetheringTargetFrameData" />
+        </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAppleUnknownFrameEvent">
+            <summary> The <c>OnAppleUnknownFrame</c> event handler
+              prototype. </summary>
+            <param name="Sender"> The object initiates the event. </param>
+            <param name="Info"> The Bluetooth LE advertisement information. </param>
+            <param name="Data"> The advertisement frame decoded data. </param>
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAdvertisementInfo" />
+            <seealso cref="T:wclBluetooth.wclBluetoothLeAppleUnknownFrameData" />
         </member>
         <member name="T:wclBluetooth.wclBluetoothLeMicrosoftCdpBeaconFrameEvent">
             <summary> The <c>OnMicrosoftCdpBeaconFrame</c> event handler
@@ -11219,6 +12499,48 @@
         <member name="F:wclBluetooth.wclGattUuid.LongUuid">
             <summary> The long 128-bit value of the UUID. This member applies only
               if <c>IsShortUuid</c> is <c>False</c>. </summary>
+        </member>
+        <member name="M:wclBluetooth.wclGattUuid.#ctor(System.UInt16)">
+            <summary> Creates new <see cref="T:wclBluetooth.wclGattUuid"/> structure that represents
+              GATT short (16-bit) UUID. </summary>
+            <param name="Uuid"> A GATT short UUID. </param>
+        </member>
+        <member name="M:wclBluetooth.wclGattUuid.#ctor(System.Guid)">
+            <summary> Creates new <see cref="T:wclBluetooth.wclGattUuid"/> structure that represents
+              GATT long (128-bit) UUID. </summary>
+            <param name="Uuid"> A GATT long UUID. </param>
+        </member>
+        <member name="M:wclBluetooth.wclGattUuid.GetHashCode">
+            <summary> Gets the <see cref="T:wclBluetooth.wclGattUuid"/> structure hash code. </summary>
+            <returns> The hash code. </returns>
+        </member>
+        <member name="M:wclBluetooth.wclGattUuid.Equals(System.Object)">
+            <summary> Compares the <see cref="T:wclBluetooth.wclGattUuid"/> structure with an object. </summary>
+            <param name="Obj"> The object for comparison. </param>
+            <returns> Returns <c>true</c> if structure and object are equal. Returns <c>false</c>
+              otherwise. </returns>
+        </member>
+        <member name="M:wclBluetooth.wclGattUuid.Equals(wclBluetooth.wclGattUuid)">
+            <summary> Compares the <see cref="T:wclBluetooth.wclGattUuid"/> structures. </summary>
+            <param name="Uuid"> The <see cref="T:wclBluetooth.wclGattUuid"/> structure for comparison. </param>
+            <returns> Returns <c>true</c> if structures are equal. Returns <c>false</c>
+              otherwise. </returns>
+        </member>
+        <member name="M:wclBluetooth.wclGattUuid.op_Equality(wclBluetooth.wclGattUuid,wclBluetooth.wclGattUuid)">
+            <summary> Compares <see cref="T:wclBluetooth.wclGattUuid" /> structures. </summary>
+            <param name="u1"> First <see cref="T:wclBluetooth.wclGattUuid" /> structure. </param>
+            <param name="u2"> Second <see cref="T:wclBluetooth.wclGattUuid" /> structure. </param>
+            <returns> Returns <c>true</c> if the structures are equal. Returns <c>false</c>
+              otherwise. </returns>
+            <seealso cref="T:wclBluetooth.wclGattUuid" />
+        </member>
+        <member name="M:wclBluetooth.wclGattUuid.op_Inequality(wclBluetooth.wclGattUuid,wclBluetooth.wclGattUuid)">
+            <summary> Compares <see cref="T:wclBluetooth.wclGattUuid" /> structures. </summary>
+            <param name="u1"> First <see cref="T:wclBluetooth.wclGattUuid" /> structure. </param>
+            <param name="u2"> Second <see cref="T:wclBluetooth.wclGattUuid" /> structure. </param>
+            <returns> Returns <c>false</c> if the structures are equal. Returns <c>true</c>
+              otherwise. </returns>
+            <seealso cref="T:wclBluetooth.wclGattUuid" />
         </member>
         <member name="T:wclBluetooth.wclGattService">
             <summary> The structure describes a Bluetooth Low Energy (LE) generic
