@@ -246,6 +246,9 @@
         <member name="F:wclCommon.wclErrors.WCL_E_WINRT_DETACH_BUFFER_FAILED">
             <summary> Unable to detach raw buffer. </summary>
         </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_WINRT_ASYNC_OPERATION_TIMEOUT">
+            <summary> An asynchronous operation timed out. </summary>
+        </member>
         <member name="F:wclCommon.wclErrors.WCL_E_WINUSB_BASE">
             <summary> The base error code for all WinUSB subsystem errors. </summary>
         </member>

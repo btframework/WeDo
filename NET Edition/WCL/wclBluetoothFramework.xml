@@ -7409,8 +7409,8 @@
             <summary> Other instance of the GATT server is already running. Only
               one instance of the GATT server is allowed. </summary>
         </member>
-        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_ADMIN_RIGHTS_REQUIRED">
-            <summary> The operation requires administrative rights. </summary>
+        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_CLIENT_NOT_CONNECTED">
+            <summary> A client is not connected to a Bluetooth device. </summary>
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_UNEXPECTED">
             <summary> Unexpected or unknown error. </summary>
@@ -7591,9 +7591,6 @@
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_GATT_SERVER_RESPONSE_ALREADY_SENT">
             <summary> The response was already sent. </summary>
-        </member>
-        <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_CLIENT_NOT_CONNECTED">
-            <summary> A client is not connected to a Bluetooth device. </summary>
         </member>
         <member name="F:wclBluetooth.wclBluetoothErrors.WCL_E_WII_REMOTE_BASE">
             <summary> The base error code for Wii Remote errors. </summary>
