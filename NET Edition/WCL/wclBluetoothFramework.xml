@@ -9181,8 +9181,10 @@
               <para> <see cref="F:wclBluetooth.wclBluetoothErrors.WCL_E_BLUETOOTH_LE_INSUFFICIENT_RESOURCES" /> </para>
             </remarks>
         </member>
-        <member name="M:wclBluetooth.wclGattLocalCharacteristicRequest.#ctor(System.UInt32)">
+        <member name="M:wclBluetooth.wclGattLocalCharacteristicRequest.#ctor(System.Int64,System.UInt32)">
             <summary> Creates new object. </summary>
+            <param name="Timestamp"> A high resolution (less than 1us) time stamp when the
+              request was received. </param>
             <param name="Offset"> A data offset. </param>
             <remarks> An application must not create this class. It is created
               internally when needed. </remarks>
@@ -9232,6 +9234,11 @@
             <summary> Gets the data offset. </summary>
             <value> The data offset. </value>
         </member>
+        <member name="P:wclBluetooth.wclGattLocalCharacteristicRequest.Timestamp">
+            <summary> Gets the request time stamp. </summary>
+            <value> A high resolution (less than 1us) time stamp when the request was
+              received. </value>
+        </member>
         <member name="T:wclBluetooth.wclGattLocalCharacteristicReadRequest">
             <summary> The class represents a GATT characteristic read
               requests. </summary>
@@ -9250,8 +9257,10 @@
               dependent code that sends a data to a remote connected GATT
               client. </remarks>
         </member>
-        <member name="M:wclBluetooth.wclGattLocalCharacteristicReadRequest.#ctor(System.UInt32,System.UInt32)">
+        <member name="M:wclBluetooth.wclGattLocalCharacteristicReadRequest.#ctor(System.Int64,System.UInt32,System.UInt32)">
             <summary> Creates new object. </summary>
+            <param name="Timestamp"> A high resolution (less than 1us) time stamp when the
+               request was received. </param>
             <param name="Offset"> A data offset. </param>
             <param name="Size"> A read buffer size. </param>
             <remarks> An application must not create this class. It is created
@@ -9286,8 +9295,10 @@
               dependent code that sends a data to a remote connected GATT
               client. </remarks>
         </member>
-        <member name="M:wclBluetooth.wclGattLocalCharacteristicWriteRequest.#ctor(System.UInt32,System.Byte[],System.Boolean)">
+        <member name="M:wclBluetooth.wclGattLocalCharacteristicWriteRequest.#ctor(System.Int64,System.UInt32,System.Byte[],System.Boolean)">
             <summary> Creates new object. </summary>
+            <param name="Timestamp"> A high resolution (less than 1us) time stamp when the
+               request was received. </param>
             <param name="Offset"> A data offset. </param>
             <param name="Data"> The data bytes array. </param>
             <param name="WithResponse"> The GATT write operation flag. </param>
