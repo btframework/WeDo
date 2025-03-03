@@ -46,7 +46,7 @@
               by the <c>Disconnect</c> call. Otherwise indicates the disconnection
               reason. </param>
         </member>
-        <member name="M:wclCommunication.wclClientConnection.HalCommunicate(System.Threading.EventWaitHandle)">
+        <member name="M:wclCommunication.wclClientConnection.HalCommunicate(wclSync.wclEvent)">
             <summary> Implements a hardware-dependent code that communicate with the
               connected remote device. </summary>
             <param name="Event"> The system even object (disconnect event). </param>
@@ -64,7 +64,7 @@
               <para> The default implementation simple waits for the <c>Event</c>
               and exists when the events signaled. </para> </remarks>
         </member>
-        <member name="M:wclCommunication.wclClientConnection.HalConnect(System.Threading.EventWaitHandle)">
+        <member name="M:wclCommunication.wclClientConnection.HalConnect(wclSync.wclEvent)">
             <summary> Implements a hardware-dependent code that connects to a
               remote device. </summary>
             <param name="Event"> The system even object. </param>
@@ -301,15 +301,9 @@
               the inherited implementation first. </para> </remarks>
             <seealso cref="T:wclCommon.wclMessage" />
         </member>
-        <member name="M:wclCommunication.wclCustomConnection.Enter">
-            <summary> Enters the connection's critical section. </summary>
-            <remarks> The method should be used to protect connection in
-              multi-threaded applications. </remarks>
-        </member>
-        <member name="M:wclCommunication.wclCustomConnection.Leave">
-            <summary> Exists *leaves) the connection's critical section. </summary>
-            <remarks> The method should be used to protect connection in
-              multi-threaded applications. </remarks>
+        <member name="P:wclCommunication.wclCustomConnection.CS">
+            <summary> Gets the connection critical section. </summary>
+            <value> The connection critical section object. </value>
         </member>
         <member name="M:wclCommunication.wclCustomConnection.#ctor">
             <summary> Creates a new connection. </summary>
@@ -1970,7 +1964,7 @@
               connection. </param>
             <seealso cref="T:wclCommunication.wclServerClientConnection" />
         </member>
-        <member name="M:wclCommunication.wclServerConnection.HalListen(System.Threading.EventWaitHandle)">
+        <member name="M:wclCommunication.wclServerConnection.HalListen(wclSync.wclEvent)">
             <summary> Implements a hardware-dependent method for listening the client
               connections. </summary>
             <param name="Event"> The termination event. </param>
@@ -2130,7 +2124,7 @@
               hardware-dependent code that prepares the class to communicate
               with a remote connected device. </remarks>
         </member>
-        <member name="M:wclCommunication.wclServerClientConnection.HalCommunicate(System.Threading.EventWaitHandle)">
+        <member name="M:wclCommunication.wclServerClientConnection.HalCommunicate(wclSync.wclEvent)">
             <summary> Implements a hardware-dependent code that communicate with the
               connected remote device. </summary>
             <param name="Event"> The system even object (disconnect event). </param>

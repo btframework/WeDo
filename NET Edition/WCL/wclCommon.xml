@@ -1125,17 +1125,427 @@
         <member name="F:wclCommon.wclPowerState.psUnknown">
             <summary> Unknown power state. </summary>
         </member>
-        <member name="T:wclCommon.wclSync">
-            <exclude />
-        </member>
-        <member name="T:wclCommon.wclEvents">
-            <exclude />
-        </member>
-        <member name="T:wclCommon.wclMutex">
-            <exclude />
-        </member>
         <member name="T:wclCommon.wclThreads">
             <exclude />
+        </member>
+        <member name="T:wclSync.wclSyncObject">
+            <summary> The base class for Wireless Communication Library
+              synchronization objects. </summary>
+        </member>
+        <member name="M:wclSync.wclSyncObject.#ctor">
+            <summary> Creates new synchronization object. </summary>
+        </member>
+        <member name="M:wclSync.wclSyncObject.Free(System.Boolean)">
+            <summary> Frees the object. </summary>
+            <param name="Disposing"> <c>True</c> if the <c>dispose</c> method called directly.
+              <c>False</c> if the <c>Dispose</c> method called from finalizer. </param>
+        </member>
+        <member name="P:wclSync.wclSyncObject.Disposed">
+            <summary> Gets the disposing state. </summary>
+            <value> <c>True</c> if the object was disposed. </value>
+        </member>
+        <member name="M:wclSync.wclSyncObject.Finalize">
+            <exclude />
+        </member>
+        <member name="M:wclSync.wclSyncObject.Dispose">
+            <summary> Disposes the synchronization object. </summary>
+        </member>
+        <member name="T:wclSync.wclAutoResetEvent">
+            <summary> The class represents an auto-reset event synchronization
+               object. </summary>
+            <remarks> An event object is a synchronization object whose state can be
+              explicitly set to signaled by use of the SetEvent function. </remarks>
+            <seealso cref="T:wclSync.wclEvent" />
+        </member>
+        <member name="M:wclSync.wclAutoResetEvent.Create">
+            <summary> Creates an unnamed auto-reset event object. </summary>
+            <returns> If the method completed with success the returning value is
+              a new <see cref="T:wclSync.wclEvent" /> object. If the method failed the
+              returning value is <c>null</c>. </returns>
+            <see cref="T:wclSync.wclAutoResetEvent" />
+        </member>
+        <member name="M:wclSync.wclAutoResetEvent.Create(System.String)">
+            <summary> Creates or opens an auto-reset named event object. </summary>
+            <param name="Name"> The event name. </param>
+            <returns> If the method completed with success the returning value is
+              a new <see cref="T:wclSync.wclEvent" /> object. If the method failed the
+              returning value is <c>null</c>. </returns>
+            <see cref="T:wclSync.wclAutoResetEvent" />
+        </member>
+        <member name="M:wclSync.wclAutoResetEvent.Create(System.String,System.Boolean@)">
+            <summary> Creates or opens an auto-reset named event object. </summary>
+            <param name="Name"> The event name. </param>
+            <param name="Exist"> If the method completed with success the parameter
+              indicates whether a named event object was just created or existing
+              was opened. <c>true</c> indicates that an event object was opened.
+              <c>false</c> indicates that a new event object was created. </param>
+            <returns> If the method completed with success the returning value is
+              a new <see cref="T:wclSync.wclEvent" /> object. If the method failed the
+              returning value is <c>null</c>. </returns>
+            <see cref="T:wclSync.wclAutoResetEvent" />
+        </member>
+        <member name="T:wclSync.wclEvent">
+            <summary> The class represents an event synchronization object. </summary>
+            <remarks> An event object is a synchronization object whose state can be
+              explicitly set to signaled by use of the SetEvent function. </remarks>
+            <seealso cref="T:wclSync.wclNamedSyncObject" />
+        </member>
+        <member name="M:wclSync.wclEvent.#ctor(System.IntPtr)">
+            <summary> Creates new event object. </summary>
+        </member>
+        <member name="M:wclSync.wclEvent.WaitOne">
+            <summary> Waits until the object is in the signaled state. </summary>
+            <returns> If the wait completed with success the returning value is
+              <see cref="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0" />. If the wait failed the returning
+              value is <see cref="F:wclSync.wclWaitableSyncObject.WAIT_FAILED" />. </returns>
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_FAILED" />
+        </member>
+        <member name="M:wclSync.wclEvent.WaitOne(System.UInt32)">
+            <summary> Waits until the object is in the signaled state or the
+              time-out interval elapses. </summary>
+            <param name="Timeout"> The wait timeout value. </param>
+            <returns> If the wait completed with success the returning value is
+              <see cref="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0" />. If the time-out elapsed the
+              returning value is <see cref="F:wclSync.wclWaitableSyncObject.WAIT_TIMEOUT" />. If the wait failed
+              the returning value is  <see cref="F:wclSync.wclWaitableSyncObject.WAIT_FAILED" />. </returns>
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_TIMEOUT" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_FAILED" />
+        </member>
+        <member name="M:wclSync.wclEvent.Create(System.Boolean)">
+            <summary> Creates an unnamed event object. </summary>
+            <param name="ManualReset"> If this parameter is <c>true</c>, the
+              method creates a manual-reset event object, which requires the use of
+              the <c>ResetEvent</c> method to set the event state to nonsignaled.
+              If this parameter is <c>false</c>, the method creates an auto-reset
+              event object, and the system automatically resets the event state to
+              nonsignaled after a single waiting thread has been released. </param>
+            <returns> If the method completed with success the returning value is
+              a new <see cref="T:wclSync.wclEvent" /> object. If the method failed the
+              returning value is <c>null</c>. </returns>
+            <see cref="T:wclSync.wclEvent" />
+        </member>
+        <member name="M:wclSync.wclEvent.Create(System.String,System.Boolean)">
+            <summary> Creates or opens a named event object. </summary>
+            <param name="Name"> The event name. </param>
+            <param name="ManualReset"> If this parameter is <c>true</c>, the
+              method creates a manual-reset event object, which requires the use of
+              the <c>ResetEvent</c> method to set the event state to nonsignaled.
+              If this parameter is <c>false</c>, the method creates an auto-reset
+              event object, and the system automatically resets the event state to
+              nonsignaled after a single waiting thread has been released. </param>
+            <returns> If the method completed with success the returning value is
+              a new <see cref="T:wclSync.wclEvent" /> object. If the method failed the
+              returning value is <c>null</c>. </returns>
+            <see cref="T:wclSync.wclEvent" />
+        </member>
+        <member name="M:wclSync.wclEvent.Create(System.String,System.Boolean,System.Boolean@)">
+            <summary> Creates or opens a named event object. </summary>
+            <param name="Name"> The event name. </param>
+            <param name="ManualReset"> If this parameter is <c>true</c>, the
+              method creates a manual-reset event object, which requires the use of
+              the <c>ResetEvent</c> method to set the event state to nonsignaled.
+              If this parameter is <c>false</c>, the method creates an auto-reset
+              event object, and the system automatically resets the event state to
+              nonsignaled after a single waiting thread has been released. </param>
+            <param name="Exist"> If the method completed with success the parameter
+              indicates whether a named event object was just created or existing
+              was opened. <c>true</c> indicates that an event object was opened.
+              <c>false</c> indicates that a new event object was created. </param>
+            <returns> If the method completed with success the returning value is
+              a new <see cref="T:wclSync.wclEvent" /> object. If the method failed the
+              returning value is <c>null</c>. </returns>
+            <see cref="T:wclSync.wclEvent" />
+        </member>
+        <member name="M:wclSync.wclEvent.Open(System.String)">
+            <summary> Opens an existing named event object. </summary>
+            <param name="Name"> The event name. </param>
+            <returns> If the method completed with success the returning value is
+              an opened <see cref="T:wclSync.wclEvent" /> object. If the method failed the
+              returning value is <c>null</c>. </returns>
+            <see cref="T:wclSync.wclEvent" />
+        </member>
+        <member name="M:wclSync.wclEvent.ResetEvent">
+            <summary> Sets the event object to the nonsignaled state. </summary>
+            <returns> If the method succeeds, the return value is <c>True</c>.
+              If the method fails, the return value is <c>False</c>. </returns>
+        </member>
+        <member name="M:wclSync.wclEvent.SetEvent">
+            <summary> Sets the event object to the signaled state. </summary>
+            <returns> If the method succeeds, the return value is <c>True</c>.
+              If the method fails, the return value is <c>False</c>. </returns>
+        </member>
+        <member name="T:wclSync.wclManualResetEvent">
+            <summary> The class represents a manual-reset event synchronization
+               object. </summary>
+            <remarks> An event object is a synchronization object whose state can be
+              explicitly set to signaled by use of the SetEvent function. </remarks>
+            <seealso cref="T:wclSync.wclEvent" />
+        </member>
+        <member name="M:wclSync.wclManualResetEvent.Create">
+            <summary> Creates an unnamed manual-reset event object. </summary>
+            <returns> If the method completed with success the returning value is
+              a new <see cref="T:wclSync.wclEvent" /> object. If the method failed the
+              returning value is <c>null</c>. </returns>
+            <see cref="T:wclSync.wclManualResetEvent" />
+        </member>
+        <member name="M:wclSync.wclManualResetEvent.Create(System.String)">
+            <summary> Creates or opens a manual-reset named event object. </summary>
+            <param name="Name"> The event name. </param>
+            <returns> If the method completed with success the returning value is
+              a new <see cref="T:wclSync.wclEvent" /> object. If the method failed the
+              returning value is <c>null</c>. </returns>
+            <see cref="T:wclSync.wclManualResetEvent" />
+        </member>
+        <member name="M:wclSync.wclManualResetEvent.Create(System.String,System.Boolean@)">
+            <summary> Creates or opens a manual-reset named event object. </summary>
+            <param name="Name"> The event name. </param>
+            <param name="Exist"> If the method completed with success the parameter
+              indicates whether a named event object was just created or existing
+              was opened. <c>true</c> indicates that an event object was opened.
+              <c>false</c> indicates that a new event object was created. </param>
+            <returns> If the method completed with success the returning value is
+              a new <see cref="T:wclSync.wclEvent" /> object. If the method failed the
+              returning value is <c>null</c>. </returns>
+            <see cref="T:wclSync.wclManualResetEvent" />
+        </member>
+        <member name="T:wclSync.wclMutex">
+            <summary> The class represents a mutex synchronization object. </summary>
+            <remarks> A mutex object is a synchronization object whose state is set to
+              signaled when it is not owned by any thread, and nonsignaled when it is
+              owned. Only one thread at a time can own a mutex object, whose name
+              comes from the fact that it is useful in coordinating mutually exclusive
+              access to a shared resource. </remarks>
+            <seealso cref="T:wclSync.wclNamedSyncObject" />
+        </member>
+        <member name="M:wclSync.wclMutex.Create">
+            <summary> Creates an unnamed mutex object. </summary>
+            <returns> If the method completed with success the returning value is
+              a new <c>wclMutex</c> class object. If the method failed the
+              returning value is <c>null</c>. </returns>
+            <seealso cref="T:wclSync.wclMutex" />
+        </member>
+        <member name="M:wclSync.wclMutex.Create(System.String)">
+            <summary> Creates or opens a named mutex object. </summary>
+            <param name="Name"> The mutex name. </param>
+            <returns> If the method completed with success the returning value is
+              a new <c>wclMutex</c> class object. If the method failed the
+              returning value is <c>null</c>. </returns>
+            <seealso cref="T:wclSync.wclMutex" />
+        </member>
+        <member name="M:wclSync.wclMutex.Create(System.String,System.Boolean@)">
+            <summary> Creates or opens a named mutex object. </summary>
+            <param name="Name"> The mutex name. </param>
+            <param name="Exist"> If the method completed with success the parameter
+              indicates whether a named mutex object was just created or existing
+              was opened. <c>True</c> indicates that a mutex object was opened.
+              <c>False</c> indicates that a new mutex object was created. </param>
+            <returns> If the method completed with success the returning value is
+              a new <c>wclMutex</c> class object. If the method failed the
+              returning value is <c>null</c>. </returns>
+            <seealso cref="T:wclSync.wclMutex" />
+        </member>
+        <member name="M:wclSync.wclMutex.Open(System.String)">
+            <summary> Opens an existing mutex with the specified name. </summary>
+            <param name="Name"> The mutex name. </param>
+            <returns> If the method completed with success the returning value is
+              a <c>wclMutex</c> class object. If the method failed the
+              returning value is <c>null</c>. </returns>
+            <seealso cref="T:wclSync.wclMutex" />
+        </member>
+        <member name="M:wclSync.wclMutex.Acquire">
+            <summary> Acquires the mutex object. </summary>
+            <returns> If the mutex acquired with success the returning value is
+              <see cref="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0" />. If the thread that owned that mutex
+              has exited without releasing the mutex the returning value
+              is <see cref="F:wclSync.wclWaitableSyncObject.WAIT_ABANDONED" />. If the wait failed the returning
+              value is <see cref="F:wclSync.wclWaitableSyncObject.WAIT_FAILED" />. </returns>
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_ABANDONED" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_FAILED" />
+        </member>
+        <member name="M:wclSync.wclMutex.Acquire(System.UInt32)">
+            <summary> Tries to acquire the mutex object during the given time-out
+              interval. </summary>
+            <param name="Timeout"> The wait timeout value. </param>
+            <returns> If the mutex acquired with success the returning value is
+              <see cref="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0" />. If the thread that owned that mutex
+              has exited without releasing the mutex the returning value
+              is <see cref="F:wclSync.wclWaitableSyncObject.WAIT_ABANDONED" />. If the time-out elapsed the
+              returning value is <see cref="F:wclSync.wclWaitableSyncObject.WAIT_TIMEOUT" />. If the wait failed
+              the returning value is  <see cref="F:wclSync.wclWaitableSyncObject.WAIT_FAILED" />. </returns>
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_ABANDONED" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_TIMEOUT" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_FAILED" />
+        </member>
+        <member name="M:wclSync.wclMutex.Release">
+            <summary> Releases the mutex object. </summary>
+            <returns> If the method completed with success the returning value is
+              <c>True</c>. </returns>
+        </member>
+        <member name="T:wclSync.wclNamedSyncObject">
+            <summary> The base class for the Wireless Communication Library
+              named synchronization objects. </summary>
+            <seealso cref="T:wclSync.wclWaitableSyncObject" />
+        </member>
+        <member name="M:wclSync.wclNamedSyncObject.#ctor(System.IntPtr)">
+            <summary> Creates new synchronization object. </summary>
+            <param name="Handle"> A system dependent synchronization object
+              handle. </param>
+        </member>
+        <member name="M:wclSync.wclNamedSyncObject.MakeUniqueName(System.String)">
+            <summary> Makes unique synchronization object name. </summary>
+            <param name="Name"> The synchronization object name. </param>
+            <returns> The method returns the unique synchronization object name:
+              the original object name expanded with the process ID. </returns>
+        </member>
+        <member name="T:wclSync.wclWaitableSyncObject">
+            <summary> The base class for waitable synchronization objects. </summary>
+            <seealso cref="T:wclSync.wclSyncObject" />
+        </member>
+        <member name="M:wclSync.wclWaitableSyncObject.Free(System.Boolean)">
+            <summary> Frees the object. </summary>
+            <param name="Disposing"> <c>True</c> if the <c>dispose</c> method called directly.
+              <c>False</c> if the <c>Dispose</c> method called from finalizer. </param>
+        </member>
+        <member name="M:wclSync.wclWaitableSyncObject.#ctor(System.IntPtr)">
+            <summary> Creates new synchronization object. </summary>
+            <param name="Handle"> A system dependent synchronization object
+              handle. </param>
+        </member>
+        <member name="M:wclSync.wclWaitableSyncObject.WaitOne">
+            <summary> Waits until the object is in the signaled state. </summary>
+            <returns> If the wait completed with success the returning value is
+              <see cref="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0" />. If the wait operation completed
+              with success the waitable object is a mutex and the thread that owned
+               that mutex has exited without releasing the mutex the returning value
+              is <see cref="F:wclSync.wclWaitableSyncObject.WAIT_ABANDONED" />. If the wait failed the returning
+              value is <see cref="F:wclSync.wclWaitableSyncObject.WAIT_FAILED" />. </returns>
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_ABANDONED" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_FAILED" />
+        </member>
+        <member name="M:wclSync.wclWaitableSyncObject.WaitOne(System.UInt32)">
+            <summary> Waits until the object is in the signaled state or the
+              time-out interval elapses. </summary>
+            <param name="Timeout"> The wait timeout value. </param>
+            <returns> If the wait completed with success the returning value is
+              <see cref="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0" />. If the wait operation completed
+              with success the waitable object is a mutex and the thread that owned
+              that mutex has exited without releasing the mutex the returning value
+              is <see cref="F:wclSync.wclWaitableSyncObject.WAIT_ABANDONED" />. If the time-out elapsed the
+              returning value is <see cref="F:wclSync.wclWaitableSyncObject.WAIT_TIMEOUT" />. If the wait failed
+              the returning value is  <see cref="F:wclSync.wclWaitableSyncObject.WAIT_FAILED" />. </returns>
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_ABANDONED" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_TIMEOUT" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_FAILED" />
+        </member>
+        <member name="M:wclSync.wclWaitableSyncObject.WaitAll(wclSync.wclWaitableSyncObject[])">
+            <summary> Waits until all of the specified objects are in the signaled
+              state. </summary>
+            <param name="Objects"> An array of waitable objects. </param>
+            <returns> If the wait completed with success the returning value is
+              <see cref="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0" />. If the wait operation completed
+              with success but one of the waitable object is a mutex and the thread
+              that owned that mutex has exited without releasing the mutex the
+              returning value is <see cref="F:wclSync.wclWaitableSyncObject.WAIT_ABANDONED" />. If the wait
+              failed the returning value is
+              <see cref="F:wclSync.wclWaitableSyncObject.WAIT_FAILED" />. </returns>
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_ABANDONED" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_FAILED" />
+            <seealso cref="T:wclSync.wclWaitableSyncObject" />
+        </member>
+        <member name="M:wclSync.wclWaitableSyncObject.WaitAll(wclSync.wclWaitableSyncObject[],System.UInt32)">
+            <summary> Waits until all of the specified objects are in the signaled
+              state or the time-out interval elapses. </summary>
+            <param name="Objects"> An array of waitable objects. </param>
+            <param name="Timeout"> The wait timeout value. </param>
+            <returns> If the wait completed with success the returning value is
+              <see cref="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0" />. If the wait operation completed
+              with success but one of the waitable object is a mutex and the thread
+              that owned that mutex has exited without releasing the mutex the
+              returning value is <see cref="F:wclSync.wclWaitableSyncObject.WAIT_ABANDONED" />. If the time-out
+              elapsed the returning value is <see cref="F:wclSync.wclWaitableSyncObject.WAIT_TIMEOUT" />. If the
+              wait failed the returning value is
+              <see cref="F:wclSync.wclWaitableSyncObject.WAIT_FAILED" />. </returns>
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_ABANDONED" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_TIMEOUT" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_FAILED" />
+            <seealso cref="T:wclSync.wclWaitableSyncObject" />
+        </member>
+        <member name="M:wclSync.wclWaitableSyncObject.WaitAny(wclSync.wclWaitableSyncObject[])">
+            <summary> Waits until one or all of the specified objects are in the
+              signaled state. </summary>
+            <param name="Objects"> An array of waitable objects. </param>
+            <returns> If the wait completed with success the returning value is a
+              signaled object index starting from <see cref="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0" />.
+              If the wait operation completed with success but one of the waitable
+              object is a mutex and the thread that owned that mutex has exited
+              without releasing the mutex the returning value is a mutex index
+              starting from <see cref="F:wclSync.wclWaitableSyncObject.WAIT_ABANDONED_0" />. If the wait
+              failed the returning value is
+              <see cref="F:wclSync.wclWaitableSyncObject.WAIT_FAILED" />. </returns>
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_ABANDONED_0" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_FAILED" />
+            <seealso cref="T:wclSync.wclWaitableSyncObject" />
+        </member>
+        <member name="M:wclSync.wclWaitableSyncObject.WaitAny(wclSync.wclWaitableSyncObject[],System.UInt32)">
+            <summary> Waits until one of the specified objects are in the signaled
+              state or the time-out interval elapses. </summary>
+            <param name="Objects"> An array of waitable objects. </param>
+            <param name="Timeout"> The wait timeout value. </param>
+            <returns> If the wait completed with success the returning value is a
+              signaled object index starting from <see cref="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0" />.
+              If the wait operation completed with success but one of the waitable
+              object is a mutex and the thread that owned that mutex has exited
+              without releasing the mutex the returning value is a mutex index
+              starting from <see cref="F:wclSync.wclWaitableSyncObject.WAIT_ABANDONED_0" />. If the time-out
+              elapsed the returning value is <see cref="F:wclSync.wclWaitableSyncObject.WAIT_TIMEOUT" />. If the
+              wait failed the returning value is
+              <see cref="F:wclSync.wclWaitableSyncObject.WAIT_FAILED" />. </returns>
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_ABANDONED_0" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_TIMEOUT" />
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_FAILED" />
+            <seealso cref="T:wclSync.wclWaitableSyncObject" />
+        </member>
+        <member name="P:wclSync.wclWaitableSyncObject.Handle">
+            <summary> Gets the system dependent synchronization object
+              handle. </summary>
+            <value> The object handle. </value>
+        </member>
+        <member name="F:wclSync.wclWaitableSyncObject.WAIT_INFINITE">
+            <summary> Specifies the infinite wait interval. If this value is specified
+              as a <c>Timeout</c> parameter value the Wait method will not returns
+              until object signals. </summary>
+        </member>
+        <member name="F:wclSync.wclWaitableSyncObject.WAIT_OBJECT_0">
+            <summary> Indicates the success wait result. </summary>
+        </member>
+        <member name="F:wclSync.wclWaitableSyncObject.WAIT_ABANDONED_0">
+            <summary> Indicates the success wait result but one of the specified
+              objects is a mutex object that was not released by the thread that owned
+              the mutex object before the owning thread terminated. The returning
+              value is the abandoned object index. </summary>
+        </member>
+        <member name="F:wclSync.wclWaitableSyncObject.WAIT_ABANDONED">
+            <summary> Indicates the success wait result but the wait objects is a
+              mutex object that was not released by the thread that owned the mutex
+              object before the owning thread terminated. </summary>
+            <seealso cref="F:wclSync.wclWaitableSyncObject.WAIT_ABANDONED_0" />
+        </member>
+        <member name="F:wclSync.wclWaitableSyncObject.WAIT_TIMEOUT">
+            <summary> The time-out interval elapsed, and no one of the object is
+              signaled. </summary>
+        </member>
+        <member name="F:wclSync.wclWaitableSyncObject.WAIT_FAILED">
+            <summary> The wait method has failed. </summary>
         </member>
     </members>
 </doc>

@@ -1052,13 +1052,9 @@
             <remarks> The class implements the basic methods to prevent the
               Bluetooth Connections from self-destruction. </remarks>
         </member>
-        <member name="M:wclBluetooth.wclBluetoothComponent.Enter">
-            <summary> Enters the Bluetooth component protection critical
-              section. </summary>
-        </member>
-        <member name="M:wclBluetooth.wclBluetoothComponent.Leave">
-            <summary> Leaves the Bluetooth component protection critical
-              section. </summary>
+        <member name="P:wclBluetooth.wclBluetoothComponent.CS">
+            <summary> Gets the critical section object. </summary>
+            <value> The critical section object. </value>
         </member>
         <member name="M:wclBluetooth.wclBluetoothComponent.#ctor">
             <summary> Creates a new component. </summary>
@@ -2941,7 +2937,7 @@
               the inherited implementation first. </para> </remarks>
             <seealso cref="T:wclCommon.wclMessage" />
         </member>
-        <member name="M:wclBluetooth.wclGattClientConnection.HalConnect(System.Threading.EventWaitHandle)">
+        <member name="M:wclBluetooth.wclGattClientConnection.HalConnect(wclSync.wclEvent)">
             <summary> Implements a hardware-dependent code that connects to a
               remote device. </summary>
             <param name="Event"> The system even object handle. </param>
@@ -4257,7 +4253,7 @@
               the inherited implementation first. </para> </remarks>
             <seealso cref="T:wclCommon.wclMessage" />
         </member>
-        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.HalConnect(System.Threading.EventWaitHandle)">
+        <member name="M:wclBluetooth.wclWiiRemoteClientConnection.HalConnect(wclSync.wclEvent)">
             <summary> Implements a hardware-dependent code that connects to a
               remote device. </summary>
             <param name="Event"> The system even object handle. </param>
@@ -4566,14 +4562,14 @@
             <seealso cref="T:wclBluetooth.wclBluetoothRadio" />
             <seealso cref="T:wclBluetooth.wclWiiRemoteClientConnection" />
         </member>
-        <member name="M:wclBluetooth.wclWiiRemoteHidClientConnection.HalConnect(System.Threading.EventWaitHandle)">
+        <member name="M:wclBluetooth.wclWiiRemoteHidClientConnection.HalConnect(wclSync.wclEvent)">
             <summary> Connects to the Wii Remote as to HID device. </summary>
             <param name="Event"> The system even object handle. </param>
             <returns> If the function succeed the return value is
               <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
               the WCL error codes. </returns>
         </member>
-        <member name="M:wclBluetooth.wclWiiRemoteHidClientConnection.HalCommunicate(System.Threading.EventWaitHandle)">
+        <member name="M:wclBluetooth.wclWiiRemoteHidClientConnection.HalCommunicate(wclSync.wclEvent)">
             <summary> Communicates with the Wii Remote as with HID
               device. </summary>
             <param name="Event"> The system even object handle (disconnect
@@ -8606,13 +8602,9 @@
             <summary> The base class for local GATT attributes (characteristics,
               services). </summary>
         </member>
-        <member name="M:wclBluetooth.wclGattLocalAttribute.Enter">
-            <summary> Enters the GATT local attribute protection critical
-              section. </summary>
-        </member>
-        <member name="M:wclBluetooth.wclGattLocalAttribute.Leave">
-            <summary> Leaves the GATT local attribute protection critical
-              section. </summary>
+        <member name="P:wclBluetooth.wclGattLocalAttribute.CS">
+            <summary> Gets the critical section object. </summary>
+            <value> The critical section object. </value>
         </member>
         <member name="M:wclBluetooth.wclGattLocalAttribute.#ctor(wclBluetooth.wclGattUuid)">
             <summary> Creates new local GATT attribute. </summary>
@@ -9536,13 +9528,9 @@
         <member name="T:wclBluetooth.wclBluetoothLeAdvertisement">
             <summary> The base class for Bluetooth LE advertisement. </summary>
         </member>
-        <member name="M:wclBluetooth.wclBluetoothLeAdvertisement.Enter">
-            <summary> Enters the advertisement data protection critical
-              section. </summary>
-        </member>
-        <member name="M:wclBluetooth.wclBluetoothLeAdvertisement.Leave">
-            <summary> Leaves the advertisement data protection critical
-              section. </summary>
+        <member name="P:wclBluetooth.wclBluetoothLeAdvertisement.CS">
+            <summary> Gets the critical section object. </summary>
+            <value> The critical section object. </value>
         </member>
         <member name="M:wclBluetooth.wclBluetoothLeAdvertisement.#ctor">
             <summary> Creates new Bluetooth LE advertisement object. </summary>
