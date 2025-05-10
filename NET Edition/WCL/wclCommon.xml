@@ -1157,6 +1157,11 @@
               explicitly set to signaled by use of the SetEvent function. </remarks>
             <seealso cref="T:wclSync.wclEvent" />
         </member>
+        <member name="M:wclSync.wclAutoResetEvent.#ctor(System.IntPtr)">
+            <summary> Creates new event object. </summary>
+            <param name="Handle"> A system dependent synchronization object
+              handle. </param>
+        </member>
         <member name="M:wclSync.wclAutoResetEvent.Create">
             <summary> Creates an unnamed auto-reset event object. </summary>
             <returns> If the method completed with success the returning value is
@@ -1191,7 +1196,9 @@
             <seealso cref="T:wclSync.wclNamedSyncObject" />
         </member>
         <member name="M:wclSync.wclEvent.#ctor(System.IntPtr)">
-            <summary> Creates new event object. </summary>
+            <summary> Creates new mutex object. </summary>
+            <param name="Handle"> A system dependent synchronization object
+              handle. </param>
         </member>
         <member name="M:wclSync.wclEvent.WaitOne">
             <summary> Waits until the object is in the signaled state. </summary>
@@ -1226,29 +1233,29 @@
               returning value is <c>null</c>. </returns>
             <see cref="T:wclSync.wclEvent" />
         </member>
-        <member name="M:wclSync.wclEvent.Create(System.String,System.Boolean)">
+        <member name="M:wclSync.wclEvent.Create(System.Boolean,System.String)">
             <summary> Creates or opens a named event object. </summary>
-            <param name="Name"> The event name. </param>
             <param name="ManualReset"> If this parameter is <c>true</c>, the
               method creates a manual-reset event object, which requires the use of
               the <c>ResetEvent</c> method to set the event state to nonsignaled.
               If this parameter is <c>false</c>, the method creates an auto-reset
               event object, and the system automatically resets the event state to
               nonsignaled after a single waiting thread has been released. </param>
+            <param name="Name"> The event name. </param>
             <returns> If the method completed with success the returning value is
               a new <see cref="T:wclSync.wclEvent" /> object. If the method failed the
               returning value is <c>null</c>. </returns>
             <see cref="T:wclSync.wclEvent" />
         </member>
-        <member name="M:wclSync.wclEvent.Create(System.String,System.Boolean,System.Boolean@)">
+        <member name="M:wclSync.wclEvent.Create(System.Boolean,System.String,System.Boolean@)">
             <summary> Creates or opens a named event object. </summary>
-            <param name="Name"> The event name. </param>
             <param name="ManualReset"> If this parameter is <c>true</c>, the
               method creates a manual-reset event object, which requires the use of
               the <c>ResetEvent</c> method to set the event state to nonsignaled.
               If this parameter is <c>false</c>, the method creates an auto-reset
               event object, and the system automatically resets the event state to
               nonsignaled after a single waiting thread has been released. </param>
+            <param name="Name"> The event name. </param>
             <param name="Exist"> If the method completed with success the parameter
               indicates whether a named event object was just created or existing
               was opened. <c>true</c> indicates that an event object was opened.
@@ -1282,6 +1289,11 @@
             <remarks> An event object is a synchronization object whose state can be
               explicitly set to signaled by use of the SetEvent function. </remarks>
             <seealso cref="T:wclSync.wclEvent" />
+        </member>
+        <member name="M:wclSync.wclManualResetEvent.#ctor(System.IntPtr)">
+            <summary> Creates new mutex object. </summary>
+            <param name="Handle"> A system dependent synchronization object
+              handle. </param>
         </member>
         <member name="M:wclSync.wclManualResetEvent.Create">
             <summary> Creates an unnamed manual-reset event object. </summary>
@@ -1318,6 +1330,11 @@
               comes from the fact that it is useful in coordinating mutually exclusive
               access to a shared resource. </remarks>
             <seealso cref="T:wclSync.wclNamedSyncObject" />
+        </member>
+        <member name="M:wclSync.wclMutex.#ctor(System.IntPtr)">
+            <summary> Creates new mutex object. </summary>
+            <param name="Handle"> A system dependent synchronization object
+              handle. </param>
         </member>
         <member name="M:wclSync.wclMutex.Create">
             <summary> Creates an unnamed mutex object. </summary>

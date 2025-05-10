@@ -6206,6 +6206,21 @@
         <member name="F:wclBluetooth.wclBluetoothLeCdpBeaconExtendedDeviceStatus.edsNearShareAuthPolicyPermissive">
             <summary> Indicates the device supports NearShare. </summary>
         </member>
+        <member name="T:wclBluetooth.wclBluetoothLeAdvertisementPhy">
+            <summary> Represents a LE advertisement PHY types. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAdvertisementPhy.phUnspecified">
+            <summary> Unknown or unspecified PHY. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAdvertisementPhy.phUncoded1M">
+            <summary> Uncoded 1M PHY. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAdvertisementPhy.phUncoded2M">
+            <summary> Uncoded 2M PHY. </summary>
+        </member>
+        <member name="F:wclBluetooth.wclBluetoothLeAdvertisementPhy.phCoded">
+            <summary> Coded PHY. </summary>
+        </member>
         <member name="T:wclBluetooth.wclBluetoothErrors">
             <summary> The static class contains the Bluetooth Error Codes. </summary>
         </member>
