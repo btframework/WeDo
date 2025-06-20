@@ -68,6 +68,11 @@
             <exclude />
             <exclude />
             <exclude />
+            <exclude />
+            <exclude />
+            <exclude />
+            <exclude />
+            <exclude />
         </member>
         <member name="T:wclCommon.Api.Win.Security">
             <exclude />
@@ -350,6 +355,92 @@
         </member>
         <member name="F:wclCommon.wclErrors.WCL_E_CFGMGR_LOAD_FAILED">
             <summary> Unable to load Configuration Manager API. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_BASE">
+            <summary> The base error code for Limited Access Feature
+              errors. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_NOT_FOUND">
+            <summary> The LAF ID was not found. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_OPEN_KEY_FAILED">
+            <summary> Unable to access the LAF key information. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_KEY_NOT_FOUND">
+            <summary> The LAF key was not found. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_DLL_LOAD_FAILED">
+            <summary> Unable to load encryption DLL. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_FUNC_NOT_FOUND">
+            <summary> Encryption functions not found. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_ACQUIRE_CONTEXT_FAILED">
+            <summary> Unable to acquire encryption context. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_CREATE_HASH_FAILED">
+            <summary> Unable to build hash. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_CRYPT_HASH_FAILED">
+            <summary> Unable to crypt the hash. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_GET_CRYPTED_HASH_FAILED">
+            <summary> Unable to get crypted hash. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_IDENTITY_NOT_FOUND">
+            <summary> An application file does not contain the identity
+              resource. </summary> 
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_IDENTITY_READ_FAILED">
+            <summary> Unable to read the identity. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_IDENTITY_INVALID">
+            <summary> The identity has invalid format. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_IDENTITY_EMPTY">
+            <summary> The identity is empty. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_IDENTITY_INVALID_FORMAT">
+            <summary> The identity has invalid format. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_UNLOCK_REQUEST_FAILED">
+            <summary> Request to unlock limited feature failed. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_GET_REQUEST_STATUS_FAILED">
+            <summary> Unable to get unlock request status. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_LOCKED">
+            <summary> The LAF is locked. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_UNAVAILABLE">
+            <summary> The LAF unavailable because was not found. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_STATUS_UNKNOWN">
+            <summary> Unknown or undefined LAF status. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_MANAGER_OPENED">
+            <summary> The LAF manager has already been opened. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_MANAGER_NOT_OPENED">
+            <summary> The LAF manager was not opened. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_MANAGER_CLOSED">
+            <summary> The LAF manager is closed. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_MANAGER_CREATE_INIT_EVENT_FAILED">
+            <summary> Create LAF manager initialization event failed. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_MANAGER_CREATE_TERM_EVENT_FAILED">
+            <summary> Create LAF manager termination event failed. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_MANAGER_START_THREAD_FAILED">
+            <summary> Unable to start the LAF manager working thread. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_MANAGER_FEATURE_NOT_SUPPORTED">
+            <summary> The LAF feature is not supported on this platform. </summary>
+        </member>
+        <member name="F:wclCommon.wclErrors.WCL_E_LAF_MANAGER_GET_LAF_LIST_FAILED">
+            <summary> Unable to access the LAF list. </summary>
         </member>
         <member name="T:wclCommon.wclException">
             <summary> The base WCL exceptions class. </summary>
@@ -1127,6 +1218,63 @@
         </member>
         <member name="T:wclCommon.wclThreads">
             <exclude />
+        </member>
+        <member name="T:wclLaf.wclLafManager">
+            <summary> The Limited Access Feature (LAF) Manager class. </summary>
+            <remarks> The LAF Manager allows to work with the Limited Access
+              Features. </remarks>
+        </member>
+        <member name="M:wclLaf.wclLafManager.#ctor">
+            <summary> Creates new LAF manager object. </summary>
+        </member>
+        <member name="M:wclLaf.wclLafManager.Finalize">
+            <summary> Closes the LAF manager and releases all allocated
+              resources. </summary>
+        </member>
+        <member name="M:wclLaf.wclLafManager.Close">
+            <summary> Closes the LAF manager and releases all allocated
+              resources. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclLaf.wclLafManager.Open">
+            <summary> Opens the LAF manager. </summary>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclLaf.wclLafManager.Enum(System.Collections.Generic.List{System.String})">
+            <summary> Enumerates available LAF. </summary>
+            <param name="Laf"> The list that will be fulfilled with found
+              LAF. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclLaf.wclLafManager.GetIdentity(System.String@,System.String@,System.String@)">
+            <summary> Gets the application LAF identity details. </summary>
+            <param name="Pfn"> If the method completed with success on output
+              contains the LAF identity Package Full Name (PFN). </param>
+            <param name="AppName"> If the method completed with success on output
+              contains the LAF identity application name. </param>
+            <param name="Publisher"> If the method completed with success on
+              output contains the LAF identity publisher ID. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="M:wclLaf.wclLafManager.Unlock(System.String)">
+            <summary> Unlocks the specified LAF. </summary>
+            <param name="Laf"> The Limited Access Feature ID. </param>
+            <returns> If the function succeed the return value is
+              <see cref="F:wclCommon.wclErrors.WCL_E_SUCCESS" />. Otherwise the method returns one of
+              the WCL error codes. </returns>
+        </member>
+        <member name="P:wclLaf.wclLafManager.Active">
+            <summary> Gets the LAF manager state. </summary>
+            <value> <c>True</c> if the LAF manager is opened. <c>False</c> if the
+              LAF manager is closed. </value>
         </member>
         <member name="T:wclSync.wclSyncObject">
             <summary> The base class for Wireless Communication Library
