@@ -2,6 +2,9 @@
 
 This Framework expands [Bluetooth Framework](https://www.btframework.com/bluetoothframework.htm) with [Lego WeDo 2.0 Education](https://education.lego.com/en-us) support. Should you have any questions please contact us at support@btframework.com
 
+<img width="1600" height="912" alt="wedo" src="https://github.com/user-attachments/assets/85dfc21a-8df7-4d0e-8dbf-abe404ad67d0" />
+
+
 ## License Terms
 
 **This project is free for education purpose only**. It can be used with free of charge for any education purposes: at home, in schools or in other education organizations.
